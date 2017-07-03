@@ -60,6 +60,7 @@
         <tr v-for="skill in specializedSkills">
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
+          <td><button :data-skill="skill.id" v-on:click="unSpecSkill">-</button></td>
         </tr>
       </tbody>
     </table>
@@ -70,23 +71,19 @@
         <tr v-for="skill in trainedSkills">
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
+          <td><button :data-skill="skill.id" v-on:click="specSkill">+</button></td>
+          <td><button :data-skill="skill.id" v-on:click="unTrainSkill">-</button></td>
         </tr>
       </tbody>
     </table>
 
     <h3>Untrained</h3>
     <table>
-      <thead>
-        <tr>
-          <th>Skill</th>
-          <th>Base</th>
-          <th>Value</th>
-        </tr>
-      </thead>
       <tbody>
         <tr v-for="skill in untrainedSkills">
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
+          <td><button :data-skill="skill.id" v-on:click="trainSkill">+</button></td>
         </tr>
       </tbody>
     </table>
@@ -95,10 +92,12 @@
 
 <script>
 
+// Note that this is not cost _to_ train or spec, but cost _when_ trained or
+// spec'd
 const cost = {
   alchemy: {
     trained: 6,
-    specialized: 0
+    specialized: 6
   },
   arcane_lore: {
     trained: 0,
@@ -140,7 +139,7 @@ export default {
         {
           id: 'alchemy',
           name: 'Alchemy',
-          training: 'trained'
+          training: 'untrained'
         },
         {
           id: 'arcane_lore',
@@ -163,10 +162,7 @@ export default {
     },
     // Skill costs
     total_skill_cost: function () {
-      return this.skills.reduce(function (x, skill) {
-        console.log('total_skill_cost', skill.id, skill.training, cost[skill.id][skill.training])
-        return x + cost[skill.id][skill.training]
-      }, 0)
+      return cost[this.skills[0].id][this.skills[0].training] + cost[this.skills[1].id][this.skills[1].training] || 0
     },
     // Skill values
     alchemy: function () {
@@ -206,6 +202,10 @@ export default {
       })
     }
   },
+  methods: {
+    skillValue: function (id) {
+      return this[id]
+    },
     trainingBonus: function (id) {
       var training = this.skills.filter(function (skill) {
         return skill.id === id
@@ -218,6 +218,25 @@ export default {
       } else {
         return 0
       }
+    },
+    setSkillTraining: function (id, training) {
+      for (var i = 0; i < this.skills.length; i++) {
+        if (this.skills[i].id === id) {
+          this.skills[i].training = training
+        }
+      }
+    },
+    specSkill: function (e) {
+      this.setSkillTraining(e.target.getAttribute('data-skill'), 'specialized')
+    },
+    unSpecSkill: function (e) {
+      this.setSkillTraining(e.target.getAttribute('data-skill'), 'trained')
+    },
+    trainSkill: function (e) {
+      this.setSkillTraining(e.target.getAttribute('data-skill'), 'trained')
+    },
+    unTrainSkill: function (e) {
+      this.setSkillTraining(e.target.getAttribute('data-skill'), 'untrained')
     }
   }
 }
