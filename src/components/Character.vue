@@ -3,7 +3,7 @@
     <h1>Character</h1>
     <ul>
       <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
-      <li>sp1: <input type="checkbox" v-model="sp1" /> sp2: <input type="checkbox" v-model="sp2" /> sp3: <input type="checkbox" v-model="sp3" /></li>
+      <li>railrea: <input type="checkbox" v-model="railrea" /> owsald: <input type="checkbox" v-model="owsald" /> lum1: <input type="checkbox" v-model="lum1" /> lum2: <input type="checkbox" v-model="lum2" /></li>
       <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
       <li>Total Attribute Cost: {{ total_attribute_cost }}</li>
       <li>Total skill points spent: {{ total_skill_cost }}</li>
@@ -145,9 +145,10 @@ export default {
       quickness: 30,
       focus: 30,
       self: 30,
-      sp1: false,
-      sp2: false,
-      sp3: false,
+      railrea: false,
+      owsald: false,
+      lum1: false,
+      lum2: false,
       skills: [
         {
           id: 'alchemy',
@@ -190,7 +191,7 @@ export default {
       }, 0)
     },
     available_skill_credits: function () {
-      return Number(this.level) + Number((this.sp1 ? 1 : 0)) + Number((this.sp2 ? 1 : 0)) + Number((this.sp3 ? 1 : 0))
+      return Number(this.level) + Number((this.railrea ? 1 : 0)) + Number((this.owsald ? 1 : 0)) + Number((this.lum1 ? 1 : 0)) + Number((this.lum2 ? 1 : 0))
     },
     // Skill values
     alchemy: function () {
