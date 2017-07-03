@@ -72,7 +72,7 @@
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
           <td><button :data-skill="skill.id" v-on:click="specSkill">+</button></td>
-          <td><button :data-skill="skill.id" v-on:click="unTrainSkill">-</button></td>
+          <td><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">-</button></td>
         </tr>
       </tbody>
     </table>
@@ -83,6 +83,17 @@
         <tr v-for="skill in untrainedSkills">
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
+          <td><button :data-skill="skill.id" v-on:click="trainSkill">+</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Unusable</h3>
+    <table>
+      <tbody>
+        <tr v-for="skill in unusableSkills">
+          <td>{{ skill.name }}</td>
+          <td>0</td>
           <td><button :data-skill="skill.id" v-on:click="trainSkill">+</button></td>
         </tr>
       </tbody>
@@ -103,6 +114,16 @@ const cost = {
     trained: 0,
     specialized: 2
   }
+}
+
+const untrainable = {
+  alchemy: true,
+  arcane_lore: false
+}
+
+const preTrainedStatus = {
+  alchemy: 'unusable',
+  arcane_lore: 'untrained'
 }
 
 export default {
@@ -139,7 +160,7 @@ export default {
         {
           id: 'alchemy',
           name: 'Alchemy',
-          training: 'untrained'
+          training: 'unusable'
         },
         {
           id: 'arcane_lore',
@@ -200,6 +221,11 @@ export default {
       return this.skills.filter(function (skill) {
         return skill.training === 'untrained'
       })
+    },
+    unusableSkills: function () {
+      return this.skills.filter(function (skill) {
+        return skill.training === 'unusable'
+      })
     }
   },
   methods: {
@@ -236,7 +262,11 @@ export default {
       this.setSkillTraining(e.target.getAttribute('data-skill'), 'trained')
     },
     unTrainSkill: function (e) {
-      this.setSkillTraining(e.target.getAttribute('data-skill'), 'untrained')
+      var id = e.target.getAttribute('data-skill')
+      this.setSkillTraining(id, preTrainedStatus[id])
+    },
+    isUntrainable: function (id) {
+      return untrainable[id]
     }
   }
 }
