@@ -50,34 +50,44 @@
       </tbody>
     </table>
     <h2>Skills</h2>
+
     <h3>Specialized</h3>
     <table>
       <tbody>
         <tr v-for="skill in specializedSkills">
           <td>{{ skill.name }}</td>
-          <td>{{ skill.base }}</td>
+          <td>{{ skillValue(skill.id) }}</td>
         </tr>
       </tbody>
     </table>
+
     <h3>Trained</h3>
     <table>
       <tbody>
         <tr v-for="skill in trainedSkills">
           <td>{{ skill.name }}</td>
-          <td>{{ skill.base }}</td>
+          <td>{{ skillValue(skill.id) }}</td>
         </tr>
       </tbody>
     </table>
+
     <h3>Untrained</h3>
     <table>
+      <thead>
+        <tr>
+          <th>Skill</th>
+          <th>Base</th>
+          <th>Value</th>
+        </tr>
+      </thead>
       <tbody>
         <tr v-for="skill in untrainedSkills">
           <td>{{ skill.name }}</td>
-          <td>{{ skill.base }}</td>
+          <td>{{ skillValue(skill.id) }}</td>
         </tr>
       </tbody>
     </table>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -113,8 +123,13 @@ export default {
       },
       skills: [
         {
-          name: 'A',
-          base: 100,
+          id: 'alchemy',
+          name: 'Alchemy',
+          training: 'trained'
+        },
+        {
+          id: 'arcane_lore',
+          name: 'Arcane Lore',
           training: 'trained'
         }
       ]
@@ -130,6 +145,28 @@ export default {
     mana: function () {
       return this.attributes.self.base
     },
+    // Skill values
+    alchemy: function () {
+      return Math.round((Number(this.attributes.coordination.base) + Number(this.attributes.focus.base)) / 3) + this.alchemy_training_bonus
+    },
+    alchemy_training_bonus: function () {
+      var t = this.skills.filter(function (skill) {
+        return skill.id === 'alchemy'
+      })[0]
+
+      if (t.training === 'specialized') {
+        console.log('10')
+        return 10
+      } else if (t.training === 'trained') {
+        console.log('5')
+        return 5
+      } else {
+        return 0
+      }
+    },
+    arcane_lore: function () {
+      return Math.round(Number(this.attributes.focus.base) / 3, 0) + this.trainingBonus('arcane_lore')
+    },
     specializedSkills: function () {
       return this.skills.filter(function (skill) {
         return skill.training === 'specialized'
@@ -144,6 +181,20 @@ export default {
       return this.skills.filter(function (skill) {
         return skill.training === 'untrained'
       })
+    }
+  },
+    trainingBonus: function (id) {
+      var training = this.skills.filter(function (skill) {
+        return skill.id === id
+      }).training
+
+      if (training === 'specialized') {
+        return 10
+      } else if (training === 'trained') {
+        return 5
+      } else {
+        return 0
+      }
     }
   }
 }
