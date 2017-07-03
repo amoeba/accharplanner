@@ -111,6 +111,55 @@
 <script>
 
 const SPECIALIZED_LIMIT = 64
+const creditsAtLevel = {
+  1: 0,
+  2: 1,
+  3: 2,
+  4: 3,
+  5: 4,
+  6: 5,
+  7: 6,
+  8: 7,
+  9: 8,
+  10: 9,
+  12: 10,
+  14: 11,
+  16: 12,
+  18: 13,
+  20: 14,
+  23: 15,
+  26: 16,
+  29: 17,
+  32: 18,
+  35: 19,
+  40: 20,
+  45: 21,
+  50: 22,
+  55: 23,
+  60: 24,
+  65: 25,
+  70: 26,
+  75: 27,
+  80: 28,
+  85: 29,
+  90: 30,
+  95: 31,
+  100: 32,
+  105: 33,
+  110: 34,
+  115: 35,
+  120: 36,
+  125: 37,
+  130: 38,
+  140: 39,
+  150: 40,
+  160: 41,
+  180: 42,
+  200: 43,
+  225: 44,
+  250: 45,
+  275: 46
+}
 
 // Note that this is not cost _to_ train or spec, but cost _when_ trained or
 // specialized
@@ -133,6 +182,18 @@ const untrainable = {
 const preTrainedStatus = {
   alchemy: 'unusable',
   arcane_lore: 'untrained'
+}
+
+const closest = function (array, value) {
+  var idx = 0
+
+  for (var i = array.length - 1; i >= 0; i--) {
+    if (Math.abs(value - array[i]) < Math.abs(value - array[idx])) {
+      idx = i
+    }
+  }
+
+  return array[idx]
 }
 
 export default {
@@ -191,7 +252,7 @@ export default {
       }, 0)
     },
     available_skill_credits: function () {
-      return Number(this.level) + Number((this.railrea ? 1 : 0)) + Number((this.owsald ? 1 : 0)) + Number((this.lum1 ? 1 : 0)) + Number((this.lum2 ? 1 : 0))
+      return 52 + this.skillCreditsAtLevel(this.level) + Number((this.railrea ? 1 : 0)) + Number((this.owsald ? 1 : 0)) + Number((this.lum1 ? 1 : 0)) + Number((this.lum2 ? 1 : 0))
     },
     // Skill values
     alchemy: function () {
@@ -461,11 +522,11 @@ export default {
     }
   },
   methods: {
-    test: function () {
-      return cost[this.skills[0].id][this.skills[0].training] + cost[this.skills[1].id][this.skills[1].training] || 0
-    },
     skillValue: function (id) {
       return this[id]
+    },
+    skillCreditsAtLevel: function (level) {
+      return creditsAtLevel[closest(Object.keys(creditsAtLevel), level)]
     },
     trainingBonus: function (id) {
       var training = this.skills.filter(function (skill) {
