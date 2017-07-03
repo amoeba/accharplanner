@@ -2,6 +2,8 @@
   <div>
     <h1>Character</h1>
     Level: {{ level }}
+    Total skill cost: {{ total_skill_cost }}
+
     <h2>Attributes</h2>
     <table>
       <tbody>
@@ -49,6 +51,7 @@
         </tr>
       </tbody>
     </table>
+
     <h2>Skills</h2>
 
     <h3>Specialized</h3>
@@ -91,6 +94,18 @@
 </template>
 
 <script>
+
+const cost = {
+  alchemy: {
+    trained: 6,
+    specialized: 0
+  },
+  arcane_lore: {
+    trained: 0,
+    specialized: 2
+  }
+}
+
 export default {
   data: function () {
     return {
@@ -136,6 +151,7 @@ export default {
     }
   },
   computed: {
+    // Vitals
     health: function () {
       return Math.round(this.attributes.endurance.base / 2, 0)
     },
@@ -144,6 +160,13 @@ export default {
     },
     mana: function () {
       return this.attributes.self.base
+    },
+    // Skill costs
+    total_skill_cost: function () {
+      return this.skills.reduce(function (x, skill) {
+        console.log('total_skill_cost', skill.id, skill.training, cost[skill.id][skill.training])
+        return x + cost[skill.id][skill.training]
+      }, 0)
     },
     // Skill values
     alchemy: function () {
