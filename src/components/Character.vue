@@ -1,8 +1,10 @@
 <template>
   <div>
     <h1>Character</h1>
-    Level: {{ level }}
-    Total skill cost: {{ total_skill_cost }}
+    <ul>
+      <li>Level: {{ level }}</li>
+      <li>Total skill cost: {{ total_skill_cost }}</li>
+    </ul>
 
     <h2>Attributes</h2>
     <table>
