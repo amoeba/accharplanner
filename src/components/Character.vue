@@ -3,6 +3,7 @@
     <h1>Character</h1>
     <ul>
       <li>Level: {{ level }}</li>
+      <li>Total Attribute Cost: {{ total_attribute_cost }}</li>
       <li>Total skill cost: {{ total_skill_cost }}</li>
     </ul>
 
@@ -11,33 +12,33 @@
       <tbody>
         <tr>
           <td>Strength</td>
-          <td><input type="range" min="1" max="100" v-model="attributes.strength.base" /></td>
-          <td>{{ attributes.strength.base }}</td>
+          <td><input type="range" min="10" max="100" v-model="strength" /></td>
+          <td>{{ strength }}</td>
         </tr>
         <tr>
           <td>Endurance</td>
-          <td><input type="range" min="1" max="100" v-model="attributes.endurance.base" /></td>
-          <td>{{ attributes.endurance.base }}</td>
+          <td><input type="range" min="10" max="100" v-model="endurance" /></td>
+          <td>{{ endurance }}</td>
         </tr>
         <tr>
           <td>Coordination</td>
-          <td><input type="range" min="1" max="100" v-model="attributes.coordination.base" /></td>
-          <td>{{ attributes.coordination.base }}</td>
+          <td><input type="range" min="10" max="100" v-model="coordination" /></td>
+          <td>{{ coordination }}</td>
         </tr>
         <tr>
           <td>Quickness</td>
-          <td><input type="range" min="1" max="100" v-model="attributes.quickness.base" /></td>
-          <td>{{ attributes.quickness.base }}</td>
+          <td><input type="range" min="10" max="100" v-model="quickness" /></td>
+          <td>{{ quickness }}</td>
         </tr>
         <tr>
           <td>Focus</td>
-          <td><input type="range" min="1" max="100" v-model="attributes.focus.base" /></td>
-          <td>{{ attributes.focus.base }}</td>
+          <td><input type="range" min="10" max="100" v-model="focus" /></td>
+          <td>{{ focus }}</td>
         </tr>
         <tr>
           <td>Self</td>
-          <td><input type="range" min="1" max="100" v-model="attributes.self.base" /></td>
-          <td>{{ attributes.self.base }}</td>
+          <td><input type="range" min="10" max="100" v-model="self" /></td>
+          <td>{{ self }}</td>
         </tr>
         <tr>
           <td>Health</td>
@@ -132,32 +133,12 @@ export default {
   data: function () {
     return {
       level: 100,
-      attributes: {
-        strength: {
-          name: 'Strength',
-          base: 30
-        },
-        endurance: {
-          name: 'Endurance',
-          base: 30
-        },
-        coordination: {
-          name: 'Coordination',
-          base: 30
-        },
-        quickness: {
-          name: 'Quickness',
-          base: 30
-        },
-        focus: {
-          name: 'Focus',
-          base: 30
-        },
-        self: {
-          name: 'Self',
-          base: 30
-        }
-      },
+      strength: 30,
+      endurance: 30,
+      coordination: 30,
+      quickness: 30,
+      focus: 30,
+      self: 30,
       skills: [
         {
           id: 'alchemy',
@@ -173,15 +154,19 @@ export default {
     }
   },
   computed: {
+    // Attributes
+    total_attribute_cost: function () {
+      return Number(this.strength) + Number(this.endurance) + Number(this.coordination) + Number(this.quickness) + Number(this.focus) + Number(this.self)
+    },
     // Vitals
     health: function () {
-      return Math.round(this.attributes.endurance.base / 2, 0)
+      return Math.round(this.endurance / 2, 0)
     },
     stamina: function () {
-      return this.attributes.endurance.base
+      return this.endurance
     },
     mana: function () {
-      return this.attributes.self.base
+      return this.self
     },
     // Skill costs
     total_skill_cost: function () {
@@ -189,7 +174,7 @@ export default {
     },
     // Skill values
     alchemy: function () {
-      return Math.round((Number(this.attributes.coordination.base) + Number(this.attributes.focus.base)) / 3) + this.alchemy_training_bonus
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + this.alchemy_training_bonus
     },
     alchemy_training_bonus: function () {
       var t = this.skills.filter(function (skill) {
@@ -207,7 +192,7 @@ export default {
       }
     },
     arcane_lore: function () {
-      return Math.round(Number(this.attributes.focus.base) / 3, 0) + this.trainingBonus('arcane_lore')
+      return Math.round(Number(this.focus) / 3, 0) + this.trainingBonus('arcane_lore')
     },
     specializedSkills: function () {
       return this.skills.filter(function (skill) {
@@ -228,6 +213,230 @@ export default {
       return this.skills.filter(function (skill) {
         return skill.training === 'unusable'
       })
+    }
+  },
+  watch: {
+    strength: function (newVal) {
+      var diff = Number(newVal) + Number(this.endurance) + Number(this.coordination) + Number(this.quickness) + Number(this.focus) + Number(this.self) - 330
+      var maxit = 1000
+
+      if (diff > 0) {
+        while (diff > 0) {
+          if (this.endurance > 10) {
+            this.endurance = this.endurance - 1
+            diff = diff - 1
+          }
+
+          if (this.coordination > 10) {
+            this.coordination = this.coordination - 1
+            diff = diff - 1
+          }
+
+          if (this.quickness > 10) {
+            this.quickness = this.quickness - 1
+            diff = diff - 1
+          }
+
+          if (this.focus > 10) {
+            this.focus = this.focus - 1
+            diff = diff - 1
+          }
+
+          if (this.self > 10) {
+            this.self = this.self - 1
+            diff = diff - 1
+          }
+
+          if (--maxit < 0) {
+            break
+          }
+        }
+      }
+    },
+    endurance: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength) + Number(this.coordination) + Number(this.quickness) + Number(this.focus) + Number(this.self) - 330
+      var maxit = 1000
+
+      if (diff > 0) {
+        while (diff > 0) {
+          if (this.strength > 10) {
+            this.strength = this.strength - 1
+            diff = diff - 1
+          }
+
+          if (this.coordination > 10) {
+            this.coordination = this.coordination - 1
+            diff = diff - 1
+          }
+
+          if (this.quickness > 10) {
+            this.quickness = this.quickness - 1
+            diff = diff - 1
+          }
+
+          if (this.focus > 10) {
+            this.focus = this.focus - 1
+            diff = diff - 1
+          }
+
+          if (this.self > 10) {
+            this.self = this.self - 1
+            diff = diff - 1
+          }
+
+          if (--maxit < 0) {
+            break
+          }
+        }
+      }
+    },
+    coordination: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.quickness) + Number(this.focus) + Number(this.self) - 330
+      var maxit = 1000
+
+      if (diff > 0) {
+        while (diff > 0) {
+          if (this.strength > 10) {
+            this.strength = this.strength - 1
+            diff = diff - 1
+          }
+
+          if (this.endurance > 10) {
+            this.endurance = this.endurance - 1
+            diff = diff - 1
+          }
+
+          if (this.quickness > 10) {
+            this.quickness = this.quickness - 1
+            diff = diff - 1
+          }
+
+          if (this.focus > 10) {
+            this.focus = this.focus - 1
+            diff = diff - 1
+          }
+
+          if (this.self > 10) {
+            this.self = this.self - 1
+            diff = diff - 1
+          }
+
+          if (--maxit < 0) {
+            break
+          }
+        }
+      }
+    },
+    quickness: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.coordination) + Number(this.focus) + Number(this.self) - 330
+      var maxit = 100
+
+      if (diff > 0) {
+        while (diff > 0) {
+          if (this.strength > 10) {
+            this.strength = this.strength - 1
+            diff = diff - 1
+          }
+
+          if (this.endurance > 10) {
+            this.endurance = this.endurance - 1
+            diff = diff - 1
+          }
+
+          if (this.coordination > 10) {
+            this.coordination = this.coordination - 1
+            diff = diff - 1
+          }
+
+          if (this.focus > 10) {
+            this.focus = this.focus - 1
+            diff = diff - 1
+          }
+
+          if (this.self > 10) {
+            this.self = this.self - 1
+            diff = diff - 1
+          }
+
+          if (--maxit < 0) {
+            break
+          }
+        }
+      }
+    },
+    focus: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.coordination) + Number(this.quickness) + Number(this.self) - 330
+      var maxit = 100
+
+      if (diff > 0) {
+        while (diff > 0) {
+          if (this.strength > 10) {
+            this.strength = this.strength - 1
+            diff = diff - 1
+          }
+
+          if (this.endurance > 10) {
+            this.endurance = this.endurance - 1
+            diff = diff - 1
+          }
+
+          if (this.coordination > 10) {
+            this.coordination = this.coordination - 1
+            diff = diff - 1
+          }
+
+          if (this.quickness > 10) {
+            this.quickness = this.quickness - 1
+            diff = diff - 1
+          }
+
+          if (this.self > 10) {
+            this.self = this.self - 1
+            diff = diff - 1
+          }
+
+          if (--maxit < 0) {
+            break
+          }
+        }
+      }
+    },
+    self: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.coordination) + Number(this.quickness) + Number(this.focus) - 330
+      var maxit = 100
+
+      if (diff > 0) {
+        while (diff > 0) {
+          if (this.strength > 10) {
+            this.strength = this.strength - 1
+            diff = diff - 1
+          }
+
+          if (this.endurance > 10) {
+            this.endurance = this.endurance - 1
+            diff = diff - 1
+          }
+
+          if (this.coordination > 10) {
+            this.coordination = this.coordination - 1
+            diff = diff - 1
+          }
+
+          if (this.quickness > 10) {
+            this.quickness = this.quickness - 1
+            diff = diff - 1
+          }
+
+          if (this.focus > 10) {
+            this.focus = this.focus - 1
+            diff = diff - 1
+          }
+
+          if (--maxit < 0) {
+            break
+          }
+        }
+      }
     }
   },
   methods: {
