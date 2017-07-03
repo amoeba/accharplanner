@@ -110,7 +110,7 @@
 <script>
 
 // Note that this is not cost _to_ train or spec, but cost _when_ trained or
-// spec'd
+// specialized
 const cost = {
   alchemy: {
     trained: 6,
@@ -176,7 +176,7 @@ export default {
     },
     // Skill costs
     total_skill_cost: function () {
-      return cost[this.skills[0].id][this.skills[0].training] + cost[this.skills[1].id][this.skills[1].training] || 0
+      return cost[this.skills[0].id][this.skills[0].training] || 0 + cost[this.skills[1].id][this.skills[1].training] || 0
     },
     available_skill_credits: function () {
       return Number(this.level) + Number((this.sp1 ? 1 : 0)) + Number((this.sp2 ? 1 : 0)) + Number((this.sp3 ? 1 : 0))
@@ -449,6 +449,9 @@ export default {
     }
   },
   methods: {
+    test: function () {
+      return cost[this.skills[0].id][this.skills[0].training] + cost[this.skills[1].id][this.skills[1].training] || 0
+    },
     skillValue: function (id) {
       return this[id]
     },
@@ -469,6 +472,7 @@ export default {
       for (var i = 0; i < this.skills.length; i++) {
         if (this.skills[i].id === id) {
           this.skills[i].training = training
+          break
         }
       }
     },
