@@ -61,6 +61,7 @@
     <h2>Skills</h2>
 
     <h3>Specialized</h3>
+    <span>{{ total_specialized_cost }}</span>
     <table>
       <tbody>
         <tr v-for="skill in specializedSkills">
@@ -108,6 +109,8 @@
 </template>
 
 <script>
+
+const SPECIALIZED_LIMIT = 64
 
 // Note that this is not cost _to_ train or spec, but cost _when_ trained or
 // specialized
@@ -176,7 +179,15 @@ export default {
     },
     // Skill costs
     total_skill_cost: function () {
+      // TODO: See if this still reactively updates if done programmatically
       return cost[this.skills[0].id][this.skills[0].training] || 0 + cost[this.skills[1].id][this.skills[1].training] || 0
+    },
+    total_specialized_cost: function () {
+      return this.skills.filter(function (s) {
+        return s.training === 'specialized'
+      }).reduce(function (sum, skill) {
+        return sum + cost[skill.id].specialized
+      }, 0)
     },
     available_skill_credits: function () {
       return Number(this.level) + Number((this.sp1 ? 1 : 0)) + Number((this.sp2 ? 1 : 0)) + Number((this.sp3 ? 1 : 0))
@@ -490,7 +501,7 @@ export default {
       this.setSkillTraining(id, preTrainedStatus[id])
     },
     isSpecializable: function (id) {
-      return (this.available_skill_credits - cost[id].specialized) >= 0
+      return ((this.available_skill_credits - cost[id].specialized) >= 0) && (this.total_specialized_cost + cost[id].specialized <= SPECIALIZED_LIMIT)
     },
     isTrainable: function (id) {
       return (this.available_skill_credits - cost[id].trained) >= 0
