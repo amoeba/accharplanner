@@ -2,9 +2,12 @@
   <div>
     <h1>Character</h1>
     <ul>
-      <li>Level: {{ level }}</li>
+      <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
+      <li>sp1: <input type="checkbox" v-model="sp1" /> sp2: <input type="checkbox" v-model="sp2" /> sp3: <input type="checkbox" v-model="sp3" /></li>
+      <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
       <li>Total Attribute Cost: {{ total_attribute_cost }}</li>
-      <li>Total skill cost: {{ total_skill_cost }}</li>
+      <li>Total skill points spent: {{ total_skill_cost }}</li>
+      <li>Skill credits available: {{ available_skill_credits }}</li>
     </ul>
 
     <h2>Attributes</h2>
@@ -63,7 +66,7 @@
         <tr v-for="skill in specializedSkills">
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
-          <td><button :data-skill="skill.id" v-on:click="unSpecSkill">-</button></td>
+          <td><button :data-skill="skill.id" v-on:click="unSpecializeSkill">-</button></td>
         </tr>
       </tbody>
     </table>
@@ -74,7 +77,7 @@
         <tr v-for="skill in trainedSkills">
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
-          <td><button :data-skill="skill.id" v-on:click="specSkill">+</button></td>
+          <td><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">+</button></td>
           <td><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">-</button></td>
         </tr>
       </tbody>
@@ -86,7 +89,7 @@
         <tr v-for="skill in untrainedSkills">
           <td>{{ skill.name }}</td>
           <td>{{ skillValue(skill.id) }}</td>
-          <td><button :data-skill="skill.id" v-on:click="trainSkill">+</button></td>
+          <td><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
         </tr>
       </tbody>
     </table>
@@ -97,7 +100,7 @@
         <tr v-for="skill in unusableSkills">
           <td>{{ skill.name }}</td>
           <td>0</td>
-          <td><button :data-skill="skill.id" v-on:click="trainSkill">+</button></td>
+          <td><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
         </tr>
       </tbody>
     </table>
@@ -132,13 +135,16 @@ const preTrainedStatus = {
 export default {
   data: function () {
     return {
-      level: 100,
+      level: 1,
       strength: 30,
       endurance: 30,
       coordination: 30,
       quickness: 30,
       focus: 30,
       self: 30,
+      sp1: false,
+      sp2: false,
+      sp3: false,
       skills: [
         {
           id: 'alchemy',
@@ -171,6 +177,9 @@ export default {
     // Skill costs
     total_skill_cost: function () {
       return cost[this.skills[0].id][this.skills[0].training] + cost[this.skills[1].id][this.skills[1].training] || 0
+    },
+    available_skill_credits: function () {
+      return Number(this.level) + Number((this.sp1 ? 1 : 0)) + Number((this.sp2 ? 1 : 0)) + Number((this.sp3 ? 1 : 0))
     },
     // Skill values
     alchemy: function () {
@@ -463,10 +472,10 @@ export default {
         }
       }
     },
-    specSkill: function (e) {
+    specializeSkill: function (e) {
       this.setSkillTraining(e.target.getAttribute('data-skill'), 'specialized')
     },
-    unSpecSkill: function (e) {
+    unSpecializeSkill: function (e) {
       this.setSkillTraining(e.target.getAttribute('data-skill'), 'trained')
     },
     trainSkill: function (e) {
@@ -475,6 +484,12 @@ export default {
     unTrainSkill: function (e) {
       var id = e.target.getAttribute('data-skill')
       this.setSkillTraining(id, preTrainedStatus[id])
+    },
+    isSpecializable: function (id) {
+      return (this.available_skill_credits - cost[id].specialized) >= 0
+    },
+    isTrainable: function (id) {
+      return (this.available_skill_credits - cost[id].trained) >= 0
     },
     isUntrainable: function (id) {
       return untrainable[id]
