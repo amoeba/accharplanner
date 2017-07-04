@@ -18,49 +18,49 @@
     <table>
       <tbody>
         <tr>
-          <td>Strength</td>
-          <td><input type="range" min="10" max="100" v-model="strength" /></td>
-          <td>{{ strength }}</td>
+          <td class="attribute-name">Strength</td>
+          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="strength" /></td>
+          <td class="attribute-value">{{ strength }}</td>
         </tr>
         <tr>
-          <td>Endurance</td>
-          <td><input type="range" min="10" max="100" v-model="endurance" /></td>
-          <td>{{ endurance }}</td>
+          <td class="attribute-name">Endurance</td>
+          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="endurance" /></td>
+          <td class="attribute-value">{{ endurance }}</td>
         </tr>
         <tr>
-          <td>Coordination</td>
-          <td><input type="range" min="10" max="100" v-model="coordination" /></td>
-          <td>{{ coordination }}</td>
+          <td class="attribute-name">Coordination</td>
+          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="coordination" /></td>
+          <td class="attribute-value">{{ coordination }}</td>
         </tr>
         <tr>
-          <td>Quickness</td>
-          <td><input type="range" min="10" max="100" v-model="quickness" /></td>
-          <td>{{ quickness }}</td>
+          <td class="attribute-name">Quickness</td>
+          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="quickness" /></td>
+          <td class="attribute-value">{{ quickness }}</td>
         </tr>
         <tr>
-          <td>Focus</td>
-          <td><input type="range" min="10" max="100" v-model="focus" /></td>
-          <td>{{ focus }}</td>
+          <td class="attribute-name">Focus</td>
+          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="focus" /></td>
+          <td class="attribute-value">{{ focus }}</td>
         </tr>
         <tr>
-          <td>Self</td>
-          <td><input type="range" min="10" max="100" v-model="self" /></td>
-          <td>{{ self }}</td>
+          <td class="attribute-name">Self</td>
+          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="self" /></td>
+          <td class="attribute-value">{{ self }}</td>
         </tr>
         <tr>
-          <td>Health</td>
-          <td></td>
-          <td>{{ health }}</td>
+          <td class="attribute-name">Health</td>
+          <td class="attribute-slider"></td>
+          <td class="attribute-value">{{ health }}</td>
         </tr>
         <tr>
-          <td>Stamina</td>
-          <td></td>
-          <td>{{ stamina }}</td>
+          <td class="attribute-name">Stamina</td>
+          <td class="attribute-slider"></td>
+          <td class="attribute-value">{{ stamina }}</td>
         </tr>
         <tr>
-          <td>Mana</td>
-          <td></td>
-          <td>{{ mana }}</td>
+          <td class="attribute-name">Mana</td>
+          <td class="attribute-slider"></td>
+          <td class="attribute-value">{{ mana }}</td>
         </tr>
       </tbody>
     </table>
@@ -170,44 +170,44 @@ const creditsAtLevel = {
 // Note that this is not cost _to_ train or spec, but cost _when_ trained or
 // specialized
 const cost = {
-  alchemy: { trained: 6, specialized: 6 },
+  alchemy: { trained: 6, specialized: 12 },
   arcane_lore: { trained: 0, specialized: 2 },
-  armor_tinkering: { trained: 4, specialized: 0 },
+  armor_tinkering: { trained: 4, specialized: 4 },
   assess_creature: { trained: 0, specialized: 2 },
-  assess_person: { trained: 2, specialized: 2 },
-  cooking: { trained: 4, specialized: 4 },
-  creature_enchantment: { trained: 8, specialized: 8 },
-  deception: { trained: 4, specialized: 2 },
-  dual_wield: { trained: 2, specialized: 2 },
-  dirty_fighting: { trained: 2, specialized: 2 },
-  finesse_weapons: { trained: 4, specialized: 4 },
-  fletching: { trained: 4, specialized: 4 },
-  healing: { trained: 6, specialized: 4 },
-  heavy_weapons: { trained: 6, specialized: 6 },
-  item_enchantment: { trained: 8, specialized: 8 },
-  item_tinkering: { trained: 2, specialized: 0 },
+  assess_person: { trained: 2, specialized: 4 },
+  cooking: { trained: 4, specialized: 8 },
+  creature_enchantment: { trained: 8, specialized: 16 },
+  deception: { trained: 4, specialized: 6 },
+  dual_wield: { trained: 2, specialized: 4 },
+  dirty_fighting: { trained: 2, specialized: 4 },
+  finesse_weapons: { trained: 4, specialized: 8 },
+  fletching: { trained: 4, specialized: 8 },
+  healing: { trained: 6, specialized: 10 },
+  heavy_weapons: { trained: 6, specialized: 12 },
+  item_enchantment: { trained: 8, specialized: 16 },
+  item_tinkering: { trained: 2, specialized: 2 },
   jump: { trained: 0, specialized: 4 },
-  leadership: { trained: 4, specialized: 2 },
-  life_magic: { trained: 12, specialized: 8 },
-  light_weapons: { trained: 4, specialized: 4 },
-  lockpick: { trained: 6, specialized: 4 },
+  leadership: { trained: 4, specialized: 6 },
+  life_magic: { trained: 12, specialized: 20 },
+  light_weapons: { trained: 4, specialized: 8 },
+  lockpick: { trained: 6, specialized: 10 },
   loyalty: { trained: 0, specialized: 2 },
   magic_defense: { trained: 0, specialized: 12 },
-  magic_item_tinkering: { trained: 4, specialized: 0 },
-  mana_conversion: { trained: 6, specialized: 6 },
-  melee_defense: { trained: 10, specialized: 10 },
-  missile_defense: { trained: 6, specialized: 4 },
-  missile_weapons: { trained: 6, specialized: 6 },
-  recklessness: { trained: 4, specialized: 2 },
+  magic_item_tinkering: { trained: 4, specialized: 4 },
+  mana_conversion: { trained: 6, specialized: 12 },
+  melee_defense: { trained: 10, specialized: 20 },
+  missile_defense: { trained: 6, specialized: 10 },
+  missile_weapons: { trained: 6, specialized: 12 },
+  recklessness: { trained: 4, specialized: 6 },
   run: { trained: 0, specialized: 4 },
   salvaging: { trained: 0, specialized: 0 },
-  shield: { trained: 2, specialized: 2 },
-  sneak_attack: { trained: 4, specialized: 2 },
-  summoning: { trained: 8, specialized: 4 },
-  two_handed_combat: { trained: 8, specialized: 8 },
-  void_magic: { trained: 16, specialized: 12 },
-  war_magic: { trained: 16, specialized: 12 },
-  weapon_tinkering: { trained: 4, specialized: 0 }
+  shield: { trained: 2, specialized: 4 },
+  sneak_attack: { trained: 4, specialized: 6 },
+  summoning: { trained: 8, specialized: 12 },
+  two_handed_combat: { trained: 8, specialized: 16 },
+  void_magic: { trained: 16, specialized: 28 },
+  war_magic: { trained: 16, specialized: 28 },
+  weapon_tinkering: { trained: 4, specialized: 4 }
 }
 
 const untrainable = {
@@ -534,45 +534,9 @@ export default {
     },
     // Skill costs
     total_skill_cost: function () {
-      // This doesn't update reactively if it's done programmatically
-      return cost[this.skills[0].id][this.skills[0].training] || 0 +
-        cost[this.skills[1].id][this.skills[1].training] || 0 +
-        cost[this.skills[2].id][this.skills[2].training] || 0 +
-        cost[this.skills[3].id][this.skills[3].training] || 0 +
-        cost[this.skills[4].id][this.skills[4].training] || 0 +
-        cost[this.skills[5].id][this.skills[5].training] || 0 +
-        cost[this.skills[6].id][this.skills[6].training] || 0 +
-        cost[this.skills[7].id][this.skills[7].training] || 0 +
-        cost[this.skills[8].id][this.skills[8].training] || 0 +
-        cost[this.skills[9].id][this.skills[9].training] || 0 +
-        cost[this.skills[10].id][this.skills[10].training] || 0 +
-        cost[this.skills[11].id][this.skills[11].training] || 0 +
-        cost[this.skills[12].id][this.skills[12].training] || 0 +
-        cost[this.skills[13].id][this.skills[13].training] || 0 +
-        cost[this.skills[14].id][this.skills[14].training] || 0 +
-        cost[this.skills[15].id][this.skills[15].training] || 0 +
-        cost[this.skills[16].id][this.skills[16].training] || 0 +
-        cost[this.skills[17].id][this.skills[17].training] || 0 +
-        cost[this.skills[18].id][this.skills[18].training] || 0 +
-        cost[this.skills[19].id][this.skills[19].training] || 0 +
-        cost[this.skills[20].id][this.skills[20].training] || 0 +
-        cost[this.skills[21].id][this.skills[21].training] || 0 +
-        cost[this.skills[22].id][this.skills[22].training] || 0 +
-        cost[this.skills[23].id][this.skills[23].training] || 0 +
-        cost[this.skills[24].id][this.skills[24].training] || 0 +
-        cost[this.skills[25].id][this.skills[25].training] || 0 +
-        cost[this.skills[26].id][this.skills[26].training] || 0 +
-        cost[this.skills[27].id][this.skills[27].training] || 0 +
-        cost[this.skills[28].id][this.skills[28].training] || 0 +
-        cost[this.skills[29].id][this.skills[29].training] || 0 +
-        cost[this.skills[30].id][this.skills[30].training] || 0 +
-        cost[this.skills[31].id][this.skills[31].training] || 0 +
-        cost[this.skills[32].id][this.skills[32].training] || 0 +
-        cost[this.skills[33].id][this.skills[33].training] || 0 +
-        cost[this.skills[34].id][this.skills[34].training] || 0 +
-        cost[this.skills[35].id][this.skills[35].training] || 0 +
-        cost[this.skills[36].id][this.skills[36].training] || 0 +
-        cost[this.skills[37].id][this.skills[37].training] || 0
+      return this.skills.reduce(function (sum, skill) {
+        return sum + (cost[skill.id][skill.training] || 0)
+      }, 0)
     },
     total_specialized_cost: function () {
       return this.skills.filter(function (s) {
@@ -1006,12 +970,28 @@ export default {
 </script>
 
 <style scoped>
+  * {
+    font: 14px sans-serif;
+  }
+
   table {
     width: 350px;
   }
 
   td {
-    border: 1px #eee;
+    padding: 2px 4px;
+  }
+
+  td.attribute-name {
+    width: 200px;
+  }
+
+  td.attribute-slider {
+    width: 100px;
+  }
+
+  td.attribute-value {
+    width: 50px;
   }
 
   td.skill-name {
@@ -1036,10 +1016,14 @@ export default {
 
   tr.skill-header.specialized td {
     background-color: purple;
+    background: linear-gradient(to right, #392067, #392067, black);
+    color: white;
   }
 
   tr.skill-header.trained td {
     background-color: green;
+    background: linear-gradient(to right, #0F3C3E, #0F3C3E, black);
+    color: white;
   }
 
   tr.skill-header.untrained td {
