@@ -1041,4 +1041,9 @@ export default {
   tr.skill-header.unusable td {
     background-color: gray;
   }
+
+  button {
+    background: none;
+    border: none;
+  }
 </style>
