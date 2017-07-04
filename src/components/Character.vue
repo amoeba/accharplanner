@@ -75,8 +75,9 @@
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">{{ skillValue(skill.id) }}</td>
           <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"><button :data-skill="skill.id" v-on:click="unSpecializeSkill">-</button></td>
-          <td class="skill-lower"></td>
+          <td class="skill-raise"></td>
+          <td class="skill-lower"><button :data-skill="skill.id" v-on:click="unSpecializeSkill">↓</button></td>
+
         </tr>
         <tr class="skill-header trained">
           <td colspan="5">Trained</td>
@@ -85,8 +86,8 @@
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">{{ skillValue(skill.id) }}</td>
           <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">+</button></td>
-          <td class="skill-lower"><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">-</button></td>
+          <td class="skill-raise"><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">↑</button></td>
+          <td class="skill-lower"><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">↓</button></td>
         </tr>
         <tr class="skill-header untrained">
           <td colspan="5">Untrained</td>
@@ -95,7 +96,7 @@
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">{{ skillValue(skill.id) }}</td>
           <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
+          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
           <td class="skill-lower"></td>
         </tr>
         <tr class="skill-header unusable">
@@ -105,7 +106,7 @@
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">0</td>
           <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
+          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
           <td class="skill-lower"></td>
         </tr>
       </tbody>
