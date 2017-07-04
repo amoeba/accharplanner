@@ -3,7 +3,14 @@
     <h1>Character</h1>
     <ul>
       <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
-      <li>railrea: <input type="checkbox" v-model="railrea" /> owsald: <input type="checkbox" v-model="owsald" /> lum1: <input type="checkbox" v-model="lum1" /> lum2: <input type="checkbox" v-model="lum2" /></li>
+      <li>Extra skill credits:
+        <ul>
+          <li>Railrea: <input type="checkbox" v-model="railrea" /></li>
+          <li>Owsald: <input type="checkbox" v-model="owsald" /></li>
+          <li>Luminance (1): <input type="checkbox" v-model="lum1" /></li>
+          <li>Luminance (2): <input type="checkbox" v-model="lum2" /></li>
+        </ul>
+      </li>
       <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
       <li>Total Attribute Cost: {{ total_attribute_cost }}</li>
       <li>Total skill points spent: {{ total_skill_cost }}</li>
@@ -45,14 +52,17 @@
         </tr>
         <tr>
           <td>Health</td>
+          <td></td>
           <td>{{ health }}</td>
         </tr>
         <tr>
           <td>Stamina</td>
+          <td></td>
           <td>{{ stamina }}</td>
         </tr>
         <tr>
           <td>Mana</td>
+          <td></td>
           <td>{{ mana }}</td>
         </tr>
       </tbody>
@@ -60,14 +70,14 @@
 
     <h2>Skills</h2>
 
-    <h3>Specialized</h3>
-    <span>{{ total_specialized_cost }}</span>
+    <h3>Specialized {{ total_specialized_cost }} / 70</h3>
     <table>
       <tbody>
         <tr v-for="skill in specializedSkills">
-          <td>{{ skill.name }}</td>
-          <td>{{ skillValue(skill.id) }}</td>
-          <td><button :data-skill="skill.id" v-on:click="unSpecializeSkill">-</button></td>
+          <td class="skill-name">{{ skill.name }}</td>
+          <td class="skill-value">{{ skillValue(skill.id) }}</td>
+          <td class="skill-raise"><button :data-skill="skill.id" v-on:click="unSpecializeSkill">-</button></td>
+          <td class="skill-lower"></td>
         </tr>
       </tbody>
     </table>
@@ -76,10 +86,10 @@
     <table>
       <tbody>
         <tr v-for="skill in trainedSkills">
-          <td>{{ skill.name }}</td>
-          <td>{{ skillValue(skill.id) }}</td>
-          <td><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">+</button></td>
-          <td><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">-</button></td>
+          <td class="skill-name">{{ skill.name }}</td>
+          <td class="skill-value">{{ skillValue(skill.id) }}</td>
+          <td class="skill-raise"><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">+</button></td>
+          <td class="skill-lower"><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">-</button></td>
         </tr>
       </tbody>
     </table>
@@ -88,9 +98,10 @@
     <table>
       <tbody>
         <tr v-for="skill in untrainedSkills">
-          <td>{{ skill.name }}</td>
-          <td>{{ skillValue(skill.id) }}</td>
-          <td><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
+          <td class="skill-name">{{ skill.name }}</td>
+          <td class="skill-value">{{ skillValue(skill.id) }}</td>
+          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
+          <td class="skill-lower"></td>
         </tr>
       </tbody>
     </table>
@@ -99,9 +110,10 @@
     <table>
       <tbody>
         <tr v-for="skill in unusableSkills">
-          <td>{{ skill.name }}</td>
-          <td>0</td>
-          <td><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
+          <td class="skill-name">{{ skill.name }}</td>
+          <td class="skill-value">0</td>
+          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
+          <td class="skill-lower"></td>
         </tr>
       </tbody>
     </table>
@@ -995,3 +1007,31 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  table {
+    width: 300px;
+  }
+
+  td {
+    border: 1px #eee;
+  }
+
+  td.skill-name {
+    width: 200px;
+
+  }
+
+  td.skill-value {
+    width: 50px;
+
+  }
+
+  td.skill-raise {
+    width: 25px;
+  }
+
+  td.skill-lower {
+    width: 25px;
+  }
+</style>
