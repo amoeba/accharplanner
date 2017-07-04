@@ -992,6 +992,7 @@ export default {
 
   td.attribute-value {
     width: 50px;
+    text-align: right;
   }
 
   td.skill-name {
@@ -1000,6 +1001,7 @@ export default {
 
   td.skill-value {
     width: 50px;
+    text-align: right;
   }
 
   td.skill-cost {
