@@ -12,12 +12,9 @@
         </ul>
       </li>
       <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
-      <li>Total Attribute Cost: {{ total_attribute_cost }}</li>
-      <li>Total skill points spent: {{ total_skill_cost }}</li>
-      <li>Skill credits available: {{ available_skill_credits }}</li>
     </ul>
 
-    <h2>Attributes</h2>
+    <h2>Attributes {{ total_attribute_cost }} / 330</h2>
     <table>
       <tbody>
         <tr>
@@ -68,50 +65,46 @@
       </tbody>
     </table>
 
-    <h2>Skills</h2>
-
-    <h3>Specialized {{ total_specialized_cost }} / 70</h3>
+    <h2>Skills {{ total_skill_cost }} / {{ available_skill_credits }}</h2>
     <table>
       <tbody>
+        <tr class="skill-header specialized">
+          <td colspan="5">Specialized {{ total_specialized_cost }} / 70</td>
+        </tr>
         <tr v-for="skill in specializedSkills">
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">{{ skillValue(skill.id) }}</td>
+          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
           <td class="skill-raise"><button :data-skill="skill.id" v-on:click="unSpecializeSkill">-</button></td>
           <td class="skill-lower"></td>
         </tr>
-      </tbody>
-    </table>
-
-    <h3>Trained</h3>
-    <table>
-      <tbody>
+        <tr class="skill-header trained">
+          <td colspan="5">Trained</td>
+        </tr>
         <tr v-for="skill in trainedSkills">
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">{{ skillValue(skill.id) }}</td>
+          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
           <td class="skill-raise"><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">+</button></td>
           <td class="skill-lower"><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">-</button></td>
         </tr>
-      </tbody>
-    </table>
-
-    <h3>Untrained</h3>
-    <table>
-      <tbody>
+        <tr class="skill-header untrained">
+          <td colspan="5">Untrained</td>
+        </tr>
         <tr v-for="skill in untrainedSkills">
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">{{ skillValue(skill.id) }}</td>
+          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
           <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
           <td class="skill-lower"></td>
         </tr>
-      </tbody>
-    </table>
-
-    <h3>Unusable</h3>
-    <table>
-      <tbody>
+        <tr class="skill-header unusable">
+          <td colspan="5">Unusable</td>
+        </tr>
         <tr v-for="skill in unusableSkills">
           <td class="skill-name">{{ skill.name }}</td>
           <td class="skill-value">0</td>
+          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
           <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">+</button></td>
           <td class="skill-lower"></td>
         </tr>
@@ -314,12 +307,12 @@ export default {
   data: function () {
     return {
       level: 1,
-      strength: 30,
-      endurance: 30,
-      coordination: 30,
-      quickness: 30,
-      focus: 30,
-      self: 30,
+      strength: 10,
+      endurance: 10,
+      coordination: 10,
+      quickness: 10,
+      focus: 10,
+      self: 10,
       railrea: false,
       owsald: false,
       lum1: false,
@@ -958,6 +951,9 @@ export default {
     skillValue: function (id) {
       return this[id]
     },
+    skillCost: function (id, training) {
+      return cost[id][training]
+    },
     skillCreditsAtLevel: function (level) {
       return creditsAtLevel[closest(Object.keys(creditsAtLevel), level)]
     },
@@ -1010,7 +1006,7 @@ export default {
 
 <style scoped>
   table {
-    width: 300px;
+    width: 350px;
   }
 
   td {
@@ -1019,12 +1015,14 @@ export default {
 
   td.skill-name {
     width: 200px;
-
   }
 
   td.skill-value {
     width: 50px;
+  }
 
+  td.skill-cost {
+    width: 50px;
   }
 
   td.skill-raise {
@@ -1033,5 +1031,21 @@ export default {
 
   td.skill-lower {
     width: 25px;
+  }
+
+  tr.skill-header.specialized td {
+    background-color: purple;
+  }
+
+  tr.skill-header.trained td {
+    background-color: green;
+  }
+
+  tr.skill-header.untrained td {
+    background-color: gray;
+  }
+
+  tr.skill-header.unusable td {
+    background-color: gray;
   }
 </style>
