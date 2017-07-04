@@ -170,44 +170,44 @@ const creditsAtLevel = {
 // Note that this is not cost _to_ train or spec, but cost _when_ trained or
 // specialized
 const cost = {
-  alchemy: { trained: 6, specialized: 12 },
+  alchemy: { trained: 6, specialized: 6 },
   arcane_lore: { trained: 0, specialized: 2 },
-  armor_tinkering: { trained: 4, specialized: 4 },
+  armor_tinkering: { trained: 4, specialized: 0 },
   assess_creature: { trained: 0, specialized: 2 },
-  assess_person: { trained: 2, specialized: 4 },
-  cooking: { trained: 4, specialized: 8 },
-  creature_enchantment: { trained: 8, specialized: 16 },
-  deception: { trained: 4, specialized: 6 },
-  dual_wield: { trained: 2, specialized: 4 },
-  dirty_fighting: { trained: 2, specialized: 4 },
-  finesse_weapons: { trained: 4, specialized: 8 },
-  fletching: { trained: 4, specialized: 8 },
-  healing: { trained: 6, specialized: 10 },
-  heavy_weapons: { trained: 6, specialized: 12 },
-  item_enchantment: { trained: 8, specialized: 16 },
-  item_tinkering: { trained: 2, specialized: 2 },
+  assess_person: { trained: 2, specialized: 2 },
+  cooking: { trained: 4, specialized: 4 },
+  creature_enchantment: { trained: 8, specialized: 8 },
+  deception: { trained: 4, specialized: 2 },
+  dual_wield: { trained: 2, specialized: 2 },
+  dirty_fighting: { trained: 2, specialized: 2 },
+  finesse_weapons: { trained: 4, specialized: 4 },
+  fletching: { trained: 4, specialized: 4 },
+  healing: { trained: 6, specialized: 4 },
+  heavy_weapons: { trained: 6, specialized: 6 },
+  item_enchantment: { trained: 8, specialized: 8 },
+  item_tinkering: { trained: 2, specialized: 0 },
   jump: { trained: 0, specialized: 4 },
-  leadership: { trained: 4, specialized: 6 },
-  life_magic: { trained: 12, specialized: 20 },
-  light_weapons: { trained: 4, specialized: 8 },
-  lockpick: { trained: 6, specialized: 10 },
+  leadership: { trained: 4, specialized: 2 },
+  life_magic: { trained: 12, specialized: 8 },
+  light_weapons: { trained: 4, specialized: 4 },
+  lockpick: { trained: 6, specialized: 4 },
   loyalty: { trained: 0, specialized: 2 },
   magic_defense: { trained: 0, specialized: 12 },
-  magic_item_tinkering: { trained: 4, specialized: 4 },
-  mana_conversion: { trained: 6, specialized: 12 },
-  melee_defense: { trained: 10, specialized: 20 },
-  missile_defense: { trained: 6, specialized: 10 },
-  missile_weapons: { trained: 6, specialized: 12 },
-  recklessness: { trained: 4, specialized: 6 },
+  magic_item_tinkering: { trained: 4, specialized: 0 },
+  mana_conversion: { trained: 6, specialized: 6 },
+  melee_defense: { trained: 10, specialized: 10 },
+  missile_defense: { trained: 6, specialized: 4 },
+  missile_weapons: { trained: 6, specialized: 6 },
+  recklessness: { trained: 4, specialized: 2 },
   run: { trained: 0, specialized: 4 },
   salvaging: { trained: 0, specialized: 0 },
-  shield: { trained: 2, specialized: 4 },
-  sneak_attack: { trained: 4, specialized: 6 },
-  summoning: { trained: 8, specialized: 12 },
-  two_handed_combat: { trained: 8, specialized: 16 },
-  void_magic: { trained: 16, specialized: 28 },
-  war_magic: { trained: 16, specialized: 28 },
-  weapon_tinkering: { trained: 4, specialized: 4 }
+  shield: { trained: 2, specialized: 2 },
+  sneak_attack: { trained: 4, specialized: 2 },
+  summoning: { trained: 8, specialized: 4 },
+  two_handed_combat: { trained: 8, specialized: 8 },
+  void_magic: { trained: 16, specialized: 12 },
+  war_magic: { trained: 16, specialized: 12 },
+  weapon_tinkering: { trained: 4, specialized: 0 }
 }
 
 const untrainable = {
@@ -535,7 +535,12 @@ export default {
     // Skill costs
     total_skill_cost: function () {
       return this.skills.reduce(function (sum, skill) {
-        return sum + (cost[skill.id][skill.training] || 0)
+        if (skill.training === 'specialized') {
+          sum = sum + cost[skill.id]['specialized'] + cost[skill.id]['trained']
+        } else if (skill.training === 'trained') {
+          sum = sum + cost[skill.id]['trained']
+        }
+        return sum
       }, 0)
     },
     total_specialized_cost: function () {
@@ -1005,7 +1010,8 @@ export default {
   }
 
   td.skill-cost {
-    width: 50px;
+    width: 100px;
+    text-align: center;
   }
 
   td.skill-raise {
