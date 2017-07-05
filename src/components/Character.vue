@@ -135,6 +135,104 @@
         </tbody>
       </table>
     </div>
+    <div class="pane">
+      <h2>Luminance</h2>
+      <ul>
+        <li>Craftsman 5x: <input type="checkbox" v-model="luminance_craftsman" /></li>
+      </ul>
+      <h2>Seers</h2>
+      <ul>
+        <li>Specialization: <input type="checkbox" v-model="seer_specialization" /></li>
+      </ul>
+      <h2>Sets</h2>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Adept's Set</td>
+              <td><input type="checkbox" v-model="set_adept_1" /></td>
+              <td><input type="checkbox" v-model="set_adept_2" /></td>
+              <td><input type="checkbox" v-model="set_adept_3" /></td>
+              <td><input type="checkbox" v-model="set_adept_4" /></td>
+              <td><input type="checkbox" v-model="set_adept_5" /></td>
+            </tr>
+            <tr>
+              <td>Dedication Set</td>
+              <td><input type="checkbox" v-model="set_dedication_1" /></td>
+              <td><input type="checkbox" v-model="set_dedication_2" /></td>
+              <td><input type="checkbox" v-model="set_dedication_3" /></td>
+              <td><input type="checkbox" v-model="set_dedication_4" /></td>
+              <td><input type="checkbox" v-model="set_dedication_5" /></td>
+            </tr>
+            <tr>
+              <td>Defender's Set</td>
+              <td><input type="checkbox" v-model="set_defenders_1" /></td>
+              <td><input type="checkbox" v-model="set_defenders_2" /></td>
+              <td><input type="checkbox" v-model="set_defenders_3" /></td>
+              <td><input type="checkbox" v-model="set_defenders_4" /></td>
+              <td><input type="checkbox" v-model="set_defenders_5" /></td>
+            </tr>
+            <tr>
+              <td>Dexterous Set</td>
+              <td><input type="checkbox" v-model="set_dextrous_1" /></td>
+              <td><input type="checkbox" v-model="set_dextrous_2" /></td>
+              <td><input type="checkbox" v-model="set_dextrous_3" /></td>
+              <td><input type="checkbox" v-model="set_dextrous_4" /></td>
+              <td><input type="checkbox" v-model="set_dextrous_5" /></td>
+            </tr>
+            <tr>
+              <td>Hearty Set</td>
+              <td><input type="checkbox" v-model="set_hearty_1" /></td>
+              <td><input type="checkbox" v-model="set_hearty_2" /></td>
+              <td><input type="checkbox" v-model="set_hearty_3" /></td>
+              <td><input type="checkbox" v-model="set_hearty_4" /></td>
+              <td><input type="checkbox" v-model="set_hearty_5" /></td>
+            </tr>
+            <tr>
+              <td>Soldier's Set</td>
+              <td><input type="checkbox" v-model="set_soldiers_1" /></td>
+              <td><input type="checkbox" v-model="set_soldiers_2" /></td>
+              <td><input type="checkbox" v-model="set_soldiers_3" /></td>
+              <td><input type="checkbox" v-model="set_soldiers_4" /></td>
+              <td><input type="checkbox" v-model="set_soldiers_5" /></td>
+            </tr>
+            <tr>
+              <td>Swift Set</td>
+              <td><input type="checkbox" v-model="set_swift_1" /></td>
+              <td><input type="checkbox" v-model="set_swift_2" /></td>
+              <td><input type="checkbox" v-model="set_swift_3" /></td>
+              <td><input type="checkbox" v-model="set_swift_4" /></td>
+              <td><input type="checkbox" v-model="set_swift_5" /></td>
+            </tr>
+            <tr>
+              <td>Tinker's Set</td>
+              <td><input type="checkbox" v-model="set_tinkers_1" /></td>
+              <td><input type="checkbox" v-model="set_tinkers_2" /></td>
+              <td><input type="checkbox" v-model="set_tinkers_3" /></td>
+              <td><input type="checkbox" v-model="set_tinkers_4" /></td>
+              <td><input type="checkbox" v-model="set_tinkers_5" /></td>
+            </tr>
+            <tr>
+              <td>Wise Set</td>
+              <td><input type="checkbox" v-model="set_wise_1" /></td>
+              <td><input type="checkbox" v-model="set_wise_2" /></td>
+              <td><input type="checkbox" v-model="set_wise_3" /></td>
+              <td><input type="checkbox" v-model="set_wise_4" /></td>
+              <td><input type="checkbox" v-model="set_wise_5" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -1061,6 +1159,8 @@ export default {
     margin: 1em;
     padding: 5px;
     width: 350px;
+    max-height: 450px;
+    overflow-y: scroll;
   }
 
   .pane h1 {
