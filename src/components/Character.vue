@@ -24,6 +24,14 @@
       </ul>
 
       <table>
+        <thead>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Base</td>
+            <td>Value</td>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td class="attribute-name">Strength</td>
