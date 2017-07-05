@@ -1,116 +1,119 @@
 <template>
-  <div>
-    <h1>Character</h1>
-    <ul>
-      <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
-      <li>Extra skill credits:
-        <ul>
-          <li>Railrea: <input type="checkbox" v-model="railrea" /></li>
-          <li>Owsald: <input type="checkbox" v-model="owsald" /></li>
-          <li>Luminance (1): <input type="checkbox" v-model="lum1" /></li>
-          <li>Luminance (2): <input type="checkbox" v-model="lum2" /></li>
-        </ul>
-      </li>
-      <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
-    </ul>
+  <div id="container">
+    <div id="attributes" class="pane">
+      <h1>Attributes {{ total_attribute_cost }} / 330</h1>
 
-    <h2>Attributes {{ total_attribute_cost }} / 330</h2>
-    <table>
-      <tbody>
-        <tr>
-          <td class="attribute-name">Strength</td>
-          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="strength" /></td>
-          <td class="attribute-value">{{ strength }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Endurance</td>
-          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="endurance" /></td>
-          <td class="attribute-value">{{ endurance }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Coordination</td>
-          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="coordination" /></td>
-          <td class="attribute-value">{{ coordination }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Quickness</td>
-          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="quickness" /></td>
-          <td class="attribute-value">{{ quickness }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Focus</td>
-          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="focus" /></td>
-          <td class="attribute-value">{{ focus }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Self</td>
-          <td class="attribute-slider"><input type="range" min="10" max="100" v-model="self" /></td>
-          <td class="attribute-value">{{ self }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Health</td>
-          <td class="attribute-slider"></td>
-          <td class="attribute-value">{{ health }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Stamina</td>
-          <td class="attribute-slider"></td>
-          <td class="attribute-value">{{ stamina }}</td>
-        </tr>
-        <tr>
-          <td class="attribute-name">Mana</td>
-          <td class="attribute-slider"></td>
-          <td class="attribute-value">{{ mana }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <ul>
+        <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
+        <li>Extra skill credits:
+          <ul>
+            <li>Railrea: <input type="checkbox" v-model="railrea" /></li>
+            <li>Owsald: <input type="checkbox" v-model="owsald" /></li>
+            <li>Luminance (1): <input type="checkbox" v-model="lum1" /></li>
+            <li>Luminance (2): <input type="checkbox" v-model="lum2" /></li>
+          </ul>
+        </li>
+        <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
+      </ul>
 
-    <h2>Skills {{ total_skill_cost }} / {{ available_skill_credits }}</h2>
-    <table>
-      <tbody>
-        <tr class="skill-header specialized">
-          <td colspan="5">Specialized {{ total_specialized_cost }} / 70</td>
-        </tr>
-        <tr v-for="skill in specializedSkills">
-          <td class="skill-name">{{ skill.name }}</td>
-          <td class="skill-value">{{ skillValue(skill.id) }}</td>
-          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"></td>
-          <td class="skill-lower"><button :data-skill="skill.id" v-on:click="unSpecializeSkill">↓</button></td>
+      <table>
+        <tbody>
+          <tr>
+            <td class="attribute-name">Strength</td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="strength" /></td>
+            <td class="attribute-value">{{ strength }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Endurance</td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="endurance" /></td>
+            <td class="attribute-value">{{ endurance }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Coordination</td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="coordination" /></td>
+            <td class="attribute-value">{{ coordination }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Quickness</td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="quickness" /></td>
+            <td class="attribute-value">{{ quickness }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Focus</td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="focus" /></td>
+            <td class="attribute-value">{{ focus }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Self</td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="self" /></td>
+            <td class="attribute-value">{{ self }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Health</td>
+            <td class="attribute-slider"></td>
+            <td class="attribute-value">{{ health }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Stamina</td>
+            <td class="attribute-slider"></td>
+            <td class="attribute-value">{{ stamina }}</td>
+          </tr>
+          <tr>
+            <td class="attribute-name">Mana</td>
+            <td class="attribute-slider"></td>
+            <td class="attribute-value">{{ mana }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="skills" class="pane">
+      <h1>Skills {{ total_skill_cost }} / {{ available_skill_credits }}</h1>
+      <table>
+        <tbody>
+          <tr class="skill-header specialized">
+            <td colspan="5">Specialized {{ total_specialized_cost }} / 70</td>
+          </tr>
+          <tr v-for="skill in specializedSkills">
+            <td class="skill-name">{{ skill.name }}</td>
+            <td class="skill-value">{{ skillValue(skill.id) }}</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-raise"></td>
+            <td class="skill-lower"><button :data-skill="skill.id" v-on:click="unSpecializeSkill">↓</button></td>
 
-        </tr>
-        <tr class="skill-header trained">
-          <td colspan="5">Trained</td>
-        </tr>
-        <tr v-for="skill in trainedSkills">
-          <td class="skill-name">{{ skill.name }}</td>
-          <td class="skill-value">{{ skillValue(skill.id) }}</td>
-          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">↑</button></td>
-          <td class="skill-lower"><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">↓</button></td>
-        </tr>
-        <tr class="skill-header untrained">
-          <td colspan="5">Untrained</td>
-        </tr>
-        <tr v-for="skill in untrainedSkills">
-          <td class="skill-name">{{ skill.name }}</td>
-          <td class="skill-value">{{ skillValue(skill.id) }}</td>
-          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
-          <td class="skill-lower"></td>
-        </tr>
-        <tr class="skill-header unusable">
-          <td colspan="5">Unusable</td>
-        </tr>
-        <tr v-for="skill in unusableSkills">
-          <td class="skill-name">{{ skill.name }}</td>
-          <td class="skill-value">0</td>
-          <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
-          <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
-          <td class="skill-lower"></td>
-        </tr>
-      </tbody>
-    </table>
+          </tr>
+          <tr class="skill-header trained">
+            <td colspan="5">Trained</td>
+          </tr>
+          <tr v-for="skill in trainedSkills">
+            <td class="skill-name">{{ skill.name }}</td>
+            <td class="skill-value">{{ skillValue(skill.id) }}</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-raise"><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">↑</button></td>
+            <td class="skill-lower"><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">↓</button></td>
+          </tr>
+          <tr class="skill-header untrained">
+            <td colspan="5">Untrained</td>
+          </tr>
+          <tr v-for="skill in untrainedSkills">
+            <td class="skill-name">{{ skill.name }}</td>
+            <td class="skill-value">{{ skillValue(skill.id) }}</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
+            <td class="skill-lower"></td>
+          </tr>
+          <tr class="skill-header unusable">
+            <td colspan="5">Unusable</td>
+          </tr>
+          <tr v-for="skill in unusableSkills">
+            <td class="skill-name">{{ skill.name }}</td>
+            <td class="skill-value">0</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
+            <td class="skill-lower"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -975,12 +978,30 @@ export default {
 </script>
 
 <style scoped>
-  * {
+/* todo: remove */
+  #container {
     font: 14px sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .pane {
+    border: 1px solid #ccc;
+    margin: 1em;
+    padding: 5px;
+    width: 350px;
+  }
+
+  .pane h1 {
+    font-size: 100%;
+    font-weight: bold;
+    background-color: rgba(225, 20, 0, 0.9);
+    color: white;
+    padding: 3px;
   }
 
   table {
-    width: 350px;
+    border-collapse: collapse;
   }
 
   td {
