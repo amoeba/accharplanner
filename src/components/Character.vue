@@ -151,99 +151,59 @@
     <div class="pane">
       <h2>Luminance</h2>
       <ul>
-        <li>Craftsman 5x: <input type="checkbox" v-model="luminance_craftsman" /></li>
+        <li>Craftsman: <input type="range" min="0" max="5" v-model="luminance_craftsman" /> {{ luminance_craftsman }}</li>
       </ul>
       <h2>Seers</h2>
       <ul>
-        <li>Specialization: <input type="checkbox" v-model="seer_specialization" /></li>
+        <li>Specialization: <input type="range" min="0" max="5" v-model="seer_specialization" /> {{ seer_specialization }}</li>
       </ul>
       <h2>Sets</h2>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>1</th>
-              <th>2</th>
-              <th>3</th>
-              <th>4</th>
-              <th>5</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Adept's Set</td>
-              <td><input type="checkbox" v-model="set_adept_1" /></td>
-              <td><input type="checkbox" v-model="set_adept_2" /></td>
-              <td><input type="checkbox" v-model="set_adept_3" /></td>
-              <td><input type="checkbox" v-model="set_adept_4" /></td>
-              <td><input type="checkbox" v-model="set_adept_5" /></td>
-            </tr>
-            <tr>
-              <td>Dedication Set</td>
-              <td><input type="checkbox" v-model="set_dedication_1" /></td>
-              <td><input type="checkbox" v-model="set_dedication_2" /></td>
-              <td><input type="checkbox" v-model="set_dedication_3" /></td>
-              <td><input type="checkbox" v-model="set_dedication_4" /></td>
-              <td><input type="checkbox" v-model="set_dedication_5" /></td>
-            </tr>
-            <tr>
-              <td>Defender's Set</td>
-              <td><input type="checkbox" v-model="set_defenders_1" /></td>
-              <td><input type="checkbox" v-model="set_defenders_2" /></td>
-              <td><input type="checkbox" v-model="set_defenders_3" /></td>
-              <td><input type="checkbox" v-model="set_defenders_4" /></td>
-              <td><input type="checkbox" v-model="set_defenders_5" /></td>
-            </tr>
-            <tr>
-              <td>Dexterous Set</td>
-              <td><input type="checkbox" v-model="set_dextrous_1" /></td>
-              <td><input type="checkbox" v-model="set_dextrous_2" /></td>
-              <td><input type="checkbox" v-model="set_dextrous_3" /></td>
-              <td><input type="checkbox" v-model="set_dextrous_4" /></td>
-              <td><input type="checkbox" v-model="set_dextrous_5" /></td>
-            </tr>
-            <tr>
-              <td>Hearty Set</td>
-              <td><input type="checkbox" v-model="set_hearty_1" /></td>
-              <td><input type="checkbox" v-model="set_hearty_2" /></td>
-              <td><input type="checkbox" v-model="set_hearty_3" /></td>
-              <td><input type="checkbox" v-model="set_hearty_4" /></td>
-              <td><input type="checkbox" v-model="set_hearty_5" /></td>
-            </tr>
-            <tr>
-              <td>Soldier's Set</td>
-              <td><input type="checkbox" v-model="set_soldiers_1" /></td>
-              <td><input type="checkbox" v-model="set_soldiers_2" /></td>
-              <td><input type="checkbox" v-model="set_soldiers_3" /></td>
-              <td><input type="checkbox" v-model="set_soldiers_4" /></td>
-              <td><input type="checkbox" v-model="set_soldiers_5" /></td>
-            </tr>
-            <tr>
-              <td>Swift Set</td>
-              <td><input type="checkbox" v-model="set_swift_1" /></td>
-              <td><input type="checkbox" v-model="set_swift_2" /></td>
-              <td><input type="checkbox" v-model="set_swift_3" /></td>
-              <td><input type="checkbox" v-model="set_swift_4" /></td>
-              <td><input type="checkbox" v-model="set_swift_5" /></td>
-            </tr>
-            <tr>
-              <td>Tinker's Set</td>
-              <td><input type="checkbox" v-model="set_tinkers_1" /></td>
-              <td><input type="checkbox" v-model="set_tinkers_2" /></td>
-              <td><input type="checkbox" v-model="set_tinkers_3" /></td>
-              <td><input type="checkbox" v-model="set_tinkers_4" /></td>
-              <td><input type="checkbox" v-model="set_tinkers_5" /></td>
-            </tr>
-            <tr>
-              <td>Wise Set</td>
-              <td><input type="checkbox" v-model="set_wise_1" /></td>
-              <td><input type="checkbox" v-model="set_wise_2" /></td>
-              <td><input type="checkbox" v-model="set_wise_3" /></td>
-              <td><input type="checkbox" v-model="set_wise_4" /></td>
-              <td><input type="checkbox" v-model="set_wise_5" /></td>
-            </tr>
-          </tbody>
-        </table>
+      <ul>
+        <li>
+          Adept's Set
+          <input type="range" min="0" max="5" v-model="set_adept" />
+          {{ set_adept }}
+        </li>
+        <li>
+          Dedication Set
+          <input type="range" min="0" max="5" v-model="set_dedication" />
+          {{ set_dedication }}
+        </li>
+        <li>
+          Defender's Set
+          <input type="range" min="0" max="5" v-model="set_defenders" />
+          {{ set_defenders }}
+        </li>
+        <li>
+          Dexterous Set
+          <input type="range" min="0" max="5" v-model="set_dextrous" />
+          {{ set_dextrous }}
+        </li>
+        <li>
+          Hearty Set
+          <input type="range" min="0" max="5" v-model="set_hearty" />
+          {{ set_hearty }}
+        </li>
+        <li>
+          Soldier's Set
+          <input type="range" min="0" max="5" v-model="set_soldiers" />
+          {{ set_soldiers }}
+        </li>
+        <li>
+          Swift Set
+          <input type="range" min="0" max="5" v-model="set_swift" />
+          {{ set_swift }}
+        </li>
+        <li>
+          Tinker's Set
+          <input type="range" min="0" max="5" v-model="set_tinkers" />
+          {{ set_tinkers }}
+        </li>
+        <li>
+          Wise Set
+          <input type="range" min="0" max="5" v-model="set_wise" />
+          {{ set_wise }}
+        </li>
       </ul>
     </div>
   </div>
@@ -463,6 +423,17 @@ export default {
       enlightenment_3: false,
       enlightenment_4: false,
       enlightenment_5: false,
+      luminance_craftsman: 0,
+      seer_specialization: 0,
+      set_adept: 0,
+      set_dedication: 0,
+      set_defenders: 0,
+      set_dextrous: 0,
+      set_hearty: 0,
+      set_soldiers: 0,
+      set_swift: 0,
+      set_tinkers: 0,
+      set_wise: 0,
       skills: [
         {
           id: 'alchemy',
@@ -729,7 +700,7 @@ export default {
       return Math.round(Number(this.focus) / 3) + (this.skills[1].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[1].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
     },
     armor_tinkering: function () {
-      return Math.round((Number(this.endurance) + Number(this.focus)) / 2) + (this.skills[2].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[2].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
+      return Math.round((Number(this.endurance) + Number(this.focus)) / 2) + (this.skills[2].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[2].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus() + Number(this.luminance_craftsman)
     },
     assess_creature: function () {
       return 0 + (this.skills[3].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[3].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
@@ -738,7 +709,7 @@ export default {
       return 0 + (this.skills[4].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[4].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
     },
     cooking: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[5].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[5].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[5].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[5].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus() + Number(this.luminance_craftsman)
     },
     creature_enchantment: function () {
       return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[6].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[6].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
@@ -756,7 +727,7 @@ export default {
       return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[10].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[10].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
     },
     fletching: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[11].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[11].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[11].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[11].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus() + Number(this.luminance_craftsman)
     },
     healing: function () {
       return Math.round((Number(this.focus) + Number(this.coordination)) / 3) + (this.skills[12].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[12].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
@@ -768,7 +739,7 @@ export default {
       return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[14].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[14].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
     },
     item_tinkering: function () {
-      return Math.round((Number(this.focus) + Number(this.coordination)) / 2) + (this.skills[15].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[15].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
+      return Math.round((Number(this.focus) + Number(this.coordination)) / 2) + (this.skills[15].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[15].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus() + Number(this.luminance_craftsman)
     },
     jump: function () {
       return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[16].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[16].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
@@ -792,7 +763,7 @@ export default {
       return Math.round((Number(this.focus) + Number(this.self)) / 7) + (this.skills[22].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[22].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
     },
     magic_item_tinkering: function () {
-      return Number(this.focus) + (this.skills[23].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[23].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
+      return Number(this.focus) + (this.skills[23].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[23].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus() + Number(this.luminance_craftsman)
     },
     mana_conversion: function () {
       return Math.round((Number(this.focus) + Number(this.self)) / 6) + (this.skills[24].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[24].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
@@ -813,7 +784,7 @@ export default {
       return Number(this.quickness) + (this.skills[29].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[29].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
     },
     salvaging: function () {
-      return 0 + (this.skills[30].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[30].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
+      return 0 + (this.skills[30].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[30].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus() + Number(this.luminance_craftsman)
     },
     shield: function () {
       return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[31].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[31].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
@@ -834,7 +805,7 @@ export default {
       return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[36].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[36].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
     },
     weapon_tinkering: function () {
-      return Math.round((Number(this.strength) + Number(this.focus)) / 2) + (this.skills[37].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[37].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus()
+      return Math.round((Number(this.strength) + Number(this.focus)) / 2) + (this.skills[37].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[37].training) + this.enlightenmentSkillBonus() + this.majorCantripBonus() + Number(this.luminance_craftsman)
     },
     specializedSkills: function () {
       return this.skills.filter(function (skill) {
