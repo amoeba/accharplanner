@@ -13,6 +13,13 @@
             <li>Luminance (2): <input type="checkbox" v-model="lum2" /></li>
           </ul>
         </li>
+        <li>Options:
+          <ul>
+            <li>Max attribute XP: <input type="checkbox" v-model="max_attribute_xp" /></li>
+            <li>Max skill XP: <input type="checkbox" v-model="max_skill_xp" /></li>
+            <li>Level VIII buffs:<input type="checkbox" v-model="level_eights" /></li>
+          </ul>
+        </li>
         <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
       </ul>
 
@@ -20,32 +27,38 @@
         <tbody>
           <tr>
             <td class="attribute-name">Strength</td>
-            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="strength" /></td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="strength_base" /></td>
+            <td class="attribute-value">{{ strength_base }}</td>
             <td class="attribute-value">{{ strength }}</td>
           </tr>
           <tr>
             <td class="attribute-name">Endurance</td>
-            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="endurance" /></td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="endurance_base" /></td>
+            <td class="attribute-value">{{ endurance_base }}</td>
             <td class="attribute-value">{{ endurance }}</td>
           </tr>
           <tr>
             <td class="attribute-name">Coordination</td>
-            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="coordination" /></td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="coordination_base" /></td>
+            <td class="attribute-value">{{ coordination_base }}</td>
             <td class="attribute-value">{{ coordination }}</td>
           </tr>
           <tr>
             <td class="attribute-name">Quickness</td>
-            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="quickness" /></td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="quickness_base" /></td>
+            <td class="attribute-value">{{ quickness_base }}</td>
             <td class="attribute-value">{{ quickness }}</td>
           </tr>
           <tr>
             <td class="attribute-name">Focus</td>
-            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="focus" /></td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="focus_base" /></td>
+            <td class="attribute-value">{{ focus_base }}</td>
             <td class="attribute-value">{{ focus }}</td>
           </tr>
           <tr>
             <td class="attribute-name">Self</td>
-            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="self" /></td>
+            <td class="attribute-slider"><input type="range" min="10" max="100" v-model="self_base" /></td>
+            <td class="attribute-value">{{ self_base }}</td>
             <td class="attribute-value">{{ self }}</td>
           </tr>
           <tr>
@@ -120,6 +133,7 @@
 <script>
 
 const SPECIALIZED_LIMIT = 64
+const LEVEL_EIGHT_BUFF_AMOUNT = 80
 const creditsAtLevel = {
   1: 0,
   2: 1,
@@ -311,16 +325,19 @@ export default {
   data: function () {
     return {
       level: 1,
-      strength: 10,
-      endurance: 10,
-      coordination: 10,
-      quickness: 10,
-      focus: 10,
-      self: 10,
+      strength_base: 10,
+      endurance_base: 10,
+      coordination_base: 10,
+      quickness_base: 10,
+      focus_base: 10,
+      self_base: 10,
       railrea: false,
       owsald: false,
       lum1: false,
       lum2: false,
+      max_attribute_xp: false,
+      max_skill_xp: false,
+      level_eights: false,
       skills: [
         {
           id: 'alchemy',
@@ -518,22 +535,41 @@ export default {
   computed: {
     // Attributes
     total_attribute_cost: function () {
-      return Number(this.strength) +
-        Number(this.endurance) +
-        Number(this.coordination) +
-        Number(this.quickness) +
-        Number(this.focus) +
-        Number(this.self)
+      return Number(this.strength_base) +
+        Number(this.endurance_base) +
+        Number(this.coordination_base) +
+        Number(this.quickness_base) +
+        Number(this.focus_base) +
+        Number(this.self_base)
+    },
+    // Attributes
+    strength: function () {
+      return Number(this.strength_base) + this.buffBonus() + this.attributeXPBonus()
+    },
+    endurance: function () {
+      return Number(this.endurance_base) + this.buffBonus() + this.attributeXPBonus()
+    },
+    coordination: function () {
+      return Number(this.coordination_base) + this.buffBonus() + this.attributeXPBonus()
+    },
+    quickness: function () {
+      return Number(this.quickness_base) + this.buffBonus() + this.attributeXPBonus()
+    },
+    focus: function () {
+      return Number(this.focus_base) + this.buffBonus() + this.attributeXPBonus()
+    },
+    self: function () {
+      return Number(this.self_base) + this.buffBonus() + this.attributeXPBonus()
     },
     // Vitals
     health: function () {
-      return Math.round(this.endurance / 2, 0)
+      return Math.round(this.endurance / 2, 0) + this.buffBonus()
     },
     stamina: function () {
-      return this.endurance
+      return this.endurance + this.buffBonus()
     },
     mana: function () {
-      return this.self
+      return this.self + this.buffBonus()
     },
     // Skill costs
     total_skill_cost: function () {
@@ -562,118 +598,118 @@ export default {
         Number((this.lum2 ? 1 : 0))
     },
     alchemy: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[0].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[0].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[0].training)
     },
     arcane_lore: function () {
-      return Math.round(Number(this.focus) / 3) + (this.skills[1].training === 'specialized' ? 15 : 5)
+      return Math.round(Number(this.focus) / 3) + (this.skills[1].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[1].training)
     },
     armor_tinkering: function () {
-      return Math.round((Number(this.endurance) + Number(this.focus)) / 2) + (this.skills[2].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.endurance) + Number(this.focus)) / 2) + (this.skills[2].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[2].training)
     },
     assess_creature: function () {
-      return 0 + (this.skills[3].training === 'specialized' ? 15 : 5)
+      return 0 + (this.skills[3].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[3].training)
     },
     assess_person: function () {
-      return 0 + (this.skills[4].training === 'specialized' ? 15 : 5)
+      return 0 + (this.skills[4].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[4].training)
     },
     cooking: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[5].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[5].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[5].training)
     },
     creature_enchantment: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[6].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[6].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[6].training)
     },
     deception: function () {
-      return 0 + (this.skills[7].training === 'specialized' ? 15 : 5)
+      return 0 + (this.skills[7].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[7].training)
     },
     dual_wield: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[8].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[8].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[8].training)
     },
     dirty_fighting: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[9].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[9].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[9].training)
     },
     finesse_weapons: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[10].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[10].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[10].training)
     },
     fletching: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[11].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[11].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[11].training)
     },
     healing: function () {
-      return Math.round((Number(this.focus) + Number(this.coordination)) / 3) + (this.skills[12].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.coordination)) / 3) + (this.skills[12].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[12].training)
     },
     heavy_weapons: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[13].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[13].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[13].training)
     },
     item_enchantment: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[14].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[14].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[14].training)
     },
     item_tinkering: function () {
-      return Math.round((Number(this.focus) + Number(this.coordination)) / 2) + (this.skills[15].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.coordination)) / 2) + (this.skills[15].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[15].training)
     },
     jump: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[16].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[16].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[16].training)
     },
     leadership: function () {
-      return 0 + (this.skills[17].training === 'specialized' ? 15 : 5)
+      return 0 + (this.skills[17].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[17].training)
     },
     life_magic: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[18].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[18].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[18].training)
     },
     light_weapons: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[19].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[19].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[19].training)
     },
     lockpick: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[20].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[20].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[20].training)
     },
     loyalty: function () {
-      return 0 + (this.skills[21].training === 'specialized' ? 15 : 5)
+      return 0 + (this.skills[21].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[21].training)
     },
     magic_defense: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 7) + (this.skills[22].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.self)) / 7) + (this.skills[22].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[22].training)
     },
     magic_item_tinkering: function () {
-      return Number(this.focus) + (this.skills[23].training === 'specialized' ? 15 : 5)
+      return Number(this.focus) + (this.skills[23].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[23].training)
     },
     mana_conversion: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 6) + (this.skills[24].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.self)) / 6) + (this.skills[24].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[24].training)
     },
     melee_defense: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[25].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[25].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[25].training)
     },
     missile_defense: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 5) + (this.skills[26].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 5) + (this.skills[26].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[26].training)
     },
     missile_weapons: function () {
-      return Math.round(Number(this.coordination) / 2) + (this.skills[27].training === 'specialized' ? 15 : 5)
+      return Math.round(Number(this.coordination) / 2) + (this.skills[27].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[27].training)
     },
     recklessness: function () {
-      return Math.round((Number(this.strength) + Number(this.quickness)) / 3) + (this.skills[28].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.quickness)) / 3) + (this.skills[28].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[28].training)
     },
     run: function () {
-      return Number(this.quickness) + (this.skills[29].training === 'specialized' ? 15 : 5)
+      return Number(this.quickness) + (this.skills[29].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[29].training)
     },
     salvaging: function () {
-      return 0 + (this.skills[30].training === 'specialized' ? 15 : 5)
+      return 0 + (this.skills[30].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[30].training)
     },
     shield: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[31].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[31].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[31].training)
     },
     sneak_attack: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[32].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[32].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[32].training)
     },
     summoning: function () {
-      return Math.round((Number(this.endurance) + Number(this.self)) / 3) + (this.skills[33].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.endurance) + Number(this.self)) / 3) + (this.skills[33].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[33].training)
     },
     two_handed_combat: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[34].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[34].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[34].training)
     },
     void_magic: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[35].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[35].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[35].training)
     },
     war_magic: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[36].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[36].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[36].training)
     },
     weapon_tinkering: function () {
-      return Math.round((Number(this.strength) + Number(this.focus)) / 2) + (this.skills[37].training === 'specialized' ? 15 : 5)
+      return Math.round((Number(this.strength) + Number(this.focus)) / 2) + (this.skills[37].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[37].training)
     },
     specializedSkills: function () {
       return this.skills.filter(function (skill) {
@@ -697,34 +733,34 @@ export default {
     }
   },
   watch: {
-    strength: function (newVal) {
-      var diff = Number(newVal) + Number(this.endurance) + Number(this.coordination) + Number(this.quickness) + Number(this.focus) + Number(this.self) - 330
+    strength_base: function (newVal) {
+      var diff = Number(newVal) + Number(this.endurance_base) + Number(this.coordination_base) + Number(this.quickness_base) + Number(this.focus_base) + Number(this.self_base) - 330
       var maxit = 1000
 
       if (diff > 0) {
         while (diff > 0) {
-          if (this.endurance > 10) {
-            this.endurance = this.endurance - 1
+          if (this.endurance_base > 10) {
+            this.endurance_base = this.endurance_base - 1
             diff = diff - 1
           }
 
-          if (this.coordination > 10) {
-            this.coordination = this.coordination - 1
+          if (this.coordination_base > 10) {
+            this.coordination_base = this.coordination_base - 1
             diff = diff - 1
           }
 
-          if (this.quickness > 10) {
-            this.quickness = this.quickness - 1
+          if (this.quickness_base > 10) {
+            this.quickness_base = this.quickness_base - 1
             diff = diff - 1
           }
 
-          if (this.focus > 10) {
-            this.focus = this.focus - 1
+          if (this.focus_base > 10) {
+            this.focus_base = this.focus_base - 1
             diff = diff - 1
           }
 
-          if (this.self > 10) {
-            this.self = this.self - 1
+          if (this.self_base > 10) {
+            this.self_base = this.self_base - 1
             diff = diff - 1
           }
 
@@ -734,34 +770,34 @@ export default {
         }
       }
     },
-    endurance: function (newVal) {
-      var diff = Number(newVal) + Number(this.strength) + Number(this.coordination) + Number(this.quickness) + Number(this.focus) + Number(this.self) - 330
+    endurance_base: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength_base) + Number(this.coordination_base) + Number(this.quickness_base) + Number(this.focus_base) + Number(this.self_base) - 330
       var maxit = 1000
 
       if (diff > 0) {
         while (diff > 0) {
-          if (this.strength > 10) {
-            this.strength = this.strength - 1
+          if (this.strength_base > 10) {
+            this.strength_base = this.strength_base - 1
             diff = diff - 1
           }
 
-          if (this.coordination > 10) {
-            this.coordination = this.coordination - 1
+          if (this.coordination_base > 10) {
+            this.coordination_base = this.coordination_base - 1
             diff = diff - 1
           }
 
-          if (this.quickness > 10) {
-            this.quickness = this.quickness - 1
+          if (this.quickness_base > 10) {
+            this.quickness_base = this.quickness_base - 1
             diff = diff - 1
           }
 
-          if (this.focus > 10) {
-            this.focus = this.focus - 1
+          if (this.focus_base > 10) {
+            this.focus_base = this.focus_base - 1
             diff = diff - 1
           }
 
-          if (this.self > 10) {
-            this.self = this.self - 1
+          if (this.self_base > 10) {
+            this.self_base = this.self_base - 1
             diff = diff - 1
           }
 
@@ -771,71 +807,34 @@ export default {
         }
       }
     },
-    coordination: function (newVal) {
-      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.quickness) + Number(this.focus) + Number(this.self) - 330
+    coordination_base: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength_base) + Number(this.endurance_base) + Number(this.quickness_base) + Number(this.focus_base) + Number(this.self_base) - 330
       var maxit = 1000
 
       if (diff > 0) {
         while (diff > 0) {
-          if (this.strength > 10) {
-            this.strength = this.strength - 1
+          if (this.strength_base > 10) {
+            this.strength_base = this.strength_base - 1
             diff = diff - 1
           }
 
-          if (this.endurance > 10) {
-            this.endurance = this.endurance - 1
+          if (this.endurance_base > 10) {
+            this.endurance_base = this.endurance_base - 1
             diff = diff - 1
           }
 
-          if (this.quickness > 10) {
-            this.quickness = this.quickness - 1
+          if (this.quickness_base > 10) {
+            this.quickness_base = this.quickness_base - 1
             diff = diff - 1
           }
 
-          if (this.focus > 10) {
-            this.focus = this.focus - 1
+          if (this.focus_base > 10) {
+            this.focus_base = this.focus_base - 1
             diff = diff - 1
           }
 
-          if (this.self > 10) {
-            this.self = this.self - 1
-            diff = diff - 1
-          }
-
-          if (--maxit < 0) {
-            break
-          }
-        }
-      }
-    },
-    quickness: function (newVal) {
-      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.coordination) + Number(this.focus) + Number(this.self) - 330
-      var maxit = 100
-
-      if (diff > 0) {
-        while (diff > 0) {
-          if (this.strength > 10) {
-            this.strength = this.strength - 1
-            diff = diff - 1
-          }
-
-          if (this.endurance > 10) {
-            this.endurance = this.endurance - 1
-            diff = diff - 1
-          }
-
-          if (this.coordination > 10) {
-            this.coordination = this.coordination - 1
-            diff = diff - 1
-          }
-
-          if (this.focus > 10) {
-            this.focus = this.focus - 1
-            diff = diff - 1
-          }
-
-          if (this.self > 10) {
-            this.self = this.self - 1
+          if (this.self_base > 10) {
+            this.self_base = this.self_base - 1
             diff = diff - 1
           }
 
@@ -845,34 +844,34 @@ export default {
         }
       }
     },
-    focus: function (newVal) {
-      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.coordination) + Number(this.quickness) + Number(this.self) - 330
+    quickness_base: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength_base) + Number(this.endurance_base) + Number(this.coordination_base) + Number(this.focus_base) + Number(this.self_base) - 330
       var maxit = 100
 
       if (diff > 0) {
         while (diff > 0) {
-          if (this.strength > 10) {
-            this.strength = this.strength - 1
+          if (this.strength_base > 10) {
+            this.strength_base = this.strength_base - 1
             diff = diff - 1
           }
 
-          if (this.endurance > 10) {
-            this.endurance = this.endurance - 1
+          if (this.endurance_base > 10) {
+            this.endurance_base = this.endurance_base - 1
             diff = diff - 1
           }
 
-          if (this.coordination > 10) {
-            this.coordination = this.coordination - 1
+          if (this.coordination_base > 10) {
+            this.coordination_base = this.coordination_base - 1
             diff = diff - 1
           }
 
-          if (this.quickness > 10) {
-            this.quickness = this.quickness - 1
+          if (this.focus_base > 10) {
+            this.focus_base = this.focus_base - 1
             diff = diff - 1
           }
 
-          if (this.self > 10) {
-            this.self = this.self - 1
+          if (this.self_base > 10) {
+            this.self_base = this.self_base - 1
             diff = diff - 1
           }
 
@@ -882,34 +881,71 @@ export default {
         }
       }
     },
-    self: function (newVal) {
-      var diff = Number(newVal) + Number(this.strength) + Number(this.endurance) + Number(this.coordination) + Number(this.quickness) + Number(this.focus) - 330
+    focus_base: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength_base) + Number(this.endurance_base) + Number(this.coordination_base) + Number(this.quickness_base) + Number(this.self_base) - 330
       var maxit = 100
 
       if (diff > 0) {
         while (diff > 0) {
-          if (this.strength > 10) {
-            this.strength = this.strength - 1
+          if (this.strength_base > 10) {
+            this.strength_base = this.strength_base - 1
             diff = diff - 1
           }
 
-          if (this.endurance > 10) {
-            this.endurance = this.endurance - 1
+          if (this.endurance_base > 10) {
+            this.endurance_base = this.endurance_base - 1
             diff = diff - 1
           }
 
-          if (this.coordination > 10) {
-            this.coordination = this.coordination - 1
+          if (this.coordination_base > 10) {
+            this.coordination_base = this.coordination_base - 1
             diff = diff - 1
           }
 
-          if (this.quickness > 10) {
-            this.quickness = this.quickness - 1
+          if (this.quickness_base > 10) {
+            this.quickness_base = this.quickness_base - 1
             diff = diff - 1
           }
 
-          if (this.focus > 10) {
-            this.focus = this.focus - 1
+          if (this.self_base > 10) {
+            this.self_base = this.self_base - 1
+            diff = diff - 1
+          }
+
+          if (--maxit < 0) {
+            break
+          }
+        }
+      }
+    },
+    self_base: function (newVal) {
+      var diff = Number(newVal) + Number(this.strength_base) + Number(this.endurance_base) + Number(this.coordination_base) + Number(this.quickness_base) + Number(this.focus_base) - 330
+      var maxit = 100
+
+      if (diff > 0) {
+        while (diff > 0) {
+          if (this.strength_base > 10) {
+            this.strength_base = this.strength_base - 1
+            diff = diff - 1
+          }
+
+          if (this.endurance_base > 10) {
+            this.endurance_base = this.endurance_base - 1
+            diff = diff - 1
+          }
+
+          if (this.coordination_base > 10) {
+            this.coordination_base = this.coordination_base - 1
+            diff = diff - 1
+          }
+
+          if (this.quickness_base > 10) {
+            this.quickness_base = this.quickness_base - 1
+            diff = diff - 1
+          }
+
+          if (this.focus_base > 10) {
+            this.focus_base = this.focus_base - 1
             diff = diff - 1
           }
 
@@ -939,6 +975,33 @@ export default {
         return 10
       } else if (training === 'trained') {
         return 5
+      } else {
+        return 0
+      }
+    },
+    buffBonus: function () {
+      if (this.level_eights) {
+        return LEVEL_EIGHT_BUFF_AMOUNT
+      } else {
+        return 0
+      }
+    },
+    attributeXPBonus: function () {
+      if (this.max_attribute_xp) {
+        return 190
+      } else {
+        return 0
+      }
+    },
+    skillXPBonus: function (training) {
+      if (!this.max_skill_xp) {
+        return 0
+      }
+
+      if (training === 'specialized') {
+        return 226
+      } else if (training === 'trained') {
+        return 208
       } else {
         return 0
       }
