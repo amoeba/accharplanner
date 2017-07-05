@@ -687,7 +687,7 @@ export default {
     },
     // Vitals
     health: function () {
-      return Math.round(this.endurance / 2, 0) + this.buffBonus()
+      return Math.round(this.endurance / 2, 0) + this.buffBonus() + this.enlightenmentHealthBonus()
     },
     stamina: function () {
       return this.endurance + this.buffBonus()
@@ -722,118 +722,118 @@ export default {
         Number((this.lum2 ? 1 : 0))
     },
     alchemy: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[0].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[0].training)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[0].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[0].training) + this.enlightenmentSkillBonus()
     },
     arcane_lore: function () {
-      return Math.round(Number(this.focus) / 3) + (this.skills[1].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[1].training)
+      return Math.round(Number(this.focus) / 3) + (this.skills[1].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[1].training) + this.enlightenmentSkillBonus()
     },
     armor_tinkering: function () {
-      return Math.round((Number(this.endurance) + Number(this.focus)) / 2) + (this.skills[2].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[2].training)
+      return Math.round((Number(this.endurance) + Number(this.focus)) / 2) + (this.skills[2].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[2].training) + this.enlightenmentSkillBonus()
     },
     assess_creature: function () {
-      return 0 + (this.skills[3].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[3].training)
+      return 0 + (this.skills[3].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[3].training) + this.enlightenmentSkillBonus()
     },
     assess_person: function () {
-      return 0 + (this.skills[4].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[4].training)
+      return 0 + (this.skills[4].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[4].training) + this.enlightenmentSkillBonus()
     },
     cooking: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[5].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[5].training)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[5].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[5].training) + this.enlightenmentSkillBonus()
     },
     creature_enchantment: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[6].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[6].training)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[6].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[6].training) + this.enlightenmentSkillBonus()
     },
     deception: function () {
-      return 0 + (this.skills[7].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[7].training)
+      return 0 + (this.skills[7].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[7].training) + this.enlightenmentSkillBonus()
     },
     dual_wield: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[8].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[8].training)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[8].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[8].training) + this.enlightenmentSkillBonus()
     },
     dirty_fighting: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[9].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[9].training)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[9].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[9].training) + this.enlightenmentSkillBonus()
     },
     finesse_weapons: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[10].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[10].training)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[10].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[10].training) + this.enlightenmentSkillBonus()
     },
     fletching: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[11].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[11].training)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[11].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[11].training) + this.enlightenmentSkillBonus()
     },
     healing: function () {
-      return Math.round((Number(this.focus) + Number(this.coordination)) / 3) + (this.skills[12].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[12].training)
+      return Math.round((Number(this.focus) + Number(this.coordination)) / 3) + (this.skills[12].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[12].training) + this.enlightenmentSkillBonus()
     },
     heavy_weapons: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[13].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[13].training)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[13].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[13].training) + this.enlightenmentSkillBonus()
     },
     item_enchantment: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[14].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[14].training)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[14].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[14].training) + this.enlightenmentSkillBonus()
     },
     item_tinkering: function () {
-      return Math.round((Number(this.focus) + Number(this.coordination)) / 2) + (this.skills[15].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[15].training)
+      return Math.round((Number(this.focus) + Number(this.coordination)) / 2) + (this.skills[15].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[15].training) + this.enlightenmentSkillBonus()
     },
     jump: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[16].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[16].training)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[16].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[16].training) + this.enlightenmentSkillBonus()
     },
     leadership: function () {
-      return 0 + (this.skills[17].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[17].training)
+      return 0 + (this.skills[17].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[17].training) + this.enlightenmentSkillBonus()
     },
     life_magic: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[18].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[18].training)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[18].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[18].training) + this.enlightenmentSkillBonus()
     },
     light_weapons: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[19].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[19].training)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[19].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[19].training) + this.enlightenmentSkillBonus()
     },
     lockpick: function () {
-      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[20].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[20].training)
+      return Math.round((Number(this.coordination) + Number(this.focus)) / 3) + (this.skills[20].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[20].training) + this.enlightenmentSkillBonus()
     },
     loyalty: function () {
-      return 0 + (this.skills[21].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[21].training)
+      return 0 + (this.skills[21].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[21].training) + this.enlightenmentSkillBonus()
     },
     magic_defense: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 7) + (this.skills[22].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[22].training)
+      return Math.round((Number(this.focus) + Number(this.self)) / 7) + (this.skills[22].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[22].training) + this.enlightenmentSkillBonus()
     },
     magic_item_tinkering: function () {
-      return Number(this.focus) + (this.skills[23].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[23].training)
+      return Number(this.focus) + (this.skills[23].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[23].training) + this.enlightenmentSkillBonus()
     },
     mana_conversion: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 6) + (this.skills[24].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[24].training)
+      return Math.round((Number(this.focus) + Number(this.self)) / 6) + (this.skills[24].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[24].training) + this.enlightenmentSkillBonus()
     },
     melee_defense: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[25].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[25].training)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[25].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[25].training) + this.enlightenmentSkillBonus()
     },
     missile_defense: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 5) + (this.skills[26].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[26].training)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 5) + (this.skills[26].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[26].training) + this.enlightenmentSkillBonus()
     },
     missile_weapons: function () {
-      return Math.round(Number(this.coordination) / 2) + (this.skills[27].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[27].training)
+      return Math.round(Number(this.coordination) / 2) + (this.skills[27].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[27].training) + this.enlightenmentSkillBonus()
     },
     recklessness: function () {
-      return Math.round((Number(this.strength) + Number(this.quickness)) / 3) + (this.skills[28].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[28].training)
+      return Math.round((Number(this.strength) + Number(this.quickness)) / 3) + (this.skills[28].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[28].training) + this.enlightenmentSkillBonus()
     },
     run: function () {
-      return Number(this.quickness) + (this.skills[29].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[29].training)
+      return Number(this.quickness) + (this.skills[29].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[29].training) + this.enlightenmentSkillBonus()
     },
     salvaging: function () {
-      return 0 + (this.skills[30].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[30].training)
+      return 0 + (this.skills[30].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[30].training) + this.enlightenmentSkillBonus()
     },
     shield: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[31].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[31].training)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 2) + (this.skills[31].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[31].training) + this.enlightenmentSkillBonus()
     },
     sneak_attack: function () {
-      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[32].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[32].training)
+      return Math.round((Number(this.coordination) + Number(this.quickness)) / 3) + (this.skills[32].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[32].training) + this.enlightenmentSkillBonus()
     },
     summoning: function () {
-      return Math.round((Number(this.endurance) + Number(this.self)) / 3) + (this.skills[33].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[33].training)
+      return Math.round((Number(this.endurance) + Number(this.self)) / 3) + (this.skills[33].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[33].training) + this.enlightenmentSkillBonus()
     },
     two_handed_combat: function () {
-      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[34].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[34].training)
+      return Math.round((Number(this.strength) + Number(this.coordination)) / 3) + (this.skills[34].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[34].training) + this.enlightenmentSkillBonus()
     },
     void_magic: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[35].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[35].training)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[35].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[35].training) + this.enlightenmentSkillBonus()
     },
     war_magic: function () {
-      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[36].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[36].training)
+      return Math.round((Number(this.focus) + Number(this.self)) / 4) + (this.skills[36].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[36].training) + this.enlightenmentSkillBonus()
     },
     weapon_tinkering: function () {
-      return Math.round((Number(this.strength) + Number(this.focus)) / 2) + (this.skills[37].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[37].training)
+      return Math.round((Number(this.strength) + Number(this.focus)) / 2) + (this.skills[37].training === 'specialized' ? 10 : 5) + this.buffBonus() + this.skillXPBonus(this.skills[37].training) + this.enlightenmentSkillBonus()
     },
     specializedSkills: function () {
       return this.skills.filter(function (skill) {
@@ -1078,6 +1078,53 @@ export default {
           }
         }
       }
+    },
+    enlightenment_1: function () {
+      if (this.enlightenment_1) {
+
+      } else {
+        this.enlightenment_2 = false
+        this.enlightenment_3 = false
+        this.enlightenment_4 = false
+        this.enlightenment_5 = false
+      }
+    },
+    enlightenment_2: function () {
+      if (this.enlightenment_2) {
+        this.enlightenment_1 = true
+      } else {
+        this.enlightenment_3 = false
+        this.enlightenment_4 = false
+        this.enlightenment_5 = false
+      }
+    },
+    enlightenment_3: function () {
+      if (this.enlightenment_3) {
+        this.enlightenment_1 = true
+        this.enlightenment_2 = true
+      } else {
+        this.enlightenment_4 = false
+        this.enlightenment_5 = false
+      }
+    },
+    enlightenment_4: function () {
+      if (this.enlightenment_4) {
+        this.enlightenment_1 = true
+        this.enlightenment_2 = true
+        this.enlightenment_3 = true
+      } else {
+        this.enlightenment_5 = false
+      }
+    },
+    enlightenment_5: function () {
+      if (this.enlightenment_5) {
+        this.enlightenment_1 = true
+        this.enlightenment_2 = true
+        this.enlightenment_3 = true
+        this.enlightenment_4 = true
+      } else {
+
+      }
     }
   },
   methods: {
@@ -1131,32 +1178,32 @@ export default {
       }
     },
     enlightenmentHealthBonus: function () {
-      var bonus = 0;
+      var bonus = 0
 
       if (this.enlightenment_1) {
-        bonus += 1
+        bonus += 2
       }
 
       if (this.enlightenment_2) {
-        bonus += 1
+        bonus += 2
       }
 
       if (this.enlightenment_3) {
-        bonus += 1
+        bonus += 2
       }
 
       if (this.enlightenment_4) {
-        bonus += 1
+        bonus += 2
       }
 
       if (this.enlightenment_5) {
-        bonus += 1
+        bonus += 2
       }
 
-      return bonus;
+      return bonus
     },
-    enightementSkillBonus: function () {
-      var bonus = 0;
+    enlightenmentSkillBonus: function () {
+      var bonus = 0
 
       if (this.enlightenment_1) {
         bonus += 1
@@ -1178,7 +1225,7 @@ export default {
         bonus += 1
       }
 
-      return bonus;
+      return bonus
     },
     setSkillTraining: function (id, training) {
       for (var i = 0; i < this.skills.length; i++) {
