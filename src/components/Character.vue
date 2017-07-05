@@ -17,7 +17,20 @@
           <ul>
             <li>Max attribute XP: <input type="checkbox" v-model="max_attribute_xp" /></li>
             <li>Max skill XP: <input type="checkbox" v-model="max_skill_xp" /></li>
-            <li>Level VIII buffs:<input type="checkbox" v-model="level_eights" /></li>
+            <li>Level VIII buffs: <input type="checkbox" v-model="level_eights" /></li>
+            <li>All Major Cantrips: <input type="checkbox" v-model="major_cantrips" /></li>
+            <li>
+              <table>
+                <tr>
+                  <td>Enlightenment</td>
+                  <td><input type="checkbox" v-model="enlightenment_1" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_2" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_3" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_4" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_5" /></td>
+                </tr>
+              </table>
+            </li>
           </ul>
         </li>
         <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
@@ -444,6 +457,11 @@ export default {
       max_attribute_xp: false,
       max_skill_xp: false,
       level_eights: false,
+      enlightenment_1: false,
+      enlightenment_2: false,
+      enlightenment_3: false,
+      enlightenment_4: false,
+      enlightenment_5: false,
       skills: [
         {
           id: 'alchemy',
@@ -1111,6 +1129,56 @@ export default {
       } else {
         return 0
       }
+    },
+    enlightenmentHealthBonus: function () {
+      var bonus = 0;
+
+      if (this.enlightenment_1) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_2) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_3) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_4) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_5) {
+        bonus += 1
+      }
+
+      return bonus;
+    },
+    enightementSkillBonus: function () {
+      var bonus = 0;
+
+      if (this.enlightenment_1) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_2) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_3) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_4) {
+        bonus += 1
+      }
+
+      if (this.enlightenment_5) {
+        bonus += 1
+      }
+
+      return bonus;
     },
     setSkillTraining: function (id, training) {
       for (var i = 0; i < this.skills.length; i++) {
