@@ -73,7 +73,6 @@
       <h1>
         Skills {{ total_skill_cost }} / {{ available_skill_credits }}
         <span class="error" v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</span>
-
       </h1>
       <table>
         <tbody>
@@ -121,96 +120,120 @@
         </tbody>
       </table>
     </div>
-    <div class="pane">
+    <div id="bonuses" class="pane">
       <h1>Bonuses</h1>
-      <ul>
-        <li>Extra skill credits:
-          <ul>
-            <li>Railrea: <input type="checkbox" v-model="railrea" /></li>
-            <li>Owsald: <input type="checkbox" v-model="owsald" /></li>
-            <li>Luminance (1): <input type="checkbox" v-model="lum1" /></li>
-            <li>Luminance (2): <input type="checkbox" v-model="lum2" /></li>
-          </ul>
-        </li>
-        <li>Options:
-          <ul>
-            <li>Max attribute XP: <input type="checkbox" v-model="max_attribute_xp" /></li>
-            <li>Max skill XP: <input type="checkbox" v-model="max_skill_xp" /></li>
-            <li>Level VIII buffs: <input type="checkbox" v-model="level_eights" /></li>
-            <li>All Major Cantrips: <input type="checkbox" v-model="major_cantrips" /></li>
-            <li>Enlightenment
-              <table>
-                <tr>
-                  <td><input type="checkbox" v-model="enlightenment_1" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_2" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_3" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_4" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_5" /></td>
-                </tr>
-              </table>
-            </li>
-          </ul>
-        </li>
-        <li>Luminance:
-          <ul>
-            <li>Craftsman: <input type="range" min="0" max="5" v-model="luminance_craftsman" /> {{ luminance_craftsman }}</li>
-          </ul>
-        </li>
-        <li>Seers
-          <ul>
-            <li>Specialization: <input type="range" min="0" max="5" v-model="seer_specialization" /> {{ seer_specialization }}</li>
-          </ul>
-        </li>
-      <li>Sets
-        <ul>
-          <li>
-            Adept's Set
-            <input type="range" min="0" max="5" v-model="set_adept" />
-            {{ set_adept }}
-          </li>
-          <li>
-            Dedication Set
-            <input type="range" min="0" max="5" v-model="set_dedication" />
-            {{ set_dedication }}
-          </li>
-          <li>
-            Defender's Set
-            <input type="range" min="0" max="5" v-model="set_defenders" />
-            {{ set_defenders }}
-          </li>
-          <li>
-            Dexterous Set
-            <input type="range" min="0" max="5" v-model="set_dextrous" />
-            {{ set_dextrous }}
-          </li>
-          <li>
-            Hearty Set
-            <input type="range" min="0" max="5" v-model="set_hearty" />
-            {{ set_hearty }}
-          </li>
-          <li>
-            Soldier's Set
-            <input type="range" min="0" max="5" v-model="set_soldiers" />
-            {{ set_soldiers }}
-          </li>
-          <li>
-            Swift Set
-            <input type="range" min="0" max="5" v-model="set_swift" />
-            {{ set_swift }}
-          </li>
-          <li>
-            Tinker's Set
-            <input type="range" min="0" max="5" v-model="set_tinkers" />
-            {{ set_tinkers }}
-          </li>
-          <li>
-            Wise Set
-            <input type="range" min="0" max="5" v-model="set_wise" />
-            {{ set_wise }}
-          </li>
-        </ul>
-      </li>
-      </ul>
+      <table>
+        <tr class="skill-header specialized">
+          <td colspan="6">Extra Skill Credits</td>
+        </tr>
+        <tr>
+          <td>Railrea</td>
+          <td colspan="5"><input type="checkbox" v-model="railrea" /></td>
+        </tr>
+        <tr>
+          <td>Owsald</td>
+          <td colspan="5"><input type="checkbox" v-model="owsald" /></td>
+        </tr>
+        <tr>
+          <td>Luminance (1)</td>
+          <td colspan="5"><input type="checkbox" v-model="lum1" /></td>
+        </tr>
+        <tr>
+          <td>Luminance (2)</td>
+          <td colspan="5"><input type="checkbox" v-model="lum2" /></td>
+        </tr>
+       <tr class="skill-header specialized">
+          <td colspan="6">General</td>
+        </tr>
+        <tr>
+          <td>Max attribute XP</td>
+          <td colspan="5"><input type="checkbox" v-model="max_attribute_xp" /></td>
+        </tr>
+        <tr>
+          <td>Max skill XP</td>
+          <td colspan="5"><input type="checkbox" v-model="max_skill_xp" /></td>
+        </tr>
+        <tr>
+          <td>Level VIII buffs</td>
+          <td colspan="5"><input type="checkbox" v-model="level_eights" /></td>
+        </tr>
+        <tr>
+          <td>All Major Cantrips</td>
+          <td colspan="5"><input type="checkbox" v-model="major_cantrips" /></td>
+        </tr>
+        <tr>
+          <td>Enlightenment</td>
+          <td><input type="checkbox" v-model="enlightenment_1" /></td>
+          <td><input type="checkbox" v-model="enlightenment_2" /></td>
+          <td><input type="checkbox" v-model="enlightenment_3" /></td>
+          <td><input type="checkbox" v-model="enlightenment_4" /></td>
+          <td><input type="checkbox" v-model="enlightenment_5" /></td>
+        </tr>
+       <tr class="skill-header specialized">
+          <td colspan="6">Luminance</td>
+        </tr>
+        <tr>
+          <td>Craftsman</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="luminance_craftsman" /></td>
+          <td>{{ luminance_craftsman }}</td>
+        </tr>
+       <tr class="skill-header specialized">
+          <td colspan="6">Seers</td>
+        </tr>
+        <tr>
+          <td>Specialization</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="seer_specialization" /></td>
+          <td>{{ seer_specialization }}</td>
+        </tr>
+        <tr class="skill-header specialized">
+          <td colspan="6">Sets <span style="color:red;">TODO</span></td>
+        </tr>
+        <tr>
+          <td>Adept's Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_adept" /></td>
+          <td>{{ set_adept }}</td>
+        </tr>
+        <tr>
+          <td>Dedication Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_dedication" /></td>
+          <td>{{ set_dedication }}</td>
+        </tr>
+        <tr>
+          <td>Defender's Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_defenders" /></td>
+          <td>{{ set_defenders }}</td>
+        </tr>
+        <tr>
+          <td>Dexterous Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_dextrous" /></td>
+          <td>{{ set_dextrous }}</td>
+        </tr>
+        <tr>
+          <td>Hearty Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_hearty" /></td>
+          <td>{{ set_hearty }}</td>
+        </tr>
+        <tr>
+          <td>Soldier's Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_soldiers" /></td>
+          <td>{{ set_soldiers }}</td>
+        </tr>
+        <tr>
+          <td>Swift Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_swift" /></td>
+          <td>{{ set_swift }}</td>
+        </tr>
+        <tr>
+          <td>Tinker's Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_tinkers" /></td>
+          <td>{{ set_tinkers }}</td>
+        </tr>
+        <tr>
+          <td>Wise Set</td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="set_wise" /></td>
+          <td>{{ set_wise }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -1272,10 +1295,14 @@ export default {
     overflow-y: scroll;
   }
 
+  .pane table {
+    width: 100%;
+  }
+
   .pane h1 {
     font-size: 100%;
     font-weight: bold;
-    background-color: rgba(225, 20, 0, 0.9);
+    background-color: brown;
     color: white;
     padding: 3px;
   }
