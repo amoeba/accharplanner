@@ -233,6 +233,9 @@
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_wise" /></td>
           <td>{{ set_wise }}</td>
         </tr>
+        <tr class="skill-header specialized">
+          <td colspan="6">Epics/Legendaries <span style="color: red;">TODO</span></td>
+        </tr>
       </table>
     </div>
   </div>
@@ -1287,11 +1290,10 @@ export default {
   }
 
   .pane {
-    border: 1px solid #ccc;
+    background-color: black;
+    border: 1px solid rgba(175, 122, 48, 1);
     margin: 1em;
-    padding: 5px;
     width: 350px;
-    max-height: 450px;
     overflow-y: scroll;
   }
 
@@ -1302,7 +1304,7 @@ export default {
   .pane h1 {
     font-size: 100%;
     font-weight: bold;
-    background-color: brown;
+    background-color: rgba(0, 60, 0, 1);
     color: white;
     padding: 3px;
   }
@@ -1373,5 +1375,6 @@ export default {
   button {
     background: none;
     border: none;
+    color: white;
   }
 </style>
