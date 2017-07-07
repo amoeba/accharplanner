@@ -5,34 +5,6 @@
 
       <ul>
         <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
-        <li>Extra skill credits:
-          <ul>
-            <li>Railrea: <input type="checkbox" v-model="railrea" /></li>
-            <li>Owsald: <input type="checkbox" v-model="owsald" /></li>
-            <li>Luminance (1): <input type="checkbox" v-model="lum1" /></li>
-            <li>Luminance (2): <input type="checkbox" v-model="lum2" /></li>
-          </ul>
-        </li>
-        <li>Options:
-          <ul>
-            <li>Max attribute XP: <input type="checkbox" v-model="max_attribute_xp" /></li>
-            <li>Max skill XP: <input type="checkbox" v-model="max_skill_xp" /></li>
-            <li>Level VIII buffs: <input type="checkbox" v-model="level_eights" /></li>
-            <li>All Major Cantrips: <input type="checkbox" v-model="major_cantrips" /></li>
-            <li>
-              <table>
-                <tr>
-                  <td>Enlightenment</td>
-                  <td><input type="checkbox" v-model="enlightenment_1" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_2" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_3" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_4" /></td>
-                  <td><input type="checkbox" v-model="enlightenment_5" /></td>
-                </tr>
-              </table>
-            </li>
-          </ul>
-        </li>
         <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
       </ul>
 
@@ -149,6 +121,37 @@
       </table>
     </div>
     <div class="pane">
+      <h1>Bonuses</h1>
+      <ul>
+        <li>Extra skill credits:
+          <ul>
+            <li>Railrea: <input type="checkbox" v-model="railrea" /></li>
+            <li>Owsald: <input type="checkbox" v-model="owsald" /></li>
+            <li>Luminance (1): <input type="checkbox" v-model="lum1" /></li>
+            <li>Luminance (2): <input type="checkbox" v-model="lum2" /></li>
+          </ul>
+        </li>
+        <li>Options:
+          <ul>
+            <li>Max attribute XP: <input type="checkbox" v-model="max_attribute_xp" /></li>
+            <li>Max skill XP: <input type="checkbox" v-model="max_skill_xp" /></li>
+            <li>Level VIII buffs: <input type="checkbox" v-model="level_eights" /></li>
+            <li>All Major Cantrips: <input type="checkbox" v-model="major_cantrips" /></li>
+            <li>
+              <table>
+                <tr>
+                  <td>Enlightenment</td>
+                  <td><input type="checkbox" v-model="enlightenment_1" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_2" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_3" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_4" /></td>
+                  <td><input type="checkbox" v-model="enlightenment_5" /></td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+        </li>
+      </ul>
       <h2>Luminance</h2>
       <ul>
         <li>Craftsman: <input type="range" min="0" max="5" v-model="luminance_craftsman" /> {{ luminance_craftsman }}</li>
