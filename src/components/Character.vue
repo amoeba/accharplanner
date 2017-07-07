@@ -2,12 +2,9 @@
   <div id="container">
     <div id="attributes" class="pane">
       <h1>Attributes {{ total_attribute_cost }} / 330</h1>
-
       <ul>
         <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
-        <li v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</li>
       </ul>
-
       <table>
         <thead>
           <tr>
@@ -73,7 +70,11 @@
       </table>
     </div>
     <div id="skills" class="pane">
-      <h1>Skills {{ total_skill_cost }} / {{ available_skill_credits }}</h1>
+      <h1>
+        Skills {{ total_skill_cost }} / {{ available_skill_credits }}
+        <span class="error" v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</span>
+
+      </h1>
       <table>
         <tbody>
           <tr class="skill-header specialized">
@@ -137,10 +138,9 @@
             <li>Max skill XP: <input type="checkbox" v-model="max_skill_xp" /></li>
             <li>Level VIII buffs: <input type="checkbox" v-model="level_eights" /></li>
             <li>All Major Cantrips: <input type="checkbox" v-model="major_cantrips" /></li>
-            <li>
+            <li>Enlightenment
               <table>
                 <tr>
-                  <td>Enlightenment</td>
                   <td><input type="checkbox" v-model="enlightenment_1" /></td>
                   <td><input type="checkbox" v-model="enlightenment_2" /></td>
                   <td><input type="checkbox" v-model="enlightenment_3" /></td>
@@ -151,62 +151,65 @@
             </li>
           </ul>
         </li>
-      </ul>
-      <h2>Luminance</h2>
-      <ul>
-        <li>Craftsman: <input type="range" min="0" max="5" v-model="luminance_craftsman" /> {{ luminance_craftsman }}</li>
-      </ul>
-      <h2>Seers</h2>
-      <ul>
-        <li>Specialization: <input type="range" min="0" max="5" v-model="seer_specialization" /> {{ seer_specialization }}</li>
-      </ul>
-      <h2>Sets</h2>
-      <ul>
-        <li>
-          Adept's Set
-          <input type="range" min="0" max="5" v-model="set_adept" />
-          {{ set_adept }}
+        <li>Luminance:
+          <ul>
+            <li>Craftsman: <input type="range" min="0" max="5" v-model="luminance_craftsman" /> {{ luminance_craftsman }}</li>
+          </ul>
         </li>
-        <li>
-          Dedication Set
-          <input type="range" min="0" max="5" v-model="set_dedication" />
-          {{ set_dedication }}
+        <li>Seers
+          <ul>
+            <li>Specialization: <input type="range" min="0" max="5" v-model="seer_specialization" /> {{ seer_specialization }}</li>
+          </ul>
         </li>
-        <li>
-          Defender's Set
-          <input type="range" min="0" max="5" v-model="set_defenders" />
-          {{ set_defenders }}
-        </li>
-        <li>
-          Dexterous Set
-          <input type="range" min="0" max="5" v-model="set_dextrous" />
-          {{ set_dextrous }}
-        </li>
-        <li>
-          Hearty Set
-          <input type="range" min="0" max="5" v-model="set_hearty" />
-          {{ set_hearty }}
-        </li>
-        <li>
-          Soldier's Set
-          <input type="range" min="0" max="5" v-model="set_soldiers" />
-          {{ set_soldiers }}
-        </li>
-        <li>
-          Swift Set
-          <input type="range" min="0" max="5" v-model="set_swift" />
-          {{ set_swift }}
-        </li>
-        <li>
-          Tinker's Set
-          <input type="range" min="0" max="5" v-model="set_tinkers" />
-          {{ set_tinkers }}
-        </li>
-        <li>
-          Wise Set
-          <input type="range" min="0" max="5" v-model="set_wise" />
-          {{ set_wise }}
-        </li>
+      <li>Sets
+        <ul>
+          <li>
+            Adept's Set
+            <input type="range" min="0" max="5" v-model="set_adept" />
+            {{ set_adept }}
+          </li>
+          <li>
+            Dedication Set
+            <input type="range" min="0" max="5" v-model="set_dedication" />
+            {{ set_dedication }}
+          </li>
+          <li>
+            Defender's Set
+            <input type="range" min="0" max="5" v-model="set_defenders" />
+            {{ set_defenders }}
+          </li>
+          <li>
+            Dexterous Set
+            <input type="range" min="0" max="5" v-model="set_dextrous" />
+            {{ set_dextrous }}
+          </li>
+          <li>
+            Hearty Set
+            <input type="range" min="0" max="5" v-model="set_hearty" />
+            {{ set_hearty }}
+          </li>
+          <li>
+            Soldier's Set
+            <input type="range" min="0" max="5" v-model="set_soldiers" />
+            {{ set_soldiers }}
+          </li>
+          <li>
+            Swift Set
+            <input type="range" min="0" max="5" v-model="set_swift" />
+            {{ set_swift }}
+          </li>
+          <li>
+            Tinker's Set
+            <input type="range" min="0" max="5" v-model="set_tinkers" />
+            {{ set_tinkers }}
+          </li>
+          <li>
+            Wise Set
+            <input type="range" min="0" max="5" v-model="set_wise" />
+            {{ set_wise }}
+          </li>
+        </ul>
+      </li>
       </ul>
     </div>
   </div>
