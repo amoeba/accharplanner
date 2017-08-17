@@ -186,7 +186,7 @@
           <td>{{ seer_specialization }}</td>
         </tr>
         <tr class="skill-header specialized">
-          <td colspan="6">Sets <span style="color:red;">TODO</span></td>
+          <td colspan="6">Sets {{ total_set_pieces }} / 9</td>
         </tr>
         <tr>
           <td>Adept's Set</td>
@@ -863,6 +863,9 @@ export default {
       return this.skills.filter(function (skill) {
         return skill.training === 'unusable'
       })
+    },
+    total_set_pieces: function () {
+      return Number(this.set_adept) + Number(this.set_dedication) + Number(this.set_defenders) + Number(this.set_dextrous) + Number(this.set_hearty) + Number(this.set_soldiers) + Number(this.set_swift) + Number(this.set_tinkers) + Number(this.set_wise)
     }
   },
   watch: {
