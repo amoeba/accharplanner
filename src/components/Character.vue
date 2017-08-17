@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <div id="attributes" class="pane">
-      <h1>Attributes {{ total_attribute_cost }} / 330</h1>
+      <h1>Attributes <span class="number">{{ total_attribute_cost }}/330</span></h1>
       <ul>
         <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
       </ul>
@@ -74,18 +74,18 @@
     </div>
     <div id="skills" class="pane">
       <h1>
-        Skills {{ total_skill_cost }} / {{ available_skill_credits }}
+        Skills <span class="number">{{ total_skill_cost }}/{{ available_skill_credits }}</span>
         <span class="error" v-if="total_skill_cost > available_skill_credits">You've overspent skill credits by {{ total_skill_cost - available_skill_credits }} credits!</span>
       </h1>
       <table>
         <tbody>
           <tr class="skill-header specialized">
-            <td colspan="5">Specialized {{ total_specialized_cost }} / 70</td>
+            <td colspan="5">Specialized <span class="number">{{ total_specialized_cost }}/70</span></td>
           </tr>
           <tr v-for="skill in specializedSkills">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">{{ skillValue(skill.id) }}</td>
-            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
             <td class="skill-raise"></td>
             <td class="skill-lower"><button :data-skill="skill.id" v-on:click="unSpecializeSkill">↓</button></td>
 
@@ -96,7 +96,7 @@
           <tr v-for="skill in trainedSkills">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">{{ skillValue(skill.id) }}</td>
-            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
             <td class="skill-raise"><button :data-skill="skill.id" v-if="isSpecializable(skill.id)" v-on:click="specializeSkill">↑</button></td>
             <td class="skill-lower"><button :data-skill="skill.id" v-if="isUntrainable(skill.id)" v-on:click="unTrainSkill">↓</button></td>
           </tr>
@@ -106,7 +106,7 @@
           <tr v-for="skill in untrainedSkills">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">{{ skillValue(skill.id) }}</td>
-            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
             <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
             <td class="skill-lower"></td>
           </tr>
@@ -116,7 +116,7 @@
           <tr v-for="skill in unusableSkills">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">0</td>
-            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }} / {{ skillCost(skill.id, 'specialized') }}</td>
+            <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
             <td class="skill-raise"><button :data-skill="skill.id" v-if="isTrainable(skill.id)" v-on:click="trainSkill">↑</button></td>
             <td class="skill-lower"></td>
           </tr>
@@ -167,7 +167,7 @@
         <tr>
           <td>Enlightenment</td>
           <td><input type="range" min="0" max="5" v-model="enlightenment" /></td>
-          <td>{{ enlightenment }}</td>
+          <td class="number">{{ enlightenment }}/5</td>
         </tr>
        <tr class="skill-header specialized">
           <td colspan="6">Luminance</td>
@@ -175,7 +175,7 @@
         <tr>
           <td>Craftsman</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="luminance_craftsman" /></td>
-          <td>{{ luminance_craftsman }}</td>
+          <td class="number">{{ luminance_craftsman }}/5</td>
         </tr>
        <tr class="skill-header specialized">
           <td colspan="6">Seers</td>
@@ -183,58 +183,55 @@
         <tr>
           <td>Specialization</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="seer_specialization" /></td>
-          <td>{{ seer_specialization }}</td>
+          <td class="number">{{ seer_specialization }}/5</td>
         </tr>
         <tr class="skill-header specialized">
-          <td colspan="6">Sets {{ total_set_pieces }} / 9</td>
+          <td colspan="6">Sets <span class="number">{{ total_set_pieces }}/9</span></td>
         </tr>
         <tr>
           <td>Adept's Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_adept" /></td>
-          <td>{{ set_adept }}</td>
+          <td class="number">{{ set_adept }}/5</td>
         </tr>
         <tr>
           <td>Dedication Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_dedication" /></td>
-          <td>{{ set_dedication }}</td>
+          <td class="number">{{ set_dedication }}/5</td>
         </tr>
         <tr>
           <td>Defender's Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_defenders" /></td>
-          <td>{{ set_defenders }}</td>
+          <td class="number">{{ set_defenders }}/5</td>
         </tr>
         <tr>
           <td>Dexterous Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_dextrous" /></td>
-          <td>{{ set_dextrous }}</td>
+          <td class="number">{{ set_dextrous }}/5</td>
         </tr>
         <tr>
           <td>Hearty Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_hearty" /></td>
-          <td>{{ set_hearty }}</td>
+          <td class="number">{{ set_hearty }}/5</td>
         </tr>
         <tr>
           <td>Soldier's Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_soldiers" /></td>
-          <td>{{ set_soldiers }}</td>
+          <td class="number">{{ set_soldiers }}/5</td>
         </tr>
         <tr>
           <td>Swift Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_swift" /></td>
-          <td>{{ set_swift }}</td>
+          <td class="number">{{ set_swift }}/5</td>
         </tr>
         <tr>
           <td>Tinker's Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_tinkers" /></td>
-          <td>{{ set_tinkers }}</td>
+          <td class="number">{{ set_tinkers }}/5</td>
         </tr>
         <tr>
           <td>Wise Set</td>
           <td colspan="4"><input type="range" min="0" max="5" v-model="set_wise" /></td>
-          <td>{{ set_wise }}</td>
-        </tr>
-        <tr class="skill-header specialized">
-          <td colspan="6">Epics/Legendaries <span style="color: red;">TODO</span></td>
+          <td class="number">{{ set_wise }}/5</td>
         </tr>
       </table>
     </div>
@@ -1384,5 +1381,12 @@ export default {
     background: none;
     border: none;
     color: white;
+  }
+
+  .number,
+  .attribute-value,
+  .skill-value,
+  .skill-cost { 
+    font-family: monospace;
   }
 </style>
