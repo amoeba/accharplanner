@@ -166,11 +166,8 @@
         </tr>
         <tr>
           <td>Enlightenment</td>
-          <td><input type="checkbox" v-model="enlightenment_1" /></td>
-          <td><input type="checkbox" v-model="enlightenment_2" /></td>
-          <td><input type="checkbox" v-model="enlightenment_3" /></td>
-          <td><input type="checkbox" v-model="enlightenment_4" /></td>
-          <td><input type="checkbox" v-model="enlightenment_5" /></td>
+          <td><input type="range" min="0" max="5" v-model="enlightenment" /></td>
+          <td>{{ enlightenment }}</td>
         </tr>
        <tr class="skill-header specialized">
           <td colspan="6">Luminance</td>
@@ -453,11 +450,7 @@ export default {
       max_skill_xp: false,
       level_eights: false,
       major_cantrips: false,
-      enlightenment_1: false,
-      enlightenment_2: false,
-      enlightenment_3: false,
-      enlightenment_4: false,
-      enlightenment_5: false,
+      enlightenment: 0,
       luminance_craftsman: 0,
       seer_specialization: 0,
       set_adept: 0,
