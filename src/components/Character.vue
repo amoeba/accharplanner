@@ -166,7 +166,7 @@
         </tr>
         <tr>
           <td>Enlightenment</td>
-          <td><input type="range" min="0" max="5" v-model="enlightenment" /></td>
+          <td colspan="4"><input type="range" min="0" max="5" v-model="enlightenment" /></td>
           <td class="number">{{ enlightenment }}/5</td>
         </tr>
        <tr class="skill-header specialized">
