@@ -54,16 +54,19 @@
           <tr>
             <td class="attribute-name">Health</td>
             <td class="attribute-slider"></td>
+            <td class="attribute-value">{{ health_base }}</td>
             <td class="attribute-value">{{ health }}</td>
           </tr>
           <tr>
             <td class="attribute-name">Stamina</td>
             <td class="attribute-slider"></td>
+            <td class="attribute-value">{{ stamina_base }}</td>
             <td class="attribute-value">{{ stamina }}</td>
           </tr>
           <tr>
             <td class="attribute-name">Mana</td>
             <td class="attribute-slider"></td>
+            <td class="attribute-value">{{ mana_base }}</td>
             <td class="attribute-value">{{ mana }}</td>
           </tr>
         </tbody>
@@ -690,11 +693,20 @@ export default {
       return Number(this.self_base) + this.buffBonus() + this.attributeXPBonus() + this.majorCantripBonus()
     },
     // Vitals
+    health_base: function () {
+      return Math.round(this.endurance_base / 2, 0)
+    },
     health: function () {
       return Math.round(this.endurance / 2, 0) + this.buffBonus() + this.enlightenmentHealthBonus()
     },
+    stamina_base: function () {
+      return this.endurance_base
+    },
     stamina: function () {
       return this.endurance + this.buffBonus()
+    },
+    mana_base: function () {
+      return this.self_base
     },
     mana: function () {
       return this.self + this.buffBonus()
