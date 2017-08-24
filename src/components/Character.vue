@@ -1,5 +1,6 @@
 <template>
   <div id="container">
+    <button v-on:click="export_character">Export</button>
     <div id="attributes" class="pane">
       <h1>Attributes <span class="number">{{ total_attribute_cost }}/330</span></h1>
       <ul>
@@ -242,6 +243,13 @@
 
 const SPECIALIZED_LIMIT = 64
 const LEVEL_EIGHT_BUFF_AMOUNT = 80
+const attributeNames = ['strength',
+  'endurance',
+  'coordination',
+  'quickness',
+  'focus',
+  'self'
+]
 const creditsAtLevel = {
   1: 0,
   2: 1,
@@ -1137,6 +1145,29 @@ export default {
     }
   },
   methods: {
+    export_character: function () {
+      const char = {
+        level: this.level,
+        attributes: {},
+        skills: {}
+      }
+
+      for (var i = 0; i < attributeNames.length; i++) {
+        char.attributes[attributeNames[i]] = {
+          base: this[attributeNames[i] + '_base']
+        }
+      }
+      const skillIds = Object.keys(cost)
+      console.log(skillIds)
+      // for (var j = 0; i < skillIds.length; j++) {
+      //   char.skills[skillIds[j]] = {
+      //     base: this[skillIds[j]],
+      //     training: 'unknown'
+      //   }
+      // }
+
+      console.log(char)
+    },
     skillValue: function (id) {
       return this[id]
     },
