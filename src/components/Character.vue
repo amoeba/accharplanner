@@ -86,7 +86,7 @@
           <tr class="skill-header specialized">
             <td colspan="5">Specialized <span class="number">{{ total_specialized_cost }}/70</span></td>
           </tr>
-          <tr v-for="skill in specializedSkills">
+          <tr v-for="skill in specializedSkills" :key="skill.id">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">{{ skillValue(skill.id) }}</td>
             <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
@@ -97,7 +97,7 @@
           <tr class="skill-header trained">
             <td colspan="5">Trained</td>
           </tr>
-          <tr v-for="skill in trainedSkills">
+          <tr v-for="skill in trainedSkills" :key="skill.id">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">{{ skillValue(skill.id) }}</td>
             <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
@@ -107,7 +107,7 @@
           <tr class="skill-header untrained">
             <td colspan="5">Untrained</td>
           </tr>
-          <tr v-for="skill in untrainedSkills">
+          <tr v-for="skill in untrainedSkills" :key="skill.id">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">{{ skillValue(skill.id) }}</td>
             <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
@@ -117,7 +117,7 @@
           <tr class="skill-header unusable">
             <td colspan="5">Unusable</td>
           </tr>
-          <tr v-for="skill in unusableSkills">
+          <tr v-for="skill in unusableSkills" :key="skill.id">
             <td class="skill-name">{{ skill.name }}</td>
             <td class="skill-value">0</td>
             <td class="skill-cost">{{ skillCost(skill.id, 'trained') }}/{{ skillCost(skill.id, 'specialized') }}</td>
