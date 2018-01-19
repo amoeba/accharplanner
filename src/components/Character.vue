@@ -1326,7 +1326,7 @@ export default {
   }
 
   .pane {
-    background-color: black;
+    background-color: white;
     border: 1px solid rgba(175, 122, 48, 1);
     margin: 1em;
     width: 350px;
@@ -1343,6 +1343,7 @@ export default {
     background-color: rgba(0, 60, 0, 1);
     color: white;
     padding: 3px;
+    margin: 0;
   }
 
   table {

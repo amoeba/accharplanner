@@ -12,11 +12,7 @@ export default {
 
 <style>
 #app {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  font-family: sans-serif;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
