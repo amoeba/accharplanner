@@ -1412,7 +1412,7 @@ export default {
   button {
     background: none;
     border: none;
-    color: white;
+    color: black;
   }
 
   .number,
