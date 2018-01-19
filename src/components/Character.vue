@@ -1,6 +1,5 @@
 <template>
   <div id="container">
-    <button v-on:click="export_character">Export</button>
     <div id="attributes" class="pane">
       <h1>Attributes <span class="number">{{ total_attribute_cost }}/330</span></h1>
       <ul>
