@@ -4,7 +4,11 @@
     <div id="attributes" class="pane">
       <h1>Attributes <span class="number">{{ total_attribute_cost }}/330</span></h1>
       <ul>
-        <li>Level: <input type="range" min="1" max="275" v-model="level" /> {{ level }}</li>
+        <li>
+          <span>Level:</span>
+          <input type="range" min="1" max="275" v-model="level" />
+          <input type="number" min="1" max="275" v-model="level" /> 
+        </li>
       </ul>
       <table>
         <thead>
