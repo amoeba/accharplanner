@@ -6,7 +6,7 @@
         <li>
           <span>Level:</span>
           <input type="range" min="1" max="275" v-model="level" />
-          <input type="number" min="1" max="275" v-model="level" /> 
+          <input type="number" min="1" max="275" v-model="level" />
         </li>
       </ul>
       <table>
@@ -1161,7 +1161,6 @@ export default {
         }
       }
       const skillIds = Object.keys(cost)
-      console.log(skillIds)
       // for (var j = 0; i < skillIds.length; j++) {
       //   char.skills[skillIds[j]] = {
       //     base: this[skillIds[j]],
@@ -1169,7 +1168,6 @@ export default {
       //   }
       // }
 
-      console.log(char)
     },
     skillValue: function (id) {
       return this[id]
@@ -1421,7 +1419,7 @@ export default {
   .number,
   .attribute-value,
   .skill-value,
-  .skill-cost { 
+  .skill-cost {
     font-family: monospace;
   }
 </style>

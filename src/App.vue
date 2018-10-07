@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <router-link to="/">Planner</router-link>
-    <router-link to="/about">About</router-link>
-    <router-view/>
+    <Character msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
+import Character from './components/Character.vue'
+
 export default {
-  name: 'App'
+  name: 'app',
+  components: {
+    Character
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: sans-serif;
-  color: #2c3e50;
-}
+
 </style>
