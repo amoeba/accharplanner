@@ -1,20 +1,36 @@
 <template>
   <div id="app">
-    <Character msg="Welcome to Your Vue.js App"/>
+    <input type="checkbox" v-model="isBuffed" /> Buffs?
+    <Attributes />
+    <Skills />
   </div>
 </template>
 
 <script>
-import Character from './components/Character.vue'
+import Attributes from "./components/Attributes.vue";
+import Skills from "./components/Skills.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    Character
+    Attributes,
+    Skills
+  },
+  computed: {
+    isBuffed: {
+      get () {
+        return this.$store.state.isBuffed
+      },
+      set (value) {
+        this.$store.commit('updateBuffed', value)
+      }
+    }
   }
-}
+};
 </script>
 
 <style>
+#app {
 
+}
 </style>
