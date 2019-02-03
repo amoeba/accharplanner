@@ -1,5 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import Helpers from "./helpers";
+
 Vue.use(Vuex);
 
 // Automatically persist state to localStorage
@@ -7,17 +9,6 @@ import VuexPersistence from 'vuex-persist'
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
-
-// TODO: Factor out into lib
-const calcTrainingBonus = function(training) {
-  if (training === "specialized") {
-    return 10;
-  } else if (training === "trained") {
-    return 5;
-  } else {
-    return 0;
-  }
-}
 
 export default new Vuex.Store({
   state: {
@@ -46,13 +37,13 @@ export default new Vuex.Store({
       return state.isBuffed;
     },
     alchemy_unbuffed: state => {
-      const trainingBonusAmount = calcTrainingBonus(state.character.skills.alchemy.training);
+      const trainingBonusAmount = Helpers.trainingBonus(state.character.skills.alchemy.training);
 
       return Math.round(state.character.attributes.focus / 2) + trainingBonusAmount;
     },
     alchemy_buffed: state => {
       const buffAmount = state.isBuffed ? 100 : 0;
-      const trainingBonusAmount = calcTrainingBonus(state.character.skills.alchemy.training);
+      const trainingBonusAmount = Helpers.trainingBonus(state.character.skills.alchemy.training);
 
       return Math.round(state.character.attributes.focus / 2 + buffAmount) + trainingBonusAmount;
     },
