@@ -8,6 +8,17 @@ const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
 
+// TODO: Factor out into lib
+const calcTrainingBonus = function(training) {
+  if (training === "specialized") {
+    return 10;
+  } else if (training === "trained") {
+    return 5;
+  } else {
+    return 0;
+  }
+}
+
 export default new Vuex.Store({
   state: {
     isBuffed: false,
@@ -35,11 +46,15 @@ export default new Vuex.Store({
       return state.isBuffed;
     },
     alchemy_unbuffed: state => {
-      return state.character.attributes.focus / 2;
+      const trainingBonusAmount = calcTrainingBonus(state.character.skills.alchemy.training);
+
+      return Math.round(state.character.attributes.focus / 2) + trainingBonusAmount;
     },
     alchemy_buffed: state => {
       const buffAmount = state.isBuffed ? 100 : 0;
-      return state.character.attributes.focus / 2 + buffAmount;
+      const trainingBonusAmount = calcTrainingBonus(state.character.skills.alchemy.training);
+
+      return Math.round(state.character.attributes.focus / 2 + buffAmount) + trainingBonusAmount;
     },
     specializedSkills: state => {
       return Object.keys(state.character.skills)
