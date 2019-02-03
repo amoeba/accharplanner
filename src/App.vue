@@ -3,6 +3,8 @@
     <input type="checkbox" v-model="isBuffed" /> Buffs?
     <Attributes />
     <Skills />
+    <textarea rows="20" cols="80" v-model="exportedCharacter">
+    </textarea>
   </div>
 </template>
 
@@ -17,6 +19,9 @@ export default {
     Skills
   },
   computed: {
+    exportedCharacter() {
+        return this.$store.getters.exportedCharacter;
+    },
     isBuffed: {
       get () {
         return this.$store.state.isBuffed

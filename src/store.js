@@ -28,6 +28,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    exportedCharacter: state => {
+      return JSON.stringify(state, null, 4);
+    },
     isBuffed: state => {
       return state.isBuffed;
     },
