@@ -83,6 +83,12 @@ export default new Vuex.Store({
           buff: 0,
           cantrip: 0
         },
+        arcane_lore: {
+          training: Constants.TRAINING.TRAINED,
+          invested: 0,
+          buff: 0,
+          cantrip: 0
+        },
         melee_defense: {
           training: Constants.TRAINING.UNTRAINED,
           invested: 0,
@@ -259,7 +265,7 @@ export default new Vuex.Store({
     
     // Skills
     alchemyBase: (state, getters) => {
-      return Math.round(getters.focusBase / 2) + 
+      return Math.round((getters.coordinationBase + getters.focusBase) / 3) + 
         Helpers.trainingBonus(state.character.skills.alchemy.training) + 
         state.character.skills.alchemy.invested;
     },
@@ -267,7 +273,18 @@ export default new Vuex.Store({
       return getters.alchemyBase + 
         Helpers.buffBonus(state.character.skills.alchemy.buff) +
         Helpers.cantripBonus(state.character.skills.alchemy.cantrip) +
-        Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) /2);
+        Math.round((Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.buffBonus(state.character.attributes.focus.buff)) /3);
+    },
+    arcane_loreBase: (state, getters) => {
+      return Math.round(getters.focusBase / 3) + 
+        Helpers.trainingBonus(state.character.skills.arcane_lore.training) + 
+        state.character.skills.arcane_lore.invested;
+    },
+    arcane_loreBuffed: (state, getters) => {
+      return getters.arcane_loreBase + 
+        Helpers.buffBonus(state.character.skills.arcane_lore.buff) +
+        Helpers.cantripBonus(state.character.skills.arcane_lore.cantrip) +
+        Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) /3);
     },
     melee_defenseBase: (state, getters) => {
       return Math.round((getters.coordinationBase + getters.quicknessBase / 3)) + 

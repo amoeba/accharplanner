@@ -1,8 +1,8 @@
 <template>
   <div>
     <span>{{ name }} ({{ base }}) -> {{ buffed }}</span>
-    <button v-on:click="increaseTraining">+</button>
-    <button v-on:click="decreaseTraining">-</button>
+    <button v-if="canIncrease" v-on:click="increaseTraining">+</button>
+    <button v-if="canDecrease" v-on:click="decreaseTraining">-</button>
     <ul>
       <div v-if="canInvest">
         <li>Invested <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" /> {{ invested }}</li>
@@ -22,6 +22,39 @@ export default {
     name: String
   },
   computed: {
+    canIncrease () {
+      if (this.$store.state.character.skills[this._props.name].training == Constants.TRAINING.SPECIALIZED) {
+        return false;
+      }
+
+      // Can't if out of credits
+      let training = this.$store.state.character.skills[this._props.name].training;
+      let newTraining = training = Constants.TRAINING.TRAINED ? Constants.TRAINING.SPECIALIZED : Constants.TRAINED.TRAINED
+
+      if (this.$store.getters.skillPointsSpent + Constants.COST_SKILL_POINTS[this._props.name][newTraining] > this.$store.getters.skillPointsAvailable) {
+        return false;
+      }
+
+      // Can't if would push you over 70 max spec'd credits
+      if (this.$store.getters.skillPointsSpent + Constants.COST_SKILL_POINTS[this._props.name][newTraining] > 70) {
+        return false;
+      }
+
+      return true;
+    },
+    canDecrease () {
+      let training = this.$store.state.character.skills[this._props.name].training;
+
+      if (training == Constants.TRAINING.UNTRAINED || training == Constants.TRAINING.UNTRAINED) {
+        return false;
+      }
+
+      if (training == Constants.TRAINING.TRAINED && !Constants.UNTRAINABLE[this._props.name]) {
+        return false;
+      }
+
+      return true;
+    },
     canInvest () {
       let training = this.$store.state.character.skills[this._props.name].training;
       return training == Constants.TRAINING.SPECIALIZED || training == Constants.TRAINING.TRAINED;

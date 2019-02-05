@@ -15,6 +15,7 @@ const VITALS = [
 
 const SKILLS = [
   "alchemy",
+  "arcane_lore",
   "melee_defense"
 ]
 
@@ -1554,6 +1555,7 @@ export default {
   SKILLS,
   TRAINING,
   UNTRAINED_STATE,
+  UNTRAINABLE,
   COST_SKILL_POINTS,
   SKILL_POINTS_AT_LEVEL,
   COST_LEVEL,
