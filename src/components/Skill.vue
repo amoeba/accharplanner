@@ -3,8 +3,10 @@
     <span>{{ name }}: {{ base }} / {{ buffed }}</span>
     <button v-on:click="increaseTraining">+</button>
     <button v-on:click="decreaseTraining">-</button>
-    Invested <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" /> {{ invested }}
-    Buff: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}
+    <ul>
+      <li>Invested <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" /> {{ invested }}</li>
+      <li>Buff: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}</li>
+    </ul>
   </div>
 </template>
 

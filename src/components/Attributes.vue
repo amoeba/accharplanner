@@ -1,8 +1,11 @@
 <template>
   <div>
     <h3>Attributes</h3>
-    <span>Invested <input type="range" min="0" max="190" v-on:change="changeInvested" /></span>
-    <span>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></span>
+    <ul>
+      <li>Invested <input type="range" min="0" max="190" v-on:change="changeInvested" /></li>
+      <li>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></li>
+      <li>Attribute Points Spent {{ attributePointsSpent }} / 330</li>
+    </ul>
 
     <ul>
       <Attribute name="strength" />
@@ -22,6 +25,11 @@ export default {
   name: "Attributes",
   components: {
     Attribute
+  },
+  computed: {
+    attributePointsSpent () {
+      return this.$store.getters.attributePointsSpent;
+    }
   },
   methods: {
     changeInvested (e) {

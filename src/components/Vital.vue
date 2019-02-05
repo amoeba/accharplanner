@@ -1,8 +1,10 @@
 <template>
   <li>
     <span>{{ name }}: {{ creation }} + {{ invested }} = {{ base }} / {{ buffed }}</span>
-    Invested: <input type="range" min="0" max="190" v-model="invested" />
-    Buffs: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}
+    <ul>
+    <li>Invested: <input type="range" min="0" max="190" v-model="invested" /></li>
+    <li>Buffs: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}</li>
+    </ul>
   </li>
 </template>
 

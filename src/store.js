@@ -13,37 +13,42 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isBuffed: false,
     character: {
       level: 5,
+      extraSkillCredits: {
+        "railrea": false,
+        "oswald": false,
+        "luminance1": false,
+        "luminance2": false
+      },
       attributes: {
         strength: {
-          creation: 100,
+          creation: 10,
           invested: 0,
           buff: 0
         },
         endurance: {
-          creation: 100,
+          creation: 10,
           invested: 0,
           buff: 0
         },
         coordination: {
-          creation: 100,
+          creation: 10,
           invested: 0,
           buff: 0
         },
         quickness: {
-          creation: 100,
+          creation: 10,
           invested: 0,
           buff: 0
         },
         focus: {
-          creation: 100,
+          creation: 10,
           invested: 0,
           buff: 0
         },
         self: {
-          creation: 100,
+          creation: 10,
           invested: 0,
           buff: 0
         }
@@ -118,7 +123,11 @@ export default new Vuex.Store({
     },
 
     skillPointsAvailable: state => {
-      return Constants.SKILL_POINTS_AT_LEVEL[state.character.level];
+      return Constants.SKILL_POINTS_AT_LEVEL[state.character.level] + 
+        (state.character.extraSkillCredits.railrea ? 1 : 0) +
+        (state.character.extraSkillCredits.oswald ? 1 : 0) +
+        (state.character.extraSkillCredits.luminance1 ? 1 : 0) +
+        (state.character.extraSkillCredits.luminance2 ? 1 : 0);
     },
 
     skillPointsSpent: state => {
@@ -131,7 +140,26 @@ export default new Vuex.Store({
       return cost;
     },
 
+    specializedSkillPointsSpent: (state, getters) => {
+      let cost = 0;
+
+      getters.specializedSkills.forEach(skill => {
+        cost += Constants.COST_SKILL_POINTS[skill][state.character.skills[skill].training];
+      });
+
+      return cost;
+    },
+
     // Attributes
+    attributePointsSpent: state => {
+      let spent = 0;
+      
+      Constants.ATTRIBUTES.forEach(attribute => {
+        spent += state.character.attributes[attribute].creation;
+      });
+
+      return spent;
+    },
     strengthBase: state => {
       return state.character.attributes.strength.creation + state.character.attributes.strength.invested;
     },
@@ -230,6 +258,10 @@ export default new Vuex.Store({
   mutations: {
     updateLevel(state, value) {
       state.character.level = Number(value);
+    },
+
+    updateExtraSkillCredit(state, payload) {
+      state.character.extraSkillCredits[payload.name] = payload.value;
     },
 
     updateAttributeCreation(state, payload) {

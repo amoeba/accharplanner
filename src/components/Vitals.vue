@@ -1,8 +1,10 @@
 <template>
   <div>
     <h3>Vitals</h3>
-    <span>Invested <input type="range" min="0" max="196" v-on:change="changeInvested" /></span>
-    <span>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></span>
+    <ul>
+      <li>Invested <input type="range" min="0" max="196" v-on:change="changeInvested" /></li>
+      <li>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></li>
+    </ul>
 
     <ul>
       <Vital name="health" />

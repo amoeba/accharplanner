@@ -7,17 +7,18 @@
       <li>Invested <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></li>
       <li>Buffs <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
       <li>skill points {{ skillPointsSpent }} / {{ skillPointsAvailable }}</li>
-
     </ul>
+    <ExtraSkillCredits />
     <Attributes />
     <Vitals />
     <Skills />
-    <textarea rows="20" cols="80" v-model="exportedCharacter">
+    <textarea id="export" rows="200" cols="40" v-model="exportedCharacter">
     </textarea>
   </div>
 </template>
 
 <script>
+import ExtraSkillCredits from "./components/ExtraSkillCredits.vue";
 import Attributes from "./components/Attributes.vue";
 import Vitals from "./components/Vitals.vue";
 import Skills from "./components/Skills.vue";
@@ -25,6 +26,7 @@ import Skills from "./components/Skills.vue";
 export default {
   name: "app",
   components: {
+    ExtraSkillCredits,
     Attributes,
     Vitals,
     Skills
@@ -53,6 +55,7 @@ export default {
         this.$store.commit('updateLevel', value);
       }
     },
+
     exportedCharacter() {
         return this.$store.getters.exportedCharacter;
     }
@@ -70,6 +73,14 @@ export default {
 
 <style>
 #app {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+}
 
+#export {
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-family: monospace;
 }
 </style>
