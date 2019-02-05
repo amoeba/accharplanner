@@ -32,6 +32,20 @@ export default {
         return 0;
     }
   },
+  cantripBonus: (level) => {
+    switch(level) {
+      case 1:
+        return 5;
+      case 2:
+        return 15;
+      case 3:
+        return 25;
+      case 4:
+        return 35;
+      default:
+        return 0;
+    }
+  },
   untrainedState: {
     alchemy: Constants.TRAINING.UNUSABLE
   }

@@ -4,6 +4,7 @@
     <ul>
       <li>Invested <input type="range" min="0" max="190" v-on:change="changeInvested" /></li>
       <li>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></li>
+      <li>Cantrip <input type="range" min="0" max="4" value="0" v-on:change="changeCantrip" /></li>
       <li>Attribute Points Spent {{ attributePointsSpent }} / 330</li>
     </ul>
 
@@ -37,6 +38,9 @@ export default {
     },
     changeBuffed (e) {
       this.$store.commit("changeAllAttributeBuffs", e.target.value);
+    },
+    changeCantrip (e) {
+      this.$store.commit("changeAllAttributeCantrips", e.target.value);
     }
   }
 };

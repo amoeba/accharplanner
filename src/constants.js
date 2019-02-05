@@ -1427,6 +1427,14 @@ const COST_SKILL_TRAINED = {
   "208": 4203819496
 }
 
+const CANTRIP_NAME = {
+  "0": "None",
+  "1": "Minor",
+  "2": "Major",
+  "3": "Epic",
+  "4": "Legendary"
+};
+
 export default {
   ATTRIBUTES,
   VITALS,
@@ -1439,5 +1447,6 @@ export default {
   COST_ATTRIBUTE,
   COST_VITAL,
   COST_SKILL_SPECIALIZED,
-  COST_SKILL_TRAINED
+  COST_SKILL_TRAINED,
+  CANTRIP_NAME
 }

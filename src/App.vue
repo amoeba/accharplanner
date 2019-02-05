@@ -6,6 +6,7 @@
       <li>Min. Level: {{ requiredLevel }}</li>
       <li>Invested <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></li>
       <li>Buffs <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
+      <li>Cantrips <input type="range" min="0" max="4" v-on:change="changeAllCantrips" /></li>
       <li>skill points {{ skillPointsSpent }} / {{ skillPointsAvailable }}</li>
     </ul>
     <ExtraSkillCredits />
@@ -66,6 +67,9 @@ export default {
     },
     changeAllBuffs (e) {
       this.$store.commit("changeAllBuffs", e.target.value);
+    },
+    changeAllCantrips (e) {
+      this.$store.commit("changeAllCantrips", e.target.value);
     }
   }
 };

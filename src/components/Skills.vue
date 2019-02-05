@@ -4,6 +4,7 @@
     <ul>
       <li>Invested <input type="range" min="0" max="226" v-on:change="changeInvested" /></li>
       <li>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></li>
+      <li>Cantrip <input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></li>
       <li>Specialized Spent: {{ specializedSkillPointsSpent }} / 70</li>
     </ul>
     <SkillGroup training="specialized" />
@@ -30,6 +31,9 @@ export default {
     },
     changeBuffed (e) {
       this.$store.commit("changeAllSkillBuffs", e.target.value);
+    },
+    changeCantrips (e) {
+      this.$store.commit("changeAllSkillCantrips", e.target.value);
     }
   }
 };

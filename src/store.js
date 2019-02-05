@@ -25,53 +25,63 @@ export default new Vuex.Store({
         strength: {
           creation: 10,
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         },
         endurance: {
           creation: 10,
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         },
         coordination: {
           creation: 10,
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         },
         quickness: {
           creation: 10,
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         },
         focus: {
           creation: 10,
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         },
         self: {
           creation: 10,
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         }
       },
       vitals: {
         health: {
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         },
         stamina: {
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         },
         mana: {
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         }
       },
       skills: {
         alchemy: {
           training: Constants.TRAINING.TRAINED,
           invested: 0,
-          buff: 0
+          buff: 0,
+          cantrip: 0
         }
       }
     }
@@ -164,37 +174,45 @@ export default new Vuex.Store({
       return state.character.attributes.strength.creation + state.character.attributes.strength.invested;
     },
     strengthBuffed: (state, getters) => {
-      return getters.strengthBase + Helpers.buffBonus(state.character.attributes.strength.buff);
+      console.log(Helpers.cantripBonus(state.character.attributes.strength.cantrip));
+      return getters.strengthBase + 
+        Helpers.buffBonus(state.character.attributes.strength.buff) +
+        Helpers.cantripBonus(state.character.attributes.strength.cantrip);
     },
     enduranceBase: state => {
       return state.character.attributes.endurance.creation + state.character.attributes.endurance.invested;
     },
     enduranceBuffed: (state, getters) => {
-      return getters.enduranceBase + Helpers.buffBonus(state.character.attributes.endurance.buff);
+      return getters.enduranceBase + Helpers.buffBonus(state.character.attributes.endurance.buff) +
+      Helpers.cantripBonus(state.character.attributes.endurance.cantrip);
     },
     coordinationBase: state => {
       return state.character.attributes.coordination.creation + state.character.attributes.coordination.invested;
     },
     coordinationBuffed: (state, getters) => {
-      return getters.coordinationBase + Helpers.buffBonus(state.character.attributes.coordination.buff);
+      return getters.coordinationBase + Helpers.buffBonus(state.character.attributes.coordination.buff) +
+      Helpers.cantripBonus(state.character.attributes.coordination.cantrip);
     },
     quicknessBase: state => {
       return state.character.attributes.quickness.creation + state.character.attributes.quickness.invested;
     },
     quicknessBuffed: (state, getters) => {
-      return getters.quicknessBase + Helpers.buffBonus(state.character.attributes.quickness.buff);
+      return getters.quicknessBase + Helpers.buffBonus(state.character.attributes.quickness.buff) +
+      Helpers.cantripBonus(state.character.attributes.quickness.cantrip);
     },
     focusBase: state => {
       return state.character.attributes.focus.creation + state.character.attributes.focus.invested;
     },
     focusBuffed: (state, getters) => {
-      return getters.focusBase + Helpers.buffBonus(state.character.attributes.focus.buff);
+      return getters.focusBase + Helpers.buffBonus(state.character.attributes.focus.buff) +
+      Helpers.cantripBonus(state.character.attributes.focus.cantrip);
     },
     selfBase: state => {
       return state.character.attributes.self.creation + state.character.attributes.self.invested;
     },
     selfBuffed: (state, getters) => {
-      return getters.selfBase + Helpers.buffBonus(state.character.attributes.self.buff);
+      return getters.selfBase + Helpers.buffBonus(state.character.attributes.self.buff) +
+      Helpers.cantripBonus(state.character.attributes.self.cantrip);
     },
     
     // Vitals
@@ -202,7 +220,8 @@ export default new Vuex.Store({
       return Math.round(state.character.attributes.endurance.creation / 2);
     },
     healthBase: (state, getters) => {
-      return Math.round(getters.enduranceBase / 2) + state.character.vitals.health.invested;
+      return Math.round(getters.enduranceBase / 2) + state.character.vitals.health.invested +
+      Helpers.cantripBonus(state.character.vitals.health.cantrip);
     },
     healthBuffed: (state, getters) => {
       return getters.healthBase + Math.round(Helpers.buffBonus(state.character.vitals.health.buff) / 2);
@@ -211,7 +230,8 @@ export default new Vuex.Store({
       return state.character.attributes.endurance.creation;
     },
     staminaBase: (state, getters)  => {
-      return getters.enduranceBase + state.character.vitals.stamina.invested;
+      return getters.enduranceBase + state.character.vitals.stamina.invested +
+      Helpers.cantripBonus(state.character.vitals.stamina.cantrip);
     },
     staminaBuffed: (state, getters) => {
       return getters.staminaBase + Helpers.buffBonus(state.character.vitals.stamina.buff);
@@ -223,7 +243,8 @@ export default new Vuex.Store({
       return getters.selfBase + state.character.vitals.mana.invested;
     },
     manaBuffed: (state, getters) => {
-      return getters.manaBase + Helpers.buffBonus(state.character.vitals.mana.buff);
+      return getters.manaBase + Helpers.buffBonus(state.character.vitals.mana.buff) +
+      Helpers.cantripBonus(state.character.vitals.mana.cantrip);
     },
     
     // Skills
@@ -236,6 +257,7 @@ export default new Vuex.Store({
       console.log("recalc alchemyBuffed", state.character.skills.alchemy.buff, Helpers.buffBonus(state.character.skills.alchemy.buff));
       return getters.alchemyBase + 
         Helpers.buffBonus(state.character.skills.alchemy.buff) +
+        Helpers.cantripBonus(state.character.skills.alchemy.cantrip) +
         Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) /2);
     },
     specializedSkills: state => {
@@ -272,6 +294,14 @@ export default new Vuex.Store({
       state.character.attributes[payload.name].invested = Number(payload.value);
     },
 
+    updateAttributeBuff(state, payload) {
+      state.character.attributes[payload.name].buff = Number(payload.value);
+    },
+
+    updateAttributeCantrip(state, payload) {
+      state.character.attributes[payload.name].cantrip = Number(payload.value);
+    },
+
     updateVitalInvested(state, payload) {
       state.character.vitals[payload.name].invested = Number(payload.value);
     },
@@ -280,8 +310,8 @@ export default new Vuex.Store({
       state.character.vitals[payload.name].buff = Number(payload.value);
     },
 
-    updateAttributeBuff(state, payload) {
-      state.character.attributes[payload.name].buff = Number(payload.value);
+    updateVitalCantrip(state, payload) {
+      state.character.vitals[payload.name].cantrip = Number(payload.value);
     },
 
     updateSkillInvestment(state, payload) {
@@ -290,6 +320,10 @@ export default new Vuex.Store({
 
     updateSkillBuff(state, payload) {
       state.character.skills[payload.name].buff = Number(payload.value);
+    },
+
+    updateSkillCantrip(state, payload) {
+      state.character.skills[payload.name].cantrip = Number(payload.value);
     },
 
     increaseTraining(state, skill) {
@@ -420,6 +454,41 @@ export default new Vuex.Store({
     changeAllSkillBuffs(state, buff) {
       Constants.SKILLS.forEach(skill => {
         state.character.skills[skill].buff = Number(buff);
+      });
+    },
+
+
+
+    // Cantrips
+    changeAllCantrips(state, cantrip) {  
+      Constants.ATTRIBUTES.forEach(attribute => {
+        state.character.attributes[attribute].cantrip = Number(cantrip);
+      });
+
+      Constants.VITALS.forEach(vital => {
+        state.character.vitals[vital].cantrip = Number(cantrip);
+      });
+
+      Constants.SKILLS.forEach(skill => {
+        state.character.skills[skill].cantrip = Number(cantrip);
+      });
+    },
+
+    changeAllAttributeCantrips(state, cantrip) {  
+      Constants.ATTRIBUTES.forEach(attribute => {
+        state.character.attributes[attribute].cantrip = Number(cantrip);
+      });
+    },
+
+    changeAllVitalCantrips(state, cantrip) {  
+      Constants.VITALS.forEach(vital => {
+        state.character.vitals[vital].cantrip = Number(cantrip);
+      });
+    },
+
+    changeAllSkillCantrips(state, cantrip) {
+      Constants.SKILLS.forEach(skill => {
+        state.character.skills[skill].cantrip = Number(cantrip);
       });
     }
   }

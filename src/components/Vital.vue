@@ -1,14 +1,17 @@
 <template>
   <li>
-    <span>{{ name }}: {{ creation }} + {{ invested }} = {{ base }} / {{ buffed }}</span>
+    <span>{{ name }}: {{ creation }} ({{ base }}) -> {{ buffed }}</span>
     <ul>
     <li>Invested: <input type="range" min="0" max="190" v-model="invested" /></li>
     <li>Buffs: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}</li>
+    <li>Cantrip: <input type="range" min="0" max="4" v-model="cantrip" /> {{ cantripName }}</li>
     </ul>
   </li>
 </template>
 
 <script>
+import Constants from "../constants";
+
 export default {
   name: "Vital",
   props: {
@@ -46,6 +49,20 @@ export default {
         });
       }
     },
+    cantrip: {
+      get() {
+        return this.$store.state.character.vitals[this._props.name].cantrip;
+      },
+      set(value) {
+        this.$store.commit('updateVitalCantrip', { 
+          "name": this._props.name, 
+          "value": value 
+        });
+      }
+    },
+    cantripName () {
+      return Constants.CANTRIP_NAME[this.$store.state.character.vitals[this._props.name].cantrip];
+    }
   }
 };
 </script>
