@@ -4,6 +4,7 @@
     <SkillGroup training="specialized" />
     <SkillGroup training="trained" />
     <SkillGroup training="untrained" />
+    <SkillGroup training="unusable" />
   </div>
 </template>
 

@@ -1,26 +1,58 @@
 <template>
   <div>
-    <span>{{ name }}: {{ unbuffed }} / <span v-bind:class="{ buffed: isBuffed }">{{ buffed }}</span></span>
+    <span>{{ name }}: {{ base }} / {{ buffed }}</span>
     <button v-on:click="increaseTraining">+</button>
     <button v-on:click="decreaseTraining">-</button>
+    Invested <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" /> {{ invested }}
+    Buff: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}
   </div>
 </template>
 
 <script>
+import Constants from "../constants";
+
 export default {
   name: "Skill",
   props: {
     name: String
   },
   computed: {
-    unbuffed () {
-      return this.$store.getters[this._props.name + "_unbuffed"]
+    invested: {
+      get () {
+        return this.$store.state.character.skills[this._props.name].invested;
+      },
+      set (value) {
+        this.$store.commit("updateSkillInvestment", { 
+          "name": this._props.name, 
+          "value": value 
+        });
+      }
+    },
+    maxInvestment () {
+      if (this.$store.state.character.skills[this._props.name].training === Constants.TRAINING.SPECIALIZED) {
+        return 226;
+      }  else if (this.$store.state.character.skills[this._props.name].training === Constants.TRAINING.TRAINED) {
+        return 208;
+      } else {
+        return -1;
+      }
+    },
+    base () {
+      return this.$store.getters[this._props.name + "Base"]
     },
     buffed () {
-      return this.$store.getters[this._props.name + "_buffed"]
+      return this.$store.getters[this._props.name + "Buffed"]
     },
-    isBuffed () {
-      return this.$store.getters.isBuffed
+    buffLevel: {
+      get () {
+        return this.$store.state.character.skills[this._props.name].buff;
+      },
+      set (value) {
+        this.$store.commit("updateSkillBuff", { 
+          "name": this._props.name, 
+          "value": value 
+        });
+      }
     }
   },
   methods: {

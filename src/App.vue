@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <input type="checkbox" v-model="isBuffed" /> Buffs?
+    <ul>
+      <li><input type="checkbox" v-model="isBuffed" /> Buffs? {{ isBuffed }}</li>
+      <li><input type="range" min="5" max="275" v-model="level" /> Level {{ level }}</li>
+      <li>{{ cost }}</li>
+    </ul>
     <Attributes />
     <Skills />
     <textarea rows="20" cols="80" v-model="exportedCharacter">
@@ -19,15 +23,26 @@ export default {
     Skills
   },
   computed: {
+    cost () {
+      return Number(this.$store.getters.totalXPCost).toLocaleString();
+    },
+    level: {
+      get () {
+        return this.$store.state.character.level;
+      },
+      set (value) {
+        this.$store.commit('updateLevel', value);
+      }
+    },
     exportedCharacter() {
         return this.$store.getters.exportedCharacter;
     },
     isBuffed: {
       get () {
-        return this.$store.state.isBuffed
+        return this.$store.state.isBuffed;
       },
       set (value) {
-        this.$store.commit('updateBuffed', value)
+        this.$store.commit('updateBuffed', value);
       }
     }
   }
