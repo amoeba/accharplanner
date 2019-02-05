@@ -5,7 +5,7 @@ export default {
     if (training === Constants.TRAINING.SPECIALIZED) {
       return 10;
     } else if (training === Constants.TRAINING.TRAINED) {
-      return 5;
+      return 0; // TODO: Verify?
     } else {
       return 0;
     }
