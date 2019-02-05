@@ -8,6 +8,7 @@
       <li>Buffs <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
       <li>Cantrips <input type="range" min="0" max="4" v-on:change="changeAllCantrips" /></li>
       <li>skill points {{ skillPointsSpent }} / {{ skillPointsAvailable }}</li>
+      <li>Augs required {{ augmentationsSpent }}</li>
     </ul>
     <ExtraSkillCredits />
     <Attributes />
@@ -44,6 +45,9 @@ export default {
     },
     skillPointsAvailable () {
       return this.$store.getters.skillPointsAvailable;
+    },
+    augmentationsSpent () {
+      return this.$store.getters.augmentationsSpent;
     },
     requiredLevel () {
       return this.$store.getters.requiredLevel;

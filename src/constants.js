@@ -16,7 +16,8 @@ const VITALS = [
 const SKILLS = [
   "alchemy",
   "arcane_lore",
-  "melee_defense"
+  "melee_defense",
+  "salvaging"
 ]
 
 const TRAINING = {
@@ -821,6 +822,47 @@ const COST_SKILL_POINTS = {
   weapon_tinkering: { trained: 4, specialized: 4 }
 }
 
+const SPEC_COSTS_AUG = {
+  alchemy: false,
+  arcane_lore: false,
+  armor_tinkering: true,
+  assess_creature: false,
+  assess_person: false,
+  cooking: false,
+  creature_enchantment: false,
+  deception: false,
+  dual_wield: false,
+  dirty_fighting: false,
+  finesse_weapons: false,
+  fletching: false,
+  healing: false,
+  heavy_weapons: false,
+  item_enchantment: false,
+  item_tinkering: true,
+  jump: false,
+  leadership: false,
+  life_magic: false,
+  light_weapons: false,
+  lockpick: false,
+  loyalty: false,
+  magic_defense: false,
+  magic_item_tinkering: true,
+  mana_conversion: false,
+  melee_defense: false,
+  missile_defense: false,
+  missile_weapons: false,
+  recklessness: false,
+  run: false,
+  salvaging: true,
+  shield: false,
+  sneak_attack: false,
+  summoning: false,
+  two_handed_combat: false,
+  void_magic: false,
+  war_magic: false,
+  weapon_tinkering: true
+}
+
 const SKILL_POINTS_AT_LEVEL = {
   "1": 52,
   "2": 53,
@@ -1557,6 +1599,7 @@ export default {
   UNTRAINED_STATE,
   UNTRAINABLE,
   COST_SKILL_POINTS,
+  SPEC_COSTS_AUG,
   SKILL_POINTS_AT_LEVEL,
   COST_LEVEL,
   COST_ATTRIBUTE,

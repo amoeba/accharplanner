@@ -94,6 +94,12 @@ export default new Vuex.Store({
           invested: 0,
           buff: 0,
           cantrip: 0
+        },
+        salvaging: {
+          training: Constants.TRAINING.TRAINED,
+          invested: 0,
+          buff: 0,
+          cantrip: 0
         }
       }
     }
@@ -160,6 +166,18 @@ export default new Vuex.Store({
 
         if (training == Constants.TRAINING.SPECIALIZED || training == Constants.TRAINING.TRAINED) {
           cost += Constants.COST_SKILL_POINTS[skill][training];
+        }
+      });
+      
+      return cost;
+    },
+
+    augmentationsSpent: state => {
+      let cost = 0;
+
+      Constants.SKILLS.forEach(skill => {
+        if (state.character.skills[skill].training == Constants.TRAINING.SPECIALIZED && Constants.SPEC_COSTS_AUG[skill]) {
+          cost +=1 ;
         }
       });
       
@@ -297,7 +315,15 @@ export default new Vuex.Store({
         Helpers.cantripBonus(state.character.skills.melee_defense.cantrip) +
         Math.round((Helpers.buffBonus(state.character.attributes.coordination.buff + Helpers.buffBonus(state.character.attributes.quickness.buff) / 3)));
     },
-
+    salvagingBase: (state, getters) => {
+      return Helpers.trainingBonus(state.character.skills.salvaging.training) + 
+        state.character.skills.salvaging.invested;
+    },
+    salvagingBuffed: (state, getters) => {
+      return getters.salvagingBase + 
+        Helpers.buffBonus(state.character.skills.salvaging.buff) +
+        Helpers.cantripBonus(state.character.skills.salvaging.cantrip);
+    },
 
     specializedSkills: state => {
       return Object.keys(state.character.skills)
