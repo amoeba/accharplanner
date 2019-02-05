@@ -76,13 +76,17 @@ export default new Vuex.Store({
     exportedCharacter: state => {
       return JSON.stringify(state, null, 4);
     },
-    isBuffed: state => {
-      return state.isBuffed;
-    },
-    totalXPCost: (state, getters) => {
+
+    totalXPEarned: (state, getters) => {
       let cost = 0;
 
-      // cost += Constants.COST_LEVEL[state.character.level];
+      cost += Constants.COST_LEVEL[state.character.level];
+
+      return cost;
+    },
+
+    totalXPInvested: (state, getters) => {
+      let cost = 0;
 
       Constants.ATTRIBUTES.forEach(a => {
         cost += Constants.COST_ATTRIBUTE[state.character.attributes[a].invested];
@@ -105,12 +109,26 @@ export default new Vuex.Store({
 
     requiredLevel: (state, getters) => {
       for (var i = 1; i <= 275; i++) {
-        console.log("level " + i, "spent " + getters.totalXPCost, Constants.COST_LEVEL[i]);
+        console.log("level " + i, "spent " + getters.totalXPInvested, Constants.COST_LEVEL[i]);
 
-        if (getters.totalXPCost <= Constants.COST_LEVEL[i]) {
+        if (getters.totalXPInvested <= Constants.COST_LEVEL[i]) {
           return i;
         }
       }
+    },
+
+    skillPointsAvailable: state => {
+      return Constants.SKILL_POINTS_AT_LEVEL[state.character.level];
+    },
+
+    skillPointsSpent: state => {
+      let cost = 0;
+
+      Constants.SKILLS.forEach(skill => {
+        cost += Constants.COST_SKILL_POINTS[skill][state.character.skills[skill].training];
+      });
+      
+      return cost;
     },
 
     // Attributes

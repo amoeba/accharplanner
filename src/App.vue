@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <ul>
-      <li><input type="range" min="5" max="275" v-model="level" /> Level {{ level }}</li>
-      <li>XP Cost: {{ cost }}</li>
+      <li>Level <input type="range" min="5" max="275" v-model="level" /> {{ level }}</li>
+      <li>XP spent: {{ totalXPInvested }} / {{ totalXPEarned }}</li>
       <li>Min. Level: {{ requiredLevel }}</li>
       <li>Invested <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></li>
-      <li>Buffed <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
+      <li>Buffs <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
+      <li>skill points {{ skillPointsSpent }} / {{ skillPointsAvailable }}</li>
 
     </ul>
     <Attributes />
@@ -29,8 +30,17 @@ export default {
     Skills
   },
   computed: {
-    cost () {
-      return Number(this.$store.getters.totalXPCost).toLocaleString();
+    totalXPEarned () {
+      return Number(this.$store.getters.totalXPEarned).toLocaleString();
+    },
+    totalXPInvested () {
+      return Number(this.$store.getters.totalXPInvested).toLocaleString();
+    },
+    skillPointsSpent () {
+      return this.$store.getters.skillPointsSpent;
+    },
+    skillPointsAvailable () {
+      return this.$store.getters.skillPointsAvailable;
     },
     requiredLevel () {
       return this.$store.getters.requiredLevel;
