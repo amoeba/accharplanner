@@ -2,6 +2,8 @@
   <div>
     <h3>Attributes</h3>
     <span>Invested <input type="range" min="0" max="190" v-on:change="changeInvested" /></span>
+    <span>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></span>
+
     <ul>
       <Attribute name="strength" />
       <Attribute name="endurance" />
@@ -24,6 +26,9 @@ export default {
   methods: {
     changeInvested (e) {
       this.$store.commit("changeAllAttributeInvestment", e.target.value);
+    },
+    changeBuffed (e) {
+      this.$store.commit("changeAllAttributeBuffs", e.target.value);
     }
   }
 };

@@ -187,6 +187,7 @@ export default new Vuex.Store({
         state.character.skills.alchemy.invested;
     },
     alchemyBuffed: (state, getters) => {
+      console.log("recalc alchemyBuffed", state.character.skills.alchemy.buff, Helpers.buffBonus(state.character.skills.alchemy.buff));
       return getters.alchemyBase + 
         Helpers.buffBonus(state.character.skills.alchemy.buff) +
         Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) /2);
@@ -211,10 +212,6 @@ export default new Vuex.Store({
   mutations: {
     updateLevel(state, value) {
       state.character.level = Number(value);
-    },
-
-    updateBuffed(state, value) {
-      state.isBuffed = value;
     },
 
     updateAttributeCreation(state, payload) {
@@ -290,12 +287,38 @@ export default new Vuex.Store({
       state.character.skills[skill].training = newTraining;
     },
 
+    changeAllInvestment(state, invested) {
+      Constants.ATTRIBUTES.forEach(a => {
+        let newval = Number(invested);
+        newval = newval > 190 ? 190 : newval;
+
+        state.character.attributes[a].invested = newval;
+      });
+
+      Constants.VITALS.forEach(a => {
+        let newval = Number(invested);
+        newval = newval > 196 ? 196 : newval;
+
+        state.character.vitals[a].invested = newval;
+      });
+      
+      Constants.SKILLS.forEach(skill => {
+        let newval = Number(invested);
+
+        if (state.character.skills[skill].training == Constants.TRAINING.TRAINED) {
+          newval = newval > 208 ? 208 : newval;
+        }
+
+        state.character.skills[skill].invested = newval;
+      });
+    },
+
     changeAllAttributeInvestment(state, invested) {  
       Constants.ATTRIBUTES.forEach(a => {
         let newval = Number(invested);
 
         state.character.attributes[a].invested = newval;
-      })
+      });
     },
 
     changeAllVitalInvestment(state, invested) {  
@@ -303,7 +326,7 @@ export default new Vuex.Store({
         let newval = Number(invested);
 
         state.character.vitals[a].invested = newval;
-      })
+      });
     },
 
     changeAllSkillInvestment(state, invested) {
@@ -315,7 +338,39 @@ export default new Vuex.Store({
         }
 
         state.character.skills[skill].invested = newval;
-      })
+      });
+    },
+
+    changeAllBuffs(state, buff) {  
+      Constants.ATTRIBUTES.forEach(attribute => {
+        state.character.attributes[attribute].buff = Number(buff);
+      });
+
+      Constants.VITALS.forEach(vital => {
+        state.character.vitals[vital].buff = Number(buff);
+      });
+
+      Constants.SKILLS.forEach(skill => {
+        state.character.skills[skill].buff = Number(buff);
+      });
+    },
+
+    changeAllAttributeBuffs(state, buff) {  
+      Constants.ATTRIBUTES.forEach(attribute => {
+        state.character.attributes[attribute].buff = Number(buff);
+      });
+    },
+
+    changeAllVitalBuffs(state, buff) {  
+      Constants.VITALS.forEach(vital => {
+        state.character.vitals[vital].buff = Number(buff);
+      });
+    },
+
+    changeAllSkillBuffs(state, buff) {
+      Constants.SKILLS.forEach(skill => {
+        state.character.skills[skill].buff = Number(buff);
+      });
     }
   }
 });

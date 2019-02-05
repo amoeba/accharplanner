@@ -4,6 +4,9 @@
       <li><input type="range" min="5" max="275" v-model="level" /> Level {{ level }}</li>
       <li>XP Cost: {{ cost }}</li>
       <li>Min. Level: {{ requiredLevel }}</li>
+      <li>Invested <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></li>
+      <li>Buffed <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
+
     </ul>
     <Attributes />
     <Vitals />
@@ -42,6 +45,14 @@ export default {
     },
     exportedCharacter() {
         return this.$store.getters.exportedCharacter;
+    }
+  },
+  methods: {
+    changeAllInvestments (e) {
+      this.$store.commit("changeAllInvestment", e.target.value);
+    },
+    changeAllBuffs (e) {
+      this.$store.commit("changeAllBuffs", e.target.value);
     }
   }
 };
