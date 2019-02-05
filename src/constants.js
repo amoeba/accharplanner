@@ -7,6 +7,16 @@ const ATTRIBUTES = [
   "self"
 ]
 
+const VITALS = [
+  "health",
+  "stamina",
+  "mana"
+]
+
+const SKILLS = [
+  "alchemy"
+]
+
 const TRAINING = {
   UNUSABLE: "unusable",
   UNTRAINED: "untrained",
@@ -1134,6 +1144,8 @@ const COST_SKILL_TRAINED = {
 
 export default {
   ATTRIBUTES,
+  VITALS,
+  SKILLS,
   TRAINING,
   UNTRAINED_STATE,
   COST_LEVEL,

@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <ul>
-      <li><input type="checkbox" v-model="isBuffed" /> Buffs? {{ isBuffed }}</li>
       <li><input type="range" min="5" max="275" v-model="level" /> Level {{ level }}</li>
-      <li>{{ cost }}</li>
+      <li>XP Cost: {{ cost }}</li>
+      <li>Min. Level: {{ requiredLevel }}</li>
     </ul>
     <Attributes />
+    <Vitals />
     <Skills />
     <textarea rows="20" cols="80" v-model="exportedCharacter">
     </textarea>
@@ -14,17 +15,22 @@
 
 <script>
 import Attributes from "./components/Attributes.vue";
+import Vitals from "./components/Vitals.vue";
 import Skills from "./components/Skills.vue";
 
 export default {
   name: "app",
   components: {
     Attributes,
+    Vitals,
     Skills
   },
   computed: {
     cost () {
       return Number(this.$store.getters.totalXPCost).toLocaleString();
+    },
+    requiredLevel () {
+      return this.$store.getters.requiredLevel;
     },
     level: {
       get () {
@@ -36,14 +42,6 @@ export default {
     },
     exportedCharacter() {
         return this.$store.getters.exportedCharacter;
-    },
-    isBuffed: {
-      get () {
-        return this.$store.state.isBuffed;
-      },
-      set (value) {
-        this.$store.commit('updateBuffed', value);
-      }
     }
   }
 };

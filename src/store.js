@@ -48,6 +48,20 @@ export default new Vuex.Store({
           buff: 0
         }
       },
+      vitals: {
+        health: {
+          invested: 0,
+          buff: 0
+        },
+        stamina: {
+          invested: 0,
+          buff: 0
+        },
+        mana: {
+          invested: 0,
+          buff: 0
+        }
+      },
       skills: {
         alchemy: {
           training: Constants.TRAINING.TRAINED,
@@ -68,10 +82,14 @@ export default new Vuex.Store({
     totalXPCost: (state, getters) => {
       let cost = 0;
 
-      cost += Constants.COST_LEVEL[state.character.level];
-      
+      // cost += Constants.COST_LEVEL[state.character.level];
+
       Constants.ATTRIBUTES.forEach(a => {
         cost += Constants.COST_ATTRIBUTE[state.character.attributes[a].invested];
+      });
+
+      Constants.VITALS.forEach(v => {
+        cost += Constants.COST_VITAL[state.character.vitals[v].invested];
       });
 
       getters.specializedSkills.forEach(s => {
@@ -83,6 +101,16 @@ export default new Vuex.Store({
       });
 
       return cost;
+    },
+
+    requiredLevel: (state, getters) => {
+      for (var i = 1; i <= 275; i++) {
+        console.log("level " + i, "spent " + getters.totalXPCost, Constants.COST_LEVEL[i]);
+
+        if (getters.totalXPCost <= Constants.COST_LEVEL[i]) {
+          return i;
+        }
+      }
     },
 
     // Attributes
@@ -121,6 +149,35 @@ export default new Vuex.Store({
     },
     selfBuffed: (state, getters) => {
       return getters.selfBase + Helpers.buffBonus(state.character.attributes.self.buff);
+    },
+    
+    // Vitals
+    healthCreation: state => {
+      return Math.round(state.character.attributes.endurance.creation / 2);
+    },
+    healthBase: (state, getters) => {
+      return Math.round(getters.enduranceBase / 2) + state.character.vitals.health.invested;
+    },
+    healthBuffed: (state, getters) => {
+      return getters.healthBase + Math.round(Helpers.buffBonus(state.character.vitals.health.buff) / 2);
+    },
+    staminaCreation: state => {
+      return state.character.attributes.endurance.creation;
+    },
+    staminaBase: (state, getters)  => {
+      return getters.enduranceBase + state.character.vitals.stamina.invested;
+    },
+    staminaBuffed: (state, getters) => {
+      return getters.staminaBase + Helpers.buffBonus(state.character.vitals.stamina.buff);
+    },
+    manaCreation: state => {
+      return state.character.attributes.self.creation;
+    },
+    manaBase: (state, getters)  => {
+      return getters.selfBase + state.character.vitals.mana.invested;
+    },
+    manaBuffed: (state, getters) => {
+      return getters.manaBase + Helpers.buffBonus(state.character.vitals.mana.buff);
     },
     
     // Skills
@@ -166,6 +223,14 @@ export default new Vuex.Store({
 
     updateAttributeInvested(state, payload) {
       state.character.attributes[payload.name].invested = Number(payload.value);
+    },
+
+    updateVitalInvested(state, payload) {
+      state.character.vitals[payload.name].invested = Number(payload.value);
+    },
+
+    updateVitalBuff(state, payload) {
+      state.character.vitals[payload.name].buff = Number(payload.value);
     },
 
     updateAttributeBuff(state, payload) {
@@ -223,6 +288,34 @@ export default new Vuex.Store({
       }
 
       state.character.skills[skill].training = newTraining;
+    },
+
+    changeAllAttributeInvestment(state, invested) {  
+      Constants.ATTRIBUTES.forEach(a => {
+        let newval = Number(invested);
+
+        state.character.attributes[a].invested = newval;
+      })
+    },
+
+    changeAllVitalInvestment(state, invested) {  
+      Constants.VITALS.forEach(a => {
+        let newval = Number(invested);
+
+        state.character.vitals[a].invested = newval;
+      })
+    },
+
+    changeAllSkillInvestment(state, invested) {
+      Constants.SKILLS.forEach(skill => {
+        let newval = Number(invested);
+
+        if (state.character.skills[skill].training == Constants.TRAINING.TRAINED) {
+          newval = newval > 208 ? 208 : newval;
+        }
+
+        state.character.skills[skill].invested = newval;
+      })
     }
   }
 });
