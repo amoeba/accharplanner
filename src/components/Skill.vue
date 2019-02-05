@@ -23,6 +23,7 @@ export default {
   },
   computed: {
     canIncrease () {
+      // Can't if already specialized
       if (this.$store.state.character.skills[this._props.name].training == Constants.TRAINING.SPECIALIZED) {
         return false;
       }
@@ -45,10 +46,12 @@ export default {
     canDecrease () {
       let training = this.$store.state.character.skills[this._props.name].training;
 
+      // Can't if not trained or higher
       if (training == Constants.TRAINING.UNTRAINED || training == Constants.TRAINING.UNTRAINED) {
         return false;
       }
 
+      // Can't if not untrainable
       if (training == Constants.TRAINING.TRAINED && !Constants.UNTRAINABLE[this._props.name]) {
         return false;
       }
