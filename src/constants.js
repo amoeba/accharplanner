@@ -14,7 +14,8 @@ const VITALS = [
 ]
 
 const SKILLS = [
-  "alchemy"
+  "alchemy",
+  "melee_defense"
 ]
 
 const TRAINING = {
@@ -24,8 +25,86 @@ const TRAINING = {
   SPECIALIZED: "specialized",
 }
 
+const UNTRAINABLE = {
+  alchemy: true,
+  arcane_lore: false,
+  armor_tinkering: true,
+  assess_creature: true,
+  assess_person: true,
+  cooking: true,
+  creature_enchantment: true,
+  deception: true,
+  dual_wield: true,
+  dirty_fighting: true,
+  finesse_weapons: true,
+  fletching: true,
+  healing: true,
+  heavy_weapons: true,
+  item_enchantment: true,
+  item_tinkering: true,
+  jump: false,
+  leadership: true,
+  life_magic: true,
+  light_weapons: true,
+  lockpick: true,
+  loyalty: false,
+  magic_defense: false,
+  magic_item_tinkering: true,
+  mana_conversion: true,
+  melee_defense: true,
+  missile_defense: true,
+  missile_weapons: true,
+  recklessness: true,
+  run: false,
+  salvaging: false,
+  shield: true,
+  sneak_attack: true,
+  summoning: true,
+  two_handed_combat: true,
+  void_magic: true,
+  war_magic: true,
+  weapon_tinkering: true
+}
+
 const UNTRAINED_STATE = {
-  alchemy: TRAINING.UNUSABLE
+  alchemy: TRAINING.UNUSABLE,
+  arcane_lore: TRAINING.TRAINED,
+  armor_tinkering: TRAINING.UNTRAINED,
+  assess_creature: TRAINING.UNUSABLE,
+  assess_person: TRAINING.UNUSABLE,
+  cooking: TRAINING.UNUSABLE,
+  creature_enchantment: TRAINING.UNUSABLE,
+  deception: TRAINING.UNUSABLE,
+  dual_wield: TRAINING.UNUSABLE,
+  dirty_fighting: TRAINING.UNUSABLE,
+  finesse_weapons: TRAINING.UNTRAINED,
+  fletching: TRAINING.UNUSABLE,
+  healing: TRAINING.UNUSABLE,
+  heavy_weapons: TRAINING.UNTRAINED,
+  item_enchantment: TRAINING.UNUSABLE,
+  item_tinkering: TRAINING.UNTRAINED,
+  jump: TRAINING.TRAINED,
+  leadership: TRAINING.UNTRAINED,
+  life_magic: TRAINING.UNUSABLE,
+  light_weapons: TRAINING.UNTRAINED,
+  lockpick: TRAINING.UNUSABLE,
+  loyalty: TRAINING.TRAINED,
+  magic_defense: TRAINING.TRAINED,
+  magic_item_tinkering: TRAINING.UNTRAINED,
+  mana_conversion: TRAINING.UNUSABLE,
+  melee_defense: TRAINING.UNTRAINED,
+  missile_defense: TRAINING.UNTRAINED,
+  missile_weapons: TRAINING.UNTRAINED,
+  recklessness: TRAINING.UNUSABLE,
+  run: TRAINING.TRAINED,
+  salvaging: TRAINING.TRAINED,
+  shield: TRAINING.UNTRAINED,
+  sneak_attack: TRAINING.UNUSABLE,
+  summoning: TRAINING.UNTRAINED,
+  two_handed_combat: TRAINING.UNTRAINED,
+  void_magic: TRAINING.UNUSABLE,
+  war_magic: TRAINING.UNUSABLE,
+  weapon_tinkering: TRAINING.UNTRAINED
 }
 
 const COST_LEVEL = {
@@ -701,10 +780,44 @@ const COST_VITAL = {
 }
 
 const COST_SKILL_POINTS = {
-  "alchemy" : { 
-    "trained": 6,
-    "specialized": 12
-  }
+  alchemy: { trained: 6, specialized: 12 },
+  arcane_lore: { trained: 0, specialized: 2 },
+  armor_tinkering: { trained: 4, specialized: 4 },
+  assess_creature: { trained: 0, specialized: 2 },
+  assess_person: { trained: 2, specialized: 4 },
+  cooking: { trained: 4, specialized: 8 },
+  creature_enchantment: { trained: 8, specialized: 16 },
+  deception: { trained: 4, specialized: 6 },
+  dual_wield: { trained: 2, specialized: 4 },
+  dirty_fighting: { trained: 2, specialized: 4 },
+  finesse_weapons: { trained: 4, specialized: 8 },
+  fletching: { trained: 4, specialized: 8 },
+  healing: { trained: 6, specialized: 10 },
+  heavy_weapons: { trained: 6, specialized: 12 },
+  item_enchantment: { trained: 8, specialized: 16 },
+  item_tinkering: { trained: 2, specialized: 2 },
+  jump: { trained: 0, specialized: 4 },
+  leadership: { trained: 4, specialized: 6 },
+  life_magic: { trained: 12, specialized: 20 },
+  light_weapons: { trained: 4, specialized: 8 },
+  lockpick: { trained: 6, specialized: 10 },
+  loyalty: { trained: 0, specialized: 2 },
+  magic_defense: { trained: 0, specialized: 12 },
+  magic_item_tinkering: { trained: 4, specialized: 4 },
+  mana_conversion: { trained: 6, specialized: 12 },
+  melee_defense: { trained: 10, specialized: 20 },
+  missile_defense: { trained: 6, specialized: 10 },
+  missile_weapons: { trained: 6, specialized: 12 },
+  recklessness: { trained: 4, specialized: 6 },
+  run: { trained: 0, specialized: 4 },
+  salvaging: { trained: 0, specialized: 0 },
+  shield: { trained: 2, specialized: 4 },
+  sneak_attack: { trained: 4, specialized: 6 },
+  summoning: { trained: 8, specialized: 12 },
+  two_handed_combat: { trained: 8, specialized: 16 },
+  void_magic: { trained: 16, specialized: 28 },
+  war_magic: { trained: 16, specialized: 28 },
+  weapon_tinkering: { trained: 4, specialized: 4 }
 }
 
 const SKILL_POINTS_AT_LEVEL = {

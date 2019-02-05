@@ -78,7 +78,13 @@ export default new Vuex.Store({
       },
       skills: {
         alchemy: {
-          training: Constants.TRAINING.TRAINED,
+          training: Constants.TRAINING.UNTRAINED,
+          invested: 0,
+          buff: 0,
+          cantrip: 0
+        },
+        melee_defense: {
+          training: Constants.TRAINING.UNTRAINED,
           invested: 0,
           buff: 0,
           cantrip: 0
@@ -144,7 +150,11 @@ export default new Vuex.Store({
       let cost = 0;
 
       Constants.SKILLS.forEach(skill => {
-        cost += Constants.COST_SKILL_POINTS[skill][state.character.skills[skill].training];
+        let training = state.character.skills[skill].training;
+
+        if (training == Constants.TRAINING.SPECIALIZED || training == Constants.TRAINING.TRAINED) {
+          cost += Constants.COST_SKILL_POINTS[skill][training];
+        }
       });
       
       return cost;
@@ -254,12 +264,24 @@ export default new Vuex.Store({
         state.character.skills.alchemy.invested;
     },
     alchemyBuffed: (state, getters) => {
-      console.log("recalc alchemyBuffed", state.character.skills.alchemy.buff, Helpers.buffBonus(state.character.skills.alchemy.buff));
       return getters.alchemyBase + 
         Helpers.buffBonus(state.character.skills.alchemy.buff) +
         Helpers.cantripBonus(state.character.skills.alchemy.cantrip) +
         Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) /2);
     },
+    meleeDefenseBase: (state, getters) => {
+      return Math.round((getters.coordinationBase + getters.quicknessBase / 3)) + 
+        Helpers.trainingBonus(state.character.skills.melee_defense.training) + 
+        state.character.skills.melee_defense.invested;
+    },
+    meleeDefenseBuffed: (state, getters) => {
+      return getters.meleeDefenseBase + 
+        Helpers.buffBonus(state.character.skills.melee_defense.buff) +
+        Helpers.cantripBonus(state.character.skills.melee_defense.cantrip) +
+        Math.round((Helpers.buffBonus(state.character.attributes.coordination.buff + Helpers.buffBonus(state.character.attributes.quickness.buff) / 3)));
+    },
+
+
     specializedSkills: state => {
       return Object.keys(state.character.skills)
         .filter(key => state.character.skills[key].training === Constants.TRAINING.SPECIALIZED);
