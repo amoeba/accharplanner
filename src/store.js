@@ -269,13 +269,13 @@ export default new Vuex.Store({
         Helpers.cantripBonus(state.character.skills.alchemy.cantrip) +
         Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) /2);
     },
-    meleeDefenseBase: (state, getters) => {
+    melee_defenseBase: (state, getters) => {
       return Math.round((getters.coordinationBase + getters.quicknessBase / 3)) + 
         Helpers.trainingBonus(state.character.skills.melee_defense.training) + 
         state.character.skills.melee_defense.invested;
     },
-    meleeDefenseBuffed: (state, getters) => {
-      return getters.meleeDefenseBase + 
+    melee_defenseBuffed: (state, getters) => {
+      return getters.melee_defenseBase + 
         Helpers.buffBonus(state.character.skills.melee_defense.buff) +
         Helpers.cantripBonus(state.character.skills.melee_defense.cantrip) +
         Math.round((Helpers.buffBonus(state.character.attributes.coordination.buff + Helpers.buffBonus(state.character.attributes.quickness.buff) / 3)));

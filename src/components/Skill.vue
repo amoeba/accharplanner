@@ -4,7 +4,9 @@
     <button v-on:click="increaseTraining">+</button>
     <button v-on:click="decreaseTraining">-</button>
     <ul>
-      <li>Invested <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" /> {{ invested }}</li>
+      <div v-if="canInvest">
+        <li>Invested <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" /> {{ invested }}</li>
+      </div>
       <li>Buff: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}</li>
       <li>Cantrip: <input type="range" min="0" max="4" v-model="cantrip" /> {{ cantripName }}</li>
     </ul>
@@ -20,6 +22,10 @@ export default {
     name: String
   },
   computed: {
+    canInvest () {
+      let training = this.$store.state.character.skills[this._props.name].training;
+      return training == Constants.TRAINING.SPECIALIZED || training == Constants.TRAINING.TRAINED;
+    },
     invested: {
       get () {
         return this.$store.state.character.skills[this._props.name].invested;
