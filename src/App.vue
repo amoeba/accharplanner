@@ -85,6 +85,15 @@ export default {
   font-size: 14px;
 }
 
+table {
+}
+
+td,
+th {
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
 #export {
   position: fixed;
   top: 0;

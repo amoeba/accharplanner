@@ -1,21 +1,41 @@
 <template>
-  <div>
+  <div id="attributes">
     <h3>Attributes</h3>
-    <ul>
-      <li>Invested <input type="range" min="0" max="190" v-on:change="changeInvested" /></li>
-      <li>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></li>
-      <li>Cantrip <input type="range" min="0" max="4" value="0" v-on:change="changeCantrip" /></li>
-      <li>Attribute Points Spent {{ attributePointsSpent }} / 330</li>
-    </ul>
-
-    <ul>
-      <Attribute name="strength" />
-      <Attribute name="endurance" />
-      <Attribute name="coordination" />
-      <Attribute name="quickness" />
-      <Attribute name="focus" />
-      <Attribute name="self" />
-    </ul>
+    <p>Creation Attribute Points Spent {{ attributePointsSpent }} / 330</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="2">Creation</th>
+          <th colspan="2">Invested</th>
+          <th>Base</th>
+          <th>Buffed</th>
+          <th colspan="2">Buff</th>
+          <th colspan="2">Cantrip</th>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th><input type="range" min="0" max="190" v-on:change="changeInvested" /></th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+          <th>&nbsp;</th>
+          <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrip" /></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <Attribute name="strength" />
+        <Attribute name="endurance" />
+        <Attribute name="coordination" />
+        <Attribute name="quickness" />
+        <Attribute name="focus" />
+        <Attribute name="self" />
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -45,3 +65,8 @@ export default {
   }
 };
 </script>
+<style>
+#attributes {
+  border: 1px solid red;
+}
+</style>
