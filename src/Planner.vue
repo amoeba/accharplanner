@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <h1>Overly Detailed Asheron's Call Character Planner</h1>
+  <div id="planner">
+    <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
     Level <input type="range" min="1" max="275" v-model="level" /> {{level}}
     <h3>XP, Buffs, Cantrips</h3>
     <table>
@@ -29,9 +29,6 @@
       </tr>
       </tbody>
     </table>
-    <ul class="xpbuffscantrips">
-
-    </ul>
     <ExtraSkillCredits />
     <Attributes />
     <Vitals />
@@ -46,7 +43,7 @@ import Vitals from "./components/Vitals.vue";
 import Skills from "./components/Skills.vue";
 
 export default {
-  name: "app",
+  name: "planner",
   components: {
     ExtraSkillCredits,
     Attributes,
@@ -103,12 +100,9 @@ export default {
 </script>
 
 <style>
-#app {
+#planner {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
-}
-
-table {
 }
 
 input[type='range'] {
