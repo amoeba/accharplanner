@@ -29,9 +29,15 @@
     <tr class="specialized">
       <th colspan="11">Specialized ({{ specializedSkillPointsSpent }} / 70) {{ augmentationsRequiredText }}</th>
     </tr>
+    <tr v-if="noSpecializedSkills">
+      <td class="center" colspan="11">No specialized skills</td>
+    </tr>
     <Skill v-for="skill in specializedSkills" :key="skill" :name="skill" />
     <tr class="trained">
       <th colspan="11">Trained</th>
+    </tr>
+    <tr v-if="noTrainedSkills">
+      <td class="center" colspan="11">No trained skills</td>
     </tr>
     <Skill v-for="skill in trainedSkills" :key="skill" :name="skill" />
     <tr class="untrained">
@@ -97,6 +103,13 @@ export default {
     unusableSkills () {
       return Object.keys(this.$store.state.character.skills)
         .filter(key => this.$store.state.character.skills[key].training === Constants.TRAINING.UNUSABLE);
+    },
+    noSpecializedSkills () {
+      return this.$store.getters.specializedSkills.length == 0;
+
+    },
+    noTrainedSkills () {
+      return this.$store.getters.trainedSkills.length == 0;
     }
   },
   methods: {

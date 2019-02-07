@@ -158,6 +158,10 @@ ul.xpbuffscantrips li {
   color: red;
 }
 
+.center {
+  text-align: center;
+}
+
 #export {
   font-family: monospace;
 }
