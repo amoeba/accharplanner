@@ -28,12 +28,12 @@
       <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrip" /></th>
       <th>&nbsp;</th>
     </tr>
-    <Attribute name="strength" />
-    <Attribute name="endurance" />
-    <Attribute name="coordination" />
-    <Attribute name="quickness" />
-    <Attribute name="focus" />
-    <Attribute name="self" />
+    <Attribute name="strength" display="Strength" />
+    <Attribute name="endurance" display="Endurance" />
+    <Attribute name="coordination" display="Coordination" />
+    <Attribute name="quickness" display="Quickness" />
+    <Attribute name="focus" display="Focus" />
+    <Attribute name="self" display="Self" />
   </tbody>
 </template>
 

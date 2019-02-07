@@ -3,11 +3,34 @@
     <h1>Overly Detailed Asheron's Call Character Planner</h1>
     Level <input type="range" min="1" max="275" v-model="level" /> {{level}}
     <h3>XP, Buffs, Cantrips</h3>
-    <p>XP spent: {{ totalXPInvested }} (Requires level {{ requiredLevel }})</p>
+    <table>
+      <tbody>
+        <tr>
+          <th>XP Spent</th>
+          <td>{{ totalXPInvested }}</td>
+          <td>(Requires level {{ requiredLevel }})</td>
+        </tr>
+        <tr>
+          <th>Luminance XP Spent</th>
+          <td>{{ totalLuminanceXPSpent }}</td>
+          <td>&nbsp;</td>
+        </tr>
+      <tr>
+        <th>Invested</th>
+        <td><input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></td>
+      </tr>
+      <tr>
+        <th>Buffs</th>
+        <td><input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></td>
+      </tr>
+      <tr>
+        <th>Cantrips</th>
+        <td><input type="range" min="0" max="4" v-on:change="changeAllCantrips" /></td>
+      </tr>
+      </tbody>
+    </table>
     <ul class="xpbuffscantrips">
-      <li>Invested <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></li>
-      <li>Buffs <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
-      <li>Cantrips <input type="range" min="0" max="4" v-on:change="changeAllCantrips" /></li>
+
     </ul>
     <ExtraSkillCredits />
     <Attributes />
@@ -48,6 +71,9 @@ export default {
     },
     requiredLevel () {
       return this.$store.getters.requiredLevel;
+    },
+    totalLuminanceXPSpent () {
+      return this.$store.getters.totalLuminanceXPSpent.toLocaleString();
     },
     level: {
       get () {
@@ -132,6 +158,10 @@ ul.xpbuffscantrips li {
 .buffed {
   color: green;
   font-weight: bold;
+}
+
+.error {
+  color: red;
 }
 
 #export {

@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      {{ name }}
+      {{ displayName }}
     </td>
     <td>      
       <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">+</button>
@@ -32,6 +32,9 @@ export default {
     name: String
   },
   computed: {
+    displayName () {
+      return Constants.SKILL_NAME[this._props.name];
+    },
     isBuffed () {
       return this.$store.state.character.skills[this._props.name].buff > 0 || this.$store.state.character.skills[this._props.name].cantrip > 0;
     },

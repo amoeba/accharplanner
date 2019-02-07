@@ -139,7 +139,7 @@ export default new Vuex.Store({
 
       return cost;
     },
-
+    
     requiredLevel: (state, getters) => {
       for (var i = 1; i <= 275; i++) {
 
@@ -171,12 +171,24 @@ export default new Vuex.Store({
       return cost;
     },
 
-    augmentationsSpent: state => {
+    augmentationSpent: state => {
       let cost = 0;
 
-      Constants.SKILLS.forEach(skill => {
-        if (state.character.skills[skill].training == Constants.TRAINING.SPECIALIZED && Constants.SPEC_COSTS_AUG[skill]) {
-          cost +=1 ;
+      Object.keys(Constants.SPEC_COSTS_AUG).forEach(skill => {
+        if (state.character.skills[skill] && state.character.skills[skill].training == Constants.TRAINING.SPECIALIZED && Constants.SPEC_COSTS_AUG[skill]) {
+          cost += 1 ;
+        }
+      });
+      
+      return cost;
+    },
+
+    totalLuminanceXPSpent: state => {
+      let cost = 0;
+
+      Object.keys(Constants.SPEC_COSTS_AUG).forEach(skill => {
+        if (state.character.skills[skill] && state.character.skills[skill].training == Constants.TRAINING.SPECIALIZED && Constants.SPEC_COSTS_AUG[skill]) {
+          cost += 1000000000 ;
         }
       });
       

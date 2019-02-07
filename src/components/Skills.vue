@@ -1,7 +1,8 @@
 <template>
   <tbody id="skills">
     <tr>
-      <th colspan="11">Skills ({{ skillPointsSpent }} / {{ skillPointsAvailable }})</th>
+      <th colspan="11">Skills ({{ skillPointsSpent }} / {{ skillPointsAvailable }}) <span class="error">{{ skillPointsSpentErrorText }}</span></th>
+      </th>
     </tr>
     <tr class="headers">
       <th>Name</th>
@@ -60,6 +61,13 @@ export default {
     },
     specializedSkillPointsSpent () {
       return this.$store.getters.specializedSkillPointsSpent;
+    },
+    skillPointsSpentErrorText () {
+      let overspent = this.$store.getters.skillPointsSpent - this.$store.getters.skillPointsAvailable;
+
+      if (overspent > 0) {
+        return "You've overspent by " + overspent + (overspent === 1 ? " point" : " points!");
+      }
     },
     augmentationsRequired () {
       return this.$store.getters.augmentationsSpent;
