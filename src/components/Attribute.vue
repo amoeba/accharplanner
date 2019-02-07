@@ -2,11 +2,11 @@
   <tr>
     <td>{{ name }}</td>
     <td><input type="range" min="10" max="100" v-model="creation" /></td>
-    <td>{{ creation }}</td>
+    <td class="number">{{ creation }}</td>
     <td><input type="range" min="0" max="190" v-model="invested" /></td>
-    <td>{{ invested }}</td>
-    <td>{{ base }}</td>
-    <td>{{ buffed }}</td>
+    <td class="number">{{ invested }}</td>
+    <td class="number">{{ base }}</td>
+    <td v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
     <td>{{ buffLevel }}</td>
     <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
@@ -23,6 +23,9 @@ export default {
     name: String
   },
   computed: {
+    isBuffed () {
+      return this.$store.state.character.attributes[this._props.name].buff > 0 || this.$store.state.character.attributes[this._props.name].cantrip > 0;
+    },
     creation: {
       get() {
         return this.$store.state.character.attributes[this._props.name].creation;

@@ -1,38 +1,34 @@
 <template>
-  <div>
-    <h3>Vitals</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th colspan="2">Creation</th>
-          <th colspan="2">Invested</th>
-          <th>Base</th>
-          <th>Buffed</th>
-          <th colspan="2">Buff</th>
-          <th colspan="2">Cantrip</th>
-        </tr>
-        <tr>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="190" v-on:change="changeInvested" /></th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <Vital name="health" />
-        <Vital name="stamina" />
-        <Vital name="mana" />
-      </tbody>
-    </table>
-  </div>
+  <tbody id="vitals">
+    <tr>
+      <th colspan="11">Vitals</th>
+    </tr>
+    <tr class="headers">
+      <th>Name</th>
+      <th colspan="2">Creation</th>
+      <th colspan="2">Invested</th>
+      <th>Base</th>
+      <th>Buffed</th>
+      <th colspan="2">Buff</th>
+      <th colspan="2">Cantrip</th>
+    </tr>
+    <tr class="controls">
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="190" v-on:change="changeInvested" /></th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
+      <th>&nbsp;</th>
+    </tr>
+    <Vital name="health" />
+    <Vital name="stamina" />
+    <Vital name="mana" />
+  </tbody>
 </template>
 
 <script>

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>Overly Detailed Asheron's Call Character Planner</h1>
     <ul>
       <li>Level <input type="range" min="5" max="275" v-model="level" /> {{ level }}</li>
       <li>XP spent: {{ totalXPInvested }} / {{ totalXPEarned }}</li>
@@ -90,14 +91,39 @@ table {
 
 td,
 th {
-  border: 1px solid #ccc;
+  padding: 1px 3px;
   text-align: left;
 }
 
+#attributes > tr:first-child > th,
+#vitals > tr:first-child > th,
+#skills > tr:first-child > th {
+  font-size: 125%;
+}
+
+#vitals > tr:first-child > th,
+#skills > tr:first-child > th {
+  padding-top: 1.5rem;
+}
+
+tr.headers th {
+  background-color: #CCC;
+}
+
+tr.controls th {
+  background-color: #EEE;
+}
+
+.number {
+  min-width: 50px;
+}
+
+.buffed {
+  color: green;
+  font-weight: bold;
+}
+
 #export {
-  position: fixed;
-  top: 0;
-  right: 0;
   font-family: monospace;
 }
 </style>

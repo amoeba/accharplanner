@@ -1,50 +1,78 @@
 <template>
-  <div>
-    <h3>Skills</h3>
-    <p>Specialized Spent: {{ specializedSkillPointsSpent }} / 70</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th colspan="2">Creation</th>
-          <th colspan="2">Invested</th>
-          <th>Base</th>
-          <th>Buffed</th>
-          <th colspan="2">Buff</th>
-          <th colspan="2">Cantrip</th>
-        </tr>
-        <tr>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="190" v-on:change="changeInvested" /></th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <SkillGroup training="specialized" />
-      <SkillGroup training="trained" />
-      <SkillGroup training="untrained" />
-      <SkillGroup training="unusable" />
-    </table>
-  </div>
+  <tbody id="skills">
+    <tr>
+      <th colspan="11">Skills</th>
+    </tr>
+    <tr>
+      <th colspan="11">Specialized Skill Credits Spent: {{ specializedSkillPointsSpent }} / 70</th>
+    </tr>
+    <tr class="headers">
+      <th>Name</th>
+      <th colspan="2">&nbsp;</th>
+      <th colspan="2">Invested</th>
+      <th>Base</th>
+      <th>Buffed</th>
+      <th colspan="2">Buff</th>
+      <th colspan="2">Cantrip</th>
+    </tr>
+    <tr class="controls">
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="226" v-on:change="changeInvested" /></th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <th colspan="11">Specialized</th>
+    </tr>
+    <Skill v-for="skill in specializedSkills" :key="skill" :name="skill" />
+    <tr>
+      <th colspan="11">Trained</th>
+    </tr>
+    <Skill v-for="skill in trainedSkills" :key="skill" :name="skill" />
+    <tr>
+      <th colspan="11">Untrained</th>
+    </tr>
+    <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
+    <tr>
+      <th colspan="11">Unusable</th>
+    </tr>
+    <Skill v-for="skill in unusableSkills" :key="skill" :name="skill" />
+  </tbody>
 </template>
 
 <script>
-import SkillGroup from "./SkillGroup.vue";
+import Skill from "./Skill.vue";
+import Constants from "../constants";
 
 export default {
   name: "Skills",
-  components: { SkillGroup },
+  components: { Skill },
   computed: {
     specializedSkillPointsSpent () {
       return this.$store.getters.specializedSkillPointsSpent;
+    },
+    specializedSkills () {
+      return Object.keys(this.$store.state.character.skills)
+        .filter(key => this.$store.state.character.skills[key].training === Constants.TRAINING.SPECIALIZED);
+    },
+    trainedSkills () {
+      return Object.keys(this.$store.state.character.skills)
+        .filter(key => this.$store.state.character.skills[key].training === Constants.TRAINING.TRAINED);
+    },
+    untrainedSkills () {
+      return Object.keys(this.$store.state.character.skills)
+        .filter(key => this.$store.state.character.skills[key].training === Constants.TRAINING.UNTRAINED);
+    },
+    unusableSkills () {
+      return Object.keys(this.$store.state.character.skills)
+        .filter(key => this.$store.state.character.skills[key].training === Constants.TRAINING.UNUSABLE);
     }
   },
   methods: {

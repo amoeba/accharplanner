@@ -1,42 +1,40 @@
 <template>
-  <div id="attributes">
-    <h3>Attributes</h3>
-    <p>Creation Attribute Points Spent {{ attributePointsSpent }} / 330</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th colspan="2">Creation</th>
-          <th colspan="2">Invested</th>
-          <th>Base</th>
-          <th>Buffed</th>
-          <th colspan="2">Buff</th>
-          <th colspan="2">Cantrip</th>
-        </tr>
-        <tr>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="190" v-on:change="changeInvested" /></th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
-          <th>&nbsp;</th>
-          <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrip" /></th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <Attribute name="strength" />
-        <Attribute name="endurance" />
-        <Attribute name="coordination" />
-        <Attribute name="quickness" />
-        <Attribute name="focus" />
-        <Attribute name="self" />
-      </tbody>
-    </table>
-  </div>
+  <tbody id="attributes">
+    <tr>
+      <th colspan="11">Attributes</th>
+    </tr>
+    <tr>
+      <th colspan="11">Creation Attribute Points Spent: {{ attributePointsSpent }} / 330</th>
+    </tr>
+    <tr class="headers">
+      <th class="name">Name</th>
+      <th class="creation" colspan="2">Creation</th>
+      <th class="invested" colspan="2">Invested</th>
+      <th class="base">Base</th>
+      <th class="buff">Buffed</th>
+      <th class="buff" colspan="2">Buff</th>
+      <th class="cantrip" colspan="2">Cantrip</th>
+    </tr>
+    <tr class="controls">
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="190" v-on:change="changeInvested" /></th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+      <th>&nbsp;</th>
+      <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrip" /></th>
+      <th>&nbsp;</th>
+    </tr>
+    <Attribute name="strength" />
+    <Attribute name="endurance" />
+    <Attribute name="coordination" />
+    <Attribute name="quickness" />
+    <Attribute name="focus" />
+    <Attribute name="self" />
+  </tbody>
 </template>
 
 <script>
@@ -66,7 +64,5 @@ export default {
 };
 </script>
 <style>
-#attributes {
-  border: 1px solid red;
-}
+
 </style>

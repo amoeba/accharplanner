@@ -1,9 +1,6 @@
 <template>
   <tbody>
-    <tr>
-      <td>{{ training }}</td>
-    </tr>
-    <Skill v-for="skill in skills" :key="skill" :name="skill" />
+
   </tbody>
 </template>
 

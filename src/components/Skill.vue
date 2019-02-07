@@ -14,9 +14,9 @@
         <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
       </div>
     </td>
-    <td>{{ invested }}</td>
-    <td>{{ base }}</td>
-    <td>{{ buffed }}</td>
+    <td class="number">{{ invested }}</td>
+    <td class="number">{{ base }}</td>
+    <td v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
     <td>{{ buffLevel }}</td>
     <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
@@ -33,6 +33,9 @@ export default {
     name: String
   },
   computed: {
+    isBuffed () {
+      return this.$store.state.character.skills[this._props.name].buff > 0 || this.$store.state.character.skills[this._props.name].cantrip > 0;
+    },
     canIncrease () {
       // Can't if already specialized
       if (this.$store.state.character.skills[this._props.name].training == Constants.TRAINING.SPECIALIZED) {
@@ -137,8 +140,4 @@ export default {
 </script>
 
 <style>
-.buffed {
-  color: green;
-  font-weight: bold;
-}
 </style>

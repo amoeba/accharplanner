@@ -22,3 +22,15 @@ export default {
   }
 };
 </script>
+<style scoped>
+ul {
+  list-style-type: none;
+  margin: 0px 0px 1.5rem 1.5rem;
+  padding: 0px;
+}
+
+li {
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+</style>
