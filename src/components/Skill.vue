@@ -1,16 +1,27 @@
 <template>
-  <div>
-    <span>{{ name }} ({{ base }}) -> {{ buffed }}</span>
-    <button v-if="canIncrease" v-on:click="increaseTraining">+</button>
-    <button v-if="canDecrease" v-on:click="decreaseTraining">-</button>
-    <ul>
+  <tr>
+    <td>
+      {{ name }}
+    </td>
+    <td>      
+      <button v-if="canIncrease" v-on:click="increaseTraining">+</button>
+    </td>
+    <td>
+      <button v-if="canDecrease" v-on:click="decreaseTraining">-</button>
+    </td>
+    <td>
       <div v-if="canInvest">
-        <li>Invested <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" /> {{ invested }}</li>
+        <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
       </div>
-      <li>Buff: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}</li>
-      <li>Cantrip: <input type="range" min="0" max="4" v-model="cantrip" /> {{ cantripName }}</li>
-    </ul>
-  </div>
+    </td>
+    <td>{{ invested }}</td>
+    <td>{{ base }}</td>
+    <td>{{ buffed }}</td>
+    <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
+    <td>{{ buffLevel }}</td>
+    <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
+    <td>{{ cantripName }}</td>
+  </tr>
 </template>
 
 <script>

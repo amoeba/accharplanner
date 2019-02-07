@@ -376,6 +376,7 @@ export default new Vuex.Store({
     },
 
     updateVitalCantrip(state, payload) {
+      console.log("updateVitalCantrip", payload)
       state.character.vitals[payload.name].cantrip = Number(payload.value);
     },
 

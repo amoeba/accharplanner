@@ -1,17 +1,37 @@
 <template>
   <div>
     <h3>Vitals</h3>
-    <ul>
-      <li>Invested <input type="range" min="0" max="196" v-on:change="changeInvested" /></li>
-      <li>Buffed <input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></li>
-      <li>Cantrip <input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></li>
-    </ul>
-
-    <ul>
-      <Vital name="health" />
-      <Vital name="stamina" />
-      <Vital name="mana" />
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="2">Creation</th>
+          <th colspan="2">Invested</th>
+          <th>Base</th>
+          <th>Buffed</th>
+          <th colspan="2">Buff</th>
+          <th colspan="2">Cantrip</th>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th><input type="range" min="0" max="190" v-on:change="changeInvested" /></th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+          <th>&nbsp;</th>
+          <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <Vital name="health" />
+        <Vital name="stamina" />
+        <Vital name="mana" />
+      </tbody>
+    </table>
   </div>
 </template>
 

@@ -1,12 +1,17 @@
 <template>
-  <li>
-    <span>{{ name }}: {{ creation }} ({{ base }}) -> {{ buffed }}</span>
-    <ul>
-    <li>Invested: <input type="range" min="0" max="190" v-model="invested" /></li>
-    <li>Buffs: <input type="range" min="0" max="8" v-model="buffLevel" /> {{ buffLevel }}</li>
-    <li>Cantrip: <input type="range" min="0" max="4" v-model="cantrip" /> {{ cantripName }}</li>
-    </ul>
-  </li>
+  <tr>
+    <td>{{ name }}</td>
+    <td>&nbsp;</td>
+    <td>{{ creation }}</td>
+    <td><input type="range" min="0" max="190" v-model="invested" /></td>
+    <td>{{ invested }}</td>
+    <td>{{ base }}</td>
+    <td>{{ buffed }}</td>
+    <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
+    <td>{{ buffLevel }}</td>
+    <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
+    <td>{{ cantripName }}</td>
+  </tr>
 </template>
 
 <script>

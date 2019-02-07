@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <span>{{ training }}</span>
-    <ul>
-      <li v-for="skill in skills">
-        <Skill :name=skill />
-      </li>
-    </ul>
-  </div>
+  <tbody>
+    <tr>
+      <td>{{ training }}</td>
+    </tr>
+    <Skill v-for="skill in skills" :key="skill" :name="skill" />
+  </tbody>
 </template>
 
 <script>
