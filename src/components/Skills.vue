@@ -1,10 +1,7 @@
 <template>
   <tbody id="skills">
     <tr>
-      <th colspan="11">Skills</th>
-    </tr>
-    <tr>
-      <th colspan="11">Specialized Skill Credits Spent: {{ specializedSkillPointsSpent }} / 70</th>
+      <th colspan="11">Skills ({{ skillPointsSpent }} / {{ skillPointsAvailable }})</th>
     </tr>
     <tr class="headers">
       <th>Name</th>
@@ -28,19 +25,19 @@
       <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
       <th>&nbsp;</th>
     </tr>
-    <tr>
-      <th colspan="11">Specialized</th>
+    <tr class="specialized">
+      <th colspan="11">Specialized ({{ specializedSkillPointsSpent }} / 70) {{ augmentationsRequiredText }}</th>
     </tr>
     <Skill v-for="skill in specializedSkills" :key="skill" :name="skill" />
-    <tr>
+    <tr class="trained">
       <th colspan="11">Trained</th>
     </tr>
     <Skill v-for="skill in trainedSkills" :key="skill" :name="skill" />
-    <tr>
+    <tr class="untrained">
       <th colspan="11">Untrained</th>
     </tr>
     <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
-    <tr>
+    <tr class="unusable">
       <th colspan="11">Unusable</th>
     </tr>
     <Skill v-for="skill in unusableSkills" :key="skill" :name="skill" />
@@ -55,8 +52,27 @@ export default {
   name: "Skills",
   components: { Skill },
   computed: {
+    skillPointsSpent () {
+      return this.$store.getters.skillPointsSpent;
+    },
+    skillPointsAvailable () {
+      return this.$store.getters.skillPointsAvailable;
+    },
     specializedSkillPointsSpent () {
       return this.$store.getters.specializedSkillPointsSpent;
+    },
+    augmentationsRequired () {
+      return this.$store.getters.augmentationsSpent;
+    },
+    augmentationsRequiredText () {
+      if (this.$store.getters.augmentationsSpent == 0) {
+        return "";
+      } else if (this.$store.getters.augmentationsSpent == 1) {
+        return "1 aug required";
+      } else {
+        return this.$store.getters.augmentationsSpent + " augs required";
+      }
+      return ;
     },
     specializedSkills () {
       return Object.keys(this.$store.state.character.skills)
@@ -88,3 +104,20 @@ export default {
   }
 };
 </script>
+<style scoped>
+.specialized > th {
+  background-color: rgba(255, 0, 255, 0.2);
+}
+
+.trained > th {
+  background-color: rgba(0, 255, 255, 0.2);
+}
+
+.untrained > th {
+  background-color: rgba(220, 220, 0, 0.5);
+}
+
+.unusable > th {
+  background-color: rgba(220, 220, 0, 0.5);
+}
+</style>

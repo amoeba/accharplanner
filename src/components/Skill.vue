@@ -4,11 +4,10 @@
       {{ name }}
     </td>
     <td>      
-      <button v-if="canIncrease" v-on:click="increaseTraining">+</button>
+      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">+</button>
+      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">-</button>
     </td>
-    <td>
-      <button v-if="canDecrease" v-on:click="decreaseTraining">-</button>
-    </td>
+    <td>&nbsp;</td>
     <td>
       <div v-if="canInvest">
         <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
@@ -18,7 +17,7 @@
     <td class="number">{{ base }}</td>
     <td v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
-    <td>{{ buffLevel }}</td>
+    <td>{{ buffName }}</td>
     <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
     <td>{{ cantripName }}</td>
   </tr>
@@ -36,10 +35,10 @@ export default {
     isBuffed () {
       return this.$store.state.character.skills[this._props.name].buff > 0 || this.$store.state.character.skills[this._props.name].cantrip > 0;
     },
-    canIncrease () {
+    cantIncrease () {
       // Can't if already specialized
       if (this.$store.state.character.skills[this._props.name].training == Constants.TRAINING.SPECIALIZED) {
-        return false;
+        return true;
       }
 
       // Can't if out of credits
@@ -47,30 +46,30 @@ export default {
       let newTraining = training = Constants.TRAINING.TRAINED ? Constants.TRAINING.SPECIALIZED : Constants.TRAINED.TRAINED
 
       if (this.$store.getters.skillPointsSpent + Constants.COST_SKILL_POINTS[this._props.name][newTraining] > this.$store.getters.skillPointsAvailable) {
-        return false;
+        return true;
       }
 
       // Can't if would push you over 70 max spec'd credits
       if (this.$store.getters.skillPointsSpent + Constants.COST_SKILL_POINTS[this._props.name][newTraining] > 70) {
-        return false;
+        return true;
       }
 
-      return true;
+      return false;
     },
-    canDecrease () {
+    cantDecrease () {
       let training = this.$store.state.character.skills[this._props.name].training;
 
       // Can't if not trained or higher
       if (training == Constants.TRAINING.UNTRAINED || training == Constants.TRAINING.UNTRAINED) {
-        return false;
+        return true;
       }
 
       // Can't if not untrainable
       if (training == Constants.TRAINING.TRAINED && !Constants.UNTRAINABLE[this._props.name]) {
-        return false;
+        return true;
       }
 
-      return true;
+      return false;
     },
     canInvest () {
       let training = this.$store.state.character.skills[this._props.name].training;
@@ -112,6 +111,9 @@ export default {
           "value": value 
         });
       }
+    },
+    buffName () {
+      return Constants.BUFF_NAME[this.$store.state.character.skills[this._props.name].buff];
     },
     cantrip: {
       get () {

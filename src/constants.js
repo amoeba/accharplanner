@@ -1583,6 +1583,18 @@ const COST_SKILL_TRAINED = {
   "208": 4203819496
 }
 
+const BUFF_NAME = {
+  "0": "",
+  "1": "I",
+  "2": "II",
+  "3": "III",
+  "4": "IV",
+  "5": "V",
+  "6": "VI",
+  "7": "VII",
+  "8": "VIII"
+}
+
 const CANTRIP_NAME = {
   "0": "None",
   "1": "Minor",
@@ -1606,5 +1618,6 @@ export default {
   COST_VITAL,
   COST_SKILL_SPECIALIZED,
   COST_SKILL_TRAINED,
+  BUFF_NAME,
   CANTRIP_NAME
 }

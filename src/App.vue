@@ -1,15 +1,13 @@
 <template>
   <div id="app">
     <h1>Overly Detailed Asheron's Call Character Planner</h1>
-    <ul>
-      <li>Level <input type="range" min="5" max="275" v-model="level" /> {{ level }}</li>
-      <li>XP spent: {{ totalXPInvested }} / {{ totalXPEarned }}</li>
-      <li>Min. Level: {{ requiredLevel }}</li>
+    Level <input type="range" min="1" max="275" v-model="level" /> {{level}}
+    <h3>XP, Buffs, Cantrips</h3>
+    <p>XP spent: {{ totalXPInvested }} (Requires level {{ requiredLevel }})</p>
+    <ul class="xpbuffscantrips">
       <li>Invested <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></li>
       <li>Buffs <input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></li>
       <li>Cantrips <input type="range" min="0" max="4" v-on:change="changeAllCantrips" /></li>
-      <li>skill points {{ skillPointsSpent }} / {{ skillPointsAvailable }}</li>
-      <li>Augs required {{ augmentationsSpent }}</li>
     </ul>
     <ExtraSkillCredits />
     <Attributes />
@@ -87,6 +85,10 @@ export default {
 table {
 }
 
+input[type='range'] {
+  width: 50px;
+}
+
 td,
 th {
   padding: 1px 3px;
@@ -110,6 +112,17 @@ tr.headers th {
 
 tr.controls th {
   background-color: #EEE;
+}
+
+ul.xpbuffscantrips {
+  list-style-type: none;
+  margin: 0px 0px 1.5rem 1.5rem;
+  padding: 0px;
+}
+
+ul.xpbuffscantrips li {
+  display: inline-block;
+  margin-right: 1.5rem;
 }
 
 .number {

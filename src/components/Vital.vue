@@ -8,7 +8,7 @@
     <td class="number">{{ base }}</td>
     <td v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
-    <td>{{ buffLevel }}</td>
+    <td>{{ buffName }}</td>
     <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
     <td>{{ cantripName }}</td>
   </tr>
@@ -56,6 +56,9 @@ export default {
           "value": value 
         });
       }
+    },
+    buffName () {
+      return Constants.BUFF_NAME[this.$store.state.character.vitals[this._props.name].buff];
     },
     cantrip: {
       get() {
