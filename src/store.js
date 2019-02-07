@@ -142,7 +142,6 @@ export default new Vuex.Store({
 
     requiredLevel: (state, getters) => {
       for (var i = 1; i <= 275; i++) {
-        console.log("level " + i, "spent " + getters.totalXPInvested, Constants.COST_LEVEL[i]);
 
         if (getters.totalXPInvested <= Constants.COST_LEVEL[i]) {
           return i;
@@ -208,7 +207,6 @@ export default new Vuex.Store({
       return state.character.attributes.strength.creation + state.character.attributes.strength.invested;
     },
     strengthBuffed: (state, getters) => {
-      console.log(Helpers.cantripBonus(state.character.attributes.strength.cantrip));
       return getters.strengthBase + 
         Helpers.buffBonus(state.character.attributes.strength.buff) +
         Helpers.cantripBonus(state.character.attributes.strength.cantrip);
@@ -410,7 +408,6 @@ export default new Vuex.Store({
     },
 
     updateVitalCantrip(state, payload) {
-      console.log("updateVitalCantrip", payload)
       state.character.vitals[payload.name].cantrip = Number(payload.value);
     },
 
