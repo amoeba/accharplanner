@@ -15,8 +15,6 @@
     <Attributes />
     <Vitals />
     <Skills />
-    <textarea id="export" rows="200" cols="40" v-model="exportedCharacter">
-    </textarea>
   </div>
 </template>
 
