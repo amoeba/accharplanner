@@ -352,7 +352,41 @@ export default new Vuex.Store({
     },
 
     updateAttributeCreation(state, payload) {
-      state.character.attributes[payload.name].creation = Number(payload.value);
+      let newVal = Number(payload.value);
+
+      // Ensure we haven't spent more than 330 points and adjust other
+      // attributes if needed
+      let newSpent = Constants.ATTRIBUTES.map(a => {
+        // Don't count old value for the attribute we're changing, use the new
+        // value
+        if (a === payload.name) {
+          return newVal;
+        } else {
+          return state.character.attributes[a].creation;
+        }
+      }).reduce((a,v) => { 
+        return a + v; 
+      });
+
+      // Use this to iterate over the other attributes we're lowering by name
+      let names = Constants.ATTRIBUTES.filter(v => v !== payload.name);
+
+      if (newSpent > 330) {
+        let extra = newSpent - 330;
+
+        for (var i = 0; i < extra; i++) {
+          // Don't reduce attributes below 10. Adding 1 to `extra` ensures
+          // we iterate long enough to lower everything as much as is needed
+          if (state.character.attributes[names[i % 4]].creation <= 10) {
+            extra += 1;
+            continue;
+          }
+
+          state.character.attributes[names[i % 4]].creation -= 1;
+        }
+      }
+
+      state.character.attributes[payload.name].creation = newVal;
     },
 
     updateAttributeInvested(state, payload) {
