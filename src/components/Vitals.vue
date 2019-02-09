@@ -25,9 +25,9 @@
       <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
       <th>&nbsp;</th>
     </tr>
-    <Vital name="health" />
-    <Vital name="stamina" />
-    <Vital name="mana" />
+    <Vital name="health" displayName="Health" />
+    <Vital name="stamina" displayName="Stamina" />
+    <Vital name="mana" displayName="Mana" />
   </tbody>
 </template>
 

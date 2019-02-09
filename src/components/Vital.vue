@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td>{{ name }}</td>
+    <td>{{ displayName }}</td>
     <td>&nbsp;</td>
     <td class="number">{{ creation }}</td>
     <td><input type="range" min="0" max="190" v-model="invested" /></td>
@@ -20,7 +20,8 @@ import Constants from "../constants";
 export default {
   name: "Vital",
   props: {
-    name: String
+    name: String,
+    displayName: String
   },
   computed: {
     isBuffed () {
