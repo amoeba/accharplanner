@@ -4,8 +4,8 @@
       {{ displayName }}
     </td>
     <td>      
-      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">+</button>
-      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">-</button>
+      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">+ {{ increaseCostText }}</button>
+      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">- {{ decreaseCostText }}</button>
     </td>
     <td>&nbsp;</td>
     <td>
@@ -37,6 +37,48 @@ export default {
     },
     isBuffed () {
       return this.$store.state.character.skills[this._props.name].buff > 0 || this.$store.state.character.skills[this._props.name].cantrip > 0;
+    },
+    increaseCostText () {
+      let currentTraining = this.$store.state.character.skills[this._props.name].training;
+
+      if (currentTraining === Constants.TRAINING.SPECIALIZED) {
+        return;
+      }
+
+      if (currentTraining === Constants.TRAINING.TRAINED) {
+        if (Constants.SPEC_COSTS_AUG[this._props.name]) {
+          return "AUG"
+        } else {
+          return Constants.COST_SKILL_POINTS[this._props.name].specialized;
+        }
+      }
+
+      return Constants.COST_SKILL_POINTS[this._props.name][currentTraining];
+    },
+    decreaseCostText () {
+      let currentTraining = this.$store.state.character.skills[this._props.name].training;
+
+      if (currentTraining === Constants.TRAINING.UNUSABLE || currentTraining === Constants.TRAINING.UNTRAINED) {
+        return "";
+      }
+
+      if (currentTraining === Constants.TRAINING.SPECIALIZED) {
+        if (Constants.SPEC_COSTS_AUG[this._props.name]) {
+          return "AUG"
+        } else {
+          return Constants.COST_SKILL_POINTS[this._props.name].specialized;
+        }      
+      }
+
+      if (currentTraining === Constants.TRAINING.TRAINED) {
+        if (!Constants.UNTRAINABLE[this._props.name]) {
+          return;
+        } else {
+          return Constants.COST_SKILL_POINTS[this._props.name].trained;
+        }
+      }
+      
+      return;
     },
     cantIncrease () {
       // Can't if already specialized
