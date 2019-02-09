@@ -393,7 +393,7 @@ export default new Vuex.Store({
       return cost;
     },
 
-    augmentationSpent: state => {
+    augmentationsSpent: state => {
       let cost = 0;
 
       Object.keys(Constants.SPEC_COSTS_AUG).forEach(skill => {
