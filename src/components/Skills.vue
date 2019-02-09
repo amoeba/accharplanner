@@ -17,7 +17,7 @@
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <th><input type="range" min="0" max="226" v-on:change="changeInvested" /></th>
+      <th><input type="range" min="0" max="226" value="0" v-on:change="changeInvested" /></th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>

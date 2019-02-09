@@ -38,11 +38,11 @@
       </tr>
       <tr>
         <th>Buffs</th>
-        <td><input type="range" min="0" max="8" v-on:change="changeAllBuffs" /></td>
+        <td><input type="range" min="0" max="8" value="0" v-on:change="changeAllBuffs" /></td>
       </tr>
       <tr>
         <th>Cantrips</th>
-        <td><input type="range" min="0" max="4" v-on:change="changeAllCantrips" /></td>
+        <td><input type="range" min="0" max="4" value="0" v-on:change="changeAllCantrips" /></td>
       </tr>
       </tbody>
     </table>
