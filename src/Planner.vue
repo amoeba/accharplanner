@@ -1,55 +1,64 @@
 <template>
   <div id="planner">
     <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
-    <table>
-      <tbody>
-        <tr>
-          <th>Level</th>
-          <td><input type="range" min="1" max="275" v-model="level" /> {{level}}</td>
-        </tr>
-        <tr>
-          <th>Times Enlightened</th>
-          <td><input type="range" min="1" max="5" v-model="timesEnlightened" /> {{ timesEnlightened }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <table>
+        <tbody>
+          <tr>
+            <th>Level</th>
+            <td><input type="range" min="1" max="275" v-model="level" /> {{level}}</td>
+          </tr>
+          <tr>
+            <th>Times Enlightened</th>
+            <td><input type="range" min="1" max="5" v-model="timesEnlightened" /> {{ timesEnlightened }}</td>
+          </tr>
+        </tbody>
+      </table>
 
+      <div>
+        <h3>XP, Buffs, Cantrips</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>XP Earned</th>
+              <td>{{ totalXPEarned }}</td>
+            </tr>
+            <tr>
+              <th>XP Spent</th>
+              <td>{{ totalXPInvested }}</td>
+              <td>(Requires at least level {{ requiredLevel }})</td>
+            </tr>
+            <tr>
+              <th>Lum. XP Spent</th>
+              <td>{{ totalLuminanceXPSpent }}</td>
+              <td>&nbsp;</td>
+            </tr>
+          <tr>
+            <th>Invested</th>
+            <td><input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></td>
+          </tr>
+          <tr>
+            <th>Buffs</th>
+            <td><input type="range" min="0" max="8" value="0" v-on:change="changeAllBuffs" /></td>
+          </tr>
+          <tr>
+            <th>Cantrips</th>
+            <td><input type="range" min="0" max="4" value="0" v-on:change="changeAllCantrips" /></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <ExtraSkillCredits />
+    </div>
 
-    <h3>XP, Buffs, Cantrips</h3>
-    <table>
-      <tbody>
-        <tr>
-          <th>XP Earned</th>
-          <td>{{ totalXPEarned }}</td>
-        </tr>
-        <tr>
-          <th>XP Spent</th>
-          <td>{{ totalXPInvested }}</td>
-          <td>(Requires at least level {{ requiredLevel }})</td>
-        </tr>
-        <tr>
-          <th>Lum. XP Spent</th>
-          <td>{{ totalLuminanceXPSpent }}</td>
-          <td>&nbsp;</td>
-        </tr>
-      <tr>
-        <th>Invested</th>
-        <td><input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></td>
-      </tr>
-      <tr>
-        <th>Buffs</th>
-        <td><input type="range" min="0" max="8" value="0" v-on:change="changeAllBuffs" /></td>
-      </tr>
-      <tr>
-        <th>Cantrips</th>
-        <td><input type="range" min="0" max="4" value="0" v-on:change="changeAllCantrips" /></td>
-      </tr>
-      </tbody>
-    </table>
-    <ExtraSkillCredits />
-    <Attributes />
-    <Vitals />
-    <Skills />
+    <div class="row">
+      <table>
+        <Attributes />
+        <Vitals />
+      </table>
+
+      <Skills />
+    </div>
   </div>
 </template>
 
@@ -130,6 +139,12 @@ export default {
   font-size: 14px;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 #attributes input[type='range'],
 #vitals input[type='range'],
 #skills input[type='range'] {
@@ -142,9 +157,9 @@ th {
   text-align: left;
 }
 
-#attributes > tr:first-child > th,
-#vitals > tr:first-child > th,
-#skills > tr:first-child > th {
+#attributes tr:first-child > th,
+#vitals tr:first-child > th,
+#skills tr:first-child > th {
   font-size: 125%;
 }
 

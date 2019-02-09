@@ -1,54 +1,58 @@
 <template>
-  <tbody id="skills">
-    <tr>
-      <th colspan="11">Skills ({{ skillPointsSpent }} / {{ skillPointsAvailable }}) <span class="error">{{ skillPointsSpentErrorText }}</span></th>
-      </th>
-    </tr>
-    <tr class="headers">
-      <th>Name</th>
-      <th colspan="2">&nbsp;</th>
-      <th colspan="2">Invested</th>
-      <th>Base</th>
-      <th>Buffed</th>
-      <th colspan="2">Buff</th>
-      <th colspan="2">Cantrip</th>
-    </tr>
-    <tr class="controls">
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th><input type="range" min="0" max="226" value="0" v-on:change="changeInvested" /></th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
-      <th>&nbsp;</th>
-      <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
-      <th>&nbsp;</th>
-    </tr>
-    <tr class="specialized">
-      <th colspan="11">Specialized ({{ specializedSkillPointsSpent }} / 70) {{ augmentationsRequiredText }}</th>
-    </tr>
-    <tr v-if="noSpecializedSkills">
-      <td class="center" colspan="11">No specialized skills</td>
-    </tr>
-    <Skill v-for="skill in specializedSkills" :key="skill" :name="skill" />
-    <tr class="trained">
-      <th colspan="11">Trained</th>
-    </tr>
-    <tr v-if="noTrainedSkills">
-      <td class="center" colspan="11">No trained skills</td>
-    </tr>
-    <Skill v-for="skill in trainedSkills" :key="skill" :name="skill" />
-    <tr class="untrained">
-      <th colspan="11">Untrained</th>
-    </tr>
-    <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
-    <tr class="unusable">
-      <th colspan="11">Unusable</th>
-    </tr>
-    <Skill v-for="skill in unusableSkills" :key="skill" :name="skill" />
-  </tbody>
+  <table id="skills">
+    <tbody>
+      <tr>
+        <th colspan="11">Skills</th>
+      </tr>
+      <tr>
+        <th>Skill Points Spent: {{ skillPointsSpent }} / {{ skillPointsAvailable }} <span class="error">{{ skillPointsSpentErrorText }}</span></th>
+      </tr>
+      <tr class="headers">
+        <th>Name</th>
+        <th colspan="2">&nbsp;</th>
+        <th colspan="2">Invested</th>
+        <th>Base</th>
+        <th>Buffed</th>
+        <th colspan="2">Buff</th>
+        <th colspan="2">Cantrip</th>
+      </tr>
+      <tr class="controls">
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th><input type="range" min="0" max="226" value="0" v-on:change="changeInvested" /></th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+        <th>&nbsp;</th>
+        <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr class="specialized">
+        <th colspan="11">Specialized ({{ specializedSkillPointsSpent }} / 70) {{ augmentationsRequiredText }}</th>
+      </tr>
+      <tr v-if="noSpecializedSkills">
+        <td class="center" colspan="11">No specialized skills</td>
+      </tr>
+      <Skill v-for="skill in specializedSkills" :key="skill" :name="skill" />
+      <tr class="trained">
+        <th colspan="11">Trained</th>
+      </tr>
+      <tr v-if="noTrainedSkills">
+        <td class="center" colspan="11">No trained skills</td>
+      </tr>
+      <Skill v-for="skill in trainedSkills" :key="skill" :name="skill" />
+      <tr class="untrained">
+        <th colspan="11">Untrained</th>
+      </tr>
+      <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
+      <tr class="unusable">
+        <th colspan="11">Unusable</th>
+      </tr>
+      <Skill v-for="skill in unusableSkills" :key="skill" :name="skill" />
+    </tbody>
+  </table>
 </template>
 
 <script>
