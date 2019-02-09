@@ -15,6 +15,7 @@ export default new Vuex.Store({
   state: {
     character: {
       level: 5,
+      timesEnlightened: 0,
       extraSkillCredits: {
         "railrea": false,
         "oswald": false,
@@ -118,6 +119,16 @@ export default new Vuex.Store({
       return cost;
     },
 
+    totalXPEarned: (state, getters) => {
+      let cost = 0;
+
+      cost += Constants.COST_LEVEL[state.character.level];
+      cost += state.character.timesEnlightened * Constants.COST_LEVEL["275"];
+
+      return cost;
+    },
+    
+
     totalXPInvested: (state, getters) => {
       let cost = 0;
 
@@ -137,16 +148,23 @@ export default new Vuex.Store({
         cost += Constants.COST_SKILL_TRAINED[state.character.skills[s].invested];
       });
 
+      cost += state.character.timesEnlightened * Constants.COST_LEVEL["275"];
+
       return cost;
     },
     
     requiredLevel: (state, getters) => {
-      for (var i = 1; i <= 275; i++) {
-
-        if (getters.totalXPInvested <= Constants.COST_LEVEL[i]) {
-          return i;
+      for (var e = 0; e < 6; e++) {
+        for (var i = 1; i <= 275; i++) {
+          if (getters.totalXPInvested <= (Constants.COST_LEVEL[i] + e * Constants.COST_LEVEL[i])) {
+            return i;
+          }
         }
       }
+
+
+      // We didn't find a solution which means we've Enlightened
+      return -1;
     },
 
     skillPointsAvailable: state => {
@@ -191,6 +209,12 @@ export default new Vuex.Store({
           cost += 1000000000 ;
         }
       });
+
+      // Enlightenment requires you get all lum auras (20mil xp)
+      // TODO: Track auras and this together
+      if (state.character.timesEnlightened > 0) {
+        cost += 20000000;
+      }
       
       return cost;
     },
@@ -294,7 +318,8 @@ export default new Vuex.Store({
     // Skills
     alchemyBase: (state, getters) => {
       return Math.round((getters.coordinationBase + getters.focusBase) / 3) + 
-        Helpers.trainingBonus(state.character.skills.alchemy.training) + 
+        Helpers.trainingBonus(state.character.skills.alchemy.training) +
+        state.character.timesEnlightened +
         state.character.skills.alchemy.invested;
     },
     alchemyBuffed: (state, getters) => {
@@ -306,6 +331,7 @@ export default new Vuex.Store({
     arcane_loreBase: (state, getters) => {
       return Math.round(getters.focusBase / 3) + 
         Helpers.trainingBonus(state.character.skills.arcane_lore.training) + 
+        state.character.timesEnlightened +
         state.character.skills.arcane_lore.invested;
     },
     arcane_loreBuffed: (state, getters) => {
@@ -317,6 +343,7 @@ export default new Vuex.Store({
     melee_defenseBase: (state, getters) => {
       return Math.round((getters.coordinationBase + getters.quicknessBase / 3)) + 
         Helpers.trainingBonus(state.character.skills.melee_defense.training) + 
+        state.character.timesEnlightened +
         state.character.skills.melee_defense.invested;
     },
     melee_defenseBuffed: (state, getters) => {
@@ -327,7 +354,8 @@ export default new Vuex.Store({
     },
     salvagingBase: (state, getters) => {
       return Helpers.trainingBonus(state.character.skills.salvaging.training) + 
-        state.character.skills.salvaging.invested;
+      state.character.timesEnlightened +
+      state.character.skills.salvaging.invested;
     },
     salvagingBuffed: (state, getters) => {
       return getters.salvagingBase + 
@@ -355,6 +383,10 @@ export default new Vuex.Store({
   mutations: {
     updateLevel(state, value) {
       state.character.level = Number(value);
+    },
+
+    updateTimesEnlightened(state, value) {
+      state.character.timesEnlightened = Number(value);
     },
 
     updateExtraSkillCredit(state, payload) {

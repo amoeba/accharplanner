@@ -1,17 +1,34 @@
 <template>
   <div id="planner">
     <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
-    Level <input type="range" min="1" max="275" v-model="level" /> {{level}}
+    <table>
+      <tbody>
+        <tr>
+          <th>Level</th>
+          <td><input type="range" min="1" max="275" v-model="level" /> {{level}}</td>
+        </tr>
+        <tr>
+          <th>Times Enlightened</th>
+          <td><input type="range" min="1" max="5" v-model="timesEnlightened" /> {{ timesEnlightened }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
     <h3>XP, Buffs, Cantrips</h3>
     <table>
       <tbody>
         <tr>
-          <th>XP Spent</th>
-          <td>{{ totalXPInvested }}</td>
-          <td>(Requires level {{ requiredLevel }})</td>
+          <th>XP Earned</th>
+          <td>{{ totalXPEarned }}</td>
         </tr>
         <tr>
-          <th>Luminance XP Spent</th>
+          <th>XP Spent</th>
+          <td>{{ totalXPInvested }}</td>
+          <td>(Requires at least level {{ requiredLevel }})</td>
+        </tr>
+        <tr>
+          <th>Lum. XP Spent</th>
           <td>{{ totalLuminanceXPSpent }}</td>
           <td>&nbsp;</td>
         </tr>
@@ -81,6 +98,14 @@ export default {
       }
     },
 
+    timesEnlightened: {
+      get () {
+        return this.$store.state.character.timesEnlightened;
+      },
+      set (value) {
+        this.$store.commit('updateTimesEnlightened', value);
+      }
+    },
     exportedCharacter() {
         return this.$store.getters.exportedCharacter;
     }
@@ -105,7 +130,9 @@ export default {
   font-size: 14px;
 }
 
-input[type='range'] {
+#attributes input[type='range'],
+#vitals input[type='range'],
+#skills input[type='range'] {
   width: 50px;
 }
 
