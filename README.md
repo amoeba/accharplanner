@@ -12,33 +12,21 @@ This isn't the first skill planner for AC:
 ## What makes this different?
 
 - This planner calculates actual/buffed stat/vital/skill values
-- This planner intends to support more of the ways you can affect your character (like sets) <-- Very WIP
-
-Note: I made this as a way to learn Vue.js which makes some of this reactive programming much easier.
+- This planner intends to support more of the ways you can affect your character (like sets)
+  - [x] XP investment
+  - [x] Buffs
+  - [x] Major & minor cantrips
+  - [x] Enlightenment
+  - [ ] Augmentations (partially done)
+  - [ ] Sets
+  - [ ] Temporary bonuse
+    - [ ] Rares
+    - [ ] Cloaks
+    - [ ] Aetheria
 
 ## Development
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Check out `package.json` for scripts. You probably want to `yarn install` and `yarn run serve`.
 
 ## Contributing
 
