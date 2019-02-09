@@ -5,7 +5,7 @@
         <th colspan="11">Skills</th>
       </tr>
       <tr>
-        <th>Skill Points Spent: {{ skillPointsSpent }} / {{ skillPointsAvailable }} <span class="error">{{ skillPointsSpentErrorText }}</span></th>
+        <th colspan="11">Skill Points Spent: {{ skillPointsSpent }} / {{ skillPointsAvailable }} <span class="error">{{ skillPointsSpentErrorText }}</span></th>
       </tr>
       <tr class="headers">
         <th>Name</th>
