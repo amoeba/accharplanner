@@ -5,10 +5,10 @@
     </td>
     <td>
       <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
-        + {{ increaseCostText }}
+        {{ increaseCostText }}
       </button>
       <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
-        - {{ decreaseCostText }}
+        {{ decreaseCostText }}
       </button>
     </td>
     <td>&nbsp;</td>
@@ -66,7 +66,7 @@ export default {
         }
       }
 
-      return Constants.COST_SKILL_POINTS[this._props.name][currentTraining];
+      return Constants.COST_SKILL_POINTS[this._props.name].trained;
     },
     decreaseCostText() {
       let currentTraining = this.$store.state.character.skills[this._props.name]
