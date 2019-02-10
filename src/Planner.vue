@@ -168,6 +168,7 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
+  min-width: 660px;
 }
 
 .row {
@@ -180,6 +181,15 @@ export default {
 #vitals input[type="range"],
 #skills input[type="range"] {
   width: 50px;
+}
+
+button {
+  width: 50px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0.5rem;
 }
 
 td,
