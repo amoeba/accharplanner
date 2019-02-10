@@ -2,42 +2,46 @@
   <div id="planner">
     <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
     <div class="row">
-      <table>
-        <tbody>
+      <div>
+        <h3>Character</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <td><input id="charname" type="text" v-model="name" /></td>
+            </tr>
           <tr>
             <th>Level</th>
             <td>
               <input type="range" min="1" max="275" v-model="level" />
-              {{ level }}
+              <span>{{ level }}</span>
             </td>
           </tr>
-          <tr>
-            <th>Times Enlightened</th>
-            <td>
-              <input type="range" min="1" max="5" v-model="timesEnlightened" />
-              {{ timesEnlightened }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div>
-        <h3>XP, Buffs, Cantrips</h3>
-        <table>
-          <tbody>
             <tr>
-              <th>XP Earned</th>
-              <td>{{ totalXPEarned }}</td>
+              <th>Race</th>
+              <td>
+                <select v-model="race">
+                  <option>Aluvian</option>
+                  <option>Gharu'ndim</option>
+                  <option>Sho</option>
+                </select>
+              </td>
             </tr>
             <tr>
-              <th>XP Spent</th>
-              <td>{{ totalXPInvested }}</td>
-              <td>(Requires at least level {{ requiredLevel }})</td>
+              <th>Gender</th>
+              <td>
+                <input type="radio" id="female" value="Female" v-model="gender">
+                <label for="female">Female</label>
+                <input type="radio" id="male" value="Male" v-model="gender">
+                <label for="male">Male</label>
+              </td>
             </tr>
             <tr>
-              <th>Lum. XP Spent</th>
-              <td>{{ totalLuminanceXPSpent }}</td>
-              <td>&nbsp;</td>
+              <th>Times Enlightened</th>
+              <td>
+                <input type="range" min="1" max="5" v-model="timesEnlightened" />
+                {{ timesEnlightened }}
+              </td>
             </tr>
             <tr>
               <th>Invested</th>
@@ -78,6 +82,29 @@
           </tbody>
         </table>
       </div>
+      <div>
+        <h3>Details</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>XP Earned</th>
+              <td>{{ totalXPEarned }}</td>
+            </tr>
+            <tr>
+              <th>XP Spent</th>
+              <td>
+                <span>{{ totalXPInvested }}</span><br />
+                <span v-bind:class="isOverspent ? 'red' : 'gray'">Requires >= level {{ requiredLevel }}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Lum. XP Spent</th>
+              <td>{{ totalLuminanceXPSpent }}</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <ExtraSkillCredits />
     </div>
 
@@ -113,6 +140,9 @@ export default {
     totalXPInvested() {
       return Number(this.$store.getters.totalXPInvested).toLocaleString();
     },
+    isOverspent () {
+      return Number(this.$store.getters.totalXPInvested) > Number(this.$store.getters.totalXPEarned);
+    },
     skillPointsSpent() {
       return this.$store.getters.skillPointsSpent;
     },
@@ -128,6 +158,14 @@ export default {
     totalLuminanceXPSpent() {
       return this.$store.getters.totalLuminanceXPSpent.toLocaleString();
     },
+    name: {
+      get() {
+        return this.$store.state.character.name;
+      },
+      set(value) {
+        this.$store.commit("updateName", value);
+      }
+    },
     level: {
       get() {
         return this.$store.state.character.level;
@@ -136,7 +174,22 @@ export default {
         this.$store.commit("updateLevel", value);
       }
     },
-
+    race: {
+      get() {
+        return this.$store.state.character.race;
+      },
+      set(value) {
+        this.$store.commit("updateRace", value);
+      }
+    },
+    gender: {
+      get() {
+        return this.$store.state.character.gender;
+      },
+      set(value) {
+        this.$store.commit("updateGender", value);
+      }
+    },
     timesEnlightened: {
       get() {
         return this.$store.state.character.timesEnlightened;
@@ -183,6 +236,13 @@ export default {
   width: 50px;
 }
 
+input, select {
+  font-size: 100%;
+}
+#charname {
+  border: none;
+}
+
 button {
   width: 50px;
 }
@@ -217,15 +277,10 @@ tr.controls th {
   background-color: #eee;
 }
 
-ul.xpbuffscantrips {
+#extraskillcredits ul {
   list-style-type: none;
-  margin: 0px 0px 1.5rem 1.5rem;
-  padding: 0px;
-}
-
-ul.xpbuffscantrips li {
-  display: inline-block;
-  margin-right: 1.5rem;
+  margin: 0.5rem;
+  padding: 0;
 }
 
 .number {
@@ -243,6 +298,14 @@ ul.xpbuffscantrips li {
 
 .center {
   text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.gray {
+  color: gray;
 }
 
 #export {

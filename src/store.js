@@ -14,6 +14,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     character: {
+      name: "An Adventurer",
+      race: "Aluvian",
+      gender: "Female",
       level: 5,
       timesEnlightened: 0,
       extraSkillCredits: {
@@ -1344,8 +1347,17 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    updateName(state, value) {
+      state.character.name = value;
+    },
     updateLevel(state, value) {
       state.character.level = Number(value);
+    },
+    updateRace(state, value) {
+      state.character.race = value;
+    },
+    updateGender(state, value) {
+      state.character.gender = value;
     },
 
     updateTimesEnlightened(state, value) {

@@ -49,9 +49,9 @@
       </th>
       <th>&nbsp;</th>
     </tr>
-    <Vital name="health" displayName="Health" />
-    <Vital name="stamina" displayName="Stamina" />
-    <Vital name="mana" displayName="Mana" />
+    <Vital name="health" display-name="Health" />
+    <Vital name="stamina" display-name="Stamina" />
+    <Vital name="mana" display-name="Mana" />
   </tbody>
 </template>
 
