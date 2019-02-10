@@ -1,7 +1,7 @@
 import Constants from "./constants";
 
 export default {
-  trainingBonus: (training) => {
+  trainingBonus: training => {
     if (training === Constants.TRAINING.SPECIALIZED) {
       return 10;
     } else if (training === Constants.TRAINING.TRAINED) {
@@ -10,8 +10,8 @@ export default {
       return 0;
     }
   },
-  buffBonus: (level) => {
-    switch(level) {
+  buffBonus: level => {
+    switch (level) {
       case 1:
         return 10;
       case 2:
@@ -32,8 +32,8 @@ export default {
         return 0;
     }
   },
-  cantripBonus: (level) => {
-    switch(level) {
+  cantripBonus: level => {
+    switch (level) {
       case 1:
         return 5;
       case 2:
@@ -49,4 +49,4 @@ export default {
   untrainedState: {
     alchemy: Constants.TRAINING.UNUSABLE
   }
-}
+};

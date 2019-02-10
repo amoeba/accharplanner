@@ -4,7 +4,9 @@
       <th colspan="11">Attributes</th>
     </tr>
     <tr>
-      <th colspan="11">Creation Attribute Points Spent: {{ attributePointsSpent }} / 330</th>
+      <th colspan="11">
+        Creation Attribute Points Spent: {{ attributePointsSpent }} / 330
+      </th>
     </tr>
     <tr class="headers">
       <th class="name">Name</th>
@@ -19,13 +21,37 @@
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <th><input type="range" min="0" max="190" value="0" v-on:change="changeInvested" /></th>
+      <th>
+        <input
+          type="range"
+          min="0"
+          max="190"
+          value="0"
+          v-on:change="changeInvested"
+        />
+      </th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+      <th>
+        <input
+          type="range"
+          min="0"
+          max="8"
+          value="0"
+          v-on:change="changeBuffed"
+        />
+      </th>
       <th>&nbsp;</th>
-      <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrip" /></th>
+      <th>
+        <input
+          type="range"
+          min="0"
+          max="4"
+          value="0"
+          v-on:change="changeCantrip"
+        />
+      </th>
       <th>&nbsp;</th>
     </tr>
     <Attribute name="strength" display="Strength" />
@@ -46,23 +72,21 @@ export default {
     Attribute
   },
   computed: {
-    attributePointsSpent () {
+    attributePointsSpent() {
       return this.$store.getters.attributePointsSpent;
     }
   },
   methods: {
-    changeInvested (e) {
+    changeInvested(e) {
       this.$store.commit("changeAllAttributeInvestment", e.target.value);
     },
-    changeBuffed (e) {
+    changeBuffed(e) {
       this.$store.commit("changeAllAttributeBuffs", e.target.value);
     },
-    changeCantrip (e) {
+    changeCantrip(e) {
       this.$store.commit("changeAllAttributeCantrips", e.target.value);
     }
   }
 };
 </script>
-<style>
-
-</style>
+<style></style>

@@ -1,7 +1,5 @@
 <template>
-  <tbody>
-
-  </tbody>
+  <tbody></tbody>
 </template>
 
 <script>
@@ -11,11 +9,11 @@ export default {
   name: "SkillGroup",
   components: { Skill },
   props: {
-    training: String,
+    training: String
   },
   computed: {
-    skills () {
-      return this.$store.getters[this._props.training + "Skills"]
+    skills() {
+      return this.$store.getters[this._props.training + "Skills"];
     }
   }
 };

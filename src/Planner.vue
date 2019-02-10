@@ -6,11 +6,17 @@
         <tbody>
           <tr>
             <th>Level</th>
-            <td><input type="range" min="1" max="275" v-model="level" /> {{level}}</td>
+            <td>
+              <input type="range" min="1" max="275" v-model="level" />
+              {{ level }}
+            </td>
           </tr>
           <tr>
             <th>Times Enlightened</th>
-            <td><input type="range" min="1" max="5" v-model="timesEnlightened" /> {{ timesEnlightened }}</td>
+            <td>
+              <input type="range" min="1" max="5" v-model="timesEnlightened" />
+              {{ timesEnlightened }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -33,18 +39,42 @@
               <td>{{ totalLuminanceXPSpent }}</td>
               <td>&nbsp;</td>
             </tr>
-          <tr>
-            <th>Invested</th>
-            <td><input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" /></td>
-          </tr>
-          <tr>
-            <th>Buffs</th>
-            <td><input type="range" min="0" max="8" value="0" v-on:change="changeAllBuffs" /></td>
-          </tr>
-          <tr>
-            <th>Cantrips</th>
-            <td><input type="range" min="0" max="4" value="0" v-on:change="changeAllCantrips" /></td>
-          </tr>
+            <tr>
+              <th>Invested</th>
+              <td>
+                <input
+                  type="range"
+                  min="0"
+                  max="226"
+                  value="0"
+                  v-on:change="changeAllInvestments"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Buffs</th>
+              <td>
+                <input
+                  type="range"
+                  min="0"
+                  max="8"
+                  value="0"
+                  v-on:change="changeAllBuffs"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Cantrips</th>
+              <td>
+                <input
+                  type="range"
+                  min="0"
+                  max="4"
+                  value="0"
+                  v-on:change="changeAllCantrips"
+                />
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -77,56 +107,56 @@ export default {
     Skills
   },
   computed: {
-    totalXPEarned () {
+    totalXPEarned() {
       return Number(this.$store.getters.totalXPEarned).toLocaleString();
     },
-    totalXPInvested () {
+    totalXPInvested() {
       return Number(this.$store.getters.totalXPInvested).toLocaleString();
     },
-    skillPointsSpent () {
+    skillPointsSpent() {
       return this.$store.getters.skillPointsSpent;
     },
-    skillPointsAvailable () {
+    skillPointsAvailable() {
       return this.$store.getters.skillPointsAvailable;
     },
-    augmentationsSpent () {
+    augmentationsSpent() {
       return this.$store.getters.augmentationsSpent;
     },
-    requiredLevel () {
+    requiredLevel() {
       return this.$store.getters.requiredLevel;
     },
-    totalLuminanceXPSpent () {
+    totalLuminanceXPSpent() {
       return this.$store.getters.totalLuminanceXPSpent.toLocaleString();
     },
     level: {
-      get () {
+      get() {
         return this.$store.state.character.level;
       },
-      set (value) {
-        this.$store.commit('updateLevel', value);
+      set(value) {
+        this.$store.commit("updateLevel", value);
       }
     },
 
     timesEnlightened: {
-      get () {
+      get() {
         return this.$store.state.character.timesEnlightened;
       },
-      set (value) {
-        this.$store.commit('updateTimesEnlightened', value);
+      set(value) {
+        this.$store.commit("updateTimesEnlightened", value);
       }
     },
     exportedCharacter() {
-        return this.$store.getters.exportedCharacter;
+      return this.$store.getters.exportedCharacter;
     }
   },
   methods: {
-    changeAllInvestments (e) {
+    changeAllInvestments(e) {
       this.$store.commit("changeAllInvestment", e.target.value);
     },
-    changeAllBuffs (e) {
+    changeAllBuffs(e) {
       this.$store.commit("changeAllBuffs", e.target.value);
     },
-    changeAllCantrips (e) {
+    changeAllCantrips(e) {
       this.$store.commit("changeAllCantrips", e.target.value);
     }
   }
@@ -135,7 +165,8 @@ export default {
 
 <style>
 #planner {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 
@@ -145,9 +176,9 @@ export default {
   flex-wrap: wrap;
 }
 
-#attributes input[type='range'],
-#vitals input[type='range'],
-#skills input[type='range'] {
+#attributes input[type="range"],
+#vitals input[type="range"],
+#skills input[type="range"] {
   width: 50px;
 }
 
@@ -169,11 +200,11 @@ th {
 }
 
 tr.headers th {
-  background-color: #CCC;
+  background-color: #ccc;
 }
 
 tr.controls th {
-  background-color: #EEE;
+  background-color: #eee;
 }
 
 ul.xpbuffscantrips {

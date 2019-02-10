@@ -16,13 +16,37 @@
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <th><input type="range" min="0" max="190" value="0" v-on:change="changeInvested" /></th>
+      <th>
+        <input
+          type="range"
+          min="0"
+          max="190"
+          value="0"
+          v-on:change="changeInvested"
+        />
+      </th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <th><input type="range" min="0" max="8" value="0" v-on:change="changeBuffed" /></th>
+      <th>
+        <input
+          type="range"
+          min="0"
+          max="8"
+          value="0"
+          v-on:change="changeBuffed"
+        />
+      </th>
       <th>&nbsp;</th>
-      <th><input type="range" min="0" max="4" value="0" v-on:change="changeCantrips" /></th>
+      <th>
+        <input
+          type="range"
+          min="0"
+          max="4"
+          value="0"
+          v-on:change="changeCantrips"
+        />
+      </th>
       <th>&nbsp;</th>
     </tr>
     <Vital name="health" displayName="Health" />
@@ -40,13 +64,13 @@ export default {
     Vital
   },
   methods: {
-    changeInvested (e) {
+    changeInvested(e) {
       this.$store.commit("changeAllVitalInvestment", e.target.value);
     },
-    changeBuffed (e) {
+    changeBuffed(e) {
       this.$store.commit("changeAllVitalBuffs", e.target.value);
     },
-    changeCantrips (e) {
+    changeCantrips(e) {
       this.$store.commit("changeAllVitalCantrips", e.target.value);
     }
   }

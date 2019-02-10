@@ -3,14 +3,23 @@
     <td>
       {{ displayName }}
     </td>
-    <td>      
-      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">+ {{ increaseCostText }}</button>
-      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">- {{ decreaseCostText }}</button>
+    <td>
+      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
+        + {{ increaseCostText }}
+      </button>
+      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+        - {{ decreaseCostText }}
+      </button>
     </td>
     <td>&nbsp;</td>
     <td>
       <div v-if="canInvest">
-        <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
+        <input
+          type="range"
+          min="0"
+          v-bind:max="maxInvestment"
+          v-model="invested"
+        />
       </div>
     </td>
     <td class="number">{{ invested }}</td>
@@ -32,22 +41,26 @@ export default {
     name: String
   },
   computed: {
-    displayName () {
+    displayName() {
       return Constants.SKILL_NAME[this._props.name];
     },
-    isBuffed () {
-      return this.$store.state.character.skills[this._props.name].buff > 0 || this.$store.state.character.skills[this._props.name].cantrip > 0;
+    isBuffed() {
+      return (
+        this.$store.state.character.skills[this._props.name].buff > 0 ||
+        this.$store.state.character.skills[this._props.name].cantrip > 0
+      );
     },
-    increaseCostText () {
-      let currentTraining = this.$store.state.character.skills[this._props.name].training;
+    increaseCostText() {
+      let currentTraining = this.$store.state.character.skills[this._props.name]
+        .training;
 
       if (currentTraining === Constants.TRAINING.SPECIALIZED) {
-        return;
+        return "";
       }
 
       if (currentTraining === Constants.TRAINING.TRAINED) {
         if (Constants.SPEC_COSTS_AUG[this._props.name]) {
-          return "AUG"
+          return "AUG";
         } else {
           return Constants.COST_SKILL_POINTS[this._props.name].specialized;
         }
@@ -55,19 +68,23 @@ export default {
 
       return Constants.COST_SKILL_POINTS[this._props.name][currentTraining];
     },
-    decreaseCostText () {
-      let currentTraining = this.$store.state.character.skills[this._props.name].training;
+    decreaseCostText() {
+      let currentTraining = this.$store.state.character.skills[this._props.name]
+        .training;
 
-      if (currentTraining === Constants.TRAINING.UNUSABLE || currentTraining === Constants.TRAINING.UNTRAINED) {
+      if (
+        currentTraining === Constants.TRAINING.UNUSABLE ||
+        currentTraining === Constants.TRAINING.UNTRAINED
+      ) {
         return "";
       }
 
       if (currentTraining === Constants.TRAINING.SPECIALIZED) {
         if (Constants.SPEC_COSTS_AUG[this._props.name]) {
-          return "AUG"
+          return "AUG";
         } else {
           return Constants.COST_SKILL_POINTS[this._props.name].specialized;
-        }      
+        }
       }
 
       if (currentTraining === Constants.TRAINING.TRAINED) {
@@ -77,114 +94,149 @@ export default {
           return Constants.COST_SKILL_POINTS[this._props.name].trained;
         }
       }
-      
-      return;
+
+      return "";
     },
-    cantIncrease () {
+    cantIncrease() {
       // Can't if already specialized
-      if (this.$store.state.character.skills[this._props.name].training == Constants.TRAINING.SPECIALIZED) {
+      if (
+        this.$store.state.character.skills[this._props.name].training ==
+        Constants.TRAINING.SPECIALIZED
+      ) {
         return true;
       }
 
       // Can't if out of credits
-      let training = this.$store.state.character.skills[this._props.name].training;
-      let newTraining = training = Constants.TRAINING.TRAINED ? Constants.TRAINING.SPECIALIZED : Constants.TRAINED.TRAINED
+      let training = this.$store.state.character.skills[this._props.name]
+        .training;
+      let newTraining =
+        training == Constants.TRAINING.TRAINED
+          ? Constants.TRAINING.SPECIALIZED
+          : Constants.TRAINED.TRAINED;
 
-      if (this.$store.getters.skillPointsSpent + Constants.COST_SKILL_POINTS[this._props.name][newTraining] > this.$store.getters.skillPointsAvailable) {
+      if (
+        this.$store.getters.skillPointsSpent +
+          Constants.COST_SKILL_POINTS[this._props.name][newTraining] >
+        this.$store.getters.skillPointsAvailable
+      ) {
         return true;
       }
 
       // Can't if would push you over 70 max spec'd credits
-      if (this.$store.getters.skillPointsSpent + Constants.COST_SKILL_POINTS[this._props.name][newTraining] > 70) {
+      if (
+        this.$store.getters.skillPointsSpent +
+          Constants.COST_SKILL_POINTS[this._props.name][newTraining] >
+        70
+      ) {
         return true;
       }
 
       return false;
     },
-    cantDecrease () {
-      let training = this.$store.state.character.skills[this._props.name].training;
+    cantDecrease() {
+      let training = this.$store.state.character.skills[this._props.name]
+        .training;
 
       // Can't if not trained or higher
-      if (training == Constants.TRAINING.UNTRAINED || training == Constants.TRAINING.UNTRAINED) {
+      if (
+        training == Constants.TRAINING.UNTRAINED ||
+        training == Constants.TRAINING.UNTRAINED
+      ) {
         return true;
       }
 
       // Can't if not untrainable
-      if (training == Constants.TRAINING.TRAINED && !Constants.UNTRAINABLE[this._props.name]) {
+      if (
+        training == Constants.TRAINING.TRAINED &&
+        !Constants.UNTRAINABLE[this._props.name]
+      ) {
         return true;
       }
 
       return false;
     },
-    canInvest () {
-      let training = this.$store.state.character.skills[this._props.name].training;
-      return training == Constants.TRAINING.SPECIALIZED || training == Constants.TRAINING.TRAINED;
+    canInvest() {
+      let training = this.$store.state.character.skills[this._props.name]
+        .training;
+      return (
+        training == Constants.TRAINING.SPECIALIZED ||
+        training == Constants.TRAINING.TRAINED
+      );
     },
     invested: {
-      get () {
+      get() {
         return this.$store.state.character.skills[this._props.name].invested;
       },
-      set (value) {
-        this.$store.commit("updateSkillInvestment", { 
-          "name": this._props.name, 
-          "value": value 
+      set(value) {
+        this.$store.commit("updateSkillInvestment", {
+          name: this._props.name,
+          value: value
         });
       }
     },
-    maxInvestment () {
-      if (this.$store.state.character.skills[this._props.name].training === Constants.TRAINING.SPECIALIZED) {
+    maxInvestment() {
+      if (
+        this.$store.state.character.skills[this._props.name].training ===
+        Constants.TRAINING.SPECIALIZED
+      ) {
         return 226;
-      }  else if (this.$store.state.character.skills[this._props.name].training === Constants.TRAINING.TRAINED) {
+      } else if (
+        this.$store.state.character.skills[this._props.name].training ===
+        Constants.TRAINING.TRAINED
+      ) {
         return 208;
       } else {
         return -1;
       }
     },
-    base () {
-      return this.$store.getters[this._props.name + "Base"]
+    base() {
+      return this.$store.getters[this._props.name + "Base"];
     },
-    buffed () {
-      return this.$store.getters[this._props.name + "Buffed"]
+    buffed() {
+      return this.$store.getters[this._props.name + "Buffed"];
     },
     buffLevel: {
-      get () {
+      get() {
         return this.$store.state.character.skills[this._props.name].buff;
       },
-      set (value) {
-        this.$store.commit("updateSkillBuff", { 
-          "name": this._props.name, 
-          "value": value 
+      set(value) {
+        this.$store.commit("updateSkillBuff", {
+          name: this._props.name,
+          value: value
         });
       }
     },
-    buffName () {
-      return Constants.BUFF_NAME[this.$store.state.character.skills[this._props.name].buff];
+    buffName() {
+      return Constants.BUFF_NAME[
+        this.$store.state.character.skills[this._props.name].buff
+      ];
     },
     cantrip: {
-      get () {
+      get() {
         return this.$store.state.character.skills[this._props.name].cantrip;
       },
-      set (value) {
-        this.$store.commit("updateSkillCantrip", { 
-          "name": this._props.name, 
-          "value": value 
+      set(value) {
+        this.$store.commit("updateSkillCantrip", {
+          name: this._props.name,
+          value: value
         });
       }
     },
-    cantripName () {
-      return Constants.CANTRIP_NAME[this.$store.state.character.skills[this._props.name].cantrip];
+    cantripName() {
+      return Constants.CANTRIP_NAME[
+        this.$store.state.character.skills[this._props.name].cantrip
+      ];
     }
   },
   methods: {
-    increaseTraining () {
+    increaseTraining() {
       this.$store.commit("increaseTraining", this._props.name);
     },
-    decreaseTraining () {
+    decreaseTraining() {
       this.$store.commit("decreaseTraining", this._props.name);
     }
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>

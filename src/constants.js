@@ -5,13 +5,9 @@ const ATTRIBUTES = [
   "quickness",
   "focus",
   "self"
-]
+];
 
-const VITALS = [
-  "health",
-  "stamina",
-  "mana"
-]
+const VITALS = ["health", "stamina", "mana"];
 
 const SKILLS = [
   "alchemy",
@@ -52,14 +48,14 @@ const SKILLS = [
   "void_magic",
   "war_magic",
   "weapon_tinkering"
-]
+];
 
 const TRAINING = {
   UNUSABLE: "unusable",
   UNTRAINED: "untrained",
   TRAINED: "trained",
-  SPECIALIZED: "specialized",
-}
+  SPECIALIZED: "specialized"
+};
 
 const SKILL_NAME = {
   alchemy: "Alchemy",
@@ -141,7 +137,7 @@ const UNTRAINABLE = {
   void_magic: true,
   war_magic: true,
   weapon_tinkering: true
-}
+};
 
 const UNTRAINED_STATE = {
   alchemy: TRAINING.UNUSABLE,
@@ -182,7 +178,7 @@ const UNTRAINED_STATE = {
   void_magic: TRAINING.UNUSABLE,
   war_magic: TRAINING.UNUSABLE,
   weapon_tinkering: TRAINING.UNTRAINED
-}
+};
 
 const COST_LEVEL = {
   "1": 0,
@@ -460,7 +456,7 @@ const COST_LEVEL = {
   "273": 184493669177,
   "274": 187835858847,
   "275": 191226310247
-}
+};
 
 const COST_ATTRIBUTE = {
   "0": 0,
@@ -654,7 +650,7 @@ const COST_ATTRIBUTE = {
   "188": 3425629996,
   "189": 3710672964,
   "190": 4019438644
-}
+};
 
 const COST_VITAL = {
   "0": 0,
@@ -853,8 +849,8 @@ const COST_VITAL = {
   "193": 3371709687,
   "194": 3652284316,
   "195": 3956210003,
-  "196": 4285430197,
-}
+  "196": 4285430197
+};
 
 const COST_SKILL_POINTS = {
   alchemy: { trained: 6, specialized: 12 },
@@ -895,7 +891,7 @@ const COST_SKILL_POINTS = {
   void_magic: { trained: 16, specialized: 28 },
   war_magic: { trained: 16, specialized: 28 },
   weapon_tinkering: { trained: 4, specialized: 4 }
-}
+};
 
 const SPEC_COSTS_AUG = {
   alchemy: false,
@@ -936,7 +932,7 @@ const SPEC_COSTS_AUG = {
   void_magic: false,
   war_magic: false,
   weapon_tinkering: true
-}
+};
 
 const SKILL_POINTS_AT_LEVEL = {
   "1": 52,
@@ -1214,7 +1210,7 @@ const SKILL_POINTS_AT_LEVEL = {
   "273": 97,
   "274": 97,
   "275": 98
-}
+};
 
 const COST_SKILL_SPECIALIZED = {
   "0": 0,
@@ -1443,8 +1439,8 @@ const COST_SKILL_SPECIALIZED = {
   "223": 3160874561,
   "224": 3440192563,
   "225": 3750444304,
-  "226": 4100490438,
-}
+  "226": 4100490438
+};
 
 const COST_SKILL_TRAINED = {
   "0": 0,
@@ -1656,7 +1652,7 @@ const COST_SKILL_TRAINED = {
   "206": 3612499722,
   "207": 3896959013,
   "208": 4203819496
-}
+};
 
 const BUFF_NAME = {
   "0": "",
@@ -1668,7 +1664,7 @@ const BUFF_NAME = {
   "6": "VI",
   "7": "VII",
   "8": "VIII"
-}
+};
 
 const CANTRIP_NAME = {
   "0": "None",
@@ -1696,4 +1692,4 @@ export default {
   COST_SKILL_TRAINED,
   BUFF_NAME,
   CANTRIP_NAME
-}
+};

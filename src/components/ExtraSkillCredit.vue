@@ -1,6 +1,12 @@
 <template>
   <li>
-    <input v-bind:id="name" v-bind:name="name" type="checkbox" v-model="checked" /> <label v-bind:for="name">{{name}}</label>
+    <input
+      v-bind:id="name"
+      v-bind:name="name"
+      type="checkbox"
+      v-model="checked"
+    />
+    <label v-bind:for="name">{{ name }}</label>
   </li>
 </template>
 
@@ -13,18 +19,17 @@ export default {
   },
   computed: {
     checked: {
-      get () {
+      get() {
         return this.$store.state.character.extraSkillCredits[this._props.id];
       },
 
-      set (value) {
+      set(value) {
         this.$store.commit("updateExtraSkillCredit", {
           name: this._props.id,
-          value: value 
+          value: value
         });
       }
     }
   }
-
 };
 </script>
