@@ -1,6 +1,9 @@
 <template>
   <tr>
-    <td>{{ display }}</td>
+    <td>
+      <img :src="'/images/' + name + '.png'" :alt="displayName" />
+      {{ displayName }}
+    </td>
     <td><input type="range" min="10" max="100" v-model="creation" /></td>
     <td class="number">{{ creation }}</td>
     <td><input type="range" min="0" max="190" v-model="invested" /></td>
@@ -21,7 +24,7 @@ export default {
   name: "Attribute",
   props: {
     name: String,
-    display: String
+    displayName: String
   },
   computed: {
     isBuffed() {

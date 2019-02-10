@@ -54,12 +54,12 @@
       </th>
       <th>&nbsp;</th>
     </tr>
-    <Attribute name="strength" display="Strength" />
-    <Attribute name="endurance" display="Endurance" />
-    <Attribute name="coordination" display="Coordination" />
-    <Attribute name="quickness" display="Quickness" />
-    <Attribute name="focus" display="Focus" />
-    <Attribute name="self" display="Self" />
+    <Attribute name="strength" displayName="Strength" />
+    <Attribute name="endurance" displayName="Endurance" />
+    <Attribute name="coordination" displayName="Coordination" />
+    <Attribute name="quickness" displayName="Quickness" />
+    <Attribute name="focus" displayName="Focus" />
+    <Attribute name="self" displayName="Self" />
   </tbody>
 </template>
 

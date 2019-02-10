@@ -1,7 +1,9 @@
 <template>
   <tr>
-    <td>{{ displayName }}</td>
-    <td>&nbsp;</td>
+    <td>
+      <img :src="'/images/' + name + '.png'" :alt="displayName" />
+      {{ displayName }}
+    </td>    <td>&nbsp;</td>
     <td class="number">{{ creation }}</td>
     <td><input type="range" min="0" max="196" v-model="invested" /></td>
     <td class="number">{{ invested }}</td>

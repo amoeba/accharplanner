@@ -1,6 +1,7 @@
 <template>
   <tr>
     <td>
+      <img :src="'/images/' + name + '.png'" :alt="displayName" />
       {{ displayName }}
     </td>
     <td>
