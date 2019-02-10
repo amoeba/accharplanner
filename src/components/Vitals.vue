@@ -20,7 +20,7 @@
         <input
           type="range"
           min="0"
-          max="190"
+          max="196"
           value="0"
           v-on:change="changeInvested"
         />
