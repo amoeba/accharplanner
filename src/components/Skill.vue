@@ -109,10 +109,11 @@ export default {
       // Can't if out of credits
       let training = this.$store.state.character.skills[this._props.name]
         .training;
+
       let newTraining =
         training == Constants.TRAINING.TRAINED
           ? Constants.TRAINING.SPECIALIZED
-          : Constants.TRAINED.TRAINED;
+          : Constants.TRAINING.TRAINED;
 
       if (
         this.$store.getters.skillPointsSpent +
