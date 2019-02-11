@@ -115,12 +115,15 @@
       <ExtraSkillCredits />
     </div>
     <div class="row">
-      <table>
-        <Attributes />
-        <Vitals />
-      </table>
-
-      <Skills />
+      <div id="attributes_and_vitals">
+        <table>
+          <Attributes />
+          <Vitals />
+        </table>
+      </div>
+      <div id="skills">
+        <Skills />
+      </div>
     </div>
   </div>
 </template>
@@ -234,18 +237,23 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 0.5rem;
 }
 
-
-@media (max-width: 750px) {
+@media (max-width: 900px) {
   .header {
     width: 50%;
   }
+
+  #attributes_and_vitals,
+  #skills {
+    width: 100%;
+  }
 }
 
-@media (min-width: 750px) {
+@media (min-width: 900px) {
   .header {
-    width: 300px;
+    width: 25%;
   }
 }
 
@@ -268,7 +276,8 @@ button {
 
 table {
   border-collapse: collapse;
-  margin: 0.5rem;
+  margin: 0;
+  width: 100%;
 }
 
 td,
@@ -336,9 +345,5 @@ tr.controls th {
 
 .gray {
   color: gray;
-}
-
-#export {
-  font-family: monospace;
 }
 </style>

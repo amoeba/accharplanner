@@ -6,10 +6,11 @@ import Constants from "./constants";
 Vue.use(Vuex);
 
 // Automatically persist state to localStorage
-// import VuexPersistence from 'vuex-persist'
-// const vuexLocal = new VuexPersistence({
-//   storage: window.localStorage
-// });
+import VuexPersistence from 'vuex-persist'
+const vuexLocal = new VuexPersistence({
+  key: "character",
+  storage: window.localStorage
+});
 
 export default new Vuex.Store({
   state: {
@@ -1609,5 +1610,8 @@ export default new Vuex.Store({
         state.character.skills[skill].cantrip = Number(cantrip);
       });
     }
-  }
+  },
+  plugins: [
+    vuexLocal.plugin
+  ]
 });
