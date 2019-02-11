@@ -1,6 +1,7 @@
 import Constants from "../constants";
 
 export default {
+  character: {
   name: "An Adventurer",
   race: "Aluvian",
   gender: "Female",
@@ -295,6 +296,7 @@ export default {
       invested: 0,
       buff: 0,
       cantrip: 0
+    }
     }
   }
 }
