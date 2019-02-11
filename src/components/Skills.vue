@@ -1,30 +1,23 @@
 <template>
   <table id="skills">
-    <tbody>
+    <thead>
       <tr>
-        <th colspan="11">Skills</th>
+        <th colspan="12">Skills</th>
       </tr>
-      <tr>
-        <th colspan="11">
-          Skill Points Spent: {{ skillPointsSpent }} /
-          {{ skillPointsAvailable }}
-          <span class="error">{{ skillPointsSpentErrorText }}</span>
-        </th>
+        <tr>
+        <th colspan="12">Skill Points Spent: {{ skillPointsSpent }} / {{ skillPointsAvailable }}<span class="error">{{ skillPointsSpentErrorText }}</span></th>
       </tr>
       <tr class="headers">
-        <th>Name</th>
-        <th colspan="2">&nbsp;</th>
-        <th colspan="2">Invested</th>
+        <th colspan="4">Name</th>
         <th>Base</th>
         <th>Buffed</th>
+        <th colspan="2">Invested</th>
         <th colspan="2">Buff</th>
         <th colspan="2">Cantrip</th>
       </tr>
       <tr class="controls">
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
-        <th>
+        <th colspan="6">&nbsp;</th>
+        <th colspan="2">
           <input
             type="range"
             min="0"
@@ -33,10 +26,7 @@
             v-on:change="changeInvested"
           />
         </th>
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
-        <th>
+        <th colspan="2">
           <input
             type="range"
             min="0"
@@ -45,8 +35,7 @@
             v-on:change="changeBuffed"
           />
         </th>
-        <th>&nbsp;</th>
-        <th>
+        <th colspan="2">
           <input
             type="range"
             min="0"
@@ -55,10 +44,11 @@
             v-on:change="changeCantrips"
           />
         </th>
-        <th>&nbsp;</th>
       </tr>
+    </thead>
+    <tbody>
       <tr class="specialized">
-        <th colspan="11">
+        <th colspan="12">
           Specialized ({{ specializedSkillPointsSpent }} / 70)
           {{ augmentationsRequiredText }}
         </th>
@@ -68,14 +58,14 @@
       </tr>
       <Skill v-for="skill in specializedSkills" :key="skill" :name="skill" />
       <tr class="trained">
-        <th colspan="11">Trained</th>
+        <th colspan="12">Trained</th>
       </tr>
       <tr v-if="noTrainedSkills">
         <td class="center" colspan="11">No trained skills</td>
       </tr>
       <Skill v-for="skill in trainedSkills" :key="skill" :name="skill" />
       <tr class="untrained">
-        <th colspan="11">Untrained</th>
+        <th colspan="12">Untrained</th>
       </tr>
       <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
       <tr class="unusable">

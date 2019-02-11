@@ -1,18 +1,23 @@
 <template>
   <tr>
     <td>
-      <img :src="'/images/' + name + '.png'" :alt="displayName" />
+      <img :src="'/images/' + name + '.png'" :alt="displayName" width="20" height="20" />
+    </td>
+    <td>
       {{ displayName }}
     </td>
     <td>
       <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
         {{ increaseCostText }}
       </button>
+    </td>
+    <td>
       <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
         {{ decreaseCostText }}
       </button>
     </td>
-    <td>&nbsp;</td>
+    <td class="number">{{ base }}</td>
+    <td class="number" v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
     <td>
       <div v-if="canInvest">
         <input
@@ -24,12 +29,10 @@
       </div>
     </td>
     <td class="number">{{ invested }}</td>
-    <td class="number">{{ base }}</td>
-    <td v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
-    <td>{{ buffName }}</td>
+    <td class="number">{{ buffName }}</td>
     <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
-    <td>{{ cantripName }}</td>
+    <td class="number">{{ cantripName }}</td>
   </tr>
 </template>
 

@@ -1,15 +1,15 @@
 <template>
   <tbody id="attributes">
     <tr>
-      <th colspan="11">Attributes</th>
+      <th colspan="12">Attributes</th>
     </tr>
     <tr>
-      <th colspan="11">
+      <th colspan="12">
         Creation Attribute Points Spent: {{ attributePointsSpent }} / 330
       </th>
     </tr>
     <tr class="headers">
-      <th class="name">Name</th>
+      <th colspan="2" class="name">Name</th>
       <th class="creation" colspan="2">Creation</th>
       <th class="invested" colspan="2">Invested</th>
       <th class="base">Base</th>
@@ -18,6 +18,7 @@
       <th class="cantrip" colspan="2">Cantrip</th>
     </tr>
     <tr class="controls">
+      <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>

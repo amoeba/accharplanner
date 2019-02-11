@@ -1,7 +1,9 @@
 <template>
   <tr>
     <td>
-      <img :src="'/images/' + name + '.png'" :alt="displayName" />
+      <img :src="'/images/' + name + '.png'" :alt="displayName" width="20" height="20" />
+    </td>
+    <td>
       {{ displayName }}
     </td>    <td>&nbsp;</td>
     <td class="number">{{ creation }}</td>

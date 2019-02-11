@@ -2,7 +2,7 @@
   <div id="planner">
     <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
     <div class="row">
-      <div>
+      <div class="header">
         <h3>Character</h3>
         <table>
           <tbody>
@@ -36,54 +36,11 @@
                 <label for="male">Male</label>
               </td>
             </tr>
-            <tr>
-              <th>Times Enlightened</th>
-              <td>
-                <input type="range" min="1" max="5" v-model="timesEnlightened" />
-                {{ timesEnlightened }}
-              </td>
-            </tr>
-            <tr>
-              <th>Invested</th>
-              <td>
-                <input
-                  type="range"
-                  min="0"
-                  max="226"
-                  value="0"
-                  v-on:change="changeAllInvestments"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>Buffs</th>
-              <td>
-                <input
-                  type="range"
-                  min="0"
-                  max="8"
-                  value="0"
-                  v-on:change="changeAllBuffs"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>Cantrips</th>
-              <td>
-                <input
-                  type="range"
-                  min="0"
-                  max="4"
-                  value="0"
-                  v-on:change="changeAllCantrips"
-                />
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
-      <div>
-        <h3>Details</h3>
+      <div class="header">
+        <h3>XP & Luminance</h3>
         <table>
           <tbody>
             <tr>
@@ -105,9 +62,58 @@
           </tbody>
         </table>
       </div>
+      <div class="header">
+        <h3>Nobs &amp; Dials</h3>
+        <table>
+          <tbody>
+            <tr>
+            <th>Times Enlightened</th>
+            <td>
+              <input type="range" min="1" max="5" v-model="timesEnlightened" />
+              {{ timesEnlightened }}
+            </td>
+          </tr>
+          <tr>
+            <th>Invested</th>
+            <td>
+              <input
+                type="range"
+                min="0"
+                max="226"
+                value="0"
+                v-on:change="changeAllInvestments"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Buffs</th>
+            <td>
+              <input
+                type="range"
+                min="0"
+                max="8"
+                value="0"
+                v-on:change="changeAllBuffs"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Cantrips</th>
+            <td>
+              <input
+                type="range"
+                min="0"
+                max="4"
+                value="0"
+                v-on:change="changeAllCantrips"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
       <ExtraSkillCredits />
     </div>
-
     <div class="row">
       <table>
         <Attributes />
@@ -230,6 +236,19 @@ export default {
   flex-wrap: wrap;
 }
 
+
+@media (max-width: 750px) {
+  .header {
+    width: 50%;
+  }
+}
+
+@media (min-width: 750px) {
+  .header {
+    width: 300px;
+  }
+}
+
 #attributes input[type="range"],
 #vitals input[type="range"],
 #skills input[type="range"] {
@@ -256,6 +275,17 @@ td,
 th {
   padding: 1px 3px;
   text-align: left;
+}
+
+#attributes th,
+#attributes td,
+#vitals th,
+#vitals td,
+#skills th,
+#skills td {
+  height: 20px;
+  margin: 0px;
+  padding: 2px 2px;
 }
 
 #attributes tr:first-child > th,

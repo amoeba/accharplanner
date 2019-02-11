@@ -1,10 +1,10 @@
 <template>
   <tbody id="vitals">
     <tr>
-      <th colspan="11">Vitals</th>
+      <th colspan="12">Vitals</th>
     </tr>
     <tr class="headers">
-      <th>Name</th>
+      <th colspan="2">Name</th>
       <th colspan="2">Creation</th>
       <th colspan="2">Invested</th>
       <th>Base</th>
@@ -13,6 +13,7 @@
       <th colspan="2">Cantrip</th>
     </tr>
     <tr class="controls">
+      <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
