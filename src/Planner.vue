@@ -69,7 +69,7 @@
             <tr>
             <th>Times Enlightened</th>
             <td>
-              <input type="range" min="1" max="5" v-model="timesEnlightened" />
+              <input type="range" min="0" max="5" v-model="timesEnlightened" />
               {{ timesEnlightened }}
             </td>
           </tr>

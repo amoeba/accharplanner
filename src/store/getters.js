@@ -56,7 +56,7 @@ export default {
       for (var i = 1; i <= 275; i++) {
         if (
           getters.totalXPInvested <=
-          Constants.COST_LEVEL[i] + e * Constants.COST_LEVEL[i]
+          Constants.COST_LEVEL[i] + e * Constants.COST_LEVEL[275]
         ) {
           return i;
         }
