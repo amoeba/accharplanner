@@ -1,6 +1,5 @@
 import Constants from "../constants";
 
-
 export default {
   updateName(state, value) {
     state.character.name = value;
