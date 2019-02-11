@@ -69,7 +69,7 @@
       </tr>
       <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
       <tr class="unusable">
-        <th colspan="11">Unusable</th>
+        <th colspan="12">Unusable</th>
       </tr>
       <Skill v-for="skill in unusableSkills" :key="skill" :name="skill" />
     </tbody>

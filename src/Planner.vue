@@ -255,7 +255,21 @@ export default {
   .header {
     width: 25%;
   }
+
+
+  #attributes_and_vitals,
+  #skills {
+  }
+
+  #attributes_and_vitals {
+    margin-right: 0.25rem;
+  }    
+  
+  #skills {
+    margin-left: 0.25rem;
+  }
 }
+
 
 #attributes input[type="range"],
 #vitals input[type="range"],
