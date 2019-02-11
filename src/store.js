@@ -1507,12 +1507,14 @@ export default new Vuex.Store({
         let newval = Number(invested);
 
         if (
+          state.character.skills[skill].training == Constants.TRAINING.SPECIALIZED
+        ) {
+          state.character.skills[skill].invested = newval > 226 ? 226 : newval;
+        } else if (
           state.character.skills[skill].training == Constants.TRAINING.TRAINED
         ) {
-          newval = newval > 208 ? 208 : newval;
+          state.character.skills[skill].invested = newval > 208 ? 208 : newval;
         }
-
-        state.character.skills[skill].invested = newval;
       });
     },
 
