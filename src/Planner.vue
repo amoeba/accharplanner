@@ -63,7 +63,7 @@
         </table>
       </div>
       <div class="header">
-        <h3>Nobs &amp; Dials</h3>
+        <h3>Knobs &amp; Dials</h3>
         <table>
           <tbody>
             <tr>
