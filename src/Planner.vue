@@ -240,9 +240,28 @@ export default {
   margin-bottom: 0.5rem;
 }
 
+.header {
+  padding: 0.5rem;
+  max-width: 300px;
+}
+
+.header:nth-child(2n) {
+  margin-right: 0.5rem;
+}
+
+.header h3 {
+  border-bottom: 1px solid #ccc;
+  margin: 0px;
+  padding-bottom: 0.25rem;
+}
+
+#attributes_and_vitals {
+  margin-bottom: 1.5rem;
+}
+
 @media (max-width: 900px) {
   .header {
-    width: 50%;
+    width: 45%;
   }
 
   #attributes_and_vitals,
@@ -257,11 +276,7 @@ export default {
   }
 
   #attributes_and_vitals {
-    margin-right: 0.25rem;
-  }
-
-  #skills {
-    margin-left: 0.25rem;
+    margin-right: 0.5rem;
   }
 }
 
