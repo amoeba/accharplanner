@@ -25,7 +25,7 @@ new Vue({
 
     // Start doing things
     var store = this.$store;
-    const url = 'http://localhost:9292/' + params.get("server") + '/' + params.get("character") + '.json';
+    const url = 'https://treestats.net/' + params.get("server") + '/' + params.get("character") + '.json';
     let errorEncountered = false;
 
     fetch(url)
