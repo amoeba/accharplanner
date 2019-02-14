@@ -1,5 +1,6 @@
 <template>
   <div id="planner">
+    <Notifications />
     <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
     <div class="row">
       <div class="header">
@@ -133,6 +134,7 @@ import ExtraSkillCredits from "./components/ExtraSkillCredits.vue";
 import Attributes from "./components/Attributes.vue";
 import Vitals from "./components/Vitals.vue";
 import Skills from "./components/Skills.vue";
+import Notifications from "./components/Notifications.vue";
 
 export default {
   name: "planner",
@@ -140,7 +142,8 @@ export default {
     ExtraSkillCredits,
     Attributes,
     Vitals,
-    Skills
+    Skills,
+    Notifications
   },
   computed: {
     totalXPEarned() {
@@ -369,5 +372,31 @@ tr.controls th {
 
 .gray {
   color: gray;
+}
+
+#notifications {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 300px;
+  z-index: 100;
+}
+
+.notification {
+  position: relative;
+  background-color: #ff0000;
+  color: white;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  width: 95%;
+  cursor: pointer;
+}
+
+.success {
+  background-color: green;
+}
+
+.failure { 
+  background-color: red;
 }
 </style>

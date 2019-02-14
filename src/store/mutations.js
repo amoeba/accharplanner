@@ -264,5 +264,36 @@ export default {
     Constants.SKILLS.forEach(skill => {
       state.character.skills[skill].cantrip = Number(cantrip);
     });
-  }
+  },
+
+  // Notifications
+  clearAllNotifications(state, payload) {
+    state.notifications = [];  
+  },
+
+  addNotification(state, payload) {
+    let notification_id = Date.now();
+
+    state.notifications.push({
+      id: notification_id,
+      type: payload.type, 
+      message: payload.message
+    });
+    
+    setTimeout(() => {
+      for (let i = 0; i < state.notifications.length; i++) {
+        if (state.notifications[i].id === notification_id) {
+          state.notifications.splice(i, 1);
+        }
+      }
+    }, 3000);
+  },
+
+  removeNotification(state, id) {
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (state.notifications[i].id === id) {
+        state.notifications.splice(i, 1);
+      }
+    }
+  },
 }

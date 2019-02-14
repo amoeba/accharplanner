@@ -1,6 +1,7 @@
 import Constants from "../constants";
 
 export default {
+  notifications: [],
   character: {
   name: "An Adventurer",
   race: "Aluvian",
