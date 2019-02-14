@@ -42,7 +42,7 @@ new Vue({
       // Vitals
       Object.keys(json.vitals).forEach(a => {
         store.state.character.vitals[a].invested = 0;
-        store.state.character.vitals[a].invested = json.vitals[a].base - store.getters[a + "Base"];
+        store.state.character.vitals[a].invested = json.vitals[a].base - store.getters[a + 'Base'];
       });
 
       // Skills
@@ -52,7 +52,6 @@ new Vue({
         if (store.state.character.skills[s].training === Constants.TRAINING.SPECIALIZED ||
           store.state.character.skills[s].training === Constants.TRAINING.TRAINED) {
           store.state.character.skills[s].invested = 0;
-          store.state.character.skills[s].invested = json.skills[s].base - store.getters[s + "Base"];
           store.state.character.skills[s].invested = json.skills[s].base - store.getters[s + 'Base'];
           }
       })
