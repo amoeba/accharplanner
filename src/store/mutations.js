@@ -133,6 +133,8 @@ export default {
         break;
       case Constants.TRAINING.TRAINED:
         newTraining = Constants.UNTRAINED_STATE[skill];
+        state.character.skills[skill].invested = 0;
+        
         break;
       default:
         return;
