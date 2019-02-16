@@ -7,13 +7,13 @@
       {{ displayName }}
     </td>
     <td>
-      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
-        {{ increaseCostText }}
+      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+        - {{ decreaseCostText }}
       </button>
     </td>
     <td>
-      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
-        {{ decreaseCostText }}
+      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
+        + {{ increaseCostText }}
       </button>
     </td>
     <td class="number">{{ base }}</td>
