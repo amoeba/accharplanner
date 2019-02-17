@@ -6,11 +6,11 @@
     <td>
       {{ displayName }}
     </td>    <td>&nbsp;</td>
-    <td class="number">{{ creation }}</td>
+    <td class="creation number">{{ creation }}</td>
+    <td class="base number">{{ base }}</td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="196" v-model="invested" /></td>
     <td class="number">{{ invested }}</td>
-    <td class="number">{{ base }}</td>
-    <td v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
     <td>{{ buffName }}</td>
     <td><input type="range" min="0" max="4" v-model="cantrip" /></td>

@@ -8,10 +8,10 @@
     </td>
     <td><input type="range" min="10" max="100" v-model="creation" /></td>
     <td class="number">{{ creation }}</td>
+    <td class="base number">{{ base }}</td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
     <td><input type="range" min="0" max="190" v-model="invested" /></td>
-    <td class="number">{{ invested }}</td>
-    <td class="number">{{ base }}</td>
-    <td v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
+    <td class="invested number">{{ invested }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
     <td class="number">{{ buffName }}</td>
     <td><input type="range" min="0" max="4" v-model="cantrip" /></td>

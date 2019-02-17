@@ -117,7 +117,7 @@
     </div>
     <div class="row">
       <div id="attributes_and_vitals">
-        <table>
+        <table class="pane">
           <Attributes />
           <Vitals />
         </table>
@@ -297,10 +297,6 @@ input, select {
   border: none;
 }
 
-button {
-  width: 50px;
-}
-
 table {
   border-collapse: collapse;
   margin: 0;
@@ -313,15 +309,8 @@ th {
   text-align: left;
 }
 
-#attributes th,
-#attributes td,
-#vitals th,
-#vitals td,
-#skills th,
-#skills td {
-  height: 20px;
-  margin: 0px;
-  padding: 2px 2px;
+th, td {
+  padding: 2px 3px;
 }
 
 #attributes tr:first-child > th,
@@ -350,10 +339,11 @@ tr.controls th {
 }
 
 .number {
-  min-width: 50px;
+  min-width: 2rem;
+  text-align: center;
 }
 
-.buffed {
+.isBuffed {
   color: green;
   font-weight: bold;
 }
@@ -372,6 +362,15 @@ tr.controls th {
 
 .gray {
   color: gray;
+}
+
+.base {
+  border-left: 1px solid #ccc;
+  padding-left: 8px;
+}
+
+.buffed {
+  border-right: 1px solid #ccc;
 }
 
 #notifications {
@@ -396,7 +395,26 @@ tr.controls th {
   background-color: green;
 }
 
-.failure { 
+.failure {
   background-color: red;
+}
+
+/* boxes */
+.pane th:first-child,
+.pane td:first-child {
+  border-left: 1px solid #ccc;
+}
+
+.pane th:last-child,
+.pane td:last-child {
+  border-right: 1px solid #ccc;
+}
+
+.pane tr:first-child th {
+  border-top: 1px solid #ccc;
+}
+
+.pane tr:last-child td {
+  border-bottom: 1px solid #ccc;
 }
 </style>

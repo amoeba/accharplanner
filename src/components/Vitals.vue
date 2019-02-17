@@ -6,13 +6,15 @@
     <tr class="headers">
       <th colspan="2">Name</th>
       <th colspan="2">Creation</th>
-      <th colspan="2">Invested</th>
       <th>Base</th>
       <th>Buffed</th>
+      <th colspan="2">Invested</th>
       <th colspan="2">Buff</th>
       <th colspan="2">Cantrip</th>
     </tr>
     <tr class="controls">
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
@@ -26,8 +28,6 @@
           v-on:change="changeInvested"
         />
       </th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>
         <input

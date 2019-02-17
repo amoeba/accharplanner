@@ -1,5 +1,5 @@
 <template>
-  <table id="skills">
+  <table id="skills" class="pane">
     <thead>
       <tr>
         <th colspan="12">Skills</th>
@@ -16,7 +16,9 @@
         <th colspan="2">Cantrip</th>
       </tr>
       <tr class="controls">
-        <th colspan="6">&nbsp;</th>
+        <th colspan="4">&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
         <th colspan="2">
           <input
             type="range"
@@ -48,29 +50,39 @@
     </thead>
     <tbody>
       <tr class="specialized">
-        <th colspan="12">
+        <th colspan="4">
           Specialized ({{ specializedSkillPointsSpent }} / 70)
           {{ augmentationsRequiredText }}
         </th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th colspan="6">&nbsp;</th>
       </tr>
       <tr v-if="noSpecializedSkills">
-        <td class="center" colspan="11">No specialized skills</td>
+        <td class="center" colspan="12">No specialized skills</td>
       </tr>
       <Skill v-for="skill in specializedSkills" :key="skill" :name="skill" />
       <tr class="trained">
-        <th colspan="12">Trained</th>
+        <th colspan="4">Trained</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th colspan="6">&nbsp;</th>
       </tr>
       <tr v-if="noTrainedSkills">
-        <td class="center" colspan="11">No trained skills</td>
+        <td class="center" colspan="12">No trained skills</td>
       </tr>
       <Skill v-for="skill in trainedSkills" :key="skill" :name="skill" />
       <tr class="untrained">
-        <th colspan="12">Untrained</th>
-      </tr>
+        <th colspan="4">Untrained</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th colspan="6">&nbsp;</th>      </tr>
       <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
       <tr class="unusable">
-        <th colspan="12">Unusable</th>
-      </tr>
+        <th colspan="4">Unusable</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th colspan="6">&nbsp;</th>      </tr>
       <Skill v-for="skill in unusableSkills" :key="skill" :name="skill" />
     </tbody>
   </table>

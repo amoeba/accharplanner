@@ -8,16 +8,16 @@
     </td>
     <td>
       <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
-        - {{ decreaseCostText }}
+        ↓
       </button>
     </td>
     <td>
       <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
-        + {{ increaseCostText }}
+        ↑
       </button>
     </td>
-    <td class="number">{{ base }}</td>
-    <td class="number" v-bind:class="isBuffed ? 'buffed' : ''">{{ buffed }}</td>
+    <td class="base number">{{ base }}</td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
     <td>
       <div v-if="canInvest">
         <input
@@ -144,16 +144,24 @@ export default {
 
       // Can't if not trained or higher
       if (
-        training == Constants.TRAINING.UNTRAINED ||
-        training == Constants.TRAINING.UNTRAINED
+        training === Constants.TRAINING.UNTRAINED ||
+        training === Constants.TRAINING.UNTRAINED
       ) {
         return true;
       }
 
       // Can't if not untrainable
       if (
-        training == Constants.TRAINING.TRAINED &&
+        training === Constants.TRAINING.TRAINED &&
         !Constants.UNTRAINABLE[this._props.name]
+      ) {
+        return true;
+      }
+
+      // Can't if not trained
+      if (
+        training === Constants.TRAINING.UNTRAINED ||
+        training === Constants.TRAINING.UNUSABLE
       ) {
         return true;
       }

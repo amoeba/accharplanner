@@ -1671,7 +1671,7 @@ const CANTRIP_NAME = {
   "1": "Minor",
   "2": "Major",
   "3": "Epic",
-  "4": "Legen."
+  "4": "Leg."
 };
 
 export default {
