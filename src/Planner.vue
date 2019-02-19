@@ -11,13 +11,6 @@
               <th>Name</th>
               <td><input id="charname" type="text" v-model="name" /></td>
             </tr>
-          <tr>
-            <th>Level</th>
-            <td>
-              <input type="range" min="1" max="275" v-model="level" />
-              <span>{{ level }}</span>
-            </td>
-          </tr>
             <tr>
               <th>Race</th>
               <td>
@@ -72,11 +65,18 @@
         <table>
           <tbody>
             <tr>
-            <th>Times Enlightened</th>
-            <td>
-              <input type="range" min="0" max="5" v-model="timesEnlightened" />
-              {{ timesEnlightened }}
-            </td>
+              <th>Level</th>
+              <td>
+                <input type="range" min="1" max="275" v-model="level" />
+                <span>{{ level }}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Times Enlightened</th>
+              <td>
+                <input type="range" min="0" max="5" v-model="timesEnlightened" />
+                {{ timesEnlightened }}
+              </td>
           </tr>
           <tr>
             <th>Invested</th>
@@ -251,12 +251,8 @@ export default {
 }
 
 .header {
-  padding: 0.5rem;
-  max-width: 300px;
-}
-
-.header:nth-child(2n) {
-  margin-right: 0.5rem;
+  padding: 0rem 0.5rem 0.5rem 0rem;
+  width: 23%;
 }
 
 .header h3 {
@@ -274,20 +270,15 @@ export default {
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 900px) {
-  .header {
-    width: 45%;
-  }
-
-  #attributes_and_vitals,
-  #skills {
-    width: 100%;
-  }
+#attributes_and_vitals,
+#skills {
+  width: 100%;
 }
 
-@media (min-width: 900px) {
+
+@media (max-width: 1024px) {
   .header {
-    width: 25%;
+    width: 48%;
   }
 
   #attributes_and_vitals {
