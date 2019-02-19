@@ -37,6 +37,10 @@
                 <label for="male">Male</label>
               </td>
             </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><button v-on:click="reset">Reset Everything</button></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -215,6 +219,9 @@ export default {
     }
   },
   methods: {
+    reset() {
+      this.$store.commit("reset");
+    },
     changeAllInvestments(e) {
       this.$store.commit("changeAllInvestment", e.target.value);
     },

@@ -1,6 +1,11 @@
 import Constants from "../constants";
+import DefaultCharacter from "./DefaultCharacter";
 
 export default {
+  reset(state) {
+    console.log(state);
+    state.character = DefaultCharacter;
+  },
   updateName(state, value) {
     state.character.name = value;
   },
@@ -134,7 +139,7 @@ export default {
       case Constants.TRAINING.TRAINED:
         newTraining = Constants.UNTRAINED_STATE[skill];
         state.character.skills[skill].invested = 0;
-        
+
         break;
       default:
         return;
@@ -270,7 +275,7 @@ export default {
 
   // Notifications
   clearAllNotifications(state, payload) {
-    state.notifications = [];  
+    state.notifications = [];
   },
 
   addNotification(state, payload) {
@@ -278,10 +283,10 @@ export default {
 
     state.notifications.push({
       id: notification_id,
-      type: payload.type, 
+      type: payload.type,
       message: payload.message
     });
-    
+
     setTimeout(() => {
       for (let i = 0; i < state.notifications.length; i++) {
         if (state.notifications[i].id === notification_id) {
