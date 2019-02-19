@@ -297,4 +297,4 @@ export default {
       cantrip: 0
     }
   }
-}
+};

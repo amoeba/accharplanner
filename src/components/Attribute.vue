@@ -1,7 +1,12 @@
 <template>
   <tr>
     <td>
-      <img :src="'/images/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img
+        :src="'/images/' + name + '.png'"
+        :alt="displayName"
+        width="20"
+        height="20"
+      />
     </td>
     <td>
       {{ displayName }}
@@ -9,7 +14,9 @@
     <td><input type="range" min="10" max="100" v-model="creation" /></td>
     <td class="number">{{ creation }}</td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
+      {{ buffed }}
+    </td>
     <td><input type="range" min="0" max="190" v-model="invested" /></td>
     <td class="invested number">{{ invested }}</td>
     <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>

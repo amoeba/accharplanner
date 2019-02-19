@@ -7,7 +7,7 @@ export default {
     return JSON.stringify(state, null, 4);
   },
 
-  totalXPEarned: (state) => {
+  totalXPEarned: state => {
     let cost = 0;
 
     cost += Constants.COST_LEVEL[state.character.level];
@@ -20,8 +20,7 @@ export default {
     let cost = 0;
 
     Constants.ATTRIBUTES.forEach(a => {
-      cost +=
-        Constants.COST_ATTRIBUTE[state.character.attributes[a].invested];
+      cost += Constants.COST_ATTRIBUTE[state.character.attributes[a].invested];
     });
 
     Constants.VITALS.forEach(v => {
@@ -34,8 +33,7 @@ export default {
     });
 
     getters.trainedSkills.forEach(s => {
-      cost +=
-        Constants.COST_SKILL_TRAINED[state.character.skills[s].invested];
+      cost += Constants.COST_SKILL_TRAINED[state.character.skills[s].invested];
     });
 
     cost += state.character.timesEnlightened * Constants.COST_LEVEL["275"];
@@ -50,7 +48,11 @@ export default {
           getters.totalXPInvested <=
           Constants.COST_LEVEL[i] + e * Constants.COST_LEVEL[275]
         ) {
-          return "Requires >= level " + i + (e > 0 ? " and " + e + " time(s) Enlightened": "");
+          return (
+            "Requires >= level " +
+            i +
+            (e > 0 ? " and " + e + " time(s) Enlightened" : "")
+          );
         }
       }
     }
@@ -93,7 +95,7 @@ export default {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
-        Constants.TRAINING.SPECIALIZED &&
+          Constants.TRAINING.SPECIALIZED &&
         Constants.SPEC_COSTS_AUG[skill]
       ) {
         cost += 1;
@@ -110,7 +112,7 @@ export default {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
-        Constants.TRAINING.SPECIALIZED &&
+          Constants.TRAINING.SPECIALIZED &&
         Constants.SPEC_COSTS_AUG[skill]
       ) {
         cost += 1000000000;
@@ -292,7 +294,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        3
+          3
       )
     );
   },
@@ -328,11 +330,11 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.endurance.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        2
+          2
       )
     );
   },
-  assess_creatureBase: (state, getters) => {
+  assess_creatureBase: state => {
     return (
       Helpers.trainingBonus(state.character.skills.assess_creature.training) +
       state.character.timesEnlightened +
@@ -346,7 +348,7 @@ export default {
       Helpers.cantripBonus(state.character.skills.assess_creature.cantrip)
     );
   },
-  assess_personBase: (state, getters) => {
+  assess_personBase: state => {
     return (
       Helpers.trainingBonus(state.character.skills.assess_person.training) +
       state.character.timesEnlightened +
@@ -376,7 +378,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        3
+          3
       )
     );
   },
@@ -400,11 +402,11 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        4
+          4
       )
     );
   },
-  deceptionBase: (state, getters) => {
+  deceptionBase: state => {
     return (
       Helpers.trainingBonus(state.character.skills.deception.training) +
       state.character.timesEnlightened +
@@ -434,7 +436,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) +
           Helpers.buffBonus(state.character.attributes.coordination.buff)) /
-        3
+          3
       )
     );
   },
@@ -454,7 +456,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        3
+          3
       )
     );
   },
@@ -474,7 +476,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.quickness.buff)) /
-        3
+          3
       )
     );
   },
@@ -494,7 +496,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        3
+          3
       )
     );
   },
@@ -514,7 +516,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        3
+          3
       )
     );
   },
@@ -534,16 +536,14 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) +
           Helpers.buffBonus(state.character.attributes.coordination.buff)) /
-        3
+          3
       )
     );
   },
   item_enchantmentBase: (state, getters) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
-      Helpers.trainingBonus(
-        state.character.skills.item_enchantment.training
-      ) +
+      Helpers.trainingBonus(state.character.skills.item_enchantment.training) +
       state.character.timesEnlightened +
       state.character.skills.item_enchantment.invested
     );
@@ -556,7 +556,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        4
+          4
       )
     );
   },
@@ -576,7 +576,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        2
+          2
       )
     );
   },
@@ -596,11 +596,11 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) +
           Helpers.buffBonus(state.character.attributes.coordination.buff)) /
-        2
+          2
       )
     );
   },
-  leadershipBase: (state, getters) => {
+  leadershipBase: state => {
     return (
       Helpers.trainingBonus(state.character.skills.leadership.training) +
       state.character.timesEnlightened +
@@ -630,7 +630,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        4
+          4
       )
     );
   },
@@ -650,7 +650,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) +
           Helpers.buffBonus(state.character.attributes.coordination.buff)) /
-        3
+          3
       )
     );
   },
@@ -670,11 +670,11 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.focus.buff)) /
-        3
+          3
       )
     );
   },
-  loyaltyBase: (state, getters) => {
+  loyaltyBase: state => {
     return (
       Helpers.trainingBonus(state.character.skills.loyalty.training) +
       state.character.timesEnlightened +
@@ -704,7 +704,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        7
+          7
       )
     );
   },
@@ -744,7 +744,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        6
+          6
       )
     );
   },
@@ -764,7 +764,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.quickness.buff)) /
-        3
+          3
       )
     );
   },
@@ -784,7 +784,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.quickness.buff)) /
-        5
+          5
       )
     );
   },
@@ -822,7 +822,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) +
           Helpers.buffBonus(state.character.attributes.quickness.buff)) /
-        3
+          3
       )
     );
   },
@@ -842,7 +842,7 @@ export default {
       Helpers.buffBonus(state.character.attributes.quickness.buff)
     );
   },
-  salvagingBase: (state, getters) => {
+  salvagingBase: state => {
     return (
       Helpers.trainingBonus(state.character.skills.salvaging.training) +
       state.character.timesEnlightened +
@@ -872,7 +872,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) +
           Helpers.buffBonus(state.character.attributes.coordination.buff)) /
-        2
+          2
       )
     );
   },
@@ -892,7 +892,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) +
           Helpers.buffBonus(state.character.attributes.quickness.buff)) /
-        3
+          3
       )
     );
   },
@@ -912,16 +912,14 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.endurance.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        3
+          3
       )
     );
   },
   two_handed_combatBase: (state, getters) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
-      Helpers.trainingBonus(
-        state.character.skills.two_handed_combat.training
-      ) +
+      Helpers.trainingBonus(state.character.skills.two_handed_combat.training) +
       state.character.timesEnlightened +
       state.character.skills.two_handed_combat.invested
     );
@@ -934,7 +932,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) +
           Helpers.buffBonus(state.character.attributes.coordination.buff)) /
-        3
+          3
       )
     );
   },
@@ -954,7 +952,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        4
+          4
       )
     );
   },
@@ -974,16 +972,14 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        4
+          4
       )
     );
   },
   weapon_tinkeringBase: (state, getters) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 2) +
-      Helpers.trainingBonus(
-        state.character.skills.weapon_tinkering.training
-      ) +
+      Helpers.trainingBonus(state.character.skills.weapon_tinkering.training) +
       state.character.timesEnlightened +
       state.character.skills.weapon_tinkering.invested
     );
@@ -996,7 +992,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) +
           Helpers.buffBonus(state.character.attributes.self.buff)) /
-        2
+          2
       )
     );
   },
@@ -1004,26 +1000,24 @@ export default {
   specializedSkills: state => {
     return Object.keys(state.character.skills).filter(
       key =>
-      state.character.skills[key].training ===
-      Constants.TRAINING.SPECIALIZED
+        state.character.skills[key].training === Constants.TRAINING.SPECIALIZED
     );
   },
   trainedSkills: state => {
     return Object.keys(state.character.skills).filter(
-      key =>
-      state.character.skills[key].training === Constants.TRAINING.TRAINED
+      key => state.character.skills[key].training === Constants.TRAINING.TRAINED
     );
   },
   untrainedSkills: state => {
     return Object.keys(state.character.skills).filter(
       key =>
-      state.character.skills[key].training === Constants.TRAINING.UNTRAINED
+        state.character.skills[key].training === Constants.TRAINING.UNTRAINED
     );
   },
   unusableSkills: state => {
     return Object.keys(state.character.skills).filter(
       key =>
-      state.character.skills[key].training === Constants.TRAINING.UNUSABLE
+        state.character.skills[key].training === Constants.TRAINING.UNUSABLE
     );
   }
-}
+};

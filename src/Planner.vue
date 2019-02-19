@@ -24,9 +24,14 @@
             <tr>
               <th>Gender</th>
               <td>
-                <input type="radio" id="female" value="Female" v-model="gender">
+                <input
+                  type="radio"
+                  id="female"
+                  value="Female"
+                  v-model="gender"
+                />
                 <label for="female">Female</label>
-                <input type="radio" id="male" value="Male" v-model="gender">
+                <input type="radio" id="male" value="Male" v-model="gender" />
                 <label for="male">Male</label>
               </td>
             </tr>
@@ -48,8 +53,11 @@
             <tr>
               <th>XP Spent</th>
               <td>
-                <span>{{ totalXPInvested }}</span><br />
-                <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
+                <span>{{ totalXPInvested }}</span
+                ><br />
+                <span v-bind:class="isOverspent ? 'red' : 'gray'">{{
+                  requiredLevel
+                }}</span>
               </td>
             </tr>
             <tr>
@@ -74,48 +82,53 @@
             <tr>
               <th>Times Enlightened</th>
               <td>
-                <input type="range" min="0" max="5" v-model="timesEnlightened" />
+                <input
+                  type="range"
+                  min="0"
+                  max="5"
+                  v-model="timesEnlightened"
+                />
                 {{ timesEnlightened }}
               </td>
-          </tr>
-          <tr>
-            <th>Invested</th>
-            <td>
-              <input
-                type="range"
-                min="0"
-                max="226"
-                value="0"
-                v-on:change="changeAllInvestments"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>Buffs</th>
-            <td>
-              <input
-                type="range"
-                min="0"
-                max="8"
-                value="0"
-                v-on:change="changeAllBuffs"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>Cantrips</th>
-            <td>
-              <input
-                type="range"
-                min="0"
-                max="4"
-                value="0"
-                v-on:change="changeAllCantrips"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+            <tr>
+              <th>Invested</th>
+              <td>
+                <input
+                  type="range"
+                  min="0"
+                  max="226"
+                  value="0"
+                  v-on:change="changeAllInvestments"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Buffs</th>
+              <td>
+                <input
+                  type="range"
+                  min="0"
+                  max="8"
+                  value="0"
+                  v-on:change="changeAllBuffs"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Cantrips</th>
+              <td>
+                <input
+                  type="range"
+                  min="0"
+                  max="4"
+                  value="0"
+                  v-on:change="changeAllCantrips"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <ExtraSkillCredits />
     </div>
@@ -156,8 +169,11 @@ export default {
     totalXPInvested() {
       return Number(this.$store.getters.totalXPInvested).toLocaleString();
     },
-    isOverspent () {
-      return Number(this.$store.getters.totalXPInvested) > Number(this.$store.getters.totalXPEarned);
+    isOverspent() {
+      return (
+        Number(this.$store.getters.totalXPInvested) >
+        Number(this.$store.getters.totalXPEarned)
+      );
     },
     skillPointsSpent() {
       return this.$store.getters.skillPointsSpent;

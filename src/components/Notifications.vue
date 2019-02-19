@@ -1,11 +1,12 @@
 <template>
   <div id="notifications">
-    <Notification 
-      v-for="notification in notifications" 
-      :key="notification.id" 
-      :id="notification.id" 
-      :type="notification.type" 
-      :message="notification.message" />
+    <Notification
+      v-for="notification in notifications"
+      :key="notification.id"
+      :id="notification.id"
+      :type="notification.type"
+      :message="notification.message"
+    />
   </div>
 </template>
 
@@ -20,7 +21,7 @@ export default {
   computed: {
     notifications() {
       return this.$store.state.notifications;
-    },
+    }
   }
 };
 </script>

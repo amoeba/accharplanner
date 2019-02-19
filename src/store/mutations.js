@@ -302,5 +302,5 @@ export default {
         state.notifications.splice(i, 1);
       }
     }
-  },
-}
+  }
+};

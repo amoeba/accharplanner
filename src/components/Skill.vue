@@ -1,7 +1,12 @@
 <template>
   <tr>
     <td>
-      <img :src="'/images/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img
+        :src="'/images/' + name + '.png'"
+        :alt="displayName"
+        width="20"
+        height="20"
+      />
     </td>
     <td>
       {{ displayName }}
@@ -17,7 +22,9 @@
       </button>
     </td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
+      {{ buffed }}
+    </td>
     <td>
       <div v-if="canInvest">
         <input

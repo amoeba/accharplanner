@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import VuexPersistence from 'vuex-persist'
+import VuexPersistence from "vuex-persist";
 import state from "./state";
 import getters from "./getters";
 import mutations from "./mutations";
@@ -17,7 +17,5 @@ export default new Vuex.Store({
   state: state,
   getters: getters,
   mutations: mutations,
-  plugins: [
-    vuexLocal.plugin
-  ]
+  plugins: [vuexLocal.plugin]
 });

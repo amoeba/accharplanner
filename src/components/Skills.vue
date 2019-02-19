@@ -4,8 +4,11 @@
       <tr>
         <th colspan="12">Skills</th>
       </tr>
-        <tr>
-        <th colspan="12">Skill Points Spent: {{ skillPointsSpent }} / {{ skillPointsAvailable }}<span class="error">{{ skillPointsSpentErrorText }}</span></th>
+      <tr>
+        <th colspan="12">
+          Skill Points Spent: {{ skillPointsSpent }} / {{ skillPointsAvailable
+          }}<span class="error">{{ skillPointsSpentErrorText }}</span>
+        </th>
       </tr>
       <tr class="headers">
         <th colspan="4">Name</th>
@@ -76,13 +79,15 @@
         <th colspan="4">Untrained</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
-        <th colspan="6">&nbsp;</th>      </tr>
+        <th colspan="6">&nbsp;</th>
+      </tr>
       <Skill v-for="skill in untrainedSkills" :key="skill" :name="skill" />
       <tr class="unusable">
         <th colspan="4">Unusable</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
-        <th colspan="6">&nbsp;</th>      </tr>
+        <th colspan="6">&nbsp;</th>
+      </tr>
       <Skill v-for="skill in unusableSkills" :key="skill" :name="skill" />
     </tbody>
   </table>
