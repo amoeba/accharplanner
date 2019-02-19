@@ -275,7 +275,6 @@ export default {
   width: 100%;
 }
 
-
 @media (max-width: 1024px) {
   .header {
     width: 48%;
@@ -286,14 +285,14 @@ export default {
   }
 }
 
-
 #attributes input[type="range"],
 #vitals input[type="range"],
 #skills input[type="range"] {
   width: 50px;
 }
 
-input, select {
+input,
+select {
   font-size: 100%;
 }
 #charname {
@@ -312,7 +311,8 @@ th {
   text-align: left;
 }
 
-th, td {
+th,
+td {
   padding: 2px 3px;
 }
 
