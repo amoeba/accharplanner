@@ -56,7 +56,7 @@
               <th>XP Spent</th>
               <td>
                 <span>{{ totalXPInvested }}</span><br />
-                <span v-bind:class="isOverspent ? 'red' : 'gray'">Requires >= level {{ requiredLevel }}</span>
+                <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
               </td>
             </tr>
             <tr>
@@ -263,6 +263,11 @@ export default {
   border-bottom: 1px solid #ccc;
   margin: 0px;
   padding-bottom: 0.25rem;
+}
+
+.header th,
+.header td {
+  vertical-align: top;
 }
 
 #attributes_and_vitals {

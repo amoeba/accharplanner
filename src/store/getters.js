@@ -11,6 +11,7 @@ export default {
     let cost = 0;
 
     cost += Constants.COST_LEVEL[state.character.level];
+    cost += state.character.timesEnlightened * Constants.COST_LEVEL["275"];
 
     return cost;
   },
@@ -37,18 +38,25 @@ export default {
         Constants.COST_SKILL_TRAINED[state.character.skills[s].invested];
     });
 
+    cost += state.character.timesEnlightened * Constants.COST_LEVEL["275"];
+
     return cost;
   },
 
   requiredLevel: (state, getters) => {
-    for (var i = 1; i <= 275; i++) {
-      if (getters.totalXPInvested <= Constants.COST_LEVEL[i]) {
-        return i;
+    for (var e = 0; e < 6; e++) {
+      for (var i = 1; i <= 275; i++) {
+        if (
+          getters.totalXPInvested <=
+          Constants.COST_LEVEL[i] + e * Constants.COST_LEVEL[275]
+        ) {
+          return "Requires >= level " + i + (e > 0 ? " and " + e + " time(s) Enlightened": "");
+        }
       }
     }
 
     // We didn't find a solution which means we've Enlightened
-    return 275;
+    return "LOL";
   },
 
   skillPointsAvailable: state => {
@@ -112,7 +120,7 @@ export default {
     // Enlightenment requires you get all lum auras (20mil xp)
     // TODO: Track auras and this together
     if (state.character.timesEnlightened > 0) {
-      cost += 20000000;
+      cost += 20000000 * state.character.timesEnlightened;
     }
 
     return cost;
