@@ -274,7 +274,7 @@ export default {
   },
 
   // Notifications
-  clearAllNotifications(state, payload) {
+  clearAllNotifications(state) {
     state.notifications = [];
   },
 
