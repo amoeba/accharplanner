@@ -15,8 +15,8 @@
         <th>Base</th>
         <th>Buffed</th>
         <th colspan="2">Invested</th>
-        <th colspan="2">Buff</th>
-        <th colspan="2">Cantrip</th>
+        <th>Buff</th>
+        <th>Cantrip</th>
       </tr>
       <tr class="controls">
         <th colspan="4">&nbsp;</th>
@@ -31,23 +31,27 @@
             v-on:change="changeInvested"
           />
         </th>
-        <th colspan="2">
-          <input
-            type="range"
-            min="0"
-            max="8"
-            value="0"
-            v-on:change="changeBuffed"
-          />
+        <th>
+          <select v-on:change="changeBuffed">
+            <option value="0">None</option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+            <option value="5">V</option>
+            <option value="6">VI</option>
+            <option value="7">VII</option>
+            <option value="8">VII</option>
+          </select>
         </th>
-        <th colspan="2">
-          <input
-            type="range"
-            min="0"
-            max="4"
-            value="0"
-            v-on:change="changeCantrips"
-          />
+        <th>
+          <select v-on:change="changeCantrips">
+            <option value="0">None</option>
+            <option value="1">Minor</option>
+            <option value="2">Major</option>
+            <option value="3">Epic</option>
+            <option value="4">Legendary</option>
+          </select>
         </th>
       </tr>
     </thead>

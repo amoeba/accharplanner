@@ -14,8 +14,8 @@
       <th>Base</th>
       <th>Buffed</th>
       <th class="invested" colspan="2">Invested</th>
-      <th class="buff" colspan="2">Buff</th>
-      <th class="cantrip" colspan="2">Cantrip</th>
+      <th class="buff">Buff</th>
+      <th class="cantrip">Cantrip</th>
     </tr>
     <tr class="controls">
       <th>&nbsp;</th>
@@ -35,25 +35,27 @@
       </th>
       <th>&nbsp;</th>
       <th>
-        <input
-          type="range"
-          min="0"
-          max="8"
-          value="0"
-          v-on:change="changeBuffed"
-        />
+        <select v-on:change="changeBuffed">
+          <option value="0">None</option>
+          <option value="1">I</option>
+          <option value="2">II</option>
+          <option value="3">III</option>
+          <option value="4">IV</option>
+          <option value="5">V</option>
+          <option value="6">VI</option>
+          <option value="7">VII</option>
+          <option value="8">VII</option>
+        </select>
       </th>
-      <th>&nbsp;</th>
       <th>
-        <input
-          type="range"
-          min="0"
-          max="4"
-          value="0"
-          v-on:change="changeCantrip"
-        />
+        <select v-on:change="changeCantrip">
+          <option value="0">None</option>
+          <option value="1">Minor</option>
+          <option value="2">Major</option>
+          <option value="3">Epic</option>
+          <option value="4">Legendary</option>
+        </select>
       </th>
-      <th>&nbsp;</th>
     </tr>
     <Attribute name="strength" display-name="Strength" />
     <Attribute name="endurance" display-name="Endurance" />

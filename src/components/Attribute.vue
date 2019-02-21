@@ -19,10 +19,28 @@
     </td>
     <td><input type="range" min="0" max="190" v-model="invested" /></td>
     <td class="invested number">{{ invested }}</td>
-    <td><input type="range" min="0" max="8" v-model="buffLevel" /></td>
-    <td class="number">{{ buffName }}</td>
-    <td><input type="range" min="0" max="4" v-model="cantrip" /></td>
-    <td class="number">{{ cantripName }}</td>
+    <td>
+      <select v-model="buffLevel">
+        <option value="0">None</option>
+        <option value="1">I</option>
+        <option value="2">II</option>
+        <option value="3">III</option>
+        <option value="4">IV</option>
+        <option value="5">V</option>
+        <option value="6">VI</option>
+        <option value="7">VII</option>
+        <option value="8">VII</option>
+      </select>
+    </td>
+    <td>
+      <select v-model="cantrip">
+        <option value="0">None</option>
+        <option value="1">Minor</option>
+        <option value="2">Major</option>
+        <option value="3">Epic</option>
+        <option value="4">Legendary</option>
+      </select>
+    </td>
   </tr>
 </template>
 

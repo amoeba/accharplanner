@@ -105,26 +105,30 @@
             </tr>
             <tr>
               <th>Buffs</th>
-              <td>
-                <input
-                  type="range"
-                  min="0"
-                  max="8"
-                  value="0"
-                  v-on:change="changeAllBuffs"
-                />
+              <td>                
+                <select v-on:change="changeAllBuffs">
+                  <option value="0">None</option>
+                  <option value="1">I</option>
+                  <option value="2">II</option>
+                  <option value="3">III</option>
+                  <option value="4">IV</option>
+                  <option value="5">V</option>
+                  <option value="6">VI</option>
+                  <option value="7">VII</option>
+                  <option value="8">VII</option>
+                </select>
               </td>
             </tr>
             <tr>
               <th>Cantrips</th>
               <td>
-                <input
-                  type="range"
-                  min="0"
-                  max="4"
-                  value="0"
-                  v-on:change="changeAllCantrips"
-                />
+                <select v-on:change="changeAllCantrips">
+                  <option value="0">None</option>
+                  <option value="1">Minor</option>
+                  <option value="2">Major</option>
+                  <option value="3">Epic</option>
+                  <option value="4">Legendary</option>
+                </select>
               </td>
             </tr>
           </tbody>
