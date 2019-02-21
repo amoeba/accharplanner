@@ -1,5 +1,5 @@
 <template>
-  <div id="extraskillcredits" class="header headerd">
+  <div id="extraskillcredits" class="header">
     <h3>Extra Skill Credits</h3>
     <ul>
       <ExtraSkillCredit id="railrea" name="Aun Railrea" />
