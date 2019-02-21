@@ -2,7 +2,9 @@
   <div id="planner">
     <Notifications />
     <header>
-      <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
+      <a href="//planner.treestats.net">
+        <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
+      </a>
     </header>
     <div class="headers">
       <div class="header">
@@ -271,6 +273,12 @@ header {
 
 header h1 {
   margin: 0;
+}
+
+header a,
+header a:visited {
+  color: black;
+  text-decoration: none;
 }
 
 /* Grid */
