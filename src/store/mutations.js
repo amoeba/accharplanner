@@ -3,8 +3,7 @@ import DefaultCharacter from "./DefaultCharacter";
 
 export default {
   reset(state) {
-    console.log(state);
-    state.character = DefaultCharacter;
+    state.character = DefaultCharacter();
   },
   updateName(state, value) {
     state.character.name = value;
