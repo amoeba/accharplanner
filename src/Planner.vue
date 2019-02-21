@@ -265,13 +265,15 @@ export default {
   font-size: 14px;
 }
 
-/* Grid */
-.headers {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-bottom: 1.5rem;
+header {
+  padding: 0.5rem;
 }
 
+header h1 {
+  margin: 0;
+}
+
+/* Grid */
 .panes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -281,7 +283,7 @@ export default {
   #planner {
     max-width: 660px;
   }
-  
+
   .headers {
     grid-template-columns: 1fr 1fr;
   }
@@ -324,6 +326,12 @@ ul {
 }
 
 /* Headers */
+.headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 1.5rem;
+}
+
 .header {
   padding: 0.5rem;
 }
