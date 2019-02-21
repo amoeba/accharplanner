@@ -1,5 +1,5 @@
 <template>
-  <table id="skills" class="pane">
+  <table id="skills">
     <thead>
       <tr>
         <th colspan="12">Skills</th>
@@ -10,7 +10,7 @@
           }}<span class="error">{{ skillPointsSpentErrorText }}</span>
         </th>
       </tr>
-      <tr class="headers">
+      <tr class="pane-header">
         <th colspan="4">Name</th>
         <th>Base</th>
         <th>Buffed</th>

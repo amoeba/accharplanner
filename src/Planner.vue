@@ -1,8 +1,10 @@
 <template>
   <div id="planner">
     <Notifications />
-    <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
-    <div class="row">
+    <header>
+      <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
+    </header>
+    <div class="headers">
       <div class="header">
         <h3>Character</h3>
         <table>
@@ -136,14 +138,14 @@
       </div>
       <ExtraSkillCredits />
     </div>
-    <div class="row">
-      <div id="attributes_and_vitals">
-        <table class="pane">
+    <div class="row panes">
+      <div id="attributes_and_vitals" class="pane">
+        <table>
           <Attributes />
           <Vitals />
         </table>
       </div>
-      <div id="skills">
+      <div id="skills" class="pane">
         <Skills />
       </div>
     </div>
@@ -256,73 +258,52 @@ export default {
 </script>
 
 <style>
+/* Overall layout */
 #planner {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
-  min-width: 660px;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
-}
-
-.header {
-  padding: 0rem 0.5rem 0.5rem 0rem;
-  width: 23%;
-}
-
-.header h3 {
-  border-bottom: 1px solid #ccc;
-  margin: 0px;
-  padding-bottom: 0.25rem;
-}
-
-.header th,
-.header td {
-  vertical-align: top;
-}
-
-#attributes_and_vitals {
+/* Grid */
+.headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-bottom: 1.5rem;
 }
 
-#attributes_and_vitals,
-#skills {
+.panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 1300px) {
+  #planner {
+    max-width: 660px;
+  }
+  
+  .headers {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* General stuff */
+table {
   width: 100%;
-}
-
-@media (max-width: 1024px) {
-  .header {
-    width: 48%;
-  }
-
-  #attributes_and_vitals {
-    margin-right: 0.5rem;
-  }
-}
-
-#attributes input[type="range"],
-#vitals input[type="range"],
-#skills input[type="range"] {
-  width: 50px;
 }
 
 input,
 select {
   font-size: 100%;
 }
-#charname {
-  border: none;
-}
 
 table {
   border-collapse: collapse;
   margin: 0;
-  width: 100%;
 }
 
 td,
@@ -336,6 +317,43 @@ td {
   padding: 2px 3px;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headers */
+.header {
+  padding: 0.5rem;
+}
+
+.header h3 {
+  border-bottom: 1px solid #ccc;
+  margin: 0px;
+  padding-bottom: 0.25rem;
+}
+
+.header th,
+.header td {
+  vertical-align: top;
+}
+
+#charname {
+  border: none;
+}
+
+/* Panes */
+.pane {
+  padding: 0.5rem;
+}
+
+#attributes input[type="range"],
+#vitals input[type="range"],
+#skills input[type="range"] {
+  width: 50px;
+}
+
 #attributes tr:first-child > th,
 #vitals tr:first-child > th,
 #skills tr:first-child > th {
@@ -347,7 +365,7 @@ td {
   padding-top: 1.5rem;
 }
 
-tr.headers th {
+tr.pane-header th {
   background-color: #ccc;
 }
 
@@ -355,12 +373,7 @@ tr.controls th {
   background-color: #eee;
 }
 
-#extraskillcredits ul {
-  list-style-type: none;
-  margin: 0.5rem;
-  padding: 0;
-}
-
+/* Utility classes */
 .number {
   min-width: 2rem;
   text-align: center;
@@ -396,6 +409,7 @@ tr.controls th {
   border-right: 1px solid #ccc;
 }
 
+/* Notifications */
 #notifications {
   position: fixed;
   top: 1.5rem;
@@ -420,24 +434,5 @@ tr.controls th {
 
 .failure {
   background-color: red;
-}
-
-/* boxes */
-.pane th:first-child,
-.pane td:first-child {
-  border-left: 1px solid #ccc;
-}
-
-.pane th:last-child,
-.pane td:last-child {
-  border-right: 1px solid #ccc;
-}
-
-.pane tr:first-child th {
-  border-top: 1px solid #ccc;
-}
-
-.pane tr:last-child td {
-  border-bottom: 1px solid #ccc;
 }
 </style>
