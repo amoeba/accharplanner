@@ -282,6 +282,11 @@ header a:visited {
 }
 
 /* Grid */
+.headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 .panes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -335,8 +340,6 @@ ul {
 
 /* Headers */
 .headers {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-bottom: 1.5rem;
 }
 
