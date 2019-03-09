@@ -47,7 +47,7 @@
         </table>
       </div>
       <div class="header">
-        <h3>XP &nbsp; Luminance</h3>
+        <h3>XP &amp; Luminance</h3>
         <table>
           <tbody>
             <tr>
