@@ -29,6 +29,13 @@ export default {
   updateAttributeCreation(state, payload) {
     let newVal = Number(payload.value);
 
+    // Clamp to be from 10-100
+    if (newVal > 100) {
+      newVal = 100;
+    } else if (newVal < 10) {
+      newVal = 10
+    }
+
     // Ensure we haven't spent more than 330 points and adjust other
     // attributes if needed
     let newSpent = Constants.ATTRIBUTES.map(a => {
