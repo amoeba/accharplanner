@@ -12,7 +12,7 @@
       {{ displayName }}
     </td>
     <td><input type="range" min="10" max="100" v-model="creation" /></td>
-    <td class="number">{{ creation }}</td>
+    <td class="number"><input type="text" v-bind:value="creation" v-on:change="updateCreation" v-bind:tabindex="tabIndex" /></td>
     <td class="base number">{{ base }}</td>
     <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
       {{ buffed }}
@@ -51,7 +51,8 @@ export default {
   name: "Attribute",
   props: {
     name: String,
-    displayName: String
+    displayName: String,
+    tabIndex: String
   },
   computed: {
     isBuffed() {
@@ -66,6 +67,12 @@ export default {
           .creation;
       },
       set(value) {
+        if (value > 100) {
+          value = 100;
+        } else if (value < 10) {
+          value = 10;
+        }
+        
         this.$store.commit("updateAttributeCreation", {
           name: this._props.name,
           value: value
@@ -121,6 +128,24 @@ export default {
       return Constants.CANTRIP_NAME[
         this.$store.state.character.attributes[this._props.name].cantrip
       ];
+    }
+  },
+  methods: {
+    updateCreation (e) {
+      let value = e.target.value;
+
+      if (value > 100) {
+        value = 100;
+      } else if (value < 10) {
+        value = 10;
+      }
+      
+      this.$store.commit("updateAttributeCreation", {
+        name: this._props.name,
+        value: value
+      });
+
+      e.target.value = value;
     }
   }
 };

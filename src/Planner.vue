@@ -398,6 +398,10 @@ tr.controls th {
   text-align: center;
 }
 
+.number input {
+  width: 2rem;
+}
+
 .isBuffed {
   color: green;
   font-weight: bold;

@@ -57,12 +57,12 @@
         </select>
       </th>
     </tr>
-    <Attribute name="strength" display-name="Strength" />
-    <Attribute name="endurance" display-name="Endurance" />
-    <Attribute name="coordination" display-name="Coordination" />
-    <Attribute name="quickness" display-name="Quickness" />
-    <Attribute name="focus" display-name="Focus" />
-    <Attribute name="self" display-name="Self" />
+    <Attribute name="strength" display-name="Strength" tab-index="100" />
+    <Attribute name="endurance" display-name="Endurance" tab-index="101" />
+    <Attribute name="coordination" display-name="Coordination" tab-index="102" />
+    <Attribute name="quickness" display-name="Quickness" tab-index="103" />
+    <Attribute name="focus" display-name="Focus" tab-index="104" />
+    <Attribute name="self" display-name="Self" tab-index="105" />
   </tbody>
 </template>
 
