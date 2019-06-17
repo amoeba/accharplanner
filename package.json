@@ -9,7 +9,7 @@
     "now-build": "vue-cli-service build"
   },
   "dependencies": {
-    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-prettier": "^3.0.1",
     "vue": "^2.5.17",
     "vuex": "^3.0.1",
