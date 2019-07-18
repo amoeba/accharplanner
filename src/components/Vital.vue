@@ -18,8 +18,8 @@
       {{ buffed }}
     </td>
     <td><input type="range" min="0" max="196" v-model="invested" /></td>
-    <td class="number">{{ invested }}</td>
-    <td>                
+    <td class="invested number"><input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" /></td>
+    <td>
       <select v-model="buffLevel">
         <option value="0">None</option>
         <option value="1">I</option>
@@ -51,7 +51,8 @@ export default {
   name: "Vital",
   props: {
     name: String,
-    displayName: String
+    displayName: String,
+    tabIndex: String
   },
   computed: {
     isBuffed() {
@@ -111,6 +112,28 @@ export default {
       return Constants.CANTRIP_NAME[
         this.$store.state.character.vitals[this._props.name].cantrip
       ];
+    }
+  },
+  methods: {
+    updateInvested (e) {
+      let value = Math.round(Number(e.target.value));
+
+      if (isNaN(value)) {
+        value = 0
+      }
+
+      if (value > 196) {
+        value = 196;
+      } else if (value < 0) {
+        value = 0
+      }
+
+      this.$store.commit("updateVitalInvested", {
+        name: this._props.name,
+        value: value
+      });
+
+      e.target.value = value;
     }
   }
 };

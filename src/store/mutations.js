@@ -95,7 +95,7 @@ export default {
     state.character.vitals[payload.name].cantrip = Number(payload.value);
   },
 
-  updateSkillInvestment(state, payload) {
+  updateSkillInvested(state, payload) {
     state.character.skills[payload.name].invested = Number(payload.value);
   },
 

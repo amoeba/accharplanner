@@ -52,9 +52,9 @@
         </select>
       </th>
     </tr>
-    <Vital name="health" display-name="Health" />
-    <Vital name="stamina" display-name="Stamina" />
-    <Vital name="mana" display-name="Mana" />
+    <Vital name="health" display-name="Health" tabIndex="106" />
+    <Vital name="stamina" display-name="Stamina" tabIndex="107" />
+    <Vital name="mana" display-name="Mana" tabIndex="107" />
   </tbody>
 </template>
 

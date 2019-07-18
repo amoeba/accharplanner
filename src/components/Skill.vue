@@ -35,8 +35,8 @@
         />
       </div>
     </td>
-    <td class="number">{{ invested }}</td>
-    <td>                
+    <td class="invested number"><input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" /></td>
+    <td>
       <select v-model="buffLevel">
         <option value="0">None</option>
         <option value="1">I</option>
@@ -67,7 +67,9 @@ import Constants from "../constants";
 export default {
   name: "Skill",
   props: {
-    name: String
+    name: String,
+    training: String,
+    tabIndex: Number // Number instad of String because we're :binding
   },
   computed: {
     displayName() {
@@ -206,7 +208,7 @@ export default {
         return this.$store.state.character.skills[this._props.name].invested;
       },
       set(value) {
-        this.$store.commit("updateSkillInvestment", {
+        this.$store.commit("updateSkillInvested", {
           name: this._props.name,
           value: value
         });
@@ -272,6 +274,34 @@ export default {
     },
     decreaseTraining() {
       this.$store.commit("decreaseTraining", this._props.name);
+    },
+    updateInvested (e) {
+      let value = Math.round(Number(e.target.value));
+
+      if (isNaN(value)) {
+        value = 0;
+      }
+
+      if (
+        this._props.training === Constants.TRAINING.SPECIALIZED &&
+        value > 226
+      ) {
+        value = 226;
+      } else if (
+        this._props.training === Constants.TRAINING.TRAINED &&
+        value > 208
+      ) {
+        value = 208;
+      } else if (value < 0) {
+        value = 0
+      }
+
+      this.$store.commit("updateSkillInvested", {
+        name: this._props.name,
+        value: value
+      });
+
+      e.target.value = value;
     }
   }
 };

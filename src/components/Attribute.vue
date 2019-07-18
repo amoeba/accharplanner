@@ -18,7 +18,7 @@
       {{ buffed }}
     </td>
     <td><input type="range" min="0" max="190" v-model="invested" /></td>
-    <td class="invested number">{{ invested }}</td>
+    <td class="invested number"><input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" /></td>
     <td>
       <select v-model="buffLevel">
         <option value="0">None</option>
@@ -72,7 +72,7 @@ export default {
         } else if (value < 10) {
           value = 10;
         }
-        
+
         this.$store.commit("updateAttributeCreation", {
           name: this._props.name,
           value: value
@@ -132,15 +132,39 @@ export default {
   },
   methods: {
     updateCreation (e) {
-      let value = e.target.value;
+      let value = Math.round(Number(e.target.value));
+
+      if (isNaN(value)) {
+        value = 10
+      }
 
       if (value > 100) {
         value = 100;
       } else if (value < 10) {
         value = 10;
       }
-      
+
       this.$store.commit("updateAttributeCreation", {
+        name: this._props.name,
+        value: value
+      });
+
+      e.target.value = value;
+    },
+    updateInvested (e) {
+      let value = Math.round(Number(e.target.value));
+
+      if (isNaN(value)) {
+        value = 0
+      }
+
+      if (value > 190) {
+        value = 190;
+      } else if (value < 0) {
+        value = 0
+      }
+
+      this.$store.commit("updateAttributeInvested", {
         name: this._props.name,
         value: value
       });
