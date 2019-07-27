@@ -27,6 +27,9 @@ new Vue({
       return;
     }
 
+    // Reset our character before import
+    this.$store.commit("reset");
+
     // Start doing things
     var store = this.$store;
     const url =
