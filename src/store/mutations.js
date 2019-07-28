@@ -154,6 +154,30 @@ export default {
     state.character.skills[skill].training = newTraining;
   },
 
+  updateAugmentationInvested(state, payload) {
+    state.character.augmentations[payload.name].invested = Number(payload.value);
+
+    /* Update skills */
+
+    if (payload.name === "jibrils_essence") {
+      state.character.skills.armor_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "yoshis_essence") {
+      state.character.skills.item_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "celdiseths_essence") {
+      state.character.skills.magic_item_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "kogas_essence") {
+      state.character.skills.weapon_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "ciandras_essence") {
+      state.character.skills.salvaging.training = Constants.TRAINING.SPECIALIZED;
+    }
+  },
+
+  changeAllAugmentationInvestment(state, value) {
+    Constants.AUGMENTATIONS.forEach(aug_name => {
+      state.character.augmentations[aug_name].invested = (value == 1 ? Constants.AUGMENTATION_MAX_USES[aug_name] : 0);
+    });
+  },
+
   changeAllInvestment(state, invested) {
     Constants.ATTRIBUTES.forEach(a => {
       let newval = Number(invested);

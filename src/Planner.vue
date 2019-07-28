@@ -150,6 +150,10 @@
       <div id="skills" class="pane">
         <Skills />
       </div>
+
+      <div id="augmentations" class="pane augmentations">
+        <Augmentations />
+      </div>
     </div>
   </div>
 </template>
@@ -159,6 +163,7 @@ import ExtraSkillCredits from "./components/ExtraSkillCredits.vue";
 import Attributes from "./components/Attributes.vue";
 import Vitals from "./components/Vitals.vue";
 import Skills from "./components/Skills.vue";
+import Augmentations from "./components/Augmentations.vue";
 import Notifications from "./components/Notifications.vue";
 
 export default {
@@ -168,6 +173,7 @@ export default {
     Attributes,
     Vitals,
     Skills,
+    Augmentations,
     Notifications
   },
   computed: {
@@ -375,12 +381,14 @@ ul {
 
 #attributes tr:first-child > th,
 #vitals tr:first-child > th,
-#skills tr:first-child > th {
+#skills tr:first-child > th ,
+#augmentations tr:first-child > th {
   font-size: 125%;
 }
 
 #vitals > tr:first-child > th,
-#skills > tr:first-child > th {
+#skills > tr:first-child > th,
+#augmentations > tr:first-child > th {
   padding-top: 1.5rem;
 }
 

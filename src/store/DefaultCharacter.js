@@ -297,6 +297,140 @@ export default () => {
         buff: 0,
         cantrip: 0
       }
+    },
+    augmentations: {
+      might_of_the_seventh_mule: {
+        invested: 0
+      },
+      shadow_of_the_seventh_mule: {
+        invested: 0
+      },
+      infused_war_magic: {
+        invested: 0
+      },
+      infused_life_magic: {
+        invested: 0
+      },
+      infused_item_magic: {
+        invested: 0
+      },
+      infused_creature_magic: {
+        invested: 0
+      },
+      infused_void_magic: {
+        invested: 0
+      },
+      clutch_of_the_miser: {
+        invested: 0
+      },
+      enduring_enchantment: {
+        invested: 0
+      },
+      quick_learner: {
+        invested: 0
+      },
+      asherons_lesser_benediction: {
+        invested: 0
+      },
+      asherons_benediction: {
+        invested: 0
+      },
+      blackmoors_favor: {
+        invested: 0
+      },
+      innate_renewal: {
+        invested: 0
+      },
+      reinforcement_of_the_lugians: {
+        invested: 0
+      },
+      bleearghs_fortitude: {
+        invested: 0
+      },
+      oswalds_enhancement: {
+        invested: 0
+      },
+      siraluuns_blessing: {
+        invested: 0
+      },
+      enduring_calm: {
+        invested: 0
+      },
+      steadfast_will: {
+        invested: 0
+      },
+      enhancement_of_the_mace_turner: {
+        invested: 0
+      },
+      enhancement_of_the_blade_turner: {
+        invested: 0
+      },
+      enhancement_of_the_arrow_turner: {
+        invested: 0
+      },
+      storms_enhancement: {
+        invested: 0
+      },
+      fiery_enhancement: {
+        invested: 0
+      },
+      icy_enhancement: {
+        invested: 0
+      },
+      caustic_enhancement: {
+        invested: 0
+      },
+      critical_protection: {
+        invested: 0
+      },
+      frenzy_of_the_slayer: {
+        invested: 0
+      },
+      iron_skin_of_the_invincible: {
+        invested: 0
+      },
+      eye_of_the_remorseless: {
+        invested: 0
+      },
+      hand_of_the_remorseless: {
+        invested: 0
+      },
+      ciandras_fortune: {
+        invested: 0
+      },
+      charmed_smith: {
+        invested: 0
+      },
+      jibrils_essence: {
+        invested: 0
+      },
+      yoshis_essence: {
+        invested: 0
+      },
+      celdiseths_essence: {
+        invested: 0
+      },
+      kogas_essence: {
+        invested: 0
+      },
+      ciandras_essence: {
+        invested: 0
+      },
+      master_of_the_steel_circle: {
+        invested: 0
+      },
+      master_of_the_five_fold_path: {
+        invested: 0
+      },
+      master_of_the_focused_eye: {
+        invested: 0
+      },
+      jack_of_all_trades: {
+        invested: 0
+      },
+      archmages_endurance: {
+        invested: 0
+      }
     }
-  }
-}
+  };
+};

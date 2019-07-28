@@ -57,7 +57,7 @@
     </thead>
     <tbody>
       <tr class="specialized">
-        <th colspan="4">
+        <th colspan="7">
           Specialized ({{ specializedSkillPointsSpent }} / 70)
           {{ augmentationsRequiredText }}
         </th>

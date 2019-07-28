@@ -230,10 +230,10 @@ export default {
       }
     },
     base() {
-      return this.$store.getters[this._props.name + "Base"];
+      return Math.round(this.$store.getters[this._props.name + "Base"]);
     },
     buffed() {
-      return this.$store.getters[this._props.name + "Buffed"];
+      return Math.round(this.$store.getters[this._props.name + "Buffed"]);
     },
     buffLevel: {
       get() {
