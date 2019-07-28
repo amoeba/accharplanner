@@ -1,3 +1,12 @@
+const ATTRIBUTE = {
+  strength: "strength",
+  endurance: "endurance",
+  coordination: "coordination",
+  quickness: "quickness",
+  focus: "focus",
+  self: "self"
+};
+
 const ATTRIBUTES = [
   "strength",
   "endurance",
@@ -105,6 +114,49 @@ const SKILL_NAME = {
   void_magic: "Void Magic",
   war_magic: "War Magic",
   weapon_tinkering: "Weapon Tinkering"
+};
+
+// For determining if a skill is buffed due to a dependent attribut
+// being buffed
+const SKILL_DEPENDS_ON_ATTRIBUTES = {
+  alchemy: [ATTRIBUTE.coordination, ATTRIBUTE.focus],
+  arcane_lore: [ATTRIBUTE.focus],
+  armor_tinkering: [ATTRIBUTE.endurance, ATTRIBUTE.focus],
+  assess_creature: [],
+  assess_person: [],
+  cooking: [ATTRIBUTE.coordination, ATTRIBUTE.focus],
+  creature_enchantment: [ATTRIBUTE.focus, ATTRIBUTE.self],
+  deception: [],
+  dual_wield: [ATTRIBUTE.coordination],
+  dirty_fighting: [ATTRIBUTE.strength, ATTRIBUTE.coordination],
+  finesse_weapons: [ATTRIBUTE.coordination, ATTRIBUTE.quickness],
+  fletching: [ATTRIBUTE.coordination, ATTRIBUTE.focus],
+  healing: [ATTRIBUTE.coordination, ATTRIBUTE.focus],
+  heavy_weapons: [ATTRIBUTE.strength, ATTRIBUTE.coordination],
+  item_enchantment: [ATTRIBUTE.focus, ATTRIBUTE.self],
+  item_tinkering: [ATTRIBUTE.coordination, ATTRIBUTE.focus],
+  jump: [ATTRIBUTE.strength, ATTRIBUTE.coordination],
+  leadership: [],
+  life_magic: [ATTRIBUTE.focus, ATTRIBUTE.self],
+  light_weapons: [ATTRIBUTE.strength, ATTRIBUTE.coordination],
+  lockpick: [ATTRIBUTE.coordination, ATTRIBUTE.focus],
+  loyalty: [],
+  magic_defense: [ATTRIBUTE.focus, ATTRIBUTE.self],
+  magic_item_tinkering: [ATTRIBUTE.focus],
+  mana_conversion: [ATTRIBUTE.focus, ATTRIBUTE.self],
+  melee_defense: [ATTRIBUTE.coordination, ATTRIBUTE.quickness],
+  missile_defense: [ATTRIBUTE.coordination, ATTRIBUTE.quickness],
+  missile_weapons: [ATTRIBUTE.coordination],
+  recklessness: [ATTRIBUTE.strength, ATTRIBUTE.quickness],
+  run: [ATTRIBUTE.quickness],
+  salvaging: [],
+  shield: [ATTRIBUTE.strength, ATTRIBUTE.coordination],
+  sneak_attack: [ATTRIBUTE.coordination, ATTRIBUTE.quickness],
+  summoning: [ATTRIBUTE.endurance, ATTRIBUTE.self],
+  two_handed_combat: [ATTRIBUTE.strength, ATTRIBUTE.coordination],
+  void_magic: [ATTRIBUTE.focus, ATTRIBUTE.self],
+  war_magic: [ATTRIBUTE.focus, ATTRIBUTE.self],
+  weapon_tinkering: [ATTRIBUTE.focus, ATTRIBUTE.self]
 };
 
 const UNTRAINABLE = {
@@ -1878,6 +1930,7 @@ export default {
   SKILLS,
   TRAINING,
   SKILL_NAME,
+  SKILL_DEPENDS_ON_ATTRIBUTES,
   UNTRAINED_STATE,
   UNTRAINABLE,
   COST_SKILL_POINTS,
