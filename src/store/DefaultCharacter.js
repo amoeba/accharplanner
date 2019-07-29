@@ -431,6 +431,59 @@ export default () => {
       archmages_endurance: {
         invested: 0
       }
+    },
+    luminance_auras: {
+      aetheric_vision: {
+        invested: 0
+      },
+      craftsman: {
+        invested: 0
+      },
+      glory: {
+        invested: 0
+      },
+      mana_flow: {
+        invested: 0
+      },
+      manu_infusion: {
+        invested: 0
+      },
+      protection: {
+        invested: 0
+      },
+      purity: {
+        invested: 0
+      },
+      skill: {
+        invested: 0
+      },
+      temperance: {
+        invested: 0
+      },
+      valor: {
+        invested: 0
+      },
+      world: {
+        invested: 0
+      },
+      specialization: {
+        invested: 0
+      },
+      invulnerability: {
+        invested: 0
+      },
+      destruction: {
+        invested: 0
+      },
+      retribution: {
+        invested: 0
+      },
+      hardening: {
+        invested: 0
+      },
+      invulnerabilit: {
+        invested: 0
+      }
     }
   };
 };

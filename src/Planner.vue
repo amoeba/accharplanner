@@ -147,12 +147,17 @@
           <Vitals />
         </table>
       </div>
+
       <div id="skills" class="pane">
         <Skills />
       </div>
 
       <div id="augmentations" class="pane augmentations">
         <Augmentations />
+      </div>
+
+      <div id="luminance" class="pane luminance">
+        <LuminanceAuras />
       </div>
     </div>
   </div>
@@ -164,6 +169,7 @@ import Attributes from "./components/Attributes.vue";
 import Vitals from "./components/Vitals.vue";
 import Skills from "./components/Skills.vue";
 import Augmentations from "./components/Augmentations.vue";
+import LuminanceAuras from "./components/LuminanceAuras.vue";
 import Notifications from "./components/Notifications.vue";
 
 export default {
@@ -174,6 +180,7 @@ export default {
     Vitals,
     Skills,
     Augmentations,
+    LuminanceAuras,
     Notifications
   },
   computed: {

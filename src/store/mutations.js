@@ -24,6 +24,13 @@ export default {
 
   updateExtraSkillCredit(state, payload) {
     state.character.extraSkillCredits[payload.name] = payload.value;
+
+    // Set luminance aura skill points to match
+    if (payload.name === "luminance1" || payload.name === "luminance2") {
+      state.character.luminance_auras.skill.invested =
+        state.character.extraSkillCredits["luminance1"] +
+        state.character.extraSkillCredits["luminance2"];
+    }
   },
 
   updateAttributeCreation(state, payload) {
@@ -154,6 +161,7 @@ export default {
     state.character.skills[skill].training = newTraining;
   },
 
+  // Augmentations
   updateAugmentationInvested(state, payload) {
     state.character.augmentations[payload.name].invested = Number(payload.value);
 
@@ -175,6 +183,17 @@ export default {
   changeAllAugmentationInvestment(state, value) {
     Constants.AUGMENTATIONS.forEach(aug_name => {
       state.character.augmentations[aug_name].invested = (value == 1 ? Constants.AUGMENTATION_MAX_USES[aug_name] : 0);
+    });
+  },
+
+  // Luminance Auras
+  updateLuminanceAuraInvested(state, payload) {
+    state.character.luminance_auras[payload.name].invested = Number(payload.value);
+  },
+
+  changeAllLuminanceAuraInvestment(state, value) {
+    Constants.LUMINANCE_AURAS.forEach(aura_name => {
+      state.character.luminance_auras[aura_name].invested = (value == 1 ? Constants.LUMINANCE_AURA_MAX_USES[aura_name] : 0);
     });
   },
 
