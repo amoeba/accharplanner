@@ -389,7 +389,8 @@ ul {
 #attributes tr:first-child > th,
 #vitals tr:first-child > th,
 #skills tr:first-child > th ,
-#augmentations tr:first-child > th {
+#augmentations tr:first-child > th,
+#luminance tr:first-child > th {
   font-size: 125%;
 }
 
