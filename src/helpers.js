@@ -15,19 +15,19 @@ export default {
       case 1:
         return 10;
       case 2:
-        return 20;
+        return 15;
       case 3:
-        return 30;
+        return 20;
       case 4:
-        return 40;
+        return 25;
       case 5:
-        return 50;
+        return 30;
       case 6:
-        return 60;
+        return 35;
       case 7:
-        return 70;
+        return 40;
       case 8:
-        return 80;
+        return 45;
       default:
         return 0;
     }
