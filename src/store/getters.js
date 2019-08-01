@@ -292,8 +292,8 @@ export default {
       Helpers.buffBonus(state.character.skills.alchemy.buff) +
       Helpers.cantripBonus(state.character.skills.alchemy.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           3
       )
     );
@@ -311,7 +311,7 @@ export default {
       getters.arcane_loreBase +
       Helpers.buffBonus(state.character.skills.arcane_lore.buff) +
       Helpers.cantripBonus(state.character.skills.arcane_lore.cantrip) +
-      Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) / 3)
+      Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) / 3)
     );
   },
   armor_tinkeringBase: (state, getters) => {
@@ -328,8 +328,8 @@ export default {
       Helpers.buffBonus(state.character.skills.armor_tinkering.buff) +
       Helpers.cantripBonus(state.character.skills.armor_tinkering.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.endurance.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.endurance.buff) + Helpers.cantripBonus(state.character.attributes.endurance.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           2
       )
     );
@@ -376,8 +376,8 @@ export default {
       Helpers.buffBonus(state.character.skills.cooking.buff) +
       Helpers.cantripBonus(state.character.skills.cooking.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           3
       )
     );
@@ -400,8 +400,8 @@ export default {
         state.character.skills.creature_enchantment.cantrip
       ) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           4
       )
     );
@@ -434,8 +434,8 @@ export default {
       Helpers.buffBonus(state.character.skills.dirty_fighting.buff) +
       Helpers.cantripBonus(state.character.skills.dirty_fighting.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff)) /
+        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
+          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
           3
       )
     );
@@ -454,8 +454,8 @@ export default {
       Helpers.buffBonus(state.character.skills.dual_wield.buff) +
       Helpers.cantripBonus(state.character.skills.dual_wield.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           3
       )
     );
@@ -474,8 +474,8 @@ export default {
       Helpers.buffBonus(state.character.skills.finesse_weapons.buff) +
       Helpers.cantripBonus(state.character.skills.finesse_weapons.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
           3
       )
     );
@@ -494,8 +494,8 @@ export default {
       Helpers.buffBonus(state.character.skills.fletching.buff) +
       Helpers.cantripBonus(state.character.skills.fletching.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           3
       )
     );
@@ -514,8 +514,8 @@ export default {
       Helpers.buffBonus(state.character.skills.healing.buff) +
       Helpers.cantripBonus(state.character.skills.healing.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           3
       )
     );
@@ -534,8 +534,8 @@ export default {
       Helpers.buffBonus(state.character.skills.heavy_weapons.buff) +
       Helpers.cantripBonus(state.character.skills.heavy_weapons.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff)) /
+        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
+          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
           3
       )
     );
@@ -554,8 +554,8 @@ export default {
       Helpers.buffBonus(state.character.skills.item_enchantment.buff) +
       Helpers.cantripBonus(state.character.skills.item_enchantment.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           4
       )
     );
@@ -574,8 +574,8 @@ export default {
       Helpers.buffBonus(state.character.skills.item_tinkering.buff) +
       Helpers.cantripBonus(state.character.skills.item_tinkering.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           2
       )
     );
@@ -594,8 +594,8 @@ export default {
       Helpers.buffBonus(state.character.skills.jump.buff) +
       Helpers.cantripBonus(state.character.skills.jump.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff)) /
+        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
+          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
           2
       )
     );
@@ -628,8 +628,8 @@ export default {
       Helpers.buffBonus(state.character.skills.life_magic.buff) +
       Helpers.cantripBonus(state.character.skills.life_magic.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           4
       )
     );
@@ -648,8 +648,8 @@ export default {
       Helpers.buffBonus(state.character.skills.light_weapons.buff) +
       Helpers.cantripBonus(state.character.skills.light_weapons.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff)) /
+        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
+          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
           3
       )
     );
@@ -668,8 +668,8 @@ export default {
       Helpers.buffBonus(state.character.skills.lockpick.buff) +
       Helpers.cantripBonus(state.character.skills.lockpick.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.focus.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
           3
       )
     );
@@ -702,8 +702,8 @@ export default {
       Helpers.buffBonus(state.character.skills.magic_defense.buff) +
       Helpers.cantripBonus(state.character.skills.magic_defense.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           7
       )
     );
@@ -725,7 +725,7 @@ export default {
       Helpers.cantripBonus(
         state.character.skills.magic_item_tinkering.cantrip
       ) +
-      Helpers.buffBonus(state.character.attributes.focus.buff)
+      Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)
     );
   },
   mana_conversionBase: (state, getters) => {
@@ -742,8 +742,8 @@ export default {
       Helpers.buffBonus(state.character.skills.mana_conversion.buff) +
       Helpers.cantripBonus(state.character.skills.mana_conversion.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           6
       )
     );
@@ -762,8 +762,8 @@ export default {
       Helpers.buffBonus(state.character.skills.melee_defense.buff) +
       Helpers.cantripBonus(state.character.skills.melee_defense.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
           3
       )
     );
@@ -782,8 +782,8 @@ export default {
       Helpers.buffBonus(state.character.skills.missile_defense.buff) +
       Helpers.cantripBonus(state.character.skills.missile_defense.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
           5
       )
     );
@@ -802,7 +802,7 @@ export default {
       Helpers.buffBonus(state.character.skills.missile_weapons.buff) +
       Helpers.cantripBonus(state.character.skills.missile_weapons.cantrip) +
       Math.round(
-        Helpers.buffBonus(state.character.attributes.coordination.buff) / 2
+        Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) / 2
       )
     );
   },
@@ -820,8 +820,8 @@ export default {
       Helpers.buffBonus(state.character.skills.recklessness.buff) +
       Helpers.cantripBonus(state.character.skills.recklessness.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff)) /
+        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
+          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
           3
       )
     );
@@ -839,7 +839,7 @@ export default {
       getters.runBase +
       Helpers.buffBonus(state.character.skills.run.buff) +
       Helpers.cantripBonus(state.character.skills.run.cantrip) +
-      Helpers.buffBonus(state.character.attributes.quickness.buff)
+      Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)
     );
   },
   salvagingBase: state => {
@@ -870,8 +870,8 @@ export default {
       Helpers.buffBonus(state.character.skills.shield.buff) +
       Helpers.cantripBonus(state.character.skills.shield.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff)) /
+        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
+          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
           2
       )
     );
@@ -890,8 +890,8 @@ export default {
       Helpers.buffBonus(state.character.skills.sneak_attack.buff) +
       Helpers.cantripBonus(state.character.skills.sneak_attack.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff)) /
+        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
+          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
           3
       )
     );
@@ -910,8 +910,8 @@ export default {
       Helpers.buffBonus(state.character.skills.summoning.buff) +
       Helpers.cantripBonus(state.character.skills.summoning.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.endurance.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.endurance.buff) + Helpers.cantripBonus(state.character.attributes.endurance.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           3
       )
     );
@@ -930,8 +930,8 @@ export default {
       Helpers.buffBonus(state.character.skills.two_handed_combat.buff) +
       Helpers.cantripBonus(state.character.skills.two_handed_combat.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff)) /
+        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
+          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
           3
       )
     );
@@ -950,8 +950,8 @@ export default {
       Helpers.buffBonus(state.character.skills.void_magic.buff) +
       Helpers.cantripBonus(state.character.skills.void_magic.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           4
       )
     );
@@ -970,8 +970,8 @@ export default {
       Helpers.buffBonus(state.character.skills.war_magic.buff) +
       Helpers.cantripBonus(state.character.skills.war_magic.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           4
       )
     );
@@ -990,8 +990,8 @@ export default {
       Helpers.buffBonus(state.character.skills.weapon_tinkering.buff) +
       Helpers.cantripBonus(state.character.skills.weapon_tinkering.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) +
-          Helpers.buffBonus(state.character.attributes.self.buff)) /
+        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
           2
       )
     );
