@@ -445,7 +445,7 @@ export default () => {
       mana_flow: {
         invested: 0
       },
-      manu_infusion: {
+      mana_infusion: {
         invested: 0
       },
       protection: {

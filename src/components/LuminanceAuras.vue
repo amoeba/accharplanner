@@ -18,7 +18,7 @@
       <LuminanceAura name="craftsman" />
       <LuminanceAura name="glory" />
       <LuminanceAura name="mana_flow" />
-      <LuminanceAura name="manu_infusion" />
+      <LuminanceAura name="mana_infusion" />
       <LuminanceAura name="protection" />
       <LuminanceAura name="purity" />
       <LuminanceAura name="skill" />
