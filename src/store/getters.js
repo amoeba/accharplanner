@@ -72,7 +72,7 @@ export default {
     }
 
     // We didn't find a solution which means we've Enlightened
-    return "LOL";
+    return "Oops, something went wrong!";
   },
 
   skillPointsAvailable: state => {
