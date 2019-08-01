@@ -80,8 +80,7 @@ export default {
       Constants.SKILL_POINTS_AT_LEVEL[state.character.level] +
       (state.character.extraSkillCredits.railrea ? 1 : 0) +
       (state.character.extraSkillCredits.oswald ? 1 : 0) +
-      (state.character.extraSkillCredits.luminance1 ? 1 : 0) +
-      (state.character.extraSkillCredits.luminance2 ? 1 : 0)
+      state.character.luminance_auras.skill.invested
     );
   },
 
