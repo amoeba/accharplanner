@@ -29,7 +29,7 @@
         <option value="5">V</option>
         <option value="6">VI</option>
         <option value="7">VII</option>
-        <option value="8">VII</option>
+        <option value="8">VIII</option>
       </select>
     </td>
     <td>
@@ -51,10 +51,12 @@ export default {
   name: "Attribute",
   props: {
     name: String,
-    displayName: String,
     tabIndex: String
   },
   computed: {
+    displayName() {
+      return Constants.ATTRIBUTE_NAME[this._props.name];
+    },
     isBuffed() {
       return (
         this.$store.state.character.attributes[this._props.name].buff > 0 ||
@@ -92,10 +94,10 @@ export default {
       }
     },
     base() {
-      return this.$store.getters[this._props.name + "Base"];
+      return Math.round(this.$store.getters[this._props.name + "Base"]);
     },
     buffed() {
-      return this.$store.getters[this._props.name + "Buffed"];
+      return Math.round(this.$store.getters[this._props.name + "Buffed"]);
     },
     buffLevel: {
       get() {
@@ -155,13 +157,13 @@ export default {
       let value = Math.round(Number(e.target.value));
 
       if (isNaN(value)) {
-        value = 0
+        value = 0;
       }
 
       if (value > 190) {
         value = 190;
       } else if (value < 0) {
-        value = 0
+        value = 0;
       }
 
       this.$store.commit("updateAttributeInvested", {

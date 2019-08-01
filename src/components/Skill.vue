@@ -46,7 +46,7 @@
         <option value="5">V</option>
         <option value="6">VI</option>
         <option value="7">VII</option>
-        <option value="8">VII</option>
+        <option value="8">VIII</option>
       </select>
     </td>
     <td>
@@ -69,7 +69,7 @@ export default {
   props: {
     name: String,
     training: String,
-    tabIndex: Number // Number instad of String because we're :binding
+    tabIndex: Number // Number instead of String because we're :binding
   },
   computed: {
     displayName() {
@@ -78,7 +78,14 @@ export default {
     isBuffed() {
       return (
         this.$store.state.character.skills[this._props.name].buff > 0 ||
-        this.$store.state.character.skills[this._props.name].cantrip > 0
+        this.$store.state.character.skills[this._props.name].cantrip > 0 ||
+        Constants.SKILL_DEPENDS_ON_ATTRIBUTES[this._props.name].reduce((acc, attr) => {
+          if (this.$store.state.character.attributes[attr].buff > 0 || this.$store.state.character.attributes[attr].cantrip > 0) {
+            return acc + 1;
+          } else {
+            return acc;
+          }
+        }, 0)
       );
     },
     increaseCostText() {
@@ -230,10 +237,10 @@ export default {
       }
     },
     base() {
-      return this.$store.getters[this._props.name + "Base"];
+      return Math.round(this.$store.getters[this._props.name + "Base"]);
     },
     buffed() {
-      return this.$store.getters[this._props.name + "Buffed"];
+      return Math.round(this.$store.getters[this._props.name + "Buffed"]);
     },
     buffLevel: {
       get() {

@@ -24,6 +24,13 @@ export default {
 
   updateExtraSkillCredit(state, payload) {
     state.character.extraSkillCredits[payload.name] = payload.value;
+
+    // Set luminance aura skill points to match
+    if (payload.name === "luminance1" || payload.name === "luminance2") {
+      state.character.luminance_auras.skill.invested =
+        state.character.extraSkillCredits["luminance1"] +
+        state.character.extraSkillCredits["luminance2"];
+    }
   },
 
   updateAttributeCreation(state, payload) {
@@ -152,6 +159,42 @@ export default {
     }
 
     state.character.skills[skill].training = newTraining;
+  },
+
+  // Augmentations
+  updateAugmentationInvested(state, payload) {
+    state.character.augmentations[payload.name].invested = Number(payload.value);
+
+    /* Update skills */
+
+    if (payload.name === "jibrils_essence") {
+      state.character.skills.armor_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "yoshis_essence") {
+      state.character.skills.item_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "celdiseths_essence") {
+      state.character.skills.magic_item_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "kogas_essence") {
+      state.character.skills.weapon_tinkering.training = Constants.TRAINING.SPECIALIZED;
+    } else if (payload.name === "ciandras_essence") {
+      state.character.skills.salvaging.training = Constants.TRAINING.SPECIALIZED;
+    }
+  },
+
+  changeAllAugmentationInvestment(state, value) {
+    Constants.AUGMENTATIONS.forEach(aug_name => {
+      state.character.augmentations[aug_name].invested = (value == 1 ? Constants.AUGMENTATION_MAX_USES[aug_name] : 0);
+    });
+  },
+
+  // Luminance Auras
+  updateLuminanceAuraInvested(state, payload) {
+    state.character.luminance_auras[payload.name].invested = Number(payload.value);
+  },
+
+  changeAllLuminanceAuraInvestment(state, value) {
+    Constants.LUMINANCE_AURAS.forEach(aura_name => {
+      state.character.luminance_auras[aura_name].invested = (value == 1 ? Constants.LUMINANCE_AURA_MAX_USES[aura_name] : 0);
+    });
   },
 
   changeAllInvestment(state, invested) {

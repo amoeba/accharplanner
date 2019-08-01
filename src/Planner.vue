@@ -119,7 +119,7 @@
                   <option value="5">V</option>
                   <option value="6">VI</option>
                   <option value="7">VII</option>
-                  <option value="8">VII</option>
+                  <option value="8">VIII</option>
                 </select>
               </td>
             </tr>
@@ -147,8 +147,17 @@
           <Vitals />
         </table>
       </div>
+
       <div id="skills" class="pane">
         <Skills />
+      </div>
+
+      <div id="augmentations" class="pane augmentations">
+        <Augmentations />
+      </div>
+
+      <div id="luminance" class="pane luminance">
+        <LuminanceAuras />
       </div>
     </div>
   </div>
@@ -159,6 +168,8 @@ import ExtraSkillCredits from "./components/ExtraSkillCredits.vue";
 import Attributes from "./components/Attributes.vue";
 import Vitals from "./components/Vitals.vue";
 import Skills from "./components/Skills.vue";
+import Augmentations from "./components/Augmentations.vue";
+import LuminanceAuras from "./components/LuminanceAuras.vue";
 import Notifications from "./components/Notifications.vue";
 
 export default {
@@ -168,6 +179,8 @@ export default {
     Attributes,
     Vitals,
     Skills,
+    Augmentations,
+    LuminanceAuras,
     Notifications
   },
   computed: {
@@ -375,12 +388,15 @@ ul {
 
 #attributes tr:first-child > th,
 #vitals tr:first-child > th,
-#skills tr:first-child > th {
+#skills tr:first-child > th ,
+#augmentations tr:first-child > th,
+#luminance tr:first-child > th {
   font-size: 125%;
 }
 
 #vitals > tr:first-child > th,
-#skills > tr:first-child > th {
+#skills > tr:first-child > th,
+#augmentations > tr:first-child > th {
   padding-top: 1.5rem;
 }
 
