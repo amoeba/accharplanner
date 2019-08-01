@@ -8,7 +8,7 @@
 export default {
   name: "Notification",
   props: {
-    id: String,
+    id: Number,
     type: String,
     message: String
   },
