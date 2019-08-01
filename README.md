@@ -17,7 +17,7 @@ This isn't the first skill planner for AC:
   - [x] Buffs
   - [x] Major & minor cantrips
   - [x] Enlightenment
-  - [ ] Augmentations (partially done)
+  - [x] Augmentations and Luminance Auras (partially done)
   - [ ] Sets
   - [ ] Temporary bonuse
     - [ ] Rares
