@@ -141,32 +141,17 @@
       <ExtraSkillCredits />
     </div>
     <div class="row panes">
-      <div id="attributes_and_vitals" class="pane">
-        <table>
-          <Attributes />
-          <Vitals />
-        </table>
-      </div>
-
-      <div id="skills" class="pane">
-        <Skills />
-      </div>
-
-      <div id="augmentations" class="pane augmentations">
-        <Augmentations />
-      </div>
-
-      <div id="luminance" class="pane luminance">
-        <LuminanceAuras />
-      </div>
+      <AttributesAndVitals />
+      <Skills />
+      <Augmentations />
+      <LuminanceAuras />
     </div>
   </div>
 </template>
 
 <script>
 import ExtraSkillCredits from "./components/ExtraSkillCredits.vue";
-import Attributes from "./components/Attributes.vue";
-import Vitals from "./components/Vitals.vue";
+import AttributesAndVitals from "./components/AttributesAndVitals.vue";
 import Skills from "./components/Skills.vue";
 import Augmentations from "./components/Augmentations.vue";
 import LuminanceAuras from "./components/LuminanceAuras.vue";
@@ -176,8 +161,7 @@ export default {
   name: "planner",
   components: {
     ExtraSkillCredits,
-    Attributes,
-    Vitals,
+    AttributesAndVitals,
     Skills,
     Augmentations,
     LuminanceAuras,
@@ -342,6 +326,7 @@ th {
 
 th,
 td {
+  height: 1.5rem;
   padding: 2px 3px;
 }
 
@@ -378,26 +363,14 @@ ul {
 /* Panes */
 .pane {
   padding: 0.5rem;
+  max-height: 26rem;
+  overflow-y: scroll;
 }
 
 #attributes input[type="range"],
 #vitals input[type="range"],
 #skills input[type="range"] {
   width: 50px;
-}
-
-#attributes tr:first-child > th,
-#vitals tr:first-child > th,
-#skills tr:first-child > th ,
-#augmentations tr:first-child > th,
-#luminance tr:first-child > th {
-  font-size: 125%;
-}
-
-#vitals > tr:first-child > th,
-#skills > tr:first-child > th,
-#augmentations > tr:first-child > th {
-  padding-top: 1.5rem;
 }
 
 tr.pane-header th {

@@ -1,8 +1,5 @@
 <template>
   <tbody id="vitals">
-    <tr>
-      <th colspan="12">Vitals</th>
-    </tr>
     <tr class="pane-header">
       <th colspan="2">Name</th>
       <th colspan="2">Creation</th>

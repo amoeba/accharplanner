@@ -1,12 +1,8 @@
 <template>
   <tbody id="attributes">
     <tr>
-      <th colspan="12">Attributes</th>
-    </tr>
-    <tr>
-      <th colspan="12">
-        Creation Attribute Points Spent: {{ attributePointsSpent }} / 330
-      </th>
+      <th colspan="2">Attributes</th>
+      <th colspan="10">Creation Attribute Points Spent: {{ attributePointsSpent }} / 330</th>
     </tr>
     <tr class="pane-header">
       <th colspan="2" class="name">Name</th>
