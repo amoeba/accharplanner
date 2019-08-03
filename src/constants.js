@@ -1,3 +1,8 @@
+const MIN_LEVEL = 1;
+const MAX_LEVEL = 275;
+const MIN_TIMES_ENLIGHTENDED = 0;
+const MAX_TIMES_ENLIGHTENDED = 5;
+
 const ATTRIBUTE = {
   strength: "strength",
   endurance: "endurance",
@@ -2000,6 +2005,10 @@ const LUMINANCE_AURA_MAX_USES = {
 };
 
 export default {
+  MIN_LEVEL,
+  MAX_LEVEL,
+  MIN_TIMES_ENLIGHTENDED,
+  MAX_TIMES_ENLIGHTENDED,
   ATTRIBUTES,
   ATTRIBUTE_NAME,
   VITALS,

@@ -9,7 +9,7 @@ export default {
     state.character.name = value;
   },
   updateLevel(state, value) {
-    state.character.level = Number(value);
+    state.character.level = value;
   },
   updateRace(state, value) {
     state.character.race = value;
@@ -19,7 +19,17 @@ export default {
   },
 
   updateTimesEnlightened(state, value) {
-    state.character.timesEnlightened = Number(value);
+    let actual = Number(value);
+
+    if (isNaN(actual)) {
+      actual = 0;
+    } else if (actual < 0) {
+      actual = 0;
+    } else if (actual > 5) {
+      actual = 5;
+    }
+
+    state.character.timesEnlightened = actual;
   },
 
   updateExtraSkillCredit(state, payload) {
