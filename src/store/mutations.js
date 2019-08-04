@@ -13,6 +13,29 @@ export default {
   },
   updateRace(state, value) {
     state.character.race = value;
+
+    // Also update experience augmentations to match new race
+    if (
+      value === Constants.RACE.ALUVIAN ||
+      value === Constants.RACE.GHARUNDIM ||
+      value === Constants.RACE.SHO||
+      value === Constants.RACE.VIAMONTIAN
+    ) {
+      state.character.augmentations.jack_of_all_trades.invested = 1;
+      state.character.augmentations.infused_life_magic.invested = 0;
+      state.character.augmentations.eye_of_the_remorseless.invested = 0;
+    } else if (value === Constants.RACE.EMPYREAN) {
+      state.character.augmentations.jack_of_all_trades.invested = 0;
+      state.character.augmentations.infused_life_magic.invested = 1;
+      state.character.augmentations.eye_of_the_remorseless.invested = 0;
+    } else if (
+      value === Constants.RACE.UMBRAEN ||
+      value === Constants.RACE.PENUMBRAEN
+    ) {
+      state.character.augmentations.jack_of_all_trades.invested = 0;
+      state.character.augmentations.infused_life_magic.invested = 0;
+      state.character.augmentations.eye_of_the_remorseless.invested = 1;
+    }
   },
   updateGender(state, value) {
     state.character.gender = value;

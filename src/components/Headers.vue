@@ -13,11 +13,9 @@
             <th>Race</th>
             <td>
               <select v-model="race">
-                <option>Aluvian</option>
-                <option>Gharu'ndim</option>
-                <option>Sho</option>
-                <option>Vitamontian</option>
-                <option>Empyrean</option>
+                <option v-for="race in races" v-bind:key="race" >
+                  {{ race }}
+                </option>
               </select>
             </td>
           </tr>
@@ -190,6 +188,9 @@ export default {
       set(value) {
         this.$store.commit("updateLevel", value);
       }
+    },
+    races() {
+      return Constants.RACE
     },
     race: {
       get() {

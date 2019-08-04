@@ -3,6 +3,16 @@ const MAX_LEVEL = 275;
 const MIN_TIMES_ENLIGHTENDED = 0;
 const MAX_TIMES_ENLIGHTENDED = 5;
 
+const RACE = {
+  ALUVIAN: "Aluvian",
+  GHARUNDIM: "Gharu'ndim",
+  SHO: "Sho",
+  VIAMONTIAN: "Viamontian",
+  EMPYREAN: "Empyrean",
+  UMBRAEN: "Umbraen",
+  PENUMBRAEN: "Penumbraen"
+}
+
 const ATTRIBUTE = {
   strength: "strength",
   endurance: "endurance",
@@ -2009,6 +2019,7 @@ export default {
   MAX_LEVEL,
   MIN_TIMES_ENLIGHTENDED,
   MAX_TIMES_ENLIGHTENDED,
+  RACE,
   ATTRIBUTES,
   ATTRIBUTE_NAME,
   VITALS,

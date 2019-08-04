@@ -426,7 +426,7 @@ export default () => {
         invested: 0
       },
       jack_of_all_trades: {
-        invested: 0
+        invested: 1
       },
       archmages_endurance: {
         invested: 0

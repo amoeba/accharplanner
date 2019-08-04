@@ -52,6 +52,25 @@ export default {
         ];
     });
 
+    // Adjust for free stuff, like racial experience augmentations
+    if ((
+      state.character.race === Constants.RACE.ALUVIAN ||
+      state.character.race === Constants.RACE.GHARUNDIM ||
+      state.character.race === Constants.RACE.SHO ||
+      state.character.race === Constants.RACE.VIAMONTIAN) &&
+        state.character.augmentations.jack_of_all_trades.invested == 1) {
+          cost -= Constants.AUGMENTATION_COST.jack_of_all_trades[state.character.augmentations.jack_of_all_trades.invested];
+    } else if ((
+      state.character.race === Constants.RACE.EMPYREAN) &&
+        state.character.augmentations.infused_life_magic.invested == 1) {
+          cost -= Constants.AUGMENTATION_COST.infused_life_magic[state.character.augmentations.infused_life_magic.invested];
+    } else if ((
+      state.character.race === Constants.RACE.UMBRAEN ||
+      state.character.race === Constants.RACE.PENUMBRAEN ) &&
+        state.character.augmentations.eye_of_the_remorseless.invested == 1) {
+          cost -= Constants.AUGMENTATION_COST.eye_of_the_remorseless[state.character.augmentations.eye_of_the_remorseless.invested];
+    }
+
     return cost;
   },
 
