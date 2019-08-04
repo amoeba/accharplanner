@@ -5,6 +5,10 @@
       <a href="//planner.treestats.net">
         <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
       </a>
+      <ul class="links">
+        <li><a href="https://discord.gg/wfmpqJs">Discord</a></li>
+        <li><a href="https://github.com/amoeba/accharplanner">GitHub</a></li>
+      </ul>
     </header>
     <Headers />
     <div class="row panes">
@@ -51,12 +55,32 @@ header {
 
 header h1 {
   margin: 0;
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 
 header a,
 header a:visited {
   color: black;
   text-decoration: none;
+}
+
+header ul.links {
+  list-style-type: none;
+  display: inline-block;
+}
+
+header ul.links li {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+header ul.links li a {
+  color: blue;
+}
+
+header ul.links li a:visited {
+  color: blue;
 }
 
 /* Grid */
