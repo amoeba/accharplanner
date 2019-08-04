@@ -5,7 +5,7 @@ export default () => {
     name: "An Adventurer",
     race: "Aluvian",
     gender: "Female",
-    level: 5,
+    level: 1,
     timesEnlightened: 0,
     extraSkillCredits: {
       railrea: false,
