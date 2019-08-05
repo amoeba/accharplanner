@@ -34,8 +34,15 @@
             </td>
           </tr>
           <tr>
+            <th>Level</th>
+            <td>
+              <input type="range" min="1" max="275" v-model="level" />
+              <input class="number" type="text" v-bind:value="level" v-on:change="updateLevel" />
+            </td>
+          </tr>
+          <tr>
             <td>&nbsp;</td>
-            <td><button v-on:click="reset">Reset Everything</button></td>
+            <td><button v-on:click="reset">Reset Planner</button></td>
           </tr>
         </tbody>
       </table>
@@ -45,7 +52,7 @@
       <table>
         <tbody>
           <tr>
-            <th>XP Earned</th>
+            <th>XP Total</th>
             <td>{{ totalXPEarned }}</td>
           </tr>
           <tr>
@@ -70,25 +77,6 @@
       <h3>Knobs &amp; Dials</h3>
       <table>
         <tbody>
-          <tr>
-            <th>Level</th>
-            <td>
-              <input type="range" min="1" max="275" v-model="level" />
-              <input class="number" type="text" v-bind:value="level" v-on:change="updateLevel" />
-            </td>
-          </tr>
-          <tr>
-            <th>Times Enlightened</th>
-            <td>
-              <input
-                type="range"
-                min="0"
-                max="5"
-                v-model="timesEnlightened"
-              />
-              <input class="number" type="text" v-bind:value="timesEnlightened" v-on:change="updateTimesEnlightened" />
-            </td>
-          </tr>
           <tr>
             <th>Invested</th>
             <td>

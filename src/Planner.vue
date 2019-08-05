@@ -161,10 +161,6 @@ ul {
   vertical-align: top;
 }
 
-#charname {
-  border: none;
-}
-
 /* Panes */
 .pane {
   padding: 0.5rem;
