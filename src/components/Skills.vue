@@ -10,7 +10,7 @@
         <tr class="pane-header">
           <th colspan="4">Name</th>
           <th>Base</th>
-          <th>Buffed</th>
+          <th><abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr></th>
           <th colspan="2">Invested</th>
           <th>Buff</th>
           <th>Cantrip</th>
