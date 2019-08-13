@@ -144,6 +144,9 @@ export default {
         return true;
       }
 
+      // Always allow increaes until I fix this
+      return false;
+
       // Can't if out of credits
       let training = this.$store.state.character.skills[this._props.name]
         .training;
