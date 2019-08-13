@@ -153,9 +153,16 @@ export default {
           ? Constants.TRAINING.SPECIALIZED
           : Constants.TRAINING.TRAINED;
 
+      // Calculate the cost to raise. Because of the way COST_SKILL_POINTS is
+      // built, the cost to spec, for example, if the cost when spec'd minus the
+      // cost when trained.
+      let newCost = Constants.COST_SKILL_POINTS[this._props.name][newTraining] - 
+        training === Constants.TRAINING.TRAINED ? 
+        Constants.COST_SKILL_POINTS[this._props.name][training] : 0;
+
       if (
         this.$store.getters.skillPointsSpent +
-          Constants.COST_SKILL_POINTS[this._props.name][newTraining] >
+          newCost >
         this.$store.getters.skillPointsAvailable
       ) {
         return true;
@@ -164,7 +171,7 @@ export default {
       // Can't if would push you over 70 max spec'd credits
       if (
         this.$store.getters.skillPointsSpent +
-          Constants.COST_SKILL_POINTS[this._props.name][newTraining] >
+          newCost >
         70
       ) {
         return true;
