@@ -144,24 +144,23 @@ export default {
         return true;
       }
 
-      // Always allow increaes until I fix this
-      return false;
-
       // Can't if out of credits
-      let training = this.$store.state.character.skills[this._props.name]
-        .training;
-
       let newTraining =
-        training == Constants.TRAINING.TRAINED
+        this.$store.state.character.skills[this._props.name].training == Constants.TRAINING.TRAINED
           ? Constants.TRAINING.SPECIALIZED
           : Constants.TRAINING.TRAINED;
 
       // Calculate the cost to raise. Because of the way COST_SKILL_POINTS is
       // built, the cost to spec, for example, if the cost when spec'd minus the
       // cost when trained.
-      let newCost = Constants.COST_SKILL_POINTS[this._props.name][newTraining] - 
-        training === Constants.TRAINING.TRAINED ? 
-        Constants.COST_SKILL_POINTS[this._props.name][training] : 0;
+      let newCost = 0;
+
+      if (newTraining === Constants.TRAINING.SPECIALIZED) {
+        newCost = Constants.COST_SKILL_POINTS[this._props.name][Constants.TRAINING.SPECIALIZED] - 
+          Constants.COST_SKILL_POINTS[this._props.name][Constants.TRAINING.TRAINED];
+      } else if (newTraining === Constants.TRAINING.TRAINED) {
+        newCost = Constants.COST_SKILL_POINTS[this._props.name][Constants.TRAINING.TRAINED];
+      }
 
       if (
         this.$store.getters.skillPointsSpent +
@@ -173,9 +172,7 @@ export default {
 
       // Can't if would push you over 70 max spec'd credits
       if (
-        this.$store.getters.skillPointsSpent +
-          newCost >
-        70
+        newTraining === Constants.TRAINING.SPECIALIZED && (this.$store.getters.specializedSkillPointsSpent + newCost > Constants.MAX_SPECIALIZED_SKILL_CREDITS_SPENT)
       ) {
         return true;
       }

@@ -928,6 +928,9 @@ const COST_VITAL = {
   "196": 4285430197
 };
 
+const MAX_SPECIALIZED_SKILL_CREDITS_SPENT = 70;
+
+// Cost when trained at each level, not cost to train
 const COST_SKILL_POINTS = {
   alchemy: { trained: 6, specialized: 12 },
   arcane_lore: { trained: 0, specialized: 2 },
@@ -2029,6 +2032,7 @@ export default {
   SKILL_DEPENDS_ON_ATTRIBUTES,
   UNTRAINED_STATE,
   UNTRAINABLE,
+  MAX_SPECIALIZED_SKILL_CREDITS_SPENT,
   COST_SKILL_POINTS,
   SPEC_COSTS_AUG,
   SKILL_POINTS_AT_LEVEL,

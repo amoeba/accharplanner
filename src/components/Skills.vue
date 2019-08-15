@@ -55,7 +55,7 @@
       <tbody>
         <tr class="specialized">
           <th colspan="7">
-            Specialized ({{ specializedSkillPointsSpent }} / 70)
+            Specialized ({{ specializedSkillPointsSpent }} / {{ maxSpecializedSkillPointsSpent }})
             {{ augmentationsRequiredText }}
           </th>
           <th>&nbsp;</th>
@@ -111,6 +111,9 @@ export default {
     },
     specializedSkillPointsSpent() {
       return this.$store.getters.specializedSkillPointsSpent;
+    },
+    maxSpecializedSkillPointsSpent() { 
+      return Constants.MAX_SPECIALIZED_SKILL_CREDITS_SPENT;
     },
     skillPointsSpentErrorText() {
       let overspent =

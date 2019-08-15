@@ -148,10 +148,7 @@ export default {
     let cost = 0;
 
     getters.specializedSkills.forEach(skill => {
-      cost +=
-        Constants.COST_SKILL_POINTS[skill][
-          state.character.skills[skill].training
-        ];
+      cost += Constants.COST_SKILL_POINTS[skill][Constants.TRAINING.SPECIALIZED] - Constants.COST_SKILL_POINTS[skill][Constants.TRAINING.TRAINED];
     });
 
     return cost;
