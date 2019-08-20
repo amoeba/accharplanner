@@ -91,20 +91,20 @@ header ul.links li a:visited {
 
 .panes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
-@media (max-width: 1300px) {
-  #planner {
-    max-width: 660px;
-  }
-
+/* Make headers switch to two columns on narrow screens */
+@media (max-width: 800px) {
   .headers {
     grid-template-columns: 1fr 1fr;
   }
+}
 
+/* Make panes switch to two columsn on wide screens */
+@media (min-width: 1250px) {
   .panes {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -142,12 +142,12 @@ ul {
 }
 
 /* Headers */
-.headers {
-  margin-bottom: 1.5rem;
-}
 
 .header {
   padding: 0.5rem;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  margin: 0.5rem;
 }
 
 .header h3 {
@@ -163,19 +163,36 @@ ul {
 
 /* Panes */
 .pane {
+  margin: 0.5rem;
   padding: 0.5rem;
-  max-height: 26rem;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+}
+
+.pane .pane-header {
+  display: grid;
+  grid-template-columns: auto auto;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 0.25rem;
+}
+
+.pane .pane-header div h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 120%;
+  display: inline;
+  margin-right: 1rem;
+}
+
+.pane .table-wrapper {
+  max-height: 25rem;
   overflow-y: scroll;
 }
 
 #attributes input[type="range"],
 #vitals input[type="range"],
 #skills input[type="range"] {
-  width: 50px;
-}
-
-tr.pane-header th {
-  background-color: #ccc;
+  width: 3rem;
 }
 
 tr.controls th {
@@ -192,7 +209,6 @@ td.number {
 input.number {
   width: 2rem;
 }
-
 
 .isBuffed {
   color: green;
@@ -222,6 +238,10 @@ input.number {
 
 .buffed {
   border-right: 1px solid #ccc;
+}
+
+.right {
+  text-align: right;
 }
 
 /* Notifications */

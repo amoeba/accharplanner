@@ -1,14 +1,5 @@
 <template>
   <tbody id="vitals">
-    <tr class="pane-header">
-      <th colspan="2">Name</th>
-      <th colspan="2">Creation</th>
-      <th>Base</th>
-      <th><abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr></th>
-      <th colspan="2">Invested</th>
-      <th>Buff</th>
-      <th>Cantrip</th>
-    </tr>
     <tr class="controls">
       <th>&nbsp;</th>
       <th>&nbsp;</th>

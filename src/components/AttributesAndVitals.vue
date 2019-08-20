@@ -1,9 +1,15 @@
 <template>
   <div id="attributes_and_vitals" class="pane">
-    <table>
-      <Attributes />
-      <Vitals />
-    </table>
+    <div class="pane-header">
+      <div><h3>Attributes</h3></div>
+      <div class="right"><strong>Creation Attribute Points Spent:</strong> {{ attributePointsSpent }} / 330</div>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <Attributes />
+        <Vitals />
+      </table>
+    </div>
   </div>
 </template>
 
@@ -18,7 +24,9 @@ export default {
     Vitals
   },
   computed: {
-
+    attributePointsSpent() {
+      return this.$store.getters.attributePointsSpent;
+    }
   },
   methods: {
   }

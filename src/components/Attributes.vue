@@ -1,10 +1,6 @@
 <template>
   <tbody id="attributes">
     <tr>
-      <th colspan="2">Attributes</th>
-      <th colspan="10">Creation Attribute Points Spent: {{ attributePointsSpent }} / 330</th>
-    </tr>
-    <tr class="pane-header">
       <th colspan="2" class="name">Name</th>
       <th class="creation" colspan="2">Creation</th>
       <th>Base</th>
@@ -69,11 +65,6 @@ export default {
   name: "Attributes",
   components: {
     Attribute
-  },
-  computed: {
-    attributePointsSpent() {
-      return this.$store.getters.attributePointsSpent;
-    }
   },
   methods: {
     changeInvested(e) {
