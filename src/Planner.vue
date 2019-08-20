@@ -150,15 +150,23 @@ ul {
   margin: 0.5rem;
 }
 
-.header h3 {
+.header .header-title {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid #ccc;
-  margin: 0px;
-  padding-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
-.header th,
-.header td {
-  vertical-align: top;
+.header .header-items {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-row-gap: 0.25rem;
+}
+
+.header h3 {
+  margin: 0px;
+  padding-bottom: 0.25rem;
+  display: inline;
 }
 
 /* Panes */

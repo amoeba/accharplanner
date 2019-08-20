@@ -1,6 +1,8 @@
 <template>
   <div id="extraskillcredits" class="header">
-    <h3>Extra Skill Credits</h3>
+    <div class="header-title">
+      <h3>Extra Skill Credits</h3>
+    </div>
     <ul>
       <ExtraSkillCredit id="railrea" name="Aun Railrea" />
       <ExtraSkillCredit id="oswald" name="Chasing Oswald" />
