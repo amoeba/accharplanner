@@ -16,7 +16,7 @@
     "vuex-persist": "^2.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.10.0",
     "@vue/eslint-config-prettier": "^4.0.0",
