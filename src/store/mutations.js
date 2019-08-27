@@ -37,7 +37,7 @@ export default {
     if (
       value === Constants.RACE.ALUVIAN ||
       value === Constants.RACE.GHARUNDIM ||
-      value === Constants.RACE.SHO||
+      value === Constants.RACE.SHO ||
       value === Constants.RACE.VIAMONTIAN
     ) {
       state.character.augmentations.jack_of_all_trades.invested = 1;
