@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 // Automatically persist state to localStorage
 const vuexLocal = new VuexPersistence({
-  key: "character",
+  key: "planner",
   storage: window.localStorage
 });
 

@@ -1,15 +1,6 @@
 <template>
   <div id="planner">
     <Notifications />
-    <header>
-      <a href="//planner.treestats.net">
-        <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
-      </a>
-      <ul class="links">
-        <li><a href="https://discord.gg/wfmpqJs">Discord</a></li>
-        <li><a href="https://github.com/amoeba/accharplanner">GitHub</a></li>
-      </ul>
-    </header>
     <Headers />
     <div class="row panes">
       <AttributesAndVitals />
@@ -42,13 +33,6 @@ export default {
 </script>
 
 <style>
-/* Overall layout */
-#planner {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-}
-
 header {
   padding: 0.5rem;
 }
@@ -135,7 +119,7 @@ td {
   padding: 2px 3px;
 }
 
-ul {
+#planner ul {
   list-style-type: none;
   margin: 0;
   padding: 0;

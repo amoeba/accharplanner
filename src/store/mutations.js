@@ -2,6 +2,25 @@ import Constants from "../constants";
 import DefaultCharacter from "./DefaultCharacter";
 
 export default {
+  loadBuild(state, build) {
+    state.character = JSON.parse(build);
+  },
+  saveBuild(state) {
+    state.builds.push({
+      key: new Date().toISOString(),
+      build: JSON.stringify(state.character)
+    });
+  },
+  deleteBuild(state, build) {
+    for (let i = 0; i < state.builds.length; i++) {
+      if (state.builds[i].key === build) {
+        state.builds.splice(i, 1);
+      }
+    }
+  },
+  deleteAllBuilds(state) {
+    state.builds = [];
+  },
   reset(state) {
     state.character = DefaultCharacter();
   },

@@ -1,13 +1,27 @@
 import Vue from "vue";
-import Planner from "./Planner.vue";
+import VueRouter from "vue-router";
+import App from "./components/App.vue";
+import Planner from "./Planner";
+import Builds from "./components/Builds";
 import store from "./store";
 import Constants from "./constants";
 
+Vue.use(VueRouter);
+
 Vue.config.productionTip = false;
 
+
+const router = new VueRouter({
+  routes: [
+    { path: '/', component: Planner },
+    { path: '/builds', component: Builds }
+  ]
+});
+
 new Vue({
+  router,
   store,
-  render: h => h(Planner),
+  render: h => h(App),
   created: function() {
     // Clear any notifications stored in localStorage
     this.$store.commit("clearAllNotifications");
@@ -278,4 +292,4 @@ new Vue({
         });
       });
   }
-}).$mount("#planner");
+}).$mount("#app");

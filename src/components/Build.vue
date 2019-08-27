@@ -1,0 +1,57 @@
+<template>
+  <div class="build">
+    <h3>{{ description }}</h3>
+    <div class="savedat"><strong>Saved at:</strong> {{ buildKey }}</div>
+    <button v-on:click="load">Load</button>
+    <button v-on:click="remove">Delete</button>
+    </div>
+</template>
+
+<script>
+
+export default {
+  name: "Build",
+  props: {
+    buildKey: String,
+    buildData: String
+  },
+  computed: {
+    description() {
+      const data = JSON.parse(this._props.buildData);
+      return data.name + " (Level " + data.level + ")";
+    },
+    data() {
+      return JSON.stringify(this._props.buildData, null, 2);
+    }
+  },
+  methods: {
+    load() {
+      this.$store.commit("loadBuild", this._props.buildData);
+    },
+    remove() {
+      this.$store.commit("deleteBuild", this._props.buildKey);
+    }
+  }
+};
+</script>
+
+<style>
+.build {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #CCC;
+}
+
+.build:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.build h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.build .savedat {
+  margin-bottom: 0.25rem;
+}
+
+</style>
