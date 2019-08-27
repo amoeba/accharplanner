@@ -6,6 +6,7 @@
         <div><h3>Character</h3></div>
         
         <div class="right">
+          <button v-on:click="saveBuild">Save</button>
           <button v-on:click="exportCharacter">Export</button>
           <button v-on:click="resetPlanner">Reset Planner</button>
           </div>
@@ -189,6 +190,12 @@ export default {
     }
   },
   methods: {
+    saveBuild() {
+      window.localStorage.setItem(
+        "savedbuild-" + (new Date()).toISOString(),
+        JSON.stringify(this.$store.state.character)
+      );
+    },
     exportCharacter() {
       const data = this.$store.state.character;
       const blob = new Blob(
