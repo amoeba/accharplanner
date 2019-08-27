@@ -4,7 +4,11 @@
     <div class="header">
       <div class="header-title">
         <div><h3>Character</h3></div>
-        <div class="right"><button v-on:click="reset">Reset Planner</button></div>
+        
+        <div class="right">
+          <button v-on:click="exportCharacter">Export</button>
+          <button v-on:click="resetPlanner">Reset Planner</button>
+          </div>
       </div>
       <div class="header-items">
         <div>Name:</div>
@@ -185,7 +189,22 @@ export default {
     }
   },
   methods: {
-    reset() {
+    exportCharacter() {
+      const data = this.$store.state.character;
+      const blob = new Blob(
+        [
+          JSON.stringify(data, null, 2)
+        ], 
+        { type: "application/json" }
+      );
+      
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = (this.$store.state.character.name || "character")
+        .replace(/[^a-zA-Z0-9_]+/, "-") + ".json";
+      a.click();
+    },
+    resetPlanner() {
       this.$store.commit("reset");
     },
     updateLevel(e) {
