@@ -108,6 +108,7 @@
 <script>
 import ExtraSkillCredits from "./ExtraSkillCredits.vue";
 import Constants from "../constants";
+import Helpers from "../helpers";
 
 export default {
   name: "Headers",
@@ -194,19 +195,9 @@ export default {
       this.$store.commit("saveBuild");
     },
     exportCharacter() {
-      const data = this.$store.state.character;
-      const blob = new Blob(
-        [
-          JSON.stringify(data, null, 2)
-        ], 
-        { type: "application/json" }
-      );
-      
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = (this.$store.state.character.name || "character")
-        .replace(/[^a-zA-Z0-9_]+/, "-") + ".json";
-      a.click();
+      Helpers.exportCharacter(
+        this.$store.state.character, 
+        this.$store.state.character.name);
     },
     resetPlanner() {
       this.$store.commit("reset");
