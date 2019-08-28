@@ -5,6 +5,7 @@ import Planner from "./Planner";
 import Builds from "./components/Builds";
 import store from "./store";
 import Constants from "./constants";
+import './registerServiceWorker'
 
 Vue.use(VueRouter);
 

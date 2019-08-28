@@ -1,0 +1,8 @@
+{
+  "name": "Overly-Detailed Asheron's Call Character Planner",
+  "short_name": "ODACCP",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#000000"
+}
