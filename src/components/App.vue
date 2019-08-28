@@ -4,14 +4,12 @@
       <a href="//planner.treestats.net">
         <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
       </a>
-      <ul class="links">
-        <li><a href="https://discord.gg/wfmpqJs">Discord</a></li>
-        <li><a href="https://github.com/amoeba/accharplanner">GitHub</a></li>
-      </ul>
     </header>
     <nav>
-      <router-link class="selected" to="/">Planner</router-link>
-      <router-link to="/builds">Saved Builds</router-link>
+      <router-link class="selected" to="/"><strong>Planner</strong></router-link>
+      <router-link to="/builds"><strong>Saved Builds</strong></router-link>
+      <a class="link-discord" href="https://discord.gg/wfmpqJs">Discord</a>
+      <a class="link-github" href="https://github.com/amoeba/accharplanner">Source Code</a>
     </nav>
     <content>
       <router-view></router-view>
@@ -53,5 +51,13 @@ nav a {
 content > div {
   border: 1px solid #CCC;
   border-radius: 0px 5px 5px 5px;
+}
+
+a.link-discord, a:visited.link-discord {
+  color: rgb(95, 114, 209);
+}
+
+a.link-github, a:visited.link-github {
+  color: black;
 }
 </style>

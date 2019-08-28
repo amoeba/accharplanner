@@ -49,24 +49,6 @@ header a:visited {
   text-decoration: none;
 }
 
-header ul.links {
-  list-style-type: none;
-  display: inline-block;
-}
-
-header ul.links li {
-  display: inline-block;
-  margin-right: 0.5rem;
-}
-
-header ul.links li a {
-  color: blue;
-}
-
-header ul.links li a:visited {
-  color: blue;
-}
-
 /* Grid */
 .headers {
   display: grid;
