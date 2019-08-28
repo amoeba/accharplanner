@@ -2,7 +2,7 @@
   <tr>
     <td>
       <img
-        :src="'/images/' + name + '.png'"
+        :src="'/img/' + name + '.png'"
         :alt="displayName"
         width="20"
         height="20"
