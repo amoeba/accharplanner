@@ -1,8 +1,20 @@
 {
-  "name": "Overly-Detailed Asheron's Call Character Planner",
-  "short_name": "ODACCP",
+  "name": "ODACCP",
+  "short_name": "Overly-Detailed Asheron's Call Character Planner",
+  "icons": [
+    {
+      "src": "./img/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#000000"
+  "background_color": "#000000",
+  "theme_color": "#4DBA87"
 }
