@@ -25,13 +25,7 @@ export default {
     state.character = DefaultCharacter();
   },
   import(state, character) {
-    Object.keys(character).forEach(k => {
-      if (!state.character[k]) {
-        return;
-      }
-
-      state.character[k] = character[k];
-    });
+    state.character = character;
 
     this.commit("addNotification", {
       type: "success",
