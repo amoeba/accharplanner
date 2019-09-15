@@ -50,9 +50,12 @@ export default {
     alchemy: Constants.TRAINING.UNUSABLE
   },
   exportCharacter: (data, name) => {
-    const blob = new Blob([JSON.stringify(data, null, 2)], {
+    let json = JSON.stringify(data, null, 2);
+
+    const blob = new Blob([json], {
       type: "application/json"
     });
+
     const filename =
       (name || "character").replace(/[^a-zA-Z0-9_]+/, "-") + ".json";
     const a = document.createElement("a");
