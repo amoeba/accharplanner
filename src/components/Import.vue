@@ -29,7 +29,7 @@ export default {
 
       const reader = new FileReader();
       reader.onload = e => {
-        this.$store.commit("import", JSON.parse(eval(e.target.result)));
+        this.$store.commit("import", JSON.parse(e.target.result));
       };
       reader.readAsText(selectedFile);
     }
