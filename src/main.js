@@ -6,18 +6,17 @@ import Builds from "./components/Builds";
 import Import from "./components/Import";
 import store from "./store";
 import Constants from "./constants";
-import './registerServiceWorker'
+import "./registerServiceWorker";
 
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
-
 const router = new VueRouter({
   routes: [
-    { path: '/', component: Planner },
-    { path: '/builds', component: Builds },
-    { path: '/import', component: Import }
+    { path: "/", component: Planner },
+    { path: "/builds", component: Builds },
+    { path: "/import", component: Import }
   ]
 });
 
