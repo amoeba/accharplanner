@@ -14,7 +14,6 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log("...", this._props.id);
       this.$store.commit("removeNotification", this._props.id);
     }
   }

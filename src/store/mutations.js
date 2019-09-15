@@ -24,6 +24,20 @@ export default {
   reset(state) {
     state.character = DefaultCharacter();
   },
+  import(state, character) {
+    Object.keys(character).forEach(k => {
+      if (!state.character[k]) {
+        return;
+      }
+
+      state.character[k] = character[k];
+    });
+
+    this.commit("addNotification", {
+      type: "success",
+      message: "Successfully imported character."
+    });
+  },
   updateName(state, value) {
     state.character.name = value;
   },

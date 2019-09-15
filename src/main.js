@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import App from "./components/App.vue";
 import Planner from "./Planner";
 import Builds from "./components/Builds";
+import Import from "./components/Import";
 import store from "./store";
 import Constants from "./constants";
 import './registerServiceWorker'
@@ -15,7 +16,8 @@ Vue.config.productionTip = false;
 const router = new VueRouter({
   routes: [
     { path: '/', component: Planner },
-    { path: '/builds', component: Builds }
+    { path: '/builds', component: Builds },
+    { path: '/import', component: Import }
   ]
 });
 
@@ -23,7 +25,7 @@ new Vue({
   router,
   store,
   render: h => h(App),
-  created: function() {
+  created: function () {
     // Clear any notifications stored in localStorage
     this.$store.commit("clearAllNotifications");
 
@@ -56,7 +58,7 @@ new Vue({
     let errorEncountered = false;
 
     fetch(url)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
       .then(json => {
@@ -88,9 +90,9 @@ new Vue({
 
           if (
             store.state.character.skills[s].training ===
-              Constants.TRAINING.SPECIALIZED ||
+            Constants.TRAINING.SPECIALIZED ||
             store.state.character.skills[s].training ===
-              Constants.TRAINING.TRAINED
+            Constants.TRAINING.TRAINED
           ) {
             store.state.character.skills[s].invested = 0;
             store.state.character.skills[s].invested =
@@ -100,7 +102,7 @@ new Vue({
 
         // Experience Augmentations and Luminance Auras
         Object.keys(json.properties).forEach(property => {
-          switch(property) {
+          switch (property) {
             case "218":
               store.state.character.augmentations.reinforcement_of_the_lugians.invested = json.properties[property];
               break;
@@ -249,7 +251,7 @@ new Vue({
               store.state.character.luminance_auras.purity.invested = json.properties[property];
               break;
             case "343":
-              store.state.character.luminance_auras.craftsman.invested= json.properties[property];
+              store.state.character.luminance_auras.craftsman.invested = json.properties[property];
               break;
             case "344":
               store.state.character.luminance_auras.specialization.invested = json.properties[property];

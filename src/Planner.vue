@@ -1,6 +1,5 @@
 <template>
   <div id="planner">
-    <Notifications />
     <Headers />
     <div class="row panes">
       <AttributesAndVitals />
@@ -17,7 +16,6 @@ import AttributesAndVitals from "./components/AttributesAndVitals.vue";
 import Skills from "./components/Skills.vue";
 import Augmentations from "./components/Augmentations.vue";
 import LuminanceAuras from "./components/LuminanceAuras.vue";
-import Notifications from "./components/Notifications.vue";
 
 export default {
   name: "planner",
@@ -26,8 +24,7 @@ export default {
     AttributesAndVitals,
     Skills,
     Augmentations,
-    LuminanceAuras,
-    Notifications
+    LuminanceAuras
   }
 };
 </script>
@@ -111,7 +108,7 @@ td {
 
 .header {
   padding: 0.5rem;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 5px;
   margin: 0.5rem;
 }
@@ -139,14 +136,14 @@ td {
 .pane {
   margin: 0.5rem;
   padding: 0.5rem;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .pane .pane-header {
   display: grid;
   grid-template-columns: auto auto;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 0.25rem;
 }
 

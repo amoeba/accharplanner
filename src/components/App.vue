@@ -1,13 +1,21 @@
 <template>
   <div id="app">
+    <Notifications />
     <header>
       <a href="//planner.treestats.net">
         <h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1>
       </a>
     </header>
     <nav>
-      <router-link class="selected" to="/"><strong>Planner</strong></router-link>
-      <router-link to="/builds"><strong>Saved Builds</strong></router-link>
+      <router-link class="selected" to="/">
+        <strong>Planner</strong>
+      </router-link>
+      <router-link to="/builds">
+        <strong>Saved Builds</strong>
+      </router-link>
+      <router-link to="/import">
+        <strong>Import</strong>
+      </router-link>
       <a class="link-discord" href="https://discord.gg/wfmpqJs">Discord</a>
       <a class="link-github" href="https://github.com/amoeba/accharplanner">Source Code</a>
     </nav>
@@ -18,8 +26,13 @@
 </template>
 
 <script>
+import Notifications from "./Notifications";
+
 export default {
   name: "App",
+  components: {
+    Notifications
+  }
 };
 </script>
 
@@ -30,7 +43,8 @@ export default {
   font-size: 14px;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: blue;
   text-decoration: none;
 }
@@ -43,21 +57,23 @@ nav a {
   margin-right: 0.5rem;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
-  border-color: #CCC;
+  border-color: #ccc;
   border-radius: 5px 5px 0px 0px;
   padding: 0.25rem 0.5rem;
 }
 
 content > div {
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 0px 5px 5px 5px;
 }
 
-a.link-discord, a:visited.link-discord {
+a.link-discord,
+a:visited.link-discord {
   color: rgb(95, 114, 209);
 }
 
-a.link-github, a:visited.link-github {
+a.link-github,
+a:visited.link-github {
   color: black;
 }
 </style>
