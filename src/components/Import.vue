@@ -29,7 +29,16 @@ export default {
 
       const reader = new FileReader();
       reader.onload = e => {
-        this.$store.commit("import", JSON.parse(e.target.result));
+        try {
+          var character = JSON.parse(e.target.result);
+        } catch (error) {
+          this.$store.commit("addNotification", {
+            type: "failure",
+            message: "Failed to import character from file: " + error
+          });
+        }
+
+        this.$store.commit("import", character);
       };
       reader.readAsText(selectedFile);
     }
