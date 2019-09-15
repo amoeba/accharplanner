@@ -8,6 +8,66 @@ import store from "./store";
 import Constants from "./constants";
 import "./registerServiceWorker";
 
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import * as firebase from "firebase/app";
+
+// Add the Firebase products that you want to use
+import "firebase/auth";
+import "firebase/firestore";
+
+
+// TODO: Replace the following with your app's Firebase project configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB2GHCNBTwARuE6hsrYQYH5izhZ5dP5daI",
+  authDomain: "accharplanner.firebaseapp.com",
+  databaseURL: "https://accharplanner.firebaseio.com",
+  projectId: "accharplanner",
+  storageBucket: "accharplanner.appspot.com",
+  messagingSenderId: "740401441520",
+  appId: "1:740401441520:web:2cb5c9b2b5f3a74d803035"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore(app);
+
+////
+var docRef = db.collection("builds").doc("qLajS43xqL0vxl9oPJRX");
+
+docRef.get().then(function (doc) {
+  if (doc.exists) {
+    console.log("Document data:", doc.data());
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+}).catch(function (error) {
+  console.log("Error getting document:", error);
+});
+
+////
+db.collection("builds").get().then(function (querySnapshot) {
+  querySnapshot.forEach(function (doc) {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+  });
+});
+
+////
+
+db.collection("builds").add({
+  build_name: "FooBuild",
+  character_name: "FooChar",
+  level: 275
+})
+  .then(function () {
+    console.log("Document successfully written!");
+  })
+  .catch(function (error) {
+    console.error("Error writing document: ", error);
+  });
+
+////
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
