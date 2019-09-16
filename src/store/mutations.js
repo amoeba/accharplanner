@@ -1,15 +1,34 @@
 import Constants from "../constants";
 import DefaultCharacter from "./DefaultCharacter";
+import firebase from "../firebase";
 
 export default {
+  loadRemoteBuild(state, build_id) {
+    // Also store to firebase
+    const db = firebase.firestore();
+    db.collection("builds")
+      .doc(build_id)
+      .get()
+      .then(function (doc) {
+        state.character = doc.data()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
   loadBuild(state, build) {
     state.character = JSON.parse(build);
   },
   saveBuild(state) {
+    // Store locally
     state.builds.push({
       key: new Date().toISOString(),
       build: JSON.stringify(state.character)
     });
+
+    // Also store to firebase
+    const db = firebase.firestore();
+    db.collection("builds").add(state.character);
   },
   deleteBuild(state, build) {
     for (let i = 0; i < state.builds.length; i++) {

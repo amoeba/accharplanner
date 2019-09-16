@@ -25,6 +25,10 @@ export default {
     Skills,
     Augmentations,
     LuminanceAuras
+  },
+  created: function() {
+    console.log(this.$route);
+    this.$store.commit("loadRemoteBuild", "a4h9eylhJpuWw7JrvWAo");
   }
 };
 </script>
