@@ -1,6 +1,7 @@
 import Constants from "../constants";
 import Helpers from "../helpers";
 
+
 export default {
   // General
   exportedCharacter: state => {
@@ -39,7 +40,7 @@ export default {
     Constants.AUGMENTATIONS.forEach(aug => {
       cost +=
         Constants.AUGMENTATION_COST[aug][
-          state.character.augmentations[aug].invested
+        state.character.augmentations[aug].invested
         ];
     });
 
@@ -49,17 +50,17 @@ export default {
       state.character.race === Constants.RACE.GHARUNDIM ||
       state.character.race === Constants.RACE.SHO ||
       state.character.race === Constants.RACE.VIAMONTIAN) &&
-        state.character.augmentations.jack_of_all_trades.invested == 1) {
-          cost -= Constants.AUGMENTATION_COST.jack_of_all_trades[state.character.augmentations.jack_of_all_trades.invested];
+      state.character.augmentations.jack_of_all_trades.invested == 1) {
+      cost -= Constants.AUGMENTATION_COST.jack_of_all_trades[state.character.augmentations.jack_of_all_trades.invested];
     } else if ((
       state.character.race === Constants.RACE.EMPYREAN) &&
-        state.character.augmentations.infused_life_magic.invested == 1) {
-          cost -= Constants.AUGMENTATION_COST.infused_life_magic[state.character.augmentations.infused_life_magic.invested];
+      state.character.augmentations.infused_life_magic.invested == 1) {
+      cost -= Constants.AUGMENTATION_COST.infused_life_magic[state.character.augmentations.infused_life_magic.invested];
     } else if ((
       state.character.race === Constants.RACE.UMBRAEN ||
-      state.character.race === Constants.RACE.PENUMBRAEN ) &&
-        state.character.augmentations.eye_of_the_remorseless.invested == 1) {
-          cost -= Constants.AUGMENTATION_COST.eye_of_the_remorseless[state.character.augmentations.eye_of_the_remorseless.invested];
+      state.character.race === Constants.RACE.PENUMBRAEN) &&
+      state.character.augmentations.eye_of_the_remorseless.invested == 1) {
+      cost -= Constants.AUGMENTATION_COST.eye_of_the_remorseless[state.character.augmentations.eye_of_the_remorseless.invested];
     }
 
     return cost;
@@ -111,7 +112,7 @@ export default {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
-          Constants.TRAINING.SPECIALIZED &&
+        Constants.TRAINING.SPECIALIZED &&
         Constants.SPEC_COSTS_AUG[skill]
       ) {
         cost += 1;
@@ -128,7 +129,7 @@ export default {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
-          Constants.TRAINING.SPECIALIZED &&
+        Constants.TRAINING.SPECIALIZED &&
         Constants.SPEC_COSTS_AUG[skill]
       ) {
         cost += 1000000000;
@@ -319,7 +320,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
@@ -360,7 +361,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.endurance.buff) + Helpers.cantripBonus(state.character.attributes.endurance.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          2
+        2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
@@ -419,7 +420,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          3
+        3
       )
     );
   },
@@ -442,7 +443,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -480,7 +481,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
           Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -502,7 +503,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -524,7 +525,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -546,7 +547,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
@@ -569,7 +570,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -591,7 +592,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
           Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -613,7 +614,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -635,7 +636,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          2
+        2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
@@ -658,7 +659,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
           Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
-          2
+        2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -696,7 +697,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -718,7 +719,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
           Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -740,7 +741,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
@@ -779,7 +780,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          7
+        7
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -824,7 +825,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          6
+        6
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -846,7 +847,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -868,7 +869,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
-          5
+        5
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -910,7 +911,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
           Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -929,7 +930,7 @@ export default {
       getters.runBase +
       Helpers.buffBonus(state.character.skills.run.buff) +
       Helpers.cantripBonus(state.character.skills.run.cantrip) +
-      Helpers.buffBonus(state.character.attributes.quickness.buff) + 
+      Helpers.buffBonus(state.character.attributes.quickness.buff) +
       Helpers.cantripBonus(state.character.attributes.quickness.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -968,7 +969,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
           Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
-          2
+        2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -990,7 +991,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
           Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -1012,7 +1013,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.endurance.buff) + Helpers.cantripBonus(state.character.attributes.endurance.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -1034,7 +1035,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
           Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -1056,7 +1057,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -1078,7 +1079,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -1100,7 +1101,7 @@ export default {
       Math.round(
         (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
           Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
-          2
+        2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
