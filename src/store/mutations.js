@@ -11,7 +11,7 @@ export default {
       .then(doc => {
         this.commit("addNotification", {
           type: "success",
-          message: "Successfully shared build."
+          message: "Successfully shared build!"
         });
 
         state.sharedBuild = doc.id;
@@ -19,11 +19,16 @@ export default {
       .catch(error => {
         this.commit("addNotification", {
           type: "error",
-          message: "Failed to share build: " + error
+          message: "Failed to share build: " + error + "."
         });
       });
   },
   loadRemoteBuild(state, build_id) {
+    this.commit("addNotification", {
+      type: "info",
+      message: "Loading build from share link.. *portal sounds*."
+    });
+
     const db = firebase.firestore();
 
     db.collection("builds")
@@ -34,13 +39,13 @@ export default {
 
         this.commit("addNotification", {
           type: "success",
-          message: "Successfully loaded character"
+          message: "Successfully loaded build!"
         });
       })
       .catch(error => {
         this.commit("addNotification", {
           type: "error",
-          message: "Failed to load build: " + error
+          message: "Failed to load build: " + error + "."
         });
       });
   },
@@ -76,7 +81,7 @@ export default {
 
     this.commit("addNotification", {
       type: "success",
-      message: "Successfully imported character."
+      message: "Successfully imported build."
     });
   },
   updateName(state, value) {

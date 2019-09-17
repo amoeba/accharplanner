@@ -21,7 +21,7 @@ export default {
       if (typeof selectedFile === "undefined") {
         this.$store.commit("addNotification", {
           type: "failure",
-          message: "Failed to import character from file: No file was selected."
+          message: "Failed to import build from file: No file was selected."
         });
 
         return;
@@ -34,7 +34,7 @@ export default {
         } catch (error) {
           this.$store.commit("addNotification", {
             type: "failure",
-            message: "Failed to import character from file: " + error
+            message: "Failed to build from file: " + error + ".";
           });
         }
 

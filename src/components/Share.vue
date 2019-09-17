@@ -26,7 +26,7 @@ export default {
     shareBuild() {
       this.$store.commit("addNotification", {
         type: "info",
-        message: "Sharing build, hang on tight..."
+        message: "Sharing build, hang on tight...*portal sounds*"
       });
 
       this.$store.commit("shareBuild");
@@ -43,7 +43,7 @@ export default {
 
       this.$store.commit("addNotification", {
         type: "success",
-        message: "Copied to clipboard!"
+        message: "Copied share link to clipboard!"
       });
     }
   }
