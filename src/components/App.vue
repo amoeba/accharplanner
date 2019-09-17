@@ -11,7 +11,7 @@
         <strong>Planner</strong>
       </router-link>
       <router-link to="/builds">
-        <strong>Saved Builds</strong>
+        <strong>Builds</strong>
       </router-link>
       <router-link to="/import">
         <strong>Import</strong>

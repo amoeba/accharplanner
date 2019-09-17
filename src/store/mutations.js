@@ -3,17 +3,45 @@ import DefaultCharacter from "./DefaultCharacter";
 import firebase from "../firebase";
 
 export default {
-  loadRemoteBuild(state, build_id) {
-    // Also store to firebase
+  shareBuild(state) {
     const db = firebase.firestore();
+
+    db.collection("builds")
+      .add(state.character)
+      .then(doc => {
+        this.commit("addNotification", {
+          type: "success",
+          message: "Successfully shared build."
+        });
+
+        state.sharedBuild = doc.id;
+      })
+      .catch(error => {
+        this.commit("addNotification", {
+          type: "error",
+          message: "Failed to share build: " + error
+        });
+      });
+  },
+  loadRemoteBuild(state, build_id) {
+    const db = firebase.firestore();
+
     db.collection("builds")
       .doc(build_id)
       .get()
-      .then(function (doc) {
-        state.character = doc.data()
+      .then(doc => {
+        state.character = doc.data();
+
+        this.commit("addNotification", {
+          type: "success",
+          message: "Successfully loaded character"
+        });
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(error => {
+        this.commit("addNotification", {
+          type: "error",
+          message: "Failed to load build: " + error
+        });
       });
   },
   loadBuild(state, build) {

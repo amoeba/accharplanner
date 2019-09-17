@@ -1,11 +1,13 @@
 import Constants from "../constants";
 import Helpers from "../helpers";
 
-
 export default {
   // General
+  sharedBuild: state => {
+    return state.sharedBuild;
+  },
   exportedCharacter: state => {
-    return JSON.stringify(state, null, 4);
+    return JSON.stringify(state.character, null, 4);
   },
 
   totalXPEarned: state => {

@@ -1,5 +1,6 @@
 <template>
   <div id="planner">
+    <Share />
     <Headers />
     <div class="row panes">
       <AttributesAndVitals />
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import Share from "./components/Share.vue";
 import Headers from "./components/Headers.vue";
 import AttributesAndVitals from "./components/AttributesAndVitals.vue";
 import Skills from "./components/Skills.vue";
@@ -20,6 +22,7 @@ import LuminanceAuras from "./components/LuminanceAuras.vue";
 export default {
   name: "planner",
   components: {
+    Share,
     Headers,
     AttributesAndVitals,
     Skills,
@@ -27,8 +30,17 @@ export default {
     LuminanceAuras
   },
   created: function() {
-    console.log(this.$route);
-    this.$store.commit("loadRemoteBuild", "a4h9eylhJpuWw7JrvWAo");
+    const path = this.$route.path;
+
+    if (path == "/") {
+      return;
+    }
+
+    const extraStuff = path.replace(/^\//, "");
+
+    if (typeof extraStuff === "string" && extraStuff.length > 0) {
+      this.$store.commit("loadRemoteBuild", extraStuff);
+    }
   }
 };
 </script>
@@ -106,6 +118,21 @@ td {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+/* Share */
+#share {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  text-align: right;
+}
+
+#share input,
+#share button {
+  font-size: 100%;
+}
+
+#share input {
+  width: 30%;
 }
 
 /* Headers */
@@ -230,19 +257,26 @@ input.number {
 
 .notification {
   position: relative;
-  background-color: #ff0000;
   color: white;
   padding: 0.5rem;
   margin: 0.5rem 0;
   width: 95%;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .success {
-  background-color: green;
+  border: 1px solid green;
+  background-color: rgba(0, 150, 0, 0.9);
+}
+
+.info {
+  border: 1px solid yellow;
+  background-color: rgba(200, 200, 0, 0.9);
 }
 
 .failure {
-  background-color: red;
+  border: 1px solid red;
+  background-color: rgba(150, 0, 0, 0.9);
 }
 </style>

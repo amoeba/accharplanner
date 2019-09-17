@@ -1,35 +1,30 @@
-
 <template>
   <div class="headers">
     <div class="header">
       <div class="header-title">
-        <div><h3>Character</h3></div>
-        
+        <div>
+          <h3>Character</h3>
+        </div>
         <div class="right">
           <button v-on:click="saveBuild">Save</button>
           <button v-on:click="exportCharacter">Export</button>
           <button v-on:click="resetPlanner">Reset</button>
-          </div>
+        </div>
       </div>
       <div class="header-items">
         <div>Name:</div>
-        <div><input id="charname" type="text" v-model="name" /></div>
+        <div>
+          <input id="charname" type="text" v-model="name" />
+        </div>
         <div>Race:</div>
         <div>
           <select v-model="race">
-            <option v-for="race in races" v-bind:key="race" >
-              {{ race }}
-            </option>
+            <option v-for="race in races" v-bind:key="race">{{ race }}</option>
           </select>
         </div>
         <div>Gender:</div>
         <div>
-          <input
-            type="radio"
-            id="female"
-            value="Female"
-            v-model="gender"
-          />
+          <input type="radio" id="female" value="Female" v-model="gender" />
           <label for="female">Female</label>
           <input type="radio" id="male" value="Male" v-model="gender" />
           <label for="male">Male</label>
@@ -43,18 +38,21 @@
     </div>
     <div class="header">
       <div class="header-title">
-        <div><h3>XP &amp; Luminance</h3></div>
+        <div>
+          <h3>XP &amp; Luminance</h3>
+        </div>
       </div>
       <div class="header-items">
         <div>XP Total:</div>
         <div>{{ totalXPEarned }}</div>
         <div>XP Spent:</div>
         <div>
-          <span>{{ totalXPInvested }}</span
-          >
-          <span v-bind:class="isOverspent ? 'red' : 'gray'">&nbsp;({{
+          <span>{{ totalXPInvested }}</span>
+          <span v-bind:class="isOverspent ? 'red' : 'gray'">
+            &nbsp;({{
             requiredLevel
-          }})</span>
+            }})
+          </span>
         </div>
         <div>Lum. XP Spent:</div>
         <div>{{ totalLuminanceXPSpent }}</div>
@@ -62,21 +60,17 @@
     </div>
     <div class="header">
       <div class="header-title">
-        <div><h3>Knobs &amp; Dials</h3></div>
+        <div>
+          <h3>Knobs &amp; Dials</h3>
+        </div>
       </div>
       <div class="header-items">
         <div>Invested</div>
         <div>
-          <input
-            type="range"
-            min="0"
-            max="226"
-            value="0"
-            v-on:change="changeAllInvestments"
-          />
+          <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" />
         </div>
         <div>Buffs</div>
-        <div>                
+        <div>
           <select v-on:change="changeAllBuffs">
             <option value="0">None</option>
             <option value="1">I</option>
@@ -113,7 +107,7 @@ import Helpers from "../helpers";
 export default {
   name: "Headers",
   components: {
-    ExtraSkillCredits,
+    ExtraSkillCredits
   },
   computed: {
     totalXPEarned() {
@@ -160,7 +154,7 @@ export default {
       }
     },
     races() {
-      return Constants.RACE
+      return Constants.RACE;
     },
     race: {
       get() {
@@ -196,8 +190,9 @@ export default {
     },
     exportCharacter() {
       Helpers.exportCharacter(
-        this.$store.state.character, 
-        this.$store.state.character.name);
+        this.$store.state.character,
+        this.$store.state.character.name
+      );
     },
     resetPlanner() {
       this.$store.commit("reset");
@@ -221,7 +216,7 @@ export default {
       } else if (actual > Constants.MAX_TIMES_ENLIGHTENDED) {
         actual = Constants.MAX_TIMES_ENLIGHTENDED;
       }
-      
+
       this.$store.commit("updateTimesEnlightened", actual);
     },
     changeAllInvestments(e) {
