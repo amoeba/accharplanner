@@ -34,7 +34,7 @@ export default {
         } catch (error) {
           this.$store.commit("addNotification", {
             type: "failure",
-            message: "Failed to build from file: " + error + ".";
+            message: "Failed to build from file: " + error + "."
           });
         }
 
