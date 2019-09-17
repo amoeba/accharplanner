@@ -145,15 +145,24 @@ td {
 }
 
 .header .header-title {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid #ccc;
   margin-bottom: 0.25rem;
+}
+
+.header .header-title-split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .header .header-items {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  grid-row-gap: 0.25rem;
+}
+
+.header .header-items.alt {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   grid-row-gap: 0.25rem;
 }
 

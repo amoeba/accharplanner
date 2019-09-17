@@ -1,7 +1,7 @@
 <template>
   <div class="headers">
     <div class="header">
-      <div class="header-title">
+      <div class="header-title header-title-split">
         <div>
           <h3>Character</h3>
         </div>
@@ -42,20 +42,22 @@
           <h3>XP &amp; Luminance</h3>
         </div>
       </div>
-      <div class="header-items">
+      <div class="header-items alt">
         <div>XP Total:</div>
         <div>{{ totalXPEarned }}</div>
         <div>XP Spent:</div>
         <div>
           <span>{{ totalXPInvested }}</span>
-          <span v-bind:class="isOverspent ? 'red' : 'gray'">
-            &nbsp;({{
-            requiredLevel
-            }})
-          </span>
         </div>
         <div>Lum. XP Spent:</div>
         <div>{{ totalLuminanceXPSpent }}</div>
+      </div>
+      <div>
+        <span v-bind:class="isOverspent ? 'red' : 'gray'">
+          &nbsp;({{
+          requiredLevel
+          }})
+        </span>
       </div>
     </div>
     <div class="header">
