@@ -106,7 +106,8 @@ table {
 }
 
 input,
-select {
+select,
+button {
   font-size: 100%;
 }
 
@@ -141,11 +142,6 @@ img {
 #share {
   padding: 0.5rem 0.5rem 0 0.5rem;
   text-align: right;
-}
-
-#share input,
-#share button {
-  font-size: 100%;
 }
 
 #share input {
