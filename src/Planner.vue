@@ -65,7 +65,7 @@ header a:visited {
 /* Grid */
 .headers {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .panes {
@@ -74,9 +74,16 @@ header a:visited {
 }
 
 /* Make headers switch to two columns on narrow screens */
-@media (max-width: 800px) {
+@media (min-width: 450px) {
   .headers {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Make headers switch to two columns on narrow screens */
+@media (min-width: 800px) {
+  .headers {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -182,6 +189,7 @@ img {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  overflow-x: scroll;
 }
 
 .pane .pane-header {

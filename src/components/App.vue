@@ -17,7 +17,7 @@
         <strong>Import</strong>
       </router-link>
       <a class="link-discord" href="https://discord.gg/wfmpqJs">Discord</a>
-      <a class="link-github" href="https://github.com/amoeba/accharplanner">Source Code</a>
+      <a class="link-github" href="https://github.com/amoeba/accharplanner">Code</a>
     </nav>
     <content>
       <router-view></router-view>
