@@ -114,6 +114,10 @@ td {
   padding: 2px 3px;
 }
 
+img {
+  clip-path: circle(10px at center);
+}
+
 #planner ul {
   list-style-type: none;
   margin: 0;

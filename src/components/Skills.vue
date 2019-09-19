@@ -5,11 +5,11 @@
         <h3>Skills</h3>
         <span class="error">{{ skillPointsSpentErrorText }}</span>
       </div>
-      <div class="right"><strong>Skill Points Spent:</strong> {{ skillPointsSpent }} / {{ skillPointsAvailable }}</div>     
-      
+      <div class="right"><strong>Skill Points Spent:</strong> {{ skillPointsSpent }} / {{ skillPointsAvailable }}</div>
+
     </div>
     <div class="table-wrapper">
-      <table id="skills">
+      <table>
         <thead>
           <tr class="table-header">
             <th colspan="4">Name</th>
@@ -117,7 +117,7 @@ export default {
     specializedSkillPointsSpent() {
       return this.$store.getters.specializedSkillPointsSpent;
     },
-    maxSpecializedSkillPointsSpent() { 
+    maxSpecializedSkillPointsSpent() {
       return Constants.MAX_SPECIALIZED_SKILL_CREDITS_SPENT;
     },
     skillPointsSpentErrorText() {
