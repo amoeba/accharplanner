@@ -85,6 +85,12 @@ header a:visited {
   .headers {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  #app #notifications {
+    left: auto;
+    right: 0;
+    width: 300px;
+  }
 }
 
 /* Make panes switch to two columsn on wide screens */
@@ -143,7 +149,7 @@ img {
 }
 
 #share input {
-  width: 30%;
+  width: 14rem;
 }
 
 /* Headers */
@@ -270,30 +276,32 @@ input.number {
 /* Notifications */
 #notifications {
   position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 300px;
+  top: 0.5rem;
+  left: 0px;
+  width: 100%;
   z-index: 100;
+  margin: 0;
+  padding: 0.5rem 0;
 }
 
 .notification {
   position: relative;
   color: white;
   padding: 0.5rem;
-  margin: 0.5rem 0;
-  width: 95%;
+  margin:  0 auto;
+  width: 90%;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .success {
   border: 1px solid green;
-  background-color: rgba(0, 150, 0, 0.9);
+  background-color: rgba(0, 150, 0, 0.95);
 }
 
 .info {
   border: 1px solid yellow;
-  background-color: rgba(200, 200, 0, 0.9);
+  background-color: rgba(200, 200, 0, 0.95);
 }
 
 .failure {
