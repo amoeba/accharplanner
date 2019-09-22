@@ -3,13 +3,13 @@ import DefaultCharacter from "./DefaultCharacter";
 import firebase from "../firebase";
 
 export default {
-  shareBuild(state) {
+  shareBuild(state: any) {
     const db = firebase.firestore();
 
     db.collection("builds")
       .add(state.character)
       .then(doc => {
-        this.commit("addNotification", {
+        state.commit("addNotification", {
           type: "success",
           message: "Successfully shared build!"
         });
@@ -17,14 +17,14 @@ export default {
         state.sharedBuild = doc.id;
       })
       .catch(error => {
-        this.commit("addNotification", {
+        state.commit("addNotification", {
           type: "error",
           message: "Failed to share build: " + error + "."
         });
       });
   },
-  loadRemoteBuild(state, build_id) {
-    this.commit("addNotification", {
+  loadRemoteBuild(state: any, build_id: string) {
+    state.commit("addNotification", {
       type: "info",
       message: "Loading build from share link.. *portal sounds*."
     });
@@ -37,22 +37,22 @@ export default {
       .then(doc => {
         state.character = doc.data();
 
-        this.commit("addNotification", {
+        state.commit("addNotification", {
           type: "success",
           message: "Successfully loaded build!"
         });
       })
       .catch(error => {
-        this.commit("addNotification", {
+        state.commit("addNotification", {
           type: "error",
           message: "Failed to load build: " + error + "."
         });
       });
   },
-  loadBuild(state, build) {
-    state.character = JSON.parse(build);
+  loadBuild(state: any, buildJSON: string) {
+    state.character = JSON.parse(buildJSON);
   },
-  saveBuild(state) {
+  saveBuild(state: any) {
     // Store locally
     state.builds.push({
       key: new Date().toISOString(),
@@ -63,34 +63,34 @@ export default {
     const db = firebase.firestore();
     db.collection("builds").add(state.character);
   },
-  deleteBuild(state, build) {
+  deleteBuild(state: any, key: string) {
     for (let i = 0; i < state.builds.length; i++) {
-      if (state.builds[i].key === build) {
+      if (state.builds[i].key === key) {
         state.builds.splice(i, 1);
       }
     }
   },
-  deleteAllBuilds(state) {
+  deleteAllBuilds(state: any) {
     state.builds = [];
   },
-  reset(state) {
+  reset(state: any) {
     state.character = DefaultCharacter();
   },
-  import(state, character) {
+  import(state: any, character: any) {
     state.character = character;
 
-    this.commit("addNotification", {
+    state.commit("addNotification", {
       type: "success",
       message: "Successfully imported build."
     });
   },
-  updateName(state, value) {
+  updateName(state: any, value: string) {
     state.character.name = value;
   },
-  updateLevel(state, value) {
+  updateLevel(state: any, value: number) {
     state.character.level = value;
   },
-  updateRace(state, value) {
+  updateRace(state: any, value: string) {
     state.character.race = value;
 
     // Also update experience augmentations to match new race
@@ -116,11 +116,11 @@ export default {
       state.character.augmentations.eye_of_the_remorseless.invested = 1;
     }
   },
-  updateGender(state, value) {
+  updateGender(state: any, value: string) {
     state.character.gender = value;
   },
 
-  updateTimesEnlightened(state, value) {
+  updateTimesEnlightened(state: any, value: number) {
     let actual = Number(value);
 
     if (isNaN(actual)) {
@@ -134,7 +134,7 @@ export default {
     state.character.timesEnlightened = actual;
   },
 
-  updateExtraSkillCredit(state, payload) {
+  updateExtraSkillCredit(state: any, payload: any) {
     state.character.extraSkillCredits[payload.name] = payload.value;
 
     // Set luminance aura skill points to match
@@ -145,7 +145,7 @@ export default {
     }
   },
 
-  updateAttributeCreation(state, payload) {
+  updateAttributeCreation(state: any, payload: any) {
     let newVal = Number(payload.value);
 
     // Clamp to be from 10-100
@@ -190,43 +190,43 @@ export default {
     state.character.attributes[payload.name].creation = newVal;
   },
 
-  updateAttributeInvested(state, payload) {
+  updateAttributeInvested(state: any, payload: any) {
     state.character.attributes[payload.name].invested = Number(payload.value);
   },
 
-  updateAttributeBuff(state, payload) {
+  updateAttributeBuff(state: any, payload: any) {
     state.character.attributes[payload.name].buff = Number(payload.value);
   },
 
-  updateAttributeCantrip(state, payload) {
+  updateAttributeCantrip(state: any, payload: any) {
     state.character.attributes[payload.name].cantrip = Number(payload.value);
   },
 
-  updateVitalInvested(state, payload) {
+  updateVitalInvested(state: any, payload: any) {
     state.character.vitals[payload.name].invested = Number(payload.value);
   },
 
-  updateVitalBuff(state, payload) {
+  updateVitalBuff(state: any, payload: any) {
     state.character.vitals[payload.name].buff = Number(payload.value);
   },
 
-  updateVitalCantrip(state, payload) {
+  updateVitalCantrip(state: any, payload: any) {
     state.character.vitals[payload.name].cantrip = Number(payload.value);
   },
 
-  updateSkillInvested(state, payload) {
+  updateSkillInvested(state: any, payload: any) {
     state.character.skills[payload.name].invested = Number(payload.value);
   },
 
-  updateSkillBuff(state, payload) {
+  updateSkillBuff(state: any, payload: any) {
     state.character.skills[payload.name].buff = Number(payload.value);
   },
 
-  updateSkillCantrip(state, payload) {
+  updateSkillCantrip(state: any, payload: any) {
     state.character.skills[payload.name].cantrip = Number(payload.value);
   },
 
-  increaseTraining(state, skill) {
+  increaseTraining(state: any, skill: any) {
     const currentTraining = state.character.skills[skill].training;
     var newTraining = null;
 
@@ -247,7 +247,7 @@ export default {
     state.character.skills[skill].training = newTraining;
   },
 
-  decreaseTraining(state, skill) {
+  decreaseTraining(state: any, skill: string) {
     const currentTraining = state.character.skills[skill].training;
     var newTraining = null;
 
@@ -274,7 +274,7 @@ export default {
   },
 
   // Augmentations
-  updateAugmentationInvested(state, payload) {
+  updateAugmentationInvested(state: any, payload: any) {
     state.character.augmentations[payload.name].invested = Number(payload.value);
 
     /* Update skills */
@@ -292,24 +292,24 @@ export default {
     }
   },
 
-  changeAllAugmentationInvestment(state, value) {
-    Constants.AUGMENTATIONS.forEach(aug_name => {
+  changeAllAugmentationInvestment(state: any, value: number) {
+    Constants.AUGMENTATIONS.forEach((aug_name: string) => {
       state.character.augmentations[aug_name].invested = (value == 1 ? Constants.AUGMENTATION_MAX_USES[aug_name] : 0);
     });
   },
 
   // Luminance Auras
-  updateLuminanceAuraInvested(state, payload) {
+  updateLuminanceAuraInvested(state: any, payload: any) {
     state.character.luminance_auras[payload.name].invested = Number(payload.value);
   },
 
-  changeAllLuminanceAuraInvestment(state, value) {
+  changeAllLuminanceAuraInvestment(state: any, value: any) {
     Constants.LUMINANCE_AURAS.forEach(aura_name => {
       state.character.luminance_auras[aura_name].invested = (value == 1 ? Constants.LUMINANCE_AURA_MAX_USES[aura_name] : 0);
     });
   },
 
-  changeAllInvestment(state, invested) {
+  changeAllInvestment(state: any, invested: string) {
     Constants.ATTRIBUTES.forEach(a => {
       let newval = Number(invested);
       newval = newval > 190 ? 190 : newval;
@@ -339,7 +339,7 @@ export default {
     });
   },
 
-  changeAllAttributeInvestment(state, invested) {
+  changeAllAttributeInvestment(state: any, invested: string) {
     Constants.ATTRIBUTES.forEach(a => {
       let newval = Number(invested);
 
@@ -347,7 +347,7 @@ export default {
     });
   },
 
-  changeAllVitalInvestment(state, invested) {
+  changeAllVitalInvestment(state: any, invested: string) {
     Constants.VITALS.forEach(a => {
       let newval = Number(invested);
 
@@ -355,7 +355,7 @@ export default {
     });
   },
 
-  changeAllSkillInvestment(state, invested) {
+  changeAllSkillInvestment(state: any, invested: string) {
     Constants.SKILLS.forEach(skill => {
       let newval = Number(invested);
 
@@ -369,7 +369,7 @@ export default {
     });
   },
 
-  changeAllBuffs(state, buff) {
+  changeAllBuffs(state: any, buff: string) {
     Constants.ATTRIBUTES.forEach(attribute => {
       state.character.attributes[attribute].buff = Number(buff);
     });
@@ -383,26 +383,26 @@ export default {
     });
   },
 
-  changeAllAttributeBuffs(state, buff) {
+  changeAllAttributeBuffs(state: any, buff: string) {
     Constants.ATTRIBUTES.forEach(attribute => {
       state.character.attributes[attribute].buff = Number(buff);
     });
   },
 
-  changeAllVitalBuffs(state, buff) {
+  changeAllVitalBuffs(state: any, buff: string) {
     Constants.VITALS.forEach(vital => {
       state.character.vitals[vital].buff = Number(buff);
     });
   },
 
-  changeAllSkillBuffs(state, buff) {
+  changeAllSkillBuffs(state: any, buff: string) {
     Constants.SKILLS.forEach(skill => {
       state.character.skills[skill].buff = Number(buff);
     });
   },
 
   // Cantrips
-  changeAllCantrips(state, cantrip) {
+  changeAllCantrips(state: any, cantrip: string) {
     Constants.ATTRIBUTES.forEach(attribute => {
       state.character.attributes[attribute].cantrip = Number(cantrip);
     });
@@ -416,30 +416,30 @@ export default {
     });
   },
 
-  changeAllAttributeCantrips(state, cantrip) {
+  changeAllAttributeCantrips(state: any, cantrip: string) {
     Constants.ATTRIBUTES.forEach(attribute => {
       state.character.attributes[attribute].cantrip = Number(cantrip);
     });
   },
 
-  changeAllVitalCantrips(state, cantrip) {
+  changeAllVitalCantrips(state: any, cantrip: string) {
     Constants.VITALS.forEach(vital => {
       state.character.vitals[vital].cantrip = Number(cantrip);
     });
   },
 
-  changeAllSkillCantrips(state, cantrip) {
+  changeAllSkillCantrips(state: any, cantrip: string) {
     Constants.SKILLS.forEach(skill => {
       state.character.skills[skill].cantrip = Number(cantrip);
     });
   },
 
   // Notifications
-  clearAllNotifications(state) {
+  clearAllNotifications(state: any) {
     state.notifications = [];
   },
 
-  addNotification(state, payload) {
+  addNotification(state: any, payload: any) {
     let notification_id = Date.now();
 
     state.notifications.push({
@@ -457,7 +457,7 @@ export default {
     }, 3000);
   },
 
-  removeNotification(state, id) {
+  removeNotification(state: any, id: number) {
     for (let i = 0; i < state.notifications.length; i++) {
       if (state.notifications[i].id === id) {
         state.notifications.splice(i, 1);

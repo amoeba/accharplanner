@@ -1,10 +1,12 @@
 import Constants from "../constants";
+import { Character } from "./types/character";
+import { Race, Gender } from "./types";
 
-export default () => {
+export default function(): Character {
   return {
     name: "An Adventurer",
-    race: "Aluvian",
-    gender: "Female",
+    race: Race.Aluvian,
+    gender: Gender.Female,
     level: 1,
     timesEnlightened: 0,
     extraSkillCredits: {

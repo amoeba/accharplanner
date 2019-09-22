@@ -3,14 +3,14 @@ import Helpers from "../helpers";
 
 export default {
   // General
-  sharedBuild: state => {
+  sharedBuild: (state: any) => {
     return state.sharedBuild;
   },
-  exportedCharacter: state => {
+  exportedCharacter: (state: any) => {
     return JSON.stringify(state.character, null, 4);
   },
 
-  totalXPEarned: state => {
+  totalXPEarned: (state: any) => {
     let cost = 0;
 
     cost += Constants.COST_LEVEL[state.character.level];
@@ -19,7 +19,7 @@ export default {
     return cost;
   },
 
-  totalXPInvested: (state, getters) => {
+  totalXPInvested: (state: any, getters: any) => {
     let cost = 0;
 
     Constants.ATTRIBUTES.forEach(a => {
@@ -68,7 +68,7 @@ export default {
     return cost;
   },
 
-  requiredLevel: (state, getters) => {
+  requiredLevel: (state: any, getters: any) => {
     for (var i = 1; i <= 275; i++) {
       if (
         getters.totalXPInvested <= Constants.COST_LEVEL[i]
@@ -81,7 +81,7 @@ export default {
     return "Oops, something went wrong!";
   },
 
-  skillPointsAvailable: state => {
+  skillPointsAvailable: (state: any) => {
     return (
       Constants.SKILL_POINTS_AT_LEVEL[state.character.level] +
       (state.character.extraSkillCredits.railrea ? 1 : 0) +
@@ -90,7 +90,7 @@ export default {
     );
   },
 
-  skillPointsSpent: state => {
+  skillPointsSpent: (state: any) => {
     let cost = 0;
 
     Constants.SKILLS.forEach(skill => {
@@ -107,7 +107,7 @@ export default {
     return cost;
   },
 
-  augmentationsSpent: state => {
+  augmentationsSpent: (state: any) => {
     let cost = 0;
 
     Object.keys(Constants.SPEC_COSTS_AUG).forEach(skill => {
@@ -124,7 +124,7 @@ export default {
     return cost;
   },
 
-  totalLuminanceXPSpent: state => {
+  totalLuminanceXPSpent: (state: any) => {
     let cost = 0;
 
     Object.keys(Constants.SPEC_COSTS_AUG).forEach(skill => {
@@ -147,10 +147,10 @@ export default {
     return cost;
   },
 
-  specializedSkillPointsSpent: (state, getters) => {
+  specializedSkillPointsSpent: (state: any, getters: any) => {
     let cost = 0;
 
-    getters.specializedSkills.forEach(skill => {
+    getters.specializedSkills.forEach((skill: string) => {
       cost += Constants.COST_SKILL_POINTS[skill][Constants.TRAINING.SPECIALIZED] - Constants.COST_SKILL_POINTS[skill][Constants.TRAINING.TRAINED];
     });
 
@@ -158,7 +158,7 @@ export default {
   },
 
   // Attributes
-  attributePointsSpent: state => {
+  attributePointsSpent: (state: any) => {
     let spent = 0;
 
     Constants.ATTRIBUTES.forEach(attribute => {
@@ -168,84 +168,84 @@ export default {
     return spent;
   },
 
-  strengthBase: state => {
+  strengthBase: (state: any) => {
     return (
       state.character.attributes.strength.creation +
       state.character.attributes.strength.invested +
       state.character.augmentations.reinforcement_of_the_lugians.invested * 5
     );
   },
-  strengthBuffed: (state, getters) => {
+  strengthBuffed: (state: any, getters: any) => {
     return (
       getters.strengthBase +
       Helpers.buffBonus(state.character.attributes.strength.buff) +
       Helpers.cantripBonus(state.character.attributes.strength.cantrip)
     );
   },
-  enduranceBase: state => {
+  enduranceBase: (state: any) => {
     return (
       state.character.attributes.endurance.creation +
       state.character.attributes.endurance.invested +
       state.character.augmentations.bleearghs_fortitude.invested * 5
     );
   },
-  enduranceBuffed: (state, getters) => {
+  enduranceBuffed: (state: any, getters: any) => {
     return (
       getters.enduranceBase +
       Helpers.buffBonus(state.character.attributes.endurance.buff) +
       Helpers.cantripBonus(state.character.attributes.endurance.cantrip)
     );
   },
-  coordinationBase: state => {
+  coordinationBase: (state: any) => {
     return (
       state.character.attributes.coordination.creation +
       state.character.attributes.coordination.invested +
       state.character.augmentations.oswalds_enhancement.invested * 5
     );
   },
-  coordinationBuffed: (state, getters) => {
+  coordinationBuffed: (state: any, getters: any) => {
     return (
       getters.coordinationBase +
       Helpers.buffBonus(state.character.attributes.coordination.buff) +
       Helpers.cantripBonus(state.character.attributes.coordination.cantrip)
     );
   },
-  quicknessBase: state => {
+  quicknessBase: (state: any) => {
     return (
       state.character.attributes.quickness.creation +
       state.character.attributes.quickness.invested +
       state.character.augmentations.siraluuns_blessing.invested * 5
     );
   },
-  quicknessBuffed: (state, getters) => {
+  quicknessBuffed: (state: any, getters: any) => {
     return (
       getters.quicknessBase +
       Helpers.buffBonus(state.character.attributes.quickness.buff) +
       Helpers.cantripBonus(state.character.attributes.quickness.cantrip)
     );
   },
-  focusBase: state => {
+  focusBase: (state: any) => {
     return (
       state.character.attributes.focus.creation +
       state.character.attributes.focus.invested +
       state.character.augmentations.enduring_calm.invested * 5
     );
   },
-  focusBuffed: (state, getters) => {
+  focusBuffed: (state: any, getters: any) => {
     return (
       getters.focusBase +
       Helpers.buffBonus(state.character.attributes.focus.buff) +
       Helpers.cantripBonus(state.character.attributes.focus.cantrip)
     );
   },
-  selfBase: state => {
+  selfBase: (state: any) => {
     return (
       state.character.attributes.self.creation +
       state.character.attributes.self.invested +
       state.character.augmentations.steadfast_will.invested * 5
     );
   },
-  selfBuffed: (state, getters) => {
+  selfBuffed: (state: any, getters: any) => {
     return (
       getters.selfBase +
       Helpers.buffBonus(state.character.attributes.self.buff) +
@@ -254,10 +254,10 @@ export default {
   },
 
   // Vitals
-  healthCreation: state => {
+  healthCreation: (state: any) => {
     return Math.round(state.character.attributes.endurance.creation / 2);
   },
-  healthBase: (state, getters) => {
+  healthBase: (state: any, getters: any) => {
     const benediction_bonus =
       state.character.augmentations.asherons_lesser_benediction.invested ===
         1 || state.character.augmentations.asherons_benediction.invested === 1
@@ -270,35 +270,35 @@ export default {
         Helpers.cantripBonus(state.character.vitals.health.cantrip)) * benediction_bonus
     );
   },
-  healthBuffed: (state, getters) => {
+  healthBuffed: (state: any, getters: any) => {
     return (
       getters.healthBase +
       Math.round(Helpers.buffBonus(state.character.vitals.health.buff) / 2)
     );
   },
-  staminaCreation: state => {
+  staminaCreation: (state: any) => {
     return state.character.attributes.endurance.creation;
   },
-  staminaBase: (state, getters) => {
+  staminaBase: (state: any, getters: any) => {
     return (
       getters.enduranceBase +
       state.character.vitals.stamina.invested +
       Helpers.cantripBonus(state.character.vitals.stamina.cantrip)
     );
   },
-  staminaBuffed: (state, getters) => {
+  staminaBuffed: (state: any, getters: any) => {
     return (
       getters.staminaBase +
       Helpers.buffBonus(state.character.vitals.stamina.buff)
     );
   },
-  manaCreation: state => {
+  manaCreation: (state: any) => {
     return state.character.attributes.self.creation;
   },
-  manaBase: (state, getters) => {
+  manaBase: (state: any, getters: any) => {
     return getters.selfBase + state.character.vitals.mana.invested;
   },
-  manaBuffed: (state, getters) => {
+  manaBuffed: (state: any, getters: any) => {
     return (
       getters.manaBase +
       Helpers.buffBonus(state.character.vitals.mana.buff) +
@@ -307,14 +307,14 @@ export default {
   },
 
   // Skills
-  alchemyBase: (state, getters) => {
+  alchemyBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       Helpers.trainingBonus(state.character.skills.alchemy.training) +
       state.character.skills.alchemy.invested
     );
   },
-  alchemyBuffed: (state, getters) => {
+  alchemyBuffed: (state: any, getters: any) => {
     return (
       getters.alchemyBase +
       Helpers.buffBonus(state.character.skills.alchemy.buff) +
@@ -330,14 +330,14 @@ export default {
       (state.character.skills.alchemy.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  arcane_loreBase: (state, getters) => {
+  arcane_loreBase: (state: any, getters: any) => {
     return (
       Math.round(getters.focusBase / 3) +
       Helpers.trainingBonus(state.character.skills.arcane_lore.training) +
       state.character.skills.arcane_lore.invested
     );
   },
-  arcane_loreBuffed: (state, getters) => {
+  arcane_loreBuffed: (state: any, getters: any) => {
     return (
       getters.arcane_loreBase +
       Helpers.buffBonus(state.character.skills.arcane_lore.buff) +
@@ -348,14 +348,14 @@ export default {
       (state.character.skills.arcane_lore.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  armor_tinkeringBase: (state, getters) => {
+  armor_tinkeringBase: (state: any, getters: any) => {
     return (
       Math.round((getters.enduranceBase + getters.focusBase) / 2) +
       Helpers.trainingBonus(state.character.skills.armor_tinkering.training) +
       state.character.skills.armor_tinkering.invested
     );
   },
-  armor_tinkeringBuffed: (state, getters) => {
+  armor_tinkeringBuffed: (state: any, getters: any) => {
     return (
       getters.armor_tinkeringBase +
       Helpers.buffBonus(state.character.skills.armor_tinkering.buff) +
@@ -371,13 +371,13 @@ export default {
       (state.character.skills.armor_tinkering.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  assess_creatureBase: state => {
+  assess_creatureBase: (state: any) => {
     return (
       Helpers.trainingBonus(state.character.skills.assess_creature.training) +
       state.character.skills.assess_creature.invested
     );
   },
-  assess_creatureBuffed: (state, getters) => {
+  assess_creatureBuffed: (state: any, getters: any) => {
     return (
       getters.assess_creatureBase +
       Helpers.buffBonus(state.character.skills.assess_creature.buff) +
@@ -387,13 +387,13 @@ export default {
       (state.character.skills.assess_creature.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  assess_personBase: state => {
+  assess_personBase: (state: any) => {
     return (
       Helpers.trainingBonus(state.character.skills.assess_person.training) +
       state.character.skills.assess_person.invested
     );
   },
-  assess_personBuffed: (state, getters) => {
+  assess_personBuffed: (state: any, getters: any) => {
     return (
       getters.assess_personBase +
       Helpers.buffBonus(state.character.skills.assess_person.buff) +
@@ -403,7 +403,7 @@ export default {
       (state.character.skills.assess_person.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  cookingBase: (state, getters) => {
+  cookingBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       Helpers.trainingBonus(state.character.skills.cooking.training) +
@@ -414,7 +414,7 @@ export default {
       (state.character.skills.cooking.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  cookingBuffed: (state, getters) => {
+  cookingBuffed: (state: any, getters: any) => {
     return (
       getters.cookingBase +
       Helpers.buffBonus(state.character.skills.cooking.buff) +
@@ -426,7 +426,7 @@ export default {
       )
     );
   },
-  creature_enchantmentBase: (state, getters) => {
+  creature_enchantmentBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       Helpers.trainingBonus(
@@ -435,7 +435,7 @@ export default {
       state.character.skills.creature_enchantment.invested
     );
   },
-  creature_enchantmentBuffed: (state, getters) => {
+  creature_enchantmentBuffed: (state: any, getters: any) => {
     return (
       getters.creature_enchantmentBase +
       Helpers.buffBonus(state.character.skills.creature_enchantment.buff) +
@@ -452,13 +452,13 @@ export default {
       (state.character.skills.creature_enchantment.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  deceptionBase: state => {
+  deceptionBase: (state: any) => {
     return (
       Helpers.trainingBonus(state.character.skills.deception.training) +
       state.character.skills.deception.invested
     );
   },
-  deceptionBuffed: (state, getters) => {
+  deceptionBuffed: (state: any, getters: any) => {
     return (
       getters.deceptionBase +
       Helpers.buffBonus(state.character.skills.deception.buff) +
@@ -468,14 +468,14 @@ export default {
       (state.character.skills.deception.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  dirty_fightingBase: (state, getters) => {
+  dirty_fightingBase: (state: any, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       Helpers.trainingBonus(state.character.skills.dirty_fighting.training) +
       state.character.skills.dirty_fighting.invested
     );
   },
-  dirty_fightingBuffed: (state, getters) => {
+  dirty_fightingBuffed: (state: any, getters: any) => {
     return (
       getters.dirty_fightingBase +
       Helpers.buffBonus(state.character.skills.dirty_fighting.buff) +
@@ -490,14 +490,14 @@ export default {
       (state.character.skills.dirty_fighting.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  dual_wieldBase: (state, getters) => {
+  dual_wieldBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.coordinationBase) / 3) +
       Helpers.trainingBonus(state.character.skills.dual_wield.training) +
       state.character.skills.dual_wield.invested
     );
   },
-  dual_wieldBuffed: (state, getters) => {
+  dual_wieldBuffed: (state: any, getters: any) => {
     return (
       getters.dual_wieldBase +
       Helpers.buffBonus(state.character.skills.dual_wield.buff) +
@@ -512,14 +512,14 @@ export default {
       (state.character.skills.dual_wield.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  finesse_weaponsBase: (state, getters) => {
+  finesse_weaponsBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       Helpers.trainingBonus(state.character.skills.finesse_weapons.training) +
       state.character.skills.finesse_weapons.invested
     );
   },
-  finesse_weaponsBuffed: (state, getters) => {
+  finesse_weaponsBuffed: (state: any, getters: any) => {
     return (
       getters.finesse_weaponsBase +
       Helpers.buffBonus(state.character.skills.finesse_weapons.buff) +
@@ -534,14 +534,14 @@ export default {
       (state.character.skills.finesse_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  fletchingBase: (state, getters) => {
+  fletchingBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       Helpers.trainingBonus(state.character.skills.fletching.training) +
       state.character.skills.fletching.invested
     );
   },
-  fletchingBuffed: (state, getters) => {
+  fletchingBuffed: (state: any, getters: any) => {
     return (
       getters.fletchingBase +
       Helpers.buffBonus(state.character.skills.fletching.buff) +
@@ -557,14 +557,14 @@ export default {
       (state.character.skills.fletching.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  healingBase: (state, getters) => {
+  healingBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       Helpers.trainingBonus(state.character.skills.healing.training) +
       state.character.skills.healing.invested
     );
   },
-  healingBuffed: (state, getters) => {
+  healingBuffed: (state: any, getters: any) => {
     return (
       getters.healingBase +
       Helpers.buffBonus(state.character.skills.healing.buff) +
@@ -579,14 +579,14 @@ export default {
       (state.character.skills.healing.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  heavy_weaponsBase: (state, getters) => {
+  heavy_weaponsBase: (state: any, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       Helpers.trainingBonus(state.character.skills.heavy_weapons.training) +
       state.character.skills.heavy_weapons.invested
     );
   },
-  heavy_weaponsBuffed: (state, getters) => {
+  heavy_weaponsBuffed: (state: any, getters: any) => {
     return (
       getters.heavy_weaponsBase +
       Helpers.buffBonus(state.character.skills.heavy_weapons.buff) +
@@ -601,14 +601,14 @@ export default {
       (state.character.skills.heavy_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  item_enchantmentBase: (state, getters) => {
+  item_enchantmentBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       Helpers.trainingBonus(state.character.skills.item_enchantment.training) +
       state.character.skills.item_enchantment.invested
     );
   },
-  item_enchantmentBuffed: (state, getters) => {
+  item_enchantmentBuffed: (state: any, getters: any) => {
     return (
       getters.item_enchantmentBase +
       Helpers.buffBonus(state.character.skills.item_enchantment.buff) +
@@ -623,14 +623,14 @@ export default {
       (state.character.skills.item_enchantment.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  item_tinkeringBase: (state, getters) => {
+  item_tinkeringBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 2) +
       Helpers.trainingBonus(state.character.skills.item_tinkering.training) +
       state.character.skills.item_tinkering.invested
     );
   },
-  item_tinkeringBuffed: (state, getters) => {
+  item_tinkeringBuffed: (state: any, getters: any) => {
     return (
       getters.item_tinkeringBase +
       Helpers.buffBonus(state.character.skills.item_tinkering.buff) +
@@ -646,14 +646,14 @@ export default {
       (state.character.skills.item_tinkering.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  jumpBase: (state, getters) => {
+  jumpBase: (state: any, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
       Helpers.trainingBonus(state.character.skills.jump.training) +
       state.character.skills.jump.invested
     );
   },
-  jumpBuffed: (state, getters) => {
+  jumpBuffed: (state: any, getters: any) => {
     return (
       getters.jumpBase +
       Helpers.buffBonus(state.character.skills.jump.buff) +
@@ -668,13 +668,13 @@ export default {
       (state.character.skills.jump.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  leadershipBase: state => {
+  leadershipBase: (state: any) => {
     return (
       Helpers.trainingBonus(state.character.skills.leadership.training) +
       state.character.skills.leadership.invested
     );
   },
-  leadershipBuffed: (state, getters) => {
+  leadershipBuffed: (state: any, getters: any) => {
     return (
       getters.leadershipBase +
       Helpers.buffBonus(state.character.skills.leadership.buff) +
@@ -684,14 +684,14 @@ export default {
       (state.character.skills.leadership.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  life_magicBase: (state, getters) => {
+  life_magicBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       Helpers.trainingBonus(state.character.skills.life_magic.training) +
       state.character.skills.life_magic.invested
     );
   },
-  life_magicBuffed: (state, getters) => {
+  life_magicBuffed: (state: any, getters: any) => {
     return (
       getters.life_magicBase +
       Helpers.buffBonus(state.character.skills.life_magic.buff) +
@@ -706,14 +706,14 @@ export default {
       (state.character.skills.life_magic.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  light_weaponsBase: (state, getters) => {
+  light_weaponsBase: (state: any, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       Helpers.trainingBonus(state.character.skills.light_weapons.training) +
       state.character.skills.light_weapons.invested
     );
   },
-  light_weaponsBuffed: (state, getters) => {
+  light_weaponsBuffed: (state: any, getters: any) => {
     return (
       getters.light_weaponsBase +
       Helpers.buffBonus(state.character.skills.light_weapons.buff) +
@@ -728,14 +728,14 @@ export default {
       (state.character.skills.light_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  lockpickBase: (state, getters) => {
+  lockpickBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       Helpers.trainingBonus(state.character.skills.lockpick.training) +
       state.character.skills.lockpick.invested
     );
   },
-  lockpickBuffed: (state, getters) => {
+  lockpickBuffed: (state: any, getters: any) => {
     return (
       getters.lockpickBase +
       Helpers.buffBonus(state.character.skills.lockpick.buff) +
@@ -751,13 +751,13 @@ export default {
       (state.character.skills.lockpick.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  loyaltyBase: state => {
+  loyaltyBase: (state: any) => {
     return (
       Helpers.trainingBonus(state.character.skills.loyalty.training) +
       state.character.skills.loyalty.invested
     );
   },
-  loyaltyBuffed: (state, getters) => {
+  loyaltyBuffed: (state: any, getters: any) => {
     return (
       getters.loyaltyBase +
       Helpers.buffBonus(state.character.skills.loyalty.buff) +
@@ -767,14 +767,14 @@ export default {
       (state.character.skills.loyalty.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  magic_defenseBase: (state, getters) => {
+  magic_defenseBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 7) +
       Helpers.trainingBonus(state.character.skills.magic_defense.training) +
       state.character.skills.magic_defense.invested
     );
   },
-  magic_defenseBuffed: (state, getters) => {
+  magic_defenseBuffed: (state: any, getters: any) => {
     return (
       getters.magic_defenseBase +
       Helpers.buffBonus(state.character.skills.magic_defense.buff) +
@@ -789,7 +789,7 @@ export default {
       (state.character.skills.magic_defense.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  magic_item_tinkeringBase: (state, getters) => {
+  magic_item_tinkeringBase: (state: any, getters: any) => {
     return (
       getters.focusBase +
       Helpers.trainingBonus(
@@ -798,7 +798,7 @@ export default {
       state.character.skills.magic_item_tinkering.invested
     );
   },
-  magic_item_tinkeringBuffed: (state, getters) => {
+  magic_item_tinkeringBuffed: (state: any, getters: any) => {
     return (
       getters.magic_item_tinkeringBase +
       Helpers.buffBonus(state.character.skills.magic_item_tinkering.buff) +
@@ -812,14 +812,14 @@ export default {
       (state.character.skills.magic_item_tinkering.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  mana_conversionBase: (state, getters) => {
+  mana_conversionBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 6) +
       Helpers.trainingBonus(state.character.skills.mana_conversion.training) +
       state.character.skills.mana_conversion.invested
     );
   },
-  mana_conversionBuffed: (state, getters) => {
+  mana_conversionBuffed: (state: any, getters: any) => {
     return (
       getters.mana_conversionBase +
       Helpers.buffBonus(state.character.skills.mana_conversion.buff) +
@@ -834,14 +834,14 @@ export default {
       (state.character.skills.mana_conversion.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  melee_defenseBase: (state, getters) => {
+  melee_defenseBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       Helpers.trainingBonus(state.character.skills.melee_defense.training) +
       state.character.skills.melee_defense.invested
     );
   },
-  melee_defenseBuffed: (state, getters) => {
+  melee_defenseBuffed: (state: any, getters: any) => {
     return (
       getters.melee_defenseBase +
       Helpers.buffBonus(state.character.skills.melee_defense.buff) +
@@ -856,14 +856,14 @@ export default {
       (state.character.skills.melee_defense.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  missile_defenseBase: (state, getters) => {
+  missile_defenseBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 5) +
       Helpers.trainingBonus(state.character.skills.missile_defense.training) +
       state.character.skills.missile_defense.invested
     );
   },
-  missile_defenseBuffed: (state, getters) => {
+  missile_defenseBuffed: (state: any, getters: any) => {
     return (
       getters.missile_defenseBase +
       Helpers.buffBonus(state.character.skills.missile_defense.buff) +
@@ -878,14 +878,14 @@ export default {
       (state.character.skills.missile_defense.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  missile_weaponsBase: (state, getters) => {
+  missile_weaponsBase: (state: any, getters: any) => {
     return (
       Math.round(getters.coordinationBase / 2) +
       Helpers.trainingBonus(state.character.skills.missile_weapons.training) +
       state.character.skills.missile_weapons.invested
     );
   },
-  missile_weaponsBuffed: (state, getters) => {
+  missile_weaponsBuffed: (state: any, getters: any) => {
     return (
       getters.missile_weaponsBase +
       Helpers.buffBonus(state.character.skills.missile_weapons.buff) +
@@ -898,14 +898,14 @@ export default {
       (state.character.skills.missile_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  recklessnessBase: (state, getters) => {
+  recklessnessBase: (state: any, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.quicknessBase) / 3) +
       Helpers.trainingBonus(state.character.skills.recklessness.training) +
       state.character.skills.recklessness.invested
     );
   },
-  recklessnessBuffed: (state, getters) => {
+  recklessnessBuffed: (state: any, getters: any) => {
     return (
       getters.recklessnessBase +
       Helpers.buffBonus(state.character.skills.recklessness.buff) +
@@ -920,14 +920,14 @@ export default {
       (state.character.skills.recklessness.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  runBase: (state, getters) => {
+  runBase: (state: any, getters: any) => {
     return (
       getters.quicknessBase +
       Helpers.trainingBonus(state.character.skills.run.training) +
       state.character.skills.run.invested
     );
   },
-  runBuffed: (state, getters) => {
+  runBuffed: (state: any, getters: any) => {
     return (
       getters.runBase +
       Helpers.buffBonus(state.character.skills.run.buff) +
@@ -939,13 +939,13 @@ export default {
       (state.character.skills.run.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  salvagingBase: state => {
+  salvagingBase: (state: any) => {
     return (
       Helpers.trainingBonus(state.character.skills.salvaging.training) +
       state.character.skills.salvaging.invested
     );
   },
-  salvagingBuffed: (state, getters) => {
+  salvagingBuffed: (state: any, getters: any) => {
     return (
       getters.salvagingBase +
       Helpers.buffBonus(state.character.skills.salvaging.buff) +
@@ -956,14 +956,14 @@ export default {
       (state.character.skills.salvaging.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  shieldBase: (state, getters) => {
+  shieldBase: (state: any, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
       Helpers.trainingBonus(state.character.skills.shield.training) +
       state.character.skills.shield.invested
     );
   },
-  shieldBuffed: (state, getters) => {
+  shieldBuffed: (state: any, getters: any) => {
     return (
       getters.shieldBase +
       Helpers.buffBonus(state.character.skills.shield.buff) +
@@ -978,14 +978,14 @@ export default {
       (state.character.skills.shield.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  sneak_attackBase: (state, getters) => {
+  sneak_attackBase: (state: any, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       Helpers.trainingBonus(state.character.skills.sneak_attack.training) +
       state.character.skills.sneak_attack.invested
     );
   },
-  sneak_attackBuffed: (state, getters) => {
+  sneak_attackBuffed: (state: any, getters: any) => {
     return (
       getters.sneak_attackBase +
       Helpers.buffBonus(state.character.skills.sneak_attack.buff) +
@@ -1000,14 +1000,14 @@ export default {
       (state.character.skills.sneak_attack.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  summoningBase: (state, getters) => {
+  summoningBase: (state: any, getters: any) => {
     return (
       Math.round((getters.enduranceBase + getters.selfBase) / 3) +
       Helpers.trainingBonus(state.character.skills.summoning.training) +
       state.character.skills.summoning.invested
     );
   },
-  summoningBuffed: (state, getters) => {
+  summoningBuffed: (state: any, getters: any) => {
     return (
       getters.summoningBase +
       Helpers.buffBonus(state.character.skills.summoning.buff) +
@@ -1022,14 +1022,14 @@ export default {
       (state.character.skills.summoning.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  two_handed_combatBase: (state, getters) => {
+  two_handed_combatBase: (state: any, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       Helpers.trainingBonus(state.character.skills.two_handed_combat.training) +
       state.character.skills.two_handed_combat.invested
     );
   },
-  two_handed_combatBuffed: (state, getters) => {
+  two_handed_combatBuffed: (state: any, getters: any) => {
     return (
       getters.two_handed_combatBase +
       Helpers.buffBonus(state.character.skills.two_handed_combat.buff) +
@@ -1044,14 +1044,14 @@ export default {
       (state.character.skills.two_handed_combat.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  void_magicBase: (state, getters) => {
+  void_magicBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       Helpers.trainingBonus(state.character.skills.void_magic.training) +
       state.character.skills.void_magic.invested
     );
   },
-  void_magicBuffed: (state, getters) => {
+  void_magicBuffed: (state: any, getters: any) => {
     return (
       getters.void_magicBase +
       Helpers.buffBonus(state.character.skills.void_magic.buff) +
@@ -1066,14 +1066,14 @@ export default {
       (state.character.skills.void_magic.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  war_magicBase: (state, getters) => {
+  war_magicBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       Helpers.trainingBonus(state.character.skills.war_magic.training) +
       state.character.skills.war_magic.invested
     );
   },
-  war_magicBuffed: (state, getters) => {
+  war_magicBuffed: (state: any, getters: any) => {
     return (
       getters.war_magicBase +
       Helpers.buffBonus(state.character.skills.war_magic.buff) +
@@ -1088,14 +1088,14 @@ export default {
       (state.character.skills.war_magic.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
-  weapon_tinkeringBase: (state, getters) => {
+  weapon_tinkeringBase: (state: any, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 2) +
       Helpers.trainingBonus(state.character.skills.weapon_tinkering.training) +
       state.character.skills.weapon_tinkering.invested
     );
   },
-  weapon_tinkeringBuffed: (state, getters) => {
+  weapon_tinkeringBuffed: (state: any, getters: any) => {
     return (
       getters.weapon_tinkeringBase +
       Helpers.buffBonus(state.character.skills.weapon_tinkering.buff) +
@@ -1112,24 +1112,24 @@ export default {
     );
   },
 
-  specializedSkills: state => {
+  specializedSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
       key =>
         state.character.skills[key].training === Constants.TRAINING.SPECIALIZED
     );
   },
-  trainedSkills: state => {
+  trainedSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
       key => state.character.skills[key].training === Constants.TRAINING.TRAINED
     );
   },
-  untrainedSkills: state => {
+  untrainedSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
       key =>
         state.character.skills[key].training === Constants.TRAINING.UNTRAINED
     );
   },
-  unusableSkills: state => {
+  unusableSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
       key =>
         state.character.skills[key].training === Constants.TRAINING.UNUSABLE

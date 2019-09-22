@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./components/App.vue";
-import Planner from "./Planner";
-import Builds from "./components/Builds";
-import Import from "./components/Import";
+import Planner from "./Planner.vue";
+import Builds from "./components/Builds.vue";
+import Import from "./components/Import.vue";
 import store from "./store";
 import Constants from "./constants";
 import "./registerServiceWorker";
@@ -31,7 +31,7 @@ new Vue({
     this.$store.commit("clearAllNotifications");
 
     // Decide if we should do things
-    const params = new URL(document.location).searchParams;
+    const params = new URL(document.location.href).searchParams;
 
     if (
       !params.get("action") ||
