@@ -103,6 +103,7 @@
 <script>
 import Skill from "./Skill.vue";
 import Constants from "../constants";
+import { Training } from "../types";
 
 export default {
   name: "Skills",
@@ -151,28 +152,28 @@ export default {
       return Object.keys(this.$store.state.character.skills).filter(
         key =>
           this.$store.state.character.skills[key].training ===
-          Constants.TRAINING.SPECIALIZED
+          Training.SPECIALIZED
       );
     },
     trainedSkills() {
       return Object.keys(this.$store.state.character.skills).filter(
         key =>
           this.$store.state.character.skills[key].training ===
-          Constants.TRAINING.TRAINED
+          Training.TRAINED
       );
     },
     untrainedSkills() {
       return Object.keys(this.$store.state.character.skills).filter(
         key =>
           this.$store.state.character.skills[key].training ===
-          Constants.TRAINING.UNTRAINED
+          Training.UNTRAINED
       );
     },
     unusableSkills() {
       return Object.keys(this.$store.state.character.skills).filter(
         key =>
           this.$store.state.character.skills[key].training ===
-          Constants.TRAINING.UNUSABLE
+          Training.UNUSABLE
       );
     },
     noSpecializedSkills() {

@@ -1,5 +1,6 @@
 import Constants from "../constants";
 import Helpers from "../helpers";
+import { Attribute, Vital, Skill, Training, Race, Augmentation } from '@/types';
 
 export default {
   // General
@@ -22,11 +23,11 @@ export default {
   totalXPInvested: (state: any, getters: any) => {
     let cost = 0;
 
-    Constants.ATTRIBUTES.forEach(a => {
+    Object.keys(Attribute).forEach(function(a: Attribute) {
       cost += Constants.COST_ATTRIBUTE[state.character.attributes[a].invested];
     });
 
-    Constants.VITALS.forEach(v => {
+    Object.keys(Vital).forEach(v => {
       cost += Constants.COST_VITAL[state.character.vitals[v].invested];
     });
 
@@ -48,28 +49,28 @@ export default {
 
     // Adjust for free stuff, like racial experience augmentations
     if ((
-      state.character.race === Constants.RACE.ALUVIAN ||
-      state.character.race === Constants.RACE.GHARUNDIM ||
-      state.character.race === Constants.RACE.SHO ||
-      state.character.race === Constants.RACE.VIAMONTIAN) &&
+      state.character.race === Race.Aluvian ||
+      state.character.race === Race["Gharu'ndim"] ||
+      state.character.race === Race.Sho ||
+      state.character.race === Race.Viamontian) &&
       state.character.augmentations.jack_of_all_trades.invested == 1) {
-      cost -= Constants.AUGMENTATION_COST.jack_of_all_trades[state.character.augmentations.jack_of_all_trades.invested];
+      cost -= Constants.AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][state.character.augmentations.jack_of_all_trades.invested];
     } else if ((
-      state.character.race === Constants.RACE.EMPYREAN) &&
+      state.character.race === Race.Empyrean) &&
       state.character.augmentations.infused_life_magic.invested == 1) {
-      cost -= Constants.AUGMENTATION_COST.infused_life_magic[state.character.augmentations.infused_life_magic.invested];
+      cost -= Constants.AUGMENTATION_COST[Augmentation.infused_life_magic][state.character.augmentations.infused_life_magic.invested];
     } else if ((
-      state.character.race === Constants.RACE.UMBRAEN ||
-      state.character.race === Constants.RACE.PENUMBRAEN) &&
+      state.character.race === Race.Umbraen ||
+      state.character.race === Race.Penumbraen) &&
       state.character.augmentations.eye_of_the_remorseless.invested == 1) {
-      cost -= Constants.AUGMENTATION_COST.eye_of_the_remorseless[state.character.augmentations.eye_of_the_remorseless.invested];
+      cost -= Constants.AUGMENTATION_COST[Augmentation.eye_of_the_remorseless][state.character.augmentations.eye_of_the_remorseless.invested];
     }
 
     return cost;
   },
 
   requiredLevel: (state: any, getters: any) => {
-    for (var i = 1; i <= 275; i++) {
+    for (let i: number = 1; i <= 275; i++) {
       if (
         getters.totalXPInvested <= Constants.COST_LEVEL[i]
       ) {
@@ -90,15 +91,15 @@ export default {
     );
   },
 
-  skillPointsSpent: (state: any) => {
-    let cost = 0;
+  skillPointsSpent: function (state: any): number {
+    let cost: number = 0;
 
-    Constants.SKILLS.forEach(skill => {
+    Constants.SKILLS.forEach(function(skill: Skill): void {
       let training = state.character.skills[skill].training;
 
       if (
-        training == Constants.TRAINING.SPECIALIZED ||
-        training == Constants.TRAINING.TRAINED
+        training == Training.SPECIALIZED ||
+        training == Training.TRAINED
       ) {
         cost += Constants.COST_SKILL_POINTS[skill][training];
       }
@@ -110,11 +111,11 @@ export default {
   augmentationsSpent: (state: any) => {
     let cost = 0;
 
-    Object.keys(Constants.SPEC_COSTS_AUG).forEach(skill => {
+    Object.keys(Constants.SPEC_COSTS_AUG).forEach(function (skill: Skill) {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
-        Constants.TRAINING.SPECIALIZED &&
+        Training.SPECIALIZED &&
         Constants.SPEC_COSTS_AUG[skill]
       ) {
         cost += 1;
@@ -131,7 +132,7 @@ export default {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
-        Constants.TRAINING.SPECIALIZED &&
+        Training.SPECIALIZED &&
         Constants.SPEC_COSTS_AUG[skill]
       ) {
         cost += 1000000000;
@@ -151,7 +152,7 @@ export default {
     let cost = 0;
 
     getters.specializedSkills.forEach((skill: string) => {
-      cost += Constants.COST_SKILL_POINTS[skill][Constants.TRAINING.SPECIALIZED] - Constants.COST_SKILL_POINTS[skill][Constants.TRAINING.TRAINED];
+      cost += Constants.COST_SKILL_POINTS[skill][Training.SPECIALIZED] - Constants.COST_SKILL_POINTS[skill][Training.TRAINED];
     });
 
     return cost;
@@ -161,7 +162,7 @@ export default {
   attributePointsSpent: (state: any) => {
     let spent = 0;
 
-    Constants.ATTRIBUTES.forEach(attribute => {
+    Object.keys(Attribute).forEach(attribute => {
       spent += state.character.attributes[attribute].creation;
     });
 
@@ -327,7 +328,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.alchemy.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.alchemy.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   arcane_loreBase: (state: any, getters: any) => {
@@ -345,7 +346,7 @@ export default {
       Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) / 3) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.arcane_lore.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.arcane_lore.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   armor_tinkeringBase: (state: any, getters: any) => {
@@ -368,7 +369,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.armor_tinkering.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.armor_tinkering.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   assess_creatureBase: (state: any) => {
@@ -384,7 +385,7 @@ export default {
       Helpers.cantripBonus(state.character.skills.assess_creature.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.assess_creature.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.assess_creature.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   assess_personBase: (state: any) => {
@@ -400,7 +401,7 @@ export default {
       Helpers.cantripBonus(state.character.skills.assess_person.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.assess_person.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.assess_person.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   cookingBase: (state: any, getters: any) => {
@@ -411,7 +412,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.cooking.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.cooking.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   cookingBuffed: (state: any, getters: any) => {
@@ -449,7 +450,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.creature_enchantment.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.creature_enchantment.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   deceptionBase: (state: any) => {
@@ -465,7 +466,7 @@ export default {
       Helpers.cantripBonus(state.character.skills.deception.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.deception.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.deception.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   dirty_fightingBase: (state: any, getters: any) => {
@@ -487,7 +488,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.dirty_fighting.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.dirty_fighting.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   dual_wieldBase: (state: any, getters: any) => {
@@ -509,7 +510,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.dual_wield.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.dual_wield.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   finesse_weaponsBase: (state: any, getters: any) => {
@@ -531,7 +532,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.finesse_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.finesse_weapons.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   fletchingBase: (state: any, getters: any) => {
@@ -554,7 +555,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.fletching.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.fletching.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   healingBase: (state: any, getters: any) => {
@@ -576,7 +577,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.healing.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.healing.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   heavy_weaponsBase: (state: any, getters: any) => {
@@ -598,7 +599,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.heavy_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.heavy_weapons.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   item_enchantmentBase: (state: any, getters: any) => {
@@ -620,7 +621,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.item_enchantment.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.item_enchantment.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   item_tinkeringBase: (state: any, getters: any) => {
@@ -643,7 +644,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.item_tinkering.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.item_tinkering.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   jumpBase: (state: any, getters: any) => {
@@ -665,7 +666,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.jump.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.jump.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   leadershipBase: (state: any) => {
@@ -681,7 +682,7 @@ export default {
       Helpers.cantripBonus(state.character.skills.leadership.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.leadership.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.leadership.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   life_magicBase: (state: any, getters: any) => {
@@ -703,7 +704,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.life_magic.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.life_magic.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   light_weaponsBase: (state: any, getters: any) => {
@@ -725,7 +726,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.light_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.light_weapons.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   lockpickBase: (state: any, getters: any) => {
@@ -748,7 +749,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.lockpick.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.lockpick.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   loyaltyBase: (state: any) => {
@@ -764,7 +765,7 @@ export default {
       Helpers.cantripBonus(state.character.skills.loyalty.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.loyalty.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.loyalty.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   magic_defenseBase: (state: any, getters: any) => {
@@ -786,7 +787,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.magic_defense.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.magic_defense.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   magic_item_tinkeringBase: (state: any, getters: any) => {
@@ -809,7 +810,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.magic_item_tinkering.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.magic_item_tinkering.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   mana_conversionBase: (state: any, getters: any) => {
@@ -831,7 +832,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.mana_conversion.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.mana_conversion.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   melee_defenseBase: (state: any, getters: any) => {
@@ -853,7 +854,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.melee_defense.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.melee_defense.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   missile_defenseBase: (state: any, getters: any) => {
@@ -875,7 +876,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.missile_defense.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.missile_defense.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   missile_weaponsBase: (state: any, getters: any) => {
@@ -895,7 +896,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.missile_weapons.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.missile_weapons.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   recklessnessBase: (state: any, getters: any) => {
@@ -917,7 +918,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.recklessness.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.recklessness.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   runBase: (state: any, getters: any) => {
@@ -936,7 +937,7 @@ export default {
       Helpers.cantripBonus(state.character.attributes.quickness.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.run.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.run.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   salvagingBase: (state: any) => {
@@ -953,7 +954,7 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.salvaging.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.salvaging.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   shieldBase: (state: any, getters: any) => {
@@ -975,7 +976,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.shield.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.shield.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   sneak_attackBase: (state: any, getters: any) => {
@@ -997,7 +998,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.sneak_attack.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.sneak_attack.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   summoningBase: (state: any, getters: any) => {
@@ -1019,7 +1020,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.summoning.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.summoning.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   two_handed_combatBase: (state: any, getters: any) => {
@@ -1041,7 +1042,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.two_handed_combat.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.two_handed_combat.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   void_magicBase: (state: any, getters: any) => {
@@ -1063,7 +1064,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.void_magic.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.void_magic.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   war_magicBase: (state: any, getters: any) => {
@@ -1085,7 +1086,7 @@ export default {
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.war_magic.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.war_magic.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
   weapon_tinkeringBase: (state: any, getters: any) => {
@@ -1108,31 +1109,31 @@ export default {
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
-      (state.character.skills.weapon_tinkering.training === Constants.TRAINING.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      (state.character.skills.weapon_tinkering.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
     );
   },
 
   specializedSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
       key =>
-        state.character.skills[key].training === Constants.TRAINING.SPECIALIZED
+        state.character.skills[key].training === Training.SPECIALIZED
     );
   },
   trainedSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
-      key => state.character.skills[key].training === Constants.TRAINING.TRAINED
+      key => state.character.skills[key].training === Training.TRAINED
     );
   },
   untrainedSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
       key =>
-        state.character.skills[key].training === Constants.TRAINING.UNTRAINED
+        state.character.skills[key].training === Training.UNTRAINED
     );
   },
   unusableSkills: (state: any) => {
     return Object.keys(state.character.skills).filter(
       key =>
-        state.character.skills[key].training === Constants.TRAINING.UNUSABLE
+        state.character.skills[key].training === Training.UNUSABLE
     );
   }
 };

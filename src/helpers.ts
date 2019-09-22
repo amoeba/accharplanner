@@ -1,16 +1,17 @@
 import Constants from "./constants";
+import { Training } from "./types";
 
 export default {
-  trainingBonus: training => {
-    if (training === Constants.TRAINING.SPECIALIZED) {
+  trainingBonus: function (training: Training) {
+    if (training === Training.SPECIALIZED) {
       return 10;
-    } else if (training === Constants.TRAINING.TRAINED) {
+    } else if (training === Training.TRAINED) {
       return 0; // TODO: Verify?
     } else {
       return 0;
     }
   },
-  buffBonus: level => {
+  buffBonus: function (level: number) {
     switch (level) {
       case 1:
         return 10;
@@ -32,7 +33,7 @@ export default {
         return 0;
     }
   },
-  cantripBonus: level => {
+  cantripBonus: function (level: number) {
     switch (level) {
       case 1:
         return 5;
@@ -47,19 +48,22 @@ export default {
     }
   },
   untrainedState: {
-    alchemy: Constants.TRAINING.UNUSABLE
+    alchemy: Training.UNUSABLE
   },
-  exportCharacter: (data, name) => {
+  exportCharacter: function(data: object, name: string | null) {
+    const filename =
+      (name || "character").replace(/[^a-zA-Z0-9_]+/, "-") + ".json";
+
+      this.exportJSONData(data, filename);
+  },
+  exportJSONData: function(data: object, filename: string) {
     let json = JSON.stringify(data, null, 2);
 
     const blob = new Blob([json], {
       type: "application/json"
     });
 
-    const filename =
-      (name || "character").replace(/[^a-zA-Z0-9_]+/, "-") + ".json";
     const a = document.createElement("a");
-
     a.href = URL.createObjectURL(blob);
     a.download = filename;
     a.click();

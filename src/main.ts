@@ -7,6 +7,7 @@ import Import from "./components/Import.vue";
 import store from "./store";
 import Constants from "./constants";
 import "./registerServiceWorker";
+import { Training } from './types';
 
 Vue.use(VueRouter);
 
@@ -91,9 +92,9 @@ new Vue({
 
           if (
             store.state.character.skills[s].training ===
-            Constants.TRAINING.SPECIALIZED ||
+            Training.SPECIALIZED ||
             store.state.character.skills[s].training ===
-            Constants.TRAINING.TRAINED
+            Training.TRAINED
           ) {
             store.state.character.skills[s].invested = 0;
             store.state.character.skills[s].invested =

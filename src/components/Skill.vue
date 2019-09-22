@@ -63,6 +63,7 @@
 
 <script>
 import Constants from "../constants";
+import { Training } from '../types';
 
 export default {
   name: "Skill",
@@ -92,11 +93,11 @@ export default {
       let currentTraining = this.$store.state.character.skills[this._props.name]
         .training;
 
-      if (currentTraining === Constants.TRAINING.SPECIALIZED) {
+      if (currentTraining === Training.SPECIALIZED) {
         return "";
       }
 
-      if (currentTraining === Constants.TRAINING.TRAINED) {
+      if (currentTraining === Training.TRAINED) {
         if (Constants.SPEC_COSTS_AUG[this._props.name]) {
           return "AUG";
         } else {
@@ -111,13 +112,13 @@ export default {
         .training;
 
       if (
-        currentTraining === Constants.TRAINING.UNUSABLE ||
-        currentTraining === Constants.TRAINING.UNTRAINED
+        currentTraining === Training.UNUSABLE ||
+        currentTraining === Training.UNTRAINED
       ) {
         return "";
       }
 
-      if (currentTraining === Constants.TRAINING.SPECIALIZED) {
+      if (currentTraining === Training.SPECIALIZED) {
         if (Constants.SPEC_COSTS_AUG[this._props.name]) {
           return "AUG";
         } else {
@@ -125,7 +126,7 @@ export default {
         }
       }
 
-      if (currentTraining === Constants.TRAINING.TRAINED) {
+      if (currentTraining === Training.TRAINED) {
         if (!Constants.UNTRAINABLE[this._props.name]) {
           return;
         } else {
@@ -139,27 +140,27 @@ export default {
       // Can't if already specialized
       if (
         this.$store.state.character.skills[this._props.name].training ==
-        Constants.TRAINING.SPECIALIZED
+        Training.SPECIALIZED
       ) {
         return true;
       }
 
       // Can't if out of credits
       let newTraining =
-        this.$store.state.character.skills[this._props.name].training == Constants.TRAINING.TRAINED
-          ? Constants.TRAINING.SPECIALIZED
-          : Constants.TRAINING.TRAINED;
+        this.$store.state.character.skills[this._props.name].training == Training.TRAINED
+          ? Training.SPECIALIZED
+          : Training.TRAINED;
 
       // Calculate the cost to raise. Because of the way COST_SKILL_POINTS is
       // built, the cost to spec, for example, if the cost when spec'd minus the
       // cost when trained.
       let newCost = 0;
 
-      if (newTraining === Constants.TRAINING.SPECIALIZED) {
-        newCost = Constants.COST_SKILL_POINTS[this._props.name][Constants.TRAINING.SPECIALIZED] - 
-          Constants.COST_SKILL_POINTS[this._props.name][Constants.TRAINING.TRAINED];
-      } else if (newTraining === Constants.TRAINING.TRAINED) {
-        newCost = Constants.COST_SKILL_POINTS[this._props.name][Constants.TRAINING.TRAINED];
+      if (newTraining === Training.SPECIALIZED) {
+        newCost = Constants.COST_SKILL_POINTS[this._props.name][Training.SPECIALIZED] -
+          Constants.COST_SKILL_POINTS[this._props.name][Training.TRAINED];
+      } else if (newTraining === Training.TRAINED) {
+        newCost = Constants.COST_SKILL_POINTS[this._props.name][Training.TRAINED];
       }
 
       if (
@@ -172,7 +173,7 @@ export default {
 
       // Can't if would push you over 70 max spec'd credits
       if (
-        newTraining === Constants.TRAINING.SPECIALIZED && (this.$store.getters.specializedSkillPointsSpent + newCost > Constants.MAX_SPECIALIZED_SKILL_CREDITS_SPENT)
+        newTraining === Training.SPECIALIZED && (this.$store.getters.specializedSkillPointsSpent + newCost > Constants.MAX_SPECIALIZED_SKILL_CREDITS_SPENT)
       ) {
         return true;
       }
@@ -185,15 +186,15 @@ export default {
 
       // Can't if not trained or higher
       if (
-        training === Constants.TRAINING.UNTRAINED ||
-        training === Constants.TRAINING.UNTRAINED
+        training === Training.UNTRAINED ||
+        training === Training.UNTRAINED
       ) {
         return true;
       }
 
       // Can't if not untrainable
       if (
-        training === Constants.TRAINING.TRAINED &&
+        training === Training.TRAINED &&
         !Constants.UNTRAINABLE[this._props.name]
       ) {
         return true;
@@ -201,8 +202,8 @@ export default {
 
       // Can't if not trained
       if (
-        training === Constants.TRAINING.UNTRAINED ||
-        training === Constants.TRAINING.UNUSABLE
+        training === Training.UNTRAINED ||
+        training === Training.UNUSABLE
       ) {
         return true;
       }
@@ -213,8 +214,8 @@ export default {
       let training = this.$store.state.character.skills[this._props.name]
         .training;
       return (
-        training == Constants.TRAINING.SPECIALIZED ||
-        training == Constants.TRAINING.TRAINED
+        training == Training.SPECIALIZED ||
+        training == Training.TRAINED
       );
     },
     invested: {
@@ -224,19 +225,19 @@ export default {
       set(value) {
         this.$store.commit("updateSkillInvested", {
           name: this._props.name,
-          value: value
+          value: Number(value) | 0
         });
       }
     },
     maxInvestment() {
       if (
         this.$store.state.character.skills[this._props.name].training ===
-        Constants.TRAINING.SPECIALIZED
+        Training.SPECIALIZED
       ) {
         return 226;
       } else if (
         this.$store.state.character.skills[this._props.name].training ===
-        Constants.TRAINING.TRAINED
+        Training.TRAINED
       ) {
         return 208;
       } else {
@@ -297,12 +298,12 @@ export default {
       }
 
       if (
-        this._props.training === Constants.TRAINING.SPECIALIZED &&
+        this._props.training === Training.SPECIALIZED &&
         value > 226
       ) {
         value = 226;
       } else if (
-        this._props.training === Constants.TRAINING.TRAINED &&
+        this._props.training === Training.TRAINED &&
         value > 208
       ) {
         value = 208;
@@ -312,7 +313,7 @@ export default {
 
       this.$store.commit("updateSkillInvested", {
         name: this._props.name,
-        value: value
+        value: Number(value) | 0
       });
 
       e.target.value = value;
