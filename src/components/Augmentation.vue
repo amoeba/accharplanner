@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import Constants from "../constants";
-import { AUGMENTATION_NAME, AUGMENTATION_MAX_USES } from "../constants";
+import { AUGMENTATION_MAX_USES } from "../constants";
+import { AUGMENTATION_NAME } from "../mappings";
 
 export default {
   name: "Augmentation",

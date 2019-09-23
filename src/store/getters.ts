@@ -1,4 +1,13 @@
-import Constants from "../constants";
+import {
+  COST_SKILL_SPECIALIZED,
+  COST_SKILL_TRAINED,
+  AUGMENTATION_COST,
+  COST_VITAL,
+  COST_ATTRIBUTE,
+  COST_LEVEL,
+  SKILL_POINTS_AT_LEVEL,
+  COST_SKILL_POINTS,
+  SPEC_COSTS_AUG} from "../constants";
 import Helpers from "../helpers";
 import { State } from "../types";
 import { Attribute, Vital, Skill, Training, Race, Augmentation } from '@/types';
@@ -15,8 +24,8 @@ export default {
   totalXPEarned: (state: State) => {
     let cost: number = 0;
 
-    cost += Constants.COST_LEVEL[state.character.level];
-    cost += state.character.timesEnlightened * Constants.COST_LEVEL[275];
+    cost += COST_LEVEL[state.character.level];
+    cost += state.character.timesEnlightened * COST_LEVEL[275];
 
     return cost;
   },
@@ -25,25 +34,25 @@ export default {
     let cost = 0;
 
     Object.keys(Attribute).forEach(function(a: string) {
-      cost += Constants.COST_ATTRIBUTE[state.character.attributes[a].invested];
+      cost += COST_ATTRIBUTE[state.character.attributes[a].invested];
     });
 
     Object.keys(Vital).forEach(v => {
-      cost += Constants.COST_VITAL[state.character.vitals[v].invested];
+      cost += COST_VITAL[state.character.vitals[v].invested];
     });
 
     getters.specializedSkills.forEach(function(s: string) {
       cost +=
-        Constants.COST_SKILL_SPECIALIZED[state.character.skills[s].invested];
+        COST_SKILL_SPECIALIZED[state.character.skills[s].invested];
     });
 
     getters.trainedSkills.forEach(function(s: string) {
-      cost += Constants.COST_SKILL_TRAINED[state.character.skills[s].invested];
+      cost += COST_SKILL_TRAINED[state.character.skills[s].invested];
     });
 
     Object.keys(Augmentation).forEach(function(aug: string) {
       cost +=
-        Constants.AUGMENTATION_COST[aug][
+        AUGMENTATION_COST[aug][
         state.character.augmentations[aug].invested
         ];
     });
@@ -55,16 +64,16 @@ export default {
       state.character.race === Race.Sho ||
       state.character.race === Race.Viamontian) &&
       state.character.augmentations.jack_of_all_trades.invested == 1) {
-      cost -= Constants.AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][state.character.augmentations.jack_of_all_trades.invested];
+      cost -= AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][state.character.augmentations.jack_of_all_trades.invested];
     } else if ((
       state.character.race === Race.Empyrean) &&
       state.character.augmentations.infused_life_magic.invested == 1) {
-      cost -= Constants.AUGMENTATION_COST[Augmentation.infused_life_magic][state.character.augmentations.infused_life_magic.invested];
+      cost -= AUGMENTATION_COST[Augmentation.infused_life_magic][state.character.augmentations.infused_life_magic.invested];
     } else if ((
       state.character.race === Race.Umbraen ||
       state.character.race === Race.Penumbraen) &&
       state.character.augmentations.eye_of_the_remorseless.invested == 1) {
-      cost -= Constants.AUGMENTATION_COST[Augmentation.eye_of_the_remorseless][state.character.augmentations.eye_of_the_remorseless.invested];
+      cost -= AUGMENTATION_COST[Augmentation.eye_of_the_remorseless][state.character.augmentations.eye_of_the_remorseless.invested];
     }
 
     return cost;
@@ -73,7 +82,7 @@ export default {
   requiredLevel: (state: State, getters: any) => {
     for (let i: number = 1; i <= 275; i++) {
       if (
-        getters.totalXPInvested <= Constants.COST_LEVEL[i]
+        getters.totalXPInvested <= COST_LEVEL[i]
       ) {
         return "Requires >= level " + i;
       }
@@ -85,7 +94,7 @@ export default {
 
   skillPointsAvailable: (state: State) => {
     return (
-      Constants.SKILL_POINTS_AT_LEVEL[state.character.level] +
+      SKILL_POINTS_AT_LEVEL[state.character.level] +
       (state.character.extraSkillCredits.railrea ? 1 : 0) +
       (state.character.extraSkillCredits.oswald ? 1 : 0) +
       state.character.luminance_auras.skill.invested
@@ -102,7 +111,7 @@ export default {
         training == Training.SPECIALIZED ||
         training == Training.TRAINED
       ) {
-        cost += Constants.COST_SKILL_POINTS[skillName][training];
+        cost += COST_SKILL_POINTS[skillName][training];
       }
     });
 
@@ -112,12 +121,12 @@ export default {
   augmentationsSpent: (state: State) => {
     let cost = 0;
 
-    Object.keys(Constants.SPEC_COSTS_AUG).forEach(function (skill: string) {
+    Object.keys(SPEC_COSTS_AUG).forEach(function (skill: string) {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
         Training.SPECIALIZED &&
-        Constants.SPEC_COSTS_AUG[skill]
+        SPEC_COSTS_AUG[skill]
       ) {
         cost += 1;
       }
@@ -129,12 +138,12 @@ export default {
   totalLuminanceXPSpent: (state: State) => {
     let cost = 0;
 
-    Object.keys(Constants.SPEC_COSTS_AUG).forEach(skill => {
+    Object.keys(SPEC_COSTS_AUG).forEach(skill => {
       if (
         state.character.skills[skill] &&
         state.character.skills[skill].training ==
         Training.SPECIALIZED &&
-        Constants.SPEC_COSTS_AUG[skill]
+        SPEC_COSTS_AUG[skill]
       ) {
         cost += 1000000000;
       }
@@ -153,7 +162,7 @@ export default {
     let cost = 0;
 
     getters.specializedSkills.forEach((skill: string) => {
-      cost += Constants.COST_SKILL_POINTS[skill][Training.SPECIALIZED] - Constants.COST_SKILL_POINTS[skill][Training.TRAINED];
+      cost += COST_SKILL_POINTS[skill][Training.SPECIALIZED] - COST_SKILL_POINTS[skill][Training.TRAINED];
     });
 
     return cost;

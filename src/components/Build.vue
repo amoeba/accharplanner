@@ -3,7 +3,7 @@
     <h3>{{ description }}</h3>
     <div class="savedat"><strong>Saved at:</strong> {{ buildKey }}</div>
     <button v-on:click="load">Load</button>
-    <button v-on:click="exportCharacter">Export</button>
+    <button v-on:click="exportBuild">Export</button>
     <button v-on:click="remove">Delete</button>
     </div>
 </template>
@@ -30,9 +30,9 @@ export default {
     load() {
       this.$store.commit("loadBuild", this._props.buildData);
     },
-    exportCharacter() {
+    exportBuild() {
       const data = JSON.parse(this._props.buildData);
-      Helpers.exportCharacter(this._props.buildData, data.name);
+      Helpers.exportCharacter(data, data.name);
     },
     remove() {
       this.$store.commit("deleteBuild", this._props.buildKey);

@@ -28,6 +28,7 @@ export default {
       }
 
       const reader = new FileReader();
+
       reader.onload = e => {
         try {
           var character = JSON.parse(e.target.result);
@@ -38,7 +39,7 @@ export default {
           });
         }
 
-        this.$store.commit("import", character);
+        this.$store.dispatch("import", character);
       };
       reader.readAsText(selectedFile);
     }

@@ -1,4 +1,3 @@
-import Constants from "./constants";
 import { Training } from "./types";
 
 export default {

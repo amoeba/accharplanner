@@ -103,7 +103,8 @@
 
 <script>
 import ExtraSkillCredits from "./ExtraSkillCredits.vue";
-import Constants from "../constants";
+import { MIN_LEVEL, MAX_LEVEL, MIN_TIMES_ENLIGHTENDED, MAX_TIMES_ENLIGHTENDED } from "../constants";
+import { Race } from "../types";
 import Helpers from "../helpers";
 
 export default {
@@ -156,7 +157,7 @@ export default {
       }
     },
     races() {
-      return Constants.RACE;
+      return Object.keys(Race);
     },
     race: {
       get() {
@@ -202,10 +203,10 @@ export default {
     updateLevel(e) {
       let actual = Math.round(Number(e.target.value));
 
-      if (isNaN(actual) || actual < Constants.MIN_LEVEL) {
-        actual = Constants.MIN_LEVEL;
-      } else if (actual > Constants.MAX_LEVEL) {
-        actual = Constants.MAX_LEVEL;
+      if (isNaN(actual) || actual < MIN_LEVEL) {
+        actual = MIN_LEVEL;
+      } else if (actual > MAX_LEVEL) {
+        actual = MAX_LEVEL;
       }
 
       this.$store.commit("updateLevel", actual);
@@ -213,10 +214,10 @@ export default {
     updateTimesEnlightened(e) {
       let actual = Math.round(Number(e.target.value));
 
-      if (isNaN(actual) || actual < Constants.MIN_TIMES_ENLIGHTENDED) {
-        actual = Constants.MIN_TIMES_ENLIGHTENDED;
-      } else if (actual > Constants.MAX_TIMES_ENLIGHTENDED) {
-        actual = Constants.MAX_TIMES_ENLIGHTENDED;
+      if (isNaN(actual) || actual < MIN_TIMES_ENLIGHTENDED) {
+        actual = MIN_TIMES_ENLIGHTENDED;
+      } else if (actual > MAX_TIMES_ENLIGHTENDED) {
+        actual = MAX_TIMES_ENLIGHTENDED;
       }
 
       this.$store.commit("updateTimesEnlightened", actual);

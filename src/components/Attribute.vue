@@ -45,8 +45,7 @@
 </template>
 
 <script>
-import Constants from "../constants";
-import { ATTRIBUTE_NAME, BUFF_NAME, CANTRIP_NAME } from "../constants";
+import { ATTRIBUTE_NAME, BUFF_NAME, CANTRIP_NAME } from "../mappings";
 
 export default {
   name: "Attribute",

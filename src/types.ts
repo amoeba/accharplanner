@@ -173,7 +173,7 @@ export enum LuminanceAura  {
   aetheric_vision = "aetheric_vision",
   craftsman = "craftsman",
   glory = "glory",
-  mana_flow = "mana Flow",
+  mana_flow = "mana_flow",
   mana_infusion = "mana_infusion",
   protection = "protection",
   purity = "purity",

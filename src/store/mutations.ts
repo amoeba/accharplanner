@@ -1,7 +1,11 @@
-import Constants from "../constants";
+import {
+  AUGMENTATIONS,
+  AUGMENTATION_MAX_USES,
+  LUMINANCE_AURA_MAX_USES,
+  LUMINANCE_AURAS,
+  UNTRAINED_STATE } from "../constants";
 import {
   State,
-  Character,
   Race,
   Gender,
   Attribute,
@@ -221,7 +225,7 @@ export default {
 
         break;
       case Training.TRAINED:
-        newTraining = Constants.UNTRAINED_STATE[skill];
+        newTraining = UNTRAINED_STATE[skill];
         state.character.skills[skill].invested = 0;
 
         break;
@@ -252,8 +256,8 @@ export default {
   },
 
   changeAllAugmentationInvestment(state: State, value: number) {
-    Constants.AUGMENTATIONS.forEach((aug_name: Augmentation) => {
-      state.character.augmentations[aug_name].invested = (value == 1 ? Constants.AUGMENTATION_MAX_USES[aug_name] : 0);
+    AUGMENTATIONS.forEach((aug_name: Augmentation) => {
+      state.character.augmentations[aug_name].invested = (value == 1 ? AUGMENTATION_MAX_USES[aug_name] : 0);
     });
   },
 
@@ -263,8 +267,8 @@ export default {
   },
 
   changeAllLuminanceAuraInvestment(state: State, value: any) {
-    Constants.LUMINANCE_AURAS.forEach((aura_name: LuminanceAura) => {
-      state.character.luminance_auras[aura_name].invested = (value == 1 ? Constants.LUMINANCE_AURA_MAX_USES[aura_name] : 0);
+    LUMINANCE_AURAS.forEach((aura_name: LuminanceAura) => {
+      state.character.luminance_auras[aura_name].invested = (value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0);
     });
   },
 

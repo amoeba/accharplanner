@@ -3,8 +3,8 @@
     <h2>Saved Builds</h2>
     <div><button v-on:click="deleteAll">Delete All</button></div>
     <div><p>{{ noBuildsMessage }}</p></div>
-      <Build v-for="build in builds" v-bind:key="build.key" v-bind:build-key="build.key" 
-        v-bind:build-data="build.build" />
+      <Build v-for="build in builds" v-bind:key="build.key" v-bind:build-key="build.key"
+        v-bind:build-data="build.character" />
   </div>
 </template>
 
@@ -18,12 +18,12 @@ export default {
   },
   computed: {
     noBuildsMessage() {
-      if (this.$store.state.builds.length == 0) {
+      if (this.$store.state.savedBuilds.length == 0) {
         return "No saved builds. Use the Save button in the Planner.";
       }
     },
     builds() {
-      return this.$store.state.builds;
+      return this.$store.state.savedBuilds;
     }
   },
   methods: {

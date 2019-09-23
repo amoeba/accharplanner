@@ -63,12 +63,12 @@
 
 <script>
 import {
-  SKILL_NAME,
   SKILL_DEPENDS_ON_ATTRIBUTES,
   SPEC_COSTS_AUG,
   UNTRAINABLE,
   COST_SKILL_POINTS,
   MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
+import { SKILL_NAME } from "../mappings";
 import { Training } from '../types';
 
 export default {

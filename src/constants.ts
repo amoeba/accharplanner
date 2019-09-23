@@ -8,102 +8,119 @@ import {
   NumberIndexedDict
  } from "./types";
 
-const MIN_LEVEL: number = 1;
-const MAX_LEVEL: number = 275;
-const MIN_TIMES_ENLIGHTENDED: number = 0;
-const MAX_TIMES_ENLIGHTENDED: number = 5;
-export const MAX_SPECIALIZED_SKILL_CREDITS_SPENT = 70;
+export const MIN_LEVEL: number = 1;
+export const MAX_LEVEL: number = 275;
+export const MIN_TIMES_ENLIGHTENDED: number = 0;
+export const MAX_TIMES_ENLIGHTENDED: number = 5;
+export const MAX_SPECIALIZED_SKILL_CREDITS_SPENT: number = 70;
 
-export const ATTRIBUTE_NAME = {
-  [Attribute.strength]: "Strength",
-  [Attribute.endurance]: "Endurance",
-  [Attribute.coordination]: "Coordination",
-  [Attribute.quickness]: "Quickness",
-  [Attribute.focus]: "Focus",
-  [Attribute.self]: "Self",
-}
-
-export const SKILLS = [
-  [Skill.alchemy],
-  [Skill.arcane_lore],
-  [Skill.armor_tinkering],
-  [Skill.assess_creature],
-  [Skill.assess_person],
-  [Skill.cooking],
-  [Skill.creature_enchantment],
-  [Skill.deception],
-  [Skill.dual_wield],
-  [Skill.dirty_fighting],
-  [Skill.finesse_weapons],
-  [Skill.fletching],
-  [Skill.healing],
-  [Skill.heavy_weapons],
-  [Skill.item_enchantment],
-  [Skill.item_tinkering],
-  [Skill.jump],
-  [Skill.leadership],
-  [Skill.life_magic],
-  [Skill.light_weapons],
-  [Skill.lockpick],
-  [Skill.loyalty],
-  [Skill.magic_defense],
-  [Skill.magic_item_tinkering],
-  [Skill.mana_conversion],
-  [Skill.melee_defense],
-  [Skill.missile_defense],
-  [Skill.missile_weapons],
-  [Skill.recklessness],
-  [Skill.run],
-  [Skill.salvaging],
-  [Skill.shield],
-  [Skill.sneak_attack],
-  [Skill.summoning],
-  [Skill.two_handed_combat],
-  [Skill.void_magic],
-  [Skill.weapon_tinkering]
+export const SKILLS: string[] = [
+  Skill.alchemy,
+  Skill.arcane_lore,
+  Skill.armor_tinkering,
+  Skill.assess_creature,
+  Skill.assess_person,
+  Skill.cooking,
+  Skill.creature_enchantment,
+  Skill.deception,
+  Skill.dual_wield,
+  Skill.dirty_fighting,
+  Skill.finesse_weapons,
+  Skill.fletching,
+  Skill.healing,
+  Skill.heavy_weapons,
+  Skill.item_enchantment,
+  Skill.item_tinkering,
+  Skill.jump,
+  Skill.leadership,
+  Skill.life_magic,
+  Skill.light_weapons,
+  Skill.lockpick,
+  Skill.loyalty,
+  Skill.magic_defense,
+  Skill.magic_item_tinkering,
+  Skill.mana_conversion,
+  Skill.melee_defense,
+  Skill.missile_defense,
+  Skill.missile_weapons,
+  Skill.recklessness,
+  Skill.run,
+  Skill.salvaging,
+  Skill.shield,
+  Skill.sneak_attack,
+  Skill.summoning,
+  Skill.two_handed_combat,
+  Skill.void_magic,
+  Skill.weapon_tinkering
 ];
 
-export const SKILL_NAME = {
-  [Skill.alchemy]: "alchemy",
-  [Skill.arcane_lore]: "arcane_lore",
-  [Skill.armor_tinkering]: "armor_tinkering",
-  [Skill.assess_creature]: "assess_creature",
-  [Skill.assess_person]: "assess_person",
-  [Skill.cooking]: "cooking",
-  [Skill.creature_enchantment]: "creature_enchantment",
-  [Skill.deception]: "deception",
-  [Skill.dual_wield]: "dual_wield",
-  [Skill.dirty_fighting]: "dirty_fighting",
-  [Skill.finesse_weapons]: "finesse_weapons",
-  [Skill.fletching]: "fletching",
-  [Skill.healing]: "healing",
-  [Skill.heavy_weapons]: "heavy_weapons",
-  [Skill.item_enchantment]: "item_enchantment",
-  [Skill.item_tinkering]: "item_tinkering",
-  [Skill.jump]: "jump",
-  [Skill.leadership]: "leadership",
-  [Skill.life_magic]: "life_magic",
-  [Skill.light_weapons]: "light_weapons",
-  [Skill.lockpick]: "lockpick",
-  [Skill.loyalty]: "loyalty",
-  [Skill.magic_defense]: "magic_defense",
-  [Skill.magic_item_tinkering]: "magic_item_tinkering",
-  [Skill.mana_conversion]: "mana_conversion",
-  [Skill.melee_defense]: "melee_defense",
-  [Skill.missile_defense]: "missile_defense",
-  [Skill.missile_weapons]: "missile_weapons",
-  [Skill.recklessness]: "recklessness",
-  [Skill.run]: "run",
-  [Skill.salvaging]: "salvaging",
-  [Skill.shield]: "shield",
-  [Skill.sneak_attack]: "sneak_attack",
-  [Skill.summoning]: "summoning",
-  [Skill.two_handed_combat]: "two_handed_combat",
-  [Skill.void_magic]: "void_magic",
-  [Skill.weapon_tinkering]: "weapon_tinkeringI"
-};
+export const AUGMENTATIONS: string[] = [
+  Augmentation.might_of_the_seventh_mule,
+  Augmentation.shadow_of_the_seventh_mule,
+  Augmentation.infused_war_magic,
+  Augmentation.infused_life_magic,
+  Augmentation.infused_item_magic,
+  Augmentation.infused_creature_magic,
+  Augmentation.infused_void_magic,
+  Augmentation.clutch_of_the_miser,
+  Augmentation.enduring_enchantment,
+  Augmentation.quick_learner,
+  Augmentation.asherons_lesser_benediction,
+  Augmentation.asherons_benediction,
+  Augmentation.blackmoors_favor,
+  Augmentation.innate_renewal,
+  Augmentation.reinforcement_of_the_lugians,
+  Augmentation.bleearghs_fortitude,
+  Augmentation.oswalds_enhancement,
+  Augmentation.siraluuns_blessing,
+  Augmentation.enduring_calm,
+  Augmentation.steadfast_will,
+  Augmentation.enhancement_of_the_mace_turner,
+  Augmentation.enhancement_of_the_blade_turner,
+  Augmentation.enhancement_of_the_arrow_turner,
+  Augmentation.storms_enhancement,
+  Augmentation.fiery_enhancement,
+  Augmentation.icy_enhancement,
+  Augmentation.caustic_enhancement,
+  Augmentation.critical_protection,
+  Augmentation.frenzy_of_the_slayer,
+  Augmentation.iron_skin_of_the_invincible,
+  Augmentation.eye_of_the_remorseless,
+  Augmentation.hand_of_the_remorseless,
+  Augmentation.ciandras_fortune,
+  Augmentation.charmed_smith,
+  Augmentation.jibrils_essence,
+  Augmentation.yoshis_essence,
+  Augmentation.celdiseths_essence,
+  Augmentation.kogas_essence,
+  Augmentation.ciandras_essence,
+  Augmentation.master_of_the_steel_circle,
+  Augmentation.master_of_the_five_fold_path,
+  Augmentation.master_of_the_focused_eye,
+  Augmentation.jack_of_all_trades,
+  Augmentation.archmages_endurance
+];
 
-export const SKILL_DEPENDS_ON_ATTRIBUTES = {
+export const LUMINANCE_AURAS: string[] = [
+  LuminanceAura.aetheric_vision,
+  LuminanceAura.craftsman,
+  LuminanceAura.glory,
+  LuminanceAura.mana_flow,
+  LuminanceAura.mana_infusion,
+  LuminanceAura.protection,
+  LuminanceAura.purity,
+  LuminanceAura.skill,
+  LuminanceAura.temperance,
+  LuminanceAura.valor,
+  LuminanceAura.world,
+  LuminanceAura.specialization,
+  LuminanceAura.invulnerability,
+  LuminanceAura.destruction,
+  LuminanceAura.retribution,
+  LuminanceAura.hardening
+];
+
+export const SKILL_DEPENDS_ON_ATTRIBUTES: StringIndexedDict<string[]> = {
   [Skill.alchemy]: [Attribute.coordination, Attribute.focus],
   [Skill.arcane_lore]: [Attribute.focus],
   [Skill.armor_tinkering]: [Attribute.endurance, Attribute.focus],
@@ -144,8 +161,8 @@ export const SKILL_DEPENDS_ON_ATTRIBUTES = {
   [Skill.weapon_tinkering]: [Attribute.focus, Attribute.self]
 };
 
-export const UNTRAINABLE = {
-  alchemy: true,
+export const UNTRAINABLE: StringIndexedDict<boolean> = {
+  [Skill.alchemy]: true,
   [Skill.arcane_lore]: false,
   [Skill.armor_tinkering]: true,
   [Skill.assess_creature]: true,
@@ -185,7 +202,7 @@ export const UNTRAINABLE = {
   [Skill.weapon_tinkering]: true
 };
 
-const UNTRAINED_STATE = {
+export const UNTRAINED_STATE: StringIndexedDict<string> = {
   [Skill.alchemy]: Training.UNUSABLE,
   [Skill.arcane_lore]: Training.TRAINED,
   [Skill.armor_tinkering]: Training.UNTRAINED,
@@ -226,7 +243,7 @@ const UNTRAINED_STATE = {
   [Skill.weapon_tinkering]: Training.UNTRAINED
 };
 
-const COST_LEVEL: NumberIndexedDict<number> = {
+export const COST_LEVEL: NumberIndexedDict<number> = {
   1: 0,
   2: 1000,
   3: 2777,
@@ -504,7 +521,7 @@ const COST_LEVEL: NumberIndexedDict<number> = {
   275: 191226310247
 };
 
-const COST_ATTRIBUTE: NumberIndexedDict<number> = {
+export const COST_ATTRIBUTE: NumberIndexedDict<number> = {
   0: 0,
   1: 110,
   2: 277,
@@ -698,7 +715,7 @@ const COST_ATTRIBUTE: NumberIndexedDict<number> = {
   190: 4019438644
 };
 
-const COST_VITAL: NumberIndexedDict<number> = {
+export const COST_VITAL: NumberIndexedDict<number> = {
   0: 0,
   1: 73,
   2: 183,
@@ -940,7 +957,7 @@ export const COST_SKILL_POINTS: StringIndexedDict<StringIndexedDict<number>> = {
   [Skill.weapon_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 0 }
 };
 
-const SPEC_COSTS_AUG: StringIndexedDict<boolean> = {
+export const SPEC_COSTS_AUG: StringIndexedDict<boolean> = {
   [Skill.alchemy]: false,
   [Skill.arcane_lore]: false,
   [Skill.armor_tinkering]: true,
@@ -981,7 +998,7 @@ const SPEC_COSTS_AUG: StringIndexedDict<boolean> = {
   [Skill.weapon_tinkering]: true
 };
 
-const SKILL_POINTS_AT_LEVEL: NumberIndexedDict<number> = {
+export const SKILL_POINTS_AT_LEVEL: NumberIndexedDict<number> = {
   1: 52,
   2: 53,
   3: 54,
@@ -1259,7 +1276,7 @@ const SKILL_POINTS_AT_LEVEL: NumberIndexedDict<number> = {
   275: 98
 };
 
-const COST_SKILL_SPECIALIZED: NumberIndexedDict<number> = {
+export const COST_SKILL_SPECIALIZED: NumberIndexedDict<number> = {
   0: 0,
   1: 23,
   2: 56,
@@ -1489,7 +1506,7 @@ const COST_SKILL_SPECIALIZED: NumberIndexedDict<number> = {
   226: 4100490438
 };
 
-const COST_SKILL_TRAINED: NumberIndexedDict<number> = {
+export const COST_SKILL_TRAINED: NumberIndexedDict<number> = {
   0: 0,
   1: 58,
   2: 138,
@@ -1701,120 +1718,6 @@ const COST_SKILL_TRAINED: NumberIndexedDict<number> = {
   208: 4203819496
 };
 
-const BUFF_NAME: NumberIndexedDict<string> = {
-  0: "",
-  1: "I",
-  2: "II",
-  3: "III",
-  4: "IV",
-  5: "V",
-  6: "VI",
-  7: "VII",
-  8: "VIII"
-};
-
-const CANTRIP_NAME: NumberIndexedDict<string> = {
-  0: "None",
-  1: "Minor",
-  2: "Major",
-  3: "Epic",
-  4: "Leg."
-};
-
-const AUGMENTATIONS = [
-  Augmentation.might_of_the_seventh_mule,
-  Augmentation.shadow_of_the_seventh_mule,
-  Augmentation.infused_war_magic,
-  Augmentation.infused_life_magic,
-  Augmentation.infused_item_magic,
-  Augmentation.infused_creature_magic,
-  Augmentation.infused_void_magic,
-  Augmentation.clutch_of_the_miser,
-  Augmentation.enduring_enchantment,
-  Augmentation.quick_learner,
-  Augmentation.asherons_lesser_benediction,
-  Augmentation.asherons_benediction,
-  Augmentation.blackmoors_favor,
-  Augmentation.innate_renewal,
-  Augmentation.reinforcement_of_the_lugians,
-  Augmentation.bleearghs_fortitude,
-  Augmentation.oswalds_enhancement,
-  Augmentation.siraluuns_blessing,
-  Augmentation.enduring_calm,
-  Augmentation.steadfast_will,
-  Augmentation.enhancement_of_the_mace_turner,
-  Augmentation.enhancement_of_the_blade_turner,
-  Augmentation.enhancement_of_the_arrow_turner,
-  Augmentation.storms_enhancement,
-  Augmentation.fiery_enhancement,
-  Augmentation.icy_enhancement,
-  Augmentation.caustic_enhancement,
-  Augmentation.critical_protection,
-  Augmentation.frenzy_of_the_slayer,
-  Augmentation.iron_skin_of_the_invincible,
-  Augmentation.eye_of_the_remorseless,
-  Augmentation.hand_of_the_remorseless,
-  Augmentation.ciandras_fortune,
-  Augmentation.charmed_smith,
-  Augmentation.jibrils_essence,
-  Augmentation.yoshis_essence,
-  Augmentation.celdiseths_essence,
-  Augmentation.kogas_essence,
-  Augmentation.ciandras_essence,
-  Augmentation.master_of_the_steel_circle,
-  Augmentation.master_of_the_five_fold_path,
-  Augmentation.master_of_the_focused_eye,
-  Augmentation.jack_of_all_trades,
-  Augmentation.archmages_endurance
-];
-
-export const AUGMENTATION_NAME = {
-  [Augmentation.might_of_the_seventh_mule]: "might_of_the_seventh_mule",
-  [Augmentation.shadow_of_the_seventh_mule]: "shadow_of_the_seventh_mule",
-  [Augmentation.infused_war_magic]: "infused_war_magic",
-  [Augmentation.infused_life_magic]: "infused_life_magic",
-  [Augmentation.infused_item_magic]: "infused_item_magic",
-  [Augmentation.infused_creature_magic]: "infused_creature_magic",
-  [Augmentation.infused_void_magic]: "infused_void_magic",
-  [Augmentation.clutch_of_the_miser]: "clutch_of_the_miser",
-  [Augmentation.enduring_enchantment]: "enduring_enchantment",
-  [Augmentation.quick_learner]: "quick_learner",
-  [Augmentation.asherons_lesser_benediction]: "asherons_lesser_benediction",
-  [Augmentation.asherons_benediction]: "asherons_benediction",
-  [Augmentation.blackmoors_favor]: "blackmoors_favor",
-  [Augmentation.innate_renewal]: "innate_renewal",
-  [Augmentation.reinforcement_of_the_lugians]: "reinforcement_of_the_lugians",
-  [Augmentation.bleearghs_fortitude]: "bleearghs_fortitude",
-  [Augmentation.oswalds_enhancement]: "oswalds_enhancement",
-  [Augmentation.siraluuns_blessing]: "siraluuns_blessing",
-  [Augmentation.enduring_calm]: "enduring_calm",
-  [Augmentation.steadfast_will]: "steadfast_will",
-  [Augmentation.enhancement_of_the_mace_turner]: "enhancement_of_the_mace_turner",
-  [Augmentation.enhancement_of_the_blade_turner]: "enhancement_of_the_blade_turner",
-  [Augmentation.enhancement_of_the_arrow_turner]: "enhancement_of_the_arrow_turner",
-  [Augmentation.storms_enhancement]: "storms_enhancement",
-  [Augmentation.fiery_enhancement]: "fiery_enhancement",
-  [Augmentation.icy_enhancement]: "icy_enhancement",
-  [Augmentation.caustic_enhancement]: "caustic_enhancement",
-  [Augmentation.critical_protection]: "critical_protection",
-  [Augmentation.frenzy_of_the_slayer]: "frenzy_of_the_slayer",
-  [Augmentation.iron_skin_of_the_invincible]: "iron_skin_of_the_invincible",
-  [Augmentation.eye_of_the_remorseless]: "eye_of_the_remorseless",
-  [Augmentation.hand_of_the_remorseless]: "hand_of_the_remorseless",
-  [Augmentation.ciandras_fortune]: "ciandras_fortune",
-  [Augmentation.charmed_smith]: "charmed_smith",
-  [Augmentation.jibrils_essence]: "jibrils_essence",
-  [Augmentation.yoshis_essence]: "yoshis_essence",
-  [Augmentation.celdiseths_essence]: "celdiseths_essence",
-  [Augmentation.kogas_essence]: "kogas_essence",
-  [Augmentation.ciandras_essence]: "ciandras_essence",
-  [Augmentation.master_of_the_steel_circle]: "master_of_the_steel_circle",
-  [Augmentation.master_of_the_five_fold_path]: "master_of_the_five_fold_path",
-  [Augmentation.master_of_the_focused_eye]: "master_of_the_focused_eye",
-  [Augmentation.jack_of_all_trades]: "jack_of_all_trades",
-  [Augmentation.archmages_endurance]: "archmages_enduranceO"
-};
-
 export const AUGMENTATION_MAX_USES: StringIndexedDict<number> = {
   [Augmentation.might_of_the_seventh_mule]: 5,
   [Augmentation.shadow_of_the_seventh_mule]: 1,
@@ -1862,7 +1765,7 @@ export const AUGMENTATION_MAX_USES: StringIndexedDict<number> = {
   [Augmentation.archmages_endurance]: 5
 };
 
-const AUGMENTATION_COST: StringIndexedDict<number[]> = {
+export const AUGMENTATION_COST: StringIndexedDict<number[]> = {
   [Augmentation.might_of_the_seventh_mule]: [0, 1e9, 2e9, 3e9, 4e9, 5e9],
   [Augmentation.shadow_of_the_seventh_mule]: [0, 4e9],
   [Augmentation.infused_war_magic]: [0, 2e9],
@@ -1909,45 +1812,7 @@ const AUGMENTATION_COST: StringIndexedDict<number[]> = {
   [Augmentation.archmages_endurance]: [0, 1e9, 2e9, 3e9, 4e9, 5e9]
 };
 
-const LUMINANCE_AURAS = [
-  LuminanceAura.aetheric_vision,
-  LuminanceAura.craftsman,
-  LuminanceAura.glory,
-  LuminanceAura.mana_flow,
-  LuminanceAura.mana_infusion,
-  LuminanceAura.protection,
-  LuminanceAura.purity,
-  LuminanceAura.skill,
-  LuminanceAura.temperance,
-  LuminanceAura.valor,
-  LuminanceAura.world,
-  LuminanceAura.specialization,
-  LuminanceAura.invulnerability,
-  LuminanceAura.destruction,
-  LuminanceAura.retribution,
-  LuminanceAura.hardening
-];
-
-export const LUMINANCE_AURA_NAME = {
-  [LuminanceAura.aetheric_vision]: "aetheric_vision",
-  [LuminanceAura.craftsman]: "craftsman",
-  [LuminanceAura.glory]: "glory",
-  [LuminanceAura.mana_flow]: "mana_flow",
-  [LuminanceAura.mana_infusion]: "mana_infusion",
-  [LuminanceAura.protection]: "protection",
-  [LuminanceAura.purity]: "purity",
-  [LuminanceAura.skill]: "skill",
-  [LuminanceAura.temperance]: "temperance",
-  [LuminanceAura.valor]: "valor",
-  [LuminanceAura.world]: "world",
-  [LuminanceAura.specialization]: "specialization",
-  [LuminanceAura.invulnerability]: "invulnerability",
-  [LuminanceAura.destruction]: "destruction",
-  [LuminanceAura.retribution]: "retribution",
-  [LuminanceAura.hardening]: "hardeningO"
-};
-
-const LUMINANCE_AURA_COST: StringIndexedDict<number[]> = {
+export const LUMINANCE_AURA_COST: StringIndexedDict<number[]> = {
   [LuminanceAura.aetheric_vision]: [0, 100000, 250000, 450000, 600000, 900000],
   [LuminanceAura.craftsman]: [0, 100000, 250000, 450000, 600000, 900000],
   [LuminanceAura.glory]: [0, 100000, 250000, 450000, 600000, 900000],
@@ -1983,32 +1848,4 @@ export const LUMINANCE_AURA_MAX_USES: StringIndexedDict<number> = {
   [LuminanceAura.destruction]: 5,
   [LuminanceAura.retribution]: 5,
   [LuminanceAura.hardening]: 5
-};
-
-export default {
-  MIN_LEVEL,
-  MAX_LEVEL,
-  MIN_TIMES_ENLIGHTENDED,
-  MAX_TIMES_ENLIGHTENDED,
-  SKILLS,
-  SKILL_DEPENDS_ON_ATTRIBUTES,
-  UNTRAINED_STATE,
-  UNTRAINABLE,
-  MAX_SPECIALIZED_SKILL_CREDITS_SPENT,
-  COST_SKILL_POINTS,
-  SPEC_COSTS_AUG,
-  SKILL_POINTS_AT_LEVEL,
-  COST_LEVEL,
-  COST_ATTRIBUTE,
-  COST_VITAL,
-  COST_SKILL_SPECIALIZED,
-  COST_SKILL_TRAINED,
-  BUFF_NAME,
-  CANTRIP_NAME,
-  AUGMENTATIONS,
-  AUGMENTATION_MAX_USES,
-  AUGMENTATION_COST,
-  LUMINANCE_AURAS,
-  LUMINANCE_AURA_MAX_USES,
-  LUMINANCE_AURA_COST
 };

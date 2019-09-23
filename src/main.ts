@@ -5,7 +5,6 @@ import Planner from "./Planner.vue";
 import Builds from "./components/Builds.vue";
 import Import from "./components/Import.vue";
 import store from "./store";
-import Constants from "./constants";
 import "./registerServiceWorker";
 import { Training } from './types';
 

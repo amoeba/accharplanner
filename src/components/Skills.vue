@@ -102,8 +102,8 @@
 
 <script>
 import Skill from "./Skill.vue";
-import Constants from "../constants";
 import { Training } from "../types";
+import { MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
 
 export default {
   name: "Skills",
@@ -119,7 +119,7 @@ export default {
       return this.$store.getters.specializedSkillPointsSpent;
     },
     maxSpecializedSkillPointsSpent() {
-      return Constants.MAX_SPECIALIZED_SKILL_CREDITS_SPENT;
+      return MAX_SPECIALIZED_SKILL_CREDITS_SPENT;
     },
     skillPointsSpentErrorText() {
       let overspent =

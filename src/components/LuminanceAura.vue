@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { LUMINANCE_AURA_NAME, LUMINANCE_AURA_MAX_USES } from "../constants";
+import { LUMINANCE_AURA_MAX_USES } from "../constants";
+import { LUMINANCE_AURA_NAME } from "../mappings";
 
 export default {
   name: "LuminanceAura",

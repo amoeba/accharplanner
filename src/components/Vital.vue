@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import Constants from "../constants";
+import { VITAL_NAME, BUFF_NAME, CANTRIP_NAME } from "../mappings";
 
 export default {
   name: "Vital",
@@ -93,7 +93,7 @@ export default {
       }
     },
     buffName() {
-      return Constants.BUFF_NAME[
+      return BUFF_NAME[
         this.$store.state.character.vitals[this._props.name].buff
       ];
     },
@@ -109,7 +109,7 @@ export default {
       }
     },
     cantripName() {
-      return Constants.CANTRIP_NAME[
+      return CANTRIP_NAME[
         this.$store.state.character.vitals[this._props.name].cantrip
       ];
     }
