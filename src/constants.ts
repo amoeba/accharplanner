@@ -3,7 +3,10 @@ import {
   Skill,
   Training,
   Augmentation,
-  LuminanceAura } from "./types";
+  LuminanceAura,
+  StringIndexedDict,
+  NumberIndexedDict
+ } from "./types";
 
 const MIN_LEVEL: number = 1;
 const MAX_LEVEL: number = 275;
@@ -178,7 +181,7 @@ const UNTRAINED_STATE = {
   [Skill["Weapon Tinkering"]]: Training.UNTRAINED
 };
 
-const COST_LEVEL = {
+const COST_LEVEL: NumberIndexedDict<number> = {
   1: 0,
   2: 1000,
   3: 2777,
@@ -456,7 +459,7 @@ const COST_LEVEL = {
   275: 191226310247
 };
 
-const COST_ATTRIBUTE = {
+const COST_ATTRIBUTE: NumberIndexedDict<number> = {
   0: 0,
   1: 110,
   2: 277,
@@ -650,7 +653,7 @@ const COST_ATTRIBUTE = {
   190: 4019438644
 };
 
-const COST_VITAL = {
+const COST_VITAL: NumberIndexedDict<number> = {
   0: 0,
   1: 73,
   2: 183,
@@ -851,7 +854,7 @@ const COST_VITAL = {
 };
 
 // Cost when trained at each level, not cost to train
-const COST_SKILL_POINTS = {
+const COST_SKILL_POINTS: StringIndexedDict<StringIndexedDict<number>> = {
   [Skill.Alchemy]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
   [Skill["Arcane Lore"]]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 2 },
   [Skill["Armor Tinkering"]]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 0 },
@@ -892,7 +895,7 @@ const COST_SKILL_POINTS = {
   [Skill["Weapon Tinkering"]]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 0 }
 };
 
-const SPEC_COSTS_AUG = {
+const SPEC_COSTS_AUG: StringIndexedDict<boolean> = {
   [Skill.Alchemy]: false,
   [Skill["Arcane Lore"]]: false,
   [Skill["Armor Tinkering"]]: true,
@@ -933,7 +936,7 @@ const SPEC_COSTS_AUG = {
   [Skill["Weapon Tinkering"]]: true
 };
 
-const SKILL_POINTS_AT_LEVEL = {
+const SKILL_POINTS_AT_LEVEL: NumberIndexedDict<number> = {
   1: 52,
   2: 53,
   3: 54,
@@ -1211,7 +1214,7 @@ const SKILL_POINTS_AT_LEVEL = {
   275: 98
 };
 
-const COST_SKILL_SPECIALIZED = {
+const COST_SKILL_SPECIALIZED: NumberIndexedDict<number> = {
   0: 0,
   1: 23,
   2: 56,
@@ -1441,7 +1444,7 @@ const COST_SKILL_SPECIALIZED = {
   226: 4100490438
 };
 
-const COST_SKILL_TRAINED = {
+const COST_SKILL_TRAINED: NumberIndexedDict<number> = {
   0: 0,
   1: 58,
   2: 138,
@@ -1653,7 +1656,7 @@ const COST_SKILL_TRAINED = {
   208: 4203819496
 };
 
-const BUFF_NAME = {
+const BUFF_NAME: NumberIndexedDict<string> = {
   0: "",
   1: "I",
   2: "II",
@@ -1665,7 +1668,7 @@ const BUFF_NAME = {
   8: "VIII"
 };
 
-const CANTRIP_NAME = {
+const CANTRIP_NAME: NumberIndexedDict<string> = {
   0: "None",
   1: "Minor",
   2: "Major",
@@ -1720,7 +1723,7 @@ const AUGMENTATIONS = [
   Augmentation.archmages_endurance
 ];
 
-const AUGMENTATION_MAX_USES = {
+const AUGMENTATION_MAX_USES: StringIndexedDict<number> = {
   [Augmentation.might_of_the_seventh_mule]: 5,
   [Augmentation.shadow_of_the_seventh_mule]: 1,
   [Augmentation.infused_war_magic]: 1,
@@ -1767,7 +1770,7 @@ const AUGMENTATION_MAX_USES = {
   [Augmentation.archmages_endurance]: 5
 };
 
-const AUGMENTATION_COST = {
+const AUGMENTATION_COST: StringIndexedDict<number[]> = {
   [Augmentation.might_of_the_seventh_mule]: [0, 1e9, 2e9, 3e9, 4e9, 5e9],
   [Augmentation.shadow_of_the_seventh_mule]: [0, 4e9],
   [Augmentation.infused_war_magic]: [0, 2e9],
@@ -1833,7 +1836,7 @@ const LUMINANCE_AURAS = [
   LuminanceAura.hardening
 ];
 
-const LUMINANCE_AURA_COST = {
+const LUMINANCE_AURA_COST: StringIndexedDict<number[]> = {
   [LuminanceAura.aetheric_vision]: [0, 100000, 250000, 450000, 600000, 900000],
   [LuminanceAura.craftsman]: [0, 100000, 250000, 450000, 600000, 900000],
   [LuminanceAura.glory]: [0, 100000, 250000, 450000, 600000, 900000],
@@ -1852,7 +1855,7 @@ const LUMINANCE_AURA_COST = {
   [LuminanceAura.hardening]: [0, 350000, 750000, 1200000, 1700000, 2250000],
 };
 
-const LUMINANCE_AURA_MAX_USES = {
+const LUMINANCE_AURA_MAX_USES: StringIndexedDict<number> = {
   [LuminanceAura.aetheric_vision]: 5,
   [LuminanceAura.craftsman]: 5,
   [LuminanceAura.glory]: 5,

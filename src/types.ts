@@ -52,66 +52,66 @@ export enum Gender {
 }
 
 export enum Attribute {
-  Strength,
-  Endurance,
-  Coordination,
-  Quickness,
-  Focus,
-  Self
+  Strength = "Strength",
+  Endurance = "Endurance",
+  Coordination = "Coordination",
+  Quickness = "Quickness",
+  Focus = "Focus",
+  Self = "Self"
 }
 
 export enum Vital {
-  Health,
-  Stamina,
-  Mana
+  Health = "Health",
+  Stamina = "Health",
+  Mana = "Mana"
 }
 
 export enum Skill {
-  "Alchemy",
-  "Arcane Lore",
-  "Armor Tinkering",
-  "Assess Creature",
-  "Assess Person",
-  "Cooking",
-  "Creature Enchantment",
-  "Deception",
-  "Dual Wield",
-  "Dirty Fighting",
-  "Finesse Weapons",
-  "Fletching",
-  "Healing",
-  "Heavy Weapons",
-  "Item Enchantment",
-  "Item Tinkering",
-  "Jump",
-  "Leadership",
-  "Life Magic",
-  "Light Weapons",
-  "Lockpick",
-  "Loyalty",
-  "Magic Defense",
-  "Magic Item Tinkering",
-  "Mana Conversion",
-  "Melee Defense",
-  "Missile Defense",
-  "Missile Weapons",
-  "Recklessness",
-  "Run",
-  "Salvaging",
-  "Shield",
-  "Sneak Attack",
-  "Summoning",
-  "Two Handed Combat",
-  "Void Magic",
-  "War Magic",
-  "Weapon Tinkering"
+  "Alchemy" = "Alchemy",
+  "Arcane Lore" = "Arcane Lore",
+  "Armor Tinkering" = "Armor Tinkering",
+  "Assess Creature" = "Assess Creature",
+  "Assess Person" = "Assess Person",
+  "Cooking" = "Cooking",
+  "Creature Enchantment" = "Creature Enchantment",
+  "Deception" = "Deception",
+  "Dual Wield" = "Dual Wield",
+  "Dirty Fighting" = "Dirty Fighting",
+  "Finesse Weapons" = "Finesse Weapons",
+  "Fletching" = "Fletching",
+  "Healing" = "Healing",
+  "Heavy Weapons" = "Heavy Weapons",
+  "Item Enchantment" = "Item Enchantment",
+  "Item Tinkering" = "Item Tinkering",
+  "Jump" = "Jump",
+  "Leadership" = "Leadership",
+  "Life Magic" = "Life Magic",
+  "Light Weapons" = "Light Weapons",
+  "Lockpick" = "Lockpick",
+  "Loyalty" = "Loyalty",
+  "Magic Defense" = "Magic Defense",
+  "Magic Item Tinkering" = "Magic Item Tinkering",
+  "Mana Conversion" = "Mana Conversion",
+  "Melee Defense" = "Melee Defense",
+  "Missile Defense" = "Missile Defense",
+  "Missile Weapons" = "Missile Weapons",
+  "Recklessness" = "Recklessness",
+  "Run" = "Run",
+  "Salvaging" = "Salvaging",
+  "Shield" = "Shield",
+  "Sneak Attack" = "Sneak Attack",
+  "Summoning" = "Summoning",
+  "Two Handed Combat" = "Two Handed Combat",
+  "Void Magic" = "Void Magic",
+  "War Magic" = "War Magic",
+  "Weapon Tinkering" = "Weapon Tinkering"
 };
 
 export enum Training {
-  UNUSABLE,
-  UNTRAINED,
-  TRAINED,
-  SPECIALIZED,
+  UNUSABLE = "Unusable",
+  UNTRAINED = "Untrained",
+  TRAINED = "Trained",
+  SPECIALIZED = "Specialized",
 };
 
 export enum Augmentation {
@@ -179,3 +179,11 @@ export enum LuminanceAura  {
   retribution = "Retribution",
   hardening = "Hardening"
 };
+
+export interface StringIndexedDict<V> {
+  [key: string]: V
+}
+
+export interface NumberIndexedDict<V> {
+  [key: number]: V
+}
