@@ -102,7 +102,7 @@ export default {
         training == Training.SPECIALIZED ||
         training == Training.TRAINED
       ) {
-        cost += Constants.COST_SKILL_POINTS[0][training];
+        cost += Constants.COST_SKILL_POINTS[skillName][training];
       }
     });
 

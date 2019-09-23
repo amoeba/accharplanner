@@ -72,229 +72,229 @@ export default function(): Character {
     },
     skills: {
       alchemy: {
-        training: Constants.UNTRAINED_STATE[Skill.Alchemy],
+        training: Constants.UNTRAINED_STATE[Skill.alchemy],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       arcane_lore: {
-        training: Constants.UNTRAINED_STATE[Skill["Arcane Lore"]],
+        training: Constants.UNTRAINED_STATE[Skill.arcane_lore],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       armor_tinkering: {
-        training: Constants.UNTRAINED_STATE[Skill["Armor Tinkering"]],
+        training: Constants.UNTRAINED_STATE[Skill.armor_tinkering],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       assess_creature: {
-        training: Constants.UNTRAINED_STATE[Skill["Assess Creature"]],
+        training: Constants.UNTRAINED_STATE[Skill.assess_creature],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       assess_person: {
-        training: Constants.UNTRAINED_STATE[Skill["Assess Person"]],
+        training: Constants.UNTRAINED_STATE[Skill.assess_person],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       cooking: {
-        training: Constants.UNTRAINED_STATE[Skill.Cooking],
+        training: Constants.UNTRAINED_STATE[Skill.cooking],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       creature_enchantment: {
-        training: Constants.UNTRAINED_STATE[Skill["Creature Enchantment"]],
+        training: Constants.UNTRAINED_STATE[Skill.creature_enchantment],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       deception: {
-        training: Constants.UNTRAINED_STATE[Skill.Deception],
+        training: Constants.UNTRAINED_STATE[Skill.deception],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       dual_wield: {
-        training: Constants.UNTRAINED_STATE[Skill["Dual Wield"]],
+        training: Constants.UNTRAINED_STATE[Skill.dual_wield],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       dirty_fighting: {
-        training: Constants.UNTRAINED_STATE[Skill["Dirty Fighting"]],
+        training: Constants.UNTRAINED_STATE[Skill.dirty_fighting],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       finesse_weapons: {
-        training: Constants.UNTRAINED_STATE[Skill["Finesse Weapons"]],
+        training: Constants.UNTRAINED_STATE[Skill.finesse_weapons],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       fletching: {
-        training: Constants.UNTRAINED_STATE[Skill.Fletching],
+        training: Constants.UNTRAINED_STATE[Skill.fletching],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       healing: {
-        training: Constants.UNTRAINED_STATE[Skill.Healing],
+        training: Constants.UNTRAINED_STATE[Skill.healing],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       heavy_weapons: {
-        training: Constants.UNTRAINED_STATE[Skill["Heavy Weapons"]],
+        training: Constants.UNTRAINED_STATE[Skill.heavy_weapons],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       item_enchantment: {
-        training: Constants.UNTRAINED_STATE[Skill["Item Enchantment"]],
+        training: Constants.UNTRAINED_STATE[Skill.item_enchantment],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       item_tinkering: {
-        training: Constants.UNTRAINED_STATE[Skill["Item Tinkering"]],
+        training: Constants.UNTRAINED_STATE[Skill.item_tinkering],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       jump: {
-        training: Constants.UNTRAINED_STATE[Skill.Jump],
+        training: Constants.UNTRAINED_STATE[Skill.jump],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       leadership: {
-        training: Constants.UNTRAINED_STATE[Skill.Leadership],
+        training: Constants.UNTRAINED_STATE[Skill.leadership],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       life_magic: {
-        training: Constants.UNTRAINED_STATE[Skill["Life Magic"]],
+        training: Constants.UNTRAINED_STATE[Skill.life_magic],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       light_weapons: {
-        training: Constants.UNTRAINED_STATE[Skill["Light Weapons"]],
+        training: Constants.UNTRAINED_STATE[Skill.light_weapons],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       lockpick: {
-        training: Constants.UNTRAINED_STATE[Skill.Lockpick],
+        training: Constants.UNTRAINED_STATE[Skill.lockpick],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       loyalty: {
-        training: Constants.UNTRAINED_STATE[Skill.Loyalty],
+        training: Constants.UNTRAINED_STATE[Skill.loyalty],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       magic_defense: {
-        training: Constants.UNTRAINED_STATE[Skill["Magic Defense"]],
+        training: Constants.UNTRAINED_STATE[Skill.magic_defense],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       magic_item_tinkering: {
-        training: Constants.UNTRAINED_STATE[Skill["Magic Item Tinkering"]],
+        training: Constants.UNTRAINED_STATE[Skill.magic_item_tinkering],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       mana_conversion: {
-        training: Constants.UNTRAINED_STATE[Skill["Mana Conversion"]],
+        training: Constants.UNTRAINED_STATE[Skill.mana_conversion],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       melee_defense: {
-        training: Constants.UNTRAINED_STATE[Skill["Melee Defense"]],
+        training: Constants.UNTRAINED_STATE[Skill.melee_defense],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       missile_defense: {
-        training: Constants.UNTRAINED_STATE[Skill["Missile Defense"]],
+        training: Constants.UNTRAINED_STATE[Skill.missile_defense],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       missile_weapons: {
-        training: Constants.UNTRAINED_STATE[Skill["Missile Weapons"]],
+        training: Constants.UNTRAINED_STATE[Skill.missile_weapons],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       recklessness: {
-        training: Constants.UNTRAINED_STATE[Skill.Recklessness],
+        training: Constants.UNTRAINED_STATE[Skill.recklessness],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       run: {
-        training: Constants.UNTRAINED_STATE[Skill.Run],
+        training: Constants.UNTRAINED_STATE[Skill.run],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       salvaging: {
-        training: Constants.UNTRAINED_STATE[Skill.Salvaging],
+        training: Constants.UNTRAINED_STATE[Skill.salvaging],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       shield: {
-        training: Constants.UNTRAINED_STATE[Skill.Shield],
+        training: Constants.UNTRAINED_STATE[Skill.shield],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       sneak_attack: {
-        training: Constants.UNTRAINED_STATE[Skill["Sneak Attack"]],
+        training: Constants.UNTRAINED_STATE[Skill.sneak_attack],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       summoning: {
-        training: Constants.UNTRAINED_STATE[Skill.Summoning],
+        training: Constants.UNTRAINED_STATE[Skill.summoning],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       two_handed_combat: {
-        training: Constants.UNTRAINED_STATE[Skill["Two Handed Combat"]],
+        training: Constants.UNTRAINED_STATE[Skill.two_handed_combat],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       void_magic: {
-        training: Constants.UNTRAINED_STATE[Skill["Void Magic"]],
+        training: Constants.UNTRAINED_STATE[Skill.void_magic],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       war_magic: {
-        training: Constants.UNTRAINED_STATE[Skill["War Magic"]],
+        training: Constants.UNTRAINED_STATE[Skill.war_magic],
         invested: 0,
         buff: 0,
         cantrip: 0
       },
       weapon_tinkering: {
-        training: Constants.UNTRAINED_STATE[Skill["Weapon Tinkering"]],
+        training: Constants.UNTRAINED_STATE[Skill.weapon_tinkering],
         invested: 0,
         buff: 0,
         cantrip: 0
@@ -481,9 +481,6 @@ export default function(): Character {
         invested: 0
       },
       hardening: {
-        invested: 0
-      },
-      invulnerabilit: {
         invested: 0
       }
     }

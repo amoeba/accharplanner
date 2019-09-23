@@ -116,10 +116,10 @@ export enum Skill {
 };
 
 export enum Training {
-  UNUSABLE = "Unusable",
-  UNTRAINED = "Untrained",
-  TRAINED = "Trained",
-  SPECIALIZED = "Specialized",
+  UNUSABLE = "unusable",
+  UNTRAINED = "untrained",
+  TRAINED = "trained",
+  SPECIALIZED = "specialized",
 };
 
 export enum Augmentation {

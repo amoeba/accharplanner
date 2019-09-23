@@ -62,7 +62,13 @@
 </template>
 
 <script>
-import Constants from "../constants";
+import {
+  SKILL_NAME,
+  SKILL_DEPENDS_ON_ATTRIBUTES,
+  SPEC_COSTS_AUG,
+  UNTRAINABLE,
+  COST_SKILL_POINTS,
+  MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
 import { Training } from '../types';
 
 export default {
@@ -74,13 +80,13 @@ export default {
   },
   computed: {
     displayName() {
-      return Constants.SKILL_NAME[this._props.name];
+      return SKILL_NAME[this._props.name];
     },
     isBuffed() {
       return (
         this.$store.state.character.skills[this._props.name].buff > 0 ||
         this.$store.state.character.skills[this._props.name].cantrip > 0 ||
-        Constants.SKILL_DEPENDS_ON_ATTRIBUTES[this._props.name].reduce((acc, attr) => {
+        SKILL_DEPENDS_ON_ATTRIBUTES[this._props.name].reduce((acc, attr) => {
           if (this.$store.state.character.attributes[attr].buff > 0 || this.$store.state.character.attributes[attr].cantrip > 0) {
             return acc + 1;
           } else {
@@ -98,14 +104,14 @@ export default {
       }
 
       if (currentTraining === Training.TRAINED) {
-        if (Constants.SPEC_COSTS_AUG[this._props.name]) {
+        if (SPEC_COSTS_AUG[this._props.name]) {
           return "AUG";
         } else {
-          return Constants.COST_SKILL_POINTS[this._props.name].specialized;
+          return COST_SKILL_POINTS[this._props.name].specialized;
         }
       }
 
-      return Constants.COST_SKILL_POINTS[this._props.name].trained;
+      return COST_SKILL_POINTS[this._props.name].trained;
     },
     decreaseCostText() {
       let currentTraining = this.$store.state.character.skills[this._props.name]
@@ -119,18 +125,18 @@ export default {
       }
 
       if (currentTraining === Training.SPECIALIZED) {
-        if (Constants.SPEC_COSTS_AUG[this._props.name]) {
+        if (SPEC_COSTS_AUG[this._props.name]) {
           return "AUG";
         } else {
-          return Constants.COST_SKILL_POINTS[this._props.name].specialized;
+          return COST_SKILL_POINTS[this._props.name].specialized;
         }
       }
 
       if (currentTraining === Training.TRAINED) {
-        if (!Constants.UNTRAINABLE[this._props.name]) {
+        if (!UNTRAINABLE[this._props.name]) {
           return;
         } else {
-          return Constants.COST_SKILL_POINTS[this._props.name].trained;
+          return COST_SKILL_POINTS[this._props.name].trained;
         }
       }
 
@@ -157,10 +163,10 @@ export default {
       let newCost = 0;
 
       if (newTraining === Training.SPECIALIZED) {
-        newCost = Constants.COST_SKILL_POINTS[this._props.name][Training.SPECIALIZED] -
-          Constants.COST_SKILL_POINTS[this._props.name][Training.TRAINED];
+        newCost = COST_SKILL_POINTS[this._props.name][Training.SPECIALIZED] -
+          COST_SKILL_POINTS[this._props.name][Training.TRAINED];
       } else if (newTraining === Training.TRAINED) {
-        newCost = Constants.COST_SKILL_POINTS[this._props.name][Training.TRAINED];
+        newCost = COST_SKILL_POINTS[this._props.name][Training.TRAINED];
       }
 
       if (
@@ -173,7 +179,7 @@ export default {
 
       // Can't if would push you over 70 max spec'd credits
       if (
-        newTraining === Training.SPECIALIZED && (this.$store.getters.specializedSkillPointsSpent + newCost > Constants.MAX_SPECIALIZED_SKILL_CREDITS_SPENT)
+        newTraining === Training.SPECIALIZED && (this.$store.getters.specializedSkillPointsSpent + newCost > MAX_SPECIALIZED_SKILL_CREDITS_SPENT)
       ) {
         return true;
       }
@@ -195,7 +201,7 @@ export default {
       // Can't if not untrainable
       if (
         training === Training.TRAINED &&
-        !Constants.UNTRAINABLE[this._props.name]
+        !UNTRAINABLE[this._props.name]
       ) {
         return true;
       }
@@ -262,7 +268,7 @@ export default {
       }
     },
     buffName() {
-      return Constants.BUFF_NAME[
+      return BUFF_NAME[
         this.$store.state.character.skills[this._props.name].buff
       ];
     },
@@ -278,7 +284,7 @@ export default {
       }
     },
     cantripName() {
-      return Constants.CANTRIP_NAME[
+      return CANTRIP_NAME[
         this.$store.state.character.skills[this._props.name].cantrip
       ];
     }
