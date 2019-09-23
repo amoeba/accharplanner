@@ -5,8 +5,8 @@ import { UNTRAINED_STATE } from '@/constants';
 export default function(): Character {
   return {
     name: "An Adventurer",
-    race: Race.Aluvian,
-    gender: Gender.Female,
+    race: "Aluvian",
+    gender: "Female",
     level: 1,
     timesEnlightened: 0,
     extraSkillCredits: {

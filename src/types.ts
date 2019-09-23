@@ -8,8 +8,8 @@ export interface NumberIndexedDict<V> {
 
 export interface Character {
   name: string,
-  race: Race,
-  gender: Gender,
+  race: string,
+  gender: string,
   level: number,
   timesEnlightened: number,
   extraSkillCredits: any,
