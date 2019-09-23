@@ -67,7 +67,7 @@ export default {
       state.character.race === Race.Sho ||
       state.character.race === Race.Viamontian) &&
       state.character.augmentations.jack_of_all_trades.invested == 1) {
-      cost -= AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][state.character.augmentations.jack_of_all_trades.invested];
+      cost -= AUGMENTATION_COST[Augmentation.jack_of_all_trades][state.character.augmentations.jack_of_all_trades.invested];
     } else if ((
       state.character.race === Race.Empyrean) &&
       state.character.augmentations.infused_life_magic.invested == 1) {
