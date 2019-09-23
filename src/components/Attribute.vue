@@ -46,6 +46,7 @@
 
 <script>
 import Constants from "../constants";
+import { ATTRIBUTE_NAME, BUFF_NAME, CANTRIP_NAME } from "../constants";
 
 export default {
   name: "Attribute",
@@ -55,7 +56,7 @@ export default {
   },
   computed: {
     displayName() {
-      return Constants.ATTRIBUTE_NAME[this._props.name];
+      return ATTRIBUTE_NAME[this._props.name];
     },
     isBuffed() {
       return (
@@ -111,7 +112,7 @@ export default {
       }
     },
     buffName() {
-      return Constants.BUFF_NAME[
+      return BUFF_NAME[
         this.$store.state.character.attributes[this._props.name].buff
       ];
     },
@@ -127,7 +128,7 @@ export default {
       }
     },
     cantripName() {
-      return Constants.CANTRIP_NAME[
+      return CANTRIP_NAME[
         this.$store.state.character.attributes[this._props.name].cantrip
       ];
     }

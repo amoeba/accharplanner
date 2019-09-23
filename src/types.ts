@@ -1,3 +1,11 @@
+export interface StringIndexedDict<V> {
+  [key: string]: V
+}
+
+export interface NumberIndexedDict<V> {
+  [key: number]: V
+}
+
 export interface Character {
   name: string,
   race: Race,
@@ -47,64 +55,64 @@ export enum Race {
 }
 
 export enum Gender {
-  Female = "Female",
-  Male = "Male"
+  Female = "female",
+  Male = "male"
 }
 
 export enum Attribute {
-  Strength = "Strength",
-  Endurance = "Endurance",
-  Coordination = "Coordination",
-  Quickness = "Quickness",
-  Focus = "Focus",
-  Self = "Self"
+  strength = "strength",
+  endurance = "endurance",
+  coordination = "coordination",
+  quickness = "quickness",
+  focus = "focus",
+  self = "self"
 }
 
 export enum Vital {
-  Health = "Health",
-  Stamina = "Health",
-  Mana = "Mana"
+  health = "health",
+  stamina = "stamina",
+  mana = "mana"
 }
 
 export enum Skill {
-  "Alchemy" = "Alchemy",
-  "Arcane Lore" = "Arcane Lore",
-  "Armor Tinkering" = "Armor Tinkering",
-  "Assess Creature" = "Assess Creature",
-  "Assess Person" = "Assess Person",
-  "Cooking" = "Cooking",
-  "Creature Enchantment" = "Creature Enchantment",
-  "Deception" = "Deception",
-  "Dual Wield" = "Dual Wield",
-  "Dirty Fighting" = "Dirty Fighting",
-  "Finesse Weapons" = "Finesse Weapons",
-  "Fletching" = "Fletching",
-  "Healing" = "Healing",
-  "Heavy Weapons" = "Heavy Weapons",
-  "Item Enchantment" = "Item Enchantment",
-  "Item Tinkering" = "Item Tinkering",
-  "Jump" = "Jump",
-  "Leadership" = "Leadership",
-  "Life Magic" = "Life Magic",
-  "Light Weapons" = "Light Weapons",
-  "Lockpick" = "Lockpick",
-  "Loyalty" = "Loyalty",
-  "Magic Defense" = "Magic Defense",
-  "Magic Item Tinkering" = "Magic Item Tinkering",
-  "Mana Conversion" = "Mana Conversion",
-  "Melee Defense" = "Melee Defense",
-  "Missile Defense" = "Missile Defense",
-  "Missile Weapons" = "Missile Weapons",
-  "Recklessness" = "Recklessness",
-  "Run" = "Run",
-  "Salvaging" = "Salvaging",
-  "Shield" = "Shield",
-  "Sneak Attack" = "Sneak Attack",
-  "Summoning" = "Summoning",
-  "Two Handed Combat" = "Two Handed Combat",
-  "Void Magic" = "Void Magic",
-  "War Magic" = "War Magic",
-  "Weapon Tinkering" = "Weapon Tinkering"
+  "alchemy" = "alchemy",
+  "arcane_lore" = "arcane_lore",
+  "armor_tinkering" = "armor_tinkering",
+  "assess_creature" = "assess_creature",
+  "assess_person" = "assess_person",
+  "cooking" = "cooking",
+  "creature_enchantment" = "creature_enchantment",
+  "deception" = "deception",
+  "dual_wield" = "dual_wield",
+  "dirty_fighting" = "dirty_fighting",
+  "finesse_weapons" = "finesse_weapons",
+  "fletching" = "fletching",
+  "healing" = "healing",
+  "heavy_weapons" = "heavy_weapons",
+  "item_enchantment" = "item_enchantment",
+  "item_tinkering" = "item_tinkering",
+  "jump" = "jump",
+  "leadership" = "leadership",
+  "life_magic" = "life_magic",
+  "light_weapons" = "light_weapons",
+  "lockpick" = "lockpick",
+  "loyalty" = "loyalty",
+  "magic_defense" = "magic_defense",
+  "magic_item_tinkering" = "magic_item_tinkering",
+  "mana_conversion" = "mana_conversion",
+  "melee_defense" = "melee_defense",
+  "missile_defense" = "missile_defense",
+  "missile_weapons" = "missile_weapons",
+  "recklessness" = "recklessness",
+  "run" = "run",
+  "salvaging" = "salvaging",
+  "shield" = "shield",
+  "sneak_attack" = "sneak_attack",
+  "summoning" = "summoning",
+  "two_handed_combat" = "two_handed_combat",
+  "void_magic" = "void_magic",
+  "war_magic" = "war_magic",
+  "weapon_tinkering" = "weapon_tinkering"
 };
 
 export enum Training {
@@ -115,75 +123,67 @@ export enum Training {
 };
 
 export enum Augmentation {
-  might_of_the_seventh_mule = "Might of the Seventh Mule",
-  shadow_of_the_seventh_mule = "Shadow of the Seventh Mule",
-  infused_war_magic = "Infused War Magic",
-  infused_life_magic = "Infused Life Magic",
-  infused_item_magic = "Infused Item Magic",
-  infused_creature_magic = "Infused Creature Magic",
-  infused_void_magic = "Infused Void Magic",
-  clutch_of_the_miser = "Clutch of the Miser",
-  enduring_enchantment = "Enduring Enchantment",
-  quick_learner = "Quick Learner",
-  asherons_lesser_benediction = "Asheron's Lesser Benediction",
-  asherons_benediction = "Asheron's Benediction",
-  blackmoors_favor = "Blackmoor's Favor",
-  innate_renewal = "Innate Renewal",
-  reinforcement_of_the_lugians = "Reinforcement of the Lugians",
-  bleearghs_fortitude = "Bleeargh's Fortitude",
-  oswalds_enhancement = "Oswald's Enhancement",
-  siraluuns_blessing = "Siraluun's Blessing",
-  enduring_calm = "Enduring Calm",
-  steadfast_will = "Steadfast Will",
-  enhancement_of_the_mace_turner = "Enhancement of the Mace Turner",
-  enhancement_of_the_blade_turner = "Enhancement of the Blade Turner",
-  enhancement_of_the_arrow_turner = "Enhancement of the Arrow Turner",
-  storms_enhancement = "Storm's Enhancement",
-  fiery_enhancement = "Fiery Enhancement",
-  icy_enhancement = "Icy Enhancement",
-  caustic_enhancement = "Caustic Enhancement",
-  critical_protection = "Critical Protection",
-  frenzy_of_the_slayer = "Frenzy of the Slayer",
-  iron_skin_of_the_invincible = "Iron Skin of the Invincible",
-  eye_of_the_remorseless = "Eye of the Remorseless",
-  hand_of_the_remorseless = "Hand of the Remorseless",
-  ciandras_fortune = "Ciandra's Fortune",
-  charmed_smith = "Charmed Smith",
-  jibrils_essence = "Jibril's Essence",
-  yoshis_essence = "Yoshi's Essence",
-  celdiseths_essence = "Celdiseth's Essence",
-  kogas_essence = "Koga's Essence",
-  ciandras_essence = "Ciandra's Essence",
-  master_of_the_steel_circle = "Master of the Steel Circle",
-  master_of_the_five_fold_path = "Master of the Five Fold Path",
-  master_of_the_focused_eye = "Master of the Focused Eye",
-  jack_of_all_trades = "Jack of All Trades",
-  archmages_endurance = "Archmage's Endurance"
+  might_of_the_seventh_mule = "might_of_the_seventh_mule",
+  shadow_of_the_seventh_mule = "shadow_of_the_seventh_mule",
+  infused_war_magic = "infused_war_magic",
+  infused_life_magic = "infused_life_magic",
+  infused_item_magic = "infused_item_magic",
+  infused_creature_magic = "infused_creature_magic",
+  infused_void_magic = "infused_void_magic",
+  clutch_of_the_miser = "clutch_of_the_miser",
+  enduring_enchantment = "enduring_enchantment",
+  quick_learner = "quick_learner",
+  asherons_lesser_benediction = "asherons_lesser_benediction",
+  asherons_benediction = "asherons_benediction",
+  blackmoors_favor = "blackmoors_favor",
+  innate_renewal = "innate_renewal",
+  reinforcement_of_the_lugians = "reinforcement_of_the_lugians",
+  bleearghs_fortitude = "bleearghs_fortitude",
+  oswalds_enhancement = "oswalds_enhancement",
+  siraluuns_blessing = "siraluuns_blessing",
+  enduring_calm = "enduring_calm",
+  steadfast_will = "steadfast_will",
+  enhancement_of_the_mace_turner = "enhancement_of_the_mace_turner",
+  enhancement_of_the_blade_turner = "enhancement_of_the_blade_turner",
+  enhancement_of_the_arrow_turner = "enhancement_of_the_arrow_turner",
+  storms_enhancement = "storms_enhancement",
+  fiery_enhancement = "fiery_enhancement",
+  icy_enhancement = "icy_enhancement",
+  caustic_enhancement = "caustic_enhancement",
+  critical_protection = "critical_protection",
+  frenzy_of_the_slayer = "frenzy_of_the_slayer",
+  iron_skin_of_the_invincible = "iron_skin_of_the_invincible",
+  eye_of_the_remorseless = "eye_of_the_remorseless",
+  hand_of_the_remorseless = "hand_of_the_remorseless",
+  ciandras_fortune = "ciandras_fortune",
+  charmed_smith = "charmed_smith",
+  jibrils_essence = "jibrils_essence",
+  yoshis_essence = "yoshis_essence",
+  celdiseths_essence = "celdiseths_essence",
+  kogas_essence = "kogas_essence",
+  ciandras_essence = "ciandras_essence",
+  master_of_the_steel_circle = "master_of_the_steel_circle",
+  master_of_the_five_fold_path = "master_of_the_five_fold_path",
+  master_of_the_focused_eye = "master_of_the_focused_eye",
+  jack_of_all_trades = "jack_of_all_trades",
+  archmages_endurance = "archmages_endurance"
 };
 
 export enum LuminanceAura  {
-  aetheric_vision = "Aetheric Vision",
-  craftsman = "Craftsman",
-  glory = "Glory",
-  mana_flow = "Mana Flow",
-  mana_infusion = "Mana Infusion",
-  protection = "Protection",
-  purity = "Purity",
-  skill = "Skill",
-  temperance = "Temperance",
-  valor = "Valor",
-  world = "World",
-  specialization = "Specialization",
-  invulnerability = "Invulnerability",
-  destruction = "Destruction",
-  retribution = "Retribution",
-  hardening = "Hardening"
+  aetheric_vision = "aetheric_vision",
+  craftsman = "craftsman",
+  glory = "glory",
+  mana_flow = "mana Flow",
+  mana_infusion = "mana_infusion",
+  protection = "protection",
+  purity = "purity",
+  skill = "skill",
+  temperance = "temperance",
+  valor = "valor",
+  world = "world",
+  specialization = "specialization",
+  invulnerability = "invulnerability",
+  destruction = "destruction",
+  retribution = "retribution",
+  hardening = "hardening"
 };
-
-export interface StringIndexedDict<V> {
-  [key: string]: V
-}
-
-export interface NumberIndexedDict<V> {
-  [key: number]: V
-}

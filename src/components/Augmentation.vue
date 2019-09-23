@@ -14,6 +14,7 @@
 
 <script>
 import Constants from "../constants";
+import { AUGMENTATION_NAME, AUGMENTATION_MAX_USES } from "../constants";
 
 export default {
   name: "Augmentation",
@@ -22,7 +23,7 @@ export default {
   },
   computed: {
     displayName() {
-      return Constants.AUGMENTATION_NAME[this._props.name];
+      return AUGMENTATION_NAME[this._props.name];
     },
     invested: {
       get() {
@@ -36,7 +37,7 @@ export default {
       }
     },
     max() {
-      return Constants.AUGMENTATION_MAX_USES[this._props.name];
+      return AUGMENTATION_MAX_USES[this._props.name];
     }
   },
   methods: {
@@ -48,9 +49,9 @@ export default {
       }
 
       if (
-        value > Constants.AUGMENTATION_MAX_USES[this._props.name]
+        value > AUGMENTATION_MAX_USES[this._props.name]
       ) {
-        value = Constants.AUGMENTATION_MAX_USES[this._props.name]
+        value = AUGMENTATION_MAX_USES[this._props.name]
       } else if (value < 0) {
         value = 0
       }

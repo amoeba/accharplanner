@@ -41,7 +41,7 @@ export default {
       cost += Constants.COST_SKILL_TRAINED[state.character.skills[s].invested];
     });
 
-    Constants.AUGMENTATIONS.forEach(function(aug: string) {
+    Object.keys(Augmentation).forEach(function(aug: string) {
       cost +=
         Constants.AUGMENTATION_COST[aug][
         state.character.augmentations[aug].invested

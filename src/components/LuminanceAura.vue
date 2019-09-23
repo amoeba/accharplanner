@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Constants from "../constants";
+import { LUMINANCE_AURA_NAME, LUMINANCE_AURA_MAX_USES } from "../constants";
 
 export default {
   name: "LuminanceAura",
@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     displayName() {
-      return Constants.LUMINANCE_AURA_NAME[this._props.name];
+      return LUMINANCE_AURA_NAME[this._props.name];
     },
     invested: {
       get() {
@@ -36,7 +36,7 @@ export default {
       }
     },
     max() {
-      return Constants.LUMINANCE_AURA_MAX_USES[this._props.name];
+      return LUMINANCE_AURA_MAX_USES[this._props.name];
     }
   },
   methods: {
@@ -48,9 +48,9 @@ export default {
       }
 
       if (
-        value > Constants.LUMINANCE_AURA_MAX_USES[this._props.name]
+        value > LUMINANCE_AURA_MAX_USES[this._props.name]
       ) {
-        value = Constants.LUMINANCE_AURA_MAX_USES[this._props.name]
+        value = LUMINANCE_AURA_MAX_USES[this._props.name]
       } else if (value < 0) {
         value = 0
       }
