@@ -1,5 +1,6 @@
 import {
   Attribute,
+  Vital,
   Skill,
   Training,
   Augmentation,
@@ -13,6 +14,21 @@ export const MAX_LEVEL: number = 275;
 export const MIN_TIMES_ENLIGHTENDED: number = 0;
 export const MAX_TIMES_ENLIGHTENDED: number = 5;
 export const MAX_SPECIALIZED_SKILL_CREDITS_SPENT: number = 70;
+
+export const ATTRIBUTES: string[] = [
+  Attribute.strength,
+  Attribute.endurance,
+  Attribute.coordination,
+  Attribute.quickness,
+  Attribute.focus,
+  Attribute.self,
+];
+
+export const VITALS: string[] = [
+  Vital.health,
+  Vital.stamina,
+  Vital.mana
+];
 
 export const SKILLS: string[] = [
   Skill.alchemy,

@@ -1,4 +1,7 @@
 import {
+  ATTRIBUTES,
+  VITALS,
+  AUGMENTATIONS,
   COST_SKILL_SPECIALIZED,
   COST_SKILL_TRAINED,
   AUGMENTATION_COST,
@@ -7,10 +10,10 @@ import {
   COST_LEVEL,
   SKILL_POINTS_AT_LEVEL,
   COST_SKILL_POINTS,
-  SPEC_COSTS_AUG} from "../constants";
+  SPEC_COSTS_AUG } from "../constants";
 import Helpers from "../helpers";
 import { State } from "../types";
-import { Attribute, Vital, Skill, Training, Race, Augmentation } from '@/types';
+import { Attribute, Skill, Training, Race, Augmentation } from '@/types';
 
 export default {
   // General
@@ -33,11 +36,11 @@ export default {
   totalXPInvested: (state: State, getters: any) => {
     let cost = 0;
 
-    Object.keys(Attribute).forEach(function(a: string) {
+    ATTRIBUTES.forEach(function(a: string) {
       cost += COST_ATTRIBUTE[state.character.attributes[a].invested];
     });
 
-    Object.keys(Vital).forEach(v => {
+    VITALS.forEach(v => {
       cost += COST_VITAL[state.character.vitals[v].invested];
     });
 
@@ -50,7 +53,7 @@ export default {
       cost += COST_SKILL_TRAINED[state.character.skills[s].invested];
     });
 
-    Object.keys(Augmentation).forEach(function(aug: string) {
+    AUGMENTATIONS.forEach(function(aug: string) {
       cost +=
         AUGMENTATION_COST[aug][
         state.character.augmentations[aug].invested
