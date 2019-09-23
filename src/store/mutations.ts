@@ -256,7 +256,7 @@ export default {
   },
 
   changeAllAugmentationInvestment(state: State, value: number) {
-    AUGMENTATIONS.forEach((aug_name: Augmentation) => {
+    AUGMENTATIONS.forEach((aug_name: string) => {
       state.character.augmentations[aug_name].invested = (value == 1 ? AUGMENTATION_MAX_USES[aug_name] : 0);
     });
   },
@@ -267,7 +267,7 @@ export default {
   },
 
   changeAllLuminanceAuraInvestment(state: State, value: any) {
-    LUMINANCE_AURAS.forEach((aura_name: LuminanceAura) => {
+    LUMINANCE_AURAS.forEach((aura_name: string) => {
       state.character.luminance_auras[aura_name].invested = (value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0);
     });
   },
