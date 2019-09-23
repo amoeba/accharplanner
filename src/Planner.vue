@@ -39,7 +39,7 @@ export default {
     const extraStuff = path.replace(/^\//, "");
 
     if (typeof extraStuff === "string" && extraStuff.length > 0) {
-      this.$store.commit("loadRemoteBuild", extraStuff);
+      this.$store.dispatch("loadRemoteBuild", extraStuff);
     }
   }
 };

@@ -29,7 +29,7 @@ export default {
         message: "Sharing build, hang on tight...*portal sounds*"
       });
 
-      this.$store.commit("shareBuild");
+      this.$store.dispatch("shareBuild");
     },
     copyBuild(event) {
       const target = document.querySelector("#sharedBuildURL");
