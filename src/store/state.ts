@@ -1,8 +1,11 @@
 import DefaultCharacter from "./DefaultCharacter";
+import { State } from "../types";
 
-export default {
+let state: State  = {
   notifications: [],
-  builds: [],
+  savedBuilds: [],
   sharedBuild: null,
   character: DefaultCharacter()
-};
+}
+
+export default state;

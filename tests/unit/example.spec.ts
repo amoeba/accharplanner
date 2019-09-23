@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Planner from '../../components/Planner.vue';
+import Planner from "../../src/Planner.vue";
 
 describe('Planner.vue', () => {
   it('renders props.msg when passed', () => {

@@ -14,55 +14,8 @@ import {
 import DefaultCharacter from "./DefaultCharacter";
 import firebase from "../firebase";
 import "firebase/firestore";
-import { firestore } from 'firebase';
 
 export default {
-  shareBuild(state: State) {
-    const db = firebase.firestore();
-
-    db.collection("builds")
-      .add(state.character as firestore.DocumentData)
-      .then(function (doc: firestore.DocumentData) {
-        this.commit("addNotification", {
-          type: "success",
-          message: "Successfully shared build!"
-        });
-
-        state.sharedBuild = doc.id;
-      })
-      .catch(error => {
-        this.commit("addNotification", {
-          type: "error",
-          message: "Failed to share build: " + error + "."
-        });
-      });
-  },
-  loadRemoteBuild(state: State, build_id: string) {
-    this.commit("addNotification", {
-      type: "info",
-      message: "Loading build from share link.. *portal sounds*."
-    });
-
-    const db = firebase.firestore();
-
-    db.collection("builds")
-      .doc(build_id)
-      .get()
-      .then(function (doc: firestore.DocumentData) {
-        state.character = doc.data() as Character;
-
-        this.commit("addNotification", {
-          type: "success",
-          message: "Successfully loaded build!"
-        });
-      })
-      .catch(error => {
-        this.commit("addNotification", {
-          type: "error",
-          message: "Failed to load build: " + error + "."
-        });
-      });
-  },
   loadBuild(state: State, buildJSON: string) {
     state.character = JSON.parse(buildJSON);
   },
@@ -89,14 +42,6 @@ export default {
   },
   reset(state: State) {
     state.character = DefaultCharacter();
-  },
-  import(state: State, character: any) {
-    state.character = character;
-
-    this.commit("addNotification", {
-      type: "success",
-      message: "Successfully imported build."
-    });
   },
   updateName(state: State, value: string) {
     state.character.name = value;
