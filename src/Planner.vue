@@ -291,6 +291,7 @@ input.number {
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 3px;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .success {
