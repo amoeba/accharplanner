@@ -109,6 +109,9 @@ input,
 select,
 button {
   font-size: 100%;
+  background-color: white;
+  border: 1px solid #CCC;
+  border-radius: 3px;
 }
 
 table {
