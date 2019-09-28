@@ -51,13 +51,10 @@
         </div>
         <div>Lum. XP Spent:</div>
         <div>{{ totalLuminanceXPSpent }}</div>
-      </div>
-      <div>
-        <span v-bind:class="isOverspent ? 'red' : 'gray'">
-          &nbsp;({{
-          requiredLevel
-          }})
-        </span>
+        <div>Required Level:</div>
+        <div>
+          <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
+        </div>
       </div>
     </div>
     <div class="header">

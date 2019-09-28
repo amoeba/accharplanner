@@ -88,7 +88,7 @@ export default {
       if (
         getters.totalXPInvested <= COST_LEVEL[i]
       ) {
-        return "Requires >= level " + i;
+        return i;
       }
     }
 
