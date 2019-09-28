@@ -85,9 +85,7 @@ export default {
 
   requiredLevel: (state: State, getters: any) => {
     for (let i: number = 1; i <= 275; i++) {
-      if (
-        getters.totalXPInvested <= COST_LEVEL[i]
-      ) {
+      if (getters.totalXPInvested <= COST_LEVEL[i]) {
         return i;
       }
     }
