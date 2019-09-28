@@ -10,7 +10,8 @@ import {
   COST_LEVEL,
   SKILL_POINTS_AT_LEVEL,
   COST_SKILL_POINTS,
-  SPEC_COSTS_AUG } from "../constants";
+  SPEC_COSTS_AUG,
+  LUMINANCE_AURA_COST } from "../constants";
 import Helpers from "../helpers";
 import { State } from "../types";
 import { Attribute, Skill, Training, Race, Augmentation } from '@/types';
@@ -150,6 +151,11 @@ export default {
       ) {
         cost += 1000000000;
       }
+    });
+
+    // Add in cost of the auras that are selected
+    Object.keys(LUMINANCE_AURA_COST).forEach(aura => {
+      cost += LUMINANCE_AURA_COST[aura][state.character.luminance_auras[aura].invested];
     });
 
     // Enlightenment requires you get all lum auras (20mil xp)
