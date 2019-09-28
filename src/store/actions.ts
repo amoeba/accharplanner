@@ -16,6 +16,9 @@ import { firestore } from 'firebase';
 
 export default {
   shareBuild(context: any) {
+    // Clean out current shared build first
+    context.state.sharedBuild = null;
+
     const db = firebase.firestore();
 
     db.collection("builds")
