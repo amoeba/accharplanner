@@ -87,8 +87,8 @@ header a:visited {
   }
 
   #app #notifications {
-    left: auto;
-    right: 0;
+    left: 0;
+    bottom: 0;
     width: 300px;
   }
 }
@@ -275,20 +275,20 @@ input.number {
 /* Notifications */
 #notifications {
   position: fixed;
-  top: 0.5rem;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   width: 100%;
   z-index: 100;
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 .notification {
   position: relative;
   color: white;
-  padding: 0.5rem;
-  margin:  0 auto;
   width: 90%;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
   cursor: pointer;
   border-radius: 3px;
 }
