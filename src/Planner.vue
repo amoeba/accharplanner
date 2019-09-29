@@ -213,6 +213,7 @@ img {
 
 .header .header-title {
   border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25rem;
   margin-bottom: 0.25rem;
 }
 
@@ -234,8 +235,6 @@ img {
 }
 
 .header h3 {
-  margin: 0px;
-  padding-bottom: 0.25rem;
   display: inline;
 }
 
