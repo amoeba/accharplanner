@@ -124,6 +124,10 @@ h1, h2, h3 {
   grid-template-columns: 1fr;
 }
 
+.reallywide {
+  display: none;
+}
+
 /* Make headers switch to two columns on narrow screens */
 @media (min-width: 450px) {
   .headers {
@@ -141,6 +145,16 @@ h1, h2, h3 {
     left: 0;
     bottom: 0;
     width: 300px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .reallywide {
+    display: block;
+  }
+
+  .narrow {
+    display: none;
   }
 }
 
@@ -174,12 +188,9 @@ td,
 th {
   padding: 1px 3px;
   text-align: left;
-}
-
-th,
-td {
-  height: 1.5rem;
-  padding: 2px 3px;
+  overflow: scroll;
+  white-space: nowrap;
+  height: 30px;
 }
 
 img {
@@ -252,6 +263,7 @@ img {
   grid-template-columns: auto auto;
   border-bottom: 1px solid #ccc;
   margin-bottom: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .pane .pane-header div h3 {

@@ -2,7 +2,9 @@
   <div id="attributes_and_vitals" class="pane">
     <div class="pane-header">
       <div><h3>Attributes</h3></div>
-      <div class="right"><strong>Creation Attribute Points Spent:</strong> {{ attributePointsSpent }} / 330</div>
+      <div class="right">
+        <abbr title="Character creation attribute points spent">{{ attributePointsSpent }} / 330</abbr>
+      </div>
     </div>
     <div class="table-wrapper">
       <table>

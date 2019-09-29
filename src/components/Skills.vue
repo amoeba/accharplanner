@@ -5,8 +5,9 @@
         <h3>Skills</h3>
         <span class="error">{{ skillPointsSpentErrorText }}</span>
       </div>
-      <div class="right"><strong>Skill Points Spent:</strong> {{ skillPointsSpent }} / {{ skillPointsAvailable }}</div>
-
+      <div class="right">
+        <abbr title="Skill points spent">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr>
+      </div>
     </div>
     <div class="table-wrapper">
       <table>
