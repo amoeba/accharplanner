@@ -2,10 +2,12 @@
   <div class="build">
     <h3>{{ description }}</h3>
     <div class="savedat"><strong>Saved at:</strong> {{ buildKey }}</div>
-    <button v-on:click="load">Load</button>
-    <button v-on:click="exportBuild">Export</button>
-    <button v-on:click="remove">Delete</button>
+    <div class="buttons">
+      <button v-on:click="load">Load</button>
+      <button v-on:click="exportBuild">Export</button>
+      <button v-on:click="remove">Delete</button>
     </div>
+  </div>
 </template>
 
 <script>
