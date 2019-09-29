@@ -329,6 +329,10 @@ export default {
 
   // Skills
   alchemyBase: (state: State, getters: any) => {
+    if (state.character.skills.alchemy.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.character.skills.alchemy.training) +
@@ -337,7 +341,7 @@ export default {
   },
   alchemyBuffed: (state: State, getters: any) => {
     return (
-      getters.alchemyBase +
+      (state.character.skills.alchemy.training !== Training.UNUSABLE ? getters.alchemyBase : 0) +
       buffBonus(state.character.skills.alchemy.buff) +
       cantripBonus(state.character.skills.alchemy.cantrip) +
       Math.round(
@@ -352,6 +356,10 @@ export default {
     );
   },
   arcane_loreBase: (state: State, getters: any) => {
+    if (state.character.skills.arcane_lore.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round(getters.focusBase / 3) +
       trainingBonus(state.character.skills.arcane_lore.training) +
@@ -360,7 +368,7 @@ export default {
   },
   arcane_loreBuffed: (state: State, getters: any) => {
     return (
-      getters.arcane_loreBase +
+      (state.character.skills.arcane_lore.training !== Training.UNUSABLE ? getters.arcane_loreBase : 0) +
       buffBonus(state.character.skills.arcane_lore.buff) +
       cantripBonus(state.character.skills.arcane_lore.cantrip) +
       Math.round(buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) / 3) +
@@ -370,6 +378,10 @@ export default {
     );
   },
   armor_tinkeringBase: (state: State, getters: any) => {
+    if (state.character.skills.armor_tinkering.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.enduranceBase + getters.focusBase) / 2) +
       trainingBonus(state.character.skills.armor_tinkering.training) +
@@ -378,7 +390,7 @@ export default {
   },
   armor_tinkeringBuffed: (state: State, getters: any) => {
     return (
-      getters.armor_tinkeringBase +
+      (state.character.skills.armor_tinkering.training !== Training.UNUSABLE ? getters.armor_tinkeringBase : 0) +
       buffBonus(state.character.skills.armor_tinkering.buff) +
       cantripBonus(state.character.skills.armor_tinkering.cantrip) +
       Math.round(
@@ -393,6 +405,10 @@ export default {
     );
   },
   assess_creatureBase: (state: State) => {
+    if (state.character.skills.assess_creature.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       trainingBonus(state.character.skills.assess_creature.training) +
       state.character.skills.assess_creature.invested
@@ -400,7 +416,7 @@ export default {
   },
   assess_creatureBuffed: (state: State, getters: any) => {
     return (
-      getters.assess_creatureBase +
+      (state.character.skills.assess_creature.training !== Training.UNUSABLE ? getters.assess_creatureBase : 0) +
       buffBonus(state.character.skills.assess_creature.buff) +
       cantripBonus(state.character.skills.assess_creature.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -409,6 +425,10 @@ export default {
     );
   },
   assess_personBase: (state: State) => {
+    if (state.character.skills.assess_person.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       trainingBonus(state.character.skills.assess_person.training) +
       state.character.skills.assess_person.invested
@@ -416,7 +436,7 @@ export default {
   },
   assess_personBuffed: (state: State, getters: any) => {
     return (
-      getters.assess_personBase +
+      (state.character.skills.assess_person.training !== Training.UNUSABLE ? getters.assess_personBase : 0) +
       buffBonus(state.character.skills.assess_person.buff) +
       cantripBonus(state.character.skills.assess_person.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -425,21 +445,25 @@ export default {
     );
   },
   cookingBase: (state: State, getters: any) => {
+    if (state.character.skills.cooking.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.character.skills.cooking.training) +
-      state.character.skills.cooking.invested +
-      (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
-      state.character.luminance_auras.craftsman.invested +
-      state.character.luminance_auras.world.invested +
-      (state.character.skills.cooking.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
+      state.character.skills.cooking.invested
     );
   },
   cookingBuffed: (state: State, getters: any) => {
     return (
-      getters.cookingBase +
+      (state.character.skills.cooking.training !== Training.UNUSABLE ? getters.cookingBase : 0) +
       buffBonus(state.character.skills.cooking.buff) +
       cantripBonus(state.character.skills.cooking.cantrip) +
+      (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      state.character.luminance_auras.craftsman.invested +
+      state.character.luminance_auras.world.invested +
+      (state.character.skills.cooking.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0) +
       Math.round(
         (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
           buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
@@ -448,6 +472,10 @@ export default {
     );
   },
   creature_enchantmentBase: (state: State, getters: any) => {
+    if (state.character.skills.creature_enchantment.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(
@@ -458,7 +486,7 @@ export default {
   },
   creature_enchantmentBuffed: (state: State, getters: any) => {
     return (
-      getters.creature_enchantmentBase +
+      (state.character.skills.creature_enchantment.training !== Training.UNUSABLE ? getters.creature_enchantmentBase : 0) +
       buffBonus(state.character.skills.creature_enchantment.buff) +
       cantripBonus(
         state.character.skills.creature_enchantment.cantrip
@@ -474,6 +502,10 @@ export default {
     );
   },
   deceptionBase: (state: State) => {
+    if (state.character.skills.deception.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       trainingBonus(state.character.skills.deception.training) +
       state.character.skills.deception.invested
@@ -481,7 +513,7 @@ export default {
   },
   deceptionBuffed: (state: State, getters: any) => {
     return (
-      getters.deceptionBase +
+      (state.character.skills.deception.training !== Training.UNUSABLE ? getters.deceptionBase : 0) +
       buffBonus(state.character.skills.deception.buff) +
       cantripBonus(state.character.skills.deception.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -490,6 +522,10 @@ export default {
     );
   },
   dirty_fightingBase: (state: State, getters: any) => {
+    if (state.character.skills.dirty_fighting.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.character.skills.dirty_fighting.training) +
@@ -498,7 +534,7 @@ export default {
   },
   dirty_fightingBuffed: (state: State, getters: any) => {
     return (
-      getters.dirty_fightingBase +
+      (state.character.skills.dirty_fighting.training !== Training.UNUSABLE ? getters.dirty_fightingBase : 0) +
       buffBonus(state.character.skills.dirty_fighting.buff) +
       cantripBonus(state.character.skills.dirty_fighting.cantrip) +
       Math.round(
@@ -512,6 +548,10 @@ export default {
     );
   },
   dual_wieldBase: (state: State, getters: any) => {
+    if (state.character.skills.dual_wield.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.coordinationBase) / 3) +
       trainingBonus(state.character.skills.dual_wield.training) +
@@ -520,7 +560,7 @@ export default {
   },
   dual_wieldBuffed: (state: State, getters: any) => {
     return (
-      getters.dual_wieldBase +
+      (state.character.skills.dual_wield.training !== Training.UNUSABLE ? getters.dual_wieldBase : 0) +
       buffBonus(state.character.skills.dual_wield.buff) +
       cantripBonus(state.character.skills.dual_wield.cantrip) +
       Math.round(
@@ -534,6 +574,10 @@ export default {
     );
   },
   finesse_weaponsBase: (state: State, getters: any) => {
+    if (state.character.skills.finesse_weapons.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.character.skills.finesse_weapons.training) +
@@ -542,7 +586,7 @@ export default {
   },
   finesse_weaponsBuffed: (state: State, getters: any) => {
     return (
-      getters.finesse_weaponsBase +
+      (state.character.skills.finesse_weapons.training !== Training.UNUSABLE ? getters.finesse_weaponsBase : 0) +
       buffBonus(state.character.skills.finesse_weapons.buff) +
       cantripBonus(state.character.skills.finesse_weapons.cantrip) +
       Math.round(
@@ -556,6 +600,10 @@ export default {
     );
   },
   fletchingBase: (state: State, getters: any) => {
+    if (state.character.skills.fletching.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.character.skills.fletching.training) +
@@ -564,7 +612,7 @@ export default {
   },
   fletchingBuffed: (state: State, getters: any) => {
     return (
-      getters.fletchingBase +
+      (state.character.skills.fletching.training !== Training.UNUSABLE ? getters.fletchingBase : 0) +
       buffBonus(state.character.skills.fletching.buff) +
       cantripBonus(state.character.skills.fletching.cantrip) +
       Math.round(
@@ -579,6 +627,10 @@ export default {
     );
   },
   healingBase: (state: State, getters: any) => {
+    if (state.character.skills.healing.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.character.skills.healing.training) +
@@ -587,7 +639,7 @@ export default {
   },
   healingBuffed: (state: State, getters: any) => {
     return (
-      getters.healingBase +
+      (state.character.skills.healing.training !== Training.UNUSABLE ? getters.healingBase : 0) +
       buffBonus(state.character.skills.healing.buff) +
       cantripBonus(state.character.skills.healing.cantrip) +
       Math.round(
@@ -601,6 +653,10 @@ export default {
     );
   },
   heavy_weaponsBase: (state: State, getters: any) => {
+    if (state.character.skills.heavy_weapons.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.character.skills.heavy_weapons.training) +
@@ -609,7 +665,7 @@ export default {
   },
   heavy_weaponsBuffed: (state: State, getters: any) => {
     return (
-      getters.heavy_weaponsBase +
+      (state.character.skills.heavy_weapons.training !== Training.UNUSABLE ? getters.heavy_weaponsBase : 0) +
       buffBonus(state.character.skills.heavy_weapons.buff) +
       cantripBonus(state.character.skills.heavy_weapons.cantrip) +
       Math.round(
@@ -623,6 +679,10 @@ export default {
     );
   },
   item_enchantmentBase: (state: State, getters: any) => {
+    if (state.character.skills.item_enchantment.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.character.skills.item_enchantment.training) +
@@ -631,7 +691,7 @@ export default {
   },
   item_enchantmentBuffed: (state: State, getters: any) => {
     return (
-      getters.item_enchantmentBase +
+      (state.character.skills.item_enchantment.training !== Training.UNUSABLE ? getters.item_enchantmentBase : 0) +
       buffBonus(state.character.skills.item_enchantment.buff) +
       cantripBonus(state.character.skills.item_enchantment.cantrip) +
       Math.round(
@@ -645,6 +705,10 @@ export default {
     );
   },
   item_tinkeringBase: (state: State, getters: any) => {
+    if (state.character.skills.item_tinkering.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 2) +
       trainingBonus(state.character.skills.item_tinkering.training) +
@@ -653,7 +717,7 @@ export default {
   },
   item_tinkeringBuffed: (state: State, getters: any) => {
     return (
-      getters.item_tinkeringBase +
+      (state.character.skills.item_tinkering.training !== Training.UNUSABLE ? getters.item_tinkeringBase : 0) +
       buffBonus(state.character.skills.item_tinkering.buff) +
       cantripBonus(state.character.skills.item_tinkering.cantrip) +
       Math.round(
@@ -668,6 +732,10 @@ export default {
     );
   },
   jumpBase: (state: State, getters: any) => {
+    if (state.character.skills.jump.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
       trainingBonus(state.character.skills.jump.training) +
@@ -676,7 +744,7 @@ export default {
   },
   jumpBuffed: (state: State, getters: any) => {
     return (
-      getters.jumpBase +
+      (state.character.skills.jump.training !== Training.UNUSABLE ? getters.jumpBase : 0) +
       buffBonus(state.character.skills.jump.buff) +
       cantripBonus(state.character.skills.jump.cantrip) +
       Math.round(
@@ -690,6 +758,10 @@ export default {
     );
   },
   leadershipBase: (state: State) => {
+    if (state.character.skills.leadership.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       trainingBonus(state.character.skills.leadership.training) +
       state.character.skills.leadership.invested
@@ -697,7 +769,7 @@ export default {
   },
   leadershipBuffed: (state: State, getters: any) => {
     return (
-      getters.leadershipBase +
+      (state.character.skills.leadership.training !== Training.UNUSABLE ? getters.leadershipBase : 0) +
       buffBonus(state.character.skills.leadership.buff) +
       cantripBonus(state.character.skills.leadership.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -706,6 +778,10 @@ export default {
     );
   },
   life_magicBase: (state: State, getters: any) => {
+    if (state.character.skills.life_magic.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.character.skills.life_magic.training) +
@@ -714,7 +790,7 @@ export default {
   },
   life_magicBuffed: (state: State, getters: any) => {
     return (
-      getters.life_magicBase +
+      (state.character.skills.life_magic.training !== Training.UNUSABLE ? getters.life_magicBase : 0) +
       buffBonus(state.character.skills.life_magic.buff) +
       cantripBonus(state.character.skills.life_magic.cantrip) +
       Math.round(
@@ -728,6 +804,10 @@ export default {
     );
   },
   light_weaponsBase: (state: State, getters: any) => {
+    if (state.character.skills.light_weapons.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.character.skills.light_weapons.training) +
@@ -736,7 +816,7 @@ export default {
   },
   light_weaponsBuffed: (state: State, getters: any) => {
     return (
-      getters.light_weaponsBase +
+      (state.character.skills.light_weapons.training !== Training.UNUSABLE ? getters.light_weaponsBase : 0) +
       buffBonus(state.character.skills.light_weapons.buff) +
       cantripBonus(state.character.skills.light_weapons.cantrip) +
       Math.round(
@@ -750,6 +830,10 @@ export default {
     );
   },
   lockpickBase: (state: State, getters: any) => {
+    if (state.character.skills.lockpick.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.character.skills.lockpick.training) +
@@ -758,7 +842,7 @@ export default {
   },
   lockpickBuffed: (state: State, getters: any) => {
     return (
-      getters.lockpickBase +
+      (state.character.skills.lockpick.training !== Training.UNUSABLE ? getters.lockpickBase : 0) +
       buffBonus(state.character.skills.lockpick.buff) +
       cantripBonus(state.character.skills.lockpick.cantrip) +
       Math.round(
@@ -773,6 +857,10 @@ export default {
     );
   },
   loyaltyBase: (state: State) => {
+    if (state.character.skills.loyalty.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       trainingBonus(state.character.skills.loyalty.training) +
       state.character.skills.loyalty.invested
@@ -780,7 +868,7 @@ export default {
   },
   loyaltyBuffed: (state: State, getters: any) => {
     return (
-      getters.loyaltyBase +
+      (state.character.skills.loyalty.training !== Training.UNUSABLE ? getters.loyaltyBase : 0) +
       buffBonus(state.character.skills.loyalty.buff) +
       cantripBonus(state.character.skills.loyalty.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -789,6 +877,10 @@ export default {
     );
   },
   magic_defenseBase: (state: State, getters: any) => {
+    if (state.character.skills.magic_defense.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 7) +
       trainingBonus(state.character.skills.magic_defense.training) +
@@ -797,7 +889,7 @@ export default {
   },
   magic_defenseBuffed: (state: State, getters: any) => {
     return (
-      getters.magic_defenseBase +
+      (state.character.skills.magic_defense.training !== Training.UNUSABLE ? getters.magic_defenseBase : 0) +
       buffBonus(state.character.skills.magic_defense.buff) +
       cantripBonus(state.character.skills.magic_defense.cantrip) +
       Math.round(
@@ -811,6 +903,10 @@ export default {
     );
   },
   magic_item_tinkeringBase: (state: State, getters: any) => {
+    if (state.character.skills.magic_item_tinkering.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       getters.focusBase +
       trainingBonus(
@@ -821,7 +917,7 @@ export default {
   },
   magic_item_tinkeringBuffed: (state: State, getters: any) => {
     return (
-      getters.magic_item_tinkeringBase +
+      (state.character.skills.magic_item_tinkering.training !== Training.UNUSABLE ? getters.alchemyBase : 0) +
       buffBonus(state.character.skills.magic_item_tinkering.buff) +
       cantripBonus(
         state.character.skills.magic_item_tinkering.cantrip
@@ -834,6 +930,10 @@ export default {
     );
   },
   mana_conversionBase: (state: State, getters: any) => {
+    if (state.character.skills.mana_conversion.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 6) +
       trainingBonus(state.character.skills.mana_conversion.training) +
@@ -842,7 +942,7 @@ export default {
   },
   mana_conversionBuffed: (state: State, getters: any) => {
     return (
-      getters.mana_conversionBase +
+      (state.character.skills.mana_conversion.training !== Training.UNUSABLE ? getters.mana_conversionBase : 0) +
       buffBonus(state.character.skills.mana_conversion.buff) +
       cantripBonus(state.character.skills.mana_conversion.cantrip) +
       Math.round(
@@ -856,6 +956,10 @@ export default {
     );
   },
   melee_defenseBase: (state: State, getters: any) => {
+    if (state.character.skills.melee_defense.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.character.skills.melee_defense.training) +
@@ -864,7 +968,7 @@ export default {
   },
   melee_defenseBuffed: (state: State, getters: any) => {
     return (
-      getters.melee_defenseBase +
+      (state.character.skills.melee_defense.training !== Training.UNUSABLE ? getters.melee_defenseBase : 0) +
       buffBonus(state.character.skills.melee_defense.buff) +
       cantripBonus(state.character.skills.melee_defense.cantrip) +
       Math.round(
@@ -878,6 +982,10 @@ export default {
     );
   },
   missile_defenseBase: (state: State, getters: any) => {
+    if (state.character.skills.missile_defense.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 5) +
       trainingBonus(state.character.skills.missile_defense.training) +
@@ -886,7 +994,7 @@ export default {
   },
   missile_defenseBuffed: (state: State, getters: any) => {
     return (
-      getters.missile_defenseBase +
+      (state.character.skills.missile_defense.training !== Training.UNUSABLE ? getters.missile_defenseBase : 0) +
       buffBonus(state.character.skills.missile_defense.buff) +
       cantripBonus(state.character.skills.missile_defense.cantrip) +
       Math.round(
@@ -900,6 +1008,10 @@ export default {
     );
   },
   missile_weaponsBase: (state: State, getters: any) => {
+    if (state.character.skills.missile_weapons.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round(getters.coordinationBase / 2) +
       trainingBonus(state.character.skills.missile_weapons.training) +
@@ -908,7 +1020,7 @@ export default {
   },
   missile_weaponsBuffed: (state: State, getters: any) => {
     return (
-      getters.missile_weaponsBase +
+      (state.character.skills.missile_weapons.training !== Training.UNUSABLE ? getters.missile_weaponsBase : 0) +
       buffBonus(state.character.skills.missile_weapons.buff) +
       cantripBonus(state.character.skills.missile_weapons.cantrip) +
       Math.round(
@@ -920,6 +1032,10 @@ export default {
     );
   },
   recklessnessBase: (state: State, getters: any) => {
+    if (state.character.skills.recklessness.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.strengthBase + getters.quicknessBase) / 3) +
       trainingBonus(state.character.skills.recklessness.training) +
@@ -928,7 +1044,7 @@ export default {
   },
   recklessnessBuffed: (state: State, getters: any) => {
     return (
-      getters.recklessnessBase +
+      (state.character.skills.recklessness.training !== Training.UNUSABLE ? getters.recklessnessBase : 0) +
       buffBonus(state.character.skills.recklessness.buff) +
       cantripBonus(state.character.skills.recklessness.cantrip) +
       Math.round(
@@ -942,6 +1058,10 @@ export default {
     );
   },
   runBase: (state: State, getters: any) => {
+    if (state.character.skills.run.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       getters.quicknessBase +
       trainingBonus(state.character.skills.run.training) +
@@ -950,7 +1070,7 @@ export default {
   },
   runBuffed: (state: State, getters: any) => {
     return (
-      getters.runBase +
+      (state.character.skills.run.training !== Training.UNUSABLE ? getters.runBase : 0) +
       buffBonus(state.character.skills.run.buff) +
       cantripBonus(state.character.skills.run.cantrip) +
       buffBonus(state.character.attributes.quickness.buff) +
@@ -961,6 +1081,10 @@ export default {
     );
   },
   salvagingBase: (state: State) => {
+    if (state.character.skills.salvaging.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       trainingBonus(state.character.skills.salvaging.training) +
       state.character.skills.salvaging.invested
@@ -968,7 +1092,7 @@ export default {
   },
   salvagingBuffed: (state: State, getters: any) => {
     return (
-      getters.salvagingBase +
+      (state.character.skills.salvaging.training !== Training.UNUSABLE ? getters.salvagingBase : 0) +
       buffBonus(state.character.skills.salvaging.buff) +
       cantripBonus(state.character.skills.salvaging.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -978,6 +1102,10 @@ export default {
     );
   },
   shieldBase: (state: State, getters: any) => {
+    if (state.character.skills.shield.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
       trainingBonus(state.character.skills.shield.training) +
@@ -986,7 +1114,7 @@ export default {
   },
   shieldBuffed: (state: State, getters: any) => {
     return (
-      getters.shieldBase +
+      (state.character.skills.shield.training !== Training.UNUSABLE ? getters.shieldBase : 0) +
       buffBonus(state.character.skills.shield.buff) +
       cantripBonus(state.character.skills.shield.cantrip) +
       Math.round(
@@ -1000,6 +1128,10 @@ export default {
     );
   },
   sneak_attackBase: (state: State, getters: any) => {
+    if (state.character.skills.sneak_attack.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.character.skills.sneak_attack.training) +
@@ -1008,7 +1140,7 @@ export default {
   },
   sneak_attackBuffed: (state: State, getters: any) => {
     return (
-      getters.sneak_attackBase +
+      (state.character.skills.sneak_attack.training !== Training.UNUSABLE ? getters.sneak_attackBase : 0) +
       buffBonus(state.character.skills.sneak_attack.buff) +
       cantripBonus(state.character.skills.sneak_attack.cantrip) +
       Math.round(
@@ -1022,6 +1154,10 @@ export default {
     );
   },
   summoningBase: (state: State, getters: any) => {
+    if (state.character.skills.summoning.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.enduranceBase + getters.selfBase) / 3) +
       trainingBonus(state.character.skills.summoning.training) +
@@ -1030,7 +1166,7 @@ export default {
   },
   summoningBuffed: (state: State, getters: any) => {
     return (
-      getters.summoningBase +
+      (state.character.skills.summoning.training !== Training.UNUSABLE ? getters.summoningBase : 0) +
       buffBonus(state.character.skills.summoning.buff) +
       cantripBonus(state.character.skills.summoning.cantrip) +
       Math.round(
@@ -1044,6 +1180,10 @@ export default {
     );
   },
   two_handed_combatBase: (state: State, getters: any) => {
+    if (state.character.skills.two_handed_combat.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.character.skills.two_handed_combat.training) +
@@ -1052,7 +1192,7 @@ export default {
   },
   two_handed_combatBuffed: (state: State, getters: any) => {
     return (
-      getters.two_handed_combatBase +
+      (state.character.skills.two_handed_combat.training !== Training.UNUSABLE ? getters.two_handed_combatBase : 0) +
       buffBonus(state.character.skills.two_handed_combat.buff) +
       cantripBonus(state.character.skills.two_handed_combat.cantrip) +
       Math.round(
@@ -1066,6 +1206,10 @@ export default {
     );
   },
   void_magicBase: (state: State, getters: any) => {
+    if (state.character.skills.void_magic.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.character.skills.void_magic.training) +
@@ -1074,7 +1218,7 @@ export default {
   },
   void_magicBuffed: (state: State, getters: any) => {
     return (
-      getters.void_magicBase +
+      (state.character.skills.void_magic.training !== Training.UNUSABLE ? getters.void_magicBase : 0) +
       buffBonus(state.character.skills.void_magic.buff) +
       cantripBonus(state.character.skills.void_magic.cantrip) +
       Math.round(
@@ -1088,6 +1232,10 @@ export default {
     );
   },
   war_magicBase: (state: State, getters: any) => {
+    if (state.character.skills.war_magic.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.character.skills.war_magic.training) +
@@ -1096,7 +1244,7 @@ export default {
   },
   war_magicBuffed: (state: State, getters: any) => {
     return (
-      getters.war_magicBase +
+      (state.character.skills.war_magic.training !== Training.UNUSABLE ? getters.war_magicBase : 0) +
       buffBonus(state.character.skills.war_magic.buff) +
       cantripBonus(state.character.skills.war_magic.cantrip) +
       Math.round(
@@ -1110,6 +1258,10 @@ export default {
     );
   },
   weapon_tinkeringBase: (state: State, getters: any) => {
+    if (state.character.skills.weapon_tinkering.training === Training.UNUSABLE) {
+      return 0;
+    }
+
     return (
       Math.round((getters.focusBase + getters.selfBase) / 2) +
       trainingBonus(state.character.skills.weapon_tinkering.training) +
@@ -1118,7 +1270,7 @@ export default {
   },
   weapon_tinkeringBuffed: (state: State, getters: any) => {
     return (
-      getters.weapon_tinkeringBase +
+      (state.character.skills.weapon_tinkering.training !== Training.UNUSABLE ? getters.weapon_tinkeringBase : 0) +
       buffBonus(state.character.skills.weapon_tinkering.buff) +
       cantripBonus(state.character.skills.weapon_tinkering.cantrip) +
       Math.round(
