@@ -41,6 +41,7 @@ export interface State {
   character: Character,
   notifications: Notification[],
   savedBuilds: SavedBuild[],
+  shareStatus: string | null,
   sharedBuild: string | null,
 }
 

@@ -1,6 +1,15 @@
 <template>
   <div id="planner">
-    <Share />
+    <div class="buttons right">
+      <button v-on:click="saveBuild">Save</button>
+      <button v-on:click="exportCharacter">Export</button>
+      <button v-on:click="resetPlanner">Reset</button>
+      <button id="show-modal" @click="modalVisible = true">Share</button>
+    </div>
+    <Modal v-if="modalVisible" @close="modalVisible = false">
+      <h3 slot="header">Share Build</h3>
+      <ShareModal slot="body" />
+    </Modal>
     <Headers />
     <div class="row panes">
       <AttributesAndVitals />
@@ -12,17 +21,25 @@
 </template>
 
 <script>
-import Share from "./components/Share.vue";
+import Modal from "./components/Modal.vue";
+import ShareModal from "./components/ShareModal.vue";
 import Headers from "./components/Headers.vue";
 import AttributesAndVitals from "./components/AttributesAndVitals.vue";
 import Skills from "./components/Skills.vue";
 import Augmentations from "./components/Augmentations.vue";
 import LuminanceAuras from "./components/LuminanceAuras.vue";
+import { exportCharacter } from "./helpers";
 
 export default {
   name: "planner",
+  data() {
+    return {
+      modalVisible: false
+    };
+  },
   components: {
-    Share,
+    Modal,
+    ShareModal,
     Headers,
     AttributesAndVitals,
     Skills,
@@ -30,6 +47,18 @@ export default {
     LuminanceAuras
   },
   created: function() {
+    // Bind Esc key to closing an open modal
+    const self = this;
+
+    document.addEventListener('keyup', function (evt) {
+      if (evt.keyCode === 27) {
+        if (self.modalVisible) {
+          self.modalVisible = false;
+        }
+      }
+    });
+
+    // Load remote built (if URL is right)
     const path = this.$route.path;
 
     if (path == "/") {
@@ -40,6 +69,24 @@ export default {
 
     if (typeof extraStuff === "string" && extraStuff.length > 0) {
       this.$store.dispatch("loadRemoteBuild", extraStuff);
+    }
+  },
+  methods: {
+    saveBuild() {
+      this.$store.commit("addNotification", {
+        type: "info",
+        message: "Build saved. See the Builds tab."
+      });
+      this.$store.commit("saveBuild");
+    },
+    exportCharacter() {
+      exportCharacter(
+        this.$store.state.character,
+        this.$store.state.character.name
+      );
+    },
+    resetPlanner() {
+      this.$store.commit("reset");
     }
   }
 };
@@ -60,6 +107,10 @@ header a,
 header a:visited {
   color: black;
   text-decoration: none;
+}
+
+h1, h2, h3 {
+  margin: 0;
 }
 
 /* Grid */
@@ -266,6 +317,19 @@ input.number {
 
 .buffed {
   border-right: 1px solid #ccc;
+}
+
+.buttons {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.buttons button {
+  padding: 0.15rem 0.75rem;
+  margin-right: 0.25rem;
+}
+
+.buttons button:last-child {
+  margin-right: 0;
 }
 
 .right {

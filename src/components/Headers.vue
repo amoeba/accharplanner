@@ -5,11 +5,6 @@
         <div>
           <h3>Character</h3>
         </div>
-        <div class="right">
-          <button v-on:click="saveBuild">Save</button>
-          <button v-on:click="exportCharacter">Export</button>
-          <button v-on:click="resetPlanner">Reset</button>
-        </div>
       </div>
       <div class="header-items">
         <div>Name:</div>
@@ -185,18 +180,6 @@ export default {
     }
   },
   methods: {
-    saveBuild() {
-      this.$store.commit("saveBuild");
-    },
-    exportCharacter() {
-      Helpers.exportCharacter(
-        this.$store.state.character,
-        this.$store.state.character.name
-      );
-    },
-    resetPlanner() {
-      this.$store.commit("reset");
-    },
     updateLevel(e) {
       let actual = Math.round(Number(e.target.value));
 

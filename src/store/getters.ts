@@ -12,12 +12,15 @@ import {
   COST_SKILL_POINTS,
   SPEC_COSTS_AUG,
   LUMINANCE_AURA_COST } from "../constants";
-import Helpers from "../helpers";
+import { trainingBonus, buffBonus, cantripBonus } from "../helpers";
 import { State } from "../types";
 import { Attribute, Skill, Training, Race, Augmentation } from '@/types';
 
 export default {
   // General
+  shareStatus: (state: State) => {
+    return state.shareStatus;
+  },
   sharedBuild: (state: State) => {
     return state.sharedBuild;
   },
@@ -196,8 +199,8 @@ export default {
   strengthBuffed: (state: State, getters: any) => {
     return (
       getters.strengthBase +
-      Helpers.buffBonus(state.character.attributes.strength.buff) +
-      Helpers.cantripBonus(state.character.attributes.strength.cantrip)
+      buffBonus(state.character.attributes.strength.buff) +
+      cantripBonus(state.character.attributes.strength.cantrip)
     );
   },
   enduranceBase: (state: State) => {
@@ -210,8 +213,8 @@ export default {
   enduranceBuffed: (state: State, getters: any) => {
     return (
       getters.enduranceBase +
-      Helpers.buffBonus(state.character.attributes.endurance.buff) +
-      Helpers.cantripBonus(state.character.attributes.endurance.cantrip)
+      buffBonus(state.character.attributes.endurance.buff) +
+      cantripBonus(state.character.attributes.endurance.cantrip)
     );
   },
   coordinationBase: (state: State) => {
@@ -224,8 +227,8 @@ export default {
   coordinationBuffed: (state: State, getters: any) => {
     return (
       getters.coordinationBase +
-      Helpers.buffBonus(state.character.attributes.coordination.buff) +
-      Helpers.cantripBonus(state.character.attributes.coordination.cantrip)
+      buffBonus(state.character.attributes.coordination.buff) +
+      cantripBonus(state.character.attributes.coordination.cantrip)
     );
   },
   quicknessBase: (state: State) => {
@@ -238,8 +241,8 @@ export default {
   quicknessBuffed: (state: State, getters: any) => {
     return (
       getters.quicknessBase +
-      Helpers.buffBonus(state.character.attributes.quickness.buff) +
-      Helpers.cantripBonus(state.character.attributes.quickness.cantrip)
+      buffBonus(state.character.attributes.quickness.buff) +
+      cantripBonus(state.character.attributes.quickness.cantrip)
     );
   },
   focusBase: (state: State) => {
@@ -252,8 +255,8 @@ export default {
   focusBuffed: (state: State, getters: any) => {
     return (
       getters.focusBase +
-      Helpers.buffBonus(state.character.attributes.focus.buff) +
-      Helpers.cantripBonus(state.character.attributes.focus.cantrip)
+      buffBonus(state.character.attributes.focus.buff) +
+      cantripBonus(state.character.attributes.focus.cantrip)
     );
   },
   selfBase: (state: State) => {
@@ -266,8 +269,8 @@ export default {
   selfBuffed: (state: State, getters: any) => {
     return (
       getters.selfBase +
-      Helpers.buffBonus(state.character.attributes.self.buff) +
-      Helpers.cantripBonus(state.character.attributes.self.cantrip)
+      buffBonus(state.character.attributes.self.buff) +
+      cantripBonus(state.character.attributes.self.cantrip)
     );
   },
 
@@ -285,13 +288,13 @@ export default {
     return (
       (Math.round(getters.enduranceBase / 2) +
         state.character.vitals.health.invested +
-        Helpers.cantripBonus(state.character.vitals.health.cantrip)) * benediction_bonus
+        cantripBonus(state.character.vitals.health.cantrip)) * benediction_bonus
     );
   },
   healthBuffed: (state: State, getters: any) => {
     return (
       getters.healthBase +
-      Math.round(Helpers.buffBonus(state.character.vitals.health.buff) / 2)
+      Math.round(buffBonus(state.character.vitals.health.buff) / 2)
     );
   },
   staminaCreation: (state: State) => {
@@ -301,13 +304,13 @@ export default {
     return (
       getters.enduranceBase +
       state.character.vitals.stamina.invested +
-      Helpers.cantripBonus(state.character.vitals.stamina.cantrip)
+      cantripBonus(state.character.vitals.stamina.cantrip)
     );
   },
   staminaBuffed: (state: State, getters: any) => {
     return (
       getters.staminaBase +
-      Helpers.buffBonus(state.character.vitals.stamina.buff)
+      buffBonus(state.character.vitals.stamina.buff)
     );
   },
   manaCreation: (state: State) => {
@@ -319,8 +322,8 @@ export default {
   manaBuffed: (state: State, getters: any) => {
     return (
       getters.manaBase +
-      Helpers.buffBonus(state.character.vitals.mana.buff) +
-      Helpers.cantripBonus(state.character.vitals.mana.cantrip)
+      buffBonus(state.character.vitals.mana.buff) +
+      cantripBonus(state.character.vitals.mana.cantrip)
     );
   },
 
@@ -328,18 +331,18 @@ export default {
   alchemyBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.alchemy.training) +
+      trainingBonus(state.character.skills.alchemy.training) +
       state.character.skills.alchemy.invested
     );
   },
   alchemyBuffed: (state: State, getters: any) => {
     return (
       getters.alchemyBase +
-      Helpers.buffBonus(state.character.skills.alchemy.buff) +
-      Helpers.cantripBonus(state.character.skills.alchemy.cantrip) +
+      buffBonus(state.character.skills.alchemy.buff) +
+      cantripBonus(state.character.skills.alchemy.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -351,16 +354,16 @@ export default {
   arcane_loreBase: (state: State, getters: any) => {
     return (
       Math.round(getters.focusBase / 3) +
-      Helpers.trainingBonus(state.character.skills.arcane_lore.training) +
+      trainingBonus(state.character.skills.arcane_lore.training) +
       state.character.skills.arcane_lore.invested
     );
   },
   arcane_loreBuffed: (state: State, getters: any) => {
     return (
       getters.arcane_loreBase +
-      Helpers.buffBonus(state.character.skills.arcane_lore.buff) +
-      Helpers.cantripBonus(state.character.skills.arcane_lore.cantrip) +
-      Math.round(Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) / 3) +
+      buffBonus(state.character.skills.arcane_lore.buff) +
+      cantripBonus(state.character.skills.arcane_lore.cantrip) +
+      Math.round(buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) / 3) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
       (state.character.skills.arcane_lore.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
@@ -369,18 +372,18 @@ export default {
   armor_tinkeringBase: (state: State, getters: any) => {
     return (
       Math.round((getters.enduranceBase + getters.focusBase) / 2) +
-      Helpers.trainingBonus(state.character.skills.armor_tinkering.training) +
+      trainingBonus(state.character.skills.armor_tinkering.training) +
       state.character.skills.armor_tinkering.invested
     );
   },
   armor_tinkeringBuffed: (state: State, getters: any) => {
     return (
       getters.armor_tinkeringBase +
-      Helpers.buffBonus(state.character.skills.armor_tinkering.buff) +
-      Helpers.cantripBonus(state.character.skills.armor_tinkering.cantrip) +
+      buffBonus(state.character.skills.armor_tinkering.buff) +
+      cantripBonus(state.character.skills.armor_tinkering.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.endurance.buff) + Helpers.cantripBonus(state.character.attributes.endurance.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.endurance.buff) + cantripBonus(state.character.attributes.endurance.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -391,15 +394,15 @@ export default {
   },
   assess_creatureBase: (state: State) => {
     return (
-      Helpers.trainingBonus(state.character.skills.assess_creature.training) +
+      trainingBonus(state.character.skills.assess_creature.training) +
       state.character.skills.assess_creature.invested
     );
   },
   assess_creatureBuffed: (state: State, getters: any) => {
     return (
       getters.assess_creatureBase +
-      Helpers.buffBonus(state.character.skills.assess_creature.buff) +
-      Helpers.cantripBonus(state.character.skills.assess_creature.cantrip) +
+      buffBonus(state.character.skills.assess_creature.buff) +
+      cantripBonus(state.character.skills.assess_creature.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
       (state.character.skills.assess_creature.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
@@ -407,15 +410,15 @@ export default {
   },
   assess_personBase: (state: State) => {
     return (
-      Helpers.trainingBonus(state.character.skills.assess_person.training) +
+      trainingBonus(state.character.skills.assess_person.training) +
       state.character.skills.assess_person.invested
     );
   },
   assess_personBuffed: (state: State, getters: any) => {
     return (
       getters.assess_personBase +
-      Helpers.buffBonus(state.character.skills.assess_person.buff) +
-      Helpers.cantripBonus(state.character.skills.assess_person.cantrip) +
+      buffBonus(state.character.skills.assess_person.buff) +
+      cantripBonus(state.character.skills.assess_person.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
       (state.character.skills.assess_person.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
@@ -424,7 +427,7 @@ export default {
   cookingBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.cooking.training) +
+      trainingBonus(state.character.skills.cooking.training) +
       state.character.skills.cooking.invested +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
@@ -435,11 +438,11 @@ export default {
   cookingBuffed: (state: State, getters: any) => {
     return (
       getters.cookingBase +
-      Helpers.buffBonus(state.character.skills.cooking.buff) +
-      Helpers.cantripBonus(state.character.skills.cooking.cantrip) +
+      buffBonus(state.character.skills.cooking.buff) +
+      cantripBonus(state.character.skills.cooking.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         3
       )
     );
@@ -447,7 +450,7 @@ export default {
   creature_enchantmentBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
-      Helpers.trainingBonus(
+      trainingBonus(
         state.character.skills.creature_enchantment.training
       ) +
       state.character.skills.creature_enchantment.invested
@@ -456,13 +459,13 @@ export default {
   creature_enchantmentBuffed: (state: State, getters: any) => {
     return (
       getters.creature_enchantmentBase +
-      Helpers.buffBonus(state.character.skills.creature_enchantment.buff) +
-      Helpers.cantripBonus(
+      buffBonus(state.character.skills.creature_enchantment.buff) +
+      cantripBonus(
         state.character.skills.creature_enchantment.cantrip
       ) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -472,15 +475,15 @@ export default {
   },
   deceptionBase: (state: State) => {
     return (
-      Helpers.trainingBonus(state.character.skills.deception.training) +
+      trainingBonus(state.character.skills.deception.training) +
       state.character.skills.deception.invested
     );
   },
   deceptionBuffed: (state: State, getters: any) => {
     return (
       getters.deceptionBase +
-      Helpers.buffBonus(state.character.skills.deception.buff) +
-      Helpers.cantripBonus(state.character.skills.deception.cantrip) +
+      buffBonus(state.character.skills.deception.buff) +
+      cantripBonus(state.character.skills.deception.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
       (state.character.skills.deception.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
@@ -489,18 +492,18 @@ export default {
   dirty_fightingBase: (state: State, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.dirty_fighting.training) +
+      trainingBonus(state.character.skills.dirty_fighting.training) +
       state.character.skills.dirty_fighting.invested
     );
   },
   dirty_fightingBuffed: (state: State, getters: any) => {
     return (
       getters.dirty_fightingBase +
-      Helpers.buffBonus(state.character.skills.dirty_fighting.buff) +
-      Helpers.cantripBonus(state.character.skills.dirty_fighting.cantrip) +
+      buffBonus(state.character.skills.dirty_fighting.buff) +
+      cantripBonus(state.character.skills.dirty_fighting.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
+        (buffBonus(state.character.attributes.strength.buff) + cantripBonus(state.character.attributes.strength.cantrip) +
+          buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -511,18 +514,18 @@ export default {
   dual_wieldBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.coordinationBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.dual_wield.training) +
+      trainingBonus(state.character.skills.dual_wield.training) +
       state.character.skills.dual_wield.invested
     );
   },
   dual_wieldBuffed: (state: State, getters: any) => {
     return (
       getters.dual_wieldBase +
-      Helpers.buffBonus(state.character.skills.dual_wield.buff) +
-      Helpers.cantripBonus(state.character.skills.dual_wield.cantrip) +
+      buffBonus(state.character.skills.dual_wield.buff) +
+      cantripBonus(state.character.skills.dual_wield.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -533,18 +536,18 @@ export default {
   finesse_weaponsBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.finesse_weapons.training) +
+      trainingBonus(state.character.skills.finesse_weapons.training) +
       state.character.skills.finesse_weapons.invested
     );
   },
   finesse_weaponsBuffed: (state: State, getters: any) => {
     return (
       getters.finesse_weaponsBase +
-      Helpers.buffBonus(state.character.skills.finesse_weapons.buff) +
-      Helpers.cantripBonus(state.character.skills.finesse_weapons.cantrip) +
+      buffBonus(state.character.skills.finesse_weapons.buff) +
+      cantripBonus(state.character.skills.finesse_weapons.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.quickness.buff) + cantripBonus(state.character.attributes.quickness.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -555,18 +558,18 @@ export default {
   fletchingBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.fletching.training) +
+      trainingBonus(state.character.skills.fletching.training) +
       state.character.skills.fletching.invested
     );
   },
   fletchingBuffed: (state: State, getters: any) => {
     return (
       getters.fletchingBase +
-      Helpers.buffBonus(state.character.skills.fletching.buff) +
-      Helpers.cantripBonus(state.character.skills.fletching.cantrip) +
+      buffBonus(state.character.skills.fletching.buff) +
+      cantripBonus(state.character.skills.fletching.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -578,18 +581,18 @@ export default {
   healingBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.healing.training) +
+      trainingBonus(state.character.skills.healing.training) +
       state.character.skills.healing.invested
     );
   },
   healingBuffed: (state: State, getters: any) => {
     return (
       getters.healingBase +
-      Helpers.buffBonus(state.character.skills.healing.buff) +
-      Helpers.cantripBonus(state.character.skills.healing.cantrip) +
+      buffBonus(state.character.skills.healing.buff) +
+      cantripBonus(state.character.skills.healing.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -600,18 +603,18 @@ export default {
   heavy_weaponsBase: (state: State, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.heavy_weapons.training) +
+      trainingBonus(state.character.skills.heavy_weapons.training) +
       state.character.skills.heavy_weapons.invested
     );
   },
   heavy_weaponsBuffed: (state: State, getters: any) => {
     return (
       getters.heavy_weaponsBase +
-      Helpers.buffBonus(state.character.skills.heavy_weapons.buff) +
-      Helpers.cantripBonus(state.character.skills.heavy_weapons.cantrip) +
+      buffBonus(state.character.skills.heavy_weapons.buff) +
+      cantripBonus(state.character.skills.heavy_weapons.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
+        (buffBonus(state.character.attributes.strength.buff) + cantripBonus(state.character.attributes.strength.cantrip) +
+          buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -622,18 +625,18 @@ export default {
   item_enchantmentBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
-      Helpers.trainingBonus(state.character.skills.item_enchantment.training) +
+      trainingBonus(state.character.skills.item_enchantment.training) +
       state.character.skills.item_enchantment.invested
     );
   },
   item_enchantmentBuffed: (state: State, getters: any) => {
     return (
       getters.item_enchantmentBase +
-      Helpers.buffBonus(state.character.skills.item_enchantment.buff) +
-      Helpers.cantripBonus(state.character.skills.item_enchantment.cantrip) +
+      buffBonus(state.character.skills.item_enchantment.buff) +
+      cantripBonus(state.character.skills.item_enchantment.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -644,18 +647,18 @@ export default {
   item_tinkeringBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 2) +
-      Helpers.trainingBonus(state.character.skills.item_tinkering.training) +
+      trainingBonus(state.character.skills.item_tinkering.training) +
       state.character.skills.item_tinkering.invested
     );
   },
   item_tinkeringBuffed: (state: State, getters: any) => {
     return (
       getters.item_tinkeringBase +
-      Helpers.buffBonus(state.character.skills.item_tinkering.buff) +
-      Helpers.cantripBonus(state.character.skills.item_tinkering.cantrip) +
+      buffBonus(state.character.skills.item_tinkering.buff) +
+      cantripBonus(state.character.skills.item_tinkering.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -667,18 +670,18 @@ export default {
   jumpBase: (state: State, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
-      Helpers.trainingBonus(state.character.skills.jump.training) +
+      trainingBonus(state.character.skills.jump.training) +
       state.character.skills.jump.invested
     );
   },
   jumpBuffed: (state: State, getters: any) => {
     return (
       getters.jumpBase +
-      Helpers.buffBonus(state.character.skills.jump.buff) +
-      Helpers.cantripBonus(state.character.skills.jump.cantrip) +
+      buffBonus(state.character.skills.jump.buff) +
+      cantripBonus(state.character.skills.jump.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
+        (buffBonus(state.character.attributes.strength.buff) + cantripBonus(state.character.attributes.strength.cantrip) +
+          buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip)) /
         2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -688,15 +691,15 @@ export default {
   },
   leadershipBase: (state: State) => {
     return (
-      Helpers.trainingBonus(state.character.skills.leadership.training) +
+      trainingBonus(state.character.skills.leadership.training) +
       state.character.skills.leadership.invested
     );
   },
   leadershipBuffed: (state: State, getters: any) => {
     return (
       getters.leadershipBase +
-      Helpers.buffBonus(state.character.skills.leadership.buff) +
-      Helpers.cantripBonus(state.character.skills.leadership.cantrip) +
+      buffBonus(state.character.skills.leadership.buff) +
+      cantripBonus(state.character.skills.leadership.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
       (state.character.skills.leadership.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
@@ -705,18 +708,18 @@ export default {
   life_magicBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
-      Helpers.trainingBonus(state.character.skills.life_magic.training) +
+      trainingBonus(state.character.skills.life_magic.training) +
       state.character.skills.life_magic.invested
     );
   },
   life_magicBuffed: (state: State, getters: any) => {
     return (
       getters.life_magicBase +
-      Helpers.buffBonus(state.character.skills.life_magic.buff) +
-      Helpers.cantripBonus(state.character.skills.life_magic.cantrip) +
+      buffBonus(state.character.skills.life_magic.buff) +
+      cantripBonus(state.character.skills.life_magic.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -727,18 +730,18 @@ export default {
   light_weaponsBase: (state: State, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.light_weapons.training) +
+      trainingBonus(state.character.skills.light_weapons.training) +
       state.character.skills.light_weapons.invested
     );
   },
   light_weaponsBuffed: (state: State, getters: any) => {
     return (
       getters.light_weaponsBase +
-      Helpers.buffBonus(state.character.skills.light_weapons.buff) +
-      Helpers.cantripBonus(state.character.skills.light_weapons.cantrip) +
+      buffBonus(state.character.skills.light_weapons.buff) +
+      cantripBonus(state.character.skills.light_weapons.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
+        (buffBonus(state.character.attributes.strength.buff) + cantripBonus(state.character.attributes.strength.cantrip) +
+          buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -749,18 +752,18 @@ export default {
   lockpickBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.lockpick.training) +
+      trainingBonus(state.character.skills.lockpick.training) +
       state.character.skills.lockpick.invested
     );
   },
   lockpickBuffed: (state: State, getters: any) => {
     return (
       getters.lockpickBase +
-      Helpers.buffBonus(state.character.skills.lockpick.buff) +
-      Helpers.cantripBonus(state.character.skills.lockpick.cantrip) +
+      buffBonus(state.character.skills.lockpick.buff) +
+      cantripBonus(state.character.skills.lockpick.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -771,15 +774,15 @@ export default {
   },
   loyaltyBase: (state: State) => {
     return (
-      Helpers.trainingBonus(state.character.skills.loyalty.training) +
+      trainingBonus(state.character.skills.loyalty.training) +
       state.character.skills.loyalty.invested
     );
   },
   loyaltyBuffed: (state: State, getters: any) => {
     return (
       getters.loyaltyBase +
-      Helpers.buffBonus(state.character.skills.loyalty.buff) +
-      Helpers.cantripBonus(state.character.skills.loyalty.cantrip) +
+      buffBonus(state.character.skills.loyalty.buff) +
+      cantripBonus(state.character.skills.loyalty.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
       (state.character.skills.loyalty.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
@@ -788,18 +791,18 @@ export default {
   magic_defenseBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 7) +
-      Helpers.trainingBonus(state.character.skills.magic_defense.training) +
+      trainingBonus(state.character.skills.magic_defense.training) +
       state.character.skills.magic_defense.invested
     );
   },
   magic_defenseBuffed: (state: State, getters: any) => {
     return (
       getters.magic_defenseBase +
-      Helpers.buffBonus(state.character.skills.magic_defense.buff) +
-      Helpers.cantripBonus(state.character.skills.magic_defense.cantrip) +
+      buffBonus(state.character.skills.magic_defense.buff) +
+      cantripBonus(state.character.skills.magic_defense.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         7
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -810,7 +813,7 @@ export default {
   magic_item_tinkeringBase: (state: State, getters: any) => {
     return (
       getters.focusBase +
-      Helpers.trainingBonus(
+      trainingBonus(
         state.character.skills.magic_item_tinkering.training
       ) +
       state.character.skills.magic_item_tinkering.invested
@@ -819,11 +822,11 @@ export default {
   magic_item_tinkeringBuffed: (state: State, getters: any) => {
     return (
       getters.magic_item_tinkeringBase +
-      Helpers.buffBonus(state.character.skills.magic_item_tinkering.buff) +
-      Helpers.cantripBonus(
+      buffBonus(state.character.skills.magic_item_tinkering.buff) +
+      cantripBonus(
         state.character.skills.magic_item_tinkering.cantrip
       ) +
-      Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
+      buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
@@ -833,18 +836,18 @@ export default {
   mana_conversionBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 6) +
-      Helpers.trainingBonus(state.character.skills.mana_conversion.training) +
+      trainingBonus(state.character.skills.mana_conversion.training) +
       state.character.skills.mana_conversion.invested
     );
   },
   mana_conversionBuffed: (state: State, getters: any) => {
     return (
       getters.mana_conversionBase +
-      Helpers.buffBonus(state.character.skills.mana_conversion.buff) +
-      Helpers.cantripBonus(state.character.skills.mana_conversion.cantrip) +
+      buffBonus(state.character.skills.mana_conversion.buff) +
+      cantripBonus(state.character.skills.mana_conversion.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         6
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -855,18 +858,18 @@ export default {
   melee_defenseBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.melee_defense.training) +
+      trainingBonus(state.character.skills.melee_defense.training) +
       state.character.skills.melee_defense.invested
     );
   },
   melee_defenseBuffed: (state: State, getters: any) => {
     return (
       getters.melee_defenseBase +
-      Helpers.buffBonus(state.character.skills.melee_defense.buff) +
-      Helpers.cantripBonus(state.character.skills.melee_defense.cantrip) +
+      buffBonus(state.character.skills.melee_defense.buff) +
+      cantripBonus(state.character.skills.melee_defense.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.quickness.buff) + cantripBonus(state.character.attributes.quickness.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -877,18 +880,18 @@ export default {
   missile_defenseBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 5) +
-      Helpers.trainingBonus(state.character.skills.missile_defense.training) +
+      trainingBonus(state.character.skills.missile_defense.training) +
       state.character.skills.missile_defense.invested
     );
   },
   missile_defenseBuffed: (state: State, getters: any) => {
     return (
       getters.missile_defenseBase +
-      Helpers.buffBonus(state.character.skills.missile_defense.buff) +
-      Helpers.cantripBonus(state.character.skills.missile_defense.cantrip) +
+      buffBonus(state.character.skills.missile_defense.buff) +
+      cantripBonus(state.character.skills.missile_defense.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.quickness.buff) + cantripBonus(state.character.attributes.quickness.cantrip)) /
         5
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -899,17 +902,17 @@ export default {
   missile_weaponsBase: (state: State, getters: any) => {
     return (
       Math.round(getters.coordinationBase / 2) +
-      Helpers.trainingBonus(state.character.skills.missile_weapons.training) +
+      trainingBonus(state.character.skills.missile_weapons.training) +
       state.character.skills.missile_weapons.invested
     );
   },
   missile_weaponsBuffed: (state: State, getters: any) => {
     return (
       getters.missile_weaponsBase +
-      Helpers.buffBonus(state.character.skills.missile_weapons.buff) +
-      Helpers.cantripBonus(state.character.skills.missile_weapons.cantrip) +
+      buffBonus(state.character.skills.missile_weapons.buff) +
+      cantripBonus(state.character.skills.missile_weapons.cantrip) +
       Math.round(
-        Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) / 2
+        buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) / 2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
@@ -919,18 +922,18 @@ export default {
   recklessnessBase: (state: State, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.quicknessBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.recklessness.training) +
+      trainingBonus(state.character.skills.recklessness.training) +
       state.character.skills.recklessness.invested
     );
   },
   recklessnessBuffed: (state: State, getters: any) => {
     return (
       getters.recklessnessBase +
-      Helpers.buffBonus(state.character.skills.recklessness.buff) +
-      Helpers.cantripBonus(state.character.skills.recklessness.cantrip) +
+      buffBonus(state.character.skills.recklessness.buff) +
+      cantripBonus(state.character.skills.recklessness.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
+        (buffBonus(state.character.attributes.strength.buff) + cantripBonus(state.character.attributes.strength.cantrip) +
+          buffBonus(state.character.attributes.quickness.buff) + cantripBonus(state.character.attributes.quickness.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -941,17 +944,17 @@ export default {
   runBase: (state: State, getters: any) => {
     return (
       getters.quicknessBase +
-      Helpers.trainingBonus(state.character.skills.run.training) +
+      trainingBonus(state.character.skills.run.training) +
       state.character.skills.run.invested
     );
   },
   runBuffed: (state: State, getters: any) => {
     return (
       getters.runBase +
-      Helpers.buffBonus(state.character.skills.run.buff) +
-      Helpers.cantripBonus(state.character.skills.run.cantrip) +
-      Helpers.buffBonus(state.character.attributes.quickness.buff) +
-      Helpers.cantripBonus(state.character.attributes.quickness.cantrip) +
+      buffBonus(state.character.skills.run.buff) +
+      cantripBonus(state.character.skills.run.cantrip) +
+      buffBonus(state.character.attributes.quickness.buff) +
+      cantripBonus(state.character.attributes.quickness.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.world.invested +
       (state.character.skills.run.training === Training.SPECIALIZED ? state.character.luminance_auras.specialization.invested * 2 : 0)
@@ -959,15 +962,15 @@ export default {
   },
   salvagingBase: (state: State) => {
     return (
-      Helpers.trainingBonus(state.character.skills.salvaging.training) +
+      trainingBonus(state.character.skills.salvaging.training) +
       state.character.skills.salvaging.invested
     );
   },
   salvagingBuffed: (state: State, getters: any) => {
     return (
       getters.salvagingBase +
-      Helpers.buffBonus(state.character.skills.salvaging.buff) +
-      Helpers.cantripBonus(state.character.skills.salvaging.cantrip) +
+      buffBonus(state.character.skills.salvaging.buff) +
+      cantripBonus(state.character.skills.salvaging.cantrip) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
       state.character.luminance_auras.craftsman.invested +
       state.character.luminance_auras.world.invested +
@@ -977,18 +980,18 @@ export default {
   shieldBase: (state: State, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
-      Helpers.trainingBonus(state.character.skills.shield.training) +
+      trainingBonus(state.character.skills.shield.training) +
       state.character.skills.shield.invested
     );
   },
   shieldBuffed: (state: State, getters: any) => {
     return (
       getters.shieldBase +
-      Helpers.buffBonus(state.character.skills.shield.buff) +
-      Helpers.cantripBonus(state.character.skills.shield.cantrip) +
+      buffBonus(state.character.skills.shield.buff) +
+      cantripBonus(state.character.skills.shield.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
+        (buffBonus(state.character.attributes.strength.buff) + cantripBonus(state.character.attributes.strength.cantrip) +
+          buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip)) /
         2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -999,18 +1002,18 @@ export default {
   sneak_attackBase: (state: State, getters: any) => {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.sneak_attack.training) +
+      trainingBonus(state.character.skills.sneak_attack.training) +
       state.character.skills.sneak_attack.invested
     );
   },
   sneak_attackBuffed: (state: State, getters: any) => {
     return (
       getters.sneak_attackBase +
-      Helpers.buffBonus(state.character.skills.sneak_attack.buff) +
-      Helpers.cantripBonus(state.character.skills.sneak_attack.cantrip) +
+      buffBonus(state.character.skills.sneak_attack.buff) +
+      cantripBonus(state.character.skills.sneak_attack.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip) +
-          Helpers.buffBonus(state.character.attributes.quickness.buff) + Helpers.cantripBonus(state.character.attributes.quickness.cantrip)) /
+        (buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip) +
+          buffBonus(state.character.attributes.quickness.buff) + cantripBonus(state.character.attributes.quickness.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -1021,18 +1024,18 @@ export default {
   summoningBase: (state: State, getters: any) => {
     return (
       Math.round((getters.enduranceBase + getters.selfBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.summoning.training) +
+      trainingBonus(state.character.skills.summoning.training) +
       state.character.skills.summoning.invested
     );
   },
   summoningBuffed: (state: State, getters: any) => {
     return (
       getters.summoningBase +
-      Helpers.buffBonus(state.character.skills.summoning.buff) +
-      Helpers.cantripBonus(state.character.skills.summoning.cantrip) +
+      buffBonus(state.character.skills.summoning.buff) +
+      cantripBonus(state.character.skills.summoning.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.endurance.buff) + Helpers.cantripBonus(state.character.attributes.endurance.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.endurance.buff) + cantripBonus(state.character.attributes.endurance.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -1043,18 +1046,18 @@ export default {
   two_handed_combatBase: (state: State, getters: any) => {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
-      Helpers.trainingBonus(state.character.skills.two_handed_combat.training) +
+      trainingBonus(state.character.skills.two_handed_combat.training) +
       state.character.skills.two_handed_combat.invested
     );
   },
   two_handed_combatBuffed: (state: State, getters: any) => {
     return (
       getters.two_handed_combatBase +
-      Helpers.buffBonus(state.character.skills.two_handed_combat.buff) +
-      Helpers.cantripBonus(state.character.skills.two_handed_combat.cantrip) +
+      buffBonus(state.character.skills.two_handed_combat.buff) +
+      cantripBonus(state.character.skills.two_handed_combat.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.strength.buff) + Helpers.cantripBonus(state.character.attributes.strength.cantrip) +
-          Helpers.buffBonus(state.character.attributes.coordination.buff) + Helpers.cantripBonus(state.character.attributes.coordination.cantrip)) /
+        (buffBonus(state.character.attributes.strength.buff) + cantripBonus(state.character.attributes.strength.cantrip) +
+          buffBonus(state.character.attributes.coordination.buff) + cantripBonus(state.character.attributes.coordination.cantrip)) /
         3
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -1065,18 +1068,18 @@ export default {
   void_magicBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
-      Helpers.trainingBonus(state.character.skills.void_magic.training) +
+      trainingBonus(state.character.skills.void_magic.training) +
       state.character.skills.void_magic.invested
     );
   },
   void_magicBuffed: (state: State, getters: any) => {
     return (
       getters.void_magicBase +
-      Helpers.buffBonus(state.character.skills.void_magic.buff) +
-      Helpers.cantripBonus(state.character.skills.void_magic.cantrip) +
+      buffBonus(state.character.skills.void_magic.buff) +
+      cantripBonus(state.character.skills.void_magic.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -1087,18 +1090,18 @@ export default {
   war_magicBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
-      Helpers.trainingBonus(state.character.skills.war_magic.training) +
+      trainingBonus(state.character.skills.war_magic.training) +
       state.character.skills.war_magic.invested
     );
   },
   war_magicBuffed: (state: State, getters: any) => {
     return (
       getters.war_magicBase +
-      Helpers.buffBonus(state.character.skills.war_magic.buff) +
-      Helpers.cantripBonus(state.character.skills.war_magic.cantrip) +
+      buffBonus(state.character.skills.war_magic.buff) +
+      cantripBonus(state.character.skills.war_magic.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         4
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
@@ -1109,18 +1112,18 @@ export default {
   weapon_tinkeringBase: (state: State, getters: any) => {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 2) +
-      Helpers.trainingBonus(state.character.skills.weapon_tinkering.training) +
+      trainingBonus(state.character.skills.weapon_tinkering.training) +
       state.character.skills.weapon_tinkering.invested
     );
   },
   weapon_tinkeringBuffed: (state: State, getters: any) => {
     return (
       getters.weapon_tinkeringBase +
-      Helpers.buffBonus(state.character.skills.weapon_tinkering.buff) +
-      Helpers.cantripBonus(state.character.skills.weapon_tinkering.cantrip) +
+      buffBonus(state.character.skills.weapon_tinkering.buff) +
+      cantripBonus(state.character.skills.weapon_tinkering.cantrip) +
       Math.round(
-        (Helpers.buffBonus(state.character.attributes.focus.buff) + Helpers.cantripBonus(state.character.attributes.focus.cantrip) +
-          Helpers.buffBonus(state.character.attributes.self.buff) + Helpers.cantripBonus(state.character.attributes.self.cantrip)) /
+        (buffBonus(state.character.attributes.focus.buff) + cantripBonus(state.character.attributes.focus.cantrip) +
+          buffBonus(state.character.attributes.self.buff) + cantripBonus(state.character.attributes.self.cantrip)) /
         2
       ) +
       (state.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +

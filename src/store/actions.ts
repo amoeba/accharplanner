@@ -16,7 +16,8 @@ import { firestore } from 'firebase';
 
 export default {
   shareBuild(context: any) {
-    // Clean out current shared build first
+    // Reset state and clean out current shared build first
+    context.state.shareStatus = null;
     context.state.sharedBuild = null;
 
     const db = firebase.firestore();
@@ -24,18 +25,11 @@ export default {
     db.collection("builds")
       .add(context.state.character as firestore.DocumentData)
       .then(function (doc: firestore.DocumentData) {
-        context.commit("addNotification", {
-          type: "success",
-          message: "Successfully shared build!"
-        });
-
+        context.state.shareStatus = null;
         context.state.sharedBuild = doc.id;
       })
       .catch(error => {
-        context.commit("addNotification", {
-          type: "error",
-          message: "Failed to share build: " + error + "."
-        });
+        context.state.shareStatus = "Error: " + error;
       });
   },
   loadRemoteBuild(context: any, build_id: string) {
