@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Helpers from "../helpers";
+import { exportCharacter } from "../helpers";
 
 export default {
   name: "Build",
@@ -32,7 +32,7 @@ export default {
     },
     exportBuild() {
       const data = JSON.parse(this._props.buildData);
-      Helpers.exportCharacter(data, data.name);
+      exportCharacter(data, data.name);
     },
     remove() {
       this.$store.commit("deleteBuild", this._props.buildKey);

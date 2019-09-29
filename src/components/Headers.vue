@@ -97,7 +97,6 @@
 import ExtraSkillCredits from "./ExtraSkillCredits.vue";
 import { MIN_LEVEL, MAX_LEVEL, MIN_TIMES_ENLIGHTENDED, MAX_TIMES_ENLIGHTENDED } from "../constants";
 import { Race } from "../types";
-import Helpers from "../helpers";
 
 export default {
   name: "Headers",
