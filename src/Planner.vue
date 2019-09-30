@@ -188,7 +188,6 @@ td,
 th {
   padding: 1px 3px;
   text-align: left;
-  overflow: scroll;
   white-space: nowrap;
   height: 30px;
 }
