@@ -81,6 +81,14 @@ export default {
       state.character.race === Race.Penumbraen) &&
       state.character.augmentations.eye_of_the_remorseless.invested == 1) {
       cost -= AUGMENTATION_COST[Augmentation.eye_of_the_remorseless][state.character.augmentations.eye_of_the_remorseless.invested];
+    } else if ((
+      state.character.race === Race.Lugian) &&
+      state.character.augmentations.might_of_the_seventh_mule.invested == 1) {
+      cost -= AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][state.character.augmentations.might_of_the_seventh_mule.invested];
+    } else if ((
+      state.character.race === Race.Tumerok) &&
+      state.character.augmentations.hand_of_the_remorseless.invested == 1) {
+      cost -= AUGMENTATION_COST[Augmentation.hand_of_the_remorseless][state.character.augmentations.hand_of_the_remorseless.invested];
     }
 
     return cost;

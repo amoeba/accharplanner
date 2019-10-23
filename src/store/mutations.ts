@@ -66,10 +66,14 @@ export default {
       state.character.augmentations.jack_of_all_trades.invested = 1;
       state.character.augmentations.infused_life_magic.invested = 0;
       state.character.augmentations.eye_of_the_remorseless.invested = 0;
+      state.character.augmentations.might_of_the_seventh_mule.invested = 0;
+      state.character.augmentations.hand_of_the_remorseless.invested = 1;
     } else if (value === Race.Empyrean) {
       state.character.augmentations.jack_of_all_trades.invested = 0;
       state.character.augmentations.infused_life_magic.invested = 1;
       state.character.augmentations.eye_of_the_remorseless.invested = 0;
+      state.character.augmentations.might_of_the_seventh_mule.invested = 0;
+      state.character.augmentations.hand_of_the_remorseless.invested = 1;
     } else if (
       value === Race.Umbraen ||
       value === Race.Penumbraen
@@ -77,6 +81,24 @@ export default {
       state.character.augmentations.jack_of_all_trades.invested = 0;
       state.character.augmentations.infused_life_magic.invested = 0;
       state.character.augmentations.eye_of_the_remorseless.invested = 1;
+      state.character.augmentations.might_of_the_seventh_mule.invested = 0;
+      state.character.augmentations.hand_of_the_remorseless.invested = 1;
+    } else if (
+      value === Race.Lugian
+    ) {
+      state.character.augmentations.jack_of_all_trades.invested = 0;
+      state.character.augmentations.infused_life_magic.invested = 0;
+      state.character.augmentations.eye_of_the_remorseless.invested = 0;
+      state.character.augmentations.might_of_the_seventh_mule.invested = 1;
+      state.character.augmentations.hand_of_the_remorseless.invested = 0;
+    } else if (
+      value === Race.Tumerok
+    ) {
+      state.character.augmentations.jack_of_all_trades.invested = 0;
+      state.character.augmentations.infused_life_magic.invested = 0;
+      state.character.augmentations.eye_of_the_remorseless.invested = 0;
+      state.character.augmentations.might_of_the_seventh_mule.invested = 0;
+      state.character.augmentations.hand_of_the_remorseless.invested = 1;
     }
   },
   updateGender(state: State, value: Gender) {
