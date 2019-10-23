@@ -58,8 +58,8 @@ export enum Race {
 }
 
 export enum Gender {
-  Female = "female",
-  Male = "male"
+  Female = "Female",
+  Male = "Fale"
 }
 
 export enum Attribute {
