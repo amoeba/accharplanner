@@ -20,6 +20,20 @@ import firebase from "../firebase";
 import "firebase/firestore";
 
 export default {
+  changeStage(state: State, index: number) {
+    state.character = JSON.parse(JSON.stringify(state.stages[index]));
+  },
+  saveStage(state: State) {
+    state.stages.push(JSON.parse(JSON.stringify(state.character)));
+  },
+  deleteStage(state: State, index: number) {
+    // Stop if out of bounds
+    if (index > state.stages.length) {
+      return;
+    }
+
+    state.stages.splice(index, 1);
+  },
   loadBuild(state: State, buildJSON: string) {
     state.character = JSON.parse(buildJSON);
   },
@@ -46,12 +60,13 @@ export default {
   },
   reset(state: State) {
     state.character = DefaultCharacter();
+    state.stages = [];
   },
   updateName(state: State, value: string) {
     state.character.name = value;
   },
   updateLevel(state: State, value: number) {
-    state.character.level = value;
+    state.character.level = Number(value);
   },
   updateRace(state: State, value: Race) {
     state.character.race = value;

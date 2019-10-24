@@ -10,6 +10,7 @@
       <h3 slot="header">Share Build</h3>
       <ShareModal slot="body" />
     </Modal>
+    <Stages />
     <Headers />
     <div class="row panes">
       <AttributesAndVitals />
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import Stages from "./components/Stages.vue";
 import Modal from "./components/Modal.vue";
 import ShareModal from "./components/ShareModal.vue";
 import Headers from "./components/Headers.vue";
@@ -38,6 +40,7 @@ export default {
     };
   },
   components: {
+    Stages,
     Modal,
     ShareModal,
     Headers,
@@ -213,7 +216,6 @@ img {
 }
 
 /* Headers */
-
 .header {
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -381,5 +383,65 @@ input.number {
 .failure {
   border: 1px solid red;
   background-color: rgba(150, 0, 0, 0.9);
+}
+
+/* Stages */
+#stages {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#stages h3 {
+  margin-right: 1rem;
+}
+
+.stage div {
+  display: inline-block;
+}
+
+.stage-level {
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 3px 0px 0px 3px;
+  border: 1px solid black;
+  min-width: 2rem;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+.stage-delete {
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: auto;
+  padding: 3px 5px;
+  border-radius: 0px 3px 3px 0px;
+  border: 1px solid black;
+}
+
+.stage-delete button:hover {
+  background-color: black;
+}
+
+.stage-line {
+  border: 0;
+  height: 1px;
+  background: #333;
+  min-width: 2rem;
+  margin: 0.32rem 0;
+}
+
+.stage-new {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+
+.stage-new button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 </style>

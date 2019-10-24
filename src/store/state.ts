@@ -6,7 +6,8 @@ let state: State  = {
   savedBuilds: [],
   shareStatus: null,
   sharedBuild: null,
-  character: DefaultCharacter()
+  character: DefaultCharacter(),
+  stages: []
 }
 
 export default state;
