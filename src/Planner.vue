@@ -77,7 +77,7 @@ export default {
   methods: {
     saveBuild() {
       this.$store.commit("addNotification", {
-        type: "info",
+        type: "success",
         message: "Build saved. See the Builds tab."
       });
       this.$store.commit("saveBuild");
