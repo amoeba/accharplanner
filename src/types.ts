@@ -34,7 +34,7 @@ export interface Notification {
 
 export interface SavedBuild {
   key: string,
-  build: Build
+  build: string
 }
 
 export interface UIState {
