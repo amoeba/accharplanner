@@ -21,6 +21,7 @@ import "firebase/firestore";
 
 export default {
   changeStage(state: State, index: number) {
+    state.currentStage = index;
     state.character = JSON.parse(JSON.stringify(state.stages[index]));
   },
   saveStage(state: State) {
@@ -32,6 +33,7 @@ export default {
       return;
     }
 
+    state.currentStage = null;
     state.stages.splice(index, 1);
   },
   loadBuild(state: State, buildJSON: string) {

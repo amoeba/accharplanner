@@ -386,26 +386,43 @@ input.number {
 }
 
 /* Stages */
+.header.header-stages {
+  padding-bottom: 0;
+}
+
 #stages {
   display: flex;
   flex-wrap: wrap;
 }
 
-#stages h3 {
-  margin-right: 1rem;
+.stage {
+  margin-bottom: 0.5rem;
 }
 
 .stage div {
   display: inline-block;
 }
 
+.stage button {
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  height: 1.5rem;
+}
+
 .stage-level {
   cursor: pointer;
-  padding: 3px 5px;
   border-radius: 3px 0px 0px 3px;
-  border: 1px solid black;
-  min-width: 2rem;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: black;
+  min-width: 2.25rem;
   text-align: center;
+  background-color: #CCC;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.stage-level.selected {
   background-color: black;
   color: white;
 }
@@ -416,7 +433,6 @@ input.number {
   margin: 0;
   padding: 0;
   min-width: auto;
-  padding: 3px 5px;
   border-radius: 0px 3px 3px 0px;
   border: 1px solid black;
 }
@@ -425,18 +441,22 @@ input.number {
   background-color: black;
 }
 
+.stage-delete svg {
+  padding: 3px 3px 1px 3px;
+}
+
 .stage-line {
   border: 0;
   height: 1px;
   background: #333;
   min-width: 2rem;
-  margin: 0.32rem 0;
+  margin: 0.18rem 0;
 }
 
 .stage-new {
   border: 1px solid black;
   border-radius: 3px;
-  padding: 3px 5px;
+  padding: 0px 5px;
 }
 
 .stage-new button {

@@ -43,7 +43,8 @@ export interface State {
   savedBuilds: SavedBuild[],
   shareStatus: string | null,
   sharedBuild: string | null,
-  stages: Character[]
+  stages: Character[],
+  currentStage: number | null
 }
 
 export enum Race {
