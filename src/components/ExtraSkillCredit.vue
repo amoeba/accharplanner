@@ -20,7 +20,7 @@ export default {
   computed: {
     checked: {
       get() {
-        return this.$store.state.character.extraSkillCredits[this._props.id];
+        return this.$store.state.build.character.extraSkillCredits[this._props.id];
       },
 
       set(value) {

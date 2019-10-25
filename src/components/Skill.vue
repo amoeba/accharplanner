@@ -84,10 +84,10 @@ export default {
     },
     isBuffed() {
       return (
-        this.$store.state.character.skills[this._props.name].buff > 0 ||
-        this.$store.state.character.skills[this._props.name].cantrip > 0 ||
+        this.$store.state.build.character.skills[this._props.name].buff > 0 ||
+        this.$store.state.build.character.skills[this._props.name].cantrip > 0 ||
         SKILL_DEPENDS_ON_ATTRIBUTES[this._props.name].reduce((acc, attr) => {
-          if (this.$store.state.character.attributes[attr].buff > 0 || this.$store.state.character.attributes[attr].cantrip > 0) {
+          if (this.$store.state.build.character.attributes[attr].buff > 0 || this.$store.state.build.character.attributes[attr].cantrip > 0) {
             return acc + 1;
           } else {
             return acc;
@@ -96,7 +96,7 @@ export default {
       );
     },
     increaseCostText() {
-      let currentTraining = this.$store.state.character.skills[this._props.name]
+      let currentTraining = this.$store.state.build.character.skills[this._props.name]
         .training;
 
       if (currentTraining === Training.SPECIALIZED) {
@@ -114,7 +114,7 @@ export default {
       return COST_SKILL_POINTS[this._props.name].trained;
     },
     decreaseCostText() {
-      let currentTraining = this.$store.state.character.skills[this._props.name]
+      let currentTraining = this.$store.state.build.character.skills[this._props.name]
         .training;
 
       if (
@@ -145,7 +145,7 @@ export default {
     cantIncrease() {
       // Can't if already specialized
       if (
-        this.$store.state.character.skills[this._props.name].training ==
+        this.$store.state.build.character.skills[this._props.name].training ==
         Training.SPECIALIZED
       ) {
         return true;
@@ -153,7 +153,7 @@ export default {
 
       // Can't if out of credits
       let newTraining =
-        this.$store.state.character.skills[this._props.name].training == Training.TRAINED
+        this.$store.state.build.character.skills[this._props.name].training == Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED;
 
@@ -187,7 +187,7 @@ export default {
       return false;
     },
     cantDecrease() {
-      let training = this.$store.state.character.skills[this._props.name]
+      let training = this.$store.state.build.character.skills[this._props.name]
         .training;
 
       // Can't if not trained or higher
@@ -217,7 +217,7 @@ export default {
       return false;
     },
     canInvest() {
-      let training = this.$store.state.character.skills[this._props.name]
+      let training = this.$store.state.build.character.skills[this._props.name]
         .training;
       return (
         training == Training.SPECIALIZED ||
@@ -226,7 +226,7 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.character.skills[this._props.name].invested;
+        return this.$store.state.build.character.skills[this._props.name].invested;
       },
       set(value) {
         this.$store.commit("updateSkillInvested", {
@@ -237,12 +237,12 @@ export default {
     },
     maxInvestment() {
       if (
-        this.$store.state.character.skills[this._props.name].training ===
+        this.$store.state.build.character.skills[this._props.name].training ===
         Training.SPECIALIZED
       ) {
         return 226;
       } else if (
-        this.$store.state.character.skills[this._props.name].training ===
+        this.$store.state.build.character.skills[this._props.name].training ===
         Training.TRAINED
       ) {
         return 208;
@@ -258,7 +258,7 @@ export default {
     },
     buffLevel: {
       get() {
-        return this.$store.state.character.skills[this._props.name].buff;
+        return this.$store.state.build.character.skills[this._props.name].buff;
       },
       set(value) {
         this.$store.commit("updateSkillBuff", {
@@ -269,12 +269,12 @@ export default {
     },
     buffName() {
       return BUFF_NAME[
-        this.$store.state.character.skills[this._props.name].buff
+        this.$store.state.build.character.skills[this._props.name].buff
       ];
     },
     cantrip: {
       get() {
-        return this.$store.state.character.skills[this._props.name].cantrip;
+        return this.$store.state.build.character.skills[this._props.name].cantrip;
       },
       set(value) {
         this.$store.commit("updateSkillCantrip", {
@@ -285,7 +285,7 @@ export default {
     },
     cantripName() {
       return CANTRIP_NAME[
-        this.$store.state.character.skills[this._props.name].cantrip
+        this.$store.state.build.character.skills[this._props.name].cantrip
       ];
     }
   },

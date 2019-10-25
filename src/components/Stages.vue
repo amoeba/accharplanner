@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     stages() {
-      return this.$store.state.stages;
+      return this.$store.state.build.stages;
     }
   },
   methods: {

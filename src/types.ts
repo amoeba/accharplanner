@@ -34,17 +34,25 @@ export interface Notification {
 
 export interface SavedBuild {
   key: string,
-  character: string
+  build: Build
 }
 
-export interface State {
-  character: Character,
+export interface UIState {
   notifications: Notification[],
   savedBuilds: SavedBuild[],
   shareStatus: string | null,
   sharedBuild: string | null,
-  stages: Character[],
-  currentStage: number | null
+  currentStage: number | null,
+}
+
+export interface Build {
+  character: Character,
+  stages: Character[]
+}
+
+export interface State {
+  ui: UIState,
+  build: Build
 }
 
 export enum Race {

@@ -150,30 +150,30 @@ export default {
       }
     },
     specializedSkills() {
-      return Object.keys(this.$store.state.character.skills).filter(
+      return Object.keys(this.$store.state.build.character.skills).filter(
         key =>
-          this.$store.state.character.skills[key].training ===
+          this.$store.state.build.character.skills[key].training ===
           Training.SPECIALIZED
       );
     },
     trainedSkills() {
-      return Object.keys(this.$store.state.character.skills).filter(
+      return Object.keys(this.$store.state.build.character.skills).filter(
         key =>
-          this.$store.state.character.skills[key].training ===
+          this.$store.state.build.character.skills[key].training ===
           Training.TRAINED
       );
     },
     untrainedSkills() {
-      return Object.keys(this.$store.state.character.skills).filter(
+      return Object.keys(this.$store.state.build.character.skills).filter(
         key =>
-          this.$store.state.character.skills[key].training ===
+          this.$store.state.build.character.skills[key].training ===
           Training.UNTRAINED
       );
     },
     unusableSkills() {
-      return Object.keys(this.$store.state.character.skills).filter(
+      return Object.keys(this.$store.state.build.character.skills).filter(
         key =>
-          this.$store.state.character.skills[key].training ===
+          this.$store.state.build.character.skills[key].training ===
           Training.UNUSABLE
       );
     },

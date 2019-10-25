@@ -57,8 +57,8 @@ export default {
   computed: {
     isBuffed() {
       return (
-        this.$store.state.character.vitals[this._props.name].buff > 0 ||
-        this.$store.state.character.vitals[this._props.name].cantrip > 0
+        this.$store.state.build.character.vitals[this._props.name].buff > 0 ||
+        this.$store.state.build.character.vitals[this._props.name].cantrip > 0
       );
     },
     creation() {
@@ -72,7 +72,7 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.character.vitals[this._props.name].invested;
+        return this.$store.state.build.character.vitals[this._props.name].invested;
       },
       set(value) {
         this.$store.commit("updateVitalInvested", {
@@ -83,7 +83,7 @@ export default {
     },
     buffLevel: {
       get() {
-        return this.$store.state.character.vitals[this._props.name].buff;
+        return this.$store.state.build.character.vitals[this._props.name].buff;
       },
       set(value) {
         this.$store.commit("updateVitalBuff", {
@@ -94,12 +94,12 @@ export default {
     },
     buffName() {
       return BUFF_NAME[
-        this.$store.state.character.vitals[this._props.name].buff
+        this.$store.state.build.character.vitals[this._props.name].buff
       ];
     },
     cantrip: {
       get() {
-        return this.$store.state.character.vitals[this._props.name].cantrip;
+        return this.$store.state.build.character.vitals[this._props.name].cantrip;
       },
       set(value) {
         this.$store.commit("updateVitalCantrip", {
@@ -110,7 +110,7 @@ export default {
     },
     cantripName() {
       return CANTRIP_NAME[
-        this.$store.state.character.vitals[this._props.name].cantrip
+        this.$store.state.build.character.vitals[this._props.name].cantrip
       ];
     }
   },

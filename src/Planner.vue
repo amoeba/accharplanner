@@ -84,8 +84,8 @@ export default {
     },
     exportCharacter() {
       exportCharacter(
-        this.$store.state.character,
-        this.$store.state.character.name
+        this.$store.state.build.character,
+        this.$store.state.build.character.name
       );
     },
     resetPlanner() {

@@ -133,7 +133,7 @@ export default {
     },
     name: {
       get() {
-        return this.$store.state.character.name;
+        return this.$store.state.build.character.name;
       },
       set(value) {
         this.$store.commit("updateName", value);
@@ -141,7 +141,7 @@ export default {
     },
     level: {
       get() {
-        return this.$store.state.character.level;
+        return this.$store.state.build.character.level;
       },
       set(value) {
         this.$store.commit("updateLevel", value);
@@ -152,7 +152,7 @@ export default {
     },
     race: {
       get() {
-        return this.$store.state.character.race;
+        return this.$store.state.build.character.race;
       },
       set(value) {
         this.$store.commit("updateRace", value);
@@ -160,7 +160,7 @@ export default {
     },
     gender: {
       get() {
-        return this.$store.state.character.gender;
+        return this.$store.state.build.character.gender;
       },
       set(value) {
         this.$store.commit("updateGender", value);
@@ -168,7 +168,7 @@ export default {
     },
     timesEnlightened: {
       get() {
-        return this.$store.state.character.timesEnlightened;
+        return this.$store.state.build.character.timesEnlightened;
       },
       set(value) {
         this.$store.commit("updateTimesEnlightened", value);

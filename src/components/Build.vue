@@ -22,7 +22,7 @@ export default {
   computed: {
     description() {
       const data = JSON.parse(this._props.buildData);
-      return data.name + " (Level " + data.level + ")";
+      return data.character.name + " (Level " + data.character.level + ")";
     },
     data() {
       return JSON.stringify(this._props.buildData, null, 2);
@@ -34,7 +34,7 @@ export default {
     },
     exportBuild() {
       const data = JSON.parse(this._props.buildData);
-      exportCharacter(data, data.name);
+      exportCharacter(data, data.character.name);
     },
     remove() {
       this.$store.commit("deleteBuild", this._props.buildKey);

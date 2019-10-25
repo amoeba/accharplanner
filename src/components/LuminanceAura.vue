@@ -27,7 +27,7 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.character.luminance_auras[this._props.name].invested;
+        return this.$store.state.build.character.luminance_auras[this._props.name].invested;
       },
       set(value) {
         this.$store.commit("updateLuminanceAuraInvested", {

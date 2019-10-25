@@ -59,13 +59,13 @@ export default {
     },
     isBuffed() {
       return (
-        this.$store.state.character.attributes[this._props.name].buff > 0 ||
-        this.$store.state.character.attributes[this._props.name].cantrip > 0
+        this.$store.state.build.character.attributes[this._props.name].buff > 0 ||
+        this.$store.state.build.character.attributes[this._props.name].cantrip > 0
       );
     },
     creation: {
       get() {
-        return this.$store.state.character.attributes[this._props.name]
+        return this.$store.state.build.character.attributes[this._props.name]
           .creation;
       },
       set(value) {
@@ -83,7 +83,7 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.character.attributes[this._props.name]
+        return this.$store.state.build.character.attributes[this._props.name]
           .invested;
       },
       set(value) {
@@ -101,7 +101,7 @@ export default {
     },
     buffLevel: {
       get() {
-        return this.$store.state.character.attributes[this._props.name].buff;
+        return this.$store.state.build.character.attributes[this._props.name].buff;
       },
       set(value) {
         this.$store.commit("updateAttributeBuff", {
@@ -112,12 +112,12 @@ export default {
     },
     buffName() {
       return BUFF_NAME[
-        this.$store.state.character.attributes[this._props.name].buff
+        this.$store.state.build.character.attributes[this._props.name].buff
       ];
     },
     cantrip: {
       get() {
-        return this.$store.state.character.attributes[this._props.name].cantrip;
+        return this.$store.state.build.character.attributes[this._props.name].cantrip;
       },
       set(value) {
         this.$store.commit("updateAttributeCantrip", {
@@ -128,7 +128,7 @@ export default {
     },
     cantripName() {
       return CANTRIP_NAME[
-        this.$store.state.character.attributes[this._props.name].cantrip
+        this.$store.state.build.character.attributes[this._props.name].cantrip
       ];
     }
   },

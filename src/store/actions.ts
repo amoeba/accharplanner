@@ -1,14 +1,6 @@
 import {
-  State,
   Character,
-  Race,
-  Gender,
-  Attribute,
-  Vital,
-  Skill,
-  Training,
-  LuminanceAura,
-  Augmentation
+  Build
 } from "../types";
 import firebase from "../firebase";
 import { firestore } from 'firebase';
@@ -17,19 +9,19 @@ import { firestore } from 'firebase';
 export default {
   shareBuild(context: any) {
     // Reset state and clean out current shared build first
-    context.state.shareStatus = null;
-    context.state.sharedBuild = null;
+    context.state.ui.shareStatus = null;
+    context.state.ui.sharedBuild = null;
 
     const db = firebase.firestore();
 
     db.collection("builds")
-      .add(context.state.character as firestore.DocumentData)
+      .add(context.state.build as firestore.DocumentData)
       .then(function (doc: firestore.DocumentData) {
-        context.state.shareStatus = null;
-        context.state.sharedBuild = doc.id;
+        context.state.ui.shareStatus = null;
+        context.state.ui.sharedBuild = doc.id;
       })
       .catch(error => {
-        context.state.shareStatus = "Error: " + error;
+        context.state.ui.shareStatus = "Error: " + error;
       });
   },
   loadRemoteBuild(context: any, build_id: string) {
@@ -44,7 +36,20 @@ export default {
       .doc(build_id)
       .get()
       .then(function (doc: firestore.DocumentData) {
-        context.state.character = doc.data() as Character;
+        // Check if old style build or new style
+        const data = doc.data();
+
+        if ("character" in data) {
+          context.state.build = doc.data() as Character;
+
+          // Change to first stage if appropriate
+          if (context.state.build.stages.length > 0) {
+            context.commit("changeStage", 0);
+          }
+        } else {
+          context.state.build.character = doc.data() as Character;
+          context.state.build.stages = [] as Character[];
+        }
 
         context.commit("addNotification", {
           type: "success",
@@ -59,7 +64,7 @@ export default {
       });
   },
   import(context: any, character: any) {
-    context.state.character = character;
+    context.state.build.character = character;
 
     context.commit("addNotification", {
       type: "success",

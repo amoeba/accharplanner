@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     isSelected() {
-      return (this.$store.state.currentStage !== null && this.$store.state.currentStage === this._props.index)
+      return (this.$store.state.ui.currentStage !== null && this.$store.state.ui.currentStage === this._props.index)
     }
   },
   methods: {
