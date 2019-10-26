@@ -17,7 +17,7 @@ export const ATTRIBUTE_NAME = {
 
 export const SKILL_NAME = {
   [Skill.alchemy]: "Alchemy",
-  [Skill.arcane_lore]: "Arcane_lore",
+  [Skill.arcane_lore]: "Arcane Lore",
   [Skill.armor_tinkering]: "Armor Tinkering",
   [Skill.assess_creature]: "Assess Creature",
   [Skill.assess_person]: "Assess Person",
