@@ -131,7 +131,8 @@ export default {
         return (
           "You've overspent by " +
           overspent +
-          (overspent === 1 ? " point" : " points!")
+          " skill" +
+          (overspent === 1 ? " point!" : "  points!")
         );
       }
 
