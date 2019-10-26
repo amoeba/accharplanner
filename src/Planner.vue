@@ -238,6 +238,7 @@ img {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-row-gap: 0.25rem;
+  grid-column-gap: 0.25rem;
 }
 
 .header .header-items.alt {
