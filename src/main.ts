@@ -7,6 +7,7 @@ import Import from "./components/Import.vue";
 import store from "./store";
 import "./registerServiceWorker";
 import { Training } from './types';
+import DefaultCharacter from './store/DefaultCharacter';
 
 Vue.use(VueRouter);
 
@@ -63,6 +64,14 @@ new Vue({
         return response.json();
       })
       .then(json => {
+        // Re-set to blank state prior to import
+        store.state.build.character = JSON.parse(JSON.stringify(DefaultCharacter()));
+        store.state.build.stages = [];
+
+        // Set Jack of All Trades invested to zero in case this character isn't
+        // one of the original heritage groups
+        store.state.build.character.augmentations.jack_of_all_trades.invested = 0;
+
         store.state.build.character.name = json.name;
         store.state.build.character.level = json.level;
         store.state.build.character.race = json.race;
