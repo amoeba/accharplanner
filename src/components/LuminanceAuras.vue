@@ -20,20 +20,20 @@
         <tbody>
           <LuminanceAura name="aetheric_vision" />
           <LuminanceAura name="craftsman" />
+          <LuminanceAura name="destruction" />
           <LuminanceAura name="glory" />
+          <LuminanceAura name="hardening" />
+          <LuminanceAura name="invulnerability" />
           <LuminanceAura name="mana_flow" />
           <LuminanceAura name="mana_infusion" />
           <LuminanceAura name="protection" />
           <LuminanceAura name="purity" />
+          <LuminanceAura name="retribution" />
           <LuminanceAura name="skill" />
+          <LuminanceAura name="specialization" />
           <LuminanceAura name="temperance" />
           <LuminanceAura name="valor" />
           <LuminanceAura name="world" />
-          <LuminanceAura name="specialization" />
-          <LuminanceAura name="invulnerability" />
-          <LuminanceAura name="destruction" />
-          <LuminanceAura name="retribution" />
-          <LuminanceAura name="hardening" />
         </tbody>
       </table>
     </div>
