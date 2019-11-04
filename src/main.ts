@@ -238,39 +238,6 @@ new Vue({
             case "297":
               store.state.build.character.augmentations.infused_war_magic.invested = json.properties[property];
               break;
-            case "333":
-              store.state.build.character.luminance_auras.valor.invested = json.properties[property];
-              break;
-            case "334":
-              store.state.build.character.luminance_auras.protection.invested = json.properties[property];
-              break;
-            case "335":
-              store.state.build.character.luminance_auras.glory.invested = json.properties[property];
-              break;
-            case "336":
-              store.state.build.character.luminance_auras.temperance.invested = json.properties[property];
-              break;
-            case "338":
-              store.state.build.character.luminance_auras.aetheric_vision.invested = json.properties[property];
-              break;
-            case "339":
-              store.state.build.character.luminance_auras.mana_flow.invested = json.properties[property];
-              break;
-            case "340":
-              store.state.build.character.luminance_auras.mana_infusion.invested = json.properties[property];
-              break;
-            case "342":
-              store.state.build.character.luminance_auras.purity.invested = json.properties[property];
-              break;
-            case "343":
-              store.state.build.character.luminance_auras.craftsman.invested = json.properties[property];
-              break;
-            case "344":
-              store.state.build.character.luminance_auras.specialization.invested = json.properties[property];
-              break;
-            case "365":
-              store.state.build.character.luminance_auras.world.invested = json.properties[property];
-              break;
             default:
               break;
           }
@@ -303,7 +270,7 @@ new Vue({
             params.get("character") +
             " (" +
             params.get("server") +
-            ") successfully imported."
+            ") successfully imported. Note that Auras aren't imported due to limitations out of my control."
         });
       });
   }
