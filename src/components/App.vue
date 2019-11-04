@@ -3,10 +3,8 @@
     <Notifications />
     <header>
       <div>
-        <a href="//planner.treestats.net">
-          <div class="reallywide"><h1>Overly-Detailed Asheron's Call Character Planner (ODACCP)</h1></div>
-          <div class="narrow"><h1><abbr title="Overly-Detailed Asheron's Call Character Planner">ODACCP</abbr></h1></div>
-        </a>
+        <div class="onlywide inline"><h1><a href="//planner.treestats.net">Overly-Detailed Asheron's Call Character Planner</a></h1></div>
+        <div class="onlynarrow inline"><h1><abbr title="Overly-Detailed Asheron's Call Character Planner"><a href="//planner.treestats.net">ODACCP</a></abbr></h1></div>
       </div>
       <div>
         <a class="link-discord" href="https://discord.gg/wfmpqJs">Discord</a>
@@ -172,6 +170,10 @@ a:visited.link-github {
 
 .right {
   text-align: right;
+}
+
+.inline {
+  display: inline-block;
 }
 
 /* Notifications */

@@ -107,7 +107,7 @@ export default {
   grid-template-columns: 1fr;
 }
 
-.reallywide {
+.onlywide {
   display: none;
 }
 
@@ -132,11 +132,11 @@ export default {
 }
 
 @media (min-width: 1100px) {
-  .reallywide {
+  .onlywide {
     display: block;
   }
 
-  .narrow {
+  .onlynarrow {
     display: none;
   }
 }
