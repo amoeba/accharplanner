@@ -96,26 +96,6 @@ export default {
 </script>
 
 <style>
-header {
-  padding: 0.5rem;
-}
-
-header h1 {
-  margin: 0;
-  display: inline-block;
-  margin-right: 0.5rem;
-}
-
-header a,
-header a:visited {
-  color: black;
-  text-decoration: none;
-}
-
-h1, h2, h3 {
-  margin: 0;
-}
-
 /* Grid */
 .headers {
   display: grid;
@@ -166,37 +146,6 @@ h1, h2, h3 {
   .panes {
     grid-template-columns: 1fr 1fr;
   }
-}
-
-/* General stuff */
-table {
-  width: 100%;
-}
-
-input,
-select,
-button {
-  font-size: 100%;
-  background-color: white;
-  border: 1px solid #CCC;
-  border-radius: 3px;
-}
-
-table {
-  border-collapse: collapse;
-  margin: 0;
-}
-
-td,
-th {
-  padding: 1px 3px;
-  text-align: left;
-  white-space: nowrap;
-  height: 30px;
-}
-
-img {
-  clip-path: circle(10px at center);
 }
 
 #planner ul {
@@ -307,22 +256,6 @@ input.number {
   font-weight: bold;
 }
 
-.error {
-  color: red;
-}
-
-.center {
-  text-align: center;
-}
-
-.red {
-  color: red;
-}
-
-.gray {
-  color: gray;
-}
-
 .base {
   border-left: 1px solid #ccc;
   padding-left: 8px;
@@ -343,47 +276,6 @@ input.number {
 
 .buttons button:last-child {
   margin-right: 0;
-}
-
-.right {
-  text-align: right;
-}
-
-/* Notifications */
-#notifications {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  margin: 0;
-  padding: 0;
-}
-
-.notification {
-  position: relative;
-  color: white;
-  width: 90%;
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-  cursor: pointer;
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
-}
-
-.success {
-  border: 1px solid green;
-  background-color: rgba(0, 150, 0, 0.95);
-}
-
-.info {
-  border: 1px solid yellow;
-  background-color: rgba(200, 200, 0, 0.95);
-}
-
-.failure {
-  border: 1px solid red;
-  background-color: rgba(150, 0, 0, 0.9);
 }
 
 /* Stages */

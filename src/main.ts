@@ -1,9 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./components/App.vue";
-import Planner from "./Planner.vue";
-import Builds from "./components/Builds.vue";
-import Import from "./components/Import.vue";
+
+const Planner = () => import(/* webpackChunkName: "planner" */ './Planner.vue');
+const Builds = () => import(/* webpackChunkName: "builds" */ './components/Builds.vue');
+const Import = () => import(/* webpackChunkName: "import" */ './components/Import.vue');
+
 import store from "./store";
 import "./registerServiceWorker";
 import { Training } from './types';
