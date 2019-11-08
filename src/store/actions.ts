@@ -63,8 +63,8 @@ export default {
         });
       });
   },
-  import(context: any, character: any) {
-    context.state.build.character = character;
+  import(context: any, build: any) {
+    context.state.build = build;
 
     context.commit("addNotification", {
       type: "success",

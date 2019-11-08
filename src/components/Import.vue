@@ -31,7 +31,7 @@ export default {
 
       reader.onload = e => {
         try {
-          var character = JSON.parse(e.target.result);
+          var build = JSON.parse(e.target.result);
         } catch (error) {
           this.$store.commit("addNotification", {
             type: "failure",
@@ -39,8 +39,9 @@ export default {
           });
         }
 
-        this.$store.dispatch("import", character);
+        this.$store.dispatch("import", build);
       };
+
       reader.readAsText(selectedFile);
     }
   }
