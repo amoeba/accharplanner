@@ -36,9 +36,6 @@ export default {
     state.ui.currentStage = null;
     state.build.stages.splice(index, 1);
   },
-  loadBuild(state: State, buildJSON: string) {
-    state.build.character = JSON.parse(buildJSON);
-  },
   saveBuild(state: State) {
     // Store locally
     state.ui.savedBuilds.push({

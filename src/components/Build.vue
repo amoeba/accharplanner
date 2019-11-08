@@ -30,7 +30,8 @@ export default {
   },
   methods: {
     load() {
-      this.$store.commit("loadBuild", this._props.buildData);
+      console.log(this._props.buildData)
+      this.$store.dispatch("import", JSON.parse(this._props.buildData));
     },
     exportBuild() {
       const data = JSON.parse(this._props.buildData);
