@@ -125,20 +125,11 @@ nav {
 
 nav a {
   margin-right: 0.25rem;
-  border-width: 1px 1px 0px 1px;
-  border-style: solid;
-  border-color: #ccc;
-  border-radius: 5px 5px 0px 0px;
   padding: 0.25rem 0.5rem;
 }
 
 nav a:hover {
   background-color: rgba(220, 220, 220, 0.5);
-}
-
-content > div {
-  border: 1px solid #ccc;
-  border-radius: 0px 5px 5px 5px;
 }
 
 a.link-discord,
