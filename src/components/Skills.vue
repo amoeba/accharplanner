@@ -1,102 +1,104 @@
 <template>
   <div id="skills" class="pane">
-    <div class="pane-header" v-on:click="toggle">
-      <div>
-        <h3>Skills</h3>
-        <span class="error">{{ skillPointsSpentErrorText }}</span>
+    <div>
+      <div class="pane-header" v-on:click="toggle">
+        <div>
+          <h3>Skills</h3>
+          <span class="error">{{ skillPointsSpentErrorText }}</span>
+        </div>
+        <div class="right">
+          <abbr title="Skill points spent">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr>
+        </div>
       </div>
-      <div class="right">
-        <abbr title="Skill points spent">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr>
+      <div v-if="collapsed" class="table-wrapper">
+        <table>
+          <thead>
+            <tr class="table-header">
+              <th colspan="4">Name</th>
+              <th>Base</th>
+              <th><abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr></th>
+              <th colspan="2">Invested</th>
+              <th>Buff</th>
+              <th>Cantrip</th>
+            </tr>
+            <tr class="controls">
+              <th colspan="4">&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th colspan="2">
+                <input
+                  type="range"
+                  min="0"
+                  max="226"
+                  value="0"
+                  v-on:change="changeInvested"
+                />
+              </th>
+              <th>
+                <select v-on:change="changeBuffed">
+                  <option value="0">None</option>
+                  <option value="1">I</option>
+                  <option value="2">II</option>
+                  <option value="3">III</option>
+                  <option value="4">IV</option>
+                  <option value="5">V</option>
+                  <option value="6">VI</option>
+                  <option value="7">VII</option>
+                  <option value="8">VIII</option>
+                </select>
+              </th>
+              <th>
+                <select v-on:change="changeCantrips">
+                  <option value="0">None</option>
+                  <option value="1">Minor</option>
+                  <option value="2">Major</option>
+                  <option value="3">Epic</option>
+                  <option value="4">Legendary</option>
+                </select>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="specialized">
+              <th colspan="7">
+                Specialized ({{ specializedSkillPointsSpent }} / {{ maxSpecializedSkillPointsSpent }})
+                {{ augmentationsRequiredText }}
+              </th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th colspan="6">&nbsp;</th>
+            </tr>
+            <tr v-if="noSpecializedSkills">
+              <td class="center" colspan="12">No specialized skills</td>
+            </tr>
+            <Skill v-for="(skill, index) in specializedSkills" :key="skill" :name="skill" training="specialized" :tabIndex="index + 1000" />
+            <tr class="trained">
+              <th colspan="4">Trained</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th colspan="6">&nbsp;</th>
+            </tr>
+            <tr v-if="noTrainedSkills">
+              <td class="center" colspan="12">No trained skills</td>
+            </tr>
+            <Skill v-for="(skill, index) in trainedSkills" :key="skill" :name="skill" training="trained" :tabIndex="index + 1100" />
+            <tr class="untrained">
+              <th colspan="4">Untrained</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th colspan="6">&nbsp;</th>
+            </tr>
+            <Skill v-for="(skill, index) in untrainedSkills" :key="skill" :name="skill" training="untrained" :tabIndex="index + 1200" />
+            <tr class="unusable">
+              <th colspan="4">Unusable</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th colspan="6">&nbsp;</th>
+            </tr>
+            <Skill v-for="(skill, index) in unusableSkills" :key="skill" :name="skill" training="unusable" :tabIndex="index + 1300" />
+          </tbody>
+        </table>
       </div>
-    </div>
-    <div v-if="collapsed" class="table-wrapper">
-      <table>
-        <thead>
-          <tr class="table-header">
-            <th colspan="4">Name</th>
-            <th>Base</th>
-            <th><abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr></th>
-            <th colspan="2">Invested</th>
-            <th>Buff</th>
-            <th>Cantrip</th>
-          </tr>
-          <tr class="controls">
-            <th colspan="4">&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th colspan="2">
-              <input
-                type="range"
-                min="0"
-                max="226"
-                value="0"
-                v-on:change="changeInvested"
-              />
-            </th>
-            <th>
-              <select v-on:change="changeBuffed">
-                <option value="0">None</option>
-                <option value="1">I</option>
-                <option value="2">II</option>
-                <option value="3">III</option>
-                <option value="4">IV</option>
-                <option value="5">V</option>
-                <option value="6">VI</option>
-                <option value="7">VII</option>
-                <option value="8">VIII</option>
-              </select>
-            </th>
-            <th>
-              <select v-on:change="changeCantrips">
-                <option value="0">None</option>
-                <option value="1">Minor</option>
-                <option value="2">Major</option>
-                <option value="3">Epic</option>
-                <option value="4">Legendary</option>
-              </select>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="specialized">
-            <th colspan="7">
-              Specialized ({{ specializedSkillPointsSpent }} / {{ maxSpecializedSkillPointsSpent }})
-              {{ augmentationsRequiredText }}
-            </th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th colspan="6">&nbsp;</th>
-          </tr>
-          <tr v-if="noSpecializedSkills">
-            <td class="center" colspan="12">No specialized skills</td>
-          </tr>
-          <Skill v-for="(skill, index) in specializedSkills" :key="skill" :name="skill" training="specialized" :tabIndex="index + 1000" />
-          <tr class="trained">
-            <th colspan="4">Trained</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th colspan="6">&nbsp;</th>
-          </tr>
-          <tr v-if="noTrainedSkills">
-            <td class="center" colspan="12">No trained skills</td>
-          </tr>
-          <Skill v-for="(skill, index) in trainedSkills" :key="skill" :name="skill" training="trained" :tabIndex="index + 1100" />
-          <tr class="untrained">
-            <th colspan="4">Untrained</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th colspan="6">&nbsp;</th>
-          </tr>
-          <Skill v-for="(skill, index) in untrainedSkills" :key="skill" :name="skill" training="untrained" :tabIndex="index + 1200" />
-          <tr class="unusable">
-            <th colspan="4">Unusable</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th colspan="6">&nbsp;</th>
-          </tr>
-          <Skill v-for="(skill, index) in unusableSkills" :key="skill" :name="skill" training="unusable" :tabIndex="index + 1300" />
-        </tbody>
-      </table>
     </div>
   </div>
 </template>

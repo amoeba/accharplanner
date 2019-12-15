@@ -1,16 +1,18 @@
 <template>
   <div id="attributes_and_vitals" class="pane">
-    <div class="pane-header" v-on:click="toggle">
-      <div><h3>Attributes</h3></div>
-      <div class="right">
-        <abbr title="Character creation attribute points spent">{{ attributePointsSpent }} / 330</abbr>
+    <div>
+      <div class="pane-header" v-on:click="toggle">
+        <div><h3>Attributes</h3></div>
+        <div class="right">
+          <abbr title="Character creation attribute points spent">{{ attributePointsSpent }} / 330</abbr>
+        </div>
       </div>
-    </div>
-    <div v-if="collapsed" class="table-wrapper">
-      <table>
-        <Attributes />
-        <Vitals />
-      </table>
+      <div v-if="collapsed" class="table-wrapper">
+        <table>
+          <Attributes />
+          <Vitals />
+        </table>
+      </div>
     </div>
   </div>
 </template>

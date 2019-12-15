@@ -166,9 +166,13 @@ export default {
 
 /* Headers */
 .header {
+  margin: 0.25rem 0.5rem;
+}
+
+/* Extra inner container div to avoid showing big empty boxes when collapsed */
+.header > div {
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 0.25rem 0.5rem;
 }
 
 .header .header-title {
@@ -219,9 +223,13 @@ export default {
 /* Panes */
 .pane {
   margin: 0.25rem 0.5rem;
+  overflow-x: scroll;
+}
+
+/* Extra inner container div to avoid showing big empty boxes when collapsed */
+.pane > div {
   border: 1px solid #ccc;
   border-radius: 5px;
-  overflow-x: scroll;
 }
 
 .pane .pane-header {

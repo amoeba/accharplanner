@@ -1,14 +1,16 @@
 <template>
   <div id="extraskillcredits" class="header">
-    <div class="header-title" v-on:click="toggle">
-      <h3>Extra Skill Credits</h3>
+    <div>
+      <div class="header-title" v-on:click="toggle">
+        <h3>Extra Skill Credits</h3>
+      </div>
+      <ul v-if="collapsed">
+        <ExtraSkillCredit id="railrea" name="Aun Railrea" />
+        <ExtraSkillCredit id="oswald" name="Chasing Oswald" />
+        <ExtraSkillCredit id="luminance1" name="Luminance 1" />
+        <ExtraSkillCredit id="luminance2" name="Luminance 2" />
+      </ul>
     </div>
-    <ul v-if="collapsed">
-      <ExtraSkillCredit id="railrea" name="Aun Railrea" />
-      <ExtraSkillCredit id="oswald" name="Chasing Oswald" />
-      <ExtraSkillCredit id="luminance1" name="Luminance 1" />
-      <ExtraSkillCredit id="luminance2" name="Luminance 2" />
-    </ul>
   </div>
 </template>
 
