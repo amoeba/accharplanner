@@ -1,10 +1,10 @@
 <template>
   <div class="header header-stages">
-    <div class="header-title">
+    <div class="header-title" v-on:click="toggle">
       <h3>Build Stages</h3>
     </div>
 
-    <div id="stages" class="header-items">
+    <div v-if="visible" id="stages" class="header-items">
       <Stage v-for="(stage,index) in stages" v-bind:key="index" v-bind:index="index" v-bind:level="stage.level" />
       <div class="stage stage-new"><button v-on:click="save">+ Stage</button></div>
     </div>
@@ -22,11 +22,17 @@ export default {
   computed: {
     stages() {
       return this.$store.state.build.stages;
+    },
+    visible() {
+      return this.$store.getters.buildStagesPaneVisible;
     }
   },
   methods: {
     save() {
       this.$store.commit("saveStage");
+    },
+    toggle() {
+      this.$store.commit("toggleBuildStagesPane");
     }
   }
 };

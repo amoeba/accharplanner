@@ -30,6 +30,21 @@ export default {
   aurasPaneVisible: (state: State) => {
     return state.ui.paneVisibility.auras;
   },
+  buildStagesPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.buildStages;
+  },
+  characterPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.character;
+  },
+  xpAndLuminancePaneVisible: (state: State) => {
+    return state.ui.paneVisibility.xpAndLuminance;
+  },
+  knobsAndDialsPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.knobsAndDials;
+  },
+  extraSkillCreditsPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.extraSkillCredits;
+  },
   // General
   shareStatus: (state: State) => {
     return state.ui.shareStatus;

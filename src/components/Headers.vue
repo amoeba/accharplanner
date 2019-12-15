@@ -1,12 +1,12 @@
 <template>
   <div class="headers">
     <div class="header">
-      <div class="header-title header-title-split">
+      <div class="header-title header-title-split" v-on:click="toggleCharacterPane">
         <div>
           <h3>Character</h3>
         </div>
       </div>
-      <div class="header-items">
+      <div v-if="characterPaneVisible" class="header-items">
         <div>Name:</div>
         <div>
           <input id="charname" type="text" v-model="name" />
@@ -32,12 +32,12 @@
       </div>
     </div>
     <div class="header">
-      <div class="header-title">
+      <div class="header-title" v-on:click="toggleXPAndLuminancePane">
         <div>
           <h3>XP &amp; Luminance</h3>
         </div>
       </div>
-      <div class="header-items alt">
+      <div v-if="xpAndLuminancePaneVisible" class="header-items alt">
         <div>XP Total:</div>
         <div>{{ totalXPEarned }}</div>
         <div>XP Spent:</div>
@@ -53,12 +53,12 @@
       </div>
     </div>
     <div class="header">
-      <div class="header-title">
+      <div class="header-title" v-on:click="toggleKnobsAndDialsPane">
         <div>
           <h3>Knobs &amp; Dials</h3>
         </div>
       </div>
-      <div class="header-items">
+      <div v-if="knobsAndDialsPaneVisible" class="header-items">
         <div>Invested</div>
         <div>
           <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" />
@@ -104,6 +104,18 @@ export default {
     ExtraSkillCredits
   },
   computed: {
+    characterPaneVisible() {
+      return this.$store.getters.characterPaneVisible;
+    },
+    xpAndLuminancePaneVisible() {
+      return this.$store.getters.xpAndLuminancePaneVisible;
+    },
+    knobsAndDialsPaneVisible() {
+      return this.$store.getters.knobsAndDialsPaneVisible;
+    },
+    extraSkillCreditsPaneVisible() {
+      return this.$store.getters.extraSkillCreditsPaneVisible;
+    },
     totalXPEarned() {
       return Number(this.$store.getters.totalXPEarned).toLocaleString();
     },
@@ -179,6 +191,18 @@ export default {
     }
   },
   methods: {
+    toggleCharacterPane() {
+      this.$store.commit("toggleCharacterPane");
+    },
+    toggleXPAndLuminancePane() {
+      this.$store.commit("toggleXPAndLuminancePane");
+    },
+    toggleKnobsAndDialsPane() {
+      this.$store.commit("toggleKnobsAndDialsPane");
+    },
+    toggleExtraSkillCreditsPane() {
+      this.$store.commit("toggleExtraSkillCreditsPane");
+    },
     updateLevel(e) {
       let actual = Math.round(Number(e.target.value));
 

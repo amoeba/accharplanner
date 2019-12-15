@@ -12,7 +12,12 @@ let state: State  = {
       attributes: true,
       skills: true,
       augmentations: true,
-      auras: true
+      auras: true,
+      buildStages: true,
+      character: true,
+      xpAndLuminance: true,
+      knobsAndDials: true,
+      extraSkillCredits: true
     }
   },
   build: {

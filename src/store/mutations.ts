@@ -33,6 +33,21 @@ export default {
   toggleAurasPane(state: State) {
     state.ui.paneVisibility.auras = !state.ui.paneVisibility.auras;
   },
+  toggleBuildStagesPane(state: State) {
+    state.ui.paneVisibility.buildStages = !state.ui.paneVisibility.buildStages;
+  },
+  toggleCharacterPane(state: State) {
+    state.ui.paneVisibility.character = !state.ui.paneVisibility.character;
+  },
+  toggleXPAndLuminancePane(state: State) {
+    state.ui.paneVisibility.xpAndLuminance = !state.ui.paneVisibility.xpAndLuminance;
+  },
+  toggleKnobsAndDialsPane(state: State) {
+    state.ui.paneVisibility.knobsAndDials = !state.ui.paneVisibility.knobsAndDials;
+  },
+  toggleExtraSkillCreditsPane(state: State) {
+    state.ui.paneVisibility.extraSkillCredits = !state.ui.paneVisibility.extraSkillCredits;
+  },
   changeStage(state: State, index: number) {
     state.ui.currentStage = index;
     state.build.character = JSON.parse(JSON.stringify(state.build.stages[index]));

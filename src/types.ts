@@ -41,7 +41,12 @@ export interface PaneVisibility {
   attributes: boolean,
   skills: boolean,
   augmentations: boolean,
-  auras: boolean
+  auras: boolean,
+  buildStages: boolean,
+  character: boolean,
+  xpAndLuminance: boolean,
+  knobsAndDials: boolean,
+  extraSkillCredits: boolean
 }
 
 export interface UIState {

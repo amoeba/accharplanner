@@ -166,16 +166,18 @@ export default {
 
 /* Headers */
 .header {
-  padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 0.5rem;
+  margin: 0.25rem 0.5rem;
 }
 
 .header .header-title {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 0.25rem;
-  margin-bottom: 0.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.header-title:hover {
+  background-color: #EEE;
 }
 
 .header .header-title-split {
@@ -188,6 +190,20 @@ export default {
   grid-template-columns: 1fr 2fr;
   grid-row-gap: 0.25rem;
   grid-column-gap: 0.25rem;
+  padding: 0.5rem 0.5rem;
+  border-top: 1px solid #ccc;
+}
+
+#stages.header-items {
+  padding-bottom: 0;
+}
+
+#extraskillcredits.header ul {
+  margin: 0rem 0.5rem 0.5rem 0.5rem;
+}
+
+#extraskillcredits.header ul li {
+  margin: 0.25rem 0;
 }
 
 .header .header-items.alt {
@@ -202,7 +218,7 @@ export default {
 
 /* Panes */
 .pane {
-  margin: 0.5rem;
+  margin: 0.25rem 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow-x: scroll;
@@ -215,6 +231,10 @@ export default {
   padding: 0.5rem;
 }
 
+.pane-header:hover {
+  background-color: #EEE;
+}
+
 .pane .pane-header div h3 {
   margin: 0;
   padding: 0;
@@ -224,7 +244,6 @@ export default {
 }
 
 .pane .table-wrapper {
-  margin-top: 0.25rem;
   padding: 0rem 0.5rem;
   border-top: 1px solid #ccc;
   max-height: 25rem;
