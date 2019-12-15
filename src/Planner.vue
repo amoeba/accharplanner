@@ -203,7 +203,6 @@ export default {
 /* Panes */
 .pane {
   margin: 0.5rem;
-  padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow-x: scroll;
@@ -212,9 +211,8 @@ export default {
 .pane .pane-header {
   display: grid;
   grid-template-columns: auto auto;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 0.25rem;
-  padding-bottom: 0.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
 }
 
 .pane .pane-header div h3 {
@@ -226,6 +224,9 @@ export default {
 }
 
 .pane .table-wrapper {
+  margin-top: 0.25rem;
+  padding: 0rem 0.5rem;
+  border-top: 1px solid #ccc;
   max-height: 25rem;
   overflow-y: scroll;
 }

@@ -37,12 +37,20 @@ export interface SavedBuild {
   build: string
 }
 
+export interface PaneVisibility {
+  attributes: boolean,
+  skills: boolean,
+  augmentations: boolean,
+  auras: boolean
+}
+
 export interface UIState {
   notifications: Notification[],
   savedBuilds: SavedBuild[],
   shareStatus: string | null,
   sharedBuild: string | null,
   currentStage: number | null,
+  paneVisibility: PaneVisibility
 }
 
 export interface Build {

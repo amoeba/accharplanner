@@ -8,6 +8,12 @@ let state: State  = {
     shareStatus: null,
     sharedBuild: null,
     currentStage: null,
+    paneVisibility: {
+      attributes: true,
+      skills: true,
+      augmentations: true,
+      auras: true
+    }
   },
   build: {
     character: DefaultCharacter(),

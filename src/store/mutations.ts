@@ -20,6 +20,19 @@ import firebase from "../firebase";
 import "firebase/firestore";
 
 export default {
+  // UI toggles
+  toggleAttributesPane(state: State) {
+    state.ui.paneVisibility.attributes = !state.ui.paneVisibility.attributes;
+  },
+  toggleSkillsPane(state: State) {
+    state.ui.paneVisibility.skills = !state.ui.paneVisibility.skills;
+  },
+  toggleAugmentationsPane(state: State) {
+    state.ui.paneVisibility.augmentations = !state.ui.paneVisibility.augmentations;
+  },
+  toggleAurasPane(state: State) {
+    state.ui.paneVisibility.auras = !state.ui.paneVisibility.auras;
+  },
   changeStage(state: State, index: number) {
     state.ui.currentStage = index;
     state.build.character = JSON.parse(JSON.stringify(state.build.stages[index]));

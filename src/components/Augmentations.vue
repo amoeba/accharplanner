@@ -1,9 +1,9 @@
 <template>
   <div id="augmentations" class="pane augmentations">
-    <div class="pane-header">
+    <div class="pane-header" v-on:click="toggle">
       <div><h3>Experience Augmentations</h3></div>
     </div>
-    <div class="table-wrapper">
+    <div v-if="collapsed" class="table-wrapper">
       <table>
         <thead id="augmentations">
           <tr class="table-header">
@@ -77,10 +77,16 @@ export default {
     Augmentation
   },
   computed: {
+    collapsed() {
+      return this.$store.getters.augmentationsPaneVisible;
+    }
   },
   methods: {
     changeInvested(e) {
       this.$store.commit("changeAllAugmentationInvestment", e.target.value);
+    },
+    toggle() {
+      this.$store.commit("toggleAugmentationsPane");
     }
   }
 };

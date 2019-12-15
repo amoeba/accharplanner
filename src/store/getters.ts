@@ -17,6 +17,19 @@ import { State } from "../types";
 import { Attribute, Skill, Training, Race, Augmentation } from '@/types';
 
 export default {
+  // UI stuff
+  attributesPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.attributes;
+  },
+  skillsPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.skills;
+  },
+  augmentationsPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.augmentations;
+  },
+  aurasPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.auras;
+  },
   // General
   shareStatus: (state: State) => {
     return state.ui.shareStatus;

@@ -1,9 +1,9 @@
 <template>
   <div id="luminance" class="pane luminance">
-    <div class="pane-header">
+    <div class="pane-header" v-on:click="toggle">
       <div><h3>Luminance Auras</h3></div>
     </div>
-    <div class="table-wrapper">
+    <div v-if="collapsed" class="table-wrapper">
       <table>
         <thead id="luminance">
           <tr class="table-header">
@@ -49,10 +49,16 @@ export default {
     LuminanceAura
   },
   computed: {
+    collapsed() {
+      return this.$store.getters.aurasPaneVisible;
+    }
   },
   methods: {
     changeInvested(e) {
       this.$store.commit("changeAllLuminanceAuraInvestment", e.target.value);
+    },
+    toggle() {
+      this.$store.commit("toggleAurasPane");
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div id="skills" class="pane">
-    <div class="pane-header">
+    <div class="pane-header" v-on:click="toggle">
       <div>
         <h3>Skills</h3>
         <span class="error">{{ skillPointsSpentErrorText }}</span>
@@ -9,7 +9,7 @@
         <abbr title="Skill points spent">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr>
       </div>
     </div>
-    <div class="table-wrapper">
+    <div v-if="collapsed" class="table-wrapper">
       <table>
         <thead>
           <tr class="table-header">
@@ -110,6 +110,9 @@ export default {
   name: "Skills",
   components: { Skill },
   computed: {
+    collapsed() {
+      return this.$store.getters.skillsPaneVisible;
+    },
     skillPointsSpent() {
       return this.$store.getters.skillPointsSpent;
     },
@@ -186,6 +189,9 @@ export default {
     }
   },
   methods: {
+    toggle() {
+      this.$store.commit("toggleSkillsPane");
+    },
     changeInvested(e) {
       this.$store.commit("changeAllSkillInvestment", e.target.value);
     },
