@@ -19,7 +19,7 @@ This isn't the first skill planner for AC:
   - [x] Enlightenment
   - [x] Augmentations and Luminance Auras (partially done)
   - [ ] Sets
-  - [ ] Temporary bonuse
+  - [ ] Temporary bonuses
     - [ ] Rares
     - [ ] Cloaks
     - [ ] Aetheria

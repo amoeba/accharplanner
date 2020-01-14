@@ -141,7 +141,7 @@ export default {
   }
 }
 
-/* Make panes switch to two columsn on wide screens */
+/* Make panes switch to two columns on wide screens */
 @media (min-width: 1250px) {
   .panes {
     grid-template-columns: 1fr 1fr;
