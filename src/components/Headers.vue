@@ -8,24 +8,24 @@
           </div>
         </div>
         <div v-if="characterPaneVisible" class="header-items">
-          <div>Name:</div>
+          <div>Name</div>
           <div>
             <input id="charname" type="text" v-model="name" />
           </div>
-          <div>Race:</div>
+          <div>Race</div>
           <div>
             <select v-model="race">
               <option v-for="race in races" v-bind:key="race">{{ race }}</option>
             </select>
           </div>
-          <div>Gender:</div>
+          <div>Gender</div>
           <div>
             <input type="radio" id="female" value="Female" v-model="gender" />
             <label for="female">Female</label>
             <input type="radio" id="male" value="Male" v-model="gender" />
             <label for="male">Male</label>
           </div>
-          <div>Level:</div>
+          <div>Level</div>
           <div>
             <input type="range" min="1" max="275" v-model="level" />
             <input class="number" type="text" v-bind:value="level" v-on:change="updateLevel" />
@@ -41,15 +41,15 @@
           </div>
         </div>
         <div v-if="xpAndLuminancePaneVisible" class="header-items alt">
-          <div>XP Total:</div>
+          <div>XP Total</div>
           <div>{{ totalXPEarned }}</div>
-          <div>XP Spent:</div>
+          <div>XP Spent</div>
           <div>
             <span>{{ totalXPInvested }}</span>
           </div>
-          <div>Lum. XP Spent:</div>
+          <div>Lum. XP Spent</div>
           <div>{{ totalLuminanceXPSpent }}</div>
-          <div>Required Level:</div>
+          <div>Required Level</div>
           <div>
             <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
           </div>
