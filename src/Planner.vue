@@ -202,8 +202,11 @@ export default {
   padding-bottom: 0;
 }
 
+#extraskillcredits div.header-items {
+  display: block;
+}
+
 #extraskillcredits.header ul {
-  margin: 0rem 0.5rem 0.5rem 0.5rem;
 }
 
 #extraskillcredits.header ul li {
