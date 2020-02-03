@@ -385,4 +385,10 @@ input.number {
   padding: 0;
   cursor: pointer;
 }
+
+.faded {
+  color: #777;
+  width: 100px;
+  font-size: 80%;
+}
 </style>

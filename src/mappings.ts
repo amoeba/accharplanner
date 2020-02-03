@@ -141,3 +141,22 @@ export const LUMINANCE_AURA_NAME = {
   [LuminanceAura.retribution]: "Retribution",
   [LuminanceAura.hardening]: "Hardening"
 };
+
+export const LUMINANCE_AURA_EXTRA_INFO = {
+  [LuminanceAura.aetheric_vision]: "+ Surge %",
+  [LuminanceAura.craftsman]: "+1 to Craft/Tink",
+  [LuminanceAura.glory]: "+1 Crit Dmg",
+  [LuminanceAura.mana_flow]: "- Mana Consum.",
+  [LuminanceAura.mana_infusion]: "+ Mana Stone",
+  [LuminanceAura.protection]: "+1 Dmg Red.",
+  [LuminanceAura.purity]: "+ Healing Amount",
+  [LuminanceAura.skill]: "+1 Skill Credit",
+  [LuminanceAura.temperance]: "+1 Crit Dmg Red.",
+  [LuminanceAura.valor]: "+1 Dmg",
+  [LuminanceAura.world]: "+1 All Skills",
+  [LuminanceAura.specialization]: "+2 Spec Skills",
+  [LuminanceAura.invulnerability]: "+1 Dmg Red.",
+  [LuminanceAura.destruction]: "+1 Dmg",
+  [LuminanceAura.retribution]: "+1 Crit Dmg",
+  [LuminanceAura.hardening]: "+1 Crit Dmg Red."
+};

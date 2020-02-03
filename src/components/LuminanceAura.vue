@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      {{ displayName }}
+      {{ displayName }} <span class="faded">{{extraInfo}}</span>
     </td>
     <td>
       <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />
@@ -14,7 +14,7 @@
 
 <script>
 import { LUMINANCE_AURA_MAX_USES } from "../constants";
-import { LUMINANCE_AURA_NAME } from "../mappings";
+import { LUMINANCE_AURA_NAME, LUMINANCE_AURA_EXTRA_INFO } from "../mappings";
 
 export default {
   name: "LuminanceAura",
@@ -24,6 +24,9 @@ export default {
   computed: {
     displayName() {
       return LUMINANCE_AURA_NAME[this._props.name];
+    },
+    extraInfo() {
+      return LUMINANCE_AURA_EXTRA_INFO[this._props.name];
     },
     invested: {
       get() {
