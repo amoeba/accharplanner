@@ -27,8 +27,8 @@
           </div>
           <div>Level</div>
           <div>
-            <input type="range" min="1" max="275" v-model="level" />
-            <input class="number" type="text" v-bind:value="level" v-on:change="updateLevel" />
+            <input class="w60" type="range" min="1" max="275" v-model="level" />
+            <input class="number w30" type="text" v-bind:value="level" v-on:change="updateLevel" />
           </div>
         </div>
       </div>

@@ -394,4 +394,13 @@ input.number {
   width: 100px;
   font-size: 80%;
 }
+
+/* Width helpers */
+.w60 {
+  width: 60%;
+}
+
+.w30 {
+  width: 30%;
+}
 </style>
