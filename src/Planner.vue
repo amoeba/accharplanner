@@ -206,9 +206,6 @@ export default {
   display: block;
 }
 
-#extraskillcredits.header ul {
-}
-
 #extraskillcredits.header ul li {
   margin: 0.25rem 0;
 }
