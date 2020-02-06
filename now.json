@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "FIREBASE_API_KEY": "@firebase_api_key"
+    }
+  }
+}
