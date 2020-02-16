@@ -517,7 +517,8 @@ export default {
       trainingBonus(
         state.build.character.skills.creature_enchantment.training
       ) +
-      state.build.character.skills.creature_enchantment.invested
+      state.build.character.skills.creature_enchantment.invested +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
     );
   },
   creature_enchantmentBuffed: (state: State, getters: any) => {
@@ -617,7 +618,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.finesse_weapons.training) +
-      state.build.character.skills.finesse_weapons.invested
+      state.build.character.skills.finesse_weapons.invested +
+      (state.build.character.augmentations.master_of_the_steel_circle.invested === 1 ? 10 : 0)
     );
   },
   finesse_weaponsBuffed: (state: State, getters: any) => {
@@ -696,7 +698,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.heavy_weapons.training) +
-      state.build.character.skills.heavy_weapons.invested
+      state.build.character.skills.heavy_weapons.invested +
+      (state.build.character.augmentations.master_of_the_steel_circle.invested === 1 ? 10 : 0)
     );
   },
   heavy_weaponsBuffed: (state: State, getters: any) => {
@@ -722,7 +725,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.item_enchantment.training) +
-      state.build.character.skills.item_enchantment.invested
+      state.build.character.skills.item_enchantment.invested +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
     );
   },
   item_enchantmentBuffed: (state: State, getters: any) => {
@@ -821,7 +825,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.life_magic.training) +
-      state.build.character.skills.life_magic.invested
+      state.build.character.skills.life_magic.invested +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
     );
   },
   life_magicBuffed: (state: State, getters: any) => {
@@ -847,7 +852,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.light_weapons.training) +
-      state.build.character.skills.light_weapons.invested
+      state.build.character.skills.light_weapons.invested +
+      (state.build.character.augmentations.master_of_the_steel_circle.invested === 1 ? 10 : 0)
     );
   },
   light_weaponsBuffed: (state: State, getters: any) => {
@@ -1049,9 +1055,10 @@ export default {
     }
 
     return (
-      Math.round(getters.coordinationBase / 2) +
+      Math.round(getters.coordinationBase / 1) +
       trainingBonus(state.build.character.skills.missile_weapons.training) +
-      state.build.character.skills.missile_weapons.invested
+      state.build.character.skills.missile_weapons.invested +
+      (state.build.character.augmentations.master_of_the_focused_eye.invested === 1 ? 10 : 0)
     );
   },
   missile_weaponsBuffed: (state: State, getters: any) => {
@@ -1249,7 +1256,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.void_magic.training) +
-      state.build.character.skills.void_magic.invested
+      state.build.character.skills.void_magic.invested +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
     );
   },
   void_magicBuffed: (state: State, getters: any) => {
@@ -1275,7 +1283,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.war_magic.training) +
-      state.build.character.skills.war_magic.invested
+      state.build.character.skills.war_magic.invested +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
     );
   },
   war_magicBuffed: (state: State, getters: any) => {
