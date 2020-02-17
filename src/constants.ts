@@ -932,10 +932,10 @@ export const COST_VITAL: NumberIndexedDict<number> = {
 };
 
 // Cost when trained at each level, not cost to train
-export const COST_SKILL_POINTS: StringIndexedDict<StringIndexedDict<number>> = {
+export const SKILL_COST_AT_TRAINING: StringIndexedDict<StringIndexedDict<number>> = {
   [Skill.alchemy]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
   [Skill.arcane_lore]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 2 },
-  [Skill.armor_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 0 },
+  [Skill.armor_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 4 },
   [Skill.assess_creature]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 6 },
   [Skill.assess_person]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 4 },
   [Skill.cooking]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 8 },
@@ -948,7 +948,7 @@ export const COST_SKILL_POINTS: StringIndexedDict<StringIndexedDict<number>> = {
   [Skill.healing]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 10 },
   [Skill.heavy_weapons]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
   [Skill.item_enchantment]: { [Training.TRAINED]: 8, [Training.SPECIALIZED]: 16 },
-  [Skill.item_tinkering]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 0 },
+  [Skill.item_tinkering]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 2 },
   [Skill.jump]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 4 },
   [Skill.leadership]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 6 },
   [Skill.life_magic]: { [Training.TRAINED]: 12, [Training.SPECIALIZED]: 20 },
@@ -956,7 +956,7 @@ export const COST_SKILL_POINTS: StringIndexedDict<StringIndexedDict<number>> = {
   [Skill.lockpick]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 10 },
   [Skill.loyalty]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 2 },
   [Skill.magic_defense]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 12 },
-  [Skill.magic_item_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 0 },
+  [Skill.magic_item_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 4 },
   [Skill.mana_conversion]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
   [Skill.melee_defense]: { [Training.TRAINED]: 10, [Training.SPECIALIZED]: 20 },
   [Skill.missile_defense]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 10 },
@@ -970,7 +970,7 @@ export const COST_SKILL_POINTS: StringIndexedDict<StringIndexedDict<number>> = {
   [Skill.two_handed_combat]: { [Training.TRAINED]: 8, [Training.SPECIALIZED]: 16 },
   [Skill.void_magic]: { [Training.TRAINED]: 16, [Training.SPECIALIZED]: 28 },
   [Skill.war_magic]: { [Training.TRAINED]: 16, [Training.SPECIALIZED]: 28 },
-  [Skill.weapon_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 0 }
+  [Skill.weapon_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 4 }
 };
 
 export const SPEC_COSTS_AUG: StringIndexedDict<boolean> = {

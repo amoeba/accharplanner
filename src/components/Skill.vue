@@ -66,7 +66,7 @@ import {
   SKILL_DEPENDS_ON_ATTRIBUTES,
   SPEC_COSTS_AUG,
   UNTRAINABLE,
-  COST_SKILL_POINTS,
+  SKILL_COST_AT_TRAINING,
   MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
 import { SKILL_NAME } from "../mappings";
 import { Training } from '../types';
@@ -107,11 +107,11 @@ export default {
         if (SPEC_COSTS_AUG[this._props.name]) {
           return "AUG";
         } else {
-          return COST_SKILL_POINTS[this._props.name].specialized;
+          return SKILL_COST_AT_TRAINING[this._props.name].specialized;
         }
       }
 
-      return COST_SKILL_POINTS[this._props.name].trained;
+      return SKILL_COST_AT_TRAINING[this._props.name].trained;
     },
     decreaseCostText() {
       let currentTraining = this.$store.state.build.character.skills[this._props.name]
@@ -128,7 +128,7 @@ export default {
         if (SPEC_COSTS_AUG[this._props.name]) {
           return "AUG";
         } else {
-          return COST_SKILL_POINTS[this._props.name].specialized;
+          return SKILL_COST_AT_TRAINING[this._props.name].specialized;
         }
       }
 
@@ -136,7 +136,7 @@ export default {
         if (!UNTRAINABLE[this._props.name]) {
           return;
         } else {
-          return COST_SKILL_POINTS[this._props.name].trained;
+          return SKILL_COST_AT_TRAINING[this._props.name].trained;
         }
       }
 
@@ -157,16 +157,16 @@ export default {
           ? Training.SPECIALIZED
           : Training.TRAINED;
 
-      // Calculate the cost to raise. Because of the way COST_SKILL_POINTS is
+      // Calculate the cost to raise. Because of the way SKILL_COST_AT_TRAINING is
       // built, the cost to spec, for example, if the cost when spec'd minus the
       // cost when trained.
       let newCost = 0;
 
       if (newTraining === Training.SPECIALIZED) {
-        newCost = COST_SKILL_POINTS[this._props.name][Training.SPECIALIZED] -
-          COST_SKILL_POINTS[this._props.name][Training.TRAINED];
+        newCost = SKILL_COST_AT_TRAINING[this._props.name][Training.SPECIALIZED] -
+          SKILL_COST_AT_TRAINING[this._props.name][Training.TRAINED];
       } else if (newTraining === Training.TRAINED) {
-        newCost = COST_SKILL_POINTS[this._props.name][Training.TRAINED];
+        newCost = SKILL_COST_AT_TRAINING[this._props.name][Training.TRAINED];
       }
 
       if (

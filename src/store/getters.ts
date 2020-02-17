@@ -9,7 +9,7 @@ import {
   COST_ATTRIBUTE,
   COST_LEVEL,
   SKILL_POINTS_AT_LEVEL,
-  COST_SKILL_POINTS,
+  SKILL_COST_AT_TRAINING,
   SPEC_COSTS_AUG,
   LUMINANCE_AURA_COST } from "../constants";
 import { trainingBonus, buffBonus, cantripBonus } from "../helpers";
@@ -149,10 +149,10 @@ export default {
       let training: string = state.build.character.skills[skillName].training;
 
       if (
-        training == Training.SPECIALIZED ||
-        training == Training.TRAINED
+        training === Training.SPECIALIZED ||
+        training === Training.TRAINED
       ) {
-        cost += COST_SKILL_POINTS[skillName][training];
+        cost += SKILL_COST_AT_TRAINING[skillName][training];
       }
     });
 
@@ -208,12 +208,7 @@ export default {
     let cost = 0;
 
     getters.specializedSkills.forEach((skill: string) => {
-      // Skip counting skills that can only be spec'd through augs
-      if (COST_SKILL_POINTS[skill][Training.SPECIALIZED] === 0) {
-        return;
-      }
-
-      cost += COST_SKILL_POINTS[skill][Training.SPECIALIZED] - COST_SKILL_POINTS[skill][Training.TRAINED];
+      cost += SKILL_COST_AT_TRAINING[skill][Training.SPECIALIZED] - SKILL_COST_AT_TRAINING[skill][Training.TRAINED];
     });
 
     return cost;
