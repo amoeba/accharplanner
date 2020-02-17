@@ -208,6 +208,11 @@ export default {
     let cost = 0;
 
     getters.specializedSkills.forEach((skill: string) => {
+      // Skip counting skills that can only be spec'd through augs
+      if (COST_SKILL_POINTS[skill][Training.SPECIALIZED] === 0) {
+        return;
+      }
+
       cost += COST_SKILL_POINTS[skill][Training.SPECIALIZED] - COST_SKILL_POINTS[skill][Training.TRAINED];
     });
 
