@@ -6,7 +6,7 @@
         <a href="/"><img src="/img/logo.svg" width="32" height="32" alt="Overly-Detailed Asheron's Call Character Planner (ODAACP)"></a>
       </div>
       <nav>
-        <router-link class="selected" to="/">
+        <router-link to="/">
           Planner
         </router-link>
         <router-link to="/builds">
