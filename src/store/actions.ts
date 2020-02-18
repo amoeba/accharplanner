@@ -59,7 +59,7 @@ export default {
       .catch(error => {
         context.commit("addNotification", {
           type: "error",
-          message: "Failed to load build: " + error + "."
+          message: "Failed to load build '" + build_id + "' with error '" + error + "'."
         });
       });
   },
