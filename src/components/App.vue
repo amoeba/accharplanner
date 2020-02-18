@@ -170,7 +170,7 @@ a:visited.link-github {
 /* Notifications */
 #notifications {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
