@@ -81,8 +81,9 @@ th {
   clip-path: circle(10px at center);
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
   margin: 0;
+  font-weight: 500;
 }
 
 a,
