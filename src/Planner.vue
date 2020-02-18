@@ -126,7 +126,7 @@ export default {
 
   #app #notifications {
     left: 0;
-    bottom: 0;
+    top: 0;
     width: 300px;
   }
 }
