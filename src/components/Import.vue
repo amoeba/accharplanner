@@ -20,7 +20,7 @@ export default {
 
       if (typeof selectedFile === "undefined") {
         this.$store.commit("addNotification", {
-          type: "failure",
+          type: "error",
           message: "Failed to import build from file: No file was selected."
         });
 
@@ -34,7 +34,7 @@ export default {
           var build = JSON.parse(e.target.result);
         } catch (error) {
           this.$store.commit("addNotification", {
-            type: "failure",
+            type: "error",
             message: "Failed to build from file: " + error + "."
           });
         }

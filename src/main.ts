@@ -247,7 +247,7 @@ new Vue({
         errorEncountered = true;
 
         store.commit("addNotification", {
-          type: "failure",
+          type: "error",
           message:
             "Failed to import " +
             params.get("character") +

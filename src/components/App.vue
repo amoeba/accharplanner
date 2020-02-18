@@ -189,17 +189,18 @@ a:visited.link-github {
   box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
 }
 
-.success {
+.notification.success {
   border: 1px solid green;
   background-color: rgba(0, 150, 0, 0.95);
 }
 
-.info {
+.notification.info {
   border: 1px solid yellow;
   background-color: rgba(200, 200, 0, 0.95);
+  color: black;
 }
 
-.failure {
+.notification.error {
   border: 1px solid red;
   background-color: rgba(150, 0, 0, 0.9);
 }
