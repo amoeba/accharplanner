@@ -4,8 +4,8 @@
       <div class="header-title" v-on:click="toggle">
         <h3>Extra Skill Credits</h3>
       </div>
-      <div class="header-items">
-        <ul v-if="collapsed">
+      <div class="header-items" v-if="collapsed">
+        <ul>
           <ExtraSkillCredit id="railrea" name="Aun Railrea" />
           <ExtraSkillCredit id="oswald" name="Chasing Oswald" />
           <ExtraSkillCredit id="luminance1" name="Luminance 1" />
