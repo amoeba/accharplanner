@@ -3,5 +3,15 @@
     "env": {
       "FIREBASE_API_KEY": "@firebase_api_key"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "^/img/(.+)",
+      "dest": "/img/$1"
+    },
+    {
+      "src": "^/favicon.ico",
+      "dest": "/img/icons/favicon.ico"
+    }
+  ]
 }
