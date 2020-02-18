@@ -1055,7 +1055,7 @@ export default {
     }
 
     return (
-      Math.round(getters.coordinationBase / 1) +
+      Math.round(getters.coordinationBase / 2) +
       trainingBonus(state.build.character.skills.missile_weapons.training) +
       state.build.character.skills.missile_weapons.invested +
       (state.build.character.augmentations.master_of_the_focused_eye.invested === 1 ? 10 : 0)
