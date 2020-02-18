@@ -3,25 +3,20 @@
     <Notifications />
     <header>
       <div>
-        <div class="onlywide inline"><h1><a href="//planner.treestats.net">Overly-Detailed Asheron's Call Character Planner</a></h1></div>
-        <div class="onlynarrow inline"><h1><abbr title="Overly-Detailed Asheron's Call Character Planner"><a href="//planner.treestats.net">ODACCP</a></abbr></h1></div>
+        <div class="inline"><h1><a href="/"><img src="/img/logo.svg" width="32" height="32" alt="Overly Detailed Asheron's Call Character Planner (ODAACP)"></a></h1></div>
       </div>
-      <div>
-        <a class="link-discord" href="https://discord.gg/wfmpqJs">Discord</a>
-        <a class="link-github" href="https://github.com/amoeba/accharplanner">GitHub</a>
-      </div>
+      <nav>
+        <router-link class="selected" to="/">
+          Planner
+        </router-link>
+        <router-link to="/builds">
+          Builds
+        </router-link>
+        <router-link to="/import">
+          Import
+        </router-link>
+      </nav>
     </header>
-    <nav>
-      <router-link class="selected" to="/">
-        <strong>Planner</strong>
-      </router-link>
-      <router-link to="/builds">
-        <strong>Builds</strong>
-      </router-link>
-      <router-link to="/import">
-        <strong>Import</strong>
-      </router-link>
-    </nav>
     <content>
       <router-view></router-view>
     </content>
@@ -40,6 +35,10 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+
 #app {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -73,7 +72,7 @@ th {
   height: 30px;
 }
 
-img {
+#planner img {
   clip-path: circle(10px at center);
 }
 
@@ -88,9 +87,10 @@ a:visited {
 }
 
 header {
-  display: grid;
-  grid-template-columns: 6fr 1fr;
+  display: flex;
   align-items: center;
+  border-bottom: 1px solid #CCC;
+  padding: 0 0.5rem;
 }
 
 header > div:last-child {
@@ -99,10 +99,6 @@ header > div:last-child {
 
 header > div:last-child a {
   margin-left: 0.5rem;
-}
-
-header {
-  padding: 0.5rem;
 }
 
 header h1 {
@@ -125,11 +121,11 @@ nav {
 
 nav a {
   margin-right: 0.25rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.75rem 0.5rem;
 }
 
-nav a:hover {
-  background-color: rgba(220, 220, 220, 0.5);
+nav .router-link-exact-active {
+  border-bottom: 2px solid purple;
 }
 
 a.link-discord,
