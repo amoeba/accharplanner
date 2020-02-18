@@ -6,7 +6,7 @@
       </div>
       <div v-if="collapsed" class="table-wrapper">
         <table>
-          <thead id="luminance">
+          <thead>
             <tr class="table-header">
               <th>Name</th>
               <th colspan="2">Invested</th>

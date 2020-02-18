@@ -17,9 +17,9 @@
         </router-link>
       </nav>
     </header>
-    <content>
+    <main>
       <router-view></router-view>
-    </content>
+    </main>
   </div>
 </template>
 
