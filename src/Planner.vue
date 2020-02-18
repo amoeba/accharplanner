@@ -356,6 +356,7 @@ input.number {
   min-width: auto;
   border-radius: 0px 3px 3px 0px;
   border: 1px solid black;
+  background-color: white;
 }
 
 .stage-delete button:hover {
@@ -384,6 +385,7 @@ input.number {
   border: none;
   padding: 0;
   cursor: pointer;
+  background-color: white;
 }
 
 .faded {

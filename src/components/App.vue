@@ -59,6 +59,11 @@ button {
   border-radius: 3px;
 }
 
+button {
+  background-color: #ccc;
+  border: 1px solid #bbb;
+}
+
 table {
   border-collapse: collapse;
   margin: 0;
