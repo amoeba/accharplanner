@@ -2,8 +2,8 @@
   <div id="app">
     <Notifications />
     <header>
-      <div>
-        <div class="inline"><h1><a href="/"><img src="/img/logo.svg" width="32" height="32" alt="Overly Detailed Asheron's Call Character Planner (ODAACP)"></a></h1></div>
+      <div class="logo">
+        <a href="/"><img src="/img/logo.svg" width="32" height="32" alt="Overly Detailed Asheron's Call Character Planner (ODAACP)"></a>
       </div>
       <nav>
         <router-link class="selected" to="/">
@@ -106,16 +106,14 @@ header > div:last-child a {
   margin-left: 0.5rem;
 }
 
-header h1 {
-  margin: 0;
-  display: inline-block;
-  margin-right: 0.5rem;
-}
-
 header a,
 header a:visited {
   color: black;
   text-decoration: none;
+}
+
+header .logo {
+  margin-right: 0.5rem;
 }
 
 nav {
@@ -130,7 +128,7 @@ nav a {
 }
 
 nav .router-link-exact-active {
-  border-bottom: 2px solid purple;
+  border-bottom: 2px solid #000066;
 }
 
 a.link-discord,
