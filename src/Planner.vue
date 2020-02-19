@@ -53,7 +53,7 @@ export default {
     // Bind Esc key to closing an open modal
     const self = this;
 
-    document.addEventListener('keyup', function (evt) {
+    document.addEventListener("keyup", function(evt) {
       if (evt.keyCode === 27) {
         if (self.modalVisible) {
           self.modalVisible = false;
@@ -84,7 +84,7 @@ export default {
     },
     exportCharacter() {
       exportCharacter(
-        this.$store.state.build.character,
+        this.$store.state.build,
         this.$store.state.build.character.name
       );
     },
@@ -182,7 +182,7 @@ export default {
 }
 
 .header-title:hover {
-  background-color: #EEE;
+  background-color: #eee;
 }
 
 .header .header-title-split {
@@ -197,7 +197,6 @@ export default {
   grid-column-gap: 0.25rem;
   padding: 0.5rem 0.5rem;
   border-top: 1px solid #ccc;
-
 }
 
 #stages.header-items {
@@ -243,7 +242,7 @@ export default {
 }
 
 .pane-header:hover {
-  background-color: #EEE;
+  background-color: #eee;
 }
 
 .pane .pane-header div h3 {
@@ -342,7 +341,7 @@ input.number {
   border-color: black;
   min-width: 2.25rem;
   text-align: center;
-  background-color: #EEE;
+  background-color: #eee;
   color: rgba(0, 0, 0, 0.9);
 }
 

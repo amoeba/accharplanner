@@ -1,10 +1,6 @@
-import {
-  Character,
-  Build
-} from "../types";
+import { Character, Build } from "../types";
 import firebase from "../firebase";
-import { firestore } from 'firebase';
-
+import { firestore } from "firebase";
 
 export default {
   shareBuild(context: any) {
@@ -16,7 +12,7 @@ export default {
 
     db.collection("builds")
       .add(context.state.build as firestore.DocumentData)
-      .then(function (doc: firestore.DocumentData) {
+      .then(function(doc: firestore.DocumentData) {
         context.state.ui.shareStatus = null;
         context.state.ui.sharedBuild = doc.id;
       })
@@ -35,7 +31,7 @@ export default {
     db.collection("builds")
       .doc(build_id)
       .get()
-      .then(function (doc: firestore.DocumentData) {
+      .then(function(doc: firestore.DocumentData) {
         // Check if old style build or new style
         const data = doc.data();
 
@@ -59,16 +55,21 @@ export default {
       .catch(error => {
         context.commit("addNotification", {
           type: "error",
-          message: "Failed to load build '" + build_id + "' with error '" + error + "'."
+          message:
+            "Failed to load build '" +
+            build_id +
+            "' with error '" +
+            error +
+            "'."
         });
       });
   },
-  import(context: any, build: any) {
+  import(context: any, build: Build) {
     context.state.build = build;
 
     context.commit("addNotification", {
       type: "success",
       message: "Successfully imported build."
     });
-  },
-}
+  }
+};
