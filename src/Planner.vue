@@ -173,6 +173,7 @@ export default {
 .header > div {
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: white;
 }
 
 .header .header-title {
@@ -196,6 +197,7 @@ export default {
   grid-column-gap: 0.25rem;
   padding: 0.5rem 0.5rem;
   border-top: 1px solid #ccc;
+
 }
 
 #stages.header-items {
@@ -230,6 +232,7 @@ export default {
 .pane > div {
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: white;
 }
 
 .pane .pane-header {
@@ -339,7 +342,7 @@ input.number {
   border-color: black;
   min-width: 2.25rem;
   text-align: center;
-  background-color: #CCC;
+  background-color: #EEE;
   color: rgba(0, 0, 0, 0.9);
 }
 

@@ -3,7 +3,7 @@
     <Notifications />
     <header>
       <div class="logo">
-        <a href="/"><img src="/img/logo.svg" width="32" height="32" alt="Overly-Detailed Asheron's Call Character Planner (ODAACP)"></a>
+        <a href="/"><img src="/img/icons/axe_shield.gif" width="32" height="32" alt="Overly-Detailed Asheron's Call Character Planner (ODAACP)"></a>
       </div>
       <nav>
         <router-link to="/">
@@ -35,6 +35,15 @@ export default {
 </script>
 
 <style>
+/* Light gold
+rgba(254, 253, 209, 1); */
+/* Navy blue
+rgba(0, 2, 49, 1) */
+/* Darker gold
+rgba(249, 205, 118, 1); */
+/* Real gold
+rgba(197, 153, 51, 1); */
+
 body {
   margin: 0;
 }
@@ -60,8 +69,8 @@ button {
 }
 
 button {
-  background-color: #ccc;
-  border: 1px solid #bbb;
+  background-color: #EEE;
+  border: 1px solid #CCC;
 }
 
 table {
@@ -97,6 +106,7 @@ header {
   align-items: center;
   border-bottom: 1px solid #CCC;
   padding: 0 0.5rem;
+  background-color: #EEE;
 }
 
 header > div:last-child {
@@ -111,6 +121,7 @@ header a,
 header a:visited {
   color: black;
   text-decoration: none;
+  font-weight: bold;
 }
 
 header .logo {
@@ -129,7 +140,7 @@ nav a {
 }
 
 nav .router-link-exact-active {
-  border-bottom: 2px solid #000066;
+  border-bottom: 2px solid black;
 }
 
 a.link-discord,
