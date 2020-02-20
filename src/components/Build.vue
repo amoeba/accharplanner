@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     load() {
-      console.log(this._props.buildData)
       this.$store.dispatch("import", JSON.parse(this._props.buildData));
     },
     exportBuild() {
@@ -47,7 +46,7 @@ export default {
 <style>
 .build {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #ccc;
 }
 
 .build:last-child {
@@ -62,5 +61,4 @@ export default {
 .build .savedat {
   margin-bottom: 0.25rem;
 }
-
 </style>
