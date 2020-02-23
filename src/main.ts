@@ -7,7 +7,7 @@ import * as Sentry from "@sentry/browser";
 import * as Integrations from "@sentry/integrations";
 
 Sentry.init({
-  dsn: "https://c619499e0c214bce99b0f0d42ffa9847@sentry.io/1328202",
+  dsn: "https://cfba8bdf4efc44358ed01b97bcaabc32@sentry.io/2802535",
   integrations: [new Integrations.Vue({ Vue, attachProps: true })]
 });
 
