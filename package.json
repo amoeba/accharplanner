@@ -14,7 +14,7 @@
     "@sentry/browser": "^5.12.4",
     "@sentry/integrations": "^5.12.4",
     "core-js": "^3.6.1",
-    "firebase": "^7.6.1",
+    "firebase": "^7.9.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.11",
     "vue-router": "^3.0.3",
