@@ -403,11 +403,29 @@ input.number {
 }
 
 /* Width helpers */
+.w30 {
+  width: 30%;
+}
+
 .w60 {
   width: 60%;
 }
 
-.w30 {
-  width: 30%;
+.w70 {
+  width: 70%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.flex-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right {
+  text-align: right;
 }
 </style>

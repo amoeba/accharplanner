@@ -10,7 +10,7 @@
         <div v-if="characterPaneVisible" class="header-items">
           <div>Name</div>
           <div>
-            <input id="charname" type="text" v-model="name" />
+            <input class="w100" id="charname" type="text" v-model="name" />
           </div>
           <div>Race</div>
           <div>
@@ -26,9 +26,13 @@
             <label for="male">Male</label>
           </div>
           <div>Level</div>
-          <div>
-            <input class="w60" type="range" min="1" max="275" v-model="level" />
-            <input class="number w30" type="text" v-bind:value="level" v-on:change="updateLevel" />
+          <div class="flex-row">
+            <div class="w70">
+              <input class="w100" type="range" min="1" max="275" v-model="level" />
+            </div>
+            <div class="w30 right">
+              <input class="number w100" type="text" v-bind:value="level" v-on:change="updateLevel" />
+            </div>
           </div>
         </div>
       </div>
@@ -66,7 +70,7 @@
         <div v-if="knobsAndDialsPaneVisible" class="header-items">
           <div>Invested</div>
           <div>
-            <input type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" />
+            <input class="w100" type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" />
           </div>
           <div>Buffs</div>
           <div>
