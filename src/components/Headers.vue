@@ -40,7 +40,7 @@
             <h3>XP &amp; Luminance</h3>
           </div>
         </div>
-        <div v-if="xpAndLuminancePaneVisible" class="header-items alt">
+        <div v-if="xpAndLuminancePaneVisible" class="header-items alt-twocol">
           <div>XP Total</div>
           <div>{{ totalXPEarned }}</div>
           <div>XP Spent</div>

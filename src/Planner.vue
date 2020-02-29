@@ -217,6 +217,12 @@ export default {
   grid-row-gap: 0.25rem;
 }
 
+.header .header-items.alt-twocol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 0.25rem;
+}
+
 .header h3 {
   display: inline;
 }
