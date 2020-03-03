@@ -32,14 +32,13 @@ export default {
       reader.onload = e => {
         try {
           var build = JSON.parse(e.target.result);
+          this.$store.dispatch("import", build);
         } catch (error) {
           this.$store.commit("addNotification", {
             type: "error",
             message: "Failed to build from file: " + error + "."
           });
         }
-
-        this.$store.dispatch("import", build);
       };
 
       reader.readAsText(selectedFile);
