@@ -25,11 +25,20 @@
   .headers {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+}
 
+/* Make notifications appear in the top when wide and bottom when narrow */
+@media (min-width: 450px) {
   #app #notifications {
+    right: 0;
     left: 0;
-    top: 0;
-    width: 300px;
+  }
+}
+
+@media (max-width: 450px) {
+  #notifications {
+    bottom: 0;
+    left: 0;
   }
 }
 
@@ -477,10 +486,8 @@ a:visited.link-github {
 /* Notifications */
 #notifications {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 999;
   margin: 0;
   padding: 0;
 }
@@ -488,12 +495,12 @@ a:visited.link-github {
 .notification {
   position: relative;
   color: white;
-  width: 90%;
-  margin: 0.5rem auto;
+  margin: 0.5rem;
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 3px;
   box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
+  z-index: 999;
 }
 
 .notification.success {
