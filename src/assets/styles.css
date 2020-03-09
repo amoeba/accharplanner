@@ -1,0 +1,513 @@
+/* Grid */
+.headers {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.panes {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.onlywide {
+  display: none;
+}
+
+/* Make headers switch to two columns on narrow screens */
+@media (min-width: 450px) {
+  .headers {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Make headers switch to two columns on narrow screens */
+@media (min-width: 800px) {
+  .headers {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  #app #notifications {
+    left: 0;
+    top: 0;
+    width: 300px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .onlywide {
+    display: block;
+  }
+
+  .onlynarrow {
+    display: none;
+  }
+}
+
+/* Make panes switch to two columns on wide screens */
+@media (min-width: 1250px) {
+  .panes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+#planner ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Share */
+#share {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  text-align: right;
+}
+
+#share input {
+  width: 14rem;
+}
+
+/* Headers */
+.header {
+  margin: 0.25rem 0.5rem;
+}
+
+/* Extra inner container div to avoid showing big empty boxes when collapsed */
+.header > div {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.header .header-title {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.header-title:hover {
+  background-color: #eee;
+}
+
+.header .header-title-split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.header .header-items {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-row-gap: 0.25rem;
+  grid-column-gap: 0.25rem;
+  padding: 0.5rem 0.5rem;
+  border-top: 1px solid #ccc;
+}
+
+#stages.header-items {
+  padding-bottom: 0;
+}
+
+#extraskillcredits div.header-items {
+  display: block;
+}
+
+#extraskillcredits.header ul li {
+  margin: 0.25rem 0;
+}
+
+.header .header-items.alt {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-row-gap: 0.25rem;
+}
+
+.header .header-items.alt-twocol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 0.25rem;
+}
+
+.header h3 {
+  display: inline;
+}
+
+/* Panes */
+.pane {
+  margin: 0.25rem 0.5rem;
+  overflow-x: scroll;
+}
+
+/* Extra inner container div to avoid showing big empty boxes when collapsed */
+.pane > div {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.pane .pane-header {
+  display: grid;
+  grid-template-columns: auto auto;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.pane-header:hover {
+  background-color: #eee;
+}
+
+.pane .pane-header div h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 120%;
+  display: inline;
+  margin-right: 1rem;
+}
+
+.pane .table-wrapper {
+  padding: 0rem 0.5rem;
+  border-top: 1px solid #ccc;
+  max-height: 25rem;
+  overflow-y: scroll;
+}
+
+#attributes input[type="range"],
+#vitals input[type="range"],
+#skills input[type="range"] {
+  width: 3rem;
+}
+
+tr.controls th {
+  background-color: #eee;
+}
+
+/* Utility classes */
+th.number,
+td.number {
+  min-width: 2rem;
+}
+
+.number input,
+input.number {
+  width: 2rem;
+}
+
+.isBuffed {
+  color: green;
+  font-weight: bold;
+}
+
+.base {
+  border-left: 1px solid #ccc;
+  padding-left: 8px;
+}
+
+.buffed {
+  border-right: 1px solid #ccc;
+}
+
+.buttons {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.buttons button {
+  padding: 0.15rem 0.75rem;
+  margin-right: 0.25rem;
+}
+
+.buttons button:last-child {
+  margin-right: 0;
+}
+
+/* Stages */
+.header.header-stages {
+  padding-bottom: 0;
+}
+
+#stages {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stage {
+  margin-bottom: 0.5rem;
+}
+
+.stage div {
+  display: inline-block;
+}
+
+.stage button {
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  height: 1.5rem;
+}
+
+.stage-level {
+  cursor: pointer;
+  border-radius: 3px 0px 0px 3px;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: black;
+  min-width: 2.25rem;
+  text-align: center;
+  background-color: #eee;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.stage-level.selected {
+  background-color: black;
+  color: white;
+}
+
+.stage-delete {
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: auto;
+  border-radius: 0px 3px 3px 0px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.stage-delete button:hover {
+  background-color: black;
+}
+
+.stage-delete svg {
+  padding: 3px 3px 1px 3px;
+}
+
+.stage-line {
+  border: 0;
+  height: 1px;
+  background: #333;
+  min-width: 2rem;
+  margin: 0.18rem 0;
+}
+
+.stage-new {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0px 5px;
+}
+
+.stage-new button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: white;
+}
+
+.faded {
+  color: #777;
+  width: 100px;
+  font-size: 80%;
+}
+
+/* Width helpers */
+.w30 {
+  width: 30%;
+}
+
+.w60 {
+  width: 60%;
+}
+
+.w70 {
+  width: 70%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.flex-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right {
+  text-align: right;
+}
+
+/* Light gold
+rgba(254, 253, 209, 1); */
+/* Navy blue
+rgba(0, 2, 49, 1) */
+/* Darker gold
+rgba(249, 205, 118, 1); */
+/* Real gold
+rgba(197, 153, 51, 1); */
+
+body {
+  margin: 0;
+}
+
+#app {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+}
+
+/* General stuff */
+table {
+  width: 100%;
+}
+
+input,
+select,
+button {
+  font-size: 100%;
+  background-color: white;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+}
+
+button {
+  background-color: #EEE;
+  border: 1px solid #CCC;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+}
+
+td,
+th {
+  padding: 1px 3px;
+  text-align: left;
+  white-space: nowrap;
+  height: 30px;
+}
+
+#planner img {
+  clip-path: circle(10px at center);
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-weight: 500;
+}
+
+a,
+a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #CCC;
+  padding: 0 0.5rem;
+  background-color: #EEE;
+}
+
+header > div:last-child {
+  text-align: right;
+}
+
+header > div:last-child a {
+  margin-left: 0.5rem;
+}
+
+header a,
+header a:visited {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header .logo {
+  margin-right: 0.5rem;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+nav a {
+  margin-right: 0.25rem;
+  padding: 0.75rem 0.5rem;
+}
+
+nav .router-link-exact-active {
+  border-bottom: 2px solid black;
+}
+
+a.link-discord,
+a:visited.link-discord {
+  color: rgb(95, 114, 209);
+}
+
+a.link-github,
+a:visited.link-github {
+  color: black;
+}
+
+/* Utility classes */
+.error {
+  color: red;
+}
+
+.center {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.gray {
+  color: gray;
+}
+
+.right {
+  text-align: right;
+}
+
+.inline {
+  display: inline-block;
+}
+
+/* Notifications */
+#notifications {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+}
+
+.notification {
+  position: relative;
+  color: white;
+  width: 90%;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+.notification.success {
+  border: 1px solid green;
+  background-color: rgba(0, 150, 0, 0.95);
+}
+
+.notification.info {
+  border: 1px solid yellow;
+  background-color: rgba(200, 200, 0, 0.95);
+  color: black;
+}
+
+.notification.error {
+  border: 1px solid red;
+  background-color: rgba(150, 0, 0, 0.9);
+}
