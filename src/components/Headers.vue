@@ -20,10 +20,14 @@
           </div>
           <div>Gender</div>
           <div>
-            <input type="radio" id="female" value="Female" v-model="gender" />
-            <label for="female">Female</label>
-            <input type="radio" id="male" value="Male" v-model="gender" />
-            <label for="male">Male</label>
+            <div>
+              <input type="radio" id="female" value="Female" v-model="gender" />
+              <label for="female">Female</label>
+            </div>
+            <div>
+              <input type="radio" id="male" value="Male" v-model="gender" />
+              <label for="male">Male</label>
+            </div>
           </div>
           <div>Level</div>
           <div class="flex-row">
