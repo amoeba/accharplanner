@@ -1320,13 +1320,13 @@
     "@sentry/utils" "5.12.4"
     tslib "^1.9.3"
 
-"@sentry/integrations@^5.12.4":
-  version "5.12.4"
-  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.12.4.tgz#d9dc70ea6ee84894eb2ef08809e0c1ae863537e2"
-  integrity sha512-44Rr+MIYSNE1uE4kbDP8gtAo1a/Fjl0fqQLNLEynxi4nNYRIQDoq4XOZK0mk2EvSua8Zlq/Uo4HKTozpnn/TXQ==
+"@sentry/integrations@^5.15.1":
+  version "5.15.1"
+  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.15.1.tgz#e142511052d51fb1dee72801a7124637481af29d"
+  integrity sha512-BIT+SeuY/upxWr4lhpbDtbacl57kbSuI3mSjvVK0llbdS6qaXZ0JLq93tIkXuVHJkmYSp8iineAk2o9aJgeGhg==
   dependencies:
-    "@sentry/types" "5.12.4"
-    "@sentry/utils" "5.12.4"
+    "@sentry/types" "5.15.1"
+    "@sentry/utils" "5.15.1"
     tslib "^1.9.3"
 
 "@sentry/minimal@5.12.4":
@@ -1343,12 +1343,25 @@
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.12.4.tgz#6e52639bc3b4e136e9a0da5385890f8f78bb7697"
   integrity sha512-JoN3YIp7Z+uxUZArj2B6NcEoXFQDhd0kqO0QpfiHZyg4Dhx2/E2aHuVx0H6Fndk+60iEZSECaCBXe2MOPo4fqA==
 
+"@sentry/types@5.15.1":
+  version "5.15.1"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.15.1.tgz#18d207f34b8aaa30a0db53c32be1f49809e8f9ce"
+  integrity sha512-B89rCcjXs+5D3z/ak9BSPYddNbf183tZ+IMpw2ydITyo5aIYOtUI18hMkYDymheScVa5C0Q1WkQj4leVi7Kumw==
+
 "@sentry/utils@5.12.4":
   version "5.12.4"
   resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.12.4.tgz#f62491a90843cdd01f2ee197c11ca0a7c382c10a"
   integrity sha512-7ISjK+AH676NXtW5n2/MHxEPS0Y2cpIXqJppg7ReVvCFNKHGovKmK4d5yXcP+AoEJt84in3A8D5Y3BONdpjWHQ==
   dependencies:
     "@sentry/types" "5.12.4"
+    tslib "^1.9.3"
+
+"@sentry/utils@5.15.1":
+  version "5.15.1"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.15.1.tgz#7450e91e25fbfc770388716f2c00ac00ab43d572"
+  integrity sha512-+JjVbvXNg4y4hcEtMYZmmIWjV5hJiALhen8Nw98URyvvZua3YOQrmaYMwHqNtsjvpo5r83BjeDw+GsiluPxRuA==
+  dependencies:
+    "@sentry/types" "5.15.1"
     tslib "^1.9.3"
 
 "@soda/friendly-errors-webpack-plugin@^1.7.1":
@@ -10206,20 +10219,10 @@ tsconfig@^7.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tslib@1.11.1:
+tslib@1.11.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
-
-tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
-  integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
-
-tslib@^1.9.3:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.0.tgz#f1f3528301621a53220d58373ae510ff747a66bc"
-  integrity sha512-BmndXUtiTn/VDDrJzQE7Mm22Ix3PxgLltW9bSNLoeCY31gnG2OPx0QqJnuc9oMIKioYrz487i6K9o4Pdn0j+Kg==
 
 tslint@^5.20.1:
   version "5.20.1"
