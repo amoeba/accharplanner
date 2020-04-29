@@ -228,85 +228,85 @@ export default {
   strengthBase: (state: State) => {
     return (
       state.build.character.attributes.strength.creation +
-      state.build.character.attributes.strength.invested +
-      state.build.character.augmentations.reinforcement_of_the_lugians.invested * 5
+      state.build.character.attributes.strength.invested
     );
   },
   strengthBuffed: (state: State, getters: any) => {
     return (
       getters.strengthBase +
       buffBonus(state.build.character.attributes.strength.buff) +
-      cantripBonus(state.build.character.attributes.strength.cantrip)
+      cantripBonus(state.build.character.attributes.strength.cantrip) +
+      state.build.character.augmentations.reinforcement_of_the_lugians.invested * 5
     );
   },
   enduranceBase: (state: State) => {
     return (
       state.build.character.attributes.endurance.creation +
-      state.build.character.attributes.endurance.invested +
-      state.build.character.augmentations.bleearghs_fortitude.invested * 5
+      state.build.character.attributes.endurance.invested
     );
   },
   enduranceBuffed: (state: State, getters: any) => {
     return (
       getters.enduranceBase +
       buffBonus(state.build.character.attributes.endurance.buff) +
-      cantripBonus(state.build.character.attributes.endurance.cantrip)
+      cantripBonus(state.build.character.attributes.endurance.cantrip) +
+      state.build.character.augmentations.bleearghs_fortitude.invested * 5
     );
   },
   coordinationBase: (state: State) => {
     return (
       state.build.character.attributes.coordination.creation +
-      state.build.character.attributes.coordination.invested +
-      state.build.character.augmentations.oswalds_enhancement.invested * 5
+      state.build.character.attributes.coordination.invested
     );
   },
   coordinationBuffed: (state: State, getters: any) => {
     return (
       getters.coordinationBase +
       buffBonus(state.build.character.attributes.coordination.buff) +
-      cantripBonus(state.build.character.attributes.coordination.cantrip)
+      cantripBonus(state.build.character.attributes.coordination.cantrip) +
+      state.build.character.augmentations.oswalds_enhancement.invested * 5
     );
   },
   quicknessBase: (state: State) => {
     return (
       state.build.character.attributes.quickness.creation +
-      state.build.character.attributes.quickness.invested +
-      state.build.character.augmentations.siraluuns_blessing.invested * 5
+      state.build.character.attributes.quickness.invested
     );
   },
   quicknessBuffed: (state: State, getters: any) => {
     return (
       getters.quicknessBase +
       buffBonus(state.build.character.attributes.quickness.buff) +
-      cantripBonus(state.build.character.attributes.quickness.cantrip)
+      cantripBonus(state.build.character.attributes.quickness.cantrip) +
+      state.build.character.augmentations.siraluuns_blessing.invested * 5
     );
   },
   focusBase: (state: State) => {
     return (
       state.build.character.attributes.focus.creation +
-      state.build.character.attributes.focus.invested +
-      state.build.character.augmentations.enduring_calm.invested * 5
+      state.build.character.attributes.focus.invested
     );
   },
   focusBuffed: (state: State, getters: any) => {
     return (
       getters.focusBase +
       buffBonus(state.build.character.attributes.focus.buff) +
-      cantripBonus(state.build.character.attributes.focus.cantrip)
+      cantripBonus(state.build.character.attributes.focus.cantrip) +
+      state.build.character.augmentations.enduring_calm.invested * 5
     );
   },
   selfBase: (state: State) => {
     return (
       state.build.character.attributes.self.creation +
-      state.build.character.attributes.self.invested +
-      state.build.character.augmentations.steadfast_will.invested * 5
+      state.build.character.attributes.self.invested
     );
   },
   selfBuffed: (state: State, getters: any) => {
     return (
       getters.selfBase +
       buffBonus(state.build.character.attributes.self.buff) +
-      cantripBonus(state.build.character.attributes.self.cantrip)
+      cantripBonus(state.build.character.attributes.self.cantrip) +
+      state.build.character.augmentations.steadfast_will.invested * 5
     );
   },
 
@@ -315,6 +315,13 @@ export default {
     return Math.round(state.build.character.attributes.endurance.creation / 2);
   },
   healthBase: (state: State, getters: any) => {
+    return (
+      Math.round(getters.enduranceBase / 2) +
+        state.build.character.vitals.health.invested +
+        cantripBonus(state.build.character.vitals.health.cantrip)
+    );
+  },
+  healthBuffed: (state: State, getters: any) => {
     const benediction_bonus =
       state.build.character.augmentations.asherons_lesser_benediction.invested ===
         1 || state.build.character.augmentations.asherons_benediction.invested === 1
@@ -322,14 +329,8 @@ export default {
         : 1;
 
     return (
-      (Math.round(getters.enduranceBase / 2) +
-        state.build.character.vitals.health.invested +
-        cantripBonus(state.build.character.vitals.health.cantrip)) * benediction_bonus
-    );
-  },
-  healthBuffed: (state: State, getters: any) => {
-    return (
-      getters.healthBase +
+      getters.healthBase *
+      benediction_bonus +
       Math.round(buffBonus(state.build.character.vitals.health.buff) / 2)
     );
   },
@@ -517,8 +518,7 @@ export default {
       trainingBonus(
         state.build.character.skills.creature_enchantment.training
       ) +
-      state.build.character.skills.creature_enchantment.invested +
-      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
+      state.build.character.skills.creature_enchantment.invested
     );
   },
   creature_enchantmentBuffed: (state: State, getters: any) => {
@@ -534,6 +534,7 @@ export default {
         4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.creature_enchantment.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
@@ -618,8 +619,7 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.finesse_weapons.training) +
-      state.build.character.skills.finesse_weapons.invested +
-      (state.build.character.augmentations.master_of_the_steel_circle.invested === 1 ? 10 : 0)
+      state.build.character.skills.finesse_weapons.invested
     );
   },
   finesse_weaponsBuffed: (state: State, getters: any) => {
@@ -633,6 +633,7 @@ export default {
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.master_of_the_steel_circle.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.finesse_weapons.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
@@ -698,8 +699,7 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.heavy_weapons.training) +
-      state.build.character.skills.heavy_weapons.invested +
-      (state.build.character.augmentations.master_of_the_steel_circle.invested === 1 ? 10 : 0)
+      state.build.character.skills.heavy_weapons.invested
     );
   },
   heavy_weaponsBuffed: (state: State, getters: any) => {
@@ -712,7 +712,8 @@ export default {
           buffBonus(state.build.character.attributes.coordination.buff) + cantripBonus(state.build.character.attributes.coordination.cantrip)) /
         3
       ) +
-      (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0)  +
+      (state.build.character.augmentations.master_of_the_steel_circle.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.heavy_weapons.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
@@ -725,8 +726,7 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.item_enchantment.training) +
-      state.build.character.skills.item_enchantment.invested +
-      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
+      state.build.character.skills.item_enchantment.invested
     );
   },
   item_enchantmentBuffed: (state: State, getters: any) => {
@@ -740,6 +740,7 @@ export default {
         4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.item_enchantment.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
@@ -825,8 +826,7 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.life_magic.training) +
-      state.build.character.skills.life_magic.invested +
-      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
+      state.build.character.skills.life_magic.invested
     );
   },
   life_magicBuffed: (state: State, getters: any) => {
@@ -840,6 +840,7 @@ export default {
         4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.life_magic.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
@@ -1057,8 +1058,7 @@ export default {
     return (
       Math.round(getters.coordinationBase / 2) +
       trainingBonus(state.build.character.skills.missile_weapons.training) +
-      state.build.character.skills.missile_weapons.invested +
-      (state.build.character.augmentations.master_of_the_focused_eye.invested === 1 ? 10 : 0)
+      state.build.character.skills.missile_weapons.invested
     );
   },
   missile_weaponsBuffed: (state: State, getters: any) => {
@@ -1070,6 +1070,7 @@ export default {
         buffBonus(state.build.character.attributes.coordination.buff) + cantripBonus(state.build.character.attributes.coordination.cantrip) / 2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.master_of_the_focused_eye.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.missile_weapons.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
@@ -1256,8 +1257,7 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.void_magic.training) +
-      state.build.character.skills.void_magic.invested +
-      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
+      state.build.character.skills.void_magic.invested
     );
   },
   void_magicBuffed: (state: State, getters: any) => {
@@ -1271,6 +1271,7 @@ export default {
         4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.void_magic.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
@@ -1283,8 +1284,7 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.war_magic.training) +
-      state.build.character.skills.war_magic.invested +
-      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0)
+      state.build.character.skills.war_magic.invested
     );
   },
   war_magicBuffed: (state: State, getters: any) => {
@@ -1298,6 +1298,7 @@ export default {
         4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1 ? 5 : 0) +
+      (state.build.character.augmentations.master_of_the_five_fold_path.invested === 1 ? 10 : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.war_magic.training === Training.SPECIALIZED ? state.build.character.luminance_auras.specialization.invested * 2 : 0)
     );
