@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import firebase from "../firebase";
+
 export default {
   name: "ShareModal",
   data() {
@@ -22,6 +24,9 @@ export default {
   },
   created() {
     this.$store.dispatch("shareBuild");
+
+    const analytics = firebase.analytics();
+    analytics.logEvent("shareBuild");
   },
   computed: {
     shareStatus() {

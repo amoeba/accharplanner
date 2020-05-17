@@ -21,7 +21,6 @@
 
 <script>
 import Stage from "./Stage";
-import firebase from "../firebase";
 
 export default {
   name: "Stages",
