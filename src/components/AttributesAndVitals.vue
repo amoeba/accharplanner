@@ -2,7 +2,9 @@
   <div id="attributes_and_vitals" class="pane">
     <div>
       <div class="pane-header" v-on:click="toggle">
-        <div><h3>Attributes</h3></div>
+        <div>
+          <h3>Attributes</h3>
+        </div>
         <div class="right">
           <abbr title="Character creation attribute points spent">{{ attributePointsSpent }} / 330</abbr>
         </div>

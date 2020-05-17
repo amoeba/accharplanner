@@ -2,7 +2,12 @@
 <template>
   <div class="share-modal">
     <div class="share-modal-status">{{ shareStatus }}</div>
-    <input id="sharedBuildURL" type="text" v-model="sharedBuildURL" placeholder="Sharing, hang on tight..." />
+    <input
+      id="sharedBuildURL"
+      type="text"
+      v-model="sharedBuildURL"
+      placeholder="Sharing, hang on tight..."
+    />
     <button v-on:click="copyBuild">{{ copyButtonText }}</button>
   </div>
 </template>
@@ -15,7 +20,7 @@ export default {
       copyButtonText: "Copy to Clipboard"
     };
   },
-  created () {
+  created() {
     this.$store.dispatch("shareBuild");
   },
   computed: {
@@ -46,7 +51,7 @@ export default {
       const self = this;
       self.copyButtonText = "Copied!";
 
-      window.setTimeout((e) => {
+      window.setTimeout(e => {
         self.copyButtonText = "Copy to Clipboard";
       }, 1000);
     }

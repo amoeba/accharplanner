@@ -1,10 +1,17 @@
 <template>
   <tr>
     <td>
-      {{ displayName }} <span class="faded">{{extraInfo}}</span>
+      {{ displayName }}
+      <span class="faded">{{extraInfo}}</span>
     </td>
     <td>
-      <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />
+      <input
+        type="range"
+        min="0"
+        v-bind:max="max"
+        v-bind:value="invested"
+        v-on:change="updateInvested"
+      />
     </td>
     <td class="number">
       <input type="text" v-bind:value="invested" v-on:change="updateInvested" />
@@ -30,7 +37,9 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.build.character.luminance_auras[this._props.name].invested;
+        return this.$store.state.build.character.luminance_auras[
+          this._props.name
+        ].invested;
       },
       set(value) {
         this.$store.commit("updateLuminanceAuraInvested", {
@@ -51,12 +60,10 @@ export default {
         value = 0;
       }
 
-      if (
-        value > LUMINANCE_AURA_MAX_USES[this._props.name]
-      ) {
-        value = LUMINANCE_AURA_MAX_USES[this._props.name]
+      if (value > LUMINANCE_AURA_MAX_USES[this._props.name]) {
+        value = LUMINANCE_AURA_MAX_USES[this._props.name];
       } else if (value < 0) {
-        value = 0
+        value = 0;
       }
 
       this.$store.commit("updateLuminanceAuraInvested", {

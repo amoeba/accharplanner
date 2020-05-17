@@ -74,7 +74,14 @@
         <div v-if="knobsAndDialsPaneVisible" class="header-items">
           <div>Invested</div>
           <div>
-            <input class="w100" type="range" min="0" max="226" value="0" v-on:change="changeAllInvestments" />
+            <input
+              class="w100"
+              type="range"
+              min="0"
+              max="226"
+              value="0"
+              v-on:change="changeAllInvestments"
+            />
           </div>
           <div>Buffs</div>
           <div>
@@ -109,7 +116,12 @@
 
 <script>
 import ExtraSkillCredits from "./ExtraSkillCredits.vue";
-import { MIN_LEVEL, MAX_LEVEL, MIN_TIMES_ENLIGHTENDED, MAX_TIMES_ENLIGHTENDED } from "../constants";
+import {
+  MIN_LEVEL,
+  MAX_LEVEL,
+  MIN_TIMES_ENLIGHTENDED,
+  MAX_TIMES_ENLIGHTENDED
+} from "../constants";
 import { Race } from "../types";
 
 export default {

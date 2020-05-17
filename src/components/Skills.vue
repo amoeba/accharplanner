@@ -16,7 +16,9 @@
             <tr class="table-header">
               <th colspan="4">Name</th>
               <th>Base</th>
-              <th><abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr></th>
+              <th>
+                <abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr>
+              </th>
               <th colspan="2">Invested</th>
               <th>Buff</th>
               <th>Cantrip</th>
@@ -26,13 +28,7 @@
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
-                <input
-                  type="range"
-                  min="0"
-                  max="226"
-                  value="0"
-                  v-on:change="changeInvested"
-                />
+                <input type="range" min="0" max="226" value="0" v-on:change="changeInvested" />
               </th>
               <th>
                 <select v-on:change="changeBuffed">
@@ -71,7 +67,13 @@
             <tr v-if="noSpecializedSkills">
               <td class="center" colspan="12">No specialized skills</td>
             </tr>
-            <Skill v-for="(skill, index) in specializedSkills" :key="skill" :name="skill" training="specialized" :tabIndex="index + 1000" />
+            <Skill
+              v-for="(skill, index) in specializedSkills"
+              :key="skill"
+              :name="skill"
+              training="specialized"
+              :tabIndex="index + 1000"
+            />
             <tr class="trained">
               <th colspan="4">Trained</th>
               <th>&nbsp;</th>
@@ -81,21 +83,39 @@
             <tr v-if="noTrainedSkills">
               <td class="center" colspan="12">No trained skills</td>
             </tr>
-            <Skill v-for="(skill, index) in trainedSkills" :key="skill" :name="skill" training="trained" :tabIndex="index + 1100" />
+            <Skill
+              v-for="(skill, index) in trainedSkills"
+              :key="skill"
+              :name="skill"
+              training="trained"
+              :tabIndex="index + 1100"
+            />
             <tr class="untrained">
               <th colspan="4">Untrained</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="6">&nbsp;</th>
             </tr>
-            <Skill v-for="(skill, index) in untrainedSkills" :key="skill" :name="skill" training="untrained" :tabIndex="index + 1200" />
+            <Skill
+              v-for="(skill, index) in untrainedSkills"
+              :key="skill"
+              :name="skill"
+              training="untrained"
+              :tabIndex="index + 1200"
+            />
             <tr class="unusable">
               <th colspan="4">Unusable</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="6">&nbsp;</th>
             </tr>
-            <Skill v-for="(skill, index) in unusableSkills" :key="skill" :name="skill" training="unusable" :tabIndex="index + 1300" />
+            <Skill
+              v-for="(skill, index) in unusableSkills"
+              :key="skill"
+              :name="skill"
+              training="unusable"
+              :tabIndex="index + 1300"
+            />
           </tbody>
         </table>
       </div>

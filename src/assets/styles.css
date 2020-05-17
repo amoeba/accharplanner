@@ -369,13 +369,13 @@ select,
 button {
   font-size: 100%;
   background-color: white;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 3px;
 }
 
 button {
-  background-color: #EEE;
-  border: 1px solid #CCC;
+  background-color: #eee;
+  border: 1px solid #ccc;
 }
 
 table {
@@ -395,7 +395,11 @@ th {
   clip-path: circle(10px at center);
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
   font-weight: 500;
 }
@@ -409,9 +413,9 @@ a:visited {
 header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #ccc;
   padding: 0 0.5rem;
-  background-color: #EEE;
+  background-color: #eee;
 }
 
 header > div:last-child {
@@ -499,7 +503,7 @@ a:visited.link-github {
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 3px;
-  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
 

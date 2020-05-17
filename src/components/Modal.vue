@@ -11,9 +11,7 @@
           </div>
           <div class="modal-footer">
             <slot name="footer">
-              <button class="modal-default-button" @click="$emit('close')">
-                Close
-              </button>
+              <button class="modal-default-button" @click="$emit('close')">Close</button>
             </slot>
           </div>
         </div>
@@ -29,7 +27,7 @@ export default {
   methods: {
     handleWrapperClick(e) {
       if (e.target.className === "modal-wrapper") {
-        this.$emit('close');
+        this.$emit("close");
       }
     }
   }
@@ -43,9 +41,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: table;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .modal-wrapper {
@@ -59,8 +57,8 @@ export default {
   padding: 1rem;
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
 

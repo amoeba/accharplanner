@@ -1,24 +1,24 @@
 <template>
   <tr>
     <td>
-      <img
-        :src="'/img/' + name + '.png'"
-        :alt="displayName"
-        width="20"
-        height="20"
-      />
+      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
     </td>
-    <td>
-      {{ displayName }}
-    </td>
+    <td>{{ displayName }}</td>
     <td>&nbsp;</td>
     <td class="creation number">{{ creation }}</td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
-      {{ buffed }}
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
+    <td>
+      <input type="range" min="0" max="196" v-model="invested" />
     </td>
-    <td><input type="range" min="0" max="196" v-model="invested" /></td>
-    <td class="invested number"><input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" /></td>
+    <td class="invested number">
+      <input
+        type="text"
+        v-bind:value="invested"
+        v-on:change="updateInvested"
+        v-bind:tabindex="tabIndex"
+      />
+    </td>
     <td>
       <select v-model="buffLevel">
         <option value="0">None</option>
@@ -72,7 +72,8 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.build.character.vitals[this._props.name].invested;
+        return this.$store.state.build.character.vitals[this._props.name]
+          .invested;
       },
       set(value) {
         this.$store.commit("updateVitalInvested", {
@@ -99,7 +100,8 @@ export default {
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.vitals[this._props.name].cantrip;
+        return this.$store.state.build.character.vitals[this._props.name]
+          .cantrip;
       },
       set(value) {
         this.$store.commit("updateVitalCantrip", {
@@ -115,7 +117,7 @@ export default {
     }
   },
   methods: {
-    updateInvested (e) {
+    updateInvested(e) {
       let value = Math.round(Number(e.target.value));
 
       if (isNaN(value)) {

@@ -1,10 +1,18 @@
 <template>
   <div id="builds">
     <h2>Saved Builds</h2>
-    <div><button v-on:click="deleteAll">Delete All</button></div>
-    <div><p>{{ noBuildsMessage }}</p></div>
-      <Build v-for="build in builds" v-bind:key="build.key" v-bind:build-key="build.key"
-        v-bind:build-data="build.build" />
+    <div>
+      <button v-on:click="deleteAll">Delete All</button>
+    </div>
+    <div>
+      <p>{{ noBuildsMessage }}</p>
+    </div>
+    <Build
+      v-for="build in builds"
+      v-bind:key="build.key"
+      v-bind:build-key="build.key"
+      v-bind:build-data="build.build"
+    />
   </div>
 </template>
 

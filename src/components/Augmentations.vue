@@ -2,7 +2,9 @@
   <div id="augmentations" class="pane augmentations">
     <div>
       <div class="pane-header" v-on:click="toggle">
-        <div><h3>Experience Augmentations</h3></div>
+        <div>
+          <h3>Experience Augmentations</h3>
+        </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
         <table>

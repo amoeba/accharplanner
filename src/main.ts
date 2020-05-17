@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./components/App.vue";
-import './assets/styles.css'
+import "./assets/styles.css";
 
 // Sentry.io
 import * as Sentry from "@sentry/browser";

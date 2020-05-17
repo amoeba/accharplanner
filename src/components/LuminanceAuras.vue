@@ -2,7 +2,9 @@
   <div id="luminance" class="pane luminance">
     <div>
       <div class="pane-header" v-on:click="toggle">
-        <div><h3>Luminance Auras</h3></div>
+        <div>
+          <h3>Luminance Auras</h3>
+        </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
         <table>

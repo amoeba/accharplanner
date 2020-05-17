@@ -5,8 +5,15 @@
         <h3>Build Stages</h3>
       </div>
       <div v-if="visible" id="stages" class="header-items">
-        <Stage v-for="(stage,index) in stages" v-bind:key="index" v-bind:index="index" v-bind:level="stage.level" />
-        <div class="stage stage-new"><button v-on:click="save">+ Stage</button></div>
+        <Stage
+          v-for="(stage,index) in stages"
+          v-bind:key="index"
+          v-bind:index="index"
+          v-bind:level="stage.level"
+        />
+        <div class="stage stage-new">
+          <button v-on:click="save">+ Stage</button>
+        </div>
       </div>
     </div>
   </div>
@@ -14,6 +21,7 @@
 
 <script>
 import Stage from "./Stage";
+import firebase from "../firebase";
 
 export default {
   name: "Stages",

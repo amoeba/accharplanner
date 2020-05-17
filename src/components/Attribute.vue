@@ -1,24 +1,33 @@
 <template>
   <tr>
     <td>
-      <img
-        :src="'/img/' + name + '.png'"
-        :alt="displayName"
-        width="20"
-        height="20"
+      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
+    </td>
+    <td>{{ displayName }}</td>
+    <td>
+      <input type="range" min="10" max="100" v-model="creation" />
+    </td>
+    <td class="number">
+      <input
+        type="text"
+        v-bind:value="creation"
+        v-on:change="updateCreation"
+        v-bind:tabindex="tabIndex"
       />
     </td>
-    <td>
-      {{ displayName }}
-    </td>
-    <td><input type="range" min="10" max="100" v-model="creation" /></td>
-    <td class="number"><input type="text" v-bind:value="creation" v-on:change="updateCreation" v-bind:tabindex="tabIndex" /></td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
-      {{ buffed }}
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
+    <td>
+      <input type="range" min="0" max="190" v-model="invested" />
     </td>
-    <td><input type="range" min="0" max="190" v-model="invested" /></td>
-    <td class="invested number"><input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" /></td>
+    <td class="invested number">
+      <input
+        type="text"
+        v-bind:value="invested"
+        v-on:change="updateInvested"
+        v-bind:tabindex="tabIndex"
+      />
+    </td>
     <td>
       <select v-model="buffLevel">
         <option value="0">None</option>
@@ -59,8 +68,10 @@ export default {
     },
     isBuffed() {
       return (
-        this.$store.state.build.character.attributes[this._props.name].buff > 0 ||
-        this.$store.state.build.character.attributes[this._props.name].cantrip > 0
+        this.$store.state.build.character.attributes[this._props.name].buff >
+          0 ||
+        this.$store.state.build.character.attributes[this._props.name].cantrip >
+          0
       );
     },
     creation: {
@@ -101,7 +112,8 @@ export default {
     },
     buffLevel: {
       get() {
-        return this.$store.state.build.character.attributes[this._props.name].buff;
+        return this.$store.state.build.character.attributes[this._props.name]
+          .buff;
       },
       set(value) {
         this.$store.commit("updateAttributeBuff", {
@@ -117,7 +129,8 @@ export default {
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.attributes[this._props.name].cantrip;
+        return this.$store.state.build.character.attributes[this._props.name]
+          .cantrip;
       },
       set(value) {
         this.$store.commit("updateAttributeCantrip", {
@@ -133,11 +146,11 @@ export default {
     }
   },
   methods: {
-    updateCreation (e) {
+    updateCreation(e) {
       let value = Math.round(Number(e.target.value));
 
       if (isNaN(value)) {
-        value = 10
+        value = 10;
       }
 
       if (value > 100) {
@@ -153,7 +166,7 @@ export default {
 
       e.target.value = value;
     },
-    updateInvested (e) {
+    updateInvested(e) {
       let value = Math.round(Number(e.target.value));
 
       if (isNaN(value)) {
