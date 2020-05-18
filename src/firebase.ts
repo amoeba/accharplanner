@@ -4,7 +4,6 @@ import * as firebase from "firebase/app";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
-import "firebase/analytics";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {

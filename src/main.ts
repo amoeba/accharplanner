@@ -23,9 +23,6 @@ import "./registerServiceWorker";
 import { Training } from "./types";
 import DefaultCharacter from "./store/DefaultCharacter";
 
-// Firebase
-import firebase from "./firebase";
-
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
@@ -45,10 +42,6 @@ new Vue({
   store,
   render: h => h(App),
   created: function() {
-    // Ping firebase with a heartbeat event
-    const analytics = firebase.analytics();
-    analytics.logEvent("appCreated");
-
     // Clear any notifications stored in localStorage
     this.$store.commit("clearAllNotifications");
 
