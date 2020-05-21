@@ -30,8 +30,9 @@
 /* Make notifications appear in the top when wide and bottom when narrow */
 @media (min-width: 450px) {
   #app #notifications {
+    top: 0;
     right: 0;
-    left: 0;
+    width: 500px;
   }
 }
 
