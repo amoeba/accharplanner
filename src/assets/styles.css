@@ -60,6 +60,12 @@
   }
 }
 
+@media (min-width: 2400px) {
+  .panes {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
 #planner ul {
   list-style-type: none;
   margin: 0;
