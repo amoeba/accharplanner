@@ -21,6 +21,9 @@
     <main>
       <router-view></router-view>
     </main>
+    <footer>
+      <a href="{{url}">{{ hash }}</a>
+    </footer>
   </div>
 </template>
 
@@ -31,6 +34,14 @@ export default {
   name: "App",
   components: {
     Notifications
+  },
+  computed: {
+    url() {
+      return "https://github.com/amoeba/accharplanner/commit/" + hash;
+    },
+    hash() {
+      return process.env.VUE_APP_GIT_HASH || a;
+    }
   }
 };
 </script>

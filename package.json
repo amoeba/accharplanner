@@ -31,6 +31,7 @@
     "@vue/cli-service": "~4.4.0",
     "@vue/test-utils": "1.0.0-beta.31",
     "babel-core": "7.0.0-bridge.0",
+    "git-describe": "^4.0.4",
     "prettier": "^1.19.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.0",

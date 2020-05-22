@@ -459,6 +459,9 @@ nav .router-link-exact-active {
   border-bottom: 2px solid black;
 }
 
+footer {
+  text-align: center;
+}
 a.link-discord,
 a:visited.link-discord {
   color: rgb(95, 114, 209);
