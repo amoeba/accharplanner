@@ -354,7 +354,12 @@ export default {
 
     return (
       getters.healthBase * benediction_bonus +
-      Math.round(buffBonus(state.build.character.vitals.health.buff) / 2)
+      Math.round(
+        (buffBonus(state.build.character.vitals.health.buff) +
+          state.build.character.augmentations.bleearghs_fortitude.invested *
+            5) /
+          2
+      )
     );
   },
   staminaCreation: (state: State) => {
@@ -369,7 +374,9 @@ export default {
   },
   staminaBuffed: (state: State, getters: any) => {
     return (
-      getters.staminaBase + buffBonus(state.build.character.vitals.stamina.buff)
+      getters.staminaBase +
+      buffBonus(state.build.character.vitals.stamina.buff) +
+      state.build.character.augmentations.bleearghs_fortitude.invested * 5
     );
   },
   manaCreation: (state: State) => {
@@ -488,6 +495,8 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
+      (state.build.character.augmentations.bleearghs_fortitude.invested * 5) /
+        2 +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.armor_tinkering.training ===
@@ -1597,6 +1606,8 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
+      (state.build.character.augmentations.bleearghs_fortitude.invested * 5) /
+        3 +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.summoning.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
