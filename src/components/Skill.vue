@@ -35,7 +35,14 @@
         />
       </div>
     </td>
-    <td class="invested number"><input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" /></td>
+    <td class="invested number">
+      <input
+        type="text"
+        v-bind:value="invested"
+        v-on:change="updateInvested"
+        v-bind:tabindex="tabIndex"
+      />
+    </td>
     <td>
       <select v-model="buffLevel">
         <option value="0"></option>
@@ -55,7 +62,7 @@
         <option value="1">Minor</option>
         <option value="2">Major</option>
         <option value="3">Epic</option>
-        <option value="4">Legendary</option>
+        <option value="4">Legen.</option>
       </select>
     </td>
   </tr>
@@ -89,9 +96,13 @@ export default {
     isBuffed() {
       return (
         this.$store.state.build.character.skills[this._props.name].buff > 0 ||
-        this.$store.state.build.character.skills[this._props.name].cantrip > 0 ||
+        this.$store.state.build.character.skills[this._props.name].cantrip >
+          0 ||
         SKILL_DEPENDS_ON_ATTRIBUTES[this._props.name].reduce((acc, attr) => {
-          if (this.$store.state.build.character.attributes[attr].buff > 0 || this.$store.state.build.character.attributes[attr].cantrip > 0) {
+          if (
+            this.$store.state.build.character.attributes[attr].buff > 0 ||
+            this.$store.state.build.character.attributes[attr].cantrip > 0
+          ) {
             return acc + 1;
           } else {
             return acc;
@@ -100,8 +111,9 @@ export default {
       );
     },
     increaseCostText() {
-      let currentTraining = this.$store.state.build.character.skills[this._props.name]
-        .training;
+      let currentTraining = this.$store.state.build.character.skills[
+        this._props.name
+      ].training;
 
       if (currentTraining === Training.SPECIALIZED) {
         return "";
@@ -118,8 +130,9 @@ export default {
       return SKILL_COST_AT_TRAINING[this._props.name].trained;
     },
     decreaseCostText() {
-      let currentTraining = this.$store.state.build.character.skills[this._props.name]
-        .training;
+      let currentTraining = this.$store.state.build.character.skills[
+        this._props.name
+      ].training;
 
       if (
         currentTraining === Training.UNUSABLE ||
@@ -157,7 +170,8 @@ export default {
 
       // Can't if out of credits
       let newTraining =
-        this.$store.state.build.character.skills[this._props.name].training == Training.TRAINED
+        this.$store.state.build.character.skills[this._props.name].training ==
+        Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED;
 
@@ -167,15 +181,15 @@ export default {
       let newCost = 0;
 
       if (newTraining === Training.SPECIALIZED) {
-        newCost = SKILL_COST_AT_TRAINING[this._props.name][Training.SPECIALIZED] -
+        newCost =
+          SKILL_COST_AT_TRAINING[this._props.name][Training.SPECIALIZED] -
           SKILL_COST_AT_TRAINING[this._props.name][Training.TRAINED];
       } else if (newTraining === Training.TRAINED) {
         newCost = SKILL_COST_AT_TRAINING[this._props.name][Training.TRAINED];
       }
 
       if (
-        this.$store.getters.skillPointsSpent +
-          newCost >
+        this.$store.getters.skillPointsSpent + newCost >
         this.$store.getters.skillPointsAvailable
       ) {
         return true;
@@ -183,7 +197,9 @@ export default {
 
       // Can't if would push you over 70 max spec'd credits
       if (
-        newTraining === Training.SPECIALIZED && (this.$store.getters.specializedSkillPointsSpent + newCost > MAX_SPECIALIZED_SKILL_CREDITS_SPENT)
+        newTraining === Training.SPECIALIZED &&
+        this.$store.getters.specializedSkillPointsSpent + newCost >
+          MAX_SPECIALIZED_SKILL_CREDITS_SPENT
       ) {
         return true;
       }
@@ -195,26 +211,17 @@ export default {
         .training;
 
       // Can't if not trained or higher
-      if (
-        training === Training.UNTRAINED ||
-        training === Training.UNTRAINED
-      ) {
+      if (training === Training.UNTRAINED || training === Training.UNTRAINED) {
         return true;
       }
 
       // Can't if not untrainable
-      if (
-        training === Training.TRAINED &&
-        !UNTRAINABLE[this._props.name]
-      ) {
+      if (training === Training.TRAINED && !UNTRAINABLE[this._props.name]) {
         return true;
       }
 
       // Can't if not trained
-      if (
-        training === Training.UNTRAINED ||
-        training === Training.UNUSABLE
-      ) {
+      if (training === Training.UNTRAINED || training === Training.UNUSABLE) {
         return true;
       }
 
@@ -223,14 +230,12 @@ export default {
     canInvest() {
       let training = this.$store.state.build.character.skills[this._props.name]
         .training;
-      return (
-        training == Training.SPECIALIZED ||
-        training == Training.TRAINED
-      );
+      return training == Training.SPECIALIZED || training == Training.TRAINED;
     },
     invested: {
       get() {
-        return this.$store.state.build.character.skills[this._props.name].invested;
+        return this.$store.state.build.character.skills[this._props.name]
+          .invested;
       },
       set(value) {
         this.$store.commit("updateSkillInvested", {
@@ -278,7 +283,8 @@ export default {
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.skills[this._props.name].cantrip;
+        return this.$store.state.build.character.skills[this._props.name]
+          .cantrip;
       },
       set(value) {
         this.$store.commit("updateSkillCantrip", {
@@ -300,25 +306,19 @@ export default {
     decreaseTraining() {
       this.$store.commit("decreaseTraining", this._props.name);
     },
-    updateInvested (e) {
+    updateInvested(e) {
       let value = Math.round(Number(e.target.value));
 
       if (isNaN(value)) {
         value = 0;
       }
 
-      if (
-        this._props.training === Training.SPECIALIZED &&
-        value > 226
-      ) {
+      if (this._props.training === Training.SPECIALIZED && value > 226) {
         value = 226;
-      } else if (
-        this._props.training === Training.TRAINED &&
-        value > 208
-      ) {
+      } else if (this._props.training === Training.TRAINED && value > 208) {
         value = 208;
       } else if (value < 0) {
-        value = 0
+        value = 0;
       }
 
       this.$store.commit("updateSkillInvested", {

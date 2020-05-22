@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     toggle() {
-      this.$store.commit("toggleExtraSkillCreditsPane")
+      this.$store.commit("toggleExtraSkillCreditsPane");
     }
   }
 };

@@ -1,23 +1,23 @@
 export interface StringIndexedDict<V> {
-  [key: string]: V
+  [key: string]: V;
 }
 
 export interface NumberIndexedDict<V> {
-  [key: number]: V
+  [key: number]: V;
 }
 
 export interface Character {
-  name: string,
-  race: string,
-  gender: string,
-  level: number,
-  timesEnlightened: number,
-  extraSkillCredits: any,
-  attributes: any,
-  vitals: any,
-  skills: any,
-  augmentations: any,
-  luminance_auras: any
+  name: string;
+  race: string;
+  gender: string;
+  level: number;
+  timesEnlightened: number;
+  extraSkillCredits: any;
+  attributes: any;
+  vitals: any;
+  skills: any;
+  augmentations: any;
+  luminance_auras: any;
 }
 
 enum NotificationType {
@@ -27,45 +27,45 @@ enum NotificationType {
 }
 
 export interface Notification {
-  id: number,
-  type: NotificationType,
-  message: string
+  id: number;
+  type: NotificationType;
+  message: string;
 }
 
 export interface SavedBuild {
-  key: string,
-  build: string
+  key: string;
+  build: string;
 }
 
 export interface PaneVisibility {
-  attributes: boolean,
-  skills: boolean,
-  augmentations: boolean,
-  auras: boolean,
-  buildStages: boolean,
-  character: boolean,
-  xpAndLuminance: boolean,
-  knobsAndDials: boolean,
-  extraSkillCredits: boolean
+  attributes: boolean;
+  skills: boolean;
+  augmentations: boolean;
+  auras: boolean;
+  buildStages: boolean;
+  character: boolean;
+  xpAndLuminance: boolean;
+  knobsAndDials: boolean;
+  extraSkillCredits: boolean;
 }
 
 export interface UIState {
-  notifications: Notification[],
-  savedBuilds: SavedBuild[],
-  shareStatus: string | null,
-  sharedBuild: string | null,
-  currentStage: number | null,
-  paneVisibility: PaneVisibility
+  notifications: Notification[];
+  savedBuilds: SavedBuild[];
+  shareStatus: string | null;
+  sharedBuild: string | null;
+  currentStage: number | null;
+  paneVisibility: PaneVisibility;
 }
 
 export interface Build {
-  character: Character,
-  stages: Character[]
+  character: Character;
+  stages: Character[];
 }
 
 export interface State {
-  ui: UIState,
-  build: Build
+  ui: UIState;
+  build: Build;
 }
 
 export enum Race {
@@ -139,14 +139,14 @@ export enum Skill {
   "void_magic" = "void_magic",
   "war_magic" = "war_magic",
   "weapon_tinkering" = "weapon_tinkering"
-};
+}
 
 export enum Training {
   UNUSABLE = "unusable",
   UNTRAINED = "untrained",
   TRAINED = "trained",
-  SPECIALIZED = "specialized",
-};
+  SPECIALIZED = "specialized"
+}
 
 export enum Augmentation {
   might_of_the_seventh_mule = "might_of_the_seventh_mule",
@@ -193,9 +193,9 @@ export enum Augmentation {
   master_of_the_focused_eye = "master_of_the_focused_eye",
   jack_of_all_trades = "jack_of_all_trades",
   archmages_endurance = "archmages_endurance"
-};
+}
 
-export enum LuminanceAura  {
+export enum LuminanceAura {
   aetheric_vision = "aetheric_vision",
   craftsman = "craftsman",
   glory = "glory",
@@ -212,4 +212,4 @@ export enum LuminanceAura  {
   destruction = "destruction",
   retribution = "retribution",
   hardening = "hardening"
-};
+}

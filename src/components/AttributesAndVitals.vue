@@ -6,7 +6,9 @@
           <h3>Attributes</h3>
         </div>
         <div class="right">
-          <abbr title="Character creation attribute points spent">{{ attributePointsSpent }} / 330</abbr>
+          <abbr title="Character creation attribute points spent"
+            >{{ attributePointsSpent }} / 330</abbr
+          >
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">

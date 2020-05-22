@@ -2,7 +2,7 @@
   <tr>
     <td>
       {{ displayName }}
-      <span class="faded">{{extraInfo}}</span>
+      <span class="faded">{{ extraInfo }}</span>
     </td>
     <td>
       <input

@@ -1,4 +1,3 @@
-
 <template>
   <div class="share-modal">
     <div class="share-modal-status">{{ shareStatus }}</div>

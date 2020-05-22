@@ -4,7 +4,7 @@ import {
   Augmentation,
   LuminanceAura,
   NumberIndexedDict
- } from "./types";
+} from "./types";
 
 export const ATTRIBUTE_NAME = {
   [Attribute.strength]: "Strength",
@@ -12,8 +12,8 @@ export const ATTRIBUTE_NAME = {
   [Attribute.coordination]: "Coordination",
   [Attribute.quickness]: "Quickness",
   [Attribute.focus]: "Focus",
-  [Attribute.self]: "Self",
-}
+  [Attribute.self]: "Self"
+};
 
 export const SKILL_NAME = {
   [Skill.alchemy]: "Alchemy",
@@ -114,7 +114,7 @@ export const CANTRIP_NAME: NumberIndexedDict<string> = {
   1: "Minor",
   2: "Major",
   3: "Epic",
-  4: "Leg."
+  4: "Legen."
 };
 
 export const AUGMENTATION_NAME = {
@@ -138,9 +138,12 @@ export const AUGMENTATION_NAME = {
   [Augmentation.siraluuns_blessing]: "Siraluun's Blessing",
   [Augmentation.enduring_calm]: "Enduring Calm",
   [Augmentation.steadfast_will]: "Steadfast Will",
-  [Augmentation.enhancement_of_the_mace_turner]: "Enhancement of the Mace Turner",
-  [Augmentation.enhancement_of_the_blade_turner]: "Enhancement of the Blade Turner",
-  [Augmentation.enhancement_of_the_arrow_turner]: "Enhancement of the Arrow Turner",
+  [Augmentation.enhancement_of_the_mace_turner]:
+    "Enhancement of the Mace Turner",
+  [Augmentation.enhancement_of_the_blade_turner]:
+    "Enhancement of the Blade Turner",
+  [Augmentation.enhancement_of_the_arrow_turner]:
+    "Enhancement of the Arrow Turner",
   [Augmentation.storms_enhancement]: "Storm's Enhancement",
   [Augmentation.fiery_enhancement]: "Fiery Enhancement",
   [Augmentation.icy_enhancement]: "Icy Enhancement",

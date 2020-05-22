@@ -7,7 +7,9 @@
           <span class="error">{{ skillPointsSpentErrorText }}</span>
         </div>
         <div class="right">
-          <abbr title="Skill points spent">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr>
+          <abbr title="Skill points spent"
+            >{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr
+          >
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
@@ -26,7 +28,13 @@
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
-                <input type="range" min="0" max="226" value="0" v-on:change="changeInvested" />
+                <input
+                  type="range"
+                  min="0"
+                  max="226"
+                  value="0"
+                  v-on:change="changeInvested"
+                />
               </th>
               <th>
                 <select v-on:change="changeBuffed">
@@ -55,7 +63,8 @@
           <tbody>
             <tr class="specialized">
               <th colspan="7">
-                Specialized ({{ specializedSkillPointsSpent }} / {{ maxSpecializedSkillPointsSpent }})
+                Specialized ({{ specializedSkillPointsSpent }} /
+                {{ maxSpecializedSkillPointsSpent }})
                 {{ augmentationsRequiredText }}
               </th>
               <th>&nbsp;</th>

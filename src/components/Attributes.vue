@@ -4,9 +4,7 @@
       <th colspan="2" class="name">Name</th>
       <th class="creation" colspan="2">Creation</th>
       <th>Base</th>
-      <th>
-        <abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr>
-      </th>
+      <th>Buffed</th>
       <th class="invested" colspan="2">Invested</th>
       <th class="buff">Buff</th>
       <th class="cantrip">Cantrip</th>
@@ -19,7 +17,13 @@
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>
-        <input type="range" min="0" max="190" value="0" v-on:change="changeInvested" />
+        <input
+          type="range"
+          min="0"
+          max="190"
+          value="0"
+          v-on:change="changeInvested"
+        />
       </th>
       <th>&nbsp;</th>
       <th>

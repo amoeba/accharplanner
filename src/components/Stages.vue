@@ -6,7 +6,7 @@
       </div>
       <div v-if="visible" id="stages" class="header-items">
         <Stage
-          v-for="(stage,index) in stages"
+          v-for="(stage, index) in stages"
           v-bind:key="index"
           v-bind:index="index"
           v-bind:level="stage.level"

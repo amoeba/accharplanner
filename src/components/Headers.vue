@@ -2,7 +2,10 @@
   <div class="headers">
     <div class="header">
       <div>
-        <div class="header-title header-title-split" v-on:click="toggleCharacterPane">
+        <div
+          class="header-title header-title-split"
+          v-on:click="toggleCharacterPane"
+        >
           <div>
             <h3>Character</h3>
           </div>
@@ -15,7 +18,9 @@
           <div>Race</div>
           <div>
             <select v-model="race">
-              <option v-for="race in races" v-bind:key="race">{{ race }}</option>
+              <option v-for="race in races" v-bind:key="race">{{
+                race
+              }}</option>
             </select>
           </div>
           <div>Gender</div>
@@ -32,10 +37,21 @@
           <div>Level</div>
           <div class="flex-row">
             <div class="w70">
-              <input class="w100" type="range" min="1" max="275" v-model="level" />
+              <input
+                class="w100"
+                type="range"
+                min="1"
+                max="275"
+                v-model="level"
+              />
             </div>
             <div class="w30 right">
-              <input class="number w100" type="text" v-bind:value="level" v-on:change="updateLevel" />
+              <input
+                class="number w100"
+                type="text"
+                v-bind:value="level"
+                v-on:change="updateLevel"
+              />
             </div>
           </div>
         </div>
@@ -59,7 +75,9 @@
           <div>{{ totalLuminanceXPSpent }}</div>
           <div>Required Level</div>
           <div>
-            <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
+            <span v-bind:class="isOverspent ? 'red' : 'gray'">{{
+              requiredLevel
+            }}</span>
           </div>
         </div>
       </div>

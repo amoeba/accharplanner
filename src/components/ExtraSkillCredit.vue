@@ -1,6 +1,11 @@
 <template>
   <li>
-    <input v-bind:id="name" v-bind:name="name" type="checkbox" v-model="checked" />
+    <input
+      v-bind:id="name"
+      v-bind:name="name"
+      type="checkbox"
+      v-model="checked"
+    />
     <label v-bind:for="name">{{ name }}</label>
   </li>
 </template>
