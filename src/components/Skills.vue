@@ -16,9 +16,7 @@
             <tr class="table-header">
               <th colspan="4">Name</th>
               <th>Base</th>
-              <th>
-                <abbr title="Includes aug and lum bonuses, plus buffs.">Effective</abbr>
-              </th>
+              <th>Buffed</th>
               <th colspan="2">Invested</th>
               <th>Buff</th>
               <th>Cantrip</th>
@@ -32,7 +30,7 @@
               </th>
               <th>
                 <select v-on:change="changeBuffed">
-                  <option value="0">None</option>
+                  <option value="0"></option>
                   <option value="1">I</option>
                   <option value="2">II</option>
                   <option value="3">III</option>
@@ -45,11 +43,11 @@
               </th>
               <th>
                 <select v-on:change="changeCantrips">
-                  <option value="0">None</option>
+                  <option value="0"></option>
                   <option value="1">Minor</option>
                   <option value="2">Major</option>
                   <option value="3">Epic</option>
-                  <option value="4">Legendary</option>
+                  <option value="4">Legen.</option>
                 </select>
               </th>
             </tr>

@@ -30,7 +30,7 @@
     </td>
     <td>
       <select v-model="buffLevel">
-        <option value="0">None</option>
+        <option value="0"></option>
         <option value="1">I</option>
         <option value="2">II</option>
         <option value="3">III</option>
@@ -43,11 +43,11 @@
     </td>
     <td>
       <select v-model="cantrip">
-        <option value="0">None</option>
+        <option value="0"></option>
         <option value="1">Minor</option>
         <option value="2">Major</option>
         <option value="3">Epic</option>
-        <option value="4">Legendary</option>
+        <option value="4">Legen.</option>
       </select>
     </td>
   </tr>

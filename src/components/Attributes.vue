@@ -24,7 +24,7 @@
       <th>&nbsp;</th>
       <th>
         <select v-on:change="changeBuffed">
-          <option value="0">None</option>
+          <option value="0"></option>
           <option value="1">I</option>
           <option value="2">II</option>
           <option value="3">III</option>
@@ -37,11 +37,11 @@
       </th>
       <th>
         <select v-on:change="changeCantrip">
-          <option value="0">None</option>
+          <option value="0"></option>
           <option value="1">Minor</option>
           <option value="2">Major</option>
           <option value="3">Epic</option>
-          <option value="4">Legendary</option>
+          <option value="4">Legen.</option>
         </select>
       </th>
     </tr>
