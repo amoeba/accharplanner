@@ -9,7 +9,7 @@
       />
     </td>
     <td>
-      {{ displayName }}
+      {{ displayName }} <span class="faded">{{ formula }}</span>
     </td>
     <td>
       <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
@@ -67,9 +67,10 @@ import {
   SPEC_COSTS_AUG,
   UNTRAINABLE,
   SKILL_COST_AT_TRAINING,
-  MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
-import { SKILL_NAME } from "../mappings";
-import { Training } from '../types';
+  MAX_SPECIALIZED_SKILL_CREDITS_SPENT
+} from "../constants";
+import { SKILL_NAME, SKILL_FORMULA } from "../mappings";
+import { Training } from "../types";
 
 export default {
   name: "Skill",
@@ -81,6 +82,9 @@ export default {
   computed: {
     displayName() {
       return SKILL_NAME[this._props.name];
+    },
+    formula() {
+      return SKILL_FORMULA[this._props.name];
     },
     isBuffed() {
       return (

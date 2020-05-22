@@ -56,6 +56,47 @@ export const SKILL_NAME = {
   [Skill.weapon_tinkering]: "Weapon Tinkering"
 };
 
+export const SKILL_FORMULA = {
+  [Skill.alchemy]: "(C+F)/3",
+  [Skill.arcane_lore]: "F/3",
+  [Skill.armor_tinkering]: "(E+F)/2",
+  [Skill.assess_creature]: "",
+  [Skill.assess_person]: "",
+  [Skill.cooking]: "(C+F)/3",
+  [Skill.creature_enchantment]: "(F+W)/4",
+  [Skill.deception]: "",
+  [Skill.dual_wield]: "(C+C)/2",
+  [Skill.dirty_fighting]: "(S+C)/3",
+  [Skill.finesse_weapons]: "(C+Q)/3",
+  [Skill.fletching]: "(C+F)/3",
+  [Skill.healing]: "(C+F)/3",
+  [Skill.heavy_weapons]: "(S+C)/3",
+  [Skill.item_enchantment]: "(F+W)/4",
+  [Skill.item_tinkering]: "(C+F)/2",
+  [Skill.jump]: "(S+C)/2",
+  [Skill.leadership]: "",
+  [Skill.life_magic]: "(F+W)/4",
+  [Skill.light_weapons]: "(S+C)/3",
+  [Skill.lockpick]: "(C+F)/3",
+  [Skill.loyalty]: "",
+  [Skill.magic_defense]: "(F+W)/7",
+  [Skill.magic_item_tinkering]: "F",
+  [Skill.mana_conversion]: "(F+W)/6",
+  [Skill.melee_defense]: "(C+Q)/3",
+  [Skill.missile_defense]: "(C+Q)/5",
+  [Skill.missile_weapons]: "C/2",
+  [Skill.recklessness]: "(S+Q)/2",
+  [Skill.run]: "Q",
+  [Skill.salvaging]: "",
+  [Skill.shield]: "(S+C)/2",
+  [Skill.sneak_attack]: "(C+Q)/3",
+  [Skill.summoning]: "(E+W)/3",
+  [Skill.two_handed_combat]: "(S+C)/3",
+  [Skill.void_magic]: "(F+W)/4",
+  [Skill.war_magic]: "(F+W)/4",
+  [Skill.weapon_tinkering]: "(S+F)/2"
+};
+
 export const BUFF_NAME: NumberIndexedDict<string> = {
   0: "",
   1: "I",
