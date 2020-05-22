@@ -765,8 +765,9 @@ export default {
         ? 5
         : 0) +
       Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) +
-        state.build.character.augmentations.oswalds_enhancement.invested * 5) /
+        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
+          state.build.character.augmentations.oswalds_enhancement.invested *
+            5) /
           3
       ) +
       state.build.character.luminance_auras.world.invested +
