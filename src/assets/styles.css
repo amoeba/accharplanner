@@ -471,7 +471,13 @@ a:visited.link-github {
 
 /* Utility classes */
 .error {
-  color: red;
+  color: white;
+  background-color: red;
+  display: inline-block;
+  padding: 3px 5px;
+  border: 1px solid #a00;
+  border-radius: 3px;
+  font-weight: bold;
 }
 
 .center {

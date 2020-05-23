@@ -1777,5 +1777,46 @@ export default {
     return Object.keys(state.build.character.skills).filter(
       key => state.build.character.skills[key].training === Training.UNUSABLE
     );
+  },
+  augmentationErrors: (state: State, getters: any) => {
+    if (
+      state.build.character.attributes.strength.creation +
+        state.build.character.augmentations.reinforcement_of_the_lugians
+          .invested *
+          5 >
+      100
+    ) {
+      return "Cannot raise innate Strength above 100!";
+    } else if (
+      state.build.character.attributes.endurance.creation +
+        state.build.character.augmentations.bleearghs_fortitude.invested * 5 >
+      100
+    ) {
+      return "Cannot raise innate Endurance above 100!";
+    } else if (
+      state.build.character.attributes.coordination.creation +
+        state.build.character.augmentations.oswalds_enhancement.invested * 5 >
+      100
+    ) {
+      return "Cannot raise innate Coordination above 100!";
+    } else if (
+      state.build.character.attributes.quickness.creation +
+        state.build.character.augmentations.siraluuns_blessing.invested * 5 >
+      100
+    ) {
+      return "Cannot raise innate Quickness above 100!";
+    } else if (
+      state.build.character.attributes.focus.creation +
+        state.build.character.augmentations.enduring_calm.invested * 5 >
+      100
+    ) {
+      return "Cannot raise innate Focus above 100!";
+    } else if (
+      state.build.character.attributes.self.creation +
+        state.build.character.augmentations.steadfast_will.invested * 5 >
+      100
+    ) {
+      return "Cannot raise innate Self above 100!";
+    } else return "";
   }
 };

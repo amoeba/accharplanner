@@ -5,6 +5,9 @@
         <div>
           <h3>Experience Augmentations</h3>
         </div>
+        <div class="right">
+          <span v-if="errors" class="error">{{ errors }}</span>
+        </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
         <table>
@@ -16,13 +19,7 @@
             <tr class="controls">
               <th>&nbsp;</th>
               <th colspan="2">
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  value="0"
-                  v-on:change="changeInvested"
-                />
+                <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
               </th>
             </tr>
           </thead>
@@ -89,6 +86,9 @@ export default {
   computed: {
     collapsed() {
       return this.$store.getters.augmentationsPaneVisible;
+    },
+    errors() {
+      return this.$store.getters.augmentationErrors;
     }
   },
   methods: {
