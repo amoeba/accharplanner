@@ -4,12 +4,10 @@
       <div class="pane-header" v-on:click="toggle">
         <div>
           <h3>Skills</h3>
-          <span class="error">{{ skillPointsSpentErrorText }}</span>
+          <span class="red">{{ skillPointsSpentErrorText }}</span>
         </div>
         <div class="right">
-          <abbr title="Skill points spent"
-            >{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr
-          >
+          <abbr title="Skill points spent">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr>
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
@@ -28,13 +26,7 @@
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
-                <input
-                  type="range"
-                  min="0"
-                  max="226"
-                  value="0"
-                  v-on:change="changeInvested"
-                />
+                <input type="range" min="0" max="226" value="0" v-on:change="changeInvested" />
               </th>
               <th>
                 <select v-on:change="changeBuffed">
