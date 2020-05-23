@@ -245,13 +245,18 @@ export default {
 
     return spent;
   },
-  strengthBase: (state: State) => {
+  strengthInnate: (state: State) => {
     return (
       state.build.character.attributes.strength.creation +
-      state.build.character.attributes.strength.invested +
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
         5
+    );
+  },
+  strengthBase: (state: State, getters: any) => {
+    return (
+      getters.strengthInnate +
+      state.build.character.attributes.strength.invested
     );
   },
   strengthBuffed: (state: State, getters: any) => {
@@ -261,11 +266,16 @@ export default {
       cantripBonus(state.build.character.attributes.strength.cantrip)
     );
   },
-  enduranceBase: (state: State) => {
+  enduranceInnate: (state: State) => {
     return (
       state.build.character.attributes.endurance.creation +
-      state.build.character.attributes.endurance.invested +
       state.build.character.augmentations.bleearghs_fortitude.invested * 5
+    );
+  },
+  enduranceBase: (state: State, getters: any) => {
+    return (
+      getters.enduranceInnate +
+      state.build.character.attributes.endurance.invested
     );
   },
   enduranceBuffed: (state: State, getters: any) => {
@@ -275,11 +285,16 @@ export default {
       cantripBonus(state.build.character.attributes.endurance.cantrip)
     );
   },
-  coordinationBase: (state: State) => {
+  coordinationInnate: (state: State) => {
     return (
       state.build.character.attributes.coordination.creation +
-      state.build.character.attributes.coordination.invested +
       state.build.character.augmentations.oswalds_enhancement.invested * 5
+    );
+  },
+  coordinationBase: (state: State, getters: any) => {
+    return (
+      getters.coordinationInnate +
+      state.build.character.attributes.coordination.invested
     );
   },
   coordinationBuffed: (state: State, getters: any) => {
@@ -289,11 +304,16 @@ export default {
       cantripBonus(state.build.character.attributes.coordination.cantrip)
     );
   },
-  quicknessBase: (state: State) => {
+  quicknessInnate: (state: State) => {
     return (
       state.build.character.attributes.quickness.creation +
-      state.build.character.attributes.quickness.invested +
       state.build.character.augmentations.siraluuns_blessing.invested * 5
+    );
+  },
+  quicknessBase: (state: State, getters: any) => {
+    return (
+      getters.quicknessInnate +
+      state.build.character.attributes.quickness.invested
     );
   },
   quicknessBuffed: (state: State, getters: any) => {
@@ -303,11 +323,15 @@ export default {
       cantripBonus(state.build.character.attributes.quickness.cantrip)
     );
   },
-  focusBase: (state: State) => {
+  focusInnate: (state: State) => {
     return (
       state.build.character.attributes.focus.creation +
-      state.build.character.attributes.focus.invested +
       state.build.character.augmentations.enduring_calm.invested * 5
+    );
+  },
+  focusBase: (state: State, getters: any) => {
+    return (
+      getters.focusInnate + state.build.character.attributes.focus.invested
     );
   },
   focusBuffed: (state: State, getters: any) => {
@@ -317,12 +341,14 @@ export default {
       cantripBonus(state.build.character.attributes.focus.cantrip)
     );
   },
-  selfBase: (state: State) => {
+  selfInnate: (state: State) => {
     return (
       state.build.character.attributes.self.creation +
-      state.build.character.attributes.self.invested +
       state.build.character.augmentations.steadfast_will.invested * 5
     );
+  },
+  selfBase: (state: State, getters: any) => {
+    return getters.selfInnate + state.build.character.attributes.self.invested;
   },
   selfBuffed: (state: State, getters: any) => {
     return (
@@ -333,9 +359,6 @@ export default {
   },
 
   // Vitals
-  healthCreation: (state: State) => {
-    return Math.round(state.build.character.attributes.endurance.creation / 2);
-  },
   healthBase: (state: State, getters: any) => {
     const benediction_bonus =
       state.build.character.augmentations.asherons_lesser_benediction
