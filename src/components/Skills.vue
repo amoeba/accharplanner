@@ -18,7 +18,7 @@
             <tr class="table-header">
               <th colspan="4">Name</th>
               <th>Base</th>
-              <th>Buffed</th>
+              <th>Effective</th>
               <th colspan="2">Invested</th>
               <th>Buff</th>
               <th>Cantrip</th>
