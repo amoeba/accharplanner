@@ -245,91 +245,90 @@ export default {
 
     return spent;
   },
-
   strengthBase: (state: State) => {
     return (
       state.build.character.attributes.strength.creation +
-      state.build.character.attributes.strength.invested
+      state.build.character.attributes.strength.invested +
+      state.build.character.augmentations.reinforcement_of_the_lugians
+        .invested *
+        5
     );
   },
   strengthBuffed: (state: State, getters: any) => {
     return (
       getters.strengthBase +
       buffBonus(state.build.character.attributes.strength.buff) +
-      cantripBonus(state.build.character.attributes.strength.cantrip) +
-      state.build.character.augmentations.reinforcement_of_the_lugians
-        .invested *
-        5
+      cantripBonus(state.build.character.attributes.strength.cantrip)
     );
   },
   enduranceBase: (state: State) => {
     return (
       state.build.character.attributes.endurance.creation +
-      state.build.character.attributes.endurance.invested
+      state.build.character.attributes.endurance.invested +
+      state.build.character.augmentations.bleearghs_fortitude.invested * 5
     );
   },
   enduranceBuffed: (state: State, getters: any) => {
     return (
       getters.enduranceBase +
       buffBonus(state.build.character.attributes.endurance.buff) +
-      cantripBonus(state.build.character.attributes.endurance.cantrip) +
-      state.build.character.augmentations.bleearghs_fortitude.invested * 5
+      cantripBonus(state.build.character.attributes.endurance.cantrip)
     );
   },
   coordinationBase: (state: State) => {
     return (
       state.build.character.attributes.coordination.creation +
-      state.build.character.attributes.coordination.invested
+      state.build.character.attributes.coordination.invested +
+      state.build.character.augmentations.oswalds_enhancement.invested * 5
     );
   },
   coordinationBuffed: (state: State, getters: any) => {
     return (
       getters.coordinationBase +
       buffBonus(state.build.character.attributes.coordination.buff) +
-      cantripBonus(state.build.character.attributes.coordination.cantrip) +
-      state.build.character.augmentations.oswalds_enhancement.invested * 5
+      cantripBonus(state.build.character.attributes.coordination.cantrip)
     );
   },
   quicknessBase: (state: State) => {
     return (
       state.build.character.attributes.quickness.creation +
-      state.build.character.attributes.quickness.invested
+      state.build.character.attributes.quickness.invested +
+      state.build.character.augmentations.siraluuns_blessing.invested * 5
     );
   },
   quicknessBuffed: (state: State, getters: any) => {
     return (
       getters.quicknessBase +
       buffBonus(state.build.character.attributes.quickness.buff) +
-      cantripBonus(state.build.character.attributes.quickness.cantrip) +
-      state.build.character.augmentations.siraluuns_blessing.invested * 5
+      cantripBonus(state.build.character.attributes.quickness.cantrip)
     );
   },
   focusBase: (state: State) => {
     return (
       state.build.character.attributes.focus.creation +
-      state.build.character.attributes.focus.invested
+      state.build.character.attributes.focus.invested +
+      state.build.character.augmentations.enduring_calm.invested * 5
     );
   },
   focusBuffed: (state: State, getters: any) => {
     return (
       getters.focusBase +
       buffBonus(state.build.character.attributes.focus.buff) +
-      cantripBonus(state.build.character.attributes.focus.cantrip) +
-      state.build.character.augmentations.enduring_calm.invested * 5
+      cantripBonus(state.build.character.attributes.focus.cantrip)
     );
   },
   selfBase: (state: State) => {
     return (
       state.build.character.attributes.self.creation +
-      state.build.character.attributes.self.invested
+      state.build.character.attributes.self.invested +
+      state.build.character.augmentations.steadfast_will.invested * 5
     );
   },
   selfBuffed: (state: State, getters: any) => {
     return (
       getters.selfBase +
       buffBonus(state.build.character.attributes.self.buff) +
-      cantripBonus(state.build.character.attributes.self.cantrip) +
-      state.build.character.augmentations.steadfast_will.invested * 5
+      cantripBonus(state.build.character.attributes.self.cantrip)
     );
   },
 
@@ -338,12 +337,6 @@ export default {
     return Math.round(state.build.character.attributes.endurance.creation / 2);
   },
   healthBase: (state: State, getters: any) => {
-    return (
-      Math.round(getters.enduranceBase / 2) +
-      state.build.character.vitals.health.invested
-    );
-  },
-  healthBuffed: (state: State, getters: any) => {
     const benediction_bonus =
       state.build.character.augmentations.asherons_lesser_benediction
         .invested === 1 ||
@@ -352,13 +345,15 @@ export default {
         : 1;
 
     return (
-      getters.healthBase * benediction_bonus +
+      Math.round(getters.enduranceBase / 2) * benediction_bonus +
+      state.build.character.vitals.health.invested
+    );
+  },
+  healthBuffed: (state: State, getters: any) => {
+    return (
+      getters.healthBase +
       buffBonus(state.build.character.vitals.health.buff) +
-      cantripBonus(state.build.character.vitals.health.cantrip) +
-      Math.round(
-        (state.build.character.augmentations.bleearghs_fortitude.invested * 5) /
-          2
-      )
+      cantripBonus(state.build.character.vitals.health.cantrip)
     );
   },
   staminaCreation: (state: State) => {
@@ -373,8 +368,7 @@ export default {
     return (
       getters.staminaBase +
       buffBonus(state.build.character.vitals.stamina.buff) +
-      cantripBonus(state.build.character.vitals.stamina.cantrip) +
-      state.build.character.augmentations.bleearghs_fortitude.invested * 5
+      cantripBonus(state.build.character.vitals.stamina.cantrip)
     );
   },
   manaCreation: (state: State) => {
@@ -387,8 +381,7 @@ export default {
     return (
       getters.manaBase +
       buffBonus(state.build.character.vitals.mana.buff) +
-      cantripBonus(state.build.character.vitals.mana.cantrip) +
-      state.build.character.augmentations.steadfast_will.invested * 5
+      cantripBonus(state.build.character.vitals.mana.cantrip)
     );
   },
   // Skills
@@ -420,11 +413,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.enduring_calm.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.alchemy.training === Training.SPECIALIZED
@@ -459,9 +447,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5) / 3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.arcane_lore.training ===
       Training.SPECIALIZED
@@ -501,13 +486,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.bleearghs_fortitude.invested * 5) /
-          2
-      ) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5) / 2
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.armor_tinkering.training ===
@@ -540,7 +518,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.assess_creature.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -597,11 +574,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.enduring_calm.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.cooking.training === Training.SPECIALIZED
@@ -650,11 +622,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          4
-      ) +
       (state.build.character.augmentations.master_of_the_five_fold_path
         .invested === 1
         ? 10
@@ -723,10 +690,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.dirty_fighting.training ===
       Training.SPECIALIZED
@@ -764,12 +727,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.oswalds_enhancement.invested *
-            5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.dual_wield.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -808,11 +765,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.siraluuns_blessing.invested * 5) /
-          3
-      ) +
       (state.build.character.augmentations.master_of_the_steel_circle
         .invested === 1
         ? 10
@@ -852,13 +804,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          3
-      ) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5) / 3
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.fletching.training === Training.SPECIALIZED
@@ -894,11 +839,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.enduring_calm.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.healing.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -935,10 +875,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          3
-      ) +
       (state.build.character.augmentations.master_of_the_steel_circle
         .invested === 1
         ? 10
@@ -982,11 +918,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          4
-      ) +
       (state.build.character.augmentations.master_of_the_five_fold_path
         .invested === 1
         ? 10
@@ -1029,11 +960,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.enduring_calm.invested * 5) /
-          2
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.item_tinkering.training ===
@@ -1070,10 +996,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          2
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.jump.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1138,11 +1060,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          4
-      ) +
       (state.build.character.augmentations.master_of_the_five_fold_path
         .invested === 1
         ? 10
@@ -1187,10 +1104,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.light_weapons.training ===
       Training.SPECIALIZED
@@ -1226,11 +1139,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.enduring_calm.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.lockpick.training === Training.SPECIALIZED
@@ -1294,11 +1202,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5
-      ) /
-        7 +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.magic_defense.training ===
       Training.SPECIALIZED
@@ -1335,9 +1238,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        state.build.character.augmentations.enduring_calm.invested * 5
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.magic_item_tinkering.training ===
@@ -1378,11 +1278,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          6
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.mana_conversion.training ===
       Training.SPECIALIZED
@@ -1420,11 +1315,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.siraluuns_blessing.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.melee_defense.training ===
       Training.SPECIALIZED
@@ -1464,11 +1354,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.siraluuns_blessing.invested * 5) /
-          5
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.missile_defense.training ===
       Training.SPECIALIZED
@@ -1506,10 +1391,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          2
-      ) +
       (state.build.character.augmentations.master_of_the_focused_eye
         .invested === 1
         ? 10
@@ -1551,10 +1432,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.siraluuns_blessing.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.recklessness.training ===
       Training.SPECIALIZED
@@ -1585,7 +1462,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.augmentations.siraluuns_blessing.invested * 5 +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.run.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1647,10 +1523,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          2
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.shield.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1687,11 +1559,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5 +
-          state.build.character.augmentations.siraluuns_blessing.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.sneak_attack.training ===
       Training.SPECIALIZED
@@ -1727,11 +1594,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.bleearghs_fortitude.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.summoning.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1770,10 +1632,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.oswalds_enhancement.invested * 5) /
-          3
-      ) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.two_handed_combat.training ===
       Training.SPECIALIZED
@@ -1811,11 +1669,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          4
-      ) +
       (state.build.character.augmentations.master_of_the_five_fold_path
         .invested === 1
         ? 10
@@ -1854,11 +1707,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          4
-      ) +
       (state.build.character.augmentations.master_of_the_five_fold_path
         .invested === 1
         ? 10
@@ -1901,11 +1749,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      Math.round(
-        (state.build.character.augmentations.enduring_calm.invested * 5 +
-          state.build.character.augmentations.steadfast_will.invested * 5) /
-          2
-      ) +
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.weapon_tinkering.training ===
