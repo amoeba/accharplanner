@@ -1672,12 +1672,12 @@
     cypress "^3.8.3"
     eslint-plugin-cypress "^2.10.3"
 
-"@vue/cli-plugin-pwa@~4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-4.4.0.tgz#332c28533c942e4e7b6863d3b2cfd5fd3741c69e"
-  integrity sha512-0dJU5l2I1y9yWwaUxf2nd+PUqufPZcmJfJKhYrCsE+gXpUulut8RHe4cRsdSplk4cyu5deWwf9KbyLLK7ynFCw==
+"@vue/cli-plugin-pwa@~4.4.1":
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-4.4.1.tgz#e7bc010bc78cfaf74968c11fb332f3abc1ef298d"
+  integrity sha512-0LnJSsuD9GHQ5B9OoOejhHNnpkgy0ctLt1o0+S8vBtpl9+jIIBzKDT7kY3/2QT4vNwH9b0pWr9WdfmdCPPv2vQ==
   dependencies:
-    "@vue/cli-shared-utils" "^4.4.0"
+    "@vue/cli-shared-utils" "^4.4.1"
     webpack "^4.0.0"
     workbox-webpack-plugin "^4.3.1"
 
@@ -1788,10 +1788,10 @@
     webpack-dev-server "^3.11.0"
     webpack-merge "^4.2.2"
 
-"@vue/cli-shared-utils@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.0.tgz#e6dfd842143d3ab921232b6289cb2e8d02dcf29e"
-  integrity sha512-gH3ND5gUCUsgC7a0XF6e07Cy9i/5+tEptobrwCvb4Q+QNEIf9CbGZIp7QFHeeKVFs0iA6uM7Ebb+XmJ6ashxfw==
+"@vue/cli-shared-utils@^4.4.0", "@vue/cli-shared-utils@^4.4.1":
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.1.tgz#930304ade5a9f9bf0d2fd67d9305cad83d04aae1"
+  integrity sha512-teevHgI7XUsKVMOncx3M+6iLjO28woGfRwgUG4hR83moVBHQe5x2OCr2i5t/58bwpv269RD5RYXBQCGtIXuxZw==
   dependencies:
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.2"
