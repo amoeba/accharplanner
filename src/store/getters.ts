@@ -227,6 +227,10 @@ export default {
     let cost = 0;
 
     getters.specializedSkills.forEach((skill: string) => {
+      if (SPEC_COSTS_AUG[skill]) {
+        return;
+      }
+
       cost +=
         SKILL_COST_AT_TRAINING[skill][Training.SPECIALIZED];
     });
