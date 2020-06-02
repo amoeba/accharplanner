@@ -228,8 +228,7 @@ export default {
 
     getters.specializedSkills.forEach((skill: string) => {
       cost +=
-        SKILL_COST_AT_TRAINING[skill][Training.SPECIALIZED] -
-        SKILL_COST_AT_TRAINING[skill][Training.TRAINED];
+        SKILL_COST_AT_TRAINING[skill][Training.SPECIALIZED];
     });
 
     return cost;
