@@ -1645,10 +1645,10 @@
     "@vue/babel-plugin-transform-vue-jsx" "^1.1.2"
     camelcase "^5.0.0"
 
-"@vue/cli-overlay@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-4.4.0.tgz#1b2c195d4b2249b55a91e4f70e835499d9fbd309"
-  integrity sha512-aT3BbjY0XnTl2hNO7Nk788mw0tnfDFaTl4VItjcbY32JVlmUhVE2STmqE6nYb2WXomlC4expVCSoGIpP8+yiiQ==
+"@vue/cli-overlay@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-4.4.4.tgz#43268a8cdcd3ad741dfa51006b576064fbbe6e8e"
+  integrity sha512-cTvtifIpsSVF2dPF+ibUoAq+hMkEbg4EYTsf6dUuUrBKi1G2tyZ3Pnx54U2NpqXjJMykqMGX+i+BxpIG5tJCGw==
 
 "@vue/cli-plugin-babel@~4.4.0":
   version "4.4.0"
@@ -1681,12 +1681,12 @@
     webpack "^4.0.0"
     workbox-webpack-plugin "^4.3.1"
 
-"@vue/cli-plugin-router@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-router/-/cli-plugin-router-4.4.0.tgz#df97eb988d69c6279d31fd2be7693e1c8f205147"
-  integrity sha512-vqYtzGewLGK56sP8Dms+cvgURV/vgvxiY7wCwjyuYEby5X0VxBY/zWlqcM6GW4V31s+qrjh/BnzbweEs+xXveg==
+"@vue/cli-plugin-router@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-router/-/cli-plugin-router-4.4.4.tgz#59e11dd55df854618616ad4f013b20c52e4a3a68"
+  integrity sha512-jZTupo+zFz1YHH3Q4WC5nJW5wlNEDqX//m+atwUISPahVEG6/EV8HwJnQDT7EQ9re4v78xI27eOtyNw+qSyiSA==
   dependencies:
-    "@vue/cli-shared-utils" "^4.4.0"
+    "@vue/cli-shared-utils" "^4.4.4"
 
 "@vue/cli-plugin-typescript@~4.4.0":
   version "4.4.0"
@@ -1725,23 +1725,23 @@
     ts-jest "^24.2.0"
     vue-jest "^3.0.5"
 
-"@vue/cli-plugin-vuex@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.4.0.tgz#a8ba1b136fc5fadde9a9886b2fb1a1ff4946d75b"
-  integrity sha512-FRLlAPKtsCMCenUMB8cHCXSeGYtphrtvt57WVqfZsTbpdsaiikZPzKAbeHF24rr7KknsM49VSZ//Bw1k7PMUsQ==
+"@vue/cli-plugin-vuex@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.4.4.tgz#42328c161978823a1eac97a07832a7aa225cbb9b"
+  integrity sha512-A2SZD0B5yPz60W7go2ZYTIHooQse7bhhNUlinGQrdYeQCuURKUqqUbl/zF8u/8Qqo6nZ4F469fHNH6XWRN9Nnw==
 
-"@vue/cli-service@~4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-4.4.0.tgz#d03ad992fd8a44f0955e98f8d8dcd03920e7e4b2"
-  integrity sha512-1GvjQpcFa+3sxhjVRb9TIo4oiQdz7abWWjmPkMMD42Ykw4783loahaxRG4G0z+s6bwL2SNh/ifcc/hR0aPPiyw==
+"@vue/cli-service@~4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-4.4.4.tgz#256c990e49a2ff8dc533b773c504a65435c75c4c"
+  integrity sha512-AKWpBpBAB+LHJ8JpArM2BJ0I2REy9lG7xIkJn9k3Vw9gadejx+y74P0bJh/J8hY65kDTFltO1BW1Kv3URw/ifQ==
   dependencies:
     "@intervolga/optimize-cssnano-plugin" "^1.0.5"
     "@soda/friendly-errors-webpack-plugin" "^1.7.1"
     "@soda/get-current-script" "^1.0.0"
-    "@vue/cli-overlay" "^4.4.0"
-    "@vue/cli-plugin-router" "^4.4.0"
-    "@vue/cli-plugin-vuex" "^4.4.0"
-    "@vue/cli-shared-utils" "^4.4.0"
+    "@vue/cli-overlay" "^4.4.4"
+    "@vue/cli-plugin-router" "^4.4.4"
+    "@vue/cli-plugin-vuex" "^4.4.4"
+    "@vue/cli-shared-utils" "^4.4.4"
     "@vue/component-compiler-utils" "^3.1.2"
     "@vue/preload-webpack-plugin" "^1.1.0"
     "@vue/web-component-wrapper" "^1.2.0"
@@ -1783,15 +1783,15 @@
     vue-loader "^15.9.2"
     vue-style-loader "^4.1.2"
     webpack "^4.0.0"
-    webpack-bundle-analyzer "^3.7.0"
+    webpack-bundle-analyzer "^3.8.0"
     webpack-chain "^6.4.0"
     webpack-dev-server "^3.11.0"
     webpack-merge "^4.2.2"
 
-"@vue/cli-shared-utils@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.0.tgz#e6dfd842143d3ab921232b6289cb2e8d02dcf29e"
-  integrity sha512-gH3ND5gUCUsgC7a0XF6e07Cy9i/5+tEptobrwCvb4Q+QNEIf9CbGZIp7QFHeeKVFs0iA6uM7Ebb+XmJ6ashxfw==
+"@vue/cli-shared-utils@^4.4.0", "@vue/cli-shared-utils@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.4.tgz#b9685b73a604c8a7ee82d6fc3319fe7bb2cdb274"
+  integrity sha512-ccMZtTMSutR35V5nrU/eyj+zRMomTRGBTLwJPmaJ2sRiW/93MTggQGXDWC8JRAA8yiU1N8xza8mjBxS0O2wIAA==
   dependencies:
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.2"
@@ -10490,7 +10490,7 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
-webpack-bundle-analyzer@^3.7.0:
+webpack-bundle-analyzer@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.8.0.tgz#ce6b3f908daf069fd1f7266f692cbb3bded9ba16"
   integrity sha512-PODQhAYVEourCcOuU+NiYI7WdR8QyELZGgPvB1y2tjbUpbmcQOt5Q7jEK+ttd5se0KSBKD9SXHCEozS++Wllmw==
