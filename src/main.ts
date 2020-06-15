@@ -77,6 +77,13 @@ new Vue({
       .then(function(response) {
         return response.json();
       })
+      .then(function(json) {
+        if (!json.attribs) {
+          throw "Invalid JSON structure. Is this character a stub character (i.e., no attributes, skills)?"
+        }
+
+        return json;
+      })
       .then(json => {
         // Re-set to blank state prior to import
         store.state.build.character = JSON.parse(
