@@ -1672,12 +1672,12 @@
     cypress "^3.8.3"
     eslint-plugin-cypress "^2.10.3"
 
-"@vue/cli-plugin-pwa@~4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-4.4.0.tgz#332c28533c942e4e7b6863d3b2cfd5fd3741c69e"
-  integrity sha512-0dJU5l2I1y9yWwaUxf2nd+PUqufPZcmJfJKhYrCsE+gXpUulut8RHe4cRsdSplk4cyu5deWwf9KbyLLK7ynFCw==
+"@vue/cli-plugin-pwa@~4.4.5":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-4.4.5.tgz#b35c1f51c8f53d81fd7d328396b11c582c38e628"
+  integrity sha512-8IEgxWeTFHYOY5T7+LI9dAhWmHMSI9qqJ8EMcwQtGWcBac6fthXOhyafbFkEaVyW5gAMc1XCAyKv50KRgcXfcw==
   dependencies:
-    "@vue/cli-shared-utils" "^4.4.0"
+    "@vue/cli-shared-utils" "^4.4.5"
     webpack "^4.0.0"
     workbox-webpack-plugin "^4.3.1"
 
@@ -1788,10 +1788,10 @@
     webpack-dev-server "^3.11.0"
     webpack-merge "^4.2.2"
 
-"@vue/cli-shared-utils@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.0.tgz#e6dfd842143d3ab921232b6289cb2e8d02dcf29e"
-  integrity sha512-gH3ND5gUCUsgC7a0XF6e07Cy9i/5+tEptobrwCvb4Q+QNEIf9CbGZIp7QFHeeKVFs0iA6uM7Ebb+XmJ6ashxfw==
+"@vue/cli-shared-utils@^4.4.0", "@vue/cli-shared-utils@^4.4.5":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.5.tgz#fe5025a28043fec9d6a301107325433a63eafccc"
+  integrity sha512-DChYSjidHZmHtxROIp1WHlvhp06AkUzNBdkw0+uJ6FWHSQmkeRpsCU9XYTdsyRbatHzO0wnJ6GO+20yl3ZzLPw==
   dependencies:
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.2"
@@ -1803,7 +1803,6 @@
     ora "^3.4.0"
     read-pkg "^5.1.1"
     request "^2.88.2"
-    request-promise-native "^1.0.8"
     semver "^6.1.0"
     strip-ansi "^6.0.0"
 
@@ -8801,7 +8800,7 @@ request-promise-core@1.1.3:
   dependencies:
     lodash "^4.17.15"
 
-request-promise-native@^1.0.5, request-promise-native@^1.0.7, request-promise-native@^1.0.8:
+request-promise-native@^1.0.5, request-promise-native@^1.0.7:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/request-promise-native/-/request-promise-native-1.0.8.tgz#a455b960b826e44e2bf8999af64dff2bfe58cb36"
   integrity sha512-dapwLGqkHtwL5AEbfenuzjTYg35Jd6KPytsC2/TLkVMz8rm+tNt72MGUWT1RP/aYawMpN6HqbNGBQaRcBtjQMQ==
