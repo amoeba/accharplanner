@@ -305,13 +305,13 @@ input.number {
   border: 1px solid black;
   border-radius: 3px;
   padding: 0px 5px;
-}
-
-.stage-new button {
-  border: none;
-  padding: 0;
   cursor: pointer;
   background-color: white;
+  height: 1.5rem;
+}
+
+.stage-new:hover {
+  background-color: #eee;
 }
 
 .faded {

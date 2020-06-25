@@ -11,9 +11,7 @@
           v-bind:index="index"
           v-bind:level="stage.level"
         />
-        <div class="stage stage-new">
-          <button v-on:click="save">+ Stage</button>
-        </div>
+        <button class="stage stage-new" v-on:click="save">+ Stage</button>
       </div>
     </div>
   </div>
