@@ -95,7 +95,7 @@
 }
 
 .header .header-title {
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
   cursor: pointer;
 }
 
@@ -162,7 +162,7 @@
   display: grid;
   grid-template-columns: auto auto;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .pane-header:hover {
