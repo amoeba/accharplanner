@@ -1752,7 +1752,7 @@ export default {
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 2) +
+      Math.round((getters.strengthBase + getters.focusBase) / 2) +
       trainingBonus(state.build.character.skills.weapon_tinkering.training) +
       state.build.character.skills.weapon_tinkering.invested
     );
@@ -1766,10 +1766,10 @@ export default {
       buffBonus(state.build.character.skills.weapon_tinkering.buff) +
       cantripBonus(state.build.character.skills.weapon_tinkering.cantrip) +
       Math.round(
-        (buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip) +
-          buffBonus(state.build.character.attributes.self.buff) +
-          cantripBonus(state.build.character.attributes.self.cantrip)) /
+        (buffBonus(state.build.character.attributes.strength.buff) +
+          cantripBonus(state.build.character.attributes.strength.cantrip) +
+          buffBonus(state.build.character.attributes.focus.buff) +
+          cantripBonus(state.build.character.attributes.focus.cantrip)) /
           2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
