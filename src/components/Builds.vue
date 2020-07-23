@@ -1,9 +1,9 @@
 <template>
   <div id="builds">
     <h2>Saved Builds</h2>
-    <div>
+    <p>
       <button v-on:click="deleteAll">Delete All</button>
-    </div>
+    </p>
     <div>
       <p>{{ noBuildsMessage }}</p>
     </div>
@@ -41,13 +41,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#builds {
-  padding: 0.5rem;
-}
-
-#builds h2 {
-  margin: 0 0 0.5rem 0;
-}
-</style>

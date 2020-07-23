@@ -16,11 +16,14 @@
         <router-link to="/">Planner</router-link>
         <router-link to="/builds">Builds</router-link>
         <router-link to="/import">Import</router-link>
+        <router-link to="/about">About</router-link>
       </nav>
     </header>
     <main>
       <router-view></router-view>
     </main>
+    <footer>
+    </footer>
   </div>
 </template>
 

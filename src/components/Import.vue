@@ -46,9 +46,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#import {
-  padding: 0.5rem;
-}
-</style>

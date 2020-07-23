@@ -17,6 +17,8 @@ const Builds = () =>
   import(/* webpackChunkName: "builds" */ "./components/Builds.vue");
 const Import = () =>
   import(/* webpackChunkName: "import" */ "./components/Import.vue");
+const About = () =>
+  import(/* webpackChunkName: "import" */ "./components/About.vue");
 
 import store from "./store";
 import "./registerServiceWorker";
@@ -33,6 +35,7 @@ const router = new VueRouter({
     { path: "/", component: Planner },
     { path: "/builds", component: Builds },
     { path: "/import", component: Import },
+    { path: "/about", component: About },
     { path: "/:build_id", component: Planner }
   ]
 });

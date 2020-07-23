@@ -366,6 +366,10 @@ body {
   font-size: 14px;
 }
 
+main > div {
+  padding: 0.5rem;
+}
+
 /* General stuff */
 table {
   width: 100%;
@@ -400,6 +404,10 @@ th {
 
 #planner img {
   clip-path: circle(10px at center);
+}
+
+p {
+  max-width: 40rem;
 }
 
 h1,
