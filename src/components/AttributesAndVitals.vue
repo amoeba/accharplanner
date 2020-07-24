@@ -6,9 +6,10 @@
           <h3>Attributes</h3>
         </div>
         <div class="right">
-          <abbr title="Character creation attribute points spent"
-            >{{ attributePointsSpent }} / 330</abbr
-          >
+          <span v-if="errors" class="error">{{ errors }}</span>
+          <abbr
+            title="Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380."
+          >{{ attributePointsSpent }} / {{ attributePointsAvailable }}</abbr>
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
@@ -35,8 +36,14 @@ export default {
     attributePointsSpent() {
       return this.$store.getters.attributePointsSpent;
     },
+    attributePointsAvailable() {
+      return this.$store.getters.attributePointsAvailable;
+    },
     collapsed() {
       return this.$store.getters.attributesPaneVisible;
+    },
+    errors() {
+      return this.$store.getters.attributesAndVitalsErrors;
     }
   },
   methods: {

@@ -3,7 +3,9 @@ import {
   AUGMENTATION_MAX_USES,
   LUMINANCE_AURA_MAX_USES,
   LUMINANCE_AURAS,
-  UNTRAINED_STATE } from "../constants";
+  UNTRAINED_STATE,
+  MAX_CREATION_ATTRIBUTE_TOTAL_POINTS
+} from "../constants";
 import {
   State,
   Race,
@@ -28,7 +30,8 @@ export default {
     state.ui.paneVisibility.skills = !state.ui.paneVisibility.skills;
   },
   toggleAugmentationsPane(state: State) {
-    state.ui.paneVisibility.augmentations = !state.ui.paneVisibility.augmentations;
+    state.ui.paneVisibility.augmentations = !state.ui.paneVisibility
+      .augmentations;
   },
   toggleAurasPane(state: State) {
     state.ui.paneVisibility.auras = !state.ui.paneVisibility.auras;
@@ -40,17 +43,22 @@ export default {
     state.ui.paneVisibility.character = !state.ui.paneVisibility.character;
   },
   toggleXPAndLuminancePane(state: State) {
-    state.ui.paneVisibility.xpAndLuminance = !state.ui.paneVisibility.xpAndLuminance;
+    state.ui.paneVisibility.xpAndLuminance = !state.ui.paneVisibility
+      .xpAndLuminance;
   },
   toggleKnobsAndDialsPane(state: State) {
-    state.ui.paneVisibility.knobsAndDials = !state.ui.paneVisibility.knobsAndDials;
+    state.ui.paneVisibility.knobsAndDials = !state.ui.paneVisibility
+      .knobsAndDials;
   },
   toggleExtraSkillCreditsPane(state: State) {
-    state.ui.paneVisibility.extraSkillCredits = !state.ui.paneVisibility.extraSkillCredits;
+    state.ui.paneVisibility.extraSkillCredits = !state.ui.paneVisibility
+      .extraSkillCredits;
   },
   changeStage(state: State, index: number) {
     state.ui.currentStage = index;
-    state.build.character = JSON.parse(JSON.stringify(state.build.stages[index]));
+    state.build.character = JSON.parse(
+      JSON.stringify(state.build.stages[index])
+    );
   },
   saveStage(state: State) {
     state.build.stages.push(JSON.parse(JSON.stringify(state.build.character)));
@@ -116,26 +124,19 @@ export default {
       state.build.character.augmentations.eye_of_the_remorseless.invested = 0;
       state.build.character.augmentations.might_of_the_seventh_mule.invested = 0;
       state.build.character.augmentations.hand_of_the_remorseless.invested = 0;
-    } else if (
-      value === Race.Umbraen ||
-      value === Race.Penumbraen
-    ) {
+    } else if (value === Race.Umbraen || value === Race.Penumbraen) {
       state.build.character.augmentations.jack_of_all_trades.invested = 0;
       state.build.character.augmentations.infused_life_magic.invested = 0;
       state.build.character.augmentations.eye_of_the_remorseless.invested = 1;
       state.build.character.augmentations.might_of_the_seventh_mule.invested = 0;
       state.build.character.augmentations.hand_of_the_remorseless.invested = 0;
-    } else if (
-      value === Race.Lugian
-    ) {
+    } else if (value === Race.Lugian) {
       state.build.character.augmentations.jack_of_all_trades.invested = 0;
       state.build.character.augmentations.infused_life_magic.invested = 0;
       state.build.character.augmentations.eye_of_the_remorseless.invested = 0;
       state.build.character.augmentations.might_of_the_seventh_mule.invested = 1;
       state.build.character.augmentations.hand_of_the_remorseless.invested = 0;
-    } else if (
-      value === Race.Tumerok
-    ) {
+    } else if (value === Race.Tumerok) {
       state.build.character.augmentations.jack_of_all_trades.invested = 0;
       state.build.character.augmentations.infused_life_magic.invested = 0;
       state.build.character.augmentations.eye_of_the_remorseless.invested = 0;
@@ -179,28 +180,40 @@ export default {
     if (newVal > 100) {
       newVal = 100;
     } else if (newVal < 10) {
-      newVal = 10
+      newVal = 10;
     }
 
-    // Ensure we haven't spent more than 330 points and adjust other
+    // Ensure we haven't spent more than we can and adjust other
     // attributes if needed
-    let newSpent = Object.keys(Attribute).map(a => {
-      // Don't count old value for the attribute we're changing, use the new
-      // value
-      if (a === payload.name) {
-        return newVal;
-      } else {
-        return state.build.character.attributes[a].creation;
-      }
-    }).reduce((a, v) => {
-      return a + v;
-    });
+    let newSpent = Object.keys(Attribute)
+      .map(a => {
+        // Don't count old value for the attribute we're changing, use the new
+        // value
+        if (a === payload.name) {
+          return newVal;
+        } else {
+          return state.build.character.attributes[a].creation;
+        }
+      })
+      .reduce((a, v) => {
+        return a + v;
+      });
 
     // Use this to iterate over the other attributes we're lowering by name
     let names = Object.keys(Attribute).filter(v => v !== payload.name);
 
-    if (newSpent > 330) {
-      let extra = newSpent - 330;
+    let maxAttributePoints = MAX_CREATION_ATTRIBUTE_TOTAL_POINTS +
+      state.build.character.augmentations.reinforcement_of_the_lugians
+        .invested *
+        5 +
+      state.build.character.augmentations.bleearghs_fortitude.invested * 5 +
+      state.build.character.augmentations.oswalds_enhancement.invested * 5 +
+      state.build.character.augmentations.siraluuns_blessing.invested * 5 +
+      state.build.character.augmentations.enduring_calm.invested * 5 +
+      state.build.character.augmentations.steadfast_will.invested * 5;
+
+    if (newSpent > maxAttributePoints) {
+      let extra = newSpent - maxAttributePoints;
 
       for (var i = 0; i < extra; i++) {
         // Don't reduce attributes below 10. Adding 1 to `extra` ensures
@@ -218,7 +231,9 @@ export default {
   },
 
   updateAttributeInvested(state: State, payload: any) {
-    state.build.character.attributes[payload.name].invested = Number(payload.value);
+    state.build.character.attributes[payload.name].invested = Number(
+      payload.value
+    );
   },
 
   updateAttributeBuff(state: State, payload: any) {
@@ -226,7 +241,9 @@ export default {
   },
 
   updateAttributeCantrip(state: State, payload: any) {
-    state.build.character.attributes[payload.name].cantrip = Number(payload.value);
+    state.build.character.attributes[payload.name].cantrip = Number(
+      payload.value
+    );
   },
 
   updateVitalInvested(state: State, payload: any) {
@@ -241,7 +258,7 @@ export default {
     state.build.character.vitals[payload.name].cantrip = Number(payload.value);
   },
 
-  updateSkillInvested(state: State, payload: { name: string, value: number}) {
+  updateSkillInvested(state: State, payload: { name: string; value: number }) {
     state.build.character.skills[payload.name].invested = payload.value;
   },
 
@@ -302,18 +319,24 @@ export default {
 
   // Augmentations
   updateAugmentationInvested(state: State, payload: any) {
-    state.build.character.augmentations[payload.name].invested = Number(payload.value);
+    state.build.character.augmentations[payload.name].invested = Number(
+      payload.value
+    );
 
     /* Update skills */
 
     if (payload.name === "jibrils_essence") {
-      state.build.character.skills.armor_tinkering.training = Training.SPECIALIZED;
+      state.build.character.skills.armor_tinkering.training =
+        Training.SPECIALIZED;
     } else if (payload.name === "yoshis_essence") {
-      state.build.character.skills.item_tinkering.training = Training.SPECIALIZED;
+      state.build.character.skills.item_tinkering.training =
+        Training.SPECIALIZED;
     } else if (payload.name === "celdiseths_essence") {
-      state.build.character.skills.magic_item_tinkering.training = Training.SPECIALIZED;
+      state.build.character.skills.magic_item_tinkering.training =
+        Training.SPECIALIZED;
     } else if (payload.name === "kogas_essence") {
-      state.build.character.skills.weapon_tinkering.training = Training.SPECIALIZED;
+      state.build.character.skills.weapon_tinkering.training =
+        Training.SPECIALIZED;
     } else if (payload.name === "ciandras_essence") {
       state.build.character.skills.salvaging.training = Training.SPECIALIZED;
     }
@@ -321,18 +344,22 @@ export default {
 
   changeAllAugmentationInvestment(state: State, value: number) {
     AUGMENTATIONS.forEach((aug_name: string) => {
-      state.build.character.augmentations[aug_name].invested = (value == 1 ? AUGMENTATION_MAX_USES[aug_name] : 0);
+      state.build.character.augmentations[aug_name].invested =
+        value == 1 ? AUGMENTATION_MAX_USES[aug_name] : 0;
     });
   },
 
   // Luminance Auras
   updateLuminanceAuraInvested(state: State, payload: any) {
-    state.build.character.luminance_auras[payload.name].invested = Number(payload.value);
+    state.build.character.luminance_auras[payload.name].invested = Number(
+      payload.value
+    );
   },
 
   changeAllLuminanceAuraInvestment(state: State, value: any) {
     LUMINANCE_AURAS.forEach((aura_name: string) => {
-      state.build.character.luminance_auras[aura_name].invested = (value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0);
+      state.build.character.luminance_auras[aura_name].invested =
+        value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0;
     });
   },
 
@@ -357,11 +384,13 @@ export default {
       if (
         state.build.character.skills[skill].training == Training.SPECIALIZED
       ) {
-        state.build.character.skills[skill].invested = newval > 226 ? 226 : newval;
+        state.build.character.skills[skill].invested =
+          newval > 226 ? 226 : newval;
       } else if (
         state.build.character.skills[skill].training == Training.TRAINED
       ) {
-        state.build.character.skills[skill].invested = newval > 208 ? 208 : newval;
+        state.build.character.skills[skill].invested =
+          newval > 208 ? 208 : newval;
       }
     });
   },
@@ -386,9 +415,7 @@ export default {
     Object.keys(Skill).forEach(skill => {
       let newval = Number(invested);
 
-      if (
-        state.build.character.skills[skill].training == Training.TRAINED
-      ) {
+      if (state.build.character.skills[skill].training == Training.TRAINED) {
         newval = newval > 208 ? 208 : newval;
       }
 

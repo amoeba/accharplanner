@@ -343,10 +343,6 @@ input.number {
   flex-wrap: wrap;
 }
 
-.right {
-  text-align: right;
-}
-
 /* Light gold
 rgba(254, 253, 209, 1); */
 /* Navy blue
@@ -479,12 +475,7 @@ a:visited.link-github {
 
 /* Utility classes */
 .error {
-  color: white;
-  background-color: red;
-  display: inline-block;
-  padding: 3px 5px;
-  border: 1px solid #a00;
-  border-radius: 3px;
+  color: red;
   font-weight: bold;
 }
 
@@ -502,6 +493,10 @@ a:visited.link-github {
 
 .right {
   text-align: right;
+}
+
+.right abbr {
+  margin-left: 0.5rem;
 }
 
 .inline {

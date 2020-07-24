@@ -7,13 +7,15 @@ import {
   LuminanceAura,
   StringIndexedDict,
   NumberIndexedDict
- } from "./types";
+} from "./types";
 
 export const MIN_LEVEL: number = 1;
 export const MAX_LEVEL: number = 275;
 export const MIN_TIMES_ENLIGHTENDED: number = 0;
 export const MAX_TIMES_ENLIGHTENDED: number = 5;
 export const MAX_SPECIALIZED_SKILL_CREDITS_SPENT: number = 70;
+export const MAX_CREATION_ATTRIBUTE_POINTS: number = 100;
+export const MAX_CREATION_ATTRIBUTE_TOTAL_POINTS: number = 330;
 
 export const ATTRIBUTES: string[] = [
   Attribute.strength,
@@ -21,14 +23,10 @@ export const ATTRIBUTES: string[] = [
   Attribute.coordination,
   Attribute.quickness,
   Attribute.focus,
-  Attribute.self,
+  Attribute.self
 ];
 
-export const VITALS: string[] = [
-  Vital.health,
-  Vital.stamina,
-  Vital.mana
-];
+export const VITALS: string[] = [Vital.health, Vital.stamina, Vital.mana];
 
 export const SKILLS: string[] = [
   Skill.alchemy,
@@ -932,14 +930,19 @@ export const COST_VITAL: NumberIndexedDict<number> = {
 };
 
 // Cost when trained at each level, not cost to train
-export const SKILL_COST_AT_TRAINING: StringIndexedDict<StringIndexedDict<number>> = {
+export const SKILL_COST_AT_TRAINING: StringIndexedDict<StringIndexedDict<
+  number
+>> = {
   [Skill.alchemy]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
   [Skill.arcane_lore]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 2 },
   [Skill.armor_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 4 },
   [Skill.assess_creature]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 6 },
   [Skill.assess_person]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 4 },
   [Skill.cooking]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 8 },
-  [Skill.creature_enchantment]: { [Training.TRAINED]: 8, [Training.SPECIALIZED]: 16 },
+  [Skill.creature_enchantment]: {
+    [Training.TRAINED]: 8,
+    [Training.SPECIALIZED]: 16
+  },
   [Skill.deception]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 6 },
   [Skill.dirty_fighting]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 4 },
   [Skill.dual_wield]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 4 },
@@ -947,7 +950,10 @@ export const SKILL_COST_AT_TRAINING: StringIndexedDict<StringIndexedDict<number>
   [Skill.fletching]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 8 },
   [Skill.healing]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 10 },
   [Skill.heavy_weapons]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
-  [Skill.item_enchantment]: { [Training.TRAINED]: 8, [Training.SPECIALIZED]: 16 },
+  [Skill.item_enchantment]: {
+    [Training.TRAINED]: 8,
+    [Training.SPECIALIZED]: 16
+  },
   [Skill.item_tinkering]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 2 },
   [Skill.jump]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 4 },
   [Skill.leadership]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 6 },
@@ -956,18 +962,33 @@ export const SKILL_COST_AT_TRAINING: StringIndexedDict<StringIndexedDict<number>
   [Skill.lockpick]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 10 },
   [Skill.loyalty]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 2 },
   [Skill.magic_defense]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 12 },
-  [Skill.magic_item_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 4 },
-  [Skill.mana_conversion]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
+  [Skill.magic_item_tinkering]: {
+    [Training.TRAINED]: 4,
+    [Training.SPECIALIZED]: 4
+  },
+  [Skill.mana_conversion]: {
+    [Training.TRAINED]: 6,
+    [Training.SPECIALIZED]: 12
+  },
   [Skill.melee_defense]: { [Training.TRAINED]: 10, [Training.SPECIALIZED]: 20 },
-  [Skill.missile_defense]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 10 },
-  [Skill.missile_weapons]: { [Training.TRAINED]: 6, [Training.SPECIALIZED]: 12 },
+  [Skill.missile_defense]: {
+    [Training.TRAINED]: 6,
+    [Training.SPECIALIZED]: 10
+  },
+  [Skill.missile_weapons]: {
+    [Training.TRAINED]: 6,
+    [Training.SPECIALIZED]: 12
+  },
   [Skill.recklessness]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 6 },
   [Skill.run]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 4 },
   [Skill.salvaging]: { [Training.TRAINED]: 0, [Training.SPECIALIZED]: 0 },
   [Skill.shield]: { [Training.TRAINED]: 2, [Training.SPECIALIZED]: 4 },
   [Skill.sneak_attack]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 6 },
   [Skill.summoning]: { [Training.TRAINED]: 8, [Training.SPECIALIZED]: 12 },
-  [Skill.two_handed_combat]: { [Training.TRAINED]: 8, [Training.SPECIALIZED]: 16 },
+  [Skill.two_handed_combat]: {
+    [Training.TRAINED]: 8,
+    [Training.SPECIALIZED]: 16
+  },
   [Skill.void_magic]: { [Training.TRAINED]: 16, [Training.SPECIALIZED]: 28 },
   [Skill.war_magic]: { [Training.TRAINED]: 16, [Training.SPECIALIZED]: 28 },
   [Skill.weapon_tinkering]: { [Training.TRAINED]: 4, [Training.SPECIALIZED]: 4 }
@@ -1796,12 +1817,84 @@ export const AUGMENTATION_COST: StringIndexedDict<number[]> = {
   [Augmentation.asherons_benediction]: [0, 0],
   [Augmentation.blackmoors_favor]: [0, 0],
   [Augmentation.innate_renewal]: [0, 1e9, 1e9],
-  [Augmentation.reinforcement_of_the_lugians]: [0, 5e8, 10e8, 15e8, 20e8, 25e8, 30e8, 35e8, 40e8, 45e8, 50e8],
-  [Augmentation.bleearghs_fortitude]: [0, 5e8, 10e8, 15e8, 20e8, 25e8, 30e8, 35e8, 40e8, 45e8, 50e8],
-  [Augmentation.oswalds_enhancement]: [0, 5e8, 10e8, 15e8, 20e8, 25e8, 30e8, 35e8, 40e8, 45e8, 50e8],
-  [Augmentation.siraluuns_blessing]: [0, 5e8, 10e8, 15e8, 20e8, 25e8, 30e8, 35e8, 40e8, 45e8, 50e8],
-  [Augmentation.enduring_calm]: [0, 5e8, 10e8, 15e8, 20e8, 25e8, 30e8, 35e8, 40e8, 45e8, 50e8],
-  [Augmentation.steadfast_will]: [0, 5e8, 10e8, 15e8, 20e8, 25e8, 30e8, 35e8, 40e8, 45e8, 50e8],
+  [Augmentation.reinforcement_of_the_lugians]: [
+    0,
+    5e8,
+    10e8,
+    15e8,
+    20e8,
+    25e8,
+    30e8,
+    35e8,
+    40e8,
+    45e8,
+    50e8
+  ],
+  [Augmentation.bleearghs_fortitude]: [
+    0,
+    5e8,
+    10e8,
+    15e8,
+    20e8,
+    25e8,
+    30e8,
+    35e8,
+    40e8,
+    45e8,
+    50e8
+  ],
+  [Augmentation.oswalds_enhancement]: [
+    0,
+    5e8,
+    10e8,
+    15e8,
+    20e8,
+    25e8,
+    30e8,
+    35e8,
+    40e8,
+    45e8,
+    50e8
+  ],
+  [Augmentation.siraluuns_blessing]: [
+    0,
+    5e8,
+    10e8,
+    15e8,
+    20e8,
+    25e8,
+    30e8,
+    35e8,
+    40e8,
+    45e8,
+    50e8
+  ],
+  [Augmentation.enduring_calm]: [
+    0,
+    5e8,
+    10e8,
+    15e8,
+    20e8,
+    25e8,
+    30e8,
+    35e8,
+    40e8,
+    45e8,
+    50e8
+  ],
+  [Augmentation.steadfast_will]: [
+    0,
+    5e8,
+    10e8,
+    15e8,
+    20e8,
+    25e8,
+    30e8,
+    35e8,
+    40e8,
+    45e8,
+    50e8
+  ],
   [Augmentation.enhancement_of_the_mace_turner]: [0, 2e9, 4e9],
   [Augmentation.enhancement_of_the_blade_turner]: [0, 2e9, 4e9],
   [Augmentation.enhancement_of_the_arrow_turner]: [0, 2e9, 4e9],
@@ -1839,12 +1932,38 @@ export const LUMINANCE_AURA_COST: StringIndexedDict<number[]> = {
   [LuminanceAura.skill]: [0, 1e6, 2e6],
   [LuminanceAura.temperance]: [0, 100000, 250000, 450000, 700000, 1000000],
   [LuminanceAura.valor]: [0, 100000, 250000, 450000, 700000, 1000000],
-  [LuminanceAura.world]: [0, 100000, 300000, 600000, 1000000, 1500000, 2100000, 2800000, 3600000, 4500000, 5500000],
-  [LuminanceAura.specialization]: [0, 350000, 750000, 1200000, 1700000, 2250000],
-  [LuminanceAura.invulnerability]: [0, 350000, 750000, 1200000, 1700000, 2250000],
+  [LuminanceAura.world]: [
+    0,
+    100000,
+    300000,
+    600000,
+    1000000,
+    1500000,
+    2100000,
+    2800000,
+    3600000,
+    4500000,
+    5500000
+  ],
+  [LuminanceAura.specialization]: [
+    0,
+    350000,
+    750000,
+    1200000,
+    1700000,
+    2250000
+  ],
+  [LuminanceAura.invulnerability]: [
+    0,
+    350000,
+    750000,
+    1200000,
+    1700000,
+    2250000
+  ],
   [LuminanceAura.destruction]: [0, 350000, 750000, 1200000, 1700000, 2250000],
   [LuminanceAura.retribution]: [0, 350000, 750000, 1200000, 1700000, 2250000],
-  [LuminanceAura.hardening]: [0, 350000, 750000, 1200000, 1700000, 2250000],
+  [LuminanceAura.hardening]: [0, 350000, 750000, 1200000, 1700000, 2250000]
 };
 
 export const LUMINANCE_AURA_MAX_USES: StringIndexedDict<number> = {
