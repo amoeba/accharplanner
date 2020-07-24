@@ -262,7 +262,19 @@ export default {
     );
   },
   attributesAndVitalsErrors: (state: State) => {
-    if (
+    let totalAttributeBonus =
+      state.build.character.augmentations.reinforcement_of_the_lugians
+        .invested *
+        5 +
+      state.build.character.augmentations.bleearghs_fortitude.invested * 5 +
+      state.build.character.augmentations.oswalds_enhancement.invested * 5 +
+      state.build.character.augmentations.siraluuns_blessing.invested * 5 +
+      state.build.character.augmentations.enduring_calm.invested * 5 +
+      state.build.character.augmentations.steadfast_will.invested * 5;
+
+    if (totalAttributeBonus > 50) {
+      return "Cannot raise innate attributes above 380 total!";
+    } else if (
       state.build.character.attributes.strength.creation +
         state.build.character.augmentations.reinforcement_of_the_lugians
           .invested *
@@ -272,9 +284,7 @@ export default {
       return "Cannot raise innate Strength above 100!";
     } else if (
       state.build.character.attributes.endurance.creation +
-        state.build.character.augmentations.bleearghs_fortitude
-          .invested *
-          5 >
+        state.build.character.augmentations.bleearghs_fortitude.invested * 5 >
       100
     ) {
       return "Cannot raise innate Endurance above 100!";
