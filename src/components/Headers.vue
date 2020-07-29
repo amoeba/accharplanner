@@ -2,10 +2,7 @@
   <div class="headers">
     <div class="header">
       <div>
-        <div
-          class="header-title header-title-split"
-          v-on:click="toggleCharacterPane"
-        >
+        <div class="header-title header-title-split" v-on:click="toggleCharacterPane">
           <div>
             <h3>Character</h3>
           </div>
@@ -18,36 +15,27 @@
           <div>Race</div>
           <div>
             <select v-model="race">
-              <option v-for="race in races" v-bind:key="race">{{
+              <option v-for="race in races" v-bind:key="race">
+                {{
                 race
-              }}</option>
+                }}
+              </option>
             </select>
           </div>
           <div>Gender</div>
           <div>
-              <input type="radio" id="female" value="Female" v-model="gender" />
-              <label for="female">Female</label>
-              <input type="radio" id="male" value="Male" v-model="gender" />
-              <label for="male">Male</label>
+            <input type="radio" id="female" value="Female" v-model="gender" />
+            <label for="female">Female</label>
+            <input type="radio" id="male" value="Male" v-model="gender" />
+            <label for="male">Male</label>
           </div>
           <div>Level</div>
           <div class="flex-row">
             <div class="w70">
-              <input
-                class="w100"
-                type="range"
-                min="1"
-                max="275"
-                v-model="level"
-              />
+              <input class="w100" type="range" min="1" max="275" v-model="level" />
             </div>
             <div class="w30 right">
-              <input
-                class="number w100"
-                type="text"
-                v-bind:value="level"
-                v-on:change="updateLevel"
-              />
+              <input class="number w100" type="text" v-bind:value="level" v-on:change="updateLevel" />
             </div>
           </div>
         </div>
@@ -71,9 +59,11 @@
           <div>{{ totalLuminanceXPSpent }}</div>
           <div>Required Level</div>
           <div>
-            <span v-bind:class="isOverspent ? 'red' : 'gray'">{{
+            <span v-bind:class="isOverspent ? 'red' : 'gray'">
+              {{
               requiredLevel
-            }}</span>
+              }}
+            </span>
           </div>
         </div>
       </div>
@@ -121,16 +111,21 @@
               <option value="4">Legen.</option>
             </select>
           </div>
-          <div>Times Enlightened</div>
-          <div>
-            <input
-              class="w100"
-              type="range"
-              min="0"
-              max="5"
-              value="0"
-              v-model="timesEnlightened"
-            />
+          <div>Enlightened</div>
+          <div class="flex-row">
+            <div class="w70">
+              <input type="range" min="0" max="5" value="0" v-model="timesEnlightened" />
+            </div>
+            <div class="w30 right">
+              <input
+                class="number"
+                type="text"
+                min="0"
+                max="5"
+                value="0"
+                v-model="timesEnlightened"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -264,17 +259,6 @@ export default {
       }
 
       this.$store.commit("updateLevel", actual);
-    },
-    updateTimesEnlightened(e) {
-      let actual = Math.round(Number(e.target.value));
-
-      if (isNaN(actual) || actual < MIN_TIMES_ENLIGHTENDED) {
-        actual = MIN_TIMES_ENLIGHTENDED;
-      } else if (actual > MAX_TIMES_ENLIGHTENDED) {
-        actual = MAX_TIMES_ENLIGHTENDED;
-      }
-
-      this.$store.commit("updateTimesEnlightened", actual);
     },
     changeAllInvestments(e) {
       this.$store.commit("changeAllInvestment", e.target.value);
