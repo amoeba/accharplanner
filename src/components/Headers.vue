@@ -121,6 +121,17 @@
               <option value="4">Legen.</option>
             </select>
           </div>
+          <div>Times Enlightened</div>
+          <div>
+            <input
+              class="w100"
+              type="range"
+              min="0"
+              max="5"
+              value="0"
+              v-model="timesEnlightened"
+            />
+          </div>
         </div>
       </div>
     </div>

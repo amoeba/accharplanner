@@ -438,7 +438,8 @@ export default {
 
     return (
       Math.round(getters.enduranceBase / 2) * benediction_bonus +
-      state.build.character.vitals.health.invested
+      state.build.character.vitals.health.invested +
+      state.build.character.timesEnlightened * 2
     );
   },
   healthBuffed: (state: State, getters: any) => {
@@ -485,7 +486,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.build.character.skills.alchemy.training) +
-      state.build.character.skills.alchemy.invested
+      state.build.character.skills.alchemy.invested +
+      state.build.character.timesEnlightened
     );
   },
   alchemyBuffed: (state: State, getters: any) => {
@@ -522,7 +524,8 @@ export default {
     return (
       Math.round(getters.focusBase / 3) +
       trainingBonus(state.build.character.skills.arcane_lore.training) +
-      state.build.character.skills.arcane_lore.invested
+      state.build.character.skills.arcane_lore.invested +
+      state.build.character.timesEnlightened
     );
   },
   arcane_loreBuffed: (state: State, getters: any) => {
@@ -557,7 +560,8 @@ export default {
     return (
       Math.round((getters.enduranceBase + getters.focusBase) / 2) +
       trainingBonus(state.build.character.skills.armor_tinkering.training) +
-      state.build.character.skills.armor_tinkering.invested
+      state.build.character.skills.armor_tinkering.invested +
+      state.build.character.timesEnlightened
     );
   },
   armor_tinkeringBuffed: (state: State, getters: any) => {
@@ -596,7 +600,8 @@ export default {
 
     return (
       trainingBonus(state.build.character.skills.assess_creature.training) +
-      state.build.character.skills.assess_creature.invested
+      state.build.character.skills.assess_creature.invested +
+      state.build.character.timesEnlightened
     );
   },
   assess_creatureBuffed: (state: State, getters: any) => {
@@ -625,7 +630,8 @@ export default {
 
     return (
       trainingBonus(state.build.character.skills.assess_person.training) +
-      state.build.character.skills.assess_person.invested
+      state.build.character.skills.assess_person.invested +
+      state.build.character.timesEnlightened
     );
   },
   assess_personBuffed: (state: State, getters: any) => {
@@ -653,7 +659,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.build.character.skills.cooking.training) +
-      state.build.character.skills.cooking.invested
+      state.build.character.skills.cooking.invested +
+      state.build.character.timesEnlightened
     );
   },
   cookingBuffed: (state: State, getters: any) => {
@@ -693,7 +700,8 @@ export default {
       trainingBonus(
         state.build.character.skills.creature_enchantment.training
       ) +
-      state.build.character.skills.creature_enchantment.invested
+      state.build.character.skills.creature_enchantment.invested +
+      state.build.character.timesEnlightened
     );
   },
   creature_enchantmentBuffed: (state: State, getters: any) => {
@@ -732,7 +740,8 @@ export default {
 
     return (
       trainingBonus(state.build.character.skills.deception.training) +
-      state.build.character.skills.deception.invested
+      state.build.character.skills.deception.invested +
+      state.build.character.timesEnlightened
     );
   },
   deceptionBuffed: (state: State, getters: any) => {
@@ -761,7 +770,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.dirty_fighting.training) +
-      state.build.character.skills.dirty_fighting.invested
+      state.build.character.skills.dirty_fighting.invested +
+      state.build.character.timesEnlightened
     );
   },
   dirty_fightingBuffed: (state: State, getters: any) => {
@@ -799,7 +809,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.dual_wield.training) +
-      state.build.character.skills.dual_wield.invested
+      state.build.character.skills.dual_wield.invested +
+      state.build.character.timesEnlightened
     );
   },
   dual_wieldBuffed: (state: State, getters: any) => {
@@ -836,7 +847,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.finesse_weapons.training) +
-      state.build.character.skills.finesse_weapons.invested
+      state.build.character.skills.finesse_weapons.invested +
+      state.build.character.timesEnlightened
     );
   },
   finesse_weaponsBuffed: (state: State, getters: any) => {
@@ -876,7 +888,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.build.character.skills.fletching.training) +
-      state.build.character.skills.fletching.invested
+      state.build.character.skills.fletching.invested +
+      state.build.character.timesEnlightened
     );
   },
   fletchingBuffed: (state: State, getters: any) => {
@@ -911,7 +924,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.build.character.skills.healing.training) +
-      state.build.character.skills.healing.invested
+      state.build.character.skills.healing.invested +
+      state.build.character.timesEnlightened
     );
   },
   healingBuffed: (state: State, getters: any) => {
@@ -947,7 +961,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.heavy_weapons.training) +
-      state.build.character.skills.heavy_weapons.invested
+      state.build.character.skills.heavy_weapons.invested +
+      state.build.character.timesEnlightened
     );
   },
   heavy_weaponsBuffed: (state: State, getters: any) => {
@@ -989,7 +1004,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.item_enchantment.training) +
-      state.build.character.skills.item_enchantment.invested
+      state.build.character.skills.item_enchantment.invested +
+      state.build.character.timesEnlightened
     );
   },
   item_enchantmentBuffed: (state: State, getters: any) => {
@@ -1031,7 +1047,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 2) +
       trainingBonus(state.build.character.skills.item_tinkering.training) +
-      state.build.character.skills.item_tinkering.invested
+      state.build.character.skills.item_tinkering.invested +
+      state.build.character.timesEnlightened
     );
   },
   item_tinkeringBuffed: (state: State, getters: any) => {
@@ -1068,7 +1085,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
       trainingBonus(state.build.character.skills.jump.training) +
-      state.build.character.skills.jump.invested
+      state.build.character.skills.jump.invested +
+      state.build.character.timesEnlightened
     );
   },
   jumpBuffed: (state: State, getters: any) => {
@@ -1103,7 +1121,8 @@ export default {
 
     return (
       trainingBonus(state.build.character.skills.leadership.training) +
-      state.build.character.skills.leadership.invested
+      state.build.character.skills.leadership.invested +
+      state.build.character.timesEnlightened
     );
   },
   leadershipBuffed: (state: State, getters: any) => {
@@ -1132,7 +1151,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.life_magic.training) +
-      state.build.character.skills.life_magic.invested
+      state.build.character.skills.life_magic.invested +
+      state.build.character.timesEnlightened
     );
   },
   life_magicBuffed: (state: State, getters: any) => {
@@ -1176,7 +1196,8 @@ export default {
       (state.build.character.augmentations.master_of_the_steel_circle
         .invested === 1
         ? 10
-        : 0)
+        : 0) +
+      state.build.character.timesEnlightened
     );
   },
   light_weaponsBuffed: (state: State, getters: any) => {
@@ -1211,7 +1232,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.focusBase) / 3) +
       trainingBonus(state.build.character.skills.lockpick.training) +
-      state.build.character.skills.lockpick.invested
+      state.build.character.skills.lockpick.invested +
+      state.build.character.timesEnlightened
     );
   },
   lockpickBuffed: (state: State, getters: any) => {
@@ -1245,7 +1267,8 @@ export default {
 
     return (
       trainingBonus(state.build.character.skills.loyalty.training) +
-      state.build.character.skills.loyalty.invested
+      state.build.character.skills.loyalty.invested +
+      state.build.character.timesEnlightened
     );
   },
   loyaltyBuffed: (state: State, getters: any) => {
@@ -1274,7 +1297,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 7) +
       trainingBonus(state.build.character.skills.magic_defense.training) +
-      state.build.character.skills.magic_defense.invested
+      state.build.character.skills.magic_defense.invested +
+      state.build.character.timesEnlightened
     );
   },
   magic_defenseBuffed: (state: State, getters: any) => {
@@ -1314,7 +1338,8 @@ export default {
       trainingBonus(
         state.build.character.skills.magic_item_tinkering.training
       ) +
-      state.build.character.skills.magic_item_tinkering.invested
+      state.build.character.skills.magic_item_tinkering.invested +
+      state.build.character.timesEnlightened
     );
   },
   magic_item_tinkeringBuffed: (state: State, getters: any) => {
@@ -1349,7 +1374,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 6) +
       trainingBonus(state.build.character.skills.mana_conversion.training) +
-      state.build.character.skills.mana_conversion.invested
+      state.build.character.skills.mana_conversion.invested +
+      state.build.character.timesEnlightened
     );
   },
   mana_conversionBuffed: (state: State, getters: any) => {
@@ -1387,7 +1413,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.melee_defense.training) +
-      state.build.character.skills.melee_defense.invested
+      state.build.character.skills.melee_defense.invested +
+      state.build.character.timesEnlightened
     );
   },
   melee_defenseBuffed: (state: State, getters: any) => {
@@ -1425,7 +1452,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 5) +
       trainingBonus(state.build.character.skills.missile_defense.training) +
-      state.build.character.skills.missile_defense.invested
+      state.build.character.skills.missile_defense.invested +
+      state.build.character.timesEnlightened
     );
   },
   missile_defenseBuffed: (state: State, getters: any) => {
@@ -1464,7 +1492,8 @@ export default {
     return (
       Math.round(getters.coordinationBase / 2) +
       trainingBonus(state.build.character.skills.missile_weapons.training) +
-      state.build.character.skills.missile_weapons.invested
+      state.build.character.skills.missile_weapons.invested +
+      state.build.character.timesEnlightened
     );
   },
   missile_weaponsBuffed: (state: State, getters: any) => {
@@ -1504,7 +1533,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.recklessness.training) +
-      state.build.character.skills.recklessness.invested
+      state.build.character.skills.recklessness.invested +
+      state.build.character.timesEnlightened
     );
   },
   recklessnessBuffed: (state: State, getters: any) => {
@@ -1539,7 +1569,8 @@ export default {
     return (
       getters.quicknessBase +
       trainingBonus(state.build.character.skills.run.training) +
-      state.build.character.skills.run.invested
+      state.build.character.skills.run.invested +
+      state.build.character.timesEnlightened
     );
   },
   runBuffed: (state: State, getters: any) => {
@@ -1567,7 +1598,8 @@ export default {
 
     return (
       trainingBonus(state.build.character.skills.salvaging.training) +
-      state.build.character.skills.salvaging.invested
+      state.build.character.skills.salvaging.invested +
+      state.build.character.timesEnlightened
     );
   },
   salvagingBuffed: (state: State, getters: any) => {
@@ -1595,7 +1627,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
       trainingBonus(state.build.character.skills.shield.training) +
-      state.build.character.skills.shield.invested
+      state.build.character.skills.shield.invested +
+      state.build.character.timesEnlightened
     );
   },
   shieldBuffed: (state: State, getters: any) => {
@@ -1631,7 +1664,8 @@ export default {
     return (
       Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.sneak_attack.training) +
-      state.build.character.skills.sneak_attack.invested
+      state.build.character.skills.sneak_attack.invested +
+      state.build.character.timesEnlightened
     );
   },
   sneak_attackBuffed: (state: State, getters: any) => {
@@ -1666,7 +1700,8 @@ export default {
     return (
       Math.round((getters.enduranceBase + getters.selfBase) / 3) +
       trainingBonus(state.build.character.skills.summoning.training) +
-      state.build.character.skills.summoning.invested
+      state.build.character.skills.summoning.invested +
+      state.build.character.timesEnlightened
     );
   },
   summoningBuffed: (state: State, getters: any) => {
@@ -1703,7 +1738,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.two_handed_combat.training) +
-      state.build.character.skills.two_handed_combat.invested
+      state.build.character.skills.two_handed_combat.invested +
+      state.build.character.timesEnlightened
     );
   },
   two_handed_combatBuffed: (state: State, getters: any) => {
@@ -1741,7 +1777,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.void_magic.training) +
-      state.build.character.skills.void_magic.invested
+      state.build.character.skills.void_magic.invested +
+      state.build.character.timesEnlightened
     );
   },
   void_magicBuffed: (state: State, getters: any) => {
@@ -1779,7 +1816,8 @@ export default {
     return (
       Math.round((getters.focusBase + getters.selfBase) / 4) +
       trainingBonus(state.build.character.skills.war_magic.training) +
-      state.build.character.skills.war_magic.invested
+      state.build.character.skills.war_magic.invested +
+      state.build.character.timesEnlightened
     );
   },
   war_magicBuffed: (state: State, getters: any) => {
@@ -1820,7 +1858,8 @@ export default {
     return (
       Math.round((getters.strengthBase + getters.focusBase) / 2) +
       trainingBonus(state.build.character.skills.weapon_tinkering.training) +
-      state.build.character.skills.weapon_tinkering.invested
+      state.build.character.skills.weapon_tinkering.invested +
+      state.build.character.timesEnlightened
     );
   },
   weapon_tinkeringBuffed: (state: State, getters: any) => {
