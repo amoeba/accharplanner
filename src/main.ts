@@ -21,7 +21,6 @@ const About = () =>
   import(/* webpackChunkName: "import" */ "./components/About.vue");
 
 import store from "./store";
-import "./registerServiceWorker";
 import { Training } from "./types";
 import DefaultCharacter from "./store/DefaultCharacter";
 
