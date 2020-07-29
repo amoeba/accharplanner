@@ -1,20 +1,16 @@
 <template>
   <tr>
     <td>
-      <img
-        :src="'/img/' + name + '.png'"
-        :alt="displayName"
-        width="20"
-        height="20"
-      />
+      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
     </td>
-    <td>{{ displayName }}</td>
+    <td>
+      {{ displayName }}
+      <span class="faded">{{ formula }}</span>
+    </td>
     <td>&nbsp;</td>
     <td class="creation number">{{ creation }}</td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
-      {{ buffed }}
-    </td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
     <td>
       <input type="range" min="0" max="196" v-model="invested" />
     </td>
@@ -52,7 +48,12 @@
 </template>
 
 <script>
-import { VITAL_NAME, BUFF_NAME, CANTRIP_NAME } from "../mappings";
+import {
+  VITAL_NAME,
+  VITAL_FORMULA,
+  BUFF_NAME,
+  CANTRIP_NAME
+} from "../mappings";
 
 export default {
   name: "Vital",
@@ -62,6 +63,9 @@ export default {
     tabIndex: String
   },
   computed: {
+    formula() {
+      return VITAL_FORMULA[this._props.name];
+    },
     isBuffed() {
       return (
         this.$store.state.build.character.vitals[this._props.name].buff > 0 ||

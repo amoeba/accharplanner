@@ -1,5 +1,6 @@
 import {
   Attribute,
+  Vital,
   Skill,
   Augmentation,
   LuminanceAura,
@@ -13,6 +14,12 @@ export const ATTRIBUTE_NAME = {
   [Attribute.quickness]: "Quickness",
   [Attribute.focus]: "Focus",
   [Attribute.self]: "Self"
+};
+
+export const VITAL_FORMULA = {
+  [Vital.health]: "E/2",
+  [Vital.stamina]: "E",
+  [Vital.mana]: "W"
 };
 
 export const SKILL_NAME = {
