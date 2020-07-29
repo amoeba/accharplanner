@@ -274,53 +274,20 @@ export default {
 
     if (totalAttributeBonus > 50) {
       return "Cannot raise innate attributes above 380 total!";
-    } else if (
-      state.build.character.attributes.strength.creation +
-        state.build.character.augmentations.reinforcement_of_the_lugians
-          .invested *
-          5 >
-      100
-    ) {
-      return "Cannot raise innate Strength above 100!";
-    } else if (
-      state.build.character.attributes.endurance.creation +
-        state.build.character.augmentations.bleearghs_fortitude.invested * 5 >
-      100
-    ) {
-      return "Cannot raise innate Endurance above 100!";
-    } else if (
-      state.build.character.attributes.coordination.creation +
-        state.build.character.augmentations.oswalds_enhancement.invested * 5 >
-      100
-    ) {
-      return "Cannot raise innate Coordination above 100!";
-    } else if (
-      state.build.character.attributes.quickness.creation +
-        state.build.character.augmentations.siraluuns_blessing.invested * 5 >
-      100
-    ) {
-      return "Cannot raise innate Quickness above 100!";
-    } else if (
-      state.build.character.attributes.focus.creation +
-        state.build.character.augmentations.enduring_calm.invested * 5 >
-      100
-    ) {
-      return "Cannot raise innate Focus above 100!";
-    } else if (
-      state.build.character.attributes.self.creation +
-        state.build.character.augmentations.steadfast_will.invested * 5 >
-      100
-    ) {
-      return "Cannot raise innate Self above 100!";
     }
   },
   strengthInnate: (state: State) => {
-    return (
+    const value =
       state.build.character.attributes.strength.creation +
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
-        5
-    );
+        5;
+
+    if (value > 100) {
+      return 100;
+    } else {
+      return value;
+    }
   },
   strengthBase: (state: State, getters: any) => {
     return (
@@ -336,10 +303,15 @@ export default {
     );
   },
   enduranceInnate: (state: State) => {
-    return (
+    const value =
       state.build.character.attributes.endurance.creation +
-      state.build.character.augmentations.bleearghs_fortitude.invested * 5
-    );
+      state.build.character.augmentations.bleearghs_fortitude.invested * 5;
+
+    if (value > 100) {
+      return 100;
+    } else {
+      return value;
+    }
   },
   enduranceBase: (state: State, getters: any) => {
     return (
@@ -355,10 +327,15 @@ export default {
     );
   },
   coordinationInnate: (state: State) => {
-    return (
+    const value =
       state.build.character.attributes.coordination.creation +
-      state.build.character.augmentations.oswalds_enhancement.invested * 5
-    );
+      state.build.character.augmentations.oswalds_enhancement.invested * 5;
+
+    if (value > 100) {
+      return 100;
+    } else {
+      return value;
+    }
   },
   coordinationBase: (state: State, getters: any) => {
     return (
@@ -374,10 +351,15 @@ export default {
     );
   },
   quicknessInnate: (state: State) => {
-    return (
+    const value =
       state.build.character.attributes.quickness.creation +
-      state.build.character.augmentations.siraluuns_blessing.invested * 5
-    );
+      state.build.character.augmentations.siraluuns_blessing.invested * 5;
+
+    if (value > 100) {
+      return 100;
+    } else {
+      return value;
+    }
   },
   quicknessBase: (state: State, getters: any) => {
     return (
@@ -393,10 +375,15 @@ export default {
     );
   },
   focusInnate: (state: State) => {
-    return (
+    const value =
       state.build.character.attributes.focus.creation +
-      state.build.character.augmentations.enduring_calm.invested * 5
-    );
+      state.build.character.augmentations.enduring_calm.invested * 5;
+
+    if (value > 100) {
+      return 100;
+    } else {
+      return value;
+    }
   },
   focusBase: (state: State, getters: any) => {
     return (
@@ -411,10 +398,15 @@ export default {
     );
   },
   selfInnate: (state: State) => {
-    return (
+    const value =
       state.build.character.attributes.self.creation +
-      state.build.character.augmentations.steadfast_will.invested * 5
-    );
+      state.build.character.augmentations.steadfast_will.invested * 5;
+
+    if (value > 100) {
+      return 100;
+    } else {
+      return value;
+    }
   },
   selfBase: (state: State, getters: any) => {
     return getters.selfInnate + state.build.character.attributes.self.invested;
@@ -1922,44 +1914,6 @@ export default {
 
     if (totalAttributeBonus > 50) {
       return "Cannot augment attributes more than ten times!";
-    } else if (
-      state.build.character.attributes.strength.creation +
-        state.build.character.augmentations.reinforcement_of_the_lugians
-          .invested *
-          5 >
-      100
-    ) {
-      return "Cannot augment innate Strength above 100!";
-    } else if (
-      state.build.character.attributes.endurance.creation +
-        state.build.character.augmentations.bleearghs_fortitude.invested * 5 >
-      100
-    ) {
-      return "Cannot augment innate Endurance above 100!";
-    } else if (
-      state.build.character.attributes.coordination.creation +
-        state.build.character.augmentations.oswalds_enhancement.invested * 5 >
-      100
-    ) {
-      return "Cannot augment innate Coordination above 100!";
-    } else if (
-      state.build.character.attributes.quickness.creation +
-        state.build.character.augmentations.siraluuns_blessing.invested * 5 >
-      100
-    ) {
-      return "Cannot augment innate Quickness above 100!";
-    } else if (
-      state.build.character.attributes.focus.creation +
-        state.build.character.augmentations.enduring_calm.invested * 5 >
-      100
-    ) {
-      return "Cannot augment innate Focus above 100!";
-    } else if (
-      state.build.character.attributes.self.creation +
-        state.build.character.augmentations.steadfast_will.invested * 5 >
-      100
-    ) {
-      return "Cannot augment innate Self above 100!";
-    } else return "";
+    }
   }
 };
