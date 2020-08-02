@@ -17,6 +17,7 @@ import {
 import { trainingBonus, buffBonus, cantripBonus } from "../helpers";
 import { State } from "../types";
 import { Attribute, Skill, Training, Race, Augmentation } from "@/types";
+import { Getter } from "vuex";
 
 export default {
   // UI stuff
@@ -142,6 +143,16 @@ export default {
     }
 
     return cost;
+  },
+
+  unassignedXP: (state: State, getters: any) => {
+    const diff = getters.totalXPEarned - getters.totalXPInvested;
+
+    if (diff < 0) {
+      return 0;
+    }
+
+    return diff;
   },
 
   requiredLevel: (state: State, getters: any) => {

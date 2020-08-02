@@ -45,18 +45,23 @@
           </div>
         </div>
         <div v-if="xpAndLuminancePaneVisible" class="header-items alt-twocol">
-          <div>XP Total</div>
-          <div>{{ totalXPEarned }}</div>
-          <div>XP Spent</div>
+          <div>Unassigned XP</div>
+          <div>
+            <span>{{ unassignedXP }}</span>
+          </div>
+          <div>Spent XP</div>
           <div>
             <span>{{ totalXPInvested }}</span>
           </div>
-          <div>Luminance Spent</div>
-          <div>{{ totalLuminanceXPSpent }}</div>
+
+          <div>Total XP</div>
+          <div>{{ totalXPEarned }}</div>
           <div>Required Level</div>
           <div>
             <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
           </div>
+          <div>Luminance Spent</div>
+          <div>{{ totalLuminanceXPSpent }}</div>
         </div>
       </div>
     </div>
@@ -159,6 +164,9 @@ export default {
     },
     totalXPInvested() {
       return Number(this.$store.getters.totalXPInvested).toLocaleString();
+    },
+    unassignedXP() {
+      return Number(this.$store.getters.unassignedXP).toLocaleString();
     },
     isOverspent() {
       return (
