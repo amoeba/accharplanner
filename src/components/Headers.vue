@@ -15,9 +15,7 @@
           <div>Race</div>
           <div>
             <select v-model="race">
-              <option v-for="race in races" v-bind:key="race">
-                {{ race }}
-              </option>
+              <option v-for="race in races" v-bind:key="race">{{ race }}</option>
             </select>
           </div>
           <div>Gender</div>
@@ -30,21 +28,10 @@
           <div>Level</div>
           <div class="flex-row">
             <div class="w70">
-              <input
-                class="w100"
-                type="range"
-                min="1"
-                max="275"
-                v-model="level"
-              />
+              <input class="w100" type="range" min="1" max="275" v-model="level" />
             </div>
             <div class="w30 right">
-              <input
-                class="number w100"
-                type="text"
-                v-bind:value="level"
-                v-on:change="updateLevel"
-              />
+              <input class="number w100" type="text" v-bind:value="level" v-on:change="updateLevel" />
             </div>
           </div>
         </div>
@@ -68,9 +55,7 @@
           <div>{{ totalLuminanceXPSpent }}</div>
           <div>Required Level</div>
           <div>
-            <span v-bind:class="isOverspent ? 'red' : 'gray'">
-              {{ requiredLevel }}
-            </span>
+            <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
           </div>
         </div>
       </div>
@@ -121,13 +106,7 @@
           <div>Enlightened</div>
           <div class="flex-row">
             <div class="w70">
-              <input
-                type="range"
-                min="0"
-                max="5"
-                value="0"
-                v-model="timesEnlightened"
-              />
+              <input type="range" min="0" max="5" value="0" v-model="timesEnlightened" />
             </div>
             <div class="w30 right">
               <input
