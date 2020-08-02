@@ -47,16 +47,16 @@
           </div>
         </div>
         <div v-if="xpAndLuminancePaneVisible" class="header-items alt-twocol">
-          <div>Unassigned XP</div>
+          <div>Unassigned</div>
           <div>
             <span>{{ unassignedXP }}</span>
           </div>
-          <div>Spent XP</div>
+          <div>Spent</div>
           <div>
             <span>{{ totalXPInvested }}</span>
           </div>
 
-          <div>Total XP</div>
+          <div>Total</div>
           <div>{{ totalXPEarned }}</div>
           <div>Required Level</div>
           <div>
