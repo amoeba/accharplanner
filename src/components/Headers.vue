@@ -21,9 +21,11 @@
           <div>Gender</div>
           <div>
             <input type="radio" id="female" value="Female" v-model="gender" />
-            <label for="female">Female</label>
+            <label class="onlywide" for="female">Female</label>
+            <label class="onlynarrwo" for="female">F</label>
             <input type="radio" id="male" value="Male" v-model="gender" />
-            <label for="male">Male</label>
+            <label class="onlywide" for="male">Male</label>
+            <label class="onlynarrow" for="male">M</label>
           </div>
           <div>Level</div>
           <div class="flex-row">
