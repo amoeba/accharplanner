@@ -15,15 +15,10 @@
             </tr>
             <tr class="controls">
               <th>&nbsp;</th>
-              <th colspan="2">
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  value="0"
-                  v-on:change="changeInvested"
-                />
+              <th>
+                <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
               </th>
+              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>

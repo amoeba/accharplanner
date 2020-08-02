@@ -408,6 +408,13 @@ th {
   height: 30px;
 }
 
+th input,
+td input,
+th select,
+td select {
+  width: 100%;
+}
+
 #planner img {
   clip-path: circle(10px at center);
 }
