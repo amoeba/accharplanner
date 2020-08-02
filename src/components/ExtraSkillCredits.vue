@@ -1,5 +1,6 @@
 <template>
   <div id="extraskillcredits" class="header">
+    <div>
       <div class="header-title" v-on:click="toggle">
         <h3>Extra Skill Credits</h3>
       </div>
