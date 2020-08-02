@@ -385,6 +385,7 @@ button {
   vertical-align: middle;
 }
 
+/* Checkboxes look better with baseline alignment */
 input[type="checkbox"] {
   vertical-align: baseline;
 }
