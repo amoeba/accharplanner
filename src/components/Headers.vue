@@ -64,7 +64,7 @@
           <div>
             <span>{{ totalXPInvested }}</span>
           </div>
-          <div>Lum. XP Spent</div>
+          <div>Luminance Spent</div>
           <div>{{ totalLuminanceXPSpent }}</div>
           <div>Required Level</div>
           <div>
