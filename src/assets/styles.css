@@ -385,6 +385,10 @@ button {
   vertical-align: middle;
 }
 
+input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
 button {
   background-color: #eee;
   border: 1px solid #ccc;
