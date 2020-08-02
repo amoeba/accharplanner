@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <div>
     <input
       v-bind:id="name"
       v-bind:name="name"
@@ -7,7 +7,7 @@
       v-model="checked"
     />
     <label v-bind:for="name">{{ name }}</label>
-  </li>
+  </div>
 </template>
 
 <script>
