@@ -1,6 +1,6 @@
 import { Training } from "./types";
 
-export const trainingBonus = function (training: Training) {
+export const trainingBonus = function(training: Training) {
   if (training === Training.SPECIALIZED) {
     return 10;
   } else if (training === Training.TRAINED) {
@@ -10,7 +10,7 @@ export const trainingBonus = function (training: Training) {
   }
 };
 
-export const buffBonus = function (level: number) {
+export const buffBonus = function(level: number) {
   switch (level) {
     case 1:
       return 10;
@@ -33,7 +33,7 @@ export const buffBonus = function (level: number) {
   }
 };
 
-export const cantripBonus = function (level: number) {
+export const cantripBonus = function(level: number) {
   switch (level) {
     case 1:
       return 5;
@@ -65,5 +65,13 @@ export const exportCharacter = function(data: object, name: string | null) {
   const filename =
     (name || "character").replace(/[^a-zA-Z0-9_]+/, "-") + ".json";
 
-    exportJSONData(data, filename);
+  exportJSONData(data, filename);
+};
+
+export const clamp = function(value: number, clamp: number): number {
+  if (value < clamp) {
+    return clamp;
+  }
+
+  return value;
 };

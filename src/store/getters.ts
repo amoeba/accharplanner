@@ -14,10 +14,9 @@ import {
   LUMINANCE_AURA_COST,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS
 } from "../constants";
-import { trainingBonus, buffBonus, cantripBonus } from "../helpers";
+import { trainingBonus, buffBonus, cantripBonus, clamp } from "../helpers";
 import { State } from "../types";
 import { Attribute, Skill, Training, Race, Augmentation } from "@/types";
-import { Getter } from "vuex";
 
 export default {
   // UI stuff
@@ -478,11 +477,12 @@ export default {
     return getters.selfBase + state.build.character.vitals.mana.invested;
   },
   manaBuffed: (state: State, getters: any) => {
-    return (
+    return clamp(
       getters.manaBase +
-      buffBonus(state.build.character.vitals.mana.buff) +
-      cantripBonus(state.build.character.vitals.mana.cantrip) +
-      (state.build.character.items.focusing_stone ? -50 : 0) // Malediction
+        buffBonus(state.build.character.vitals.mana.buff) +
+        cantripBonus(state.build.character.vitals.mana.cantrip) +
+        (state.build.character.items.focusing_stone ? -50 : 0), // Malediction
+      0
     );
   },
   // Skills
