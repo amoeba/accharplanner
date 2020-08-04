@@ -1,7 +1,7 @@
 import DefaultCharacter from "./DefaultCharacter";
 import { State } from "../types";
 
-let state: State  = {
+let state: State = {
   ui: {
     notifications: [],
     savedBuilds: [],
@@ -13,6 +13,7 @@ let state: State  = {
       skills: true,
       augmentations: true,
       auras: true,
+      items: true,
       buildStages: true,
       character: true,
       xpAndLuminance: true,
@@ -24,6 +25,6 @@ let state: State  = {
     character: DefaultCharacter(),
     stages: []
   }
-}
+};
 
 export default state;

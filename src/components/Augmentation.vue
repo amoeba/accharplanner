@@ -1,7 +1,8 @@
 <template>
   <tr>
     <td>
-      {{ displayName }} <span class="faded">{{ extraInfo }}</span>
+      {{ displayName }}
+      <span class="faded">{{ extraInfo }}</span>
     </td>
     <td>
       <input

@@ -18,6 +18,7 @@ export interface Character {
   skills: any;
   augmentations: any;
   luminance_auras: any;
+  items: any;
 }
 
 enum NotificationType {
@@ -42,6 +43,7 @@ export interface PaneVisibility {
   skills: boolean;
   augmentations: boolean;
   auras: boolean;
+  items: boolean;
   buildStages: boolean;
   character: boolean;
   xpAndLuminance: boolean;
@@ -212,4 +214,8 @@ export enum LuminanceAura {
   destruction = "destruction",
   retribution = "retribution",
   hardening = "hardening"
+}
+
+export enum Item {
+  focusing_stone = "focusing_stone"
 }

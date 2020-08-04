@@ -1,5 +1,4 @@
 import { Character, Skill } from "../types";
-import { Race, Gender } from "../types";
 import { UNTRAINED_STATE } from "@/constants";
 
 export default function(): Character {
@@ -483,6 +482,9 @@ export default function(): Character {
       hardening: {
         invested: 0
       }
+    },
+    items: {
+      focusing_stone: false
     }
   };
 }

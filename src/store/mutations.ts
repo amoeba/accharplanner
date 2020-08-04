@@ -36,6 +36,9 @@ export default {
   toggleAurasPane(state: State) {
     state.ui.paneVisibility.auras = !state.ui.paneVisibility.auras;
   },
+  toggleItemsPane(state: State) {
+    state.ui.paneVisibility.items = !state.ui.paneVisibility.items;
+  },
   toggleBuildStagesPane(state: State) {
     state.ui.paneVisibility.buildStages = !state.ui.paneVisibility.buildStages;
   },
@@ -173,6 +176,10 @@ export default {
     }
   },
 
+  updateItem(state: State, payload: any) {
+    state.build.character.items[payload.id] = payload.value;
+  },
+
   updateAttributeCreation(state: State, payload: any) {
     let newVal = Number(payload.value);
 
@@ -202,7 +209,8 @@ export default {
     // Use this to iterate over the other attributes we're lowering by name
     let names = Object.keys(Attribute).filter(v => v !== payload.name);
 
-    let maxAttributePoints = MAX_CREATION_ATTRIBUTE_TOTAL_POINTS +
+    let maxAttributePoints =
+      MAX_CREATION_ATTRIBUTE_TOTAL_POINTS +
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
         5 +

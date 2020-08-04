@@ -4,6 +4,7 @@ import {
   Skill,
   Augmentation,
   LuminanceAura,
+  Item,
   NumberIndexedDict
 } from "./types";
 
@@ -257,4 +258,8 @@ export const LUMINANCE_AURA_EXTRA_INFO = {
   [LuminanceAura.destruction]: "+1 Dmg",
   [LuminanceAura.retribution]: "+1 Crit Dmg",
   [LuminanceAura.hardening]: "+1 Crit Dmg Red."
+};
+
+export const ITEM_NAME = {
+  [Item.focusing_stone]: "Focusing Stone"
 };

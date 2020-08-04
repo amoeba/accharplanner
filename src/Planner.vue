@@ -17,6 +17,7 @@
       <Skills />
       <Augmentations />
       <LuminanceAuras />
+      <Items />
     </div>
   </div>
 </template>
@@ -30,6 +31,7 @@ import AttributesAndVitals from "./components/AttributesAndVitals.vue";
 import Skills from "./components/Skills.vue";
 import Augmentations from "./components/Augmentations.vue";
 import LuminanceAuras from "./components/LuminanceAuras.vue";
+import Items from "./components/Items.vue";
 import { exportCharacter } from "./helpers";
 
 export default {
@@ -47,7 +49,8 @@ export default {
     AttributesAndVitals,
     Skills,
     Augmentations,
-    LuminanceAuras
+    LuminanceAuras,
+    Items
   },
   created: function() {
     // Bind Esc key to closing an open modal

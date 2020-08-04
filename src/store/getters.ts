@@ -33,6 +33,9 @@ export default {
   aurasPaneVisible: (state: State) => {
     return state.ui.paneVisibility.auras;
   },
+  itemsPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.items;
+  },
   buildStagesPaneVisible: (state: State) => {
     return state.ui.paneVisibility.buildStages;
   },
@@ -405,7 +408,8 @@ export default {
     return (
       getters.focusBase +
       buffBonus(state.build.character.attributes.focus.buff) +
-      cantripBonus(state.build.character.attributes.focus.cantrip)
+      cantripBonus(state.build.character.attributes.focus.cantrip) +
+      (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
     );
   },
   selfInnate: (state: State) => {
@@ -477,7 +481,8 @@ export default {
     return (
       getters.manaBase +
       buffBonus(state.build.character.vitals.mana.buff) +
-      cantripBonus(state.build.character.vitals.mana.cantrip)
+      cantripBonus(state.build.character.vitals.mana.cantrip) +
+      (state.build.character.items.focusing_stone ? -50 : 0) // Malediction
     );
   },
   // Skills

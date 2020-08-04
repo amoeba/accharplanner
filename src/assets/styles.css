@@ -66,7 +66,7 @@
   }
 }
 
-#planner ul {
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -186,6 +186,10 @@
   border-top: 1px solid #ccc;
   max-height: 25rem;
   overflow-y: scroll;
+}
+
+.pane .table-wrapper ul {
+  margin: 0.5rem 0;
 }
 
 #attributes input[type="range"],
