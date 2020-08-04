@@ -7,10 +7,12 @@ import "./assets/styles.css";
 import * as Sentry from "@sentry/browser";
 import * as Integrations from "@sentry/integrations";
 
-Sentry.init({
-  dsn: "https://cfba8bdf4efc44358ed01b97bcaabc32@sentry.io/2802535",
-  integrations: [new Integrations.Vue({ Vue, attachProps: true })]
-});
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    integrations: [new Integrations.Vue({ Vue, attachProps: true })]
+  });
+}
 
 const Planner = () => import(/* webpackChunkName: "planner" */ "./Planner.vue");
 const Builds = () =>
@@ -81,7 +83,7 @@ new Vue({
       })
       .then(function(json) {
         if (!json.attribs) {
-          throw "Invalid JSON structure. Is this character a stub character (i.e., no attributes, skills)?"
+          throw "Invalid JSON structure. Is this character a stub character (i.e., no attributes, skills)?";
         }
 
         return json;
