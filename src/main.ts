@@ -9,7 +9,7 @@ import * as Integrations from "@sentry/integrations";
 
 if (process.env.SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
     integrations: [new Integrations.Vue({ Vue, attachProps: true })]
   });
 }
