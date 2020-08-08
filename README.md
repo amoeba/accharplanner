@@ -6,6 +6,7 @@ Very WIP character planner for Asheron's Call.
 
 This isn't the first skill planner for AC:
 
+- http://www.asheronsguide.com/charbuilder.html
 - http://tkissing.github.io/AsheronsSkillz/
 - http://mudzereli.github.io/asheron-skillcalc/#/
 
