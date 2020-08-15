@@ -14,9 +14,10 @@ if (process.env.SENTRY_DSN) {
   });
 }
 
-const Planner = () => import(/* webpackChunkName: "planner" */ "./Planner.vue");
 const Builds = () =>
   import(/* webpackChunkName: "builds" */ "./components/Builds.vue");
+const Planner = () =>
+  import(/* webpackChunkName: "planner" */ "./components/Planner.vue");
 const Import = () =>
   import(/* webpackChunkName: "import" */ "./components/Import.vue");
 const About = () =>

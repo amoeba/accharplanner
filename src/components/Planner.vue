@@ -23,16 +23,16 @@
 </template>
 
 <script>
-import Stages from "./components/Stages.vue";
-import Modal from "./components/Modal.vue";
-import ShareModal from "./components/ShareModal.vue";
-import Headers from "./components/Headers.vue";
-import AttributesAndVitals from "./components/AttributesAndVitals.vue";
-import Skills from "./components/Skills.vue";
-import Augmentations from "./components/Augmentations.vue";
-import LuminanceAuras from "./components/LuminanceAuras.vue";
-import Items from "./components/Items.vue";
-import { exportCharacter } from "./helpers";
+import Stages from "./Stages.vue";
+import Modal from "./Modal.vue";
+import ShareModal from "./ShareModal.vue";
+import Headers from "./Headers.vue";
+import AttributesAndVitals from "./AttributesAndVitals.vue";
+import Skills from "./Skills.vue";
+import Augmentations from "./Augmentations.vue";
+import LuminanceAuras from "./LuminanceAuras.vue";
+import Items from "./Items.vue";
+import { exportCharacter } from "../helpers";
 
 export default {
   name: "planner",
