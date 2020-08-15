@@ -1,52 +1,49 @@
 <template>
-  <div id="builds">
-    <h2>Builds</h2>
-    <div v-if="loading">Grabbing the freshest, gimpiest builds. Hang on...</div>
+  <li class="builds-entry" v-bind:class="{loading: loading}">
+    <span v-if="loading">Loading build...</span>
     <div v-if="error">Error: {{ error }}</div>
-
-    <ul v-if="builds">
-      <BuildsEntry v-for="build in builds" :id="build.id" :key="build.id" />
-    </ul>
-  </div>
+    <a v-if="build" :href="url">{{ build.name }}</a>
+  </li>
 </template>
 
 <script>
 import firebase from "../firebase";
-import Build from "./Build";
-import BuildsEntry from "./BuildsEntry";
 
 export default {
-  name: "Builds",
-  components: {
-    BuildsEntry
+  name: "Build",
+  props: {
+    id: String
   },
   data() {
     return {
       loading: false,
-      builds: [],
-      error: null
+      error: null,
+      build: null
     };
+  },
+  computed: {
+    url() {
+      return "/builds/" + this._props.id;
+    }
   },
   created() {
     this.fetchData();
   },
-  watch: {
-    $route: "fetchData"
-  },
   methods: {
     fetchData() {
-      console.log("fetchData(builds)");
+      console.log("fetchData(build)");
+
       this.error = null;
       this.loading = true;
 
       const db = firebase.firestore();
 
       db.collection("pinned")
-        .orderBy("name")
+        .doc(this._props.id)
         .get()
-        .then(x => {
+        .then(doc => {
           this.loading = false;
-          this.builds = x.docs;
+          this.build = doc.data();
         })
         .catch(error => {
           this.error = error;

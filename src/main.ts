@@ -14,14 +14,18 @@ if (process.env.SENTRY_DSN) {
   });
 }
 
-const Builds = () =>
-  import(/* webpackChunkName: "builds" */ "./components/Builds.vue");
 const Planner = () =>
   import(/* webpackChunkName: "planner" */ "./components/Planner.vue");
+const SavedBuilds = () =>
+  import(/* webpackChunkName: "savedbuilds" */ "./components/SavedBuilds.vue");
 const Import = () =>
   import(/* webpackChunkName: "import" */ "./components/Import.vue");
 const About = () =>
   import(/* webpackChunkName: "import" */ "./components/About.vue");
+const Builds = () =>
+  import(/* webpackChunkName: "builds" */ "./components/Builds.vue");
+const Build = () =>
+  import(/* webpackChunkName: "builds" */ "./components/Build.vue");
 
 import store from "./store";
 import { Training } from "./types";
@@ -35,9 +39,11 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     { path: "/", component: Planner },
-    { path: "/builds", component: Builds },
+    { path: "/saved", component: SavedBuilds },
     { path: "/import", component: Import },
     { path: "/about", component: About },
+    { path: "/builds", component: Builds },
+    { path: "/builds/:id", component: Build },
     { path: "/:build_id", component: Planner }
   ]
 });

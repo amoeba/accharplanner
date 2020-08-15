@@ -1,67 +1,82 @@
 <template>
-  <div class="build">
-    <h3>{{ description }}</h3>
-    <div class="savedat">
-      <strong>Saved at:</strong>
-      {{ buildKey }}
+  <div>
+    <div class="breadcrumb">
+      <span>
+        <a href="/builds">Back to Builds</a>
+      </span>
     </div>
-    <div class="buttons">
-      <button v-on:click="load">Load</button>
-      <button v-on:click="exportBuild">Export</button>
-      <button v-on:click="remove">Delete</button>
+    <div class="build">
+      <div v-if="error">Error: {{ error }}</div>
+      <div class="build-header">
+        <h3 v-if="loading">Loading build...</h3>
+        <h3 v-if="build">{{ build.name }}</h3>
+      </div>
+      <div class="build-body">
+        <p v-if="loading">Loading build...</p>
+        <a v-if="build" :href="url">Load in Planner</a>
+        <p v-if="build" v-html="build.description"></p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { exportCharacter } from "../helpers";
+import firebase from "../firebase";
+import MD from "markdown-it";
 
 export default {
   name: "Build",
   props: {
-    buildKey: String,
-    buildData: String
+    id: String
+  },
+  data() {
+    return {
+      loading: false,
+      error: null,
+      build: null,
+      description: null
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    $route: "fetchData"
   },
   computed: {
-    description() {
-      const data = JSON.parse(this._props.buildData);
-      return data.character.name + " (Level " + data.character.level + ")";
-    },
-    data() {
-      return JSON.stringify(this._props.buildData, null, 2);
+    url() {
+      return "/" + this.build.build_id;
     }
   },
   methods: {
-    load() {
-      this.$store.dispatch("import", JSON.parse(this._props.buildData));
-    },
-    exportBuild() {
-      const data = JSON.parse(this._props.buildData);
-      exportCharacter(data, data.character.name);
-    },
-    remove() {
-      this.$store.commit("deleteBuild", this._props.buildKey);
+    fetchData() {
+      console.log("Build.fetchData()");
+      this.error = null;
+      this.loading = true;
+
+      const db = firebase.firestore();
+
+      db.collection("pinned")
+        .doc(this.$route.params.id)
+        .get()
+        .then(doc => {
+          this.loading = false;
+          this.build = doc.data();
+          // I use the $ symbol for newlines because Firestore's web interface
+          // doesn't support real newlines when I paste and I don't want to
+          // implement an admin interface
+          this.build.description = MD("default", {
+            breaks: true,
+            linkify: true
+          }).render(this.build.description.split("$").join("\n"));
+          console.log(this.build);
+        })
+        .catch(error => {
+          this.error = error;
+        });
     }
   }
 };
 </script>
 
-<style>
-.build {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ccc;
-}
-
-.build:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.build h3 {
-  margin: 0 0 0.5rem 0;
-}
-
-.build .savedat {
-  margin-bottom: 0.25rem;
-}
-</style>
+<style></style>

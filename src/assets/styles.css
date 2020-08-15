@@ -240,6 +240,10 @@ input.number {
   margin-right: 0;
 }
 
+.breadcrumb {
+  margin-bottom: 0.5rem;
+}
+
 /* Stages */
 .header.header-stages {
   padding-bottom: 0;
@@ -558,4 +562,85 @@ a:visited.link-github {
 .notification.error {
   border: 1px solid red;
   background-color: rgba(150, 0, 0, 0.9);
+}
+
+/* Builds */
+#builds h2 {
+  margin-bottom: 1.5rem;
+}
+
+#builds ul {
+  list-style-type: "\1F539";
+  margin-left: 0.5rem;
+}
+
+#builds li {
+  border-radius: 5px;
+  margin: 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.build {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 30rem;
+}
+
+.build-header {
+  border-bottom: 1px solid #ccc;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.build .build-header h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.build-body {
+  padding: 0 0.5rem;
+}
+
+.build table {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  width: auto;
+}
+
+.build th {
+  border-bottom: 1px solid #ccc;
+}
+
+.build th,
+.build td {
+  padding: 0 0.25rem;
+}
+
+.build p {
+  margin-bottom: 0.5rem;
+}
+
+.loading {
+  background-color: #eee;
+  /* animation: loadingpulse 5s ease-in-out infinite; */
+}
+
+@keyframes loadingpulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Saved Build */
+.saved-build {
+  margin-bottom: 1.5rem;
 }
