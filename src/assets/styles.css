@@ -546,6 +546,7 @@ a:visited.link-github {
   border-radius: 3px;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.5);
   z-index: 999;
+  border-radius: 5px;
 }
 
 .notification.success {
