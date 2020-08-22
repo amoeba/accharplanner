@@ -1,23 +1,39 @@
 <template>
   <tr>
     <td>
-      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img
+        :src="'/img/' + name + '.png'"
+        :alt="displayName"
+        width="20"
+        height="20"
+      />
     </td>
     <td>
       {{ displayName }}
       <span class="faded">{{ formula }}</span>
     </td>
     <td>
-      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">↓</button>
+      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+        ↓
+      </button>
     </td>
     <td>
-      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">↑</button>
+      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
+        ↑
+      </button>
     </td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
+      {{ buffed }}
+    </td>
     <td>
       <div v-if="canInvest">
-        <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
+        <input
+          type="range"
+          min="0"
+          v-bind:max="maxInvestment"
+          v-model="invested"
+        />
       </div>
     </td>
     <td class="invested number">
