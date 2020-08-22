@@ -395,20 +395,19 @@ export default {
     );
 
     /* Update skills */
-
-    if (payload.name === "jibrils_essence") {
+    if (payload.name === Augmentation.jibrils_essence) {
       state.build.character.skills.armor_tinkering.training =
         Training.SPECIALIZED;
-    } else if (payload.name === "yoshis_essence") {
+    } else if (payload.name === Augmentation.yoshis_essence) {
       state.build.character.skills.item_tinkering.training =
         Training.SPECIALIZED;
-    } else if (payload.name === "celdiseths_essence") {
+    } else if (payload.name === Augmentation.celdiseths_essence) {
       state.build.character.skills.magic_item_tinkering.training =
         Training.SPECIALIZED;
-    } else if (payload.name === "kogas_essence") {
+    } else if (payload.name === Augmentation.kogas_essence) {
       state.build.character.skills.weapon_tinkering.training =
         Training.SPECIALIZED;
-    } else if (payload.name === "ciandras_essence") {
+    } else if (payload.name === Augmentation.ciandras_essence) {
       state.build.character.skills.salvaging.training = Training.SPECIALIZED;
     }
   },
