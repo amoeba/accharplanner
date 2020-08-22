@@ -19,7 +19,13 @@
             <tr class="controls">
               <th>&nbsp;</th>
               <th>
-                <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  value="0"
+                  v-on:change="changeInvested"
+                />
               </th>
               <th>&nbsp;</th>
             </tr>
