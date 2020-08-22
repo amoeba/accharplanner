@@ -1200,10 +1200,6 @@ export default {
       Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.light_weapons.training) +
       state.build.character.skills.light_weapons.invested +
-      (state.build.character.augmentations.master_of_the_steel_circle
-        .invested === 1
-        ? 10
-        : 0) +
       state.build.character.timesEnlightened
     );
   },
@@ -1223,6 +1219,10 @@ export default {
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
+        : 0) +
+      (state.build.character.augmentations.master_of_the_steel_circle
+        .invested === 1
+        ? 10
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.light_weapons.training ===
@@ -1766,6 +1766,10 @@ export default {
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
+        : 0) +
+      (state.build.character.augmentations.master_of_the_steel_circle
+        .invested === 1
+        ? 10
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.two_handed_combat.training ===
