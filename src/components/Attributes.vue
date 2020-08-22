@@ -4,7 +4,7 @@
       <th colspan="2" class="name">Name</th>
       <th class="creation" colspan="2">Creation</th>
       <th>Base</th>
-      <th>Effective</th>
+      <th>Buffed</th>
       <th class="invested" colspan="2">Invested</th>
       <th class="buff">Buff</th>
       <th class="cantrip">Cantrip</th>
