@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     fetchData() {
-      console.log("fetchData(builds)");
       this.error = null;
       this.loading = true;
 

@@ -66,7 +66,6 @@ export const importCharacter = function (store: Store<State>, json: any) {
 
   // Experience Augmentations and Luminance Auras
   Object.keys(json.properties).forEach(property => {
-    console.log(property)
     switch (property) {
       case "218":
         store.state.build.character.augmentations.reinforcement_of_the_lugians.invested =

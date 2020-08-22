@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     fetchData() {
-      console.log("Build.fetchData()");
       this.error = null;
       this.loading = true;
 
@@ -69,7 +68,6 @@ export default {
             breaks: true,
             linkify: true
           }).render(this.build.description.split("$").join("\n"));
-          console.log(this.build);
         })
         .catch(error => {
           this.error = error;
