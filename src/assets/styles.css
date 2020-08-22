@@ -532,7 +532,6 @@ a:visited.link-github {
 #notifications {
   position: fixed;
   width: 100%;
-  z-index: 999;
   margin: 0;
   padding: 0;
 }
@@ -544,7 +543,6 @@ a:visited.link-github {
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 3px;
-  z-index: 999;
   border-radius: 5px;
 }
 
