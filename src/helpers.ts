@@ -4,7 +4,7 @@ export const trainingBonus = function (training: Training) {
   if (training === Training.SPECIALIZED) {
     return 10;
   } else if (training === Training.TRAINED) {
-    return 5;
+    return 0;
   } else {
     return 0;
   }
