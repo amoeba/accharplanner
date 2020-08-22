@@ -16,6 +16,8 @@ export const MAX_TIMES_ENLIGHTENDED: number = 5;
 export const MAX_SPECIALIZED_SKILL_CREDITS_SPENT: number = 70;
 export const MAX_CREATION_ATTRIBUTE_POINTS: number = 100;
 export const MAX_CREATION_ATTRIBUTE_TOTAL_POINTS: number = 330;
+export const MAX_SKILL_INVESTED_TRAINED = 208;
+export const MAX_SKILL_INVESTED_SPECIALIZED = 226;
 
 export const ATTRIBUTES: string[] = [
   Attribute.strength,

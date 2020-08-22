@@ -2,6 +2,10 @@ import { Store } from "vuex";
 import { State } from "./types";
 import DefaultCharacter from "./store/DefaultCharacter";
 import { Training } from "./types";
+import {
+  MAX_SKILL_INVESTED_TRAINED,
+  MAX_SKILL_INVESTED_SPECIALIZED
+} from "./constants";
 
 export const importCharacter = function (store: Store<State>, json: any) {
   // Re-set to blank state prior to import
@@ -48,6 +52,15 @@ export const importCharacter = function (store: Store<State>, json: any) {
       store.state.build.character.skills[s].invested = 0;
       store.state.build.character.skills[s].invested =
         json.skills[s].base - store.getters[s + "Base"];
+
+      // Cap invested at the appropriate value
+      if (store.state.build.character.skills[s].training === Training.SPECIALIZED &&
+        store.state.build.character.skills[s].invested > MAX_SKILL_INVESTED_SPECIALIZED) {
+        store.state.build.character.skills[s].invested = MAX_SKILL_INVESTED_SPECIALIZED;
+      } else if (store.state.build.character.skills[s].training === Training.TRAINED &&
+        store.state.build.character.skills[s].invested > MAX_SKILL_INVESTED_TRAINED) {
+        store.state.build.character.skills[s].invested = MAX_SKILL_INVESTED_TRAINED;
+      }
     }
   });
 
