@@ -1,7 +1,7 @@
 import { Store } from "vuex";
 import { State } from "./types";
 import DefaultCharacter from "./store/DefaultCharacter";
-import { Training } from "./types";
+import { Training, PropertyInt } from "./types";
 import {
   MAX_SKILL_INVESTED_TRAINED,
   MAX_SKILL_INVESTED_SPECIALIZED
@@ -66,6 +66,7 @@ export const importCharacter = function (store: Store<State>, json: any) {
 
   // Experience Augmentations and Luminance Auras
   Object.keys(json.properties).forEach(property => {
+    console.log(property)
     switch (property) {
       case "218":
         store.state.build.character.augmentations.reinforcement_of_the_lugians.invested =
@@ -230,6 +231,87 @@ export const importCharacter = function (store: Store<State>, json: any) {
       case "297":
         store.state.build.character.augmentations.infused_war_magic.invested =
           json.properties[property];
+        break;
+      case PropertyInt.LumAugDamageRating:
+        const LumAugDamageRating = json.properties[property];
+
+        if (LumAugDamageRating >= 0 && LumAugDamageRating <= 5) {
+          store.state.build.character.luminance_auras.valor.invested = LumAugDamageRating;
+        } else if (LumAugDamageRating > 5) {
+          store.state.build.character.luminance_auras.valor.invested = 5;
+          store.state.build.character.luminance_auras.destruction.invested = LumAugDamageRating - 5;
+        }
+
+        break;
+      case PropertyInt.LumAugDamageReductionRating:
+        const LumAugDamageReductionRating = json.properties[property];
+
+        if (LumAugDamageReductionRating >= 0 && LumAugDamageReductionRating <= 5) {
+          store.state.build.character.luminance_auras.protection.invested = LumAugDamageReductionRating;
+        } else if (LumAugDamageReductionRating > 5) {
+          store.state.build.character.luminance_auras.protection.invested = 5;
+          store.state.build.character.luminance_auras.invulnerability.invested = LumAugDamageReductionRating - 5;
+        }
+
+        break;
+      case PropertyInt.LumAugCritDamageRating:
+        const LumAugCritDamageRating = json.properties[property];
+
+        if (LumAugCritDamageRating >= 0 && LumAugCritDamageRating <= 5) {
+          store.state.build.character.luminance_auras.glory.invested = LumAugCritDamageRating;
+        } else if (LumAugCritDamageRating > 5) {
+          store.state.build.character.luminance_auras.glory.invested = 5;
+          store.state.build.character.luminance_auras.retribution.invested = LumAugCritDamageRating - 5;
+        }
+
+        break;
+      case PropertyInt.LumAugCritReductionRating:
+        const LumAugCritReductionRating = json.properties[property];
+
+        if (LumAugCritReductionRating >= 0 && LumAugCritReductionRating <= 5) {
+          store.state.build.character.luminance_auras.temperance.invested = LumAugCritReductionRating;
+        } else if (LumAugCritReductionRating > 5) {
+          store.state.build.character.luminance_auras.temperance.invested = LumAugCritReductionRating;
+          store.state.build.character.luminance_auras.hardening.invested = LumAugCritReductionRating - 5;
+        }
+
+        break;
+      case PropertyInt.LumAugSurgeEffectRating:
+        // Doesn't exist?
+
+        break;
+      case PropertyInt.LumAugSurgeChanceRating:
+        store.state.build.character.luminance_auras.aetheric_vision.invested = json.properties[property];
+
+        break;
+      case PropertyInt.LumAugItemManaUsage:
+        store.state.build.character.luminance_auras.mana_flow.invested = json.properties[property];
+
+        break;
+      case PropertyInt.LumAugItemManaGain:
+        store.state.build.character.luminance_auras.mana_infusion.invested = json.properties[property];
+
+        break;
+      case PropertyInt.LumAugVitality:
+        // Doesn't exist?
+        break;
+      case PropertyInt.LumAugHealingRating:
+        store.state.build.character.luminance_auras.purity.invested = json.properties[property];
+
+        break;
+      case PropertyInt.LumAugSkilledCraft:
+        store.state.build.character.luminance_auras.craftsman.invested = json.properties[property];
+
+        break;
+      case PropertyInt.LumAugSkilledSpec:
+        store.state.build.character.luminance_auras.specialization.invested = json.properties[property];
+
+        break;
+      case PropertyInt.LumAugNoDestroyCraft:
+        break;
+      case PropertyInt.LumAugAllSkills:
+        store.state.build.character.luminance_auras.world.invested = json.properties[property];
+
         break;
       default:
         break;

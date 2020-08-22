@@ -124,7 +124,7 @@ new Vue({
             params.get("character") +
             " (" +
             params.get("server") +
-            ") successfully imported. Note that Auras aren't imported due to limitations out of my control."
+            ") successfully imported."
         });
       });
   }

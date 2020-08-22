@@ -150,6 +150,24 @@ export enum Training {
   SPECIALIZED = "specialized"
 }
 
+// Incomplete
+export enum PropertyInt {
+  LumAugDamageRating = "333",
+  LumAugDamageReductionRating = "334",
+  LumAugCritDamageRating = "335",
+  LumAugCritReductionRating = "336",
+  LumAugSurgeEffectRating = "337",
+  LumAugSurgeChanceRating = "338",
+  LumAugItemManaUsage = "339",
+  LumAugItemManaGain = "340",
+  LumAugVitality = "341",
+  LumAugHealingRating = "342",
+  LumAugSkilledCraft = "343",
+  LumAugSkilledSpec = "344",
+  LumAugNoDestroyCraft = "345",
+  LumAugAllSkills = "365"
+};
+
 export enum Augmentation {
   might_of_the_seventh_mule = "might_of_the_seventh_mule",
   shadow_of_the_seventh_mule = "shadow_of_the_seventh_mule",
