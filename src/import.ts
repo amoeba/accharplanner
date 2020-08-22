@@ -34,6 +34,23 @@ export const importCharacter = function (store: Store<State>, json: any) {
       json.vitals[a].base - store.getters[a + "Base"];
   });
 
+  // Skills
+  Object.keys(json.skills).forEach(s => {
+    store.state.build.character.skills[s].training = json.skills[
+      s
+    ].training.toLowerCase();
+
+    if (
+      store.state.build.character.skills[s].training ===
+      Training.SPECIALIZED ||
+      store.state.build.character.skills[s].training === Training.TRAINED
+    ) {
+      store.state.build.character.skills[s].invested = 0;
+      store.state.build.character.skills[s].invested =
+        json.skills[s].base - store.getters[s + "Base"];
+    }
+  });
+
   // Experience Augmentations and Luminance Auras
   Object.keys(json.properties).forEach(property => {
     switch (property) {
@@ -203,24 +220,6 @@ export const importCharacter = function (store: Store<State>, json: any) {
         break;
       default:
         break;
-    }
-  });
-
-  // Skills
-  // Do skills last because augs impact how we calculate "invested"
-  Object.keys(json.skills).forEach(s => {
-    store.state.build.character.skills[s].training = json.skills[
-      s
-    ].training.toLowerCase();
-
-    if (
-      store.state.build.character.skills[s].training ===
-      Training.SPECIALIZED ||
-      store.state.build.character.skills[s].training === Training.TRAINED
-    ) {
-      store.state.build.character.skills[s].invested = 0;
-      store.state.build.character.skills[s].invested =
-        json.skills[s].base - store.getters[s + "Base"];
     }
   });
 }
