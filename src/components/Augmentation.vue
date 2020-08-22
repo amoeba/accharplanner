@@ -39,12 +39,6 @@ export default {
       get() {
         return this.$store.state.build.character.augmentations[this._props.name]
           .invested;
-      },
-      set(value) {
-        this.$store.commit("updateAugmentationInvested", {
-          name: this._props.name,
-          value: value
-        });
       }
     },
     max() {

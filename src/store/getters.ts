@@ -73,7 +73,7 @@ export default {
   totalXPInvested: (state: State, getters: any) => {
     let cost = 0;
 
-    ATTRIBUTES.forEach(function(a: string) {
+    ATTRIBUTES.forEach(function (a: string) {
       cost += COST_ATTRIBUTE[state.build.character.attributes[a].invested];
     });
 
@@ -81,18 +81,18 @@ export default {
       cost += COST_VITAL[state.build.character.vitals[v].invested];
     });
 
-    getters.specializedSkills.forEach(function(s: string) {
+    getters.specializedSkills.forEach(function (s: string) {
       cost += COST_SKILL_SPECIALIZED[state.build.character.skills[s].invested];
     });
 
-    getters.trainedSkills.forEach(function(s: string) {
+    getters.trainedSkills.forEach(function (s: string) {
       cost += COST_SKILL_TRAINED[state.build.character.skills[s].invested];
     });
 
-    AUGMENTATIONS.forEach(function(aug: string) {
+    AUGMENTATIONS.forEach(function (aug: string) {
       cost +=
         AUGMENTATION_COST[aug][
-          state.build.character.augmentations[aug].invested
+        state.build.character.augmentations[aug].invested
         ];
     });
 
@@ -106,7 +106,7 @@ export default {
     ) {
       cost -=
         AUGMENTATION_COST[Augmentation.jack_of_all_trades][
-          state.build.character.augmentations.jack_of_all_trades.invested
+        state.build.character.augmentations.jack_of_all_trades.invested
         ];
     } else if (
       state.build.character.race === Race.Empyrean &&
@@ -114,7 +114,7 @@ export default {
     ) {
       cost -=
         AUGMENTATION_COST[Augmentation.infused_life_magic][
-          state.build.character.augmentations.infused_life_magic.invested
+        state.build.character.augmentations.infused_life_magic.invested
         ];
     } else if (
       (state.build.character.race === Race.Umbraen ||
@@ -123,16 +123,16 @@ export default {
     ) {
       cost -=
         AUGMENTATION_COST[Augmentation.eye_of_the_remorseless][
-          state.build.character.augmentations.eye_of_the_remorseless.invested
+        state.build.character.augmentations.eye_of_the_remorseless.invested
         ];
     } else if (
       state.build.character.race === Race.Lugian &&
       state.build.character.augmentations.might_of_the_seventh_mule.invested ==
-        1
+      1
     ) {
       cost -=
         AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][
-          state.build.character.augmentations.might_of_the_seventh_mule.invested
+        state.build.character.augmentations.might_of_the_seventh_mule.invested
         ];
     } else if (
       state.build.character.race === Race.Tumerok &&
@@ -140,7 +140,7 @@ export default {
     ) {
       cost -=
         AUGMENTATION_COST[Augmentation.hand_of_the_remorseless][
-          state.build.character.augmentations.hand_of_the_remorseless.invested
+        state.build.character.augmentations.hand_of_the_remorseless.invested
         ];
     }
 
@@ -177,10 +177,10 @@ export default {
     );
   },
 
-  skillPointsSpent: function(state: State): number {
+  skillPointsSpent: function (state: State): number {
     let cost: number = 0;
 
-    Object.keys(Skill).forEach(function(skillName: string): void {
+    Object.keys(Skill).forEach(function (skillName: string): void {
       let training: string = state.build.character.skills[skillName].training;
 
       if (training === Training.SPECIALIZED || training === Training.TRAINED) {
@@ -194,7 +194,7 @@ export default {
   augmentationsSpent: (state: State) => {
     let cost = 0;
 
-    Object.keys(SPEC_COSTS_AUG).forEach(function(skill: string) {
+    Object.keys(SPEC_COSTS_AUG).forEach(function (skill: string) {
       if (
         state.build.character.skills[skill] &&
         state.build.character.skills[skill].training == Training.SPECIALIZED &&
@@ -224,7 +224,7 @@ export default {
     Object.keys(LUMINANCE_AURA_COST).forEach(aura => {
       cost +=
         LUMINANCE_AURA_COST[aura][
-          state.build.character.luminance_auras[aura].invested
+        state.build.character.luminance_auras[aura].invested
         ];
     });
 
@@ -266,7 +266,7 @@ export default {
       MAX_CREATION_ATTRIBUTE_TOTAL_POINTS +
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
-        5 +
+      5 +
       state.build.character.augmentations.bleearghs_fortitude.invested * 5 +
       state.build.character.augmentations.oswalds_enhancement.invested * 5 +
       state.build.character.augmentations.siraluuns_blessing.invested * 5 +
@@ -278,7 +278,7 @@ export default {
     let totalAttributeBonus =
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
-        5 +
+      5 +
       state.build.character.augmentations.bleearghs_fortitude.invested * 5 +
       state.build.character.augmentations.oswalds_enhancement.invested * 5 +
       state.build.character.augmentations.siraluuns_blessing.invested * 5 +
@@ -294,7 +294,7 @@ export default {
       state.build.character.attributes.strength.creation +
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
-        5;
+      5;
 
     if (value > 100) {
       return 100;
@@ -317,8 +317,7 @@ export default {
   },
   enduranceInnate: (state: State) => {
     const value =
-      state.build.character.attributes.endurance.creation +
-      state.build.character.augmentations.bleearghs_fortitude.invested * 5;
+      state.build.character.attributes.endurance.creation;
 
     if (value > 100) {
       return 100;
@@ -438,7 +437,7 @@ export default {
     const benediction_bonus =
       state.build.character.augmentations.asherons_lesser_benediction
         .invested === 1 ||
-      state.build.character.augmentations.asherons_benediction.invested === 1
+        state.build.character.augmentations.asherons_benediction.invested === 1
         ? 1.1
         : 1;
 
@@ -479,9 +478,9 @@ export default {
   manaBuffed: (state: State, getters: any) => {
     return clamp(
       getters.manaBase +
-        buffBonus(state.build.character.vitals.mana.buff) +
-        cantripBonus(state.build.character.vitals.mana.cantrip) +
-        (state.build.character.items.focusing_stone ? -50 : 0), // Malediction
+      buffBonus(state.build.character.vitals.mana.buff) +
+      cantripBonus(state.build.character.vitals.mana.cantrip) +
+      (state.build.character.items.focusing_stone ? -50 : 0), // Malediction
       0
     );
   },
@@ -510,7 +509,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -545,14 +544,14 @@ export default {
       cantripBonus(state.build.character.skills.arcane_lore.cantrip) +
       Math.round(
         buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip) / 3
+        cantripBonus(state.build.character.attributes.focus.cantrip) / 3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.arcane_lore.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -575,7 +574,7 @@ export default {
   armor_tinkeringBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.armor_tinkering.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.armor_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.armor_tinkering.buff) +
@@ -585,7 +584,7 @@ export default {
           cantripBonus(state.build.character.attributes.endurance.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          2
+        2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -593,7 +592,7 @@ export default {
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.armor_tinkering.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -615,7 +614,7 @@ export default {
   assess_creatureBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.assess_creature.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.assess_creatureBase
         : 0) +
       buffBonus(state.build.character.skills.assess_creature.buff) +
@@ -624,7 +623,7 @@ export default {
         ? 5
         : 0) +
       (state.build.character.skills.assess_creature.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -654,7 +653,7 @@ export default {
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.assess_person.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -691,7 +690,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          3
+        3
       )
     );
   },
@@ -715,7 +714,7 @@ export default {
   creature_enchantmentBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.creature_enchantment.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.creature_enchantmentBase
         : 0) +
       buffBonus(state.build.character.skills.creature_enchantment.buff) +
@@ -725,7 +724,7 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -736,7 +735,7 @@ export default {
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.creature_enchantment.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -785,7 +784,7 @@ export default {
   dirty_fightingBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.dirty_fighting.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.dirty_fightingBase
         : 0) +
       buffBonus(state.build.character.skills.dirty_fighting.buff) +
@@ -795,14 +794,14 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.dirty_fighting.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -833,7 +832,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -862,7 +861,7 @@ export default {
   finesse_weaponsBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.finesse_weapons.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.finesse_weaponsBase
         : 0) +
       buffBonus(state.build.character.skills.finesse_weapons.buff) +
@@ -872,7 +871,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -883,7 +882,7 @@ export default {
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.finesse_weapons.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -912,7 +911,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -948,7 +947,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -985,7 +984,7 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -996,7 +995,7 @@ export default {
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.heavy_weapons.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1019,7 +1018,7 @@ export default {
   item_enchantmentBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.item_enchantment.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.item_enchantmentBase
         : 0) +
       buffBonus(state.build.character.skills.item_enchantment.buff) +
@@ -1029,7 +1028,7 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1040,7 +1039,7 @@ export default {
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.item_enchantment.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1062,7 +1061,7 @@ export default {
   item_tinkeringBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.item_tinkering.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.item_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.item_tinkering.buff) +
@@ -1072,7 +1071,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          2
+        2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1080,7 +1079,7 @@ export default {
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.item_tinkering.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1109,7 +1108,7 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip)) /
-          2
+        2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1175,7 +1174,7 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1220,14 +1219,14 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.light_weapons.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1256,7 +1255,7 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1321,14 +1320,14 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          7
+        7
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.magic_defense.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1353,7 +1352,7 @@ export default {
   magic_item_tinkeringBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.magic_item_tinkering.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.alchemyBase
         : 0) +
       buffBonus(state.build.character.skills.magic_item_tinkering.buff) +
@@ -1366,7 +1365,7 @@ export default {
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.magic_item_tinkering.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1389,7 +1388,7 @@ export default {
   mana_conversionBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.mana_conversion.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.mana_conversionBase
         : 0) +
       buffBonus(state.build.character.skills.mana_conversion.buff) +
@@ -1399,14 +1398,14 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          6
+        6
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.mana_conversion.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1437,14 +1436,14 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.melee_defense.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1467,7 +1466,7 @@ export default {
   missile_defenseBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.missile_defense.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.missile_defenseBase
         : 0) +
       buffBonus(state.build.character.skills.missile_defense.buff) +
@@ -1477,14 +1476,14 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
-          5
+        5
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.missile_defense.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1507,15 +1506,15 @@ export default {
   missile_weaponsBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.missile_weapons.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.missile_weaponsBase
         : 0) +
       buffBonus(state.build.character.skills.missile_weapons.buff) +
       cantripBonus(state.build.character.skills.missile_weapons.cantrip) +
       Math.round(
         buffBonus(state.build.character.attributes.coordination.buff) +
-          cantripBonus(state.build.character.attributes.coordination.cantrip) /
-            2
+        cantripBonus(state.build.character.attributes.coordination.cantrip) /
+        2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1526,7 +1525,7 @@ export default {
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.missile_weapons.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1557,14 +1556,14 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.recklessness.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1651,7 +1650,7 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip)) /
-          2
+        2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1688,14 +1687,14 @@ export default {
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.sneak_attack.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1724,7 +1723,7 @@ export default {
           cantripBonus(state.build.character.attributes.endurance.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1753,7 +1752,7 @@ export default {
   two_handed_combatBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.two_handed_combat.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.two_handed_combatBase
         : 0) +
       buffBonus(state.build.character.skills.two_handed_combat.buff) +
@@ -1763,14 +1762,14 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip)) /
-          3
+        3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.two_handed_combat.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1801,7 +1800,7 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1840,7 +1839,7 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
-          4
+        4
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1873,7 +1872,7 @@ export default {
   weapon_tinkeringBuffed: (state: State, getters: any) => {
     return (
       (state.build.character.skills.weapon_tinkering.training !==
-      Training.UNUSABLE
+        Training.UNUSABLE
         ? getters.weapon_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.weapon_tinkering.buff) +
@@ -1883,7 +1882,7 @@ export default {
           cantripBonus(state.build.character.attributes.strength.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip)) /
-          2
+        2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1891,7 +1890,7 @@ export default {
       state.build.character.luminance_auras.craftsman.invested +
       state.build.character.luminance_auras.world.invested +
       (state.build.character.skills.weapon_tinkering.training ===
-      Training.SPECIALIZED
+        Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
     );
@@ -1921,7 +1920,7 @@ export default {
     let totalAttributeBonus =
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
-        5 +
+      5 +
       state.build.character.augmentations.bleearghs_fortitude.invested * 5 +
       state.build.character.augmentations.oswalds_enhancement.invested * 5 +
       state.build.character.augmentations.siraluuns_blessing.invested * 5 +
