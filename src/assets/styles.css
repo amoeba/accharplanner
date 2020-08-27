@@ -403,6 +403,11 @@ button {
   border: 1px solid #ccc;
 }
 
+button:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
 table {
   border-collapse: collapse;
   margin: 0;
