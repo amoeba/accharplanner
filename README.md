@@ -1,6 +1,6 @@
 # AC Character Planner
 
-Very WIP character planner for Asheron's Call.
+Pretty complete but still sorta WIP character planner for Asheron's Call.
 
 ## Previous work:
 
