@@ -160,12 +160,26 @@ export default {
   requiredLevel: (state: State, getters: any) => {
     for (let i: number = 1; i <= 275; i++) {
       if (getters.totalXPInvested <= COST_LEVEL[i]) {
-        return i;
+        by_cost = i;
+        break;
       }
     }
 
-    // We didn't find a solution which means we've Enlightened
-    return "Oops, something went wrong!";
+    if (getters.skillPointsSpent > getters.skillPointsAvailable) {
+
+      for (let j: number = 1; j <= 275; j++) {
+        if (SKILL_POINTS_AT_LEVEL[j] >= getters.skillPointsSpent) {
+          by_skill_points = j;
+          break;
+        }
+      }
+    }
+
+    if (by_cost < by_skill_points) {
+      return by_skill_points;
+    } else {
+      return by_cost;
+    }
   },
 
   skillPointsAvailable: (state: State) => {

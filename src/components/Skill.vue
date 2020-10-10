@@ -18,7 +18,7 @@
       </button>
     </td>
     <td>
-      <button v-on:click="increaseTraining" v-bind:disabled="cantIncrease">
+      <button v-on:click="increaseTraining">
         ↑
       </button>
     </td>

@@ -170,8 +170,8 @@ export default {
     },
     isOverspent() {
       return (
-        Number(this.$store.getters.totalXPInvested) >
-        Number(this.$store.getters.totalXPEarned)
+          (Number(this.$store.getters.totalXPInvested) > Number(this.$store.getters.totalXPEarned)) ||
+          (this.$store.getters.skillPointsSpent > this.$store.getters.skillPointsAvailable)
       );
     },
     skillPointsSpent() {
