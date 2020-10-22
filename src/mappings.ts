@@ -5,6 +5,7 @@ import {
   Augmentation,
   LuminanceAura,
   Item,
+  ArmorSet,
   NumberIndexedDict
 } from "./types";
 
@@ -264,3 +265,11 @@ export const ITEM_NAME = {
   [Item.focusing_stone]: "Focusing Stone",
   [Item.font_of_joji]: "Font of Joji"
 };
+
+export const ARMOR_SET_NAME = {
+  [ArmorSet.wise]: "Wise",
+};
+
+export const ARMOR_SET_NAME_EXTRA_INFO = {
+  [ArmorSet.wise]: "+ Focus, Willpower, Summoning, Mana",
+}

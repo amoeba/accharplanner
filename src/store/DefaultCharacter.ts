@@ -486,6 +486,11 @@ export default function(): Character {
     items: {
       focusing_stone: false,
       font_of_joji: false
+    },
+    armor_sets: {
+      wise: {
+        equipped: 0
+      }
     }
   };
 }

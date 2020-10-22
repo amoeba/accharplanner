@@ -35,6 +35,8 @@
       <Augmentations />
       <LuminanceAuras />
       <Items />
+      <ArmorSets />
+
     </div>
   </div>
 </template>
@@ -49,6 +51,7 @@ import Skills from "./Skills.vue";
 import Augmentations from "./Augmentations.vue";
 import LuminanceAuras from "./LuminanceAuras.vue";
 import Items from "./Items.vue";
+import ArmorSets from "./ArmorSets.vue";
 import { exportCharacter } from "../helpers";
 
 export default {
@@ -67,7 +70,8 @@ export default {
     Skills,
     Augmentations,
     LuminanceAuras,
-    Items
+    Items,
+    ArmorSets
   },
   created: function() {
     // Bind Esc key to closing an open modal

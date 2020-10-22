@@ -48,6 +48,34 @@ export const cantripBonus = function (level: number) {
   }
 };
 
+// http://acpedia.org/wiki/Wise_Set
+// Only returns Focus, Willpower, and Summoning bonus, not Mana because it's
+// special. See wiseSetManaBonus.
+export const wiseSetBonus = function(pieces: number) {
+  if (pieces < 2) {
+    return 0;
+  } else if (pieces === 2) {
+    return 3;
+  } else if (pieces === 3) {
+    return 5;
+  } else if (pieces === 4) {
+    return 10;
+  } else if (pieces >= 5) {
+    return 20;
+  } else {
+    return 0;
+  }
+}
+
+export const wiseSetManaBonus = function(pieces: number) {
+  if (pieces < 4) {
+  } else if (pieces >= 5) {
+    return 20;
+  } else {
+    return 0;
+  }
+}
+
 export const exportJSONData = function (data: object, filename: string) {
   let json = JSON.stringify(data, null, 2);
 
