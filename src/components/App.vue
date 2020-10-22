@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="theme">
     <Notifications />
     <header>
       <div class="logo">
@@ -22,6 +22,10 @@
           ><span class="onlywide">About</span></router-link
         >
       </nav>
+      <button
+        aria-label="Toggle theme between dark and light"
+        class="theme-toggle"
+        @click="toggleDarkMode"></button>
     </header>
     <main>
       <router-view></router-view>
@@ -32,11 +36,40 @@
 
 <script>
 import Notifications from "./Notifications";
+import { THEME } from "../types";
 
 export default {
   name: "App",
   components: {
     Notifications
+  },
+  computed: {
+    nextMode() {
+      const preference = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches;
+
+      if (this.$store.state.ui.darkMode === null) {
+        return preference === "light" ? THEME.DARK : THEME.LIGHT;
+      }
+
+      return this.$store.state.ui.darkMode ? THEME.LIGHT : THEME.DARK;
+    },
+
+    theme() {
+      if (this.$store.state.ui.darkMode === null) {
+        return "";
+      }
+
+      return this.$store.state.ui.darkMode ? THEME.DARK : THEME.LIGHT;
+    }
+  },
+  methods: {
+    toggleDarkMode() {
+      const preference = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches;
+
+      this.$store.commit("toggleDarkMode", preference);
+    }
   }
 };
 </script>

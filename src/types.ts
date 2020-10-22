@@ -58,6 +58,7 @@ export interface UIState {
   sharedBuild: string | null;
   currentStage: number | null;
   paneVisibility: PaneVisibility;
+  darkMode: boolean | null;
 }
 
 export interface Build {
@@ -236,4 +237,9 @@ export enum LuminanceAura {
 
 export enum Item {
   focusing_stone = "focusing_stone"
+}
+
+export enum THEME {
+  LIGHT = "light",
+  DARK = "dark"
 }

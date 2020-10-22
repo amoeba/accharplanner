@@ -19,7 +19,8 @@ let state: State = {
       xpAndLuminance: true,
       knobsAndDials: true,
       extraSkillCredits: true
-    }
+    },
+    darkMode: false
   },
   build: {
     character: DefaultCharacter(),

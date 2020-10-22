@@ -24,6 +24,13 @@ import "firebase/firestore";
 
 export default {
   // UI toggles
+  toggleDarkMode(state: State, preference: boolean) {
+    if (state.ui.darkMode === null) {
+      state.ui.darkMode = !preference;
+    } else {
+      state.ui.darkMode = !state.ui.darkMode;
+    }
+  },
   toggleAttributesPane(state: State) {
     state.ui.paneVisibility.attributes = !state.ui.paneVisibility.attributes;
   },
