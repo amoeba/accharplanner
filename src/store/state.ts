@@ -14,6 +14,7 @@ let state: State = {
       augmentations: false,
       auras: false,
       items: false,
+      armor_sets: false,
       buildStages: true,
       character: true,
       xpAndLuminance: true,

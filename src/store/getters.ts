@@ -14,7 +14,7 @@ import {
   LUMINANCE_AURA_COST,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS
 } from "../constants";
-import { trainingBonus, buffBonus, cantripBonus, clamp } from "../helpers";
+import { trainingBonus, buffBonus, cantripBonus, dedicationSetBonus, clamp } from "../helpers";
 import { State } from "../types";
 import { Attribute, Skill, Training, Race, Augmentation } from "@/types";
 
@@ -34,6 +34,9 @@ export default {
   },
   itemsPaneVisible: (state: State) => {
     return state.ui.paneVisibility.items;
+  },
+  armorSetsPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.armor_sets;
   },
   buildStagesPaneVisible: (state: State) => {
     return state.ui.paneVisibility.buildStages;
@@ -329,7 +332,8 @@ export default {
     return (
       getters.strengthBase +
       buffBonus(state.build.character.attributes.strength.buff) +
-      cantripBonus(state.build.character.attributes.strength.cantrip)
+      cantripBonus(state.build.character.attributes.strength.cantrip) +
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
     );
   },
   enduranceInnate: (state: State) => {
@@ -352,7 +356,8 @@ export default {
     return (
       getters.enduranceBase +
       buffBonus(state.build.character.attributes.endurance.buff) +
-      cantripBonus(state.build.character.attributes.endurance.cantrip)
+      cantripBonus(state.build.character.attributes.endurance.cantrip) +
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
     );
   },
   coordinationInnate: (state: State) => {
@@ -376,7 +381,8 @@ export default {
     return (
       getters.coordinationBase +
       buffBonus(state.build.character.attributes.coordination.buff) +
-      cantripBonus(state.build.character.attributes.coordination.cantrip)
+      cantripBonus(state.build.character.attributes.coordination.cantrip) +
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
     );
   },
   quicknessInnate: (state: State) => {
@@ -400,7 +406,8 @@ export default {
     return (
       getters.quicknessBase +
       buffBonus(state.build.character.attributes.quickness.buff) +
-      cantripBonus(state.build.character.attributes.quickness.cantrip)
+      cantripBonus(state.build.character.attributes.quickness.cantrip) +
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
     );
   },
   focusInnate: (state: State) => {
@@ -424,7 +431,8 @@ export default {
       getters.focusBase +
       buffBonus(state.build.character.attributes.focus.buff) +
       cantripBonus(state.build.character.attributes.focus.cantrip) +
-      (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
+      (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
     );
   },
   selfInnate: (state: State) => {
@@ -445,7 +453,8 @@ export default {
     return (
       getters.selfBase +
       buffBonus(state.build.character.attributes.self.buff) +
-      cantripBonus(state.build.character.attributes.self.cantrip)
+      cantripBonus(state.build.character.attributes.self.cantrip) +
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
     );
   },
 
@@ -561,8 +570,9 @@ export default {
       buffBonus(state.build.character.skills.arcane_lore.buff) +
       cantripBonus(state.build.character.skills.arcane_lore.cantrip) +
       Math.round(
-        buffBonus(state.build.character.attributes.focus.buff) +
-        cantripBonus(state.build.character.attributes.focus.cantrip) / 3
+        (
+          buffBonus(state.build.character.attributes.focus.buff) +
+          cantripBonus(state.build.character.attributes.focus.cantrip)) / 3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5

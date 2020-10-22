@@ -485,6 +485,11 @@ export default function(): Character {
     },
     items: {
       focusing_stone: false
+    },
+    armor_sets: {
+      dedication: {
+        equipped: 0
+      }
     }
   };
 }

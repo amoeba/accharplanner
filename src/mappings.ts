@@ -5,6 +5,7 @@ import {
   Augmentation,
   LuminanceAura,
   Item,
+  ArmorSet,
   NumberIndexedDict
 } from "./types";
 
@@ -263,3 +264,11 @@ export const LUMINANCE_AURA_EXTRA_INFO = {
 export const ITEM_NAME = {
   [Item.focusing_stone]: "Focusing Stone"
 };
+
+export const ARMOR_SET_NAME = {
+  [ArmorSet.dedication]: "Dedication",
+};
+
+export const ARMOR_SET_NAME_EXTRA_INFO = {
+  [ArmorSet.dedication]: "+ All Attributes",
+}

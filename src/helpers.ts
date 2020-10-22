@@ -48,6 +48,24 @@ export const cantripBonus = function (level: number) {
   }
 };
 
+export const dedicationSetBonus = function (equipped: number) {
+  if (equipped < 2) {
+    return 0;
+  } else if (equipped < 4) {
+    return 3;
+  } else if (equipped < 6) {
+    return 6;
+  } else if (equipped < 8) {
+    return 9;
+  } else if (equipped < 9) {
+    return 12;
+  } else if (equipped === 9) {
+    return 15;
+  } else {
+    return 0;
+  };
+}
+
 export const exportJSONData = function (data: object, filename: string) {
   let json = JSON.stringify(data, null, 2);
 

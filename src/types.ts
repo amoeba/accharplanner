@@ -19,6 +19,7 @@ export interface Character {
   augmentations: any;
   luminance_auras: any;
   items: any;
+  armor_sets: any
 }
 
 enum NotificationType {
@@ -44,6 +45,7 @@ export interface PaneVisibility {
   augmentations: boolean;
   auras: boolean;
   items: boolean;
+  armor_sets: boolean;
   buildStages: boolean;
   character: boolean;
   xpAndLuminance: boolean;
@@ -237,6 +239,10 @@ export enum LuminanceAura {
 
 export enum Item {
   focusing_stone = "focusing_stone"
+}
+
+export enum ArmorSet {
+  dedication = "dedication"
 }
 
 export enum THEME {
