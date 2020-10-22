@@ -158,6 +158,9 @@ export default {
   },
 
   requiredLevel: (state: State, getters: any) => {
+    let by_cost = 1;
+    let by_skill_points = 1;
+
     for (let i: number = 1; i <= 275; i++) {
       if (getters.totalXPInvested <= COST_LEVEL[i]) {
         by_cost = i;
