@@ -20,7 +20,7 @@ let state: State = {
       knobsAndDials: true,
       extraSkillCredits: true
     },
-    darkMode: false
+    darkMode: null
   },
   build: {
     character: DefaultCharacter(),
