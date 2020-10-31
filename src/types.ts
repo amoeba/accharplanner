@@ -236,7 +236,8 @@ export enum LuminanceAura {
 }
 
 export enum Item {
-  focusing_stone = "focusing_stone"
+  focusing_stone = "focusing_stone",
+  font_of_joji = "font_of_joji"
 }
 
 export enum THEME {

@@ -9,6 +9,7 @@
       <div v-if="collapsed" class="table-wrapper">
         <ul>
           <Item id="focusing_stone" />
+          <Item id="font_of_joji" />
         </ul>
       </div>
     </div>

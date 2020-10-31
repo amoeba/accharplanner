@@ -261,5 +261,6 @@ export const LUMINANCE_AURA_EXTRA_INFO = {
 };
 
 export const ITEM_NAME = {
-  [Item.focusing_stone]: "Focusing Stone"
+  [Item.focusing_stone]: "Focusing Stone",
+  [Item.font_of_joji]: "Font of Joji"
 };

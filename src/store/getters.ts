@@ -329,7 +329,8 @@ export default {
     return (
       getters.strengthBase +
       buffBonus(state.build.character.attributes.strength.buff) +
-      cantripBonus(state.build.character.attributes.strength.cantrip)
+      cantripBonus(state.build.character.attributes.strength.cantrip) +
+      (state.build.character.items.font_of_joji ? 2 : 0) // Power of the Dragon
     );
   },
   enduranceInnate: (state: State) => {
@@ -376,7 +377,8 @@ export default {
     return (
       getters.coordinationBase +
       buffBonus(state.build.character.attributes.coordination.buff) +
-      cantripBonus(state.build.character.attributes.coordination.cantrip)
+      cantripBonus(state.build.character.attributes.coordination.cantrip) +
+      (state.build.character.items.font_of_joji ? 2 : 0) // Grace of the Unicorn
     );
   },
   quicknessInnate: (state: State) => {
@@ -424,7 +426,8 @@ export default {
       getters.focusBase +
       buffBonus(state.build.character.attributes.focus.buff) +
       cantripBonus(state.build.character.attributes.focus.cantrip) +
-      (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
+      (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+      (state.build.character.items.font_of_joji ? 2 : 0) // Splendor of the Firebird
     );
   },
   selfInnate: (state: State) => {
