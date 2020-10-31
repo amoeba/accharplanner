@@ -504,6 +504,7 @@ export default {
       0
     );
   },
+
   // Skills
   alchemyBase: (state: State, getters: any) => {
     if (state.build.character.skills.alchemy.training === Training.UNUSABLE) {
