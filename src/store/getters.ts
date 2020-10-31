@@ -532,6 +532,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
@@ -569,6 +570,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) / 3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -609,6 +611,7 @@ export default {
           cantripBonus(state.build.character.attributes.endurance.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
@@ -716,6 +719,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       )
@@ -754,6 +758,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
@@ -864,6 +869,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
@@ -947,6 +953,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
@@ -985,6 +992,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
@@ -1071,6 +1079,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
@@ -1115,6 +1124,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
@@ -1223,6 +1233,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
@@ -1308,6 +1319,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
@@ -1372,6 +1384,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
@@ -1414,6 +1427,7 @@ export default {
       cantripBonus(state.build.character.skills.magic_item_tinkering.cantrip) +
       buffBonus(state.build.character.attributes.focus.buff) +
       cantripBonus(state.build.character.attributes.focus.cantrip) +
+      (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
       (state.build.character.items.font_of_joji ? 2 : 0) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1452,6 +1466,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
@@ -1874,6 +1889,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
@@ -1915,6 +1931,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
@@ -1959,6 +1976,7 @@ export default {
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
