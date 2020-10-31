@@ -528,8 +528,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -564,8 +566,9 @@ export default {
       buffBonus(state.build.character.skills.arcane_lore.buff) +
       cantripBonus(state.build.character.skills.arcane_lore.cantrip) +
       Math.round(
-        buffBonus(state.build.character.attributes.focus.buff) +
-        cantripBonus(state.build.character.attributes.focus.cantrip) / 3
+        (buffBonus(state.build.character.attributes.focus.buff) +
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) / 3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -604,7 +607,8 @@ export default {
         (buffBonus(state.build.character.attributes.endurance.buff) +
           cantripBonus(state.build.character.attributes.endurance.cantrip) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -708,8 +712,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       )
     );
@@ -747,6 +753,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
         4
@@ -813,8 +820,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.coordination.buff) +
-          cantripBonus(state.build.character.attributes.coordination.cantrip)) /
+          cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -851,8 +860,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -894,8 +905,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.quickness.buff) +
-          cantripBonus(state.build.character.attributes.quickness.cantrip)) /
+          cantripBonus(state.build.character.attributes.quickness.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -930,8 +943,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -966,8 +981,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1007,8 +1024,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.coordination.buff) +
-          cantripBonus(state.build.character.attributes.coordination.cantrip)) /
+          cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1051,6 +1070,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
         4
@@ -1091,8 +1111,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1128,8 +1150,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.coordination.buff) +
-          cantripBonus(state.build.character.attributes.coordination.cantrip)) /
+          cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1198,6 +1222,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
         4
@@ -1240,8 +1265,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.coordination.buff) +
-          cantripBonus(state.build.character.attributes.coordination.cantrip)) /
+          cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1277,8 +1304,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1342,6 +1371,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
         7
@@ -1383,6 +1413,7 @@ export default {
       cantripBonus(state.build.character.skills.magic_item_tinkering.cantrip) +
       buffBonus(state.build.character.attributes.focus.buff) +
       cantripBonus(state.build.character.attributes.focus.cantrip) +
+      (state.build.character.items.font_of_joji ? 2 : 0) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
@@ -1420,6 +1451,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
         6
@@ -1458,6 +1490,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
         3
@@ -1498,6 +1531,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
         5
@@ -1540,8 +1574,9 @@ export default {
       buffBonus(state.build.character.skills.missile_weapons.buff) +
       cantripBonus(state.build.character.skills.missile_weapons.cantrip) +
       Math.round(
-        buffBonus(state.build.character.attributes.coordination.buff) +
-        cantripBonus(state.build.character.attributes.coordination.cantrip) /
+        (buffBonus(state.build.character.attributes.coordination.buff) +
+          cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1579,6 +1614,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
         3
@@ -1673,8 +1709,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.coordination.buff) +
-          cantripBonus(state.build.character.attributes.coordination.cantrip)) /
+          cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1710,6 +1748,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.coordination.buff) +
           cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.quickness.buff) +
           cantripBonus(state.build.character.attributes.quickness.cantrip)) /
         3
@@ -1789,8 +1828,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.coordination.buff) +
-          cantripBonus(state.build.character.attributes.coordination.cantrip)) /
+          cantripBonus(state.build.character.attributes.coordination.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         3
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -1832,6 +1873,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
         4
@@ -1872,6 +1914,7 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.focus.buff) +
           cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip)) /
         4
@@ -1912,8 +1955,10 @@ export default {
       Math.round(
         (buffBonus(state.build.character.attributes.strength.buff) +
           cantripBonus(state.build.character.attributes.strength.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.focus.buff) +
-          cantripBonus(state.build.character.attributes.focus.cantrip)) /
+          cantripBonus(state.build.character.attributes.focus.cantrip) +
+          (state.build.character.items.font_of_joji ? 2 : 0)) /
         2
       ) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
