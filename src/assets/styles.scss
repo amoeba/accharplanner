@@ -191,7 +191,6 @@ ul {
 /* Headers */
 .header {
   margin: 0.25rem 0.5rem;
-  background-color: var(--c-background);
   border-radius: 5px;
 }
 
@@ -202,6 +201,7 @@ ul {
 
 /* Extra inner container div to avoid showing big empty boxes when collapsed */
 .header > div {
+  background-color: var(--c-background);
   border: 1px solid var(--c-border);
   border-radius: 5px;
 }
@@ -260,13 +260,13 @@ ul {
 .pane {
   margin: 0.25rem 0.5rem;
   overflow-x: auto;
-  background-color: var(--c-background);
 }
 
 /* Extra inner container div to avoid showing big empty boxes when collapsed */
 .pane > div {
   border: 1px solid var(--c-border);
   border-radius: 5px;
+  background-color: var(--c-background);
 }
 
 .pane .pane-header {
