@@ -17,15 +17,15 @@ if (process.env.SENTRY_DSN) {
 const Planner = () =>
   import(/* webpackChunkName: "planner" */ "./components/Planner.vue");
 const SavedBuilds = () =>
-  import(/* webpackChunkName: "savedbuilds" */ "./components/SavedBuilds.vue");
+  import(/* webpackChunkName: "other" */ "./components/SavedBuilds.vue");
 const Import = () =>
-  import(/* webpackChunkName: "import" */ "./components/Import.vue");
+  import(/* webpackChunkName: "other" */ "./components/Import.vue");
 const About = () =>
-  import(/* webpackChunkName: "import" */ "./components/About.vue");
+  import(/* webpackChunkName: "other" */ "./components/About.vue");
 const Builds = () =>
-  import(/* webpackChunkName: "builds" */ "./components/Builds.vue");
+  import(/* webpackChunkName: "other" */ "./components/Builds.vue");
 const Build = () =>
-  import(/* webpackChunkName: "builds" */ "./components/Build.vue");
+  import(/* webpackChunkName: "other" */ "./components/Build.vue");
 
 import store from "./store";
 import { importCharacter } from "./import";
