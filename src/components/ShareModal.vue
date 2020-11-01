@@ -57,21 +57,3 @@ export default {
   }
 };
 </script>
-<style>
-.share-modal {
-  text-align: center;
-}
-
-.share-modal input {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 5px;
-}
-
-.share-modal-status {
-  margin: 0 auto;
-  padding: 0.5rem 0;
-}
-</style>
