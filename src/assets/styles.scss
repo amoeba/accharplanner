@@ -259,7 +259,7 @@ ul {
 /* Panes */
 .pane {
   margin: 0.25rem 0.5rem;
-  overflow-x: scroll;
+  overflow-x: auto;
   background-color: var(--c-background);
 }
 
@@ -292,7 +292,7 @@ ul {
   padding: 0rem 0.5rem;
   border-top: 1px solid var(--c-border);
   max-height: 25rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .pane .table-wrapper ul {
