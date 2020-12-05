@@ -2025,5 +2025,57 @@ export default {
     if (totalAttributeBonus > 50) {
       return "Cannot augment attributes more than ten times!";
     }
+  },
+  auraErrors: (state: State, getters: any) => {
+    const msg = "Using too many Seers. You may only choose one.";
+
+    // If you have Specialization, you can't have Retribution, Hardening
+    if (
+      state.build.character.luminance_auras.specialization.invested > 0 &&
+      (state.build.character.luminance_auras.hardening.invested > 0 ||
+        state.build.character.luminance_auras.retribution.invested > 0)
+    ) {
+      return msg;
+    }
+
+    // If you have Destruction, you can't have Invulnerability, Hardening
+    if (
+      state.build.character.luminance_auras.destruction.invested > 0 &&
+      (state.build.character.luminance_auras.invulnerability.invested > 0 ||
+        state.build.character.luminance_auras.hardening.invested > 0)
+    ) {
+      return msg;
+    }
+
+    // If you have Invulnerability, you can't have Destruction, Retribution
+    if (
+      state.build.character.luminance_auras.invulnerability.invested > 0 &&
+      (state.build.character.luminance_auras.retribution.invested > 0 ||
+        state.build.character.luminance_auras.destruction.invested > 0)
+    ) {
+      return msg;
+    }
+
+    // If you have Retribution, you can't have Specialization, Invulnerability, Hardening
+    if (
+      state.build.character.luminance_auras.retribution.invested > 0 &&
+      (state.build.character.luminance_auras.specialization.invested > 0 ||
+        state.build.character.luminance_auras.invulnerability.invested > 0 ||
+        state.build.character.luminance_auras.hardening.invested > 0)
+    ) {
+      return msg;
+    }
+
+    // If you have Hardening, you can't have Specialization, Destruction, Retribution
+    if (
+      state.build.character.luminance_auras.hardening.invested > 0 &&
+      (state.build.character.luminance_auras.specialization.invested > 0 ||
+        state.build.character.luminance_auras.destruction.invested > 0 ||
+        state.build.character.luminance_auras.retribution.invested > 0)
+    ) {
+      return msg;
+    }
+
+    return null;
   }
 };
