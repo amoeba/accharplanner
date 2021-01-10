@@ -73,7 +73,7 @@ export const SKILL_FORMULA = {
   [Skill.cooking]: "(C+F)/3",
   [Skill.creature_enchantment]: "(F+W)/4",
   [Skill.deception]: "",
-  [Skill.dual_wield]: "(C+C)/2",
+  [Skill.dual_wield]: "(C+C)/3",
   [Skill.dirty_fighting]: "(S+C)/3",
   [Skill.finesse_weapons]: "(C+Q)/3",
   [Skill.fletching]: "(C+F)/3",
