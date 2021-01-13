@@ -44,24 +44,17 @@
             <h3>XP &amp; Luminance</h3>
           </div>
         </div>
-        <div v-if="xpAndLuminancePaneVisible" class="header-items alt-twocol">
+        <div v-if="xpAndLuminancePaneVisible" class="header-items">
           <div>Unassigned</div>
-          <div>
-            <span>{{ unassignedXP }}</span>
-          </div>
+          <div class="right">{{ unassignedXP }}</div>
           <div>Spent</div>
-          <div>
-            <span>{{ totalXPInvested }}</span>
-          </div>
-
+          <div class="right">{{ totalXPInvested }}</div>
           <div>Total</div>
-          <div>{{ totalXPEarned }}</div>
+          <div class="right">{{ totalXPEarned }}</div>
           <div>Required Level</div>
-          <div>
-            <span v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</span>
-          </div>
+          <div class="right" v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</div>
           <div>Luminance Spent</div>
-          <div>{{ totalLuminanceXPSpent }}</div>
+          <div class="right">{{ totalLuminanceXPSpent }}</div>
         </div>
       </div>
     </div>

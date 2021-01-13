@@ -223,7 +223,7 @@ ul {
 
 .header .header-items {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto auto;
   grid-row-gap: 0.25rem;
   grid-column-gap: 0.25rem;
   padding: 0.25rem 0.5rem;
