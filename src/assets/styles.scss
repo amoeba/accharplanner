@@ -842,3 +842,22 @@ a:visited.link-github {
   margin: 0 auto;
   padding: 0.5rem 0;
 }
+
+/* Build Loader */
+.build-loader {
+  background-color: var(--c-background);
+  margin: 1rem auto;
+  border: 1px solid var(--c-border);
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  min-height: 3rem;
+}
+
+.build-loader span {
+  animation: loadingpulse 1s ease-in-out infinite;
+}

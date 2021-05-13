@@ -1,6 +1,7 @@
 import { Character, Build } from "../types";
 import firebase from "../firebase";
 import { firestore } from "firebase";
+import VueRouter from "vue-router"
 
 export default {
   shareBuild(context: any) {
@@ -12,7 +13,7 @@ export default {
 
     db.collection("builds")
       .add(context.state.build as firestore.DocumentData)
-      .then(function(doc: firestore.DocumentData) {
+      .then(function (doc: firestore.DocumentData) {
         context.state.ui.shareStatus = null;
         context.state.ui.sharedBuild = doc.id;
       })
@@ -20,7 +21,7 @@ export default {
         context.state.ui.shareStatus = "Error: " + error;
       });
   },
-  loadRemoteBuild(context: any, build_id: string) {
+  loadRemoteBuild(context: any, options: any) {
     context.commit("addNotification", {
       type: "info",
       message: "Loading build from share link.. *portal sounds*."
@@ -29,9 +30,9 @@ export default {
     const db = firebase.firestore();
 
     db.collection("builds")
-      .doc(build_id)
+      .doc(options.build_id)
       .get()
-      .then(function(doc: firestore.DocumentData) {
+      .then(function (doc: firestore.DocumentData) {
         // Check if old style build or new style
         const data = doc.data();
 
@@ -51,13 +52,15 @@ export default {
           type: "success",
           message: "Successfully loaded build!"
         });
+
+        options.router.push("/")
       })
       .catch(error => {
         context.commit("addNotification", {
           type: "error",
           message:
             "Failed to load build '" +
-            build_id +
+            options.build_id +
             "' with error '" +
             error +
             "'."
