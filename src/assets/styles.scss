@@ -7,7 +7,9 @@
   --c-light-focus: deepskyblue;
   --c-light-interactive: blue;
   --c-light-border: #ccc;
-  --c-light-button: rgb(200, 200, 200);
+  --c-light-button: rgb(35, 134, 54);
+  --c-light-button-border: rgb(46, 160, 67);
+  --c-light-button-text: rgb(255, 255, 255);
   --c-light-button-hover: rgb(200, 200, 200);
   --c-icon-sun: url('data:image/svg+xml,\
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">\
@@ -23,7 +25,9 @@
   --c-dark-focus: deeppink;
   --c-dark-interactive: #3282dd;
   --c-dark-border: rgb(50, 50, 50);
-  --c-dark-button: rgba(5, 5, 5, 0.5);
+  --c-dark-button: rgb(35, 134, 54);
+  --c-dark-button-border: rgb(46, 160, 67);
+  --c-dark-button-text: rgb(255, 255, 255);
   --c-dark-button-hover: rgba(20, 20, 20, 0.5);
   --c-icon-moon: url('data:image/svg+xml,\
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24">\
@@ -41,6 +45,8 @@
   --c-interactive: var(--c-light-interactive);
   --c-border: var(--c-light-border);
   --c-button: var(--c-light-button);
+  --c-button-border: var(--c-light-button-border);
+  --c-button-text: var(--c-light-button-text);
   --c-button-hover: var(--c-light-button-hover);
   --c-icon: var(--c-icon-moon);
   --c-icon-filter: var(--c-icon-moon-filter);
@@ -62,6 +68,8 @@
     --c-interactive: var(--c-dark-interactive);
     --c-border: var(--c-dark-border);
     --c-button: var(--c-dark-button);
+    --c-button-border: var(--c-dark-button-border);
+    --c-button-text: var(--c-dark-button-text);
     --c-button-hover: var(--c-dark-button-hover);
     --c-icon: var(--c-icon-sun);
     --c-icon-filter: var(--c-icon-sun-filter);
@@ -76,6 +84,8 @@
   --c-interactive: var(--c-light-interactive);
   --c-border: var(--c-light-border);
   --c-button: var(--c-light-button);
+  --c-button-border: var(--c-light-button-border);
+  --c-button-text: var(--c-light-button-text);
   --c-button-hover: var(--c-light-button-hover);
   --c-icon: var(--c-icon-moon);
   --c-icon-filter: var(--c-icon-moon-filter);
@@ -89,6 +99,8 @@
   --c-interactive: var(--c-dark-interactive);
   --c-border: var(--c-dark-border);
   --c-button: var(--c-dark-button);
+  --c-button-border: var(--c-dark-button-border);
+  --c-button-text: var(--c-dark-button-text);
   --c-button-hover: var(--c-dark-button-hover);
   --c-icon: var(--c-icon-sun);
   --c-icon-filter: var(--c-icon-sun-filter);
@@ -345,13 +357,11 @@ input.number {
 }
 
 .buttons button {
-  padding: 0.5em 1rem;
   margin-right: 0.25rem;
-  color: var(--c-text);
 }
 
 .buttons button:hover {
-  background-color: var(--c-button-hover);
+  // background-color: var(--c-button-hover);
   transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   transition-property: background-color;
 }
@@ -417,10 +427,6 @@ input.number {
   fill: var(--c-text);
 }
 
-.stage-delete button:hover {
-  background-color: var(--c-button-hover);
-}
-
 .stage-delete svg {
   padding: 3px 3px 1px 3px;
 }
@@ -436,13 +442,7 @@ input.number {
 .stage-new {
   border: 1px solid var(--c-border);
   border-radius: 3px;
-  padding: 0px 5px;
   cursor: pointer;
-  height: 1.5rem;
-}
-
-.stage-new:hover {
-  background-color: var(--c-button-hover);
 }
 
 .faded {
@@ -512,13 +512,17 @@ table {
 input,
 select,
 button {
-  background-color: var(--c-background);
-  color: var(--c-text);
-  font-size: 100%;
   border: 1px solid var(--c-border);
+  font-size: 100%;
   border-radius: 3px;
   vertical-align: middle;
   box-sizing: border-box;
+}
+
+input,
+select {
+  color: var(--c-text);
+  background-color: var(--c-background);
 }
 
 /* Checkboxes look better with baseline alignment */
@@ -528,11 +532,12 @@ input[type="checkbox"] {
 
 button {
   background-color: var(--c-button);
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--c-button-border);
+  color: var(--c-button-text);
+  padding: 0.25rem 0.5rem;
 }
 
 button:hover {
-  border-color: var(--c-text);
   cursor: pointer;
 }
 
