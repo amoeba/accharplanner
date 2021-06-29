@@ -503,11 +503,15 @@ body {
   padding: 0;
 }
 
-main {
+main, footer {
   background-color: var(--c-secondary);
 }
 main > div {
   padding: 0.5rem;
+}
+
+footer {
+  text-align: center;
 }
 
 /* General stuff */
