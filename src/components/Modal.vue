@@ -3,7 +3,7 @@
     <div class="modal-mask">
       <div class="modal-wrapper" @click="handleWrapperClick">
         <div class="modal-container">
-          <div class="modal-footer">
+          <div class="modal-header">
             <slot name="header" />
           </div>
           <div class="modal-body">

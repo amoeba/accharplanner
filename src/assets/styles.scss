@@ -353,11 +353,17 @@ input.number {
 }
 
 .buttons {
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .buttons button {
   margin-right: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .buttons button:hover {
@@ -809,13 +815,19 @@ a:visited.link-github {
   transition: all 0.3s ease;
 }
 
-.modal-footer {
-  display: grid;
-  grid-column: 1fr;
+.modal-header {
+  font-weight: bold;
 }
 
-.modal-footer button {
-  justify-self: end;
+.modal-header div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-footer {
+  text-align: right;
+  padding-top: 1.5em;
 }
 
 .modal-enter {
