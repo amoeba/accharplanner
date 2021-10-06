@@ -1,7 +1,6 @@
 import { Character, Build } from "../types";
 import firebase from "../firebase";
 import { firestore } from "firebase";
-import VueRouter from "vue-router"
 
 export default {
   shareBuild(context: any) {
