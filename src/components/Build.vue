@@ -13,7 +13,7 @@
       </div>
       <div class="build-body">
         <p v-if="loading">Loading build...</p>
-        <router-link v-if="build" :to="url">Load in Planner</router-link>
+        <p><router-link v-if="build" :to="url">Load in Planner</router-link></p>
         <p v-if="build" v-html="build.description"></p>
       </div>
     </div>
