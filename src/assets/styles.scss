@@ -729,12 +729,12 @@ a:visited.link-github {
   border: 1px solid var(--c-border);
   border-radius: 5px;
   max-width: 30rem;
+  background-color: var(--c-background);
 }
 
 .build-header {
   border-bottom: 1px solid var(--c-border);
   padding: 0.25rem 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .build .build-header h3 {
@@ -743,7 +743,7 @@ a:visited.link-github {
 }
 
 .build-body {
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 }
 
 .build table {
@@ -766,6 +766,10 @@ a:visited.link-github {
 
 .build p {
   margin-bottom: 0.5rem;
+}
+
+.build p:last-child {
+  margin-bottom: 0;
 }
 
 .loading {

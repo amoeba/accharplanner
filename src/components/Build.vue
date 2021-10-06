@@ -2,7 +2,7 @@
   <div>
     <div class="breadcrumb">
       <span>
-        <a href="/builds">Back to Builds</a>
+        <router-link to="/builds">Back to Builds</router-link>
       </span>
     </div>
     <div class="build">
@@ -13,7 +13,7 @@
       </div>
       <div class="build-body">
         <p v-if="loading">Loading build...</p>
-        <a v-if="build" :href="url">Load in Planner</a>
+        <router-link v-if="build" :to="url">Load in Planner</router-link>
         <p v-if="build" v-html="build.description"></p>
       </div>
     </div>

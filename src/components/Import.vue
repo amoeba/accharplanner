@@ -1,12 +1,17 @@
 <template>
-  <div id="import">
-    <h2>Import</h2>
-    <p>
-      Import builds you've saved from the
-      <em>Saved Builds</em> tab.
-    </p>
-    <input id="input" type="file" />
-    <button v-on:click="importBuild">Import</button>
+  <div>
+    <div class="build">
+      <div class="build-header">
+        <h3>Import a Build</h3>
+      </div>
+      <div class="build-body">
+        <p>
+          Import builds you've saved to your computer from the <router-link to="/saved">Saved Builds</router-link> tab.
+        </p>
+        <input id="input" type="file" />
+        <button v-on:click="importBuild">Import</button>
+      </div>
+    </div>
   </div>
 </template>
 

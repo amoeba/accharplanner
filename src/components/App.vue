@@ -3,14 +3,14 @@
     <Notifications />
     <header>
       <div class="logo">
-        <a href="/">
+        <router-link to="/">
           <img
             src="/img/icons/axe_shield.gif"
             width="32"
             height="32"
             alt="Overly-Detailed Asheron's Call Character Planner (ODAACP)"
           />
-        </a>
+        </router-link>
       </div>
       <nav>
         <router-link to="/">Planner</router-link>

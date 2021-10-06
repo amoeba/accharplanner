@@ -2,7 +2,7 @@
   <li class="builds-entry" v-bind:class="{ loading: loading }">
     <span v-if="loading">Loading build...</span>
     <div v-if="error">Error: {{ error }}</div>
-    <a v-if="build" :href="url">{{ build.name }}</a>
+    <router-link v-if="build" :to="url">{{ build.name }}</router-link>
   </li>
 </template>
 
