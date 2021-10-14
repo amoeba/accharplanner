@@ -24,23 +24,23 @@ export default {
   },
   computed: {
     description() {
-      const data = JSON.parse(this._props.buildData);
+      const data = JSON.parse(this.buildData);
       return data.character.name + " (Level " + data.character.level + ")";
     },
     data() {
-      return JSON.stringify(this._props.buildData, null, 2);
+      return JSON.stringify(this.buildData, null, 2);
     }
   },
   methods: {
     load() {
-      this.$store.dispatch("import", JSON.parse(this._props.buildData));
+      this.$store.dispatch("import", JSON.parse(this.buildData));
     },
     exportBuild() {
-      const data = JSON.parse(this._props.buildData);
+      const data = JSON.parse(this.buildData);
       exportCharacter(data, data.character.name);
     },
     remove() {
-      this.$store.commit("deleteBuild", this._props.buildKey);
+      this.$store.commit("deleteBuild", this.buildKey);
     }
   }
 };

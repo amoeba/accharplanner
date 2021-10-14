@@ -16,16 +16,16 @@ export default {
   },
   computed: {
     displayName() {
-      return ITEM_NAME[this._props.id];
+      return ITEM_NAME[this.id];
     },
     checked: {
       get() {
-        return this.$store.state.build.character.items[this._props.id];
+        return this.$store.state.build.character.items[this.id];
       },
 
       set(value) {
         this.$store.commit("updateItem", {
-          id: this._props.id,
+          id: this.id,
           value: value
         });
       }

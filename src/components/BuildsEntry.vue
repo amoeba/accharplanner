@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     url() {
-      return "/builds/" + this._props.id;
+      return "/builds/" + this.id;
     }
   },
   created() {
@@ -37,7 +37,7 @@ export default {
       const db = firebase.firestore();
 
       db.collection("pinned")
-        .doc(this._props.id)
+        .doc(this.id)
         .get()
         .then(doc => {
           this.loading = false;

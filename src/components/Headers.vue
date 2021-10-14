@@ -104,7 +104,7 @@
           <div>Enlightened</div>
           <div class="flex-row">
             <div class="w70">
-              <input type="range" min="0" max="5" value="0" v-model="timesEnlightened" />
+              <input type="range" min="0" max="5" v-model="timesEnlightened" />
             </div>
             <div class="w30 right">
               <input
@@ -112,7 +112,6 @@
                 type="text"
                 min="0"
                 max="5"
-                value="0"
                 v-model="timesEnlightened"
               />
             </div>

@@ -35,16 +35,16 @@ export default {
     isSelected() {
       return (
         this.$store.state.ui.currentStage !== null &&
-        this.$store.state.ui.currentStage === this._props.index
+        this.$store.state.ui.currentStage === this.index
       );
     }
   },
   methods: {
     load() {
-      this.$store.commit("changeStage", this._props.index);
+      this.$store.commit("changeStage", this.index);
     },
     remove() {
-      this.$store.commit("deleteStage", this._props.index);
+      this.$store.commit("deleteStage", this.index);
     }
   }
 };

@@ -16,13 +16,13 @@ export default {
     checked: {
       get() {
         return this.$store.state.build.character.extraSkillCredits[
-          this._props.id
+          this.id
         ];
       },
 
       set(value) {
         this.$store.commit("updateExtraSkillCredit", {
-          name: this._props.id,
+          name: this.id,
           value: value
         });
       }

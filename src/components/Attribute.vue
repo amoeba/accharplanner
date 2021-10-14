@@ -71,19 +71,19 @@ export default {
   },
   computed: {
     displayName() {
-      return ATTRIBUTE_NAME[this._props.name];
+      return ATTRIBUTE_NAME[this.name];
     },
     isBuffed() {
       return (
-        this.$store.state.build.character.attributes[this._props.name].buff >
+        this.$store.state.build.character.attributes[this.name].buff >
           0 ||
-        this.$store.state.build.character.attributes[this._props.name].cantrip >
+        this.$store.state.build.character.attributes[this.name].cantrip >
           0
       );
     },
     creation: {
       get() {
-        return this.$store.state.build.character.attributes[this._props.name]
+        return this.$store.state.build.character.attributes[this.name]
           .creation;
       },
       set(value) {
@@ -94,61 +94,61 @@ export default {
         }
 
         this.$store.commit("updateAttributeCreation", {
-          name: this._props.name,
+          name: this.name,
           value: value
         });
       }
     },
     invested: {
       get() {
-        return this.$store.state.build.character.attributes[this._props.name]
+        return this.$store.state.build.character.attributes[this.name]
           .invested;
       },
       set(value) {
         this.$store.commit("updateAttributeInvested", {
-          name: this._props.name,
+          name: this.name,
           value: value
         });
       }
     },
     base() {
-      return Math.round(this.$store.getters[this._props.name + "Base"]);
+      return Math.round(this.$store.getters[this.name + "Base"]);
     },
     buffed() {
-      return Math.round(this.$store.getters[this._props.name + "Buffed"]);
+      return Math.round(this.$store.getters[this.name + "Buffed"]);
     },
     buffLevel: {
       get() {
-        return this.$store.state.build.character.attributes[this._props.name]
+        return this.$store.state.build.character.attributes[this.name]
           .buff;
       },
       set(value) {
         this.$store.commit("updateAttributeBuff", {
-          name: this._props.name,
+          name: this.name,
           value: value
         });
       }
     },
     buffName() {
       return BUFF_NAME[
-        this.$store.state.build.character.attributes[this._props.name].buff
+        this.$store.state.build.character.attributes[this.name].buff
       ];
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.attributes[this._props.name]
+        return this.$store.state.build.character.attributes[this.name]
           .cantrip;
       },
       set(value) {
         this.$store.commit("updateAttributeCantrip", {
-          name: this._props.name,
+          name: this.name,
           value: value
         });
       }
     },
     cantripName() {
       return CANTRIP_NAME[
-        this.$store.state.build.character.attributes[this._props.name].cantrip
+        this.$store.state.build.character.attributes[this.name].cantrip
       ];
     }
   },
@@ -167,7 +167,7 @@ export default {
       }
 
       this.$store.commit("updateAttributeCreation", {
-        name: this._props.name,
+        name: this.name,
         value: value
       });
 
@@ -187,7 +187,7 @@ export default {
       }
 
       this.$store.commit("updateAttributeInvested", {
-        name: this._props.name,
+        name: this.name,
         value: value
       });
 

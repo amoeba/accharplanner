@@ -30,19 +30,19 @@ export default {
   },
   computed: {
     displayName() {
-      return AUGMENTATION_NAME[this._props.name];
+      return AUGMENTATION_NAME[this.name];
     },
     extraInfo() {
-      return AUGMENTATION_EXTRA_INFO[this._props.name];
+      return AUGMENTATION_EXTRA_INFO[this.name];
     },
     invested: {
       get() {
-        return this.$store.state.build.character.augmentations[this._props.name]
+        return this.$store.state.build.character.augmentations[this.name]
           .invested;
       }
     },
     max() {
-      return AUGMENTATION_MAX_USES[this._props.name];
+      return AUGMENTATION_MAX_USES[this.name];
     }
   },
   methods: {
@@ -53,14 +53,14 @@ export default {
         value = 0;
       }
 
-      if (value > AUGMENTATION_MAX_USES[this._props.name]) {
-        value = AUGMENTATION_MAX_USES[this._props.name];
+      if (value > AUGMENTATION_MAX_USES[this.name]) {
+        value = AUGMENTATION_MAX_USES[this.name];
       } else if (value < 0) {
         value = 0;
       }
 
       this.$store.commit("updateAugmentationInvested", {
-        name: this._props.name,
+        name: this.name,
         value: value
       });
     }

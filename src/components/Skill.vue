@@ -89,17 +89,17 @@ export default {
   },
   computed: {
     displayName() {
-      return SKILL_NAME[this._props.name];
+      return SKILL_NAME[this.name];
     },
     formula() {
-      return SKILL_FORMULA[this._props.name];
+      return SKILL_FORMULA[this.name];
     },
     isBuffed() {
       return (
-        this.$store.state.build.character.skills[this._props.name].buff > 0 ||
-        this.$store.state.build.character.skills[this._props.name].cantrip >
+        this.$store.state.build.character.skills[this.name].buff > 0 ||
+        this.$store.state.build.character.skills[this.name].cantrip >
           0 ||
-        SKILL_DEPENDS_ON_ATTRIBUTES[this._props.name].reduce((acc, attr) => {
+        SKILL_DEPENDS_ON_ATTRIBUTES[this.name].reduce((acc, attr) => {
           if (
             this.$store.state.build.character.attributes[attr].buff > 0 ||
             this.$store.state.build.character.attributes[attr].cantrip > 0
@@ -113,7 +113,7 @@ export default {
     },
     increaseCostText() {
       let currentTraining = this.$store.state.build.character.skills[
-        this._props.name
+        this.name
       ].training;
 
       if (currentTraining === Training.SPECIALIZED) {
@@ -121,18 +121,18 @@ export default {
       }
 
       if (currentTraining === Training.TRAINED) {
-        if (SPEC_COSTS_AUG[this._props.name]) {
+        if (SPEC_COSTS_AUG[this.name]) {
           return "AUG";
         } else {
-          return SKILL_COST_AT_TRAINING[this._props.name].specialized;
+          return SKILL_COST_AT_TRAINING[this.name].specialized;
         }
       }
 
-      return SKILL_COST_AT_TRAINING[this._props.name].trained;
+      return SKILL_COST_AT_TRAINING[this.name].trained;
     },
     decreaseCostText() {
       let currentTraining = this.$store.state.build.character.skills[
-        this._props.name
+        this.name
       ].training;
 
       if (
@@ -143,18 +143,18 @@ export default {
       }
 
       if (currentTraining === Training.SPECIALIZED) {
-        if (SPEC_COSTS_AUG[this._props.name]) {
+        if (SPEC_COSTS_AUG[this.name]) {
           return "AUG";
         } else {
-          return SKILL_COST_AT_TRAINING[this._props.name].specialized;
+          return SKILL_COST_AT_TRAINING[this.name].specialized;
         }
       }
 
       if (currentTraining === Training.TRAINED) {
-        if (!UNTRAINABLE[this._props.name]) {
+        if (!UNTRAINABLE[this.name]) {
           return;
         } else {
-          return SKILL_COST_AT_TRAINING[this._props.name].trained;
+          return SKILL_COST_AT_TRAINING[this.name].trained;
         }
       }
 
@@ -163,7 +163,7 @@ export default {
     cantIncrease() {
       // Can't if already specialized
       if (
-        this.$store.state.build.character.skills[this._props.name].training ==
+        this.$store.state.build.character.skills[this.name].training ==
         Training.SPECIALIZED
       ) {
         return true;
@@ -171,7 +171,7 @@ export default {
 
       // Can't if out of credits
       let newTraining =
-        this.$store.state.build.character.skills[this._props.name].training ==
+        this.$store.state.build.character.skills[this.name].training ==
         Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED;
@@ -183,10 +183,10 @@ export default {
 
       if (newTraining === Training.SPECIALIZED) {
         newCost =
-          SKILL_COST_AT_TRAINING[this._props.name][Training.SPECIALIZED] -
-          SKILL_COST_AT_TRAINING[this._props.name][Training.TRAINED];
+          SKILL_COST_AT_TRAINING[this.name][Training.SPECIALIZED] -
+          SKILL_COST_AT_TRAINING[this.name][Training.TRAINED];
       } else if (newTraining === Training.TRAINED) {
-        newCost = SKILL_COST_AT_TRAINING[this._props.name][Training.TRAINED];
+        newCost = SKILL_COST_AT_TRAINING[this.name][Training.TRAINED];
       }
 
       if (
@@ -208,7 +208,7 @@ export default {
       return false;
     },
     cantDecrease() {
-      let training = this.$store.state.build.character.skills[this._props.name]
+      let training = this.$store.state.build.character.skills[this.name]
         .training;
 
       // Can't if not trained or higher
@@ -217,7 +217,7 @@ export default {
       }
 
       // Can't if not untrainable
-      if (training === Training.TRAINED && !UNTRAINABLE[this._props.name]) {
+      if (training === Training.TRAINED && !UNTRAINABLE[this.name]) {
         return true;
       }
 
@@ -229,30 +229,30 @@ export default {
       return false;
     },
     canInvest() {
-      let training = this.$store.state.build.character.skills[this._props.name]
+      let training = this.$store.state.build.character.skills[this.name]
         .training;
       return training == Training.SPECIALIZED || training == Training.TRAINED;
     },
     invested: {
       get() {
-        return this.$store.state.build.character.skills[this._props.name]
+        return this.$store.state.build.character.skills[this.name]
           .invested;
       },
       set(value) {
         this.$store.commit("updateSkillInvested", {
-          name: this._props.name,
+          name: this.name,
           value: Number(value) | 0
         });
       }
     },
     maxInvestment() {
       if (
-        this.$store.state.build.character.skills[this._props.name].training ===
+        this.$store.state.build.character.skills[this.name].training ===
         Training.SPECIALIZED
       ) {
         return 226;
       } else if (
-        this.$store.state.build.character.skills[this._props.name].training ===
+        this.$store.state.build.character.skills[this.name].training ===
         Training.TRAINED
       ) {
         return 208;
@@ -261,51 +261,51 @@ export default {
       }
     },
     base() {
-      return Math.round(this.$store.getters[this._props.name + "Base"]);
+      return Math.round(this.$store.getters[this.name + "Base"]);
     },
     buffed() {
-      return Math.round(this.$store.getters[this._props.name + "Buffed"]);
+      return Math.round(this.$store.getters[this.name + "Buffed"]);
     },
     buffLevel: {
       get() {
-        return this.$store.state.build.character.skills[this._props.name].buff;
+        return this.$store.state.build.character.skills[this.name].buff;
       },
       set(value) {
         this.$store.commit("updateSkillBuff", {
-          name: this._props.name,
+          name: this.name,
           value: value
         });
       }
     },
     buffName() {
       return BUFF_NAME[
-        this.$store.state.build.character.skills[this._props.name].buff
+        this.$store.state.build.character.skills[this.name].buff
       ];
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.skills[this._props.name]
+        return this.$store.state.build.character.skills[this.name]
           .cantrip;
       },
       set(value) {
         this.$store.commit("updateSkillCantrip", {
-          name: this._props.name,
+          name: this.name,
           value: value
         });
       }
     },
     cantripName() {
       return CANTRIP_NAME[
-        this.$store.state.build.character.skills[this._props.name].cantrip
+        this.$store.state.build.character.skills[this.name].cantrip
       ];
     }
   },
   methods: {
     increaseTraining() {
-      this.$store.commit("increaseTraining", this._props.name);
+      this.$store.commit("increaseTraining", this.name);
     },
     decreaseTraining() {
-      this.$store.commit("decreaseTraining", this._props.name);
+      this.$store.commit("decreaseTraining", this.name);
     },
     updateInvested(e) {
       let value = Math.round(Number(e.target.value));
@@ -314,16 +314,16 @@ export default {
         value = 0;
       }
 
-      if (this._props.training === Training.SPECIALIZED && value > 226) {
+      if (this.training === Training.SPECIALIZED && value > 226) {
         value = 226;
-      } else if (this._props.training === Training.TRAINED && value > 208) {
+      } else if (this.training === Training.TRAINED && value > 208) {
         value = 208;
       } else if (value < 0) {
         value = 0;
       }
 
       this.$store.commit("updateSkillInvested", {
-        name: this._props.name,
+        name: this.name,
         value: Number(value) | 0
       });
 

@@ -30,26 +30,26 @@ export default {
   },
   computed: {
     displayName() {
-      return LUMINANCE_AURA_NAME[this._props.name];
+      return LUMINANCE_AURA_NAME[this.name];
     },
     extraInfo() {
-      return LUMINANCE_AURA_EXTRA_INFO[this._props.name];
+      return LUMINANCE_AURA_EXTRA_INFO[this.name];
     },
     invested: {
       get() {
         return this.$store.state.build.character.luminance_auras[
-          this._props.name
+          this.name
         ].invested;
       },
       set(value) {
         this.$store.commit("updateLuminanceAuraInvested", {
-          name: this._props.name,
+          name: this.name,
           value: value
         });
       }
     },
     max() {
-      return LUMINANCE_AURA_MAX_USES[this._props.name];
+      return LUMINANCE_AURA_MAX_USES[this.name];
     }
   },
   methods: {
@@ -60,14 +60,14 @@ export default {
         value = 0;
       }
 
-      if (value > LUMINANCE_AURA_MAX_USES[this._props.name]) {
-        value = LUMINANCE_AURA_MAX_USES[this._props.name];
+      if (value > LUMINANCE_AURA_MAX_USES[this.name]) {
+        value = LUMINANCE_AURA_MAX_USES[this.name];
       } else if (value < 0) {
         value = 0;
       }
 
       this.$store.commit("updateLuminanceAuraInvested", {
-        name: this._props.name,
+        name: this.name,
         value: value
       });
     }

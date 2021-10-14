@@ -1,5 +1,5 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import {createApp } from "vue";
+import { createRouter, createWebHistory } from 'vue-router'
 import App from "./components/App.vue";
 import "./assets/styles.scss";
 
@@ -7,12 +7,12 @@ import "./assets/styles.scss";
 import * as Sentry from "@sentry/browser";
 import * as Integrations from "@sentry/integrations";
 
-if (process.env.SENTRY_DSN) {
-  Sentry.init({
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-    integrations: [new Integrations.Vue({ Vue, attachProps: true })]
-  });
-}
+// if (process.env.SENTRY_DSN) {
+//   Sentry.init({
+//     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+//     integrations: [new Integrations.Vue({ Vue, attachProps: true })]
+//   });
+// }
 
 const Planner = () =>
   import(/* webpackChunkName: "planner" */ "./components/Planner.vue");
@@ -32,12 +32,9 @@ const BuildLoader = () =>
 import store from "./store";
 import { importCharacter } from "./import";
 
-Vue.use(VueRouter);
 
-Vue.config.productionTip = false;
-
-const router = new VueRouter({
-  mode: "history",
+const router = createRouter({
+  history: createWebHistory(),
   routes: [
     { path: "/", component: Planner },
     { path: "/saved", component: SavedBuilds },
@@ -49,85 +46,94 @@ const router = new VueRouter({
   ]
 });
 
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-  created: function () {
-    // Clear any notifications stored in localStorage
-    this.$store.commit("clearAllNotifications");
+createApp(App)
+  .use(router)
+  .use(store)
+  .mount("#app")
 
-    // Decide if we should do things
-    const params = new URL(document.location.href).searchParams;
+// TODO: created
 
-    if (
-      !params.get("action") ||
-      !params.get("server") ||
-      !params.get("character")
-    ) {
-      return;
-    }
 
-    if (params.get("action") != "import") {
-      return;
-    }
 
-    // Reset our character before import
-    this.$store.commit("reset");
+// new Vue({
+//   router,
+//   store,
+//   render: h => h(App),
+//   created: function () {
+//     // Clear any notifications stored in localStorage
+//     this.$store.commit("clearAllNotifications");
 
-    // Start doing things
-    var store = this.$store;
-    const url =
-      "https://treestats.net/" +
-      params.get("server") +
-      "/" +
-      params.get("character") +
-      ".json";
-    let errorEncountered = false;
+//     // Decide if we should do things
+//     const params = new URL(document.location.href).searchParams;
 
-    fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
-        if (!json.attribs) {
-          throw "Invalid JSON structure. Is this character a stub character (i.e., no attributes, skills)?";
-        }
+//     if (
+//       !params.get("action") ||
+//       !params.get("server") ||
+//       !params.get("character")
+//     ) {
+//       return;
+//     }
 
-        return json;
-      })
-      .then(json => {
-        importCharacter(store, json);
-      })
-      .catch(error => {
-        errorEncountered = true;
+//     if (params.get("action") != "import") {
+//       return;
+//     }
 
-        store.commit("addNotification", {
-          type: "error",
-          message:
-            "Failed to import " +
-            params.get("character") +
-            " (" +
-            params.get("server") +
-            "): " +
-            error
-        });
+//     // Reset our character before import
+//     this.$store.commit("reset");
 
-        return;
-      })
-      .then(() => {
-        if (errorEncountered) {
-          return;
-        }
+//     // Start doing things
+//     var store = this.$store;
+//     const url =
+//       "https://treestats.net/" +
+//       params.get("server") +
+//       "/" +
+//       params.get("character") +
+//       ".json";
+//     let errorEncountered = false;
 
-        store.commit("addNotification", {
-          type: "success",
-          message:
-            params.get("character") +
-            " (" +
-            params.get("server") +
-            ") successfully imported."
-        });
-      });
-  }
-}).$mount("#app");
+//     fetch(url)
+//       .then(function (response) {
+//         return response.json();
+//       })
+//       .then(function (json) {
+//         if (!json.attribs) {
+//           throw "Invalid JSON structure. Is this character a stub character (i.e., no attributes, skills)?";
+//         }
+
+//         return json;
+//       })
+//       .then(json => {
+//         importCharacter(store, json);
+//       })
+//       .catch(error => {
+//         errorEncountered = true;
+
+//         store.commit("addNotification", {
+//           type: "error",
+//           message:
+//             "Failed to import " +
+//             params.get("character") +
+//             " (" +
+//             params.get("server") +
+//             "): " +
+//             error
+//         });
+
+//         return;
+//       })
+//       .then(() => {
+//         if (errorEncountered) {
+//           return;
+//         }
+
+//         store.commit("addNotification", {
+//           type: "success",
+//           message:
+//             params.get("character") +
+//             " (" +
+//             params.get("server") +
+//             ") successfully imported."
+//         });
+//       });
+//   }
+// }).$mount("#app");

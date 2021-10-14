@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$store.commit("removeNotification", this._props.id);
+      this.$store.commit("removeNotification", this.id);
     }
   }
 };
