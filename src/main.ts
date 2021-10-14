@@ -3,17 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from "./components/App.vue";
 import "./assets/styles.scss";
 
-// Sentry.io
-import * as Sentry from "@sentry/browser";
-import * as Integrations from "@sentry/integrations";
-
-// if (process.env.SENTRY_DSN) {
-//   Sentry.init({
-//     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-//     integrations: [new Integrations.Vue({ Vue, attachProps: true })]
-//   });
-// }
-
 const Planner = () =>
   import(/* webpackChunkName: "planner" */ "./components/Planner.vue");
 const SavedBuilds = () =>
@@ -46,7 +35,26 @@ const router = createRouter({
   ]
 });
 
-createApp(App)
+const app = createApp(App)
   .use(router)
   .use(store)
   .mount("#app")
+
+// Sentry.io
+import * as Sentry from "@sentry/vue";
+import { Integrations } from "@sentry/tracing";
+
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    integrations: [
+      new Integrations.BrowserTracing({
+        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+        tracingOrigins: ["localhost", "my-site-url.com", /^\//],
+      }),
+    ],
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,  });
+}
