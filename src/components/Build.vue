@@ -40,9 +40,6 @@ export default {
   created() {
     this.fetchData();
   },
-  watch: {
-    $route: "fetchData"
-  },
   computed: {
     url() {
       return "/" + this.build.build_id;
