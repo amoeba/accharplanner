@@ -19,8 +19,6 @@ const BuildLoader = () =>
   import(/* webpackChunkName: "other" */ "./components/BuildLoader.vue");
 
 import store from "./store";
-import { importCharacter } from "./import";
-
 
 const router = createRouter({
   history: createWebHistory(),

@@ -44,6 +44,7 @@
 <script>
 import Notifications from "./Notifications";
 import { THEME } from "../types";
+import { importCharacter } from "./import";
 
 export default {
   name: "App",
