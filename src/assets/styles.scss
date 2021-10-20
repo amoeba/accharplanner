@@ -512,6 +512,9 @@ main > div {
 
 footer {
   text-align: center;
+  padding: 0.5em 0;
+  background-color: var(--c-background);
+  border-top: 1px solid var(--c-border);
 }
 
 /* General stuff */
