@@ -4,7 +4,7 @@ import App from "./components/App.vue";
 import "./assets/styles.scss";
 
 const Planner = () =>
-  import(/* webpackChunkName: "other" */ "./components/Planner.vue");
+  import(/* webpackChunkName: "planner" */ "./components/Planner.vue");
 const SavedBuilds = () =>
   import(/* webpackChunkName: "other" */ "./components/SavedBuilds.vue");
 const Import = () =>
