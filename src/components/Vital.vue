@@ -67,10 +67,7 @@ export default {
       return VITAL_FORMULA[this.name];
     },
     isBuffed() {
-      return (
-        this.$store.state.build.character.vitals[this.name].buff > 0 ||
-        this.$store.state.build.character.vitals[this.name].cantrip > 0
-      );
+      return Math.round(this.$store.getters[this.name + "Buffed"]) > Math.round(this.$store.getters[this.name + "Base"]);
     },
     creation() {
       return this.$store.getters[this.name + "Creation"];

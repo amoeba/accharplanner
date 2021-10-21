@@ -95,21 +95,7 @@ export default {
       return SKILL_FORMULA[this.name];
     },
     isBuffed() {
-      return (
-        this.$store.state.build.character.skills[this.name].buff > 0 ||
-        this.$store.state.build.character.skills[this.name].cantrip >
-          0 ||
-        SKILL_DEPENDS_ON_ATTRIBUTES[this.name].reduce((acc, attr) => {
-          if (
-            this.$store.state.build.character.attributes[attr].buff > 0 ||
-            this.$store.state.build.character.attributes[attr].cantrip > 0
-          ) {
-            return acc + 1;
-          } else {
-            return acc;
-          }
-        }, 0)
-      );
+      return Math.round(this.$store.getters[this.name + "Buffed"]) > Math.round(this.$store.getters[this.name + "Base"]);
     },
     increaseCostText() {
       let currentTraining = this.$store.state.build.character.skills[

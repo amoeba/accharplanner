@@ -74,12 +74,7 @@ export default {
       return ATTRIBUTE_NAME[this.name];
     },
     isBuffed() {
-      return (
-        this.$store.state.build.character.attributes[this.name].buff >
-          0 ||
-        this.$store.state.build.character.attributes[this.name].cantrip >
-          0
-      );
+      return Math.round(this.$store.getters[this.name + "Buffed"]) > Math.round(this.$store.getters[this.name + "Base"]);
     },
     creation: {
       get() {
