@@ -86,6 +86,15 @@ export default {
     state.ui.currentStage = null;
     state.build.stages.splice(index, 1);
   },
+  reorderStages(state: State, newOrder: any) {
+    let newStages : any[] = [];
+
+    newOrder.forEach((el: any) => {
+      newStages.push(state.build.stages[el.index]);
+    });
+
+    state.build.stages = newStages;
+  },
   saveBuild(state: State) {
     // Store locally
     state.ui.savedBuilds.push({

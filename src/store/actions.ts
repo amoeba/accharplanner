@@ -73,5 +73,8 @@ export default {
       type: "success",
       message: "Successfully imported build."
     });
+  },
+  reorderStages(context: any, newOrder: any) {
+    context.commit("reorderStages", newOrder);
   }
 };

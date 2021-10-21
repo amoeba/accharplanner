@@ -244,10 +244,6 @@ ul {
   line-height: 1.2rem;
 }
 
-#stages.header-items {
-  padding-bottom: 0;
-}
-
 #extraskillcredits div.header-items {
   display: block;
 }
@@ -285,11 +281,13 @@ ul {
   background-color: var(--c-background);
 }
 
-.pane .pane-header {
+.pane .pane-header,
+.header .header-title {
   display: grid;
   grid-template-columns: auto auto;
   cursor: pointer;
   padding: 0.25rem 0.5rem;
+  align-items: center;
 }
 
 .pane-header:hover {
@@ -386,10 +384,8 @@ input.number {
 #stages {
   display: flex;
   flex-wrap: wrap;
-}
-
-.stage {
-  margin-bottom: 0.5rem;
+  grid-column-gap: 0;
+  row-gap: 0.5rem;
 }
 
 .stage div {
@@ -408,7 +404,7 @@ input.number {
   border-radius: 3px 0px 0px 3px;
   border-width: 1px 0px 1px 1px;
   border-style: solid;
-  border-color: var(--c-border);
+  border-color: var(--c-button-border);
   min-width: 2.25rem;
   text-align: center;
   background-color: var(--c-secondary);
@@ -416,7 +412,7 @@ input.number {
 }
 
 .stage-level.selected {
-  background-color: var(--c-interactive);
+  background-color: var(--c-button);
   color: var(--c-secondary);
 }
 
@@ -427,7 +423,7 @@ input.number {
   padding: 0;
   min-width: auto;
   border-radius: 0px 3px 3px 0px;
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--c-button-border);
   fill: var(--c-text);
 }
 
@@ -437,16 +433,20 @@ input.number {
 
 .stage-line {
   border: 0;
-  height: 1px;
-  background: #333;
+  height: 2px;
+  background: var(--c-button-border);
   min-width: 2rem;
   margin: 0.18rem 0;
 }
 
 .stage-new {
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--c-button-border);
   border-radius: 3px;
   cursor: pointer;
+}
+
+.dragging {
+  background-color: var(--c-button-hover);
 }
 
 .faded {
