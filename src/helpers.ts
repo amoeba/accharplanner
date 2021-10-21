@@ -68,7 +68,8 @@ export const wiseSetBonus = function(pieces: number) {
 }
 
 export const wiseSetManaBonus = function(pieces: number) {
-  if (pieces < 4) {
+  if (pieces === 4) {
+    return 6;
   } else if (pieces >= 5) {
     return 20;
   } else {
