@@ -474,7 +474,10 @@ export default {
     return (
       getters.healthBase +
       buffBonus(state.build.character.vitals.health.buff) +
-      cantripBonus(state.build.character.vitals.health.cantrip)
+      buffBonus(state.build.character.attributes.endurance.buff) / 2+
+      cantripBonus(state.build.character.vitals.health.cantrip) +
+      cantripBonus(state.build.character.attributes.endurance.cantrip) / 2 +
+      wiseSetBonus(state.build.character.armor_sets.wise.equipped) / 2
     );
   },
   staminaCreation: (state: State) => {
@@ -489,7 +492,10 @@ export default {
     return (
       getters.staminaBase +
       buffBonus(state.build.character.vitals.stamina.buff) +
-      cantripBonus(state.build.character.vitals.stamina.cantrip)
+      buffBonus(state.build.character.attributes.endurance.buff) +
+      cantripBonus(state.build.character.vitals.stamina.cantrip) +
+      cantripBonus(state.build.character.attributes.endurance.cantrip) +
+      wiseSetBonus(state.build.character.armor_sets.wise.equipped)
     );
   },
   manaCreation: (state: State) => {
@@ -501,10 +507,12 @@ export default {
   manaBuffed: (state: State, getters: any) => {
     return clamp(
       getters.manaBase +
-        buffBonus(state.build.character.vitals.mana.buff) +
-        cantripBonus(state.build.character.vitals.mana.cantrip) +
-        wiseSetManaBonus(state.build.character.armor_sets.wise.equipped) +
-        (state.build.character.items.focusing_stone ? -50 : 0), // Malediction
+      buffBonus(state.build.character.vitals.mana.buff) +
+      buffBonus(state.build.character.attributes.self.buff) +
+      cantripBonus(state.build.character.vitals.mana.cantrip) +
+      cantripBonus(state.build.character.attributes.self.cantrip) +
+      wiseSetManaBonus(state.build.character.armor_sets.wise.equipped) +
+      (state.build.character.items.focusing_stone ? -50 : 0), // Malediction
       0
     );
   },
