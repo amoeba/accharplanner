@@ -18,26 +18,10 @@
       </th>
       <th>&nbsp;</th>
       <th>
-        <select v-on:change="changeBuffed">
-          <option value="0"></option>
-          <option value="1">I</option>
-          <option value="2">II</option>
-          <option value="3">III</option>
-          <option value="4">IV</option>
-          <option value="5">V</option>
-          <option value="6">VI</option>
-          <option value="7">VII</option>
-          <option value="8">VIII</option>
-        </select>
+        &nbsp;
       </th>
       <th>
-        <select v-on:change="changeCantrips">
-          <option value="0"></option>
-          <option value="1">Minor</option>
-          <option value="2">Major</option>
-          <option value="3">Epic</option>
-          <option value="4">Legen.</option>
-        </select>
+        &nbsp;
       </th>
     </tr>
     <Vital name="health" display-name="Health" tabIndex="106" />
@@ -57,12 +41,6 @@ export default {
   methods: {
     changeInvested(e) {
       this.$store.commit("changeAllVitalInvestment", e.target.value);
-    },
-    changeBuffed(e) {
-      this.$store.commit("changeAllVitalBuffs", e.target.value);
-    },
-    changeCantrips(e) {
-      this.$store.commit("changeAllVitalCantrips", e.target.value);
     }
   }
 };

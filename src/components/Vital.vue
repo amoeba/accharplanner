@@ -23,26 +23,10 @@
       />
     </td>
     <td>
-      <select v-model="buffLevel">
-        <option value="0"></option>
-        <option value="1">I</option>
-        <option value="2">II</option>
-        <option value="3">III</option>
-        <option value="4">IV</option>
-        <option value="5">V</option>
-        <option value="6">VI</option>
-        <option value="7">VII</option>
-        <option value="8">VIII</option>
-      </select>
+      &nbsp;
     </td>
     <td>
-      <select v-model="cantrip">
-        <option value="0"></option>
-        <option value="1">Minor</option>
-        <option value="2">Major</option>
-        <option value="3">Epic</option>
-        <option value="4">Legen.</option>
-      </select>
+      &nbsp;
     </td>
   </tr>
 </template>
@@ -89,39 +73,6 @@ export default {
           value: value
         });
       }
-    },
-    buffLevel: {
-      get() {
-        return this.$store.state.build.character.vitals[this.name].buff;
-      },
-      set(value) {
-        this.$store.commit("updateVitalBuff", {
-          name: this.name,
-          value: value
-        });
-      }
-    },
-    buffName() {
-      return BUFF_NAME[
-        this.$store.state.build.character.vitals[this.name].buff
-      ];
-    },
-    cantrip: {
-      get() {
-        return this.$store.state.build.character.vitals[this.name]
-          .cantrip;
-      },
-      set(value) {
-        this.$store.commit("updateVitalCantrip", {
-          name: this.name,
-          value: value
-        });
-      }
-    },
-    cantripName() {
-      return CANTRIP_NAME[
-        this.$store.state.build.character.vitals[this.name].cantrip
-      ];
     }
   },
   methods: {

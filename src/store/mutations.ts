@@ -280,14 +280,6 @@ export default {
     state.build.character.vitals[payload.name].invested = Number(payload.value);
   },
 
-  updateVitalBuff(state: State, payload: any) {
-    state.build.character.vitals[payload.name].buff = Number(payload.value);
-  },
-
-  updateVitalCantrip(state: State, payload: any) {
-    state.build.character.vitals[payload.name].cantrip = Number(payload.value);
-  },
-
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
     state.build.character.skills[payload.name].invested = payload.value;
   },
@@ -519,10 +511,6 @@ export default {
       state.build.character.attributes[attribute].buff = Number(buff);
     });
 
-    Object.keys(Vital).forEach(vital => {
-      state.build.character.vitals[vital].buff = Number(buff);
-    });
-
     Object.keys(Skill).forEach(skill => {
       state.build.character.skills[skill].buff = Number(buff);
     });
@@ -531,12 +519,6 @@ export default {
   changeAllAttributeBuffs(state: State, buff: string) {
     Object.keys(Attribute).forEach(attribute => {
       state.build.character.attributes[attribute].buff = Number(buff);
-    });
-  },
-
-  changeAllVitalBuffs(state: State, buff: string) {
-    Object.keys(Vital).forEach(vital => {
-      state.build.character.vitals[vital].buff = Number(buff);
     });
   },
 
@@ -552,10 +534,6 @@ export default {
       state.build.character.attributes[attribute].cantrip = Number(cantrip);
     });
 
-    Object.keys(Vital).forEach(vital => {
-      state.build.character.vitals[vital].cantrip = Number(cantrip);
-    });
-
     Object.keys(Skill).forEach(skill => {
       state.build.character.skills[skill].cantrip = Number(cantrip);
     });
@@ -564,12 +542,6 @@ export default {
   changeAllAttributeCantrips(state: State, cantrip: string) {
     Object.keys(Attribute).forEach(attribute => {
       state.build.character.attributes[attribute].cantrip = Number(cantrip);
-    });
-  },
-
-  changeAllVitalCantrips(state: State, cantrip: string) {
-    Object.keys(Vital).forEach(vital => {
-      state.build.character.vitals[vital].cantrip = Number(cantrip);
     });
   },
 
