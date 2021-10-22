@@ -465,9 +465,10 @@ export default {
         : 1;
 
     return (
-      Math.round(getters.enduranceBase / 2) * benediction_bonus +
-      state.build.character.vitals.health.invested +
-      state.build.character.timesEnlightened * 2
+      (
+        Math.round(getters.enduranceBase / 2) +
+        state.build.character.vitals.health.invested +
+        state.build.character.timesEnlightened * 2) * benediction_bonus
     );
   },
   healthBuffed: (state: State, getters: any) => {
