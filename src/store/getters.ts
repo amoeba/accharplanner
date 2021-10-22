@@ -457,28 +457,29 @@ export default {
 
   // Vitals
   healthBase: (state: State, getters: any) => {
+    return (
+      Math.round(getters.enduranceBase / 2) +
+      state.build.character.vitals.health.invested
+    );
+  },
+  healthBuffed: (state: State, getters: any) => {
     const benediction_bonus =
       state.build.character.augmentations.asherons_lesser_benediction
         .invested === 1 ||
-      state.build.character.augmentations.asherons_benediction.invested === 1
+        state.build.character.augmentations.asherons_benediction.invested === 1
         ? 1.1
         : 1;
 
     return (
       (
-        Math.round(getters.enduranceBase / 2) +
-        state.build.character.vitals.health.invested +
-        state.build.character.timesEnlightened * 2) * benediction_bonus
-    );
-  },
-  healthBuffed: (state: State, getters: any) => {
-    return (
-      getters.healthBase +
-      buffBonus(state.build.character.vitals.health.buff) +
-      buffBonus(state.build.character.attributes.endurance.buff) / 2+
-      cantripBonus(state.build.character.vitals.health.cantrip) +
-      cantripBonus(state.build.character.attributes.endurance.cantrip) / 2 +
-      wiseSetBonus(state.build.character.armor_sets.wise.equipped) / 2
+        getters.healthBase +
+        state.build.character.timesEnlightened * 2 +
+        buffBonus(state.build.character.vitals.health.buff) +
+        buffBonus(state.build.character.attributes.endurance.buff) / 2 +
+        cantripBonus(state.build.character.vitals.health.cantrip) +
+        cantripBonus(state.build.character.attributes.endurance.cantrip) / 2 +
+        wiseSetBonus(state.build.character.armor_sets.wise.equipped) / 2
+      ) * benediction_bonus
     );
   },
   staminaCreation: (state: State) => {
