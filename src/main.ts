@@ -36,7 +36,7 @@ const router = createRouter({
 const app = createApp(App)
   .use(router)
   .use(store)
-  .mount("#app")
+  .mount("#vue")
 
 // Sentry.io
 import * as Sentry from "@sentry/vue";
