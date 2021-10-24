@@ -6,7 +6,7 @@
           <h3>Build Stages</h3>
           </div>
         <div class="right">
-          <button class="stage-new" v-on:click="save">+ Stage</button>
+          <button class="stage-new" v-on:click="save">Save Stage</button>
         </div>
       </div>
       <div v-if="visible"
