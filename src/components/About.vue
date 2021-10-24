@@ -11,7 +11,7 @@
           turned into a quite useful Asheron's Call character planner.
         </p>
 
-        <h2>Credit</h2>
+        <h4>Credit</h4>
         <p>
           A big part of implementing this planner has been to understand the
           intricacies of game mechanics. Because the planner calculates so much of
