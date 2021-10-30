@@ -15,8 +15,17 @@
             </tr>
             </thead>
           <tbody>
-            <ArmorSet id="wise" />
+            <ArmorSet id="adepts" />
+            <ArmorSet id="archers" />
+            <ArmorSet id="crafters" />
+            <ArmorSet id="dedication" />
             <ArmorSet id="defenders" />
+            <ArmorSet id="dextrous" />
+            <ArmorSet id="hearty" />
+            <ArmorSet id="soldiers" />
+            <ArmorSet id="swift" />
+            <ArmorSet id="tinkers" />
+            <ArmorSet id="wise" />
           </tbody>
         </table>
       </div>

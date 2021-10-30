@@ -243,8 +243,17 @@ export enum Item {
 }
 
 export enum ArmorSet {
+  adepts = "adepts",
+  archers = "archers",
+  crafters = "crafters",
+  dedication = "dedication",
+  defenders = "defenders",
+  dextrous = "dextrous",
+  hearty = "hearty",
+  soldiers = "soldiers",
+  swift = "swift",
+  tinkers = "tinkers",
   wise = "wise",
-  defenders = "defenders"
 }
 
 export enum THEME {

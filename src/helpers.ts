@@ -48,10 +48,8 @@ export const cantripBonus = function (level: number) {
   }
 };
 
-// http://acpedia.org/wiki/Wise_Set
-// Only returns Focus, Willpower, and Summoning bonus, not Mana because it's
-// special. See wiseSetManaBonus.
-export const wiseSetBonus = function (pieces: number) {
+// Most sets have this schema for bonuses
+export const standardSetBonus = function (pieces: number) {
   if (pieces < 2) {
     return 0;
   } else if (pieces === 2) {
@@ -62,6 +60,55 @@ export const wiseSetBonus = function (pieces: number) {
     return 10;
   } else if (pieces >= 5) {
     return 20;
+  } else {
+    return 0;
+  }
+}
+
+// Many sets have the same secondary effect magnitudes (3/5)
+export const standardSecondarySetBonus = function (pieces: number) {
+  if (pieces === 4) {
+    return 3;
+  } else if (pieces >= 5) {
+    return 5;
+  } else {
+    return 0;
+  }
+}
+
+export const dedicationSetBonus = function (pieces: number) {
+  if (pieces < 2) {
+    return 0;
+  } else if (pieces >= 2 && pieces < 4) {
+    return 3;
+  } else if (pieces >= 4 && pieces < 6) {
+    return 6;
+  } else if (pieces >= 6 && pieces < 8) {
+    return 9;
+  } else if (pieces == 8) {
+    return 12;
+  } else if (pieces >= 9) {
+    return 15
+  } else {
+    return 0;
+  }
+}
+
+export const dextrousSetStaminaBonus = function (pieces: number) {
+  if (pieces === 4) {
+    return 6;
+  } else if (pieces >= 5) {
+    return 20;
+  } else {
+    return 0;
+  }
+}
+
+export const heartySetHealthBonus = function (pieces: number) {
+  if (pieces === 4) {
+    return 3;
+  } else if (pieces >= 5) {
+    return 10;
   } else {
     return 0;
   }
@@ -74,33 +121,6 @@ export const wiseSetManaBonus = function (pieces: number) {
     return 20;
   } else {
     return 0;
-  }
-}
-
-// http://acpedia.org/wiki/Defender%27s_Set
-export const defendersSetBonus = function (pieces: number) {
-  if (pieces < 2) {
-    return 0;
-  } else if (pieces === 2) {
-    return 3;
-  } else if (pieces === 3) {
-    return 5;
-  } else if (pieces === 4) {
-    return 10;
-  } else if (pieces >= 5) {
-    return 20;
-  } else {
-    return 0;
-  }
-}
-
-export const defendersSetStaminaBonus = function (pieces: number) {
-  if (pieces === 4) {
-    return 1.3;
-  } else if (pieces >= 5) {
-    return 20;
-  } else {
-    return 2;
   }
 }
 
