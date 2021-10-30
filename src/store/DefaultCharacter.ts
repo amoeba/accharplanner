@@ -1,7 +1,7 @@
 import { Character, Skill } from "../types";
 import { UNTRAINED_STATE } from "@/constants";
 
-export default function(): Character {
+export default function (): Character {
   return {
     name: "An Adventurer",
     race: "Aluvian",
@@ -489,6 +489,9 @@ export default function(): Character {
     },
     armor_sets: {
       wise: {
+        equipped: 0
+      },
+      defenders: {
         equipped: 0
       }
     }

@@ -243,7 +243,8 @@ export enum Item {
 }
 
 export enum ArmorSet {
-  wise = "wise"
+  wise = "wise",
+  defenders = "defenders"
 }
 
 export enum THEME {

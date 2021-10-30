@@ -16,6 +16,7 @@
             </thead>
           <tbody>
             <ArmorSet id="wise" />
+            <ArmorSet id="defenders" />
           </tbody>
         </table>
       </div>

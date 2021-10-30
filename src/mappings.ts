@@ -268,8 +268,10 @@ export const ITEM_NAME = {
 
 export const ARMOR_SET_NAME = {
   [ArmorSet.wise]: "Wise",
+  [ArmorSet.defenders]: "Defenders",
 };
 
 export const ARMOR_SET_NAME_EXTRA_INFO = {
   [ArmorSet.wise]: "+ Focus, Willpower, Summoning, Mana",
+  [ArmorSet.defenders]: "+ MeleeD, MagicD, MissileD, Stamina",
 }
