@@ -5,6 +5,9 @@
         <div>
           <h3>Armor Sets</h3>
         </div>
+        <div class="right">
+          <span v-if="errors" class="error">{{ errors }}</span>
+        </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
         <table>
@@ -44,6 +47,9 @@ export default {
   computed: {
     collapsed() {
       return this.$store.getters.armorSetsPaneVisible;
+    },
+    errors() {
+      return this.$store.getters.armorSetNumEquippedErrors;
     }
   },
   methods: {

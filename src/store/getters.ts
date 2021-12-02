@@ -2276,5 +2276,19 @@ export default {
     }
 
     return null;
+  },
+
+  armorSetNumEquippedErrors: (state: State, getters: any) => {
+    const numEquipped = Object.keys(state.build.character.armor_sets).map(set => {
+      return state.build.character.armor_sets[set].equipped;
+    }).reduce((p, c) => {
+      return p + c;
+    }, 0);
+
+    if (numEquipped > 10) {
+      return "Do you really have more than 10 armor set items equipped?"
+    }
+
+    return null;
   }
 };
