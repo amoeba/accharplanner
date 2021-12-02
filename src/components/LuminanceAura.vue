@@ -1,8 +1,13 @@
 <template>
   <tr>
     <td>
-      {{ displayName }}
-      <span class="faded">{{ extraInfo }}</span>
+      <abbr v-if="hoverInfo" :title="hoverInfo">
+        {{ displayName }}
+      </abbr>
+      <span v-else>
+        {{ displayName }}
+      </span>
+      <span style="margin-left: 0.5em" class="faded">{{ extraInfo }}</span>
     </td>
     <td>
       <input
@@ -21,39 +26,45 @@
 
 <script>
 import { LUMINANCE_AURA_MAX_USES } from "../constants";
-import { LUMINANCE_AURA_NAME, LUMINANCE_AURA_EXTRA_INFO } from "../mappings";
+import {
+  LUMINANCE_AURA_NAME,
+  LUMINANCE_AURA_HOVER_INFO,
+  LUMINANCE_AURA_EXTRA_INFO,
+} from "../mappings";
 
 export default {
   name: "LuminanceAura",
   props: {
-    name: String
+    name: String,
   },
   computed: {
     displayName() {
       return LUMINANCE_AURA_NAME[this.name];
+    },
+    hoverInfo() {
+      return LUMINANCE_AURA_HOVER_INFO[this.name];
     },
     extraInfo() {
       return LUMINANCE_AURA_EXTRA_INFO[this.name];
     },
     invested: {
       get() {
-        return this.$store.state.build.character.luminance_auras[
-          this.name
-        ].invested;
+        return this.$store.state.build.character.luminance_auras[this.name]
+          .invested;
       },
       set(value) {
         this.$store.commit("updateLuminanceAuraInvested", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
+      },
     },
     max() {
       return LUMINANCE_AURA_MAX_USES[this.name];
-    }
+    },
   },
   methods: {
-    updateInvested: function(e) {
+    updateInvested: function (e) {
       let value = Math.round(Number(e.target.value));
 
       if (isNaN(value)) {
@@ -68,9 +79,9 @@ export default {
 
       this.$store.commit("updateLuminanceAuraInvested", {
         name: this.name,
-        value: value
+        value: value,
       });
-    }
-  }
+    },
+  },
 };
 </script>

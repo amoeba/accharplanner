@@ -19,7 +19,13 @@
             <tr class="controls">
               <th>&nbsp;</th>
               <th>
-                <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  value="0"
+                  v-on:change="changeInvested"
+                />
               </th>
               <th>&nbsp;</th>
             </tr>
@@ -54,7 +60,7 @@ import LuminanceAura from "./LuminanceAura.vue";
 export default {
   name: "LuminanceAuras",
   components: {
-    LuminanceAura
+    LuminanceAura,
   },
   computed: {
     collapsed() {
@@ -62,7 +68,7 @@ export default {
     },
     errors() {
       return this.$store.getters.auraErrors;
-    }
+    },
   },
   methods: {
     changeInvested(e) {
@@ -70,7 +76,7 @@ export default {
     },
     toggle() {
       this.$store.commit("toggleAurasPane");
-    }
-  }
+    },
+  },
 };
 </script>

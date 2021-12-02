@@ -242,6 +242,10 @@ export const LUMINANCE_AURA_NAME = {
   [LuminanceAura.hardening]: "Hardening"
 };
 
+export const LUMINANCE_AURA_HOVER_INFO = {
+  [LuminanceAura.craftsman]: "Doesn't change values in your character sheet and is only applied when crafting/tinkering.",
+};
+
 export const LUMINANCE_AURA_EXTRA_INFO = {
   [LuminanceAura.aetheric_vision]: "+ Surge %",
   [LuminanceAura.craftsman]: "+1 to Craft/Tink",

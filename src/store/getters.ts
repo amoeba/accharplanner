@@ -578,7 +578,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.alchemy.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -665,7 +664,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.armor_tinkering.training ===
         Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -757,7 +755,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.cooking.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0) +
@@ -1041,7 +1038,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.fletching.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1237,7 +1233,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.item_tinkering.training ===
         Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1458,7 +1453,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.lockpick.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1574,7 +1568,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.magic_item_tinkering.training ===
         Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1869,7 +1862,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.salvaging.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -2191,7 +2183,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      state.build.character.luminance_auras.craftsman.invested +
       (state.build.character.skills.weapon_tinkering.training ===
         Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
