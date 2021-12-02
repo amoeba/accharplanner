@@ -1560,7 +1560,7 @@ export default {
     return (
       (state.build.character.skills.magic_item_tinkering.training !==
         Training.UNUSABLE
-        ? getters.alchemyBase
+        ? getters.magic_item_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.magic_item_tinkering.buff) +
       cantripBonus(state.build.character.skills.magic_item_tinkering.cantrip) +
