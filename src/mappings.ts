@@ -59,7 +59,7 @@ export const SKILL_NAME = {
   [Skill.shield]: "Shield",
   [Skill.sneak_attack]: "Sneak Attack",
   [Skill.summoning]: "Summoning",
-  [Skill.two_handed_combat]: "Two Handed_Combat",
+  [Skill.two_handed_combat]: "Two Handed Combat",
   [Skill.void_magic]: "Void Magic",
   [Skill.war_magic]: "War Magic",
   [Skill.weapon_tinkering]: "Weapon Tinkering"
