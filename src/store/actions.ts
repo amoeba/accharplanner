@@ -1,6 +1,7 @@
 import { Character, Build } from "../types";
 import { getFirestore, collection, doc, getDoc, addDoc } from "firebase/firestore/lite";
 import firebaseApp from "../firebase";
+import { merge } from "lodash"
 import DefaultCharacter from "./DefaultCharacter";
 
 export default {
@@ -36,19 +37,37 @@ export default {
           throw Error(`Build ${options.build_id} not found.`);
         }
 
-        // Check if old style build or new style
         const data = snap.data();
-
-        // New format
+        // Support old data format by looking at the structure and loading
+        // accordingly. The new format has top-level keys of character and
+        // stages while the old format has all the keys of the character right
+        // at the top level.
         if ("character" in data) {
-          context.state.build = snap.data() as Character;
+          // Load the character portion of the build
+          const char = DefaultCharacter()
+          merge(char, data.character)
+          context.state.build.character = char;
+
+          // Then populate stages
+          let stages = [];
+
+          for (let i = 1; i < data.stages.length; i++) {
+            let newStage = DefaultCharacter();
+            merge(newStage, data.stages[i]);
+            stages.push(newStage);
+          }
+
+          context.state.build.stages = stages;
 
           // Change to first stage if appropriate
           if (context.state.build.stages.length > 0) {
             context.commit("changeStage", 0);
           }
         } else {
-          context.state.build.character = snap.data() as Character;
+          const char = DefaultCharacter()
+          merge(char, data.character)
+
+          context.state.build.character = char;
           context.state.build.stages = [] as Character[];
         }
 
