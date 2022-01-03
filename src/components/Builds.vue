@@ -5,7 +5,9 @@
         <h3>Builds</h3>
       </div>
       <div class="build-body">
-        <div v-if="loading">Grabbing the freshest, gimpiest builds. Hang on...</div>
+        <div v-if="loading">
+          Grabbing the freshest, gimpiest builds. Hang on...
+        </div>
         <div v-if="error">Error: {{ error }}</div>
 
         <ul v-if="builds">
@@ -18,19 +20,18 @@
 
 <script>
 import firebase from "../firebase";
-import Build from "./Build";
-import BuildsEntry from "./BuildsEntry";
+import BuildsEntry from "./BuildsEntry.vue";
 
 export default {
   name: "Builds",
   components: {
-    BuildsEntry
+    BuildsEntry,
   },
   data() {
     return {
       loading: false,
       builds: [],
-      error: null
+      error: null,
     };
   },
   created() {
@@ -46,14 +47,14 @@ export default {
       db.collection("pinned")
         .orderBy("name")
         .get()
-        .then(x => {
+        .then((x) => {
           this.loading = false;
           this.builds = x.docs;
         })
-        .catch(error => {
+        .catch((error) => {
           this.error = error;
         });
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,5 +1,5 @@
 import { Character, Skill } from "../types";
-import { UNTRAINED_STATE } from "@/constants";
+import { UNTRAINED_STATE } from "../constants";
 
 export default function (): Character {
   return {

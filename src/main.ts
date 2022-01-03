@@ -1,22 +1,15 @@
-import {createApp } from "vue";
+import { createApp } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
 import App from "./components/App.vue";
 import "./assets/styles.scss";
 
-const Planner = () =>
-  import(/* webpackChunkName: "planner" */ "./components/Planner.vue");
-const SavedBuilds = () =>
-  import(/* webpackChunkName: "other" */ "./components/SavedBuilds.vue");
-const Import = () =>
-  import(/* webpackChunkName: "other" */ "./components/Import.vue");
-const About = () =>
-  import(/* webpackChunkName: "other" */ "./components/About.vue");
-const Builds = () =>
-  import(/* webpackChunkName: "other" */ "./components/Builds.vue");
-const Build = () =>
-  import(/* webpackChunkName: "other" */ "./components/Build.vue");
-const BuildLoader = () =>
-  import(/* webpackChunkName: "other" */ "./components/BuildLoader.vue");
+const Planner = () => import("./components/Planner.vue");
+const SavedBuilds = () => import("./components/SavedBuilds.vue");
+const Import = () => import("./components/Import.vue");
+const About = () => import("./components/About.vue");
+const Builds = () => import("./components/Builds.vue");
+const Build = () => import("./components/Build.vue");
+const BuildLoader = () => import("./components/BuildLoader.vue");
 
 import store from "./store";
 
@@ -33,18 +26,18 @@ const router = createRouter({
   ]
 });
 
-const app = createApp(App)
+createApp(App)
   .use(router)
   .use(store)
-  .mount("#vue")
+  .mount("#app")
 
 // Sentry.io
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
 
-if (process.env.SENTRY_DSN) {
+if (import.meta.env.SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    dsn: import.meta.env.NEXT_PUBLIC_SENTRY_DSN,
     integrations: [
       new Integrations.BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
@@ -54,5 +47,6 @@ if (process.env.SENTRY_DSN) {
     // Set tracesSampleRate to 1.0 to capture 100%
     // of transactions for performance monitoring.
     // We recommend adjusting this value in production
-    tracesSampleRate: 1.0,  });
+    tracesSampleRate: 1.0,
+  });
 }

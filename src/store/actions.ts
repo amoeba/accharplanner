@@ -1,6 +1,8 @@
 import { Character, Build } from "../types";
 import firebase from "../firebase";
 import { firestore } from "firebase";
+import _ from "lodash"
+import DefaultCharacter from "./DefaultCharacter";
 
 export default {
   shareBuild(context: any) {

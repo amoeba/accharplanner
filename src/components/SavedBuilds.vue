@@ -9,7 +9,10 @@
           <button v-on:click="deleteAll">Delete All</button>
         </p>
         <div v-if="noBuilds">
-          <p>No saved builds. Use the Save button in the <router-link to="/">Planner</router-link>.</p>
+          <p>
+            No saved builds. Use the Save button in the
+            <router-link to="/">Planner</router-link>.
+          </p>
         </div>
         <Build
           v-for="build in builds"
@@ -23,25 +26,25 @@
 </template>
 
 <script>
-import Build from "./SavedBuild";
+import Build from "./SavedBuild.vue";
 
 export default {
   name: "SavedBuilds",
   components: {
-    Build
+    Build,
   },
   computed: {
     noBuilds() {
-      return this.$store.state.ui.savedBuilds.length == 0
+      return this.$store.state.ui.savedBuilds.length == 0;
     },
     builds() {
       return this.$store.state.ui.savedBuilds;
-    }
+    },
   },
   methods: {
     deleteAll() {
       this.$store.commit("deleteAllBuilds");
-    }
-  }
+    },
+  },
 };
 </script>

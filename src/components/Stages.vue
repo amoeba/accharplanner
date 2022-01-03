@@ -4,17 +4,19 @@
       <div class="header-title" v-on:click="toggle">
         <div>
           <h3>Build Stages</h3>
-          </div>
+        </div>
         <div class="right">
           <button class="stage-new" v-on:click="save">Save Stage</button>
         </div>
       </div>
-      <div v-if="visible"
-           id="stages"
-           class="header-items"
-           v-bind:droppable="true"
-           v-on:drop="drop"
-           v-on:dragover="dragover">
+      <div
+        v-if="visible"
+        id="stages"
+        class="header-items"
+        v-bind:droppable="true"
+        v-on:drop="drop"
+        v-on:dragover="dragover"
+      >
         <div v-if="stages.length === 0">
           No stages have been set up for this build.
         </div>
@@ -25,8 +27,7 @@
           v-bind:level="stage.level"
           v-bind:data-index="index"
           v-bind:stages="stages.length"
-          v-on:drag="drag"
-          v-on:dragstart.native="dragStart"
+          v-on:dragstart="dragStart"
           :draggable="true"
         />
       </div>
@@ -35,17 +36,17 @@
 </template>
 
 <script>
-import Stage from "./Stage";
+import Stage from "./Stage.vue";
 
 export default {
   name: "Stages",
   components: {
-    Stage
+    Stage,
   },
   data() {
     return {
-      isDragging: false
-    }
+      isDragging: false,
+    };
   },
   computed: {
     stages() {
@@ -53,7 +54,7 @@ export default {
     },
     visible() {
       return this.$store.getters.buildStagesPaneVisible;
-    }
+    },
   },
   methods: {
     save(event) {
@@ -64,7 +65,6 @@ export default {
       this.$store.commit("toggleBuildStagesPane");
     },
     dragStart(event) {
-      console.log("dragStart");
       event.dataTransfer.setData("text/plain", event.target.dataset.index);
       this.isDragging = true;
     },
@@ -74,11 +74,11 @@ export default {
       const droppedX = event.clientX;
       const index = Number(event.dataTransfer.getData("text/plain"));
 
-      let newOrder = [
+      let stages = [
         {
           index: index,
-          x: droppedX
-        }
+          x: droppedX,
+        },
       ];
 
       document.querySelectorAll("div.stage").forEach((el, i) => {
@@ -86,24 +86,21 @@ export default {
           return;
         }
 
-        newOrder.push({
+        stages.push({
           index: i,
-          x: el.getBoundingClientRect().x
-        })
+          x: el.getBoundingClientRect().x,
+        });
       });
 
-      const sorted = _.orderBy(newOrder, x => {
-        return x.x;
+      stages.sort((a, b) => {
+        return a.x - b.x;
       });
 
-      this.$store.dispatch("reorderStages", sorted);
-    },
-    drag(event) {
-      console.log("drag", event);
+      this.$store.dispatch("reorderStages", stages);
     },
     dragover(event) {
       event.preventDefault();
-    }
-  }
+    },
+  },
 };
 </script>

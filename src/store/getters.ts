@@ -16,7 +16,7 @@ import {
 } from "../constants";
 import { trainingBonus, buffBonus, cantripBonus, clamp, standardSetBonus, standardSecondarySetBonus, wiseSetManaBonus, dedicationSetBonus, } from "../helpers";
 import { State } from "../types";
-import { Attribute, Skill, Training, Race, Augmentation } from "@/types";
+import { Attribute, Skill, Training, Race, Augmentation } from "../types"
 
 export default {
   // UI stuff

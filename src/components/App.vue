@@ -42,19 +42,20 @@
 </template>
 
 <script>
-import Notifications from "./Notifications";
+import Notifications from "./Notifications.vue";
 import { THEME } from "../types";
 import { importCharacter } from "../import";
 
 export default {
   name: "App",
   components: {
-    Notifications
+    Notifications,
   },
   computed: {
     nextMode() {
-      const preference = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches;
+      const preference = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
 
       if (this.$store.state.ui.darkMode === null) {
         return preference === "light" ? THEME.DARK : THEME.LIGHT;
@@ -69,15 +70,16 @@ export default {
       }
 
       return this.$store.state.ui.darkMode ? THEME.DARK : THEME.LIGHT;
-    }
+    },
   },
   methods: {
     toggleDarkMode() {
-      const preference = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches;
+      const preference = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
 
       this.$store.commit("toggleDarkMode", preference);
-    }
+    },
   },
   created() {
     // Clear any notifications stored in localStorage
@@ -112,20 +114,20 @@ export default {
     let errorEncountered = false;
 
     fetch(url)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(json) {
+      .then(function (json) {
         if (!json.attribs) {
           throw "Invalid JSON structure. Is this character a stub character (i.e., no attributes, skills)?";
         }
 
         return json;
       })
-      .then(json => {
+      .then((json) => {
         importCharacter(store, json);
       })
-      .catch(error => {
+      .catch((error) => {
         errorEncountered = true;
 
         store.commit("addNotification", {
@@ -136,7 +138,7 @@ export default {
             " (" +
             params.get("server") +
             "): " +
-            error
+            error,
         });
 
         return;
@@ -152,9 +154,9 @@ export default {
             params.get("character") +
             " (" +
             params.get("server") +
-            ") successfully imported."
+            ") successfully imported.",
         });
       });
-  }
+  },
 };
 </script>

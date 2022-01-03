@@ -1,7 +1,12 @@
 <template>
   <tr>
     <td>
-      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img
+        :src="'/img/' + name + '.png'"
+        :alt="displayName"
+        width="20"
+        height="20"
+      />
     </td>
     <td>
       {{ displayName }}
@@ -10,7 +15,9 @@
     <td>&nbsp;</td>
     <td class="creation number">{{ creation }}</td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">{{ buffed }}</td>
+    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
+      {{ buffed }}
+    </td>
     <td>
       <input type="range" min="0" max="196" v-model="invested" />
     </td>
@@ -22,36 +29,30 @@
         v-bind:tabindex="tabIndex"
       />
     </td>
-    <td>
-      &nbsp;
-    </td>
-    <td>
-      &nbsp;
-    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
   </tr>
 </template>
 
 <script>
-import {
-  VITAL_NAME,
-  VITAL_FORMULA,
-  BUFF_NAME,
-  CANTRIP_NAME
-} from "../mappings";
+import { VITAL_FORMULA } from "../mappings";
 
 export default {
   name: "Vital",
   props: {
     name: String,
     displayName: String,
-    tabIndex: String
+    tabIndex: String,
   },
   computed: {
     formula() {
       return VITAL_FORMULA[this.name];
     },
     isBuffed() {
-      return Math.round(this.$store.getters[this.name + "Buffed"]) > Math.round(this.$store.getters[this.name + "Base"]);
+      return (
+        Math.round(this.$store.getters[this.name + "Buffed"]) >
+        Math.round(this.$store.getters[this.name + "Base"])
+      );
     },
     creation() {
       return this.$store.getters[this.name + "Creation"];
@@ -64,16 +65,15 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.build.character.vitals[this.name]
-          .invested;
+        return this.$store.state.build.character.vitals[this.name].invested;
       },
       set(value) {
         this.$store.commit("updateVitalInvested", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
-    }
+      },
+    },
   },
   methods: {
     updateInvested(e) {
@@ -91,11 +91,11 @@ export default {
 
       this.$store.commit("updateVitalInvested", {
         name: this.name,
-        value: value
+        value: value,
       });
 
       e.target.value = value;
-    }
-  }
+    },
+  },
 };
 </script>

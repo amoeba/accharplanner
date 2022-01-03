@@ -27,14 +27,14 @@ import MD from "markdown-it";
 export default {
   name: "Build",
   props: {
-    id: String
+    id: String,
   },
   data() {
     return {
       loading: false,
       error: null,
       build: null,
-      description: null
+      description: null,
     };
   },
   created() {
@@ -43,7 +43,7 @@ export default {
   computed: {
     url() {
       return "/" + this.build.build_id;
-    }
+    },
   },
   methods: {
     fetchData() {
@@ -55,7 +55,7 @@ export default {
       db.collection("pinned")
         .doc(this.$route.params.id)
         .get()
-        .then(doc => {
+        .then((doc) => {
           this.loading = false;
           this.build = doc.data();
           // I use the $ symbol for newlines because Firestore's web interface
@@ -63,13 +63,13 @@ export default {
           // implement an admin interface
           this.build.description = MD("default", {
             breaks: true,
-            linkify: true
+            linkify: true,
           }).render(this.build.description.split("$").join("\n"));
         })
-        .catch(error => {
+        .catch((error) => {
           this.error = error;
         });
-    }
-  }
+    },
+  },
 };
 </script>
