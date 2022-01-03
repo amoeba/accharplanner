@@ -7,24 +7,25 @@
 </template>
 
 <script>
-import firebase from "../firebase";
+import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
+import firebaseApp from "../firebase";
 
 export default {
   name: "Build",
   props: {
-    id: String
+    id: String,
   },
   data() {
     return {
       loading: false,
       error: null,
-      build: null
+      build: null,
     };
   },
   computed: {
     url() {
       return "/builds/" + this.id;
-    }
+    },
   },
   created() {
     this.fetchData();
@@ -34,19 +35,18 @@ export default {
       this.error = null;
       this.loading = true;
 
-      const db = firebase.firestore();
+      const db = getFirestore(firebaseApp);
+      const docRef = doc(db, "pinned", this.id);
 
-      db.collection("pinned")
-        .doc(this.id)
-        .get()
-        .then(doc => {
+      getDoc(docRef)
+        .then((snap) => {
           this.loading = false;
-          this.build = doc.data();
+          this.build = snap.data();
         })
-        .catch(error => {
+        .catch((error) => {
           this.error = error;
         });
-    }
-  }
+    },
+  },
 };
 </script>

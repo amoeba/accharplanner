@@ -1,7 +1,6 @@
 import { Character, Build } from "../types";
-import firebase from "../firebase";
-import { firestore } from "firebase";
-import _ from "lodash"
+import { getFirestore, collection, doc, getDoc, addDoc } from "firebase/firestore/lite";
+import firebaseApp from "../firebase";
 import DefaultCharacter from "./DefaultCharacter";
 
 export default {
@@ -10,13 +9,13 @@ export default {
     context.state.ui.shareStatus = null;
     context.state.ui.sharedBuild = null;
 
-    const db = firebase.firestore();
+    const db = getFirestore(firebaseApp);
+    const buildsRef = collection(db, "builds");
 
-    db.collection("builds")
-      .add(context.state.build as firestore.DocumentData)
-      .then(function (doc: firestore.DocumentData) {
+    addDoc(buildsRef, context.state.build)
+      .then(docRef => {
         context.state.ui.shareStatus = null;
-        context.state.ui.sharedBuild = doc.id;
+        context.state.ui.sharedBuild = docRef.id;
       })
       .catch(error => {
         context.state.ui.shareStatus = "Error: " + error;
@@ -28,24 +27,28 @@ export default {
       message: "Loading build from share link.. *portal sounds*."
     });
 
-    const db = firebase.firestore();
+    const db = getFirestore(firebaseApp);
+    const docRef = doc(db, "builds", options.build_id);
 
-    db.collection("builds")
-      .doc(options.build_id)
-      .get()
-      .then(function (doc: firestore.DocumentData) {
+    getDoc(docRef)
+      .then((snap) => {
+        if (!snap.exists()) {
+          throw Error(`Build ${options.build_id} not found.`);
+        }
+
         // Check if old style build or new style
-        const data = doc.data();
+        const data = snap.data();
 
+        // New format
         if ("character" in data) {
-          context.state.build = doc.data() as Character;
+          context.state.build = snap.data() as Character;
 
           // Change to first stage if appropriate
           if (context.state.build.stages.length > 0) {
             context.commit("changeStage", 0);
           }
         } else {
-          context.state.build.character = doc.data() as Character;
+          context.state.build.character = snap.data() as Character;
           context.state.build.stages = [] as Character[];
         }
 
@@ -56,7 +59,7 @@ export default {
 
         options.router.push("/")
       })
-      .catch(error => {
+      .catch((error) => {
         context.commit("addNotification", {
           type: "error",
           message:

@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import firebase from "../firebase";
+import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
+import firebaseApp from "../firebase";
 import MD from "markdown-it";
 
 export default {
@@ -50,14 +51,13 @@ export default {
       this.error = null;
       this.loading = true;
 
-      const db = firebase.firestore();
+      const db = getFirestore(firebaseApp);
+      const docRef = doc(db, "pinned", this.$route.params.id);
 
-      db.collection("pinned")
-        .doc(this.$route.params.id)
-        .get()
-        .then((doc) => {
+      getDoc(docRef)
+        .then((snap) => {
           this.loading = false;
-          this.build = doc.data();
+          this.build = snap.data();
           // I use the $ symbol for newlines because Firestore's web interface
           // doesn't support real newlines when I paste and I don't want to
           // implement an admin interface

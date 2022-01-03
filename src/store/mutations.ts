@@ -87,7 +87,7 @@ export default {
     state.build.stages.splice(index, 1);
   },
   reorderStages(state: State, newOrder: any) {
-    let newStages : any[] = [];
+    let newStages: any[] = [];
 
     newOrder.forEach((el: any) => {
       newStages.push(state.build.stages[el.index]);
@@ -101,10 +101,6 @@ export default {
       key: new Date().toISOString(),
       build: JSON.stringify(state.build)
     });
-
-    // Also store to firebase
-    const db = firebase.firestore();
-    db.collection("builds").add(state.build);
   },
   deleteBuild(state: State, key: string) {
     for (let i = 0; i < state.ui.savedBuilds.length; i++) {

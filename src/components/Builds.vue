@@ -19,7 +19,14 @@
 </template>
 
 <script>
-import firebase from "../firebase";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore/lite";
+import firebaseApp from "../firebase";
 import BuildsEntry from "./BuildsEntry.vue";
 
 export default {
@@ -42,14 +49,14 @@ export default {
       this.error = null;
       this.loading = true;
 
-      const db = firebase.firestore();
+      const db = getFirestore(firebaseApp);
+      const pinnedRef = collection(db, "pinned");
+      const q = query(pinnedRef, orderBy("name"));
 
-      db.collection("pinned")
-        .orderBy("name")
-        .get()
-        .then((x) => {
+      getDocs(q)
+        .then((resp) => {
           this.loading = false;
-          this.builds = x.docs;
+          this.builds = resp.docs;
         })
         .catch((error) => {
           this.error = error;
