@@ -7,7 +7,7 @@ import "firebase/firestore";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.FIREBASE_API_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "accharplanner.firebaseapp.com",
   databaseURL: "https://accharplanner.firebaseio.com",
   projectId: "accharplanner",
