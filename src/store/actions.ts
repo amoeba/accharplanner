@@ -88,6 +88,8 @@ export default {
             error +
             "'."
         });
+
+        options.router.push("/")
       });
   },
   import(context: any, build: Build) {
