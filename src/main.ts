@@ -37,7 +37,7 @@ import { Integrations } from "@sentry/tracing";
 
 if (import.meta.env.SENTRY_DSN) {
   Sentry.init({
-    dsn: import.meta.env.NEXT_PUBLIC_SENTRY_DSN,
+    dsn: import.meta.env.NEXT_PUBLIC_SENTRY_DSN + "", // + "" is to get around TS
     integrations: [
       new Integrations.BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
