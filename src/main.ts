@@ -32,10 +32,10 @@ const app = createApp(App)
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
 
-if (import.meta.env.SENTRY_DSN) {
+if (import.meta.env.VITE_SENTRY_DSN) {
   Sentry.init({
     app,
-    dsn: import.meta.env.NEXT_PUBLIC_SENTRY_DSN + "", // + "" is to get around TS
+    dsn: import.meta.env.VITE_SENTRY_DSN + "", // + "" is to get around TS
     integrations: [
       new Integrations.BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
