@@ -1,5 +1,7 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
+import VueTippy from 'vue-tippy'
+
 import App from "./components/App.vue";
 import "./assets/styles.scss";
 
@@ -52,4 +54,5 @@ if (import.meta.env.VITE_SENTRY_DSN) {
 app
   .use(router)
   .use(store)
+  .use(VueTippy)
   .mount("#app")
