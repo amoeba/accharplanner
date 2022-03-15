@@ -64,7 +64,7 @@ import Attribute from "./Attribute.vue";
 export default {
   name: "Attributes",
   components: {
-    Attribute
+    Attribute,
   },
   methods: {
     changeInvested(e) {
@@ -75,7 +75,7 @@ export default {
     },
     changeCantrip(e) {
       this.$store.commit("changeAllAttributeCantrips", e.target.value);
-    }
-  }
+    },
+  },
 };
 </script>

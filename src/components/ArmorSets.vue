@@ -16,7 +16,7 @@
               <th>Name</th>
               <th colspan="2">Equipped</th>
             </tr>
-            </thead>
+          </thead>
           <tbody>
             <ArmorSet id="adepts" />
             <ArmorSet id="archers" />
@@ -42,7 +42,7 @@ import ArmorSet from "./ArmorSet.vue";
 export default {
   name: "ArmorSets",
   components: {
-    ArmorSet
+    ArmorSet,
   },
   computed: {
     collapsed() {
@@ -50,13 +50,13 @@ export default {
     },
     errors() {
       return this.$store.getters.armorSetNumEquippedErrors;
-    }
+    },
   },
   methods: {
     toggle() {
       this.$store.commit("toggleArmorSetsPane");
-    }
-  }
+    },
+  },
 };
 </script>
 <style></style>

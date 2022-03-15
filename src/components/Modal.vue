@@ -31,7 +31,7 @@ export default {
       if (e.target.className === "modal-wrapper") {
         this.$emit("close");
       }
-    }
-  }
+    },
+  },
 };
 </script>

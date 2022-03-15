@@ -20,17 +20,17 @@ import ExtraSkillCredit from "./ExtraSkillCredit.vue";
 export default {
   name: "ExtraSkillCredits",
   components: {
-    ExtraSkillCredit
+    ExtraSkillCredit,
   },
   computed: {
     collapsed() {
       return this.$store.getters.extraSkillCreditsPaneVisible;
-    }
+    },
   },
   methods: {
     toggle() {
       this.$store.commit("toggleExtraSkillCreditsPane");
-    }
-  }
+    },
+  },
 };
 </script>

@@ -16,7 +16,7 @@ export default {
   name: "ShareModal",
   data() {
     return {
-      copyButtonText: "Copy to Clipboard"
+      copyButtonText: "Copy to Clipboard",
     };
   },
   created() {
@@ -34,7 +34,7 @@ export default {
       }
 
       return "https://planner.treestats.net/" + build;
-    }
+    },
   },
   methods: {
     copyBuild(event) {
@@ -50,10 +50,10 @@ export default {
       const self = this;
       self.copyButtonText = "Copied!";
 
-      window.setTimeout(e => {
+      window.setTimeout((e) => {
         self.copyButtonText = "Copy to Clipboard";
       }, 1000);
-    }
-  }
+    },
+  },
 };
 </script>

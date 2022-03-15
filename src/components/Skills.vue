@@ -184,28 +184,28 @@ export default {
     },
     specializedSkills() {
       return Object.keys(this.$store.state.build.character.skills).filter(
-        key =>
+        (key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.SPECIALIZED
       );
     },
     trainedSkills() {
       return Object.keys(this.$store.state.build.character.skills).filter(
-        key =>
+        (key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.TRAINED
       );
     },
     untrainedSkills() {
       return Object.keys(this.$store.state.build.character.skills).filter(
-        key =>
+        (key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.UNTRAINED
       );
     },
     unusableSkills() {
       return Object.keys(this.$store.state.build.character.skills).filter(
-        key =>
+        (key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.UNUSABLE
       );
@@ -215,7 +215,7 @@ export default {
     },
     noTrainedSkills() {
       return this.$store.getters.trainedSkills.length == 0;
-    }
+    },
   },
   methods: {
     toggle() {
@@ -229,8 +229,8 @@ export default {
     },
     changeCantrips(e) {
       this.$store.commit("changeAllSkillCantrips", e.target.value);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

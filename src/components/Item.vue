@@ -12,7 +12,7 @@ export default {
   name: "Item",
   props: {
     id: String,
-    name: String
+    name: String,
   },
   computed: {
     displayName() {
@@ -26,10 +26,10 @@ export default {
       set(value) {
         this.$store.commit("updateItem", {
           id: this.id,
-          value: value
+          value: value,
         });
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

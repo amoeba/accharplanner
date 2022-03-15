@@ -9,7 +9,8 @@
           <span v-if="errors" class="error">{{ errors }}</span>
           <abbr
             title="Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380."
-          >{{ attributePointsSpent }} / {{ attributePointsAvailable }}</abbr>
+            >{{ attributePointsSpent }} / {{ attributePointsAvailable }}</abbr
+          >
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
@@ -30,7 +31,7 @@ export default {
   name: "AttributesAndVitals",
   components: {
     Attributes,
-    Vitals
+    Vitals,
   },
   computed: {
     attributePointsSpent() {
@@ -44,12 +45,12 @@ export default {
     },
     errors() {
       return this.$store.getters.attributesAndVitalsErrors;
-    }
+    },
   },
   methods: {
     toggle() {
       this.$store.commit("toggleAttributesPane");
-    }
-  }
+    },
+  },
 };
 </script>

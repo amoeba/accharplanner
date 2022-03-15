@@ -5,7 +5,14 @@
       <span class="faded">{{ extraInfo }}</span>
     </td>
     <td>
-      <input v-bind:id="id" v-bind:name="id" type="range" min="0" max="9" v-model="equipped" />
+      <input
+        v-bind:id="id"
+        v-bind:name="id"
+        type="range"
+        min="0"
+        max="9"
+        v-model="equipped"
+      />
     </td>
     <td class="number">
       <input v-model="equipped" type="text" />
@@ -20,7 +27,7 @@ export default {
   name: "ArmorSet",
   props: {
     id: String,
-    name: String
+    name: String,
   },
   computed: {
     displayName() {
@@ -37,11 +44,11 @@ export default {
       set(value) {
         this.$store.commit("updateArmorSet", {
           id: this.id,
-          value: Number(value)
+          value: Number(value),
         });
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 <style></style>

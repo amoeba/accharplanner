@@ -502,7 +502,8 @@ body {
   padding: 0;
 }
 
-main, footer {
+main,
+footer {
   background-color: var(--c-secondary);
 }
 
@@ -569,7 +570,7 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: var(--c-button-hover)
+  background-color: var(--c-button-hover);
 }
 
 table {

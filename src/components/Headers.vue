@@ -15,7 +15,9 @@
           <div>Race</div>
           <div>
             <select v-model="race">
-              <option v-for="race in races" v-bind:key="race">{{ race }}</option>
+              <option v-for="race in races" v-bind:key="race">
+                {{ race }}
+              </option>
             </select>
           </div>
           <div>Gender</div>
@@ -28,10 +30,21 @@
           <div>Level</div>
           <div class="flex-row">
             <div class="w70">
-              <input class="w100" type="range" min="1" max="275" v-model="level" />
+              <input
+                class="w100"
+                type="range"
+                min="1"
+                max="275"
+                v-model="level"
+              />
             </div>
             <div class="w30 right">
-              <input class="number w100" type="text" v-bind:value="level" v-on:change="updateLevel" />
+              <input
+                class="number w100"
+                type="text"
+                v-bind:value="level"
+                v-on:change="updateLevel"
+              />
             </div>
           </div>
         </div>
@@ -52,7 +65,9 @@
           <div>Total</div>
           <div class="right">{{ totalXPEarned }}</div>
           <div>Required Level</div>
-          <div class="right" v-bind:class="isOverspent ? 'red' : 'gray'">{{ requiredLevel }}</div>
+          <div class="right" v-bind:class="isOverspent ? 'red' : 'gray'">
+            {{ requiredLevel }}
+          </div>
           <div>Luminance Spent</div>
           <div class="right">{{ totalLuminanceXPSpent }}</div>
         </div>
@@ -129,14 +144,14 @@ import {
   MIN_LEVEL,
   MAX_LEVEL,
   MIN_TIMES_ENLIGHTENDED,
-  MAX_TIMES_ENLIGHTENDED
+  MAX_TIMES_ENLIGHTENDED,
 } from "../constants";
 import { Race } from "../types";
 
 export default {
   name: "Headers",
   components: {
-    ExtraSkillCredits
+    ExtraSkillCredits,
   },
   computed: {
     characterPaneVisible() {
@@ -162,8 +177,10 @@ export default {
     },
     isOverspent() {
       return (
-          (Number(this.$store.getters.totalXPInvested) > Number(this.$store.getters.totalXPEarned)) ||
-          (this.$store.getters.skillPointsSpent > this.$store.getters.skillPointsAvailable)
+        Number(this.$store.getters.totalXPInvested) >
+          Number(this.$store.getters.totalXPEarned) ||
+        this.$store.getters.skillPointsSpent >
+          this.$store.getters.skillPointsAvailable
       );
     },
     skillPointsSpent() {
@@ -187,7 +204,7 @@ export default {
       },
       set(value) {
         this.$store.commit("updateName", value);
-      }
+      },
     },
     level: {
       get() {
@@ -195,7 +212,7 @@ export default {
       },
       set(value) {
         this.$store.commit("updateLevel", value);
-      }
+      },
     },
     races() {
       return Object.keys(Race);
@@ -206,7 +223,7 @@ export default {
       },
       set(value) {
         this.$store.commit("updateRace", value);
-      }
+      },
     },
     gender: {
       get() {
@@ -214,7 +231,7 @@ export default {
       },
       set(value) {
         this.$store.commit("updateGender", value);
-      }
+      },
     },
     timesEnlightened: {
       get() {
@@ -222,11 +239,11 @@ export default {
       },
       set(value) {
         this.$store.commit("updateTimesEnlightened", value);
-      }
+      },
     },
     exportedCharacter() {
       return this.$store.getters.exportedCharacter;
-    }
+    },
   },
   methods: {
     toggleCharacterPane() {
@@ -260,7 +277,7 @@ export default {
     },
     changeAllCantrips(e) {
       this.$store.commit("changeAllCantrips", e.target.value);
-    }
-  }
+    },
+  },
 };
 </script>

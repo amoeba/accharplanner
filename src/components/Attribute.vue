@@ -67,19 +67,21 @@ export default {
   name: "Attribute",
   props: {
     name: String,
-    tabIndex: String
+    tabIndex: String,
   },
   computed: {
     displayName() {
       return ATTRIBUTE_NAME[this.name];
     },
     isBuffed() {
-      return Math.round(this.$store.getters[this.name + "Buffed"]) > Math.round(this.$store.getters[this.name + "Base"]);
+      return (
+        Math.round(this.$store.getters[this.name + "Buffed"]) >
+        Math.round(this.$store.getters[this.name + "Base"])
+      );
     },
     creation: {
       get() {
-        return this.$store.state.build.character.attributes[this.name]
-          .creation;
+        return this.$store.state.build.character.attributes[this.name].creation;
       },
       set(value) {
         if (value > 100) {
@@ -90,21 +92,20 @@ export default {
 
         this.$store.commit("updateAttributeCreation", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
+      },
     },
     invested: {
       get() {
-        return this.$store.state.build.character.attributes[this.name]
-          .invested;
+        return this.$store.state.build.character.attributes[this.name].invested;
       },
       set(value) {
         this.$store.commit("updateAttributeInvested", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
+      },
     },
     base() {
       return Math.round(this.$store.getters[this.name + "Base"]);
@@ -114,15 +115,14 @@ export default {
     },
     buffLevel: {
       get() {
-        return this.$store.state.build.character.attributes[this.name]
-          .buff;
+        return this.$store.state.build.character.attributes[this.name].buff;
       },
       set(value) {
         this.$store.commit("updateAttributeBuff", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
+      },
     },
     buffName() {
       return BUFF_NAME[
@@ -131,21 +131,20 @@ export default {
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.attributes[this.name]
-          .cantrip;
+        return this.$store.state.build.character.attributes[this.name].cantrip;
       },
       set(value) {
         this.$store.commit("updateAttributeCantrip", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
+      },
     },
     cantripName() {
       return CANTRIP_NAME[
         this.$store.state.build.character.attributes[this.name].cantrip
       ];
-    }
+    },
   },
   methods: {
     updateCreation(e) {
@@ -163,7 +162,7 @@ export default {
 
       this.$store.commit("updateAttributeCreation", {
         name: this.name,
-        value: value
+        value: value,
       });
 
       e.target.value = value;
@@ -183,11 +182,11 @@ export default {
 
       this.$store.commit("updateAttributeInvested", {
         name: this.name,
-        value: value
+        value: value,
       });
 
       e.target.value = value;
-    }
-  }
+    },
+  },
 };
 </script>

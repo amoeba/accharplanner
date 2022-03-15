@@ -6,16 +6,18 @@
       </div>
       <div class="build-body">
         <p>
-          The Overly-Detailed Asheron's Call Character Planner (ODACCP) was started
-          as a reason to learn <a href="https://vuejs.org/">Vue.js</a> but has
-          turned into a quite useful Asheron's Call character planner.
+          The Overly-Detailed Asheron's Call Character Planner (ODACCP) was
+          started as a reason to learn
+          <a href="https://vuejs.org/">Vue.js</a> but has turned into a quite
+          useful Asheron's Call character planner.
         </p>
 
         <h4>Credit</h4>
         <p>
           A big part of implementing this planner has been to understand the
-          intricacies of game mechanics. Because the planner calculates so much of
-          what you see in game, it has to get those mechanics implemented correctly.
+          intricacies of game mechanics. Because the planner calculates so much
+          of what you see in game, it has to get those mechanics implemented
+          correctly.
         </p>
         <p>
           My thanks goes out to the dedicated developers who have helped me
@@ -30,6 +32,6 @@
 
 <script>
 export default {
-  name: "About"
+  name: "About",
 };
 </script>

@@ -31,7 +31,7 @@ export default {
   props: {
     index: Number,
     level: Number,
-    stages: Number
+    stages: Number,
   },
   computed: {
     isSelected() {
@@ -42,7 +42,7 @@ export default {
     },
     isNotLast() {
       return this.index !== this.stages - 1;
-    }
+    },
   },
   methods: {
     load() {
@@ -50,7 +50,7 @@ export default {
     },
     remove() {
       this.$store.commit("deleteStage", this.index);
-    }
-  }
+    },
+  },
 };
 </script>

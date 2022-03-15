@@ -17,12 +17,8 @@
         />
       </th>
       <th>&nbsp;</th>
-      <th>
-        &nbsp;
-      </th>
-      <th>
-        &nbsp;
-      </th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
     </tr>
     <Vital name="health" display-name="Health" tabIndex="106" />
     <Vital name="stamina" display-name="Stamina" tabIndex="107" />
@@ -36,12 +32,12 @@ import Vital from "./Vital.vue";
 export default {
   name: "Vitals",
   components: {
-    Vital
+    Vital,
   },
   methods: {
     changeInvested(e) {
       this.$store.commit("changeAllVitalInvestment", e.target.value);
-    }
-  }
+    },
+  },
 };
 </script>

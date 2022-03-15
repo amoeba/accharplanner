@@ -20,7 +20,7 @@ export default {
   name: "Build",
   props: {
     buildKey: String,
-    buildData: String
+    buildData: String,
   },
   computed: {
     description() {
@@ -29,7 +29,7 @@ export default {
     },
     data() {
       return JSON.stringify(this.buildData, null, 2);
-    }
+    },
   },
   methods: {
     load() {
@@ -41,7 +41,7 @@ export default {
     },
     remove() {
       this.$store.commit("deleteBuild", this.buildKey);
-    }
-  }
+    },
+  },
 };
 </script>

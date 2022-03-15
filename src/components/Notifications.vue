@@ -16,12 +16,12 @@ import Notification from "./Notification.vue";
 export default {
   name: "Notifications",
   components: {
-    Notification
+    Notification,
   },
   computed: {
     notifications() {
       return this.$store.state.ui.notifications;
-    }
-  }
+    },
+  },
 };
 </script>

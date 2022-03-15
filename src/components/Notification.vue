@@ -10,12 +10,12 @@ export default {
   props: {
     id: Number,
     type: String,
-    message: String
+    message: String,
   },
   methods: {
     handleClick() {
       this.$store.commit("removeNotification", this.id);
-    }
-  }
+    },
+  },
 };
 </script>

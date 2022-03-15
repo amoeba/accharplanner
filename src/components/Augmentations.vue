@@ -88,7 +88,7 @@ import Augmentation from "./Augmentation.vue";
 export default {
   name: "Augmentations",
   components: {
-    Augmentation
+    Augmentation,
   },
   computed: {
     collapsed() {
@@ -96,7 +96,7 @@ export default {
     },
     errors() {
       return this.$store.getters.augmentationErrors;
-    }
+    },
   },
   methods: {
     changeInvested(e) {
@@ -104,7 +104,7 @@ export default {
     },
     toggle() {
       this.$store.commit("toggleAugmentationsPane");
-    }
-  }
+    },
+  },
 };
 </script>

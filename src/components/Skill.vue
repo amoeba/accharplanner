@@ -18,9 +18,7 @@
       </button>
     </td>
     <td>
-      <button v-on:click="increaseTraining">
-        ↑
-      </button>
+      <button v-on:click="increaseTraining">↑</button>
     </td>
     <td class="base number">{{ base }}</td>
     <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
@@ -75,7 +73,7 @@ import {
   SPEC_COSTS_AUG,
   UNTRAINABLE,
   SKILL_COST_AT_TRAINING,
-  MAX_SPECIALIZED_SKILL_CREDITS_SPENT
+  MAX_SPECIALIZED_SKILL_CREDITS_SPENT,
 } from "../constants";
 import { SKILL_NAME, SKILL_FORMULA } from "../mappings";
 import { Training } from "../types";
@@ -85,7 +83,7 @@ export default {
   props: {
     name: String,
     training: String,
-    tabIndex: Number // Number instead of String because we're :binding
+    tabIndex: Number, // Number instead of String because we're :binding
   },
   computed: {
     displayName() {
@@ -95,12 +93,14 @@ export default {
       return SKILL_FORMULA[this.name];
     },
     isBuffed() {
-      return Math.round(this.$store.getters[this.name + "Buffed"]) > Math.round(this.$store.getters[this.name + "Base"]);
+      return (
+        Math.round(this.$store.getters[this.name + "Buffed"]) >
+        Math.round(this.$store.getters[this.name + "Base"])
+      );
     },
     increaseCostText() {
-      let currentTraining = this.$store.state.build.character.skills[
-        this.name
-      ].training;
+      let currentTraining =
+        this.$store.state.build.character.skills[this.name].training;
 
       if (currentTraining === Training.SPECIALIZED) {
         return "";
@@ -117,9 +117,8 @@ export default {
       return SKILL_COST_AT_TRAINING[this.name].trained;
     },
     decreaseCostText() {
-      let currentTraining = this.$store.state.build.character.skills[
-        this.name
-      ].training;
+      let currentTraining =
+        this.$store.state.build.character.skills[this.name].training;
 
       if (
         currentTraining === Training.UNUSABLE ||
@@ -194,8 +193,8 @@ export default {
       return false;
     },
     cantDecrease() {
-      let training = this.$store.state.build.character.skills[this.name]
-        .training;
+      let training =
+        this.$store.state.build.character.skills[this.name].training;
 
       // Can't if not trained or higher
       if (training === Training.UNTRAINED || training === Training.UNTRAINED) {
@@ -215,21 +214,20 @@ export default {
       return false;
     },
     canInvest() {
-      let training = this.$store.state.build.character.skills[this.name]
-        .training;
+      let training =
+        this.$store.state.build.character.skills[this.name].training;
       return training == Training.SPECIALIZED || training == Training.TRAINED;
     },
     invested: {
       get() {
-        return this.$store.state.build.character.skills[this.name]
-          .invested;
+        return this.$store.state.build.character.skills[this.name].invested;
       },
       set(value) {
         this.$store.commit("updateSkillInvested", {
           name: this.name,
-          value: Number(value) | 0
+          value: Number(value) | 0,
         });
-      }
+      },
     },
     maxInvestment() {
       if (
@@ -259,9 +257,9 @@ export default {
       set(value) {
         this.$store.commit("updateSkillBuff", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
+      },
     },
     buffName() {
       return BUFF_NAME[
@@ -270,21 +268,20 @@ export default {
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.skills[this.name]
-          .cantrip;
+        return this.$store.state.build.character.skills[this.name].cantrip;
       },
       set(value) {
         this.$store.commit("updateSkillCantrip", {
           name: this.name,
-          value: value
+          value: value,
         });
-      }
+      },
     },
     cantripName() {
       return CANTRIP_NAME[
         this.$store.state.build.character.skills[this.name].cantrip
       ];
-    }
+    },
   },
   methods: {
     increaseTraining() {
@@ -310,11 +307,11 @@ export default {
 
       this.$store.commit("updateSkillInvested", {
         name: this.name,
-        value: Number(value) | 0
+        value: Number(value) | 0,
       });
 
       e.target.value = value;
-    }
-  }
+    },
+  },
 };
 </script>

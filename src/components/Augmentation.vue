@@ -26,7 +26,7 @@ import { AUGMENTATION_NAME, AUGMENTATION_EXTRA_INFO } from "../mappings";
 export default {
   name: "Augmentation",
   props: {
-    name: String
+    name: String,
   },
   computed: {
     displayName() {
@@ -39,14 +39,14 @@ export default {
       get() {
         return this.$store.state.build.character.augmentations[this.name]
           .invested;
-      }
+      },
     },
     max() {
       return AUGMENTATION_MAX_USES[this.name];
-    }
+    },
   },
   methods: {
-    updateInvested: function(e) {
+    updateInvested: function (e) {
       let value = Math.round(Number(e.target.value));
 
       if (isNaN(value)) {
@@ -61,9 +61,9 @@ export default {
 
       this.$store.commit("updateAugmentationInvested", {
         name: this.name,
-        value: value
+        value: value,
       });
-    }
-  }
+    },
+  },
 };
 </script>

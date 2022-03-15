@@ -6,7 +6,8 @@
       </div>
       <div class="build-body">
         <p>
-          Import builds you've saved to your computer from the <router-link to="/saved">Saved Builds</router-link> tab.
+          Import builds you've saved to your computer from the
+          <router-link to="/saved">Saved Builds</router-link> tab.
         </p>
         <input id="input" type="file" />
         <button v-on:click="importBuild">Import</button>
@@ -26,7 +27,7 @@ export default {
       if (typeof selectedFile === "undefined") {
         this.$store.commit("addNotification", {
           type: "error",
-          message: "Failed to import build from file: No file was selected."
+          message: "Failed to import build from file: No file was selected.",
         });
 
         return;
@@ -34,20 +35,20 @@ export default {
 
       const reader = new FileReader();
 
-      reader.onload = e => {
+      reader.onload = (e) => {
         try {
           var build = JSON.parse(e.target.result);
           this.$store.dispatch("import", build);
         } catch (error) {
           this.$store.commit("addNotification", {
             type: "error",
-            message: "Failed to build from file: " + error + "."
+            message: "Failed to build from file: " + error + ".",
           });
         }
       };
 
       reader.readAsText(selectedFile);
-    }
-  }
+    },
+  },
 };
 </script>

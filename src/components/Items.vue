@@ -22,17 +22,17 @@ import Item from "./Item.vue";
 export default {
   name: "Items",
   components: {
-    Item
+    Item,
   },
   computed: {
     collapsed() {
       return this.$store.getters.itemsPaneVisible;
-    }
+    },
   },
   methods: {
     toggle() {
       this.$store.commit("toggleItemsPane");
-    }
-  }
+    },
+  },
 };
 </script>
