@@ -1,10 +1,17 @@
 import { Training } from "./types";
 
+/**
+ * Specialized skills were given a free +10 bonus. Skills trained at creation
+ * only were given 5 free points in the skill but this isn't a bonus on top,
+ * it's just a head start towards 208 total points spent.
+ *
+ * Notes: https://github.com/amoeba/accharplanner/issues/301
+ */
 export const trainingBonus = function (training: Training) {
   if (training === Training.SPECIALIZED) {
     return 10;
   } else if (training === Training.TRAINED) {
-    return 5;
+    return 0;
   } else {
     return 0;
   }
