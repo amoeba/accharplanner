@@ -936,16 +936,9 @@ a:visited.link-github {
   border: 1px solid var(--c-tip-border);
   border-radius: 3px;
   padding: 0px 0.5em;
+  cursor: pointer;
 }
 
 .v-popper--theme-tooltip {
-  max-width: 20em;
-
-  .v-popper__inner {
-    background: #004499;
-  }
-
-  .v-popper__arrow-inner {
-    border-color: #004499;
-  }
+  max-width: 30em;
 }
