@@ -59,7 +59,7 @@
           <div class="right">
             <span
               class="tip"
-              v-tippy="
+              v-tooltip="
                 'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'
               "
               >!</span

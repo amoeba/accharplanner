@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
-import VueTippy from 'vue-tippy'
-import 'tippy.js/dist/tippy.css'
+import FloatingVue from 'floating-vue'
+import 'floating-vue/dist/style.css'
 
 
 import App from "./components/App.vue";
@@ -56,5 +56,5 @@ if (import.meta.env.VITE_SENTRY_DSN) {
 app
   .use(router)
   .use(store)
-  .use(VueTippy)
+  .use(FloatingVue)
   .mount("#app")

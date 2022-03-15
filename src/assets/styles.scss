@@ -937,3 +937,15 @@ a:visited.link-github {
   border-radius: 3px;
   padding: 0px 0.5em;
 }
+
+.v-popper--theme-tooltip {
+  max-width: 20em;
+
+  .v-popper__inner {
+    background: #004499;
+  }
+
+  .v-popper__arrow-inner {
+    border-color: #004499;
+  }
+}
