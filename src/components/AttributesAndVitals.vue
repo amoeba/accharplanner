@@ -7,9 +7,11 @@
         </div>
         <div class="right">
           <span v-if="errors" class="error">{{ errors }}</span>
-          <abbr
-            title="Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380."
-            >{{ attributePointsSpent }} / {{ attributePointsAvailable }}</abbr
+          <span
+            v-tippy="
+              'Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380.'
+            "
+            >{{ attributePointsSpent }} / {{ attributePointsAvailable }}</span
           >
         </div>
       </div>

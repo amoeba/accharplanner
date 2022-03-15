@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
 import VueTippy from 'vue-tippy'
+import 'tippy.js/dist/tippy.css'
+
 
 import App from "./components/App.vue";
 import "./assets/styles.scss";

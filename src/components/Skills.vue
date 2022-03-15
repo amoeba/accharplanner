@@ -7,8 +7,8 @@
           <span class="red">{{ skillPointsSpentErrorText }}</span>
         </div>
         <div class="right">
-          <abbr title="Skill points spent"
-            >{{ skillPointsSpent }} / {{ skillPointsAvailable }}</abbr
+          <span v-tippy="'Skill points spent.'"
+            >{{ skillPointsSpent }} / {{ skillPointsAvailable }}</span
           >
         </div>
       </div>

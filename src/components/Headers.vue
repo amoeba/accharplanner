@@ -56,6 +56,15 @@
           <div>
             <h3>XP &amp; Luminance</h3>
           </div>
+          <div class="right">
+            <span
+              class="tip"
+              v-tippy="
+                'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'
+              "
+              >!</span
+            >
+          </div>
         </div>
         <div v-if="xpAndLuminancePaneVisible" class="header-items">
           <div>Unassigned</div>
