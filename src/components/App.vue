@@ -17,6 +17,7 @@
         <router-link to="/saved">Saved</router-link>
         <router-link to="/import">Import</router-link>
         <router-link to="/builds">Builds</router-link>
+        <router-link to="/changelog">Changelog</router-link>
         <router-link to="/about"
           ><span class="onlynarrow">?</span
           ><span class="onlywide">About</span></router-link

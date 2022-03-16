@@ -765,28 +765,28 @@ a:visited.link-github {
   padding: 0.25rem 0.5rem;
 }
 
-.build {
+.main-pane {
   border: 1px solid var(--c-border);
   border-radius: 5px;
   max-width: 30rem;
   background-color: var(--c-background);
 }
 
-.build-header {
+.main-pane .main-pane-header {
   border-bottom: 1px solid var(--c-border);
   padding: 0.25rem 0.5rem;
 }
 
-.build .build-header h3 {
+.main-pane .main-pane-header h3 {
   margin: 0;
   padding: 0;
 }
 
-.build-body {
+.main-pane-body {
   padding: 0.5rem;
 }
 
-.build table {
+.main-pane table {
   border: 1px solid var(--c-border);
   border-radius: 5px;
   display: inline-block;
@@ -795,21 +795,21 @@ a:visited.link-github {
   width: auto;
 }
 
-.build th {
+.main-pane th {
   border-bottom: 1px solid var(--c-border);
 }
 
-.build th,
-.build td {
+.main-pane th,
+.main-pane td {
   padding: 0 0.25rem;
 }
 
-.build p {
+.main-pane p {
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
 
-.build p:last-child {
+.main-pane p:last-child {
   margin-bottom: 0;
 }
 
@@ -941,4 +941,16 @@ a:visited.link-github {
 
 .v-popper--theme-tooltip {
   max-width: 30em;
+}
+
+/* Releases */
+.main-pane .release ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+
+.release-body {
+  max-width: 100%;
+  word-break: break-word;
+  font-family: inherit;
 }

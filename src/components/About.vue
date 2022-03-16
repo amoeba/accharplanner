@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="build">
-      <div class="build-header">
+    <div class="main-pane">
+      <div class="main-pane-header">
         <h3>About</h3>
       </div>
-      <div class="build-body">
+      <div class="main-pane-body">
         <p>
           The Overly-Detailed Asheron's Call Character Planner (ODACCP) was
           started as a reason to learn

@@ -5,13 +5,13 @@
         <router-link to="/builds">Back to Builds</router-link>
       </span>
     </div>
-    <div class="build">
+    <div class="main-pane">
       <div v-if="error">Error: {{ error }}</div>
-      <div class="build-header">
+      <div class="main-pane-header">
         <h3 v-if="loading">Loading build...</h3>
         <h3 v-if="build">{{ build.name }}</h3>
       </div>
-      <div class="build-body">
+      <div class="main-pane-body">
         <p v-if="loading">Loading build...</p>
         <p><router-link v-if="build" :to="url">Load in Planner</router-link></p>
         <p v-if="build" v-html="build.description"></p>
