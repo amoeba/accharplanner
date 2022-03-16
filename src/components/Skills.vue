@@ -18,15 +18,13 @@
             <tr class="table-header">
               <th colspan="4">Name</th>
               <th>
-                Base
                 <span
-                  class="tip"
                   v-tooltip="{
                     content:
-                      'This number may differ depending on which emulator you use and compare against. The Planner implements training and specialization bonuses following GDLE\'s method which is based off of retail PCAPs: <br><br><strong>Trained:</strong> No Bonus<br><strong>Specialized:</strong> +10<br><br>In retail, when you trained a skill at character creation, you got your first 5 points into the skill spent for free. This meant that skills trained at creation could be only be raised 203 times in total, whereas skills trained after creation could be raised 208 times.',
+                      '<strong>Trained:</strong> No Bonus<br><strong>Specialized:</strong> +10',
                     html: true,
                   }"
-                  >!</span
+                  >Base</span
                 >
               </th>
               <th>Buffed</th>
