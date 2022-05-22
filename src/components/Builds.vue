@@ -26,7 +26,7 @@ import {
   orderBy,
   query,
 } from "firebase/firestore/lite";
-import firebaseApp from "../firebase";
+import { firebaseApp } from "../firebase";
 import BuildsEntry from "./BuildsEntry.vue";
 
 export default {

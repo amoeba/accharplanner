@@ -8,7 +8,7 @@
 
 <script>
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
-import firebaseApp from "../firebase";
+import { firebaseApp } from "../firebase";
 
 export default {
   name: "Build",

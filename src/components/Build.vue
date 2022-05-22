@@ -22,7 +22,7 @@
 
 <script>
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
-import firebaseApp from "../firebase";
+import { firebaseApp } from "../firebase";
 import MD from "markdown-it";
 
 export default {
