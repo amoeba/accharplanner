@@ -1,7 +1,14 @@
 import { Character, Build } from "../types";
-import { getFirestore, collection, doc, getDoc, addDoc } from "firebase/firestore/lite";
-import firebaseApp from "../firebase";
-import { merge } from "lodash"
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  addDoc,
+} from "firebase/firestore/lite";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import { firebaseApp } from "../firebase";
+import { merge } from "lodash";
 import DefaultCharacter from "./DefaultCharacter";
 
 export default {
@@ -11,24 +18,32 @@ export default {
     context.state.ui.sharedBuild = null;
 
     const db = getFirestore(firebaseApp);
+
+    const analytics = getAnalytics(firebaseApp);
+    logEvent(analytics, "build_shared");
+
     const buildsRef = collection(db, "builds");
 
     addDoc(buildsRef, context.state.build)
-      .then(docRef => {
+      .then((docRef) => {
         context.state.ui.shareStatus = null;
         context.state.ui.sharedBuild = docRef.id;
       })
-      .catch(error => {
+      .catch((error) => {
         context.state.ui.shareStatus = "Error: " + error;
       });
   },
   loadRemoteBuild(context: any, options: any) {
     context.commit("addNotification", {
       type: "info",
-      message: "Loading build from share link.. *portal sounds*."
+      message: "Loading build from share link.. *portal sounds*.",
     });
 
     const db = getFirestore(firebaseApp);
+
+    const analytics = getAnalytics();
+    logEvent(analytics, "remote_build_loaded");
+
     const docRef = doc(db, "builds", options.build_id);
 
     getDoc(docRef)
@@ -44,8 +59,8 @@ export default {
         // at the top level.
         if ("character" in data) {
           // Load the character portion of the build
-          const char = DefaultCharacter()
-          merge(char, data.character)
+          const char = DefaultCharacter();
+          merge(char, data.character);
           context.state.build.character = char;
 
           // Then populate stages
@@ -64,8 +79,8 @@ export default {
             context.commit("changeStage", 0);
           }
         } else {
-          const char = DefaultCharacter()
-          merge(char, data.character)
+          const char = DefaultCharacter();
+          merge(char, data.character);
 
           context.state.build.character = char;
           context.state.build.stages = [] as Character[];
@@ -73,10 +88,10 @@ export default {
 
         context.commit("addNotification", {
           type: "success",
-          message: "Successfully loaded build!"
+          message: "Successfully loaded build!",
         });
 
-        options.router.push("/")
+        options.router.push("/");
       })
       .catch((error) => {
         context.commit("addNotification", {
@@ -86,10 +101,10 @@ export default {
             options.build_id +
             "' with error '" +
             error +
-            "'."
+            "'.",
         });
 
-        options.router.push("/")
+        options.router.push("/");
       });
   },
   import(context: any, build: Build) {
@@ -97,10 +112,10 @@ export default {
 
     context.commit("addNotification", {
       type: "success",
-      message: "Successfully imported build."
+      message: "Successfully imported build.",
     });
   },
   reorderStages(context: any, newOrder: any) {
     context.commit("reorderStages", newOrder);
-  }
+  },
 };
