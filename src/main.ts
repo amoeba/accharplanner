@@ -1,8 +1,7 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from 'vue-router'
-import FloatingVue from 'floating-vue'
-import 'floating-vue/dist/style.css'
-
+import { createRouter, createWebHistory } from "vue-router";
+import FloatingVue from "floating-vue";
+import "floating-vue/dist/style.css";
 
 import App from "./components/App.vue";
 import "./assets/styles.scss";
@@ -28,11 +27,11 @@ const router = createRouter({
     { path: "/builds", component: Builds },
     { path: "/changelog", component: Changelog },
     { path: "/builds/:id", component: Build },
-    { path: "/:build_id", component: BuildLoader }
-  ]
+    { path: "/:build_id", component: BuildLoader },
+  ],
 });
 
-const app = createApp(App)
+const app = createApp(App);
 
 // Sentry.io
 import * as Sentry from "@sentry/vue";
@@ -55,8 +54,4 @@ if (import.meta.env.VITE_SENTRY_DSN) {
   });
 }
 
-app
-  .use(router)
-  .use(store)
-  .use(FloatingVue)
-  .mount("#app")
+app.use(router).use(store).use(FloatingVue).mount("#app");

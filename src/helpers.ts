@@ -70,7 +70,7 @@ export const standardSetBonus = function (pieces: number) {
   } else {
     return 0;
   }
-}
+};
 
 // Many sets have the same secondary effect magnitudes (3/5)
 export const standardSecondarySetBonus = function (pieces: number) {
@@ -81,7 +81,7 @@ export const standardSecondarySetBonus = function (pieces: number) {
   } else {
     return 0;
   }
-}
+};
 
 export const dedicationSetBonus = function (pieces: number) {
   if (pieces < 2) {
@@ -95,11 +95,11 @@ export const dedicationSetBonus = function (pieces: number) {
   } else if (pieces == 8) {
     return 12;
   } else if (pieces >= 9) {
-    return 15
+    return 15;
   } else {
     return 0;
   }
-}
+};
 
 export const dextrousSetStaminaBonus = function (pieces: number) {
   if (pieces === 4) {
@@ -109,7 +109,7 @@ export const dextrousSetStaminaBonus = function (pieces: number) {
   } else {
     return 0;
   }
-}
+};
 
 export const heartySetHealthBonus = function (pieces: number) {
   if (pieces === 4) {
@@ -119,7 +119,7 @@ export const heartySetHealthBonus = function (pieces: number) {
   } else {
     return 0;
   }
-}
+};
 
 export const wiseSetManaBonus = function (pieces: number) {
   if (pieces === 4) {
@@ -129,13 +129,13 @@ export const wiseSetManaBonus = function (pieces: number) {
   } else {
     return 0;
   }
-}
+};
 
 export const exportJSONData = function (data: object, filename: string) {
   let json = JSON.stringify(data, null, 2);
 
   const blob = new Blob([json], {
-    type: "application/json"
+    type: "application/json",
   });
 
   const a = document.createElement("a");

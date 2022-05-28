@@ -6,7 +6,7 @@ import {
   LuminanceAura,
   Item,
   ArmorSet,
-  NumberIndexedDict
+  NumberIndexedDict,
 } from "./types";
 
 export const ATTRIBUTE_NAME = {
@@ -15,13 +15,13 @@ export const ATTRIBUTE_NAME = {
   [Attribute.coordination]: "Coordination",
   [Attribute.quickness]: "Quickness",
   [Attribute.focus]: "Focus",
-  [Attribute.self]: "Self"
+  [Attribute.self]: "Self",
 };
 
 export const VITAL_FORMULA = {
   [Vital.health]: "E/2",
   [Vital.stamina]: "E",
-  [Vital.mana]: "W"
+  [Vital.mana]: "W",
 };
 
 export const SKILL_NAME = {
@@ -62,7 +62,7 @@ export const SKILL_NAME = {
   [Skill.two_handed_combat]: "Two Handed Combat",
   [Skill.void_magic]: "Void Magic",
   [Skill.war_magic]: "War Magic",
-  [Skill.weapon_tinkering]: "Weapon Tinkering"
+  [Skill.weapon_tinkering]: "Weapon Tinkering",
 };
 
 export const SKILL_FORMULA = {
@@ -103,7 +103,7 @@ export const SKILL_FORMULA = {
   [Skill.two_handed_combat]: "(S+C)/3",
   [Skill.void_magic]: "(F+W)/4",
   [Skill.war_magic]: "(F+W)/4",
-  [Skill.weapon_tinkering]: "(S+F)/2"
+  [Skill.weapon_tinkering]: "(S+F)/2",
 };
 
 export const BUFF_NAME: NumberIndexedDict<string> = {
@@ -115,7 +115,7 @@ export const BUFF_NAME: NumberIndexedDict<string> = {
   5: "V",
   6: "VI",
   7: "VII",
-  8: "VIII"
+  8: "VIII",
 };
 
 export const CANTRIP_NAME: NumberIndexedDict<string> = {
@@ -123,7 +123,7 @@ export const CANTRIP_NAME: NumberIndexedDict<string> = {
   1: "Minor",
   2: "Major",
   3: "Epic",
-  4: "Legen."
+  4: "Legen.",
 };
 
 export const AUGMENTATION_NAME = {
@@ -173,7 +173,7 @@ export const AUGMENTATION_NAME = {
   [Augmentation.master_of_the_five_fold_path]: "Master of the Five Fold Path",
   [Augmentation.master_of_the_focused_eye]: "Master of the Focused Eye",
   [Augmentation.jack_of_all_trades]: "Jack of All Trades",
-  [Augmentation.archmages_endurance]: "Archmage's Endurance"
+  [Augmentation.archmages_endurance]: "Archmage's Endurance",
 };
 
 export const AUGMENTATION_EXTRA_INFO = {
@@ -220,7 +220,7 @@ export const AUGMENTATION_EXTRA_INFO = {
   [Augmentation.master_of_the_five_fold_path]: "+10 Casting Skill",
   [Augmentation.master_of_the_focused_eye]: "+10 Missile Skill",
   [Augmentation.jack_of_all_trades]: "+5 All Skills",
-  [Augmentation.archmages_endurance]: "+20% Spell Duration"
+  [Augmentation.archmages_endurance]: "+20% Spell Duration",
 };
 
 export const LUMINANCE_AURA_NAME = {
@@ -239,11 +239,12 @@ export const LUMINANCE_AURA_NAME = {
   [LuminanceAura.invulnerability]: "Invulnerability",
   [LuminanceAura.destruction]: "Destruction",
   [LuminanceAura.retribution]: "Retribution",
-  [LuminanceAura.hardening]: "Hardening"
+  [LuminanceAura.hardening]: "Hardening",
 };
 
 export const LUMINANCE_AURA_HOVER_INFO = {
-  [LuminanceAura.craftsman]: "Doesn't change values in your character sheet and is only applied when crafting/tinkering.",
+  [LuminanceAura.craftsman]:
+    "Doesn't change values in your character sheet and is only applied when crafting/tinkering.",
 };
 
 export const LUMINANCE_AURA_EXTRA_INFO = {
@@ -262,12 +263,12 @@ export const LUMINANCE_AURA_EXTRA_INFO = {
   [LuminanceAura.invulnerability]: "+1 Dmg Red.",
   [LuminanceAura.destruction]: "+1 Dmg",
   [LuminanceAura.retribution]: "+1 Crit Dmg",
-  [LuminanceAura.hardening]: "+1 Crit Dmg Red."
+  [LuminanceAura.hardening]: "+1 Crit Dmg Red.",
 };
 
 export const ITEM_NAME = {
   [Item.focusing_stone]: "Focusing Stone",
-  [Item.font_of_joji]: "Font of Joji"
+  [Item.font_of_joji]: "Font of Joji",
 };
 
 export const ARMOR_SET_NAME = {
@@ -296,4 +297,4 @@ export const ARMOR_SET_NAME_EXTRA_INFO = {
   [ArmorSet.swift]: "Jump, Run, SA, DW, Finesse",
   [ArmorSet.tinkers]: "All Tinkering, Salvaging",
   [ArmorSet.wise]: "Focus, Willpower, Summoning, Mana",
-}
+};

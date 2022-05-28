@@ -25,7 +25,7 @@ export interface Character {
 enum NotificationType {
   Success,
   Error,
-  Info
+  Info,
 }
 
 export interface Notification {
@@ -82,12 +82,12 @@ export enum Race {
   Umbraen = "Umbraen",
   Penumbraen = "Penumbraen",
   Lugian = "Lugian",
-  Tumerok = "Tumerok"
+  Tumerok = "Tumerok",
 }
 
 export enum Gender {
   Female = "Female",
-  Male = "Fale"
+  Male = "Fale",
 }
 
 export enum Attribute {
@@ -96,13 +96,13 @@ export enum Attribute {
   coordination = "coordination",
   quickness = "quickness",
   focus = "focus",
-  self = "self"
+  self = "self",
 }
 
 export enum Vital {
   health = "health",
   stamina = "stamina",
-  mana = "mana"
+  mana = "mana",
 }
 
 export enum Skill {
@@ -143,14 +143,14 @@ export enum Skill {
   "two_handed_combat" = "two_handed_combat",
   "void_magic" = "void_magic",
   "war_magic" = "war_magic",
-  "weapon_tinkering" = "weapon_tinkering"
+  "weapon_tinkering" = "weapon_tinkering",
 }
 
 export enum Training {
   UNUSABLE = "unusable",
   UNTRAINED = "untrained",
   TRAINED = "trained",
-  SPECIALIZED = "specialized"
+  SPECIALIZED = "specialized",
 }
 
 // Incomplete
@@ -168,8 +168,8 @@ export enum PropertyInt {
   LumAugSkilledCraft = "343",
   LumAugSkilledSpec = "344",
   LumAugNoDestroyCraft = "345",
-  LumAugAllSkills = "365"
-};
+  LumAugAllSkills = "365",
+}
 
 export enum Augmentation {
   might_of_the_seventh_mule = "might_of_the_seventh_mule",
@@ -215,7 +215,7 @@ export enum Augmentation {
   master_of_the_five_fold_path = "master_of_the_five_fold_path",
   master_of_the_focused_eye = "master_of_the_focused_eye",
   jack_of_all_trades = "jack_of_all_trades",
-  archmages_endurance = "archmages_endurance"
+  archmages_endurance = "archmages_endurance",
 }
 
 export enum LuminanceAura {
@@ -234,12 +234,12 @@ export enum LuminanceAura {
   invulnerability = "invulnerability",
   destruction = "destruction",
   retribution = "retribution",
-  hardening = "hardening"
+  hardening = "hardening",
 }
 
 export enum Item {
   focusing_stone = "focusing_stone",
-  font_of_joji = "font_of_joji"
+  font_of_joji = "font_of_joji",
 }
 
 export enum ArmorSet {
@@ -258,5 +258,5 @@ export enum ArmorSet {
 
 export enum THEME {
   LIGHT = "light",
-  DARK = "dark"
+  DARK = "dark",
 }

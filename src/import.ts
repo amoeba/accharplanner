@@ -4,14 +4,12 @@ import DefaultCharacter from "./store/DefaultCharacter";
 import { Training, PropertyInt } from "./types";
 import {
   MAX_SKILL_INVESTED_TRAINED,
-  MAX_SKILL_INVESTED_SPECIALIZED
+  MAX_SKILL_INVESTED_SPECIALIZED,
 } from "./constants";
 
 export const importCharacter = function (store: Store<State>, json: any) {
   // Re-set to blank state prior to import
-  store.state.build.character = JSON.parse(
-    JSON.stringify(DefaultCharacter())
-  );
+  store.state.build.character = JSON.parse(JSON.stringify(DefaultCharacter()));
   store.state.build.stages = [];
 
   // Set Jack of All Trades invested to zero in case this character isn't
@@ -24,7 +22,7 @@ export const importCharacter = function (store: Store<State>, json: any) {
   store.state.build.character.gender = json.gender;
 
   // Attributes
-  Object.keys(json.attribs).forEach(a => {
+  Object.keys(json.attribs).forEach((a) => {
     store.state.build.character.attributes[a].creation =
       json.attribs[a].creation;
     store.state.build.character.attributes[a].invested =
@@ -32,21 +30,19 @@ export const importCharacter = function (store: Store<State>, json: any) {
   });
 
   // Vitals
-  Object.keys(json.vitals).forEach(a => {
+  Object.keys(json.vitals).forEach((a) => {
     store.state.build.character.vitals[a].indvested = 0;
     store.state.build.character.vitals[a].invested =
       json.vitals[a].base - store.getters[a + "Base"];
   });
 
   // Skills
-  Object.keys(json.skills).forEach(s => {
-    store.state.build.character.skills[s].training = json.skills[
-      s
-    ].training.toLowerCase();
+  Object.keys(json.skills).forEach((s) => {
+    store.state.build.character.skills[s].training =
+      json.skills[s].training.toLowerCase();
 
     if (
-      store.state.build.character.skills[s].training ===
-      Training.SPECIALIZED ||
+      store.state.build.character.skills[s].training === Training.SPECIALIZED ||
       store.state.build.character.skills[s].training === Training.TRAINED
     ) {
       store.state.build.character.skills[s].invested = 0;
@@ -54,18 +50,27 @@ export const importCharacter = function (store: Store<State>, json: any) {
         json.skills[s].base - store.getters[s + "Base"];
 
       // Cap invested at the appropriate value
-      if (store.state.build.character.skills[s].training === Training.SPECIALIZED &&
-        store.state.build.character.skills[s].invested > MAX_SKILL_INVESTED_SPECIALIZED) {
-        store.state.build.character.skills[s].invested = MAX_SKILL_INVESTED_SPECIALIZED;
-      } else if (store.state.build.character.skills[s].training === Training.TRAINED &&
-        store.state.build.character.skills[s].invested > MAX_SKILL_INVESTED_TRAINED) {
-        store.state.build.character.skills[s].invested = MAX_SKILL_INVESTED_TRAINED;
+      if (
+        store.state.build.character.skills[s].training ===
+          Training.SPECIALIZED &&
+        store.state.build.character.skills[s].invested >
+          MAX_SKILL_INVESTED_SPECIALIZED
+      ) {
+        store.state.build.character.skills[s].invested =
+          MAX_SKILL_INVESTED_SPECIALIZED;
+      } else if (
+        store.state.build.character.skills[s].training === Training.TRAINED &&
+        store.state.build.character.skills[s].invested >
+          MAX_SKILL_INVESTED_TRAINED
+      ) {
+        store.state.build.character.skills[s].invested =
+          MAX_SKILL_INVESTED_TRAINED;
       }
     }
   });
 
   // Experience Augmentations and Luminance Auras
-  Object.keys(json.properties).forEach(property => {
+  Object.keys(json.properties).forEach((property) => {
     switch (property) {
       case "218":
         store.state.build.character.augmentations.reinforcement_of_the_lugians.invested =
@@ -235,21 +240,28 @@ export const importCharacter = function (store: Store<State>, json: any) {
         const LumAugDamageRating = json.properties[property];
 
         if (LumAugDamageRating >= 0 && LumAugDamageRating <= 5) {
-          store.state.build.character.luminance_auras.valor.invested = LumAugDamageRating;
+          store.state.build.character.luminance_auras.valor.invested =
+            LumAugDamageRating;
         } else if (LumAugDamageRating > 5) {
           store.state.build.character.luminance_auras.valor.invested = 5;
-          store.state.build.character.luminance_auras.destruction.invested = LumAugDamageRating - 5;
+          store.state.build.character.luminance_auras.destruction.invested =
+            LumAugDamageRating - 5;
         }
 
         break;
       case PropertyInt.LumAugDamageReductionRating:
         const LumAugDamageReductionRating = json.properties[property];
 
-        if (LumAugDamageReductionRating >= 0 && LumAugDamageReductionRating <= 5) {
-          store.state.build.character.luminance_auras.protection.invested = LumAugDamageReductionRating;
+        if (
+          LumAugDamageReductionRating >= 0 &&
+          LumAugDamageReductionRating <= 5
+        ) {
+          store.state.build.character.luminance_auras.protection.invested =
+            LumAugDamageReductionRating;
         } else if (LumAugDamageReductionRating > 5) {
           store.state.build.character.luminance_auras.protection.invested = 5;
-          store.state.build.character.luminance_auras.invulnerability.invested = LumAugDamageReductionRating - 5;
+          store.state.build.character.luminance_auras.invulnerability.invested =
+            LumAugDamageReductionRating - 5;
         }
 
         break;
@@ -257,10 +269,12 @@ export const importCharacter = function (store: Store<State>, json: any) {
         const LumAugCritDamageRating = json.properties[property];
 
         if (LumAugCritDamageRating >= 0 && LumAugCritDamageRating <= 5) {
-          store.state.build.character.luminance_auras.glory.invested = LumAugCritDamageRating;
+          store.state.build.character.luminance_auras.glory.invested =
+            LumAugCritDamageRating;
         } else if (LumAugCritDamageRating > 5) {
           store.state.build.character.luminance_auras.glory.invested = 5;
-          store.state.build.character.luminance_auras.retribution.invested = LumAugCritDamageRating - 5;
+          store.state.build.character.luminance_auras.retribution.invested =
+            LumAugCritDamageRating - 5;
         }
 
         break;
@@ -268,10 +282,13 @@ export const importCharacter = function (store: Store<State>, json: any) {
         const LumAugCritReductionRating = json.properties[property];
 
         if (LumAugCritReductionRating >= 0 && LumAugCritReductionRating <= 5) {
-          store.state.build.character.luminance_auras.temperance.invested = LumAugCritReductionRating;
+          store.state.build.character.luminance_auras.temperance.invested =
+            LumAugCritReductionRating;
         } else if (LumAugCritReductionRating > 5) {
-          store.state.build.character.luminance_auras.temperance.invested = LumAugCritReductionRating;
-          store.state.build.character.luminance_auras.hardening.invested = LumAugCritReductionRating - 5;
+          store.state.build.character.luminance_auras.temperance.invested =
+            LumAugCritReductionRating;
+          store.state.build.character.luminance_auras.hardening.invested =
+            LumAugCritReductionRating - 5;
         }
 
         break;
@@ -280,40 +297,47 @@ export const importCharacter = function (store: Store<State>, json: any) {
 
         break;
       case PropertyInt.LumAugSurgeChanceRating:
-        store.state.build.character.luminance_auras.aetheric_vision.invested = json.properties[property];
+        store.state.build.character.luminance_auras.aetheric_vision.invested =
+          json.properties[property];
 
         break;
       case PropertyInt.LumAugItemManaUsage:
-        store.state.build.character.luminance_auras.mana_flow.invested = json.properties[property];
+        store.state.build.character.luminance_auras.mana_flow.invested =
+          json.properties[property];
 
         break;
       case PropertyInt.LumAugItemManaGain:
-        store.state.build.character.luminance_auras.mana_infusion.invested = json.properties[property];
+        store.state.build.character.luminance_auras.mana_infusion.invested =
+          json.properties[property];
 
         break;
       case PropertyInt.LumAugVitality:
         // Doesn't exist?
         break;
       case PropertyInt.LumAugHealingRating:
-        store.state.build.character.luminance_auras.purity.invested = json.properties[property];
+        store.state.build.character.luminance_auras.purity.invested =
+          json.properties[property];
 
         break;
       case PropertyInt.LumAugSkilledCraft:
-        store.state.build.character.luminance_auras.craftsman.invested = json.properties[property];
+        store.state.build.character.luminance_auras.craftsman.invested =
+          json.properties[property];
 
         break;
       case PropertyInt.LumAugSkilledSpec:
-        store.state.build.character.luminance_auras.specialization.invested = json.properties[property];
+        store.state.build.character.luminance_auras.specialization.invested =
+          json.properties[property];
 
         break;
       case PropertyInt.LumAugNoDestroyCraft:
         break;
       case PropertyInt.LumAugAllSkills:
-        store.state.build.character.luminance_auras.world.invested = json.properties[property];
+        store.state.build.character.luminance_auras.world.invested =
+          json.properties[property];
 
         break;
       default:
         break;
     }
   });
-}
+};

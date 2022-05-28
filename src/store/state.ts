@@ -19,14 +19,14 @@ let state: State = {
       character: true,
       xpAndLuminance: true,
       knobsAndDials: true,
-      extraSkillCredits: true
+      extraSkillCredits: true,
     },
-    darkMode: null
+    darkMode: null,
   },
   build: {
     character: DefaultCharacter(),
-    stages: []
-  }
+    stages: [],
+  },
 };
 
 export default state;

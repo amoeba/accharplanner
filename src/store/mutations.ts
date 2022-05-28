@@ -5,7 +5,7 @@ import {
   LUMINANCE_AURAS,
   UNTRAINED_STATE,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
-  MAX_CREATION_ATTRIBUTE_POINTS
+  MAX_CREATION_ATTRIBUTE_POINTS,
 } from "../constants";
 import {
   State,
@@ -16,7 +16,7 @@ import {
   Skill,
   Training,
   LuminanceAura,
-  Augmentation
+  Augmentation,
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 import firebase from "../firebase";
@@ -38,8 +38,8 @@ export default {
     state.ui.paneVisibility.skills = !state.ui.paneVisibility.skills;
   },
   toggleAugmentationsPane(state: State) {
-    state.ui.paneVisibility.augmentations = !state.ui.paneVisibility
-      .augmentations;
+    state.ui.paneVisibility.augmentations =
+      !state.ui.paneVisibility.augmentations;
   },
   toggleAurasPane(state: State) {
     state.ui.paneVisibility.auras = !state.ui.paneVisibility.auras;
@@ -57,16 +57,16 @@ export default {
     state.ui.paneVisibility.character = !state.ui.paneVisibility.character;
   },
   toggleXPAndLuminancePane(state: State) {
-    state.ui.paneVisibility.xpAndLuminance = !state.ui.paneVisibility
-      .xpAndLuminance;
+    state.ui.paneVisibility.xpAndLuminance =
+      !state.ui.paneVisibility.xpAndLuminance;
   },
   toggleKnobsAndDialsPane(state: State) {
-    state.ui.paneVisibility.knobsAndDials = !state.ui.paneVisibility
-      .knobsAndDials;
+    state.ui.paneVisibility.knobsAndDials =
+      !state.ui.paneVisibility.knobsAndDials;
   },
   toggleExtraSkillCreditsPane(state: State) {
-    state.ui.paneVisibility.extraSkillCredits = !state.ui.paneVisibility
-      .extraSkillCredits;
+    state.ui.paneVisibility.extraSkillCredits =
+      !state.ui.paneVisibility.extraSkillCredits;
   },
   changeStage(state: State, index: number) {
     state.ui.currentStage = index;
@@ -99,7 +99,7 @@ export default {
     // Store locally
     state.ui.savedBuilds.push({
       key: new Date().toISOString(),
-      build: JSON.stringify(state.build)
+      build: JSON.stringify(state.build),
     });
   },
   deleteBuild(state: State, key: string) {
@@ -211,7 +211,7 @@ export default {
     // Ensure we haven't spent more than we can and adjust other
     // attributes if needed
     let newSpent = Object.keys(Attribute)
-      .map(a => {
+      .map((a) => {
         // Don't count old value for the attribute we're changing, use the new
         // value
         if (a === payload.name) {
@@ -225,13 +225,13 @@ export default {
       });
 
     // Use this to iterate over the other attributes we're lowering by name
-    let names = Object.keys(Attribute).filter(v => v !== payload.name);
+    let names = Object.keys(Attribute).filter((v) => v !== payload.name);
 
     let maxAttributePoints =
       MAX_CREATION_ATTRIBUTE_TOTAL_POINTS +
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
-      5 +
+        5 +
       state.build.character.augmentations.bleearghs_fortitude.invested * 5 +
       state.build.character.augmentations.oswalds_enhancement.invested * 5 +
       state.build.character.augmentations.siraluuns_blessing.invested * 5 +
@@ -381,21 +381,21 @@ export default {
   },
 
   changeAllInvestment(state: State, invested: string) {
-    Object.keys(Attribute).forEach(a => {
+    Object.keys(Attribute).forEach((a) => {
       let newval = Number(invested);
       newval = newval > 190 ? 190 : newval;
 
       state.build.character.attributes[a].invested = newval;
     });
 
-    Object.keys(Vital).forEach(a => {
+    Object.keys(Vital).forEach((a) => {
       let newval = Number(invested);
       newval = newval > 196 ? 196 : newval;
 
       state.build.character.vitals[a].invested = newval;
     });
 
-    Object.keys(Skill).forEach(skill => {
+    Object.keys(Skill).forEach((skill) => {
       let newval = Number(invested);
 
       if (
@@ -413,7 +413,7 @@ export default {
   },
 
   changeAllAttributeInvestment(state: State, invested: string) {
-    Object.keys(Attribute).forEach(a => {
+    Object.keys(Attribute).forEach((a) => {
       let newval = Number(invested);
 
       state.build.character.attributes[a].invested = newval;
@@ -421,7 +421,7 @@ export default {
   },
 
   changeAllVitalInvestment(state: State, invested: string) {
-    Object.keys(Vital).forEach(a => {
+    Object.keys(Vital).forEach((a) => {
       let newval = Number(invested);
 
       state.build.character.vitals[a].invested = newval;
@@ -429,7 +429,7 @@ export default {
   },
 
   changeAllSkillInvestment(state: State, invested: string) {
-    Object.keys(Skill).forEach(skill => {
+    Object.keys(Skill).forEach((skill) => {
       let newval = Number(invested);
 
       if (state.build.character.skills[skill].training == Training.TRAINED) {
@@ -441,46 +441,46 @@ export default {
   },
 
   changeAllBuffs(state: State, buff: string) {
-    Object.keys(Attribute).forEach(attribute => {
+    Object.keys(Attribute).forEach((attribute) => {
       state.build.character.attributes[attribute].buff = Number(buff);
     });
 
-    Object.keys(Skill).forEach(skill => {
+    Object.keys(Skill).forEach((skill) => {
       state.build.character.skills[skill].buff = Number(buff);
     });
   },
 
   changeAllAttributeBuffs(state: State, buff: string) {
-    Object.keys(Attribute).forEach(attribute => {
+    Object.keys(Attribute).forEach((attribute) => {
       state.build.character.attributes[attribute].buff = Number(buff);
     });
   },
 
   changeAllSkillBuffs(state: State, buff: string) {
-    Object.keys(Skill).forEach(skill => {
+    Object.keys(Skill).forEach((skill) => {
       state.build.character.skills[skill].buff = Number(buff);
     });
   },
 
   // Cantrips
   changeAllCantrips(state: State, cantrip: string) {
-    Object.keys(Attribute).forEach(attribute => {
+    Object.keys(Attribute).forEach((attribute) => {
       state.build.character.attributes[attribute].cantrip = Number(cantrip);
     });
 
-    Object.keys(Skill).forEach(skill => {
+    Object.keys(Skill).forEach((skill) => {
       state.build.character.skills[skill].cantrip = Number(cantrip);
     });
   },
 
   changeAllAttributeCantrips(state: State, cantrip: string) {
-    Object.keys(Attribute).forEach(attribute => {
+    Object.keys(Attribute).forEach((attribute) => {
       state.build.character.attributes[attribute].cantrip = Number(cantrip);
     });
   },
 
   changeAllSkillCantrips(state: State, cantrip: string) {
-    Object.keys(Skill).forEach(skill => {
+    Object.keys(Skill).forEach((skill) => {
       state.build.character.skills[skill].cantrip = Number(cantrip);
     });
   },
@@ -496,7 +496,7 @@ export default {
     state.ui.notifications.push({
       id: notification_id,
       type: payload.type,
-      message: payload.message
+      message: payload.message,
     });
 
     setTimeout(() => {
@@ -514,5 +514,5 @@ export default {
         state.ui.notifications.splice(i, 1);
       }
     }
-  }
+  },
 };
