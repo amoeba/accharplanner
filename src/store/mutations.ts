@@ -337,68 +337,6 @@ export default {
 
   // Augmentations
   updateAugmentationInvested(state: State, payload: any) {
-    /* Update attribute creation values */
-    if (payload.name === Augmentation.reinforcement_of_the_lugians) {
-      const diff = payload.value - state.build.character.augmentations[payload.name].invested;
-      const newVal = state.build.character.attributes[Attribute.strength].creation + diff * 5;
-
-      if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) {
-        return;
-      }
-
-      state.build.character.attributes[Attribute.strength].creation = newVal;
-    }
-    if (payload.name === Augmentation.bleearghs_fortitude) {
-      const diff = payload.value - state.build.character.augmentations[payload.name].invested;
-      const newVal = state.build.character.attributes[Attribute.endurance].creation + diff * 5;
-
-      if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) {
-        return;
-      }
-
-      state.build.character.attributes[Attribute.endurance].creation = newVal;
-    }
-    if (payload.name === Augmentation.oswalds_enhancement) {
-      const diff = payload.value - state.build.character.augmentations[payload.name].invested;
-      const newVal = state.build.character.attributes[Attribute.coordination].creation + diff * 5;
-
-      if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) {
-        return;
-      }
-
-      state.build.character.attributes[Attribute.coordination].creation = newVal;
-    }
-    if (payload.name === Augmentation.siraluuns_blessing) {
-      const diff = payload.value - state.build.character.augmentations[payload.name].invested;
-      const newVal = state.build.character.attributes[Attribute.quickness].creation + diff * 5;
-
-      if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) {
-        return;
-      }
-
-      state.build.character.attributes[Attribute.quickness].creation = newVal;
-    }
-    if (payload.name === Augmentation.enduring_calm) {
-      const diff = payload.value - state.build.character.augmentations[payload.name].invested;
-      const newVal = state.build.character.attributes[Attribute.focus].creation + diff * 5;
-
-      if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) {
-        return;
-      }
-
-      state.build.character.attributes[Attribute.focus].creation = newVal;
-    }
-    if (payload.name === Augmentation.steadfast_will) {
-      const diff = payload.value - state.build.character.augmentations[payload.name].invested;
-      const newVal = state.build.character.attributes[Attribute.self].creation + diff * 5;
-
-      if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) {
-        return;
-      }
-
-      state.build.character.attributes[Attribute.self].creation = newVal;
-    }
-
     state.build.character.augmentations[payload.name].invested = Number(
       payload.value
     );
