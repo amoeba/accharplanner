@@ -147,9 +147,9 @@ export default {
         }
 
         const msg = `<strong>${params.get("character")} (${params.get("server")})
-        imported.</strong><br><br>Be aware that importing characters from treestats.net
-        isn't as always accurate and it's recommended to build a character from
-        scratch.<br><br>[Click this notification to close]`;
+        imported.</strong><br><br>Be aware that importing characters from
+        treestats.net isn't always accurate and it's recommended to build a
+        character from scratch.<br><br>[Click this notification to close]`;
 
         store.commit("addNotification", {
           type: "success",
