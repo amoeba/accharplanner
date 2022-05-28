@@ -432,7 +432,9 @@ export default {
     Object.keys(Skill).forEach((skill) => {
       let newval = Number(invested);
 
-      if (state.build.character.skills[skill].training == Training.TRAINED) {
+      if (
+        state.build.character.skills[skill].training != Training.SPECIALIZED
+      ) {
         newval = newval > 208 ? 208 : newval;
       }
 
