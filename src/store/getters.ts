@@ -347,7 +347,9 @@ export default {
     );
   },
   enduranceInnate: (state: State) => {
-    const value = state.build.character.attributes.endurance.creation;
+    const value =
+      state.build.character.attributes.endurance.creation +
+      state.build.character.augmentations.bleearghs_fortitude.invested * 5;
 
     if (value > 100) {
       return 100;
