@@ -1,6 +1,6 @@
 <template>
   <div v-bind:class="type" v-on:click="handleClick" class="notification">
-    <span>{{ message }}</span>
+    <div v-html="message"></div>
   </div>
 </template>
 

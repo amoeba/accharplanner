@@ -499,6 +499,10 @@ export default {
       message: payload.message,
     });
 
+    if (payload.pinned) {
+      return;
+    }
+
     setTimeout(() => {
       for (let i = 0; i < state.ui.notifications.length; i++) {
         if (state.ui.notifications[i].id === notification_id) {
