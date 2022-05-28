@@ -4,7 +4,7 @@
       <div class="main-pane-header">
         <h3>Changelog</h3>
       </div>
-      <div class="main-pane-body">
+      <div class="main-pane-body releases">
         <div v-if="loading">Loading releases...</div>
 
         <ChangelogItem

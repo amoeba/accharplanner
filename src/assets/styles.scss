@@ -944,6 +944,12 @@ a:visited.link-github {
 }
 
 /* Releases */
+.releases {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
 .main-pane .release ul {
   list-style-type: disc;
   margin-left: 1.5em;
