@@ -259,7 +259,7 @@ export const LUMINANCE_AURA_EXTRA_INFO = {
   [LuminanceAura.temperance]: "+1 Crit Dmg Red.",
   [LuminanceAura.valor]: "+1 Dmg",
   [LuminanceAura.world]: "+1 All Skills",
-  [LuminanceAura.specialization]: "+2 Spec Skills",
+  [LuminanceAura.specialization]: "+2 to Spec Skills",
   [LuminanceAura.invulnerability]: "+1 Dmg Red.",
   [LuminanceAura.destruction]: "+1 Dmg",
   [LuminanceAura.retribution]: "+1 Crit Dmg",
