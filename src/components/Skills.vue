@@ -3,7 +3,14 @@
     <div>
       <div class="pane-header" v-on:click="toggle">
         <div>
+                    <span
+            class="tip tip-red"
+            v-tooltip="
+              'There are currently a couple of issues with skill calculations producing some inaccurate numbers. I\'ll try fix these as soon as possible but it might take a bit. Sorry for the trouble and thanks for using the planner!'
+            "
+            >!</span>&nbsp;
           <h3>Skills</h3>
+
           <span class="red">{{ skillPointsSpentErrorText }}</span>
         </div>
         <div class="right">

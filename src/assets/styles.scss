@@ -939,6 +939,11 @@ a:visited.link-github {
   cursor: pointer;
 }
 
+.tip.tip-red {
+  background-color:rgba(150, 0, 0, 0.9);
+  color: white;
+}
+
 .v-popper--theme-tooltip {
   max-width: 30em;
 }
