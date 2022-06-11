@@ -8,8 +8,10 @@
         <div v-if="loading">
           Grabbing the freshest, gimpiest builds. Hang on...
         </div>
-        <div v-if="error">Error: {{ error }}</div>
-
+        <div v-if="error">
+          Failed to fetch latest, gimpiest builds. An error report has
+          automatically been sent to the developer.
+        </div>
         <ul v-if="builds">
           <BuildsEntry v-for="build in builds" :id="build.id" :key="build.id" />
         </ul>
@@ -59,7 +61,10 @@ export default {
           this.builds = resp.docs;
         })
         .catch((error) => {
-          this.error = error;
+          this.error = true;
+          this.loading = false;
+
+          throw error;
         });
     },
   },
