@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@sentry/tracing": "^6.13.3",
-    "@sentry/vue": "^6.13.3",
+    "@sentry/tracing": "^7.1.1",
+    "@sentry/vue": "^7.1.1",
     "firebase": "^9.6.1",
     "floating-vue": "^2.0.0-beta.8",
     "lodash": "^4.17.21",
