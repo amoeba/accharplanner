@@ -1,24 +1,19 @@
 <template>
   <tr>
     <td>
-      <img
-        :src="'/img/' + name + '.png'"
-        :alt="displayName"
-        width="20"
-        height="20"
-      />
+      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
     </td>
     <td>
       {{ displayName }}
       <span class="faded">{{ formula }}</span>
     </td>
     <td>
-      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
-        ↓
+      <button v-if="!cantDecrease" v-on:click="decreaseTraining">
+        {{ decreaseCostText }}
       </button>
     </td>
     <td>
-      <button v-on:click="increaseTraining">↑</button>
+      <button v-if="!cantIncrease" v-on:click="increaseTraining">{{ increaseCostText }}</button>
     </td>
     <td class="base number">{{ base }}</td>
     <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
@@ -26,21 +21,11 @@
     </td>
     <td>
       <div v-if="canInvest">
-        <input
-          type="range"
-          min="0"
-          v-bind:max="maxInvestment"
-          v-model="invested"
-        />
+        <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
       </div>
     </td>
     <td class="invested number">
-      <input
-        type="text"
-        v-bind:value="invested"
-        v-on:change="updateInvested"
-        v-bind:tabindex="tabIndex"
-      />
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
@@ -137,7 +122,7 @@ export default {
 
       if (currentTraining === Training.TRAINED) {
         if (!UNTRAINABLE[this.name]) {
-          return;
+          return "";
         } else {
           return SKILL_COST_AT_TRAINING[this.name].trained;
         }
@@ -157,7 +142,7 @@ export default {
       // Can't if out of credits
       let newTraining =
         this.$store.state.build.character.skills[this.name].training ==
-        Training.TRAINED
+          Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED;
 
@@ -185,7 +170,7 @@ export default {
       if (
         newTraining === Training.SPECIALIZED &&
         this.$store.getters.specializedSkillPointsSpent + newCost >
-          MAX_SPECIALIZED_SKILL_CREDITS_SPENT
+        MAX_SPECIALIZED_SKILL_CREDITS_SPENT
       ) {
         return true;
       }
