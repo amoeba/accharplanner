@@ -12,6 +12,7 @@
       {{ displayName }}
       <span class="faded">{{ formula }}</span>
     </td>
+    <td>{{ totalCost }}</td>
     <td>
       <button
         :disabled="cantDecrease"
@@ -108,6 +109,12 @@ export default {
         Math.round(this.$store.getters[this.name + "Base"])
       );
     },
+    totalCost() {
+      const currentTraining =
+        this.$store.state.build.character.skills[this.name].training;
+
+      return SKILL_COST_AT_TRAINING[this.name][currentTraining];
+    },
     increaseCostText() {
       let currentTraining =
         this.$store.state.build.character.skills[this.name].training;
@@ -120,7 +127,10 @@ export default {
         if (SPEC_COSTS_AUG[this.name]) {
           return "A";
         } else {
-          return SKILL_COST_AT_TRAINING[this.name].specialized;
+          return (
+            SKILL_COST_AT_TRAINING[this.name].specialized -
+            SKILL_COST_AT_TRAINING[this.name].trained
+          );
         }
       }
 
@@ -141,7 +151,10 @@ export default {
         if (SPEC_COSTS_AUG[this.name]) {
           return "A";
         } else {
-          return SKILL_COST_AT_TRAINING[this.name].specialized;
+          return (
+            SKILL_COST_AT_TRAINING[this.name].specialized -
+            SKILL_COST_AT_TRAINING[this.name].trained
+          );
         }
       }
 

@@ -3,12 +3,13 @@
     <div>
       <div class="pane-header" v-on:click="toggle">
         <div>
-                    <span
+          <span
             class="tip tip-red"
             v-tooltip="
               'There are currently a couple of issues with skill calculations producing some inaccurate numbers. I\'ll try fix these as soon as possible but it might take a bit. Sorry for the trouble and thanks for using the planner!'
             "
-            >!</span>&nbsp;
+            >!</span
+          >&nbsp;
           <h3>Skills</h3>
 
           <span class="red">{{ skillPointsSpentErrorText }}</span>
@@ -23,7 +24,16 @@
         <table>
           <thead>
             <tr class="table-header">
-              <th colspan="4">Name</th>
+              <th colspan="2">Name</th>
+              <th
+                v-tooltip="
+                  'Total skill credit cost to get each skill to its current training'
+                "
+              >
+                Cost
+              </th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
               <th>
                 <span
                   v-tooltip="{
@@ -40,7 +50,7 @@
               <th>Cantrip</th>
             </tr>
             <tr class="controls">
-              <th colspan="4">&nbsp;</th>
+              <th colspan="5">&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
