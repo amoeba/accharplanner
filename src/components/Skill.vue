@@ -8,12 +8,22 @@
       <span class="faded">{{ formula }}</span>
     </td>
     <td>
-      <button v-if="!cantDecrease" v-on:click="decreaseTraining">
-        {{ decreaseCostText }}
-      </button>
+      <button
+        :disabled="cantDecrease"
+        v-on:click="decreaseTraining"
+        v-html="decreaseCostText"
+        class="skill-updown skill-updown-down"
+        v-tooltip="skillDecreaseTrainingTooltipText"
+      ></button>
     </td>
     <td>
-      <button v-if="!cantIncrease" v-on:click="increaseTraining">{{ increaseCostText }}</button>
+      <button
+        :disabled="cantIncrease"
+        v-on:click="increaseTraining"
+        v-html="increaseCostText"
+        class="skill-updown skill-updown-up"
+        v-tooltip="skillIncreaseTrainingTooltipText"
+      ></button>
     </td>
     <td class="base number">{{ base }}</td>
     <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
@@ -88,12 +98,12 @@ export default {
         this.$store.state.build.character.skills[this.name].training;
 
       if (currentTraining === Training.SPECIALIZED) {
-        return "";
+        return "&nbsp;";
       }
 
       if (currentTraining === Training.TRAINED) {
         if (SPEC_COSTS_AUG[this.name]) {
-          return "AUG";
+          return "A";
         } else {
           return SKILL_COST_AT_TRAINING[this.name].specialized;
         }
@@ -109,12 +119,12 @@ export default {
         currentTraining === Training.UNUSABLE ||
         currentTraining === Training.UNTRAINED
       ) {
-        return "";
+        return "&nbsp;";
       }
 
       if (currentTraining === Training.SPECIALIZED) {
         if (SPEC_COSTS_AUG[this.name]) {
-          return "AUG";
+          return "A";
         } else {
           return SKILL_COST_AT_TRAINING[this.name].specialized;
         }
@@ -122,10 +132,35 @@ export default {
 
       if (currentTraining === Training.TRAINED) {
         if (!UNTRAINABLE[this.name]) {
-          return "";
+          return "&nbsp;";
         } else {
           return SKILL_COST_AT_TRAINING[this.name].trained;
         }
+      }
+
+      return "&nbsp;";
+    },
+    skillIncreaseTrainingTooltipText() {
+      const skillName = SKILL_NAME[this.name];
+      const currentTraining =
+        this.$store.state.build.character.skills[this.name].training;
+
+      if (currentTraining === Training.TRAINED && SPEC_COSTS_AUG[this.name]) {
+        return `Specializing ${skillName} requires an Experience Augmentation so increasing training will increase your Luminance Spent in the XP & Luminance pane accordingly instead of refunding skill credits.`;
+      }
+
+      return "";
+    },
+    skillDecreaseTrainingTooltipText() {
+      const skillName = SKILL_NAME[this.name];
+      const currentTraining =
+        this.$store.state.build.character.skills[this.name].training;
+
+      if (
+        currentTraining === Training.SPECIALIZED &&
+        SPEC_COSTS_AUG[this.name]
+      ) {
+        return `Specializing ${skillName} requires an Experience Augmentation so lowering to Trained will lower your Luminance Spent in the XP & Luminance pane accordingly instead of costing skill credits`;
       }
 
       return "";
