@@ -94,7 +94,7 @@ export const SKILL_FORMULA = {
   [Skill.melee_defense]: "(C+Q)/3",
   [Skill.missile_defense]: "(C+Q)/5",
   [Skill.missile_weapons]: "C/2",
-  [Skill.recklessness]: "(S+Q)/2",
+  [Skill.recklessness]: "(S+Q)/3",
   [Skill.run]: "Q",
   [Skill.salvaging]: "",
   [Skill.shield]: "(S+C)/2",
