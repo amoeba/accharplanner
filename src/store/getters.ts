@@ -302,7 +302,7 @@ export default {
       state.build.character.augmentations.steadfast_will.invested * 5
     );
   },
-  attributesAndVitalsErrors: (state: State) => {
+  attributesAndVitalsErrors: (state: State, getters: any) => {
     let totalAttributeBonus =
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
@@ -315,6 +315,11 @@ export default {
 
     if (totalAttributeBonus > 50) {
       return "Cannot raise innate attributes above 380 total!";
+    }
+
+    // Check we haven't spent too many attribute points
+    if (getters.attributePointsSpent > getters.attributePointsAvailable) {
+      return "You have overspent on attribute points!";
     }
   },
   strengthInnate: (state: State) => {
@@ -343,8 +348,7 @@ export default {
     );
   },
   enduranceInnate: (state: State) => {
-    const value =
-      state.build.character.attributes.endurance.creation;
+    const value = state.build.character.attributes.endurance.creation;
 
     if (value > 100) {
       return 100;
@@ -368,8 +372,7 @@ export default {
     );
   },
   coordinationInnate: (state: State) => {
-    const value =
-      state.build.character.attributes.coordination.creation;
+    const value = state.build.character.attributes.coordination.creation;
 
     if (value > 100) {
       return 100;
@@ -397,8 +400,7 @@ export default {
     );
   },
   quicknessInnate: (state: State) => {
-    const value =
-      state.build.character.attributes.quickness.creation;
+    const value = state.build.character.attributes.quickness.creation;
 
     if (value > 100) {
       return 100;
@@ -422,8 +424,7 @@ export default {
     );
   },
   focusInnate: (state: State) => {
-    const value =
-      state.build.character.attributes.focus.creation;
+    const value = state.build.character.attributes.focus.creation;
 
     if (value > 100) {
       return 100;
@@ -448,8 +449,7 @@ export default {
     );
   },
   selfInnate: (state: State) => {
-    const value =
-      state.build.character.attributes.self.creation;
+    const value = state.build.character.attributes.self.creation;
 
     if (value > 100) {
       return 100;
