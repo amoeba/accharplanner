@@ -318,11 +318,7 @@ export default {
     }
   },
   strengthInnate: (state: State) => {
-    const value =
-      state.build.character.attributes.strength.creation +
-      state.build.character.augmentations.reinforcement_of_the_lugians
-        .invested *
-        5;
+    const value = state.build.character.attributes.strength.creation;
 
     if (value > 100) {
       return 100;
@@ -348,8 +344,7 @@ export default {
   },
   enduranceInnate: (state: State) => {
     const value =
-      state.build.character.attributes.endurance.creation +
-      state.build.character.augmentations.bleearghs_fortitude.invested * 5;
+      state.build.character.attributes.endurance.creation;
 
     if (value > 100) {
       return 100;
@@ -374,8 +369,7 @@ export default {
   },
   coordinationInnate: (state: State) => {
     const value =
-      state.build.character.attributes.coordination.creation +
-      state.build.character.augmentations.oswalds_enhancement.invested * 5;
+      state.build.character.attributes.coordination.creation;
 
     if (value > 100) {
       return 100;
@@ -404,8 +398,7 @@ export default {
   },
   quicknessInnate: (state: State) => {
     const value =
-      state.build.character.attributes.quickness.creation +
-      state.build.character.augmentations.siraluuns_blessing.invested * 5;
+      state.build.character.attributes.quickness.creation;
 
     if (value > 100) {
       return 100;
@@ -430,8 +423,7 @@ export default {
   },
   focusInnate: (state: State) => {
     const value =
-      state.build.character.attributes.focus.creation +
-      state.build.character.augmentations.enduring_calm.invested * 5;
+      state.build.character.attributes.focus.creation;
 
     if (value > 100) {
       return 100;
@@ -457,8 +449,7 @@ export default {
   },
   selfInnate: (state: State) => {
     const value =
-      state.build.character.attributes.self.creation +
-      state.build.character.augmentations.steadfast_will.invested * 5;
+      state.build.character.attributes.self.creation;
 
     if (value > 100) {
       return 100;
