@@ -10,7 +10,9 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "types":["vitest/globals"]
+    "types":["vitest/globals"],
+    "allowJs": true,
+    "checkJs": false,
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
