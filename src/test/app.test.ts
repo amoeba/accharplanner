@@ -15,3 +15,13 @@ test("App component mounts", async () => {
 
   expect(wrapper.text()).toContain("This website created with Malar Zhapaj by");
 });
+
+test("App component mounts", async () => {
+  expect(App).toBeTruthy();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [store, router],
+    },
+  });
+});
