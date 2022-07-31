@@ -1,36 +1,13 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
 import FloatingVue from "floating-vue";
 import "floating-vue/dist/style.css";
 
+import router from "./router";
+import store from "./store/index";
 import App from "./components/App.vue";
 import "./assets/styles.scss";
 
-const Planner = () => import("./components/Planner.vue");
-const SavedBuilds = () => import("./components/SavedBuilds.vue");
-const Import = () => import("./components/Import.vue");
-const About = () => import("./components/About.vue");
-const Builds = () => import("./components/Builds.vue");
-const Build = () => import("./components/Build.vue");
-const BuildLoader = () => import("./components/BuildLoader.vue");
-const Changelog = () => import("./components/Changelog.vue");
-
-import store from "./store";
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    { path: "/", component: Planner },
-    { path: "/saved", component: SavedBuilds },
-    { path: "/import", component: Import },
-    { path: "/about", component: About },
-    { path: "/builds", component: Builds },
-    { path: "/changelog", component: Changelog },
-    { path: "/builds/:id", component: Build },
-    { path: "/:build_id", component: BuildLoader },
-  ],
-});
-
+// Create app, gets filled in later on
 const app = createApp(App);
 
 // Sentry.io
@@ -54,4 +31,5 @@ if (import.meta.env.VITE_SENTRY_DSN) {
   });
 }
 
+// Finish setup and then mount
 app.use(router).use(store).use(FloatingVue).mount("#app");
