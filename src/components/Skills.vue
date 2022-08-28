@@ -40,7 +40,7 @@
               <th>Cantrip</th>
             </tr>
             <tr class="controls">
-              <th colspan="4"><input v-model="filterQuery"/></th>
+              <th colspan="4"><input v-model="filterQuery" placeholder="Filter"/></th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">

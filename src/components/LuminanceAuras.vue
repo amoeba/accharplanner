@@ -17,7 +17,7 @@
               <th colspan="2">Invested</th>
             </tr>
             <tr class="controls">
-              <th><input v-model="filterQuery"/></th>
+              <th><input v-model="filterQuery" placeholder="Filter"/></th>
               <th>
                 <input
                   type="range"
