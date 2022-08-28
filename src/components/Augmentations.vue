@@ -17,7 +17,10 @@
               <th colspan="2">Invested</th>
             </tr>
             <tr class="controls">
-              <th><input v-model="filterQuery" placeholder="Filter"/></th>
+              <th>
+                <input v-model="filterQuery" class="w60" placeholder="Filter"/>
+                <button v-if="filterPresent" @click="clearFilter">x</button>
+              </th>
               <th>
                 <input
                   type="range"
@@ -119,6 +122,9 @@ export default {
         }
       );
     },
+    filterPresent() {
+      return this.filterQuery !== "";
+    },
   },
   methods: {
     changeInvested(e) {
@@ -127,6 +133,9 @@ export default {
     toggle() {
       this.$store.commit("toggleAugmentationsPane");
     },
+    clearFilter() {
+      this.filterQuery = "";
+    }
   },
 };
 </script>

@@ -40,7 +40,10 @@
               <th>Cantrip</th>
             </tr>
             <tr class="controls">
-              <th colspan="4"><input v-model="filterQuery" placeholder="Filter"/></th>
+              <th colspan="4">
+                <input v-model="filterQuery" class="w60" placeholder="Filter"/>
+                <button v-if="filterPresent" @click="clearFilter">x</button>
+              </th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
@@ -257,6 +260,9 @@ export default {
     noTrainedSkills() {
       return this.$store.getters.trainedSkills.length == 0;
     },
+    filterPresent() {
+      return this.filterQuery !== "";
+    },
   },
   methods: {
     toggle() {
@@ -270,6 +276,9 @@ export default {
     },
     changeCantrips(e) {
       this.$store.commit("changeAllSkillCantrips", e.target.value);
+    },
+    clearFilter() {
+      this.filterQuery = "";
     },
   },
 };
