@@ -10,6 +10,7 @@
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
+        <input v-model="filterQuery"/>
         <table>
           <thead>
             <tr class="table-header">
@@ -31,22 +32,11 @@
             </tr>
           </thead>
           <tbody>
-            <LuminanceAura name="aetheric_vision" />
-            <LuminanceAura name="craftsman" />
-            <LuminanceAura name="destruction" />
-            <LuminanceAura name="glory" />
-            <LuminanceAura name="hardening" />
-            <LuminanceAura name="invulnerability" />
-            <LuminanceAura name="mana_flow" />
-            <LuminanceAura name="mana_infusion" />
-            <LuminanceAura name="protection" />
-            <LuminanceAura name="purity" />
-            <LuminanceAura name="retribution" />
-            <LuminanceAura name="skill" />
-            <LuminanceAura name="specialization" />
-            <LuminanceAura name="temperance" />
-            <LuminanceAura name="valor" />
-            <LuminanceAura name="world" />
+            <LuminanceAura
+              v-for="(aura) in auras"
+              :key="aura"
+              :name="aura"
+            />
           </tbody>
         </table>
       </div>
@@ -62,12 +52,45 @@ export default {
   components: {
     LuminanceAura,
   },
+  data() {
+    return {
+      filterQuery: "",
+    }
+  },
   computed: {
     collapsed() {
       return this.$store.getters.aurasPaneVisible;
     },
     errors() {
       return this.$store.getters.auraErrors;
+    },
+    auras() {
+      let all = [
+        "aetheric_vision",
+        "craftsman",
+        "destruction",
+        "glory",
+        "hardening",
+        "invulnerability",
+        "mana_flow",
+        "mana_infusion",
+        "protection",
+        "purity",
+        "retribution",
+        "skill",
+        "specialization",
+        "temperance",
+        "valor",
+        "world"
+      ];
+
+      return all.filter(key => {
+          return this.filterQuery
+            .toLowerCase()
+            .split(" ")
+            .every(v => key.toLowerCase().includes(v));
+        }
+      );
     },
   },
   methods: {
