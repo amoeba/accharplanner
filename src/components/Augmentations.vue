@@ -10,7 +10,6 @@
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
-        <input v-model="filterQuery"/>
         <table>
           <thead>
             <tr class="table-header">
@@ -18,7 +17,7 @@
               <th colspan="2">Invested</th>
             </tr>
             <tr class="controls">
-              <th>&nbsp;</th>
+              <th><input v-model="filterQuery"/></th>
               <th>
                 <input
                   type="range"

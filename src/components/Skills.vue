@@ -20,7 +20,6 @@
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
-        <input v-model="filterQuery"/>
         <table>
           <thead>
             <tr class="table-header">
@@ -41,7 +40,7 @@
               <th>Cantrip</th>
             </tr>
             <tr class="controls">
-              <th colspan="4">&nbsp;</th>
+              <th colspan="4"><input v-model="filterQuery"/></th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
