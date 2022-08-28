@@ -20,6 +20,7 @@
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
+        <input v-model="filterQuery"/>
         <table>
           <thead>
             <tr class="table-header">
@@ -154,6 +155,11 @@ import { MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
 export default {
   name: "Skills",
   components: { Skill },
+  data() {
+    return {
+      filterQuery: "",
+    }
+  },
   computed: {
     collapsed() {
       return this.$store.getters.skillsPaneVisible;
@@ -199,32 +205,52 @@ export default {
       }
     },
     specializedSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
+      return Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
-          Training.SPECIALIZED
-      );
+          Training.SPECIALIZED)
+        .filter(key => {
+          return this.filterQuery
+            .toLowerCase()
+            .split(" ")
+            .every(v => key.toLowerCase().includes(v));
+        });
     },
     trainedSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
-          this.$store.state.build.character.skills[key].training ===
-          Training.TRAINED
-      );
+      return Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
+          this.$store.state.build.character.skills[key].training === 
+          Training.TRAINED)
+        .filter(key => {
+          return this.filterQuery
+            .toLowerCase()
+            .split(" ")
+            .every(v => key.toLowerCase().includes(v));
+        });
     },
     untrainedSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
+      return Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
-          Training.UNTRAINED
-      );
+          Training.UNTRAINED)
+        .filter(key => {
+          return this.filterQuery
+            .toLowerCase()
+            .split(" ")
+            .every(v => key.toLowerCase().includes(v));
+        });
     },
     unusableSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
+      return Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
-          Training.UNUSABLE
-      );
+          Training.UNUSABLE)
+        .filter(key => {
+          return this.filterQuery
+            .toLowerCase()
+            .split(" ")
+            .every(v => key.toLowerCase().includes(v));
+        });
     },
     noSpecializedSkills() {
       return this.$store.getters.specializedSkills.length == 0;
