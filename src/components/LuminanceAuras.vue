@@ -48,6 +48,7 @@
 
 <script>
 import LuminanceAura from "./LuminanceAura.vue";
+import { filterText } from "../helpers";
 
 export default {
   name: "LuminanceAuras",
@@ -67,7 +68,7 @@ export default {
       return this.$store.getters.auraErrors;
     },
     auras() {
-      let all = [
+      let collection = [
         "aetheric_vision",
         "craftsman",
         "destruction",
@@ -86,13 +87,7 @@ export default {
         "world"
       ];
 
-      return all.filter(key => {
-          return this.filterQuery
-            .toLowerCase()
-            .split(" ")
-            .every(v => key.toLowerCase().includes(v));
-        }
-      );
+      return filterText(this.filterQuery, collection);
     },
     filterPresent() {
       return this.filterQuery !== "";

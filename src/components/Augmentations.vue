@@ -48,6 +48,7 @@
 
 <script>
 import Augmentation from "./Augmentation.vue";
+import { filterText } from "../helpers";
 
 export default {
   name: "Augmentations",
@@ -67,7 +68,7 @@ export default {
       return this.$store.getters.augmentationErrors;
     },
     augmentations() {
-      let all = [
+      let collection = [
         "archmages_endurance",
         "asherons_benediction",
         "asherons_lesser_benediction",
@@ -114,13 +115,7 @@ export default {
         "yoshis_essence"
       ]
 
-      return all.filter(key => {
-          return this.filterQuery
-            .toLowerCase()
-            .split(" ")
-            .every(v => key.toLowerCase().includes(v));
-        }
-      );
+      return filterText(this.filterQuery, collection);
     },
     filterPresent() {
       return this.filterQuery !== "";

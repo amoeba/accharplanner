@@ -158,3 +158,12 @@ export const clamp = function (value: number, clamp: number): number {
 
   return value;
 };
+
+export const filterText = function (text: string, collection: string[]): string[] {
+  return collection.filter(key => 
+    text
+      .toLowerCase()
+      .split(" ")
+      .every(v => key.toLowerCase().includes(v))
+  );
+};
