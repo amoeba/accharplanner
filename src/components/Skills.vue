@@ -40,7 +40,10 @@
               <th>Cantrip</th>
             </tr>
             <tr class="controls">
-              <th colspan="4">&nbsp;</th>
+              <th colspan="4">
+                <input v-model="filterQuery" class="w60" placeholder="Filter"/>
+                <button v-if="filterPresent" @click="clearFilter">x</button>
+              </th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
@@ -150,10 +153,16 @@
 import Skill from "./Skill.vue";
 import { Training } from "../types";
 import { MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
+import { filterText } from "../helpers";
 
 export default {
   name: "Skills",
   components: { Skill },
+  data() {
+    return {
+      filterQuery: "",
+    }
+  },
   computed: {
     collapsed() {
       return this.$store.getters.skillsPaneVisible;
@@ -199,38 +208,46 @@ export default {
       }
     },
     specializedSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
+      let collection = Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.SPECIALIZED
-      );
+        );
+      return filterText(this.filterQuery, collection);
+    
     },
     trainedSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
-          this.$store.state.build.character.skills[key].training ===
+      let collection = Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
+          this.$store.state.build.character.skills[key].training === 
           Training.TRAINED
-      );
+        );
+      return filterText(this.filterQuery, collection);
     },
     untrainedSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
+      let collection = Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.UNTRAINED
-      );
+        );    
+      return filterText(this.filterQuery, collection);
     },
     unusableSkills() {
-      return Object.keys(this.$store.state.build.character.skills).filter(
-        (key) =>
+      let collection = Object.keys(this.$store.state.build.character.skills)
+        .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.UNUSABLE
       );
+      return filterText(this.filterQuery, collection);
     },
     noSpecializedSkills() {
       return this.$store.getters.specializedSkills.length == 0;
     },
     noTrainedSkills() {
       return this.$store.getters.trainedSkills.length == 0;
+    },
+    filterPresent() {
+      return this.filterQuery !== "";
     },
   },
   methods: {
@@ -245,6 +262,9 @@ export default {
     },
     changeCantrips(e) {
       this.$store.commit("changeAllSkillCantrips", e.target.value);
+    },
+    clearFilter() {
+      this.filterQuery = "";
     },
   },
 };

@@ -17,7 +17,10 @@
               <th colspan="2">Invested</th>
             </tr>
             <tr class="controls">
-              <th>&nbsp;</th>
+              <th>
+                <input v-model="filterQuery" class="w60" placeholder="Filter"/>
+                <button v-if="filterPresent" @click="clearFilter">x</button>
+              </th>
               <th>
                 <input
                   type="range"
@@ -31,22 +34,11 @@
             </tr>
           </thead>
           <tbody>
-            <LuminanceAura name="aetheric_vision" />
-            <LuminanceAura name="craftsman" />
-            <LuminanceAura name="destruction" />
-            <LuminanceAura name="glory" />
-            <LuminanceAura name="hardening" />
-            <LuminanceAura name="invulnerability" />
-            <LuminanceAura name="mana_flow" />
-            <LuminanceAura name="mana_infusion" />
-            <LuminanceAura name="protection" />
-            <LuminanceAura name="purity" />
-            <LuminanceAura name="retribution" />
-            <LuminanceAura name="skill" />
-            <LuminanceAura name="specialization" />
-            <LuminanceAura name="temperance" />
-            <LuminanceAura name="valor" />
-            <LuminanceAura name="world" />
+            <LuminanceAura
+              v-for="(aura) in auras"
+              :key="aura"
+              :name="aura"
+            />
           </tbody>
         </table>
       </div>
@@ -56,11 +48,17 @@
 
 <script>
 import LuminanceAura from "./LuminanceAura.vue";
+import { filterText } from "../helpers";
 
 export default {
   name: "LuminanceAuras",
   components: {
     LuminanceAura,
+  },
+  data() {
+    return {
+      filterQuery: "",
+    }
   },
   computed: {
     collapsed() {
@@ -69,6 +67,31 @@ export default {
     errors() {
       return this.$store.getters.auraErrors;
     },
+    auras() {
+      let collection = [
+        "aetheric_vision",
+        "craftsman",
+        "destruction",
+        "glory",
+        "hardening",
+        "invulnerability",
+        "mana_flow",
+        "mana_infusion",
+        "protection",
+        "purity",
+        "retribution",
+        "skill",
+        "specialization",
+        "temperance",
+        "valor",
+        "world"
+      ];
+
+      return filterText(this.filterQuery, collection);
+    },
+    filterPresent() {
+      return this.filterQuery !== "";
+    },
   },
   methods: {
     changeInvested(e) {
@@ -76,6 +99,9 @@ export default {
     },
     toggle() {
       this.$store.commit("toggleAurasPane");
+    },
+    clearFilter() {
+      this.filterQuery = "";
     },
   },
 };

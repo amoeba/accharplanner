@@ -17,7 +17,10 @@
               <th colspan="2">Invested</th>
             </tr>
             <tr class="controls">
-              <th>&nbsp;</th>
+              <th>
+                <input v-model="filterQuery" class="w60" placeholder="Filter"/>
+                <button v-if="filterPresent" @click="clearFilter">x</button>
+              </th>
               <th>
                 <input
                   type="range"
@@ -31,50 +34,11 @@
             </tr>
           </thead>
           <tbody>
-            <Augmentation name="archmages_endurance" />
-            <Augmentation name="asherons_benediction" />
-            <Augmentation name="asherons_lesser_benediction" />
-            <Augmentation name="blackmoors_favor" />
-            <Augmentation name="bleearghs_fortitude" />
-            <Augmentation name="caustic_enhancement" />
-            <Augmentation name="celdiseths_essence" />
-            <Augmentation name="charmed_smith" />
-            <Augmentation name="ciandras_essence" />
-            <Augmentation name="ciandras_fortune" />
-            <Augmentation name="clutch_of_the_miser" />
-            <Augmentation name="critical_protection" />
-            <Augmentation name="enduring_calm" />
-            <Augmentation name="enduring_enchantment" />
-            <Augmentation name="enhancement_of_the_arrow_turner" />
-            <Augmentation name="enhancement_of_the_blade_turner" />
-            <Augmentation name="enhancement_of_the_mace_turner" />
-            <Augmentation name="eye_of_the_remorseless" />
-            <Augmentation name="fiery_enhancement" />
-            <Augmentation name="frenzy_of_the_slayer" />
-            <Augmentation name="hand_of_the_remorseless" />
-            <Augmentation name="icy_enhancement" />
-            <Augmentation name="infused_creature_magic" />
-            <Augmentation name="infused_item_magic" />
-            <Augmentation name="infused_life_magic" />
-            <Augmentation name="infused_void_magic" />
-            <Augmentation name="infused_war_magic" />
-            <Augmentation name="innate_renewal" />
-            <Augmentation name="iron_skin_of_the_invincible" />
-            <Augmentation name="jack_of_all_trades" />
-            <Augmentation name="jibrils_essence" />
-            <Augmentation name="kogas_essence" />
-            <Augmentation name="master_of_the_five_fold_path" />
-            <Augmentation name="master_of_the_focused_eye" />
-            <Augmentation name="master_of_the_steel_circle" />
-            <Augmentation name="might_of_the_seventh_mule" />
-            <Augmentation name="oswalds_enhancement" />
-            <Augmentation name="quick_learner" />
-            <Augmentation name="reinforcement_of_the_lugians" />
-            <Augmentation name="shadow_of_the_seventh_mule" />
-            <Augmentation name="siraluuns_blessing" />
-            <Augmentation name="steadfast_will" />
-            <Augmentation name="storms_enhancement" />
-            <Augmentation name="yoshis_essence" />
+            <Augmentation
+              v-for="(augmentation) in augmentations"
+              :key="augmentation"
+              :name="augmentation"
+            />
           </tbody>
         </table>
       </div>
@@ -84,11 +48,17 @@
 
 <script>
 import Augmentation from "./Augmentation.vue";
+import { filterText } from "../helpers";
 
 export default {
   name: "Augmentations",
   components: {
     Augmentation,
+  },
+  data() {
+    return {
+      filterQuery: "",
+    }
   },
   computed: {
     collapsed() {
@@ -96,6 +66,59 @@ export default {
     },
     errors() {
       return this.$store.getters.augmentationErrors;
+    },
+    augmentations() {
+      let collection = [
+        "archmages_endurance",
+        "asherons_benediction",
+        "asherons_lesser_benediction",
+        "blackmoors_favor",
+        "bleearghs_fortitude",
+        "caustic_enhancement",
+        "celdiseths_essence",
+        "charmed_smith",
+        "ciandras_essence",
+        "ciandras_fortune",
+        "clutch_of_the_miser",
+        "critical_protection",
+        "enduring_calm",
+        "enduring_enchantment",
+        "enhancement_of_the_arrow_turner",
+        "enhancement_of_the_blade_turner",
+        "enhancement_of_the_mace_turner",
+        "eye_of_the_remorseless",
+        "fiery_enhancement",
+        "frenzy_of_the_slayer",
+        "hand_of_the_remorseless",
+        "icy_enhancement",
+        "infused_creature_magic",
+        "infused_item_magic",
+        "infused_life_magic",
+        "infused_void_magic",
+        "infused_war_magic",
+        "innate_renewal",
+        "iron_skin_of_the_invincible",
+        "jack_of_all_trades",
+        "jibrils_essence",
+        "kogas_essence",
+        "master_of_the_five_fold_path",
+        "master_of_the_focused_eye",
+        "master_of_the_steel_circle",
+        "might_of_the_seventh_mule",
+        "oswalds_enhancement",
+        "quick_learner",
+        "reinforcement_of_the_lugians",
+        "shadow_of_the_seventh_mule",
+        "siraluuns_blessing",
+        "steadfast_will",
+        "storms_enhancement",
+        "yoshis_essence"
+      ]
+
+      return filterText(this.filterQuery, collection);
+    },
+    filterPresent() {
+      return this.filterQuery !== "";
     },
   },
   methods: {
@@ -105,6 +128,9 @@ export default {
     toggle() {
       this.$store.commit("toggleAugmentationsPane");
     },
+    clearFilter() {
+      this.filterQuery = "";
+    }
   },
 };
 </script>
