@@ -49,6 +49,7 @@
 <script>
 import LuminanceAura from "./LuminanceAura.vue";
 import { filterText } from "../helpers";
+import { LUMINANCE_AURA_NAME } from "../mappings";
 
 export default {
   name: "LuminanceAuras",
@@ -68,26 +69,7 @@ export default {
       return this.$store.getters.auraErrors;
     },
     auras() {
-      let collection = [
-        "aetheric_vision",
-        "craftsman",
-        "destruction",
-        "glory",
-        "hardening",
-        "invulnerability",
-        "mana_flow",
-        "mana_infusion",
-        "protection",
-        "purity",
-        "retribution",
-        "skill",
-        "specialization",
-        "temperance",
-        "valor",
-        "world"
-      ];
-
-      return filterText(this.filterQuery, collection);
+      return filterText(this.filterQuery, Object.keys(LUMINANCE_AURA_NAME));
     },
     filterPresent() {
       return this.filterQuery !== "";
