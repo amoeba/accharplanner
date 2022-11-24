@@ -37,6 +37,7 @@
           <option value="6">VI</option>
           <option value="7">VII</option>
           <option value="8">VIII</option>
+          <option value="9">Beer</option>
         </select>
       </th>
       <th>

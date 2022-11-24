@@ -35,6 +35,8 @@ export const buffBonus = function (level: number) {
       return 40;
     case 8:
       return 45;
+    case 9: // Beer
+      return 50;
     default:
       return 0;
   }
