@@ -82,9 +82,11 @@
           <tbody>
             <tr class="specialized">
               <th colspan="7">
-                Specialized ({{ specializedSkillPointsSpent }} /
-                {{ maxSpecializedSkillPointsSpent }})
-                {{ augmentationsRequiredText }}
+                <span v-tooltip="'You are limited to 70 total credits specialized. Specialized skills get a 10 point bonus.'">
+                  Specialized ({{ specializedSkillPointsSpent }} /
+                  {{ maxSpecializedSkillPointsSpent }})
+                  {{ augmentationsRequiredText }}
+                </span>
               </th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
@@ -214,12 +216,12 @@ export default {
           Training.SPECIALIZED
         );
       return filterText(this.filterQuery, collection);
-    
+
     },
     trainedSkills() {
       let collection = Object.keys(this.$store.state.build.character.skills)
         .filter((key) =>
-          this.$store.state.build.character.skills[key].training === 
+          this.$store.state.build.character.skills[key].training ===
           Training.TRAINED
         );
       return filterText(this.filterQuery, collection);
@@ -229,7 +231,7 @@ export default {
         .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.UNTRAINED
-        );    
+        );
       return filterText(this.filterQuery, collection);
     },
     unusableSkills() {
