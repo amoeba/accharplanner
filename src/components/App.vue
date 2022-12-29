@@ -34,7 +34,6 @@
         This website created with Malar Zhapaj by
         <a href="https://github.com/amoeba">Kolth</a>
       </div>
-      <div>Icons from <a href="https://heroicons.dev/">Hero Icons</a></div>
     </footer>
   </div>
 </template>
