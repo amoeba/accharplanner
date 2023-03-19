@@ -2,6 +2,7 @@
 :root {
   /* Light theme */
   --c-light-text: black;
+  --c-light-text-active: rgb(120, 120, 120);
   --c-light-background: white;
   --c-light-secondary: #eee;
   --c-light-focus: deepskyblue;
@@ -23,6 +24,7 @@
 
   /* Dark theme */
   --c-dark-text: #eee;
+  --c-dark-text-active: rgb(200, 200, 200);
   --c-dark-background: black;
   --c-dark-secondary: rgb(25, 25, 25);
   --c-dark-focus: deeppink;
@@ -45,6 +47,7 @@
 #app {
   /* Make the light theme the default */
   --c-text: var(--c-light-text);
+  --c-text-active: var(--c-light-text-active);
   --c-background: var(--c-light-background);
   --c-secondary: var(--c-light-secondary);
   --c-focus: var(--c-light-focus);
@@ -69,6 +72,7 @@
 @media (prefers-color-scheme: dark) {
   #app {
     --c-text: var(--c-dark-text);
+    --c-text-active: var(--c-dark-text-active);
     --c-background: var(--c-dark-background);
     --c-secondary: var(--c-dark-secondary);
     --c-focus: var(--c-dark-focus);
@@ -88,6 +92,7 @@
 
 #app.light {
   --c-text: var(--c-light-text);
+  --c-text-active: var(--c-light-text-active);
   --c-background: var(--c-light-background);
   --c-secondary: var(--c-light-secondary);
   --c-focus: var(--c-light-focus);
@@ -106,6 +111,7 @@
 
 #app.dark {
   --c-text: var(--c-dark-text);
+  --c-text-active: var(--c-dark-text-active);
   --c-background: var(--c-dark-background);
   --c-secondary: var(--c-dark-secondary);
   --c-focus: var(--c-dark-focus);
@@ -652,6 +658,10 @@ header a,
 header a:visited {
   color: var(--c-text);
   text-decoration: none;
+}
+
+header a:hover {
+  color: var(--c-text-active);
 }
 
 header .logo {
