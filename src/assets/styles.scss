@@ -637,9 +637,7 @@ a:visited {
 header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--c-border);
-  padding: 0 0.5rem;
-  background-color: var(--c-background);
+  padding: 0.25rem 0.5rem;
 }
 
 header > div:last-child {
