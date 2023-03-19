@@ -7,8 +7,7 @@
 </template>
 
 <script>
-import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
-import firebaseApp from "../firebase";
+import { createClient } from "@supabase/supabase-js";
 
 export default {
   name: "Build",
@@ -31,21 +30,28 @@ export default {
     this.fetchData();
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       this.error = null;
       this.loading = true;
 
-      const db = getFirestore(firebaseApp);
-      const docRef = doc(db, "pinned", this.id);
+      const supabase = createClient(
+        import.meta.env.VITE_SUPABASE_URL,
+        import.meta.env.VITE_SUPABASE_KEY
+      );
 
-      getDoc(docRef)
-        .then((snap) => {
-          this.loading = false;
-          this.build = snap.data();
-        })
-        .catch((error) => {
-          this.error = error;
-        });
+      const { data, error } = await supabase
+        .from("official_builds")
+        .select()
+        .eq("id", this.id);
+
+      if (error) {
+        this.error = error;
+        this.loading = false;
+        return;
+      }
+
+      this.loading = false;
+      this.build = data[0];
     },
   },
 };

@@ -21,8 +21,7 @@
 </template>
 
 <script>
-import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
-import firebaseApp from "../firebase";
+import { createClient } from "@supabase/supabase-js";
 import MD from "markdown-it";
 
 export default {
@@ -47,28 +46,34 @@ export default {
     },
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       this.error = null;
       this.loading = true;
 
-      const db = getFirestore(firebaseApp);
-      const docRef = doc(db, "pinned", this.$route.params.id);
+      const supabase = createClient(
+        import.meta.env.VITE_SUPABASE_URL,
+        import.meta.env.VITE_SUPABASE_KEY
+      );
 
-      getDoc(docRef)
-        .then((snap) => {
-          this.loading = false;
-          this.build = snap.data();
-          // I use the $ symbol for newlines because Firestore's web interface
-          // doesn't support real newlines when I paste and I don't want to
-          // implement an admin interface
-          this.build.description = MD("default", {
-            breaks: true,
-            linkify: true,
-          }).render(this.build.description.split("$").join("\n"));
-        })
-        .catch((error) => {
-          this.error = error;
-        });
+      const { data, error } = await supabase
+        .from("official_builds")
+        .select()
+        .eq("id", this.$route.params.id);
+
+      if (error) {
+        this.error = error;
+        this.loading = false;
+        return;
+      }
+
+      this.loading = false;
+      this.build = data[0];
+
+      this.build.description = MD("default", {
+        breaks: true,
+        linkify: true,
+      }).render(this.build.description);
+
     },
   },
 };

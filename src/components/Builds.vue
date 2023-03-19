@@ -12,6 +12,9 @@
           Failed to fetch latest, gimpiest builds. An error report has
           automatically been sent to the developer.
         </div>
+        <div v-if="builds.length === 0">
+          No builds to display.
+        </div>
         <ul v-if="builds">
           <BuildsEntry v-for="build in builds" :id="build.id" :key="build.id" />
         </ul>
@@ -21,14 +24,8 @@
 </template>
 
 <script>
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  orderBy,
-  query,
-} from "firebase/firestore/lite";
-import firebaseApp from "../firebase";
+import { createClient } from "@supabase/supabase-js";
+
 import BuildsEntry from "./BuildsEntry.vue";
 
 export default {
@@ -43,29 +40,33 @@ export default {
       error: null,
     };
   },
-  created() {
-    this.fetchData();
+  async created() {
+    await this.fetchData();
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       this.error = null;
       this.loading = true;
 
-      const db = getFirestore(firebaseApp);
-      const pinnedRef = collection(db, "pinned");
-      const q = query(pinnedRef, orderBy("name"));
+      const supabase = createClient(
+        import.meta.env.VITE_SUPABASE_URL,
+        import.meta.env.VITE_SUPABASE_KEY
+      );
 
-      getDocs(q)
-        .then((resp) => {
-          this.loading = false;
-          this.builds = resp.docs;
-        })
-        .catch((error) => {
-          this.error = true;
-          this.loading = false;
 
-          throw error;
-        });
+      const { data, error } = await supabase
+        .from("official_builds")
+        .select();
+
+      if (error) {
+        this.error = true;
+        this.loading = false;
+      }
+
+      this.loading = false;
+      this.builds = data;
+
+      console.log(data);
     },
   },
 };

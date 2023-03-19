@@ -21,8 +21,6 @@ import {
   Augmentation,
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
-import firebase from "../firebase";
-import "firebase/firestore";
 
 export default {
   // UI toggles
