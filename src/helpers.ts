@@ -1,3 +1,7 @@
+import {
+  MAX_CREATION_ATTRIBUTE_POINTS,
+  MIN_CREATION_ATTRIBUTE_POINTS,
+} from "./constants";
 import { Training } from "./types";
 
 /**
@@ -161,11 +165,39 @@ export const clamp = function (value: number, clamp: number): number {
   return value;
 };
 
-export const filterText = function (text: string, collection: string[]): string[] {
-  return collection.filter(key => 
+export const filterText = function (
+  text: string,
+  collection: string[]
+): string[] {
+  return collection.filter((key) =>
     text
       .toLowerCase()
       .split(" ")
-      .every(v => key.toLowerCase().includes(v))
+      .every((v) => key.toLowerCase().includes(v))
   );
+};
+
+export const updateAugmentationInvestedSideEffect = function (
+  state: any,
+  payload: any,
+  attribute: string
+) {
+  if (
+    state.build.character.attributes[attribute].creation <
+    MAX_CREATION_ATTRIBUTE_POINTS
+  ) {
+    const diff =
+      payload.value -
+      state.build.character.augmentations[payload.name].invested;
+    let newVal =
+      state.build.character.attributes[attribute].creation + diff * 5;
+
+    if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) {
+      newVal = MAX_CREATION_ATTRIBUTE_POINTS;
+    } else if (newVal < MIN_CREATION_ATTRIBUTE_POINTS) {
+      newVal = MIN_CREATION_ATTRIBUTE_POINTS;
+    }
+
+    state.build.character.attributes[attribute].creation = newVal;
+  }
 };

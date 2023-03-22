@@ -5,10 +5,11 @@ import {
   LUMINANCE_AURAS,
   UNTRAINED_STATE,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
-  MAX_CREATION_ATTRIBUTE_POINTS,
   MAX_SKILL_INVESTED_TRAINED,
   MAX_SKILL_INVESTED_SPECIALIZED,
+  ATTRIBUTES,
 } from "../constants";
+import { updateAugmentationInvestedSideEffect } from "../helpers";
 import {
   State,
   Race,
@@ -337,6 +338,43 @@ export default {
 
   // Augmentations
   updateAugmentationInvested(state: State, payload: any) {
+    /*
+      Update Attributes
+
+      The basic idea here is that changing an attribute augmentation direclty
+      just boosts your total available attribute points, up to a maximum of
+      380 (330 + 50, 5 uses of +10 points). How I used to do this was add each
+      attribute augmentation directly into the base value for each attribute.
+      This produced a correct value _until_ the player went through attribute
+      redistribution. Using the attribute redistribution quest, a player can do
+      something like get 5 endurance augmentations and later redistribute those
+      bonus attribute points to another attribute.
+
+      To simulate what it was like when a player initial gained an attribute
+      augmentation, we attempt to boost the attribute's base value as a side
+      effect of this mutation.
+
+      We do this before updating state so we can calculate the difference.
+    */
+
+    if (payload.name === Augmentation.reinforcement_of_the_lugians) {
+      updateAugmentationInvestedSideEffect(state, payload, Attribute.strength);
+    } else if (payload.name === Augmentation.bleearghs_fortitude) {
+      updateAugmentationInvestedSideEffect(state, payload, Attribute.endurance);
+    } else if (payload.name === Augmentation.oswalds_enhancement) {
+      updateAugmentationInvestedSideEffect(
+        state,
+        payload,
+        Attribute.coordination
+      );
+    } else if (payload.name === Augmentation.siraluuns_blessing) {
+      updateAugmentationInvestedSideEffect(state, payload, Attribute.quickness);
+    } else if (payload.name === Augmentation.enduring_calm) {
+      updateAugmentationInvestedSideEffect(state, payload, Attribute.focus);
+    } else if (payload.name === Augmentation.steadfast_will) {
+      updateAugmentationInvestedSideEffect(state, payload, Attribute.self);
+    }
+
     state.build.character.augmentations[payload.name].invested = Number(
       payload.value
     );
