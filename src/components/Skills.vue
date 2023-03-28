@@ -4,9 +4,9 @@
       <div class="pane-header" v-on:click="toggle">
         <div>
                     <span
-            class="tip tip-red"
+            class="tip"
             v-tooltip="
-              'There are currently a couple of issues with skill calculations producing some inaccurate numbers. I\'ll try fix these as soon as possible but it might take a bit. Sorry for the trouble and thanks for using the planner!'
+              'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'
             "
             >!</span>&nbsp;
           <h3>Skills</h3>
