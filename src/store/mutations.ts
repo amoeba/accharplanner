@@ -437,16 +437,24 @@ export default {
       let newval = Number(invested);
 
       if (
-        state.build.character.skills[skill].training == Training.SPECIALIZED
+        state.build.character.skills[skill].training === Training.SPECIALIZED
       ) {
-        state.build.character.skills[skill].invested =
-          newval > MAX_SKILL_INVESTED_SPECIALIZED ? MAX_SKILL_INVESTED_SPECIALIZED : newval;
+        newval =
+          newval > MAX_SKILL_INVESTED_SPECIALIZED 
+            ? MAX_SKILL_INVESTED_SPECIALIZED
+            : newval;
       } else if (
-        state.build.character.skills[skill].training == Training.TRAINED
+        state.build.character.skills[skill].training === Training.TRAINED
       ) {
-        state.build.character.skills[skill].invested =
-          newval > MAX_SKILL_INVESTED_TRAINED ? MAX_SKILL_INVESTED_TRAINED : newval;
+        newval =
+          newval > MAX_SKILL_INVESTED_TRAINED
+            ? MAX_SKILL_INVESTED_TRAINED
+            : newval;
+      } else {
+        newval = 0;
       }
+
+      state.build.character.skills[skill].invested = newval;
     });
   },
 
