@@ -434,18 +434,15 @@ export default {
     });
 
     Object.keys(Skill).forEach((skill) => {
+      const training = state.build.character.skills[skill].training;
       let newval = Number(invested);
 
-      if (
-        state.build.character.skills[skill].training === Training.SPECIALIZED
-      ) {
+      if (training === Training.SPECIALIZED) {
         newval =
-          newval > MAX_SKILL_INVESTED_SPECIALIZED 
+          newval > MAX_SKILL_INVESTED_SPECIALIZED
             ? MAX_SKILL_INVESTED_SPECIALIZED
             : newval;
-      } else if (
-        state.build.character.skills[skill].training === Training.TRAINED
-      ) {
+      } else if (training === Training.TRAINED) {
         newval =
           newval > MAX_SKILL_INVESTED_TRAINED
             ? MAX_SKILL_INVESTED_TRAINED
@@ -476,18 +473,15 @@ export default {
 
   changeAllSkillInvestment(state: State, invested: string) {
     Object.keys(Skill).forEach((skill) => {
+      const training = state.build.character.skills[skill].training;
       let newval = Number(invested);
 
-      if (
-        state.build.character.skills[skill].training === Training.SPECIALIZED
-      ) {
+      if (training === Training.SPECIALIZED) {
         newval =
           newval > MAX_SKILL_INVESTED_SPECIALIZED
             ? MAX_SKILL_INVESTED_SPECIALIZED
             : newval;
-      } else if (
-        state.build.character.skills[skill].training === Training.TRAINED
-      ) {
+      } else if (training === Training.TRAINED) {
         newval =
           newval > MAX_SKILL_INVESTED_TRAINED
             ? MAX_SKILL_INVESTED_TRAINED
