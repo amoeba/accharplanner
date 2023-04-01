@@ -319,8 +319,8 @@ export default {
         newTraining = Training.TRAINED;
 
         // Reduce max skill invested to 208 (max for trained) if over
-        if (state.build.character.skills[skill].invested > 208) {
-          state.build.character.skills[skill].invested = 208;
+        if (state.build.character.skills[skill].invested > MAX_SKILL_INVESTED_TRAINED) {
+          state.build.character.skills[skill].invested = MAX_SKILL_INVESTED_TRAINED;
         }
 
         break;
@@ -440,12 +440,12 @@ export default {
         state.build.character.skills[skill].training == Training.SPECIALIZED
       ) {
         state.build.character.skills[skill].invested =
-          newval > 226 ? 226 : newval;
+          newval > MAX_SKILL_INVESTED_SPECIALIZED ? MAX_SKILL_INVESTED_SPECIALIZED : newval;
       } else if (
         state.build.character.skills[skill].training == Training.TRAINED
       ) {
         state.build.character.skills[skill].invested =
-          newval > 208 ? 208 : newval;
+          newval > MAX_SKILL_INVESTED_TRAINED ? MAX_SKILL_INVESTED_TRAINED : newval;
       }
     });
   },

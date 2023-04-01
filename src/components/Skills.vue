@@ -50,7 +50,7 @@
                 <input
                   type="range"
                   min="0"
-                  max="226"
+                  :max="maxSkillInvestedSpecialized"
                   value="0"
                   v-on:change="changeInvested"
                 />
@@ -154,7 +154,7 @@
 <script>
 import Skill from "./Skill.vue";
 import { Training } from "../types";
-import { MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
+import { MAX_SKILL_INVESTED_SPECIALIZED, MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
 import { filterText } from "../helpers";
 
 export default {
@@ -163,6 +163,7 @@ export default {
   data() {
     return {
       filterQuery: "",
+      maxSkillInvestedSpecialized: MAX_SKILL_INVESTED_SPECIALIZED,
     }
   },
   computed: {

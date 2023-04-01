@@ -96,7 +96,7 @@
               class="w100"
               type="range"
               min="0"
-              max="226"
+              :max="maxSkillInvestedSpecialized"
               value="0"
               v-on:change="changeAllInvestments"
             />
@@ -154,6 +154,7 @@ import {
   MAX_LEVEL,
   MIN_TIMES_ENLIGHTENDED,
   MAX_TIMES_ENLIGHTENDED,
+  MAX_SKILL_INVESTED_SPECIALIZED,
 } from "../constants";
 import { Race } from "../types";
 
@@ -161,6 +162,11 @@ export default {
   name: "Headers",
   components: {
     ExtraSkillCredits,
+  },
+  data() {
+    return {
+      maxSkillInvestedSpecialized: MAX_SKILL_INVESTED_SPECIALIZED,
+    }
   },
   computed: {
     characterPaneVisible() {
