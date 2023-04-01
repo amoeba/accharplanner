@@ -440,7 +440,7 @@ export default {
       state.build.character.skills[skill].invested =
         computeSkillInvested(
           state.build.character.skills[skill].training,
-          invested
+          Number(invested)
         );
     });
   },
@@ -466,7 +466,7 @@ export default {
       state.build.character.skills[skill].invested =
       computeSkillInvested(
           state.build.character.skills[skill].training,
-          invested
+          Number(invested)
         );
     });
   },

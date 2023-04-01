@@ -204,12 +204,15 @@ export const updateAugmentationInvestedSideEffect = function (
   }
 };
 
-export const computeSkillInvested = function(training: Training, invested: string) {
-  if (training === Training.SPECIALIZED) {
-    return Math.min(Number(invested), MAX_SKILL_INVESTED_SPECIALIZED);
-  } else if (training === Training.TRAINED) {
-    return Math.min(Number(invested), MAX_SKILL_INVESTED_TRAINED)
-  } else {
+const maxInvestedForTraining = (training: Training) => {
+  if (training === Training.SPECIALIZED)
+    return MAX_SKILL_INVESTED_SPECIALIZED;
+  else if (training === Training.TRAINED)
+    return MAX_SKILL_INVESTED_TRAINED;
+  else
     return 0;
-  }
+};
+
+export const computeSkillInvested = function(training: Training, invested: number) {
+  return Math.min(invested, maxInvestedForTraining(training))
 };
