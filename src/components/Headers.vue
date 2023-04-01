@@ -34,7 +34,7 @@
                 class="w100"
                 type="range"
                 min="1"
-                max="275"
+                :max="maxLevel"
                 v-model="level"
               />
             </div>
@@ -163,6 +163,7 @@ export default {
   },
   data() {
     return {
+      maxLevel: MAX_LEVEL,
       maxSkillInvestedSpecialized: MAX_SKILL_INVESTED_SPECIALIZED,
       maxTimesEnlightened: MAX_TIMES_ENLIGHTENDED,
     }

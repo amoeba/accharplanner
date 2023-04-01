@@ -13,6 +13,7 @@ import {
   SPEC_COSTS_AUG,
   LUMINANCE_AURA_COST,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
+  MAX_LEVEL,
 } from "../constants";
 import {
   trainingBonus,
@@ -77,7 +78,7 @@ export default {
     let cost: number = 0;
 
     cost += COST_LEVEL[state.build.character.level];
-    cost += state.build.character.timesEnlightened * COST_LEVEL[275];
+    cost += state.build.character.timesEnlightened * COST_LEVEL[MAX_LEVEL];
 
     return cost;
   },
@@ -173,7 +174,7 @@ export default {
     let by_cost = 1;
     let by_skill_points = 1;
 
-    for (let i: number = 1; i <= 275; i++) {
+    for (let i: number = 1; i <= MAX_LEVEL; i++) {
       if (getters.totalXPInvested <= COST_LEVEL[i]) {
         by_cost = i;
         break;
@@ -181,7 +182,7 @@ export default {
     }
 
     if (getters.skillPointsSpent > getters.skillPointsAvailable) {
-      for (let j: number = 1; j <= 275; j++) {
+      for (let j: number = 1; j <= MAX_LEVEL; j++) {
         if (SKILL_POINTS_AT_LEVEL[j] >= getters.skillPointsSpent) {
           by_skill_points = j;
           break;
