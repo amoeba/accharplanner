@@ -208,15 +208,9 @@ export const computeSkillInvested = function(training: Training, invested: strin
   let result = Number(invested);
 
   if (training === Training.SPECIALIZED) {
-    result =
-      result > MAX_SKILL_INVESTED_SPECIALIZED
-        ? MAX_SKILL_INVESTED_SPECIALIZED
-        : result;
+    result = Math.min(result, MAX_SKILL_INVESTED_SPECIALIZED);
   } else if (training === Training.TRAINED) {
-    result =
-      result > MAX_SKILL_INVESTED_TRAINED
-        ? MAX_SKILL_INVESTED_TRAINED
-        : result;
+    result = Math.min(result, MAX_SKILL_INVESTED_TRAINED)
   } else {
     result = 0;
   }
