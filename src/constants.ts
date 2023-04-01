@@ -11,7 +11,6 @@ import {
 
 export const MIN_LEVEL: number = 1;
 export const MAX_LEVEL: number = 275;
-export const MIN_TIMES_ENLIGHTENDED: number = 0;
 export const MAX_TIMES_ENLIGHTENDED: number = 5;
 export const MAX_SPECIALIZED_SKILL_CREDITS_SPENT: number = 70;
 export const MIN_CREATION_ATTRIBUTE_POINTS: number = 10;
