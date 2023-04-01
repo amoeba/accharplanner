@@ -74,6 +74,8 @@ import {
   UNTRAINABLE,
   SKILL_COST_AT_TRAINING,
   MAX_SPECIALIZED_SKILL_CREDITS_SPENT,
+  MAX_SKILL_INVESTED_TRAINED,
+  MAX_SKILL_INVESTED_SPECIALIZED
 } from "../constants";
 import { SKILL_NAME, SKILL_FORMULA } from "../mappings";
 import { Training } from "../types";
@@ -234,12 +236,12 @@ export default {
         this.$store.state.build.character.skills[this.name].training ===
         Training.SPECIALIZED
       ) {
-        return 226;
+        return MAX_SKILL_INVESTED_SPECIALIZED;
       } else if (
         this.$store.state.build.character.skills[this.name].training ===
         Training.TRAINED
       ) {
-        return 208;
+        return MAX_SKILL_INVESTED_TRAINED;
       } else {
         return -1;
       }
@@ -297,10 +299,10 @@ export default {
         value = 0;
       }
 
-      if (this.training === Training.SPECIALIZED && value > 226) {
-        value = 226;
-      } else if (this.training === Training.TRAINED && value > 208) {
-        value = 208;
+      if (this.training === Training.SPECIALIZED && value > MAX_SKILL_INVESTED_SPECIALIZED) {
+        value = MAX_SKILL_INVESTED_SPECIALIZED;
+      } else if (this.training === Training.TRAINED && value > MAX_SKILL_INVESTED_TRAINED) {
+        value = MAX_SKILL_INVESTED_TRAINED;
       } else if (value < 0) {
         value = 0;
       }
