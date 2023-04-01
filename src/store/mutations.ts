@@ -9,7 +9,10 @@ import {
   MAX_SKILL_INVESTED_SPECIALIZED,
   ATTRIBUTES,
 } from "../constants";
-import { updateAugmentationInvestedSideEffect } from "../helpers";
+import {
+  updateAugmentationInvestedSideEffect,
+  computeSkillInvested
+} from "../helpers";
 import {
   State,
   Race,
@@ -434,24 +437,11 @@ export default {
     });
 
     Object.keys(Skill).forEach((skill) => {
-      const training = state.build.character.skills[skill].training;
-      let newval = Number(invested);
-
-      if (training === Training.SPECIALIZED) {
-        newval =
-          newval > MAX_SKILL_INVESTED_SPECIALIZED
-            ? MAX_SKILL_INVESTED_SPECIALIZED
-            : newval;
-      } else if (training === Training.TRAINED) {
-        newval =
-          newval > MAX_SKILL_INVESTED_TRAINED
-            ? MAX_SKILL_INVESTED_TRAINED
-            : newval;
-      } else {
-        newval = 0;
-      }
-
-      state.build.character.skills[skill].invested = newval;
+      state.build.character.skills[skill].invested =
+        computeSkillInvested(
+          state.build.character.skills[skill].training,
+          invested
+        );
     });
   },
 
@@ -473,24 +463,11 @@ export default {
 
   changeAllSkillInvestment(state: State, invested: string) {
     Object.keys(Skill).forEach((skill) => {
-      const training = state.build.character.skills[skill].training;
-      let newval = Number(invested);
-
-      if (training === Training.SPECIALIZED) {
-        newval =
-          newval > MAX_SKILL_INVESTED_SPECIALIZED
-            ? MAX_SKILL_INVESTED_SPECIALIZED
-            : newval;
-      } else if (training === Training.TRAINED) {
-        newval =
-          newval > MAX_SKILL_INVESTED_TRAINED
-            ? MAX_SKILL_INVESTED_TRAINED
-            : newval;
-      } else {
-        newval = 0;
-      }
-
-      state.build.character.skills[skill].invested = newval;
+      state.build.character.skills[skill].invested =
+      computeSkillInvested(
+          state.build.character.skills[skill].training,
+          invested
+        );
     });
   },
 
