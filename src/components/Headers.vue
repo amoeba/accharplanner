@@ -128,14 +128,14 @@
           <div>Enlightened</div>
           <div class="flex-row">
             <div class="w70">
-              <input type="range" min="0" max="5" v-model="timesEnlightened" />
+              <input type="range" min="0" :max="maxTimesEnlightened" v-model="timesEnlightened" />
             </div>
             <div class="w30 right">
               <input
                 class="number"
                 type="text"
                 min="0"
-                max="5"
+                :max="maxTimesEnlightened"
                 v-model="timesEnlightened"
               />
             </div>
@@ -166,6 +166,7 @@ export default {
   data() {
     return {
       maxSkillInvestedSpecialized: MAX_SKILL_INVESTED_SPECIALIZED,
+      maxTimesEnlightened: MAX_TIMES_ENLIGHTENDED,
     }
   },
   computed: {
