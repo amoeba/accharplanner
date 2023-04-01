@@ -150,7 +150,6 @@ import ExtraSkillCredits from "./ExtraSkillCredits.vue";
 import {
   MIN_LEVEL,
   MAX_LEVEL,
-  MIN_TIMES_ENLIGHTENDED,
   MAX_TIMES_ENLIGHTENDED,
   MAX_SKILL_INVESTED_SPECIALIZED,
 } from "../constants";
