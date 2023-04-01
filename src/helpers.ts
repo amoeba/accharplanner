@@ -205,14 +205,11 @@ export const updateAugmentationInvestedSideEffect = function (
 };
 
 export const computeSkillInvested = function(training: Training, invested: string) {
-  let result = Number(invested);
-
   if (training === Training.SPECIALIZED) {
-    result = Math.min(result, MAX_SKILL_INVESTED_SPECIALIZED);
+    return Math.min(Number(invested), MAX_SKILL_INVESTED_SPECIALIZED);
   } else if (training === Training.TRAINED) {
-    result = Math.min(result, MAX_SKILL_INVESTED_TRAINED)
+    return Math.min(Number(invested), MAX_SKILL_INVESTED_TRAINED)
   } else {
-    result = 0;
+    return 0;
   }
-  return result;
 };
