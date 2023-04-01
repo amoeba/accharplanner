@@ -134,8 +134,6 @@
               <input
                 class="number"
                 type="text"
-                min="0"
-                :max="maxTimesEnlightened"
                 v-model="timesEnlightened"
               />
             </div>
