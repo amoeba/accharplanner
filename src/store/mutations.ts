@@ -34,6 +34,10 @@ const vitals = (state: State) => {
   return Object.keys(Vital).map(v => state.build.character.vitals[v])
 };
 
+const attributes = (state: State) => {
+  return Object.keys(Attribute).map(a => state.build.character.attributes[a])
+};
+
 const skillInvestedWithTraining = (training: Training, invested: number) => {
   return Math.min(invested, maxSkillInvested(training));
 };
@@ -51,21 +55,15 @@ const changeAllVitalInvestment = (state: State, invested: string) => {
 };
 
 const changeAllAttributeInvestment = (state: State, invested: string) => {
-  Object
-    .keys(Attribute)
-    .map(a => state.build.character.attributes[a])
-    .forEach(a => {
-      a.invested = Math.min(Number(invested), 190);
-    });
+  attributes(state).forEach(a => {
+    a.invested = Math.min(Number(invested), 190);
+  });
 };
 
 const changeAllAttributeBuffs = (state: State, buff: string) => {
-  Object
-    .keys(Attribute)
-    .map(a => state.build.character.attributes[a])
-    .forEach(attribute => {
-      attribute.buff = Number(buff);
-    });
+  attributes(state).forEach(attribute => {
+    attribute.buff = Number(buff);
+  });
 };
 
 const changeAllSkillBuffs = (state: State, buff: string) => {
@@ -75,12 +73,9 @@ const changeAllSkillBuffs = (state: State, buff: string) => {
 };
 
 const changeAllAttributeCantrips = (state: State, cantrip: string) => {
-  Object
-    .keys(Attribute)
-    .map(a => state.build.character.attributes[a])
-    .forEach(attribute => {
-      attribute.cantrip = Number(cantrip);
-    });
+  attributes(state).forEach(attribute => {
+    attribute.cantrip = Number(cantrip);
+  });
 };
 
 const changeAllSkillCantrips = (state: State, cantrip: string) => {
