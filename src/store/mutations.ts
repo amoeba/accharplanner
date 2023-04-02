@@ -44,6 +44,18 @@ const changeAllAttributeInvestment = (state: State, invested: string) => {
   });
 };
 
+const changeAllAttributeBuffs = (state: State, buff: string) => {
+  Object.keys(Attribute).forEach((attribute) => {
+    state.build.character.attributes[attribute].buff = Number(buff);
+  });
+};
+
+const changeAllSkillBuffs = (state: State, buff: string) => {
+  Object.keys(Skill).forEach((skill) => {
+    state.build.character.skills[skill].buff = Number(buff);
+  });
+};
+
 export default {
   // UI toggles
   toggleDarkMode(state: State, preference: boolean) {
@@ -452,26 +464,13 @@ export default {
   changeAllSkillInvestment,
 
   changeAllBuffs(state: State, buff: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].buff = Number(buff);
-    });
-
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].buff = Number(buff);
-    });
+    changeAllAttributeBuffs(state, buff);
+    changeAllSkillBuffs(state, buff);
   },
 
-  changeAllAttributeBuffs(state: State, buff: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].buff = Number(buff);
-    });
-  },
+  changeAllAttributeBuffs,
 
-  changeAllSkillBuffs(state: State, buff: string) {
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].buff = Number(buff);
-    });
-  },
+  changeAllSkillBuffs,
 
   // Cantrips
   changeAllCantrips(state: State, cantrip: string) {
