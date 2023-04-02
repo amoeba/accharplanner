@@ -30,6 +30,10 @@ const skills = (state: State) => {
   return Object.keys(Skill).map(skill => state.build.character.skills[skill])
 };
 
+const vitals = (state: State) => {
+  return Object.keys(Vital).map(v => state.build.character.vitals[v])
+};
+
 const skillInvestedWithTraining = (training: Training, invested: number) => {
   return Math.min(invested, maxSkillInvested(training));
 };
@@ -41,12 +45,9 @@ const changeAllSkillInvestment = (state: State, invested: string) => {
 };
 
 const changeAllVitalInvestment = (state: State, invested: string) => {
-  Object
-    .keys(Vital)
-    .map(v => state.build.character.vitals[v])
-    .forEach(vital => {
-      vital.invested = Math.min(Number(invested), 196);
-    });
+  vitals(state).forEach(vital => {
+    vital.invested = Math.min(Number(invested), 196);
+  });
 };
 
 const changeAllAttributeInvestment = (state: State, invested: string) => {
