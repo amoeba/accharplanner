@@ -26,18 +26,26 @@ import {
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 
+const skillInvestedWithTraining = (training: Training, invested: number) => {
+  return Math.min(invested, maxSkillInvested(training));
+};
+
 const changeAllSkillInvestment = (state: State, invested: string) => {
-  Object.keys(Skill).forEach((skill) => {
-    const max = maxSkillInvested(state.build.character.skills[skill].training);
-    state.build.character.skills[skill].invested = Math.min(Number(invested), max);
-  });
+  Object
+    .keys(Skill)
+    .map(skill => state.build.character.skills[skill])
+    .forEach(skill => { 
+      skill.invested = skillInvestedWithTraining(skill.training, Number(invested)) 
+    });
 };
 
 const changeAllVitalInvestment = (state: State, invested: string) => {
-  Object.keys(Vital).forEach(v => {
-    const max = 196;
-    state.build.character.vitals[v].invested = Math.min(Number(invested), max);
-  });
+  Object
+    .keys(Vital)
+    .map(v => state.build.character.vitals[v])
+    .forEach(vital => {
+      vital.invested = Math.min(Number(invested), 196);
+    });
 };
 
 const changeAllAttributeInvestment = (state: State, invested: string) => {
@@ -326,7 +334,8 @@ export default {
   },
 
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
-    state.build.character.skills[payload.name].invested = payload.value;
+    let skill = state.build.character.skills[payload.name];
+    skill.invested = skillInvestedWithTraining(skill.training, payload.value)
   },
 
   updateSkillBuff(state: State, payload: any) {
