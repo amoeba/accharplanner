@@ -26,6 +26,12 @@ import {
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 
+const changeAllSkillInvestment = (state: State, invested: string) => {
+  Object.keys(Skill).forEach((skill) => {
+    state.build.character.skills[skill].invested = Math.min(Number(invested), maxSkillInvested(state.build.character.skills[skill].training));
+  });
+};
+
 export default {
   // UI toggles
   toggleDarkMode(state: State, preference: boolean) {
@@ -430,9 +436,7 @@ export default {
       state.build.character.vitals[v].invested = Math.min(Number(invested), 196);
     });
 
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].invested = Math.min(Number(invested), maxSkillInvested(state.build.character.skills[skill].training));
-    });
+    changeAllSkillInvestment(state, invested);
   },
 
   changeAllAttributeInvestment(state: State, invested: string) {
@@ -451,11 +455,7 @@ export default {
     });
   },
 
-  changeAllSkillInvestment(state: State, invested: string) {
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].invested = Math.min(Number(invested), maxSkillInvested(state.build.character.skills[skill].training));
-    });
-  },
+  changeAllSkillInvestment,
 
   changeAllBuffs(state: State, buff: string) {
     Object.keys(Attribute).forEach((attribute) => {
