@@ -11,7 +11,7 @@ import {
 } from "../constants";
 import {
   updateAugmentationInvestedSideEffect,
-  computeSkillInvested
+  maxSkillInvested
 } from "../helpers";
 import {
   State,
@@ -422,26 +422,16 @@ export default {
   },
 
   changeAllInvestment(state: State, invested: string) {
-    Object.keys(Attribute).forEach((a) => {
-      let newval = Number(invested);
-      newval = newval > 190 ? 190 : newval;
-
-      state.build.character.attributes[a].invested = newval;
+    Object.keys(Attribute).forEach(a => {
+      state.build.character.attributes[a].invested = Math.min(Number(invested), 190);
     });
 
-    Object.keys(Vital).forEach((a) => {
-      let newval = Number(invested);
-      newval = newval > 196 ? 196 : newval;
-
-      state.build.character.vitals[a].invested = newval;
+    Object.keys(Vital).forEach(v => {
+      state.build.character.vitals[v].invested = Math.min(Number(invested), 196);
     });
 
     Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].invested =
-        computeSkillInvested(
-          state.build.character.skills[skill].training,
-          Number(invested)
-        );
+      state.build.character.skills[skill].invested = Math.min(Number(invested), maxSkillInvested(state.build.character.skills[skill].training));
     });
   },
 
@@ -463,11 +453,7 @@ export default {
 
   changeAllSkillInvestment(state: State, invested: string) {
     Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].invested =
-      computeSkillInvested(
-          state.build.character.skills[skill].training,
-          Number(invested)
-        );
+      state.build.character.skills[skill].invested = Math.min(Number(invested), maxSkillInvested(state.build.character.skills[skill].training));
     });
   },
 
