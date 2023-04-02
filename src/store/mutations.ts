@@ -56,6 +56,18 @@ const changeAllSkillBuffs = (state: State, buff: string) => {
   });
 };
 
+const changeAllAttributeCantrips = (state: State, cantrip: string) => {
+  Object.keys(Attribute).forEach((attribute) => {
+    state.build.character.attributes[attribute].cantrip = Number(cantrip);
+  });
+};
+
+const changeAllSkillCantrips = (state: State, cantrip: string) => {
+  Object.keys(Skill).forEach((skill) => {
+    state.build.character.skills[skill].cantrip = Number(cantrip);
+  });
+};
+
 export default {
   // UI toggles
   toggleDarkMode(state: State, preference: boolean) {
@@ -474,26 +486,13 @@ export default {
 
   // Cantrips
   changeAllCantrips(state: State, cantrip: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].cantrip = Number(cantrip);
-    });
-
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].cantrip = Number(cantrip);
-    });
+    changeAllAttributeCantrips(state, cantrip);
+    changeAllSkillCantrips(state, cantrip);
   },
 
-  changeAllAttributeCantrips(state: State, cantrip: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].cantrip = Number(cantrip);
-    });
-  },
+  changeAllAttributeCantrips,
 
-  changeAllSkillCantrips(state: State, cantrip: string) {
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].cantrip = Number(cantrip);
-    });
-  },
+  changeAllSkillCantrips,
 
   // Notifications
   clearAllNotifications(state: State) {
