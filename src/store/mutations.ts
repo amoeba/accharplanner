@@ -28,19 +28,22 @@ import DefaultCharacter from "./DefaultCharacter";
 
 const changeAllSkillInvestment = (state: State, invested: string) => {
   Object.keys(Skill).forEach((skill) => {
-    state.build.character.skills[skill].invested = Math.min(Number(invested), maxSkillInvested(state.build.character.skills[skill].training));
+    const max = maxSkillInvested(state.build.character.skills[skill].training);
+    state.build.character.skills[skill].invested = Math.min(Number(invested), max);
   });
 };
 
 const changeAllVitalInvestment = (state: State, invested: string) => {
   Object.keys(Vital).forEach(v => {
-    state.build.character.vitals[v].invested = Math.min(Number(invested), 196);
+    const max = 196;
+    state.build.character.vitals[v].invested = Math.min(Number(invested), max);
   });
 };
 
 const changeAllAttributeInvestment = (state: State, invested: string) => {
   Object.keys(Attribute).forEach(a => {
-    state.build.character.attributes[a].invested = Math.min(Number(invested), 190);
+    const max = 190;
+    state.build.character.attributes[a].invested = Math.min(Number(invested), max);
   });
 };
 
