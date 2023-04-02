@@ -134,4 +134,17 @@ export default {
   reorderStages(context: any, newOrder: any) {
     context.commit("reorderStages", newOrder);
   },
+  changeAllInvestment(context: any, invested: string) {
+    context.commit("changeAllAttributeInvestment", invested);
+    context.commit("changeAllVitalInvestment", invested);
+    context.commit("changeAllSkillInvestment", invested);
+  },
+  changeAllBuffs(context: any, buff: string) {
+    context.commit("changeAllAttributeBuffs", buff);
+    context.commit("changeAllSkillBuffs", buff);
+  },
+  changeAllCantrips(context: any, cantrip: string) {
+    context.commit("changeAllAttributeCantrips", cantrip);
+    context.commit("changeAllSkillCantrips", cantrip);
+  },
 };

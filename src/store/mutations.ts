@@ -480,33 +480,16 @@ export default {
     });
   },
 
-  changeAllInvestment(state: State, invested: string) {
-    changeAllAttributeInvestment(state, invested);
-    changeAllVitalInvestment(state, invested);
-    changeAllSkillInvestment(state, invested);
-  },
-
   changeAllAttributeInvestment,
 
   changeAllVitalInvestment,
 
   changeAllSkillInvestment,
 
-  changeAllBuffs(state: State, buff: string) {
-    changeAllAttributeBuffs(state, buff);
-    changeAllSkillBuffs(state, buff);
-  },
-
   changeAllAttributeBuffs,
 
   changeAllSkillBuffs,
-
-  // Cantrips
-  changeAllCantrips(state: State, cantrip: string) {
-    changeAllAttributeCantrips(state, cantrip);
-    changeAllSkillCantrips(state, cantrip);
-  },
-
+  
   changeAllAttributeCantrips,
 
   changeAllSkillCantrips,
