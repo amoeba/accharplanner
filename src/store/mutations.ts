@@ -6,8 +6,6 @@ import {
   UNTRAINED_STATE,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
   MAX_SKILL_INVESTED_TRAINED,
-  MAX_SKILL_INVESTED_SPECIALIZED,
-  ATTRIBUTES,
 } from "../constants";
 import {
   updateAugmentationInvestedSideEffect,
@@ -18,10 +16,8 @@ import {
   Race,
   Gender,
   Attribute,
-  Vital,
   Skill,
   Training,
-  LuminanceAura,
   Augmentation,
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
