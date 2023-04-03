@@ -72,7 +72,7 @@ export default {
       this.$store.dispatch("changeAllAttributeInvestment", e.target.value);
     },
     changeBuffed(e) {
-      this.$store.commit("changeAllAttributeBuffs", e.target.value);
+      this.$store.dispatch("changeAllAttributeBuffs", e.target.value);
     },
     changeCantrip(e) {
       this.$store.commit("changeAllAttributeCantrips", e.target.value);

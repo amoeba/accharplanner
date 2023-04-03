@@ -155,9 +155,14 @@ export default {
     });
   },
   changeAllBuffs(context: any, buff: string) {
-    context.commit("changeAllAttributeBuffs", buff);
+    context.dispatch("changeAllAttributeBuffs", buff);
     context.commit("changeAllSkillBuffs", buff);
   },
+  changeAllAttributeBuffs(context: any, buff: string) {
+    Object.keys(Attribute).forEach(attribute => {
+      context.commit("updateAttributeBuff", {name: attribute, value: buff});
+    });
+  };
   changeAllCantrips(context: any, cantrip: string) {
     context.commit("changeAllAttributeCantrips", cantrip);
     context.commit("changeAllSkillCantrips", cantrip);
