@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.$store.commit("changeAllAttributeInvestment", e.target.value);
+      this.$store.dispatch("changeAllAttributeInvestment", e.target.value);
     },
     changeBuffed(e) {
       this.$store.commit("changeAllAttributeBuffs", e.target.value);

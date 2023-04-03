@@ -52,13 +52,7 @@ const changeAllVitalInvestment = (state: State, invested: string) => {
   vitals(state).forEach(vital => {
     vital.invested = Math.min(Number(invested), 196);
   });
-};
-
-const changeAllAttributeInvestment = (state: State, invested: string) => {
-  attributes(state).forEach(a => {
-    a.invested = Math.min(Number(invested), 190);
-  });
-};
+};  
 
 const changeAllAttributeBuffs = (state: State, buff: string) => {
   attributes(state).forEach(attribute => {
@@ -319,9 +313,7 @@ export default {
   },
 
   updateAttributeInvested(state: State, payload: any) {
-    state.build.character.attributes[payload.name].invested = Number(
-      payload.value
-    );
+    state.build.character.attributes[payload.name].invested = Math.min(Number(payload.value), 190);
   },
 
   updateAttributeBuff(state: State, payload: any) {
@@ -479,8 +471,6 @@ export default {
         value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0;
     });
   },
-
-  changeAllAttributeInvestment,
 
   changeAllVitalInvestment,
 

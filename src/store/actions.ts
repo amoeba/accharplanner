@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { merge } from "lodash";
 import { createId } from "mnemonic-id";
 
-import { Character, Build } from "../types";
+import { Character, Build, Attribute } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 
 export default {
@@ -135,9 +135,15 @@ export default {
     context.commit("reorderStages", newOrder);
   },
   changeAllInvestment(context: any, invested: string) {
-    context.commit("changeAllAttributeInvestment", invested);
+    context.dispatch("changeAllAttributeInvestment", invested);
+
     context.commit("changeAllVitalInvestment", invested);
     context.commit("changeAllSkillInvestment", invested);
+  },
+  changeAllAttributeInvestment(context: any, invested: string) {
+    Object.keys(Attribute).forEach(a => {
+      context.commit("updateAttributeInvested", {name: a, value: invested});
+    });
   },
   changeAllBuffs(context: any, buff: string) {
     context.commit("changeAllAttributeBuffs", buff);
