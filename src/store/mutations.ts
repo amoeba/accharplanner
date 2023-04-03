@@ -42,12 +42,6 @@ const skillInvestedWithTraining = (training: Training, invested: number) => {
   return Math.min(invested, maxSkillInvested(training));
 };
 
-const changeAllSkillInvestment = (state: State, invested: string) => {
-  skills(state).forEach(skill => { 
-    skill.invested = skillInvestedWithTraining(skill.training, Number(invested)) 
-  });
-};
-
 const changeAllAttributeBuffs = (state: State, buff: string) => {
   attributes(state).forEach(attribute => {
     attribute.buff = Number(buff);
@@ -465,8 +459,6 @@ export default {
         value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0;
     });
   },
-
-  changeAllSkillInvestment,
 
   changeAllAttributeBuffs,
 

@@ -258,7 +258,7 @@ export default {
       this.$store.commit("toggleSkillsPane");
     },
     changeInvested(e) {
-      this.$store.commit("changeAllSkillInvestment", e.target.value);
+      this.$store.dispatch("changeAllSkillInvestment", e.target.value);
     },
     changeBuffed(e) {
       this.$store.commit("changeAllSkillBuffs", e.target.value);
