@@ -75,7 +75,7 @@ export default {
       this.$store.dispatch("changeAllAttributeBuffs", e.target.value);
     },
     changeCantrip(e) {
-      this.$store.commit("changeAllAttributeCantrips", e.target.value);
+      this.$store.dispatch("changeAllAttributeCantrips", e.target.value);
     },
   },
 };

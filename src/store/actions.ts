@@ -169,7 +169,12 @@ export default {
     });
   },
   changeAllCantrips(context: any, cantrip: string) {
-    context.commit("changeAllAttributeCantrips", cantrip);
+    context.dispatch("changeAllAttributeCantrips", cantrip);
     context.commit("changeAllSkillCantrips", cantrip);
+  },
+  changeAllAttributeCantrips(context: any, cantrip: string) {
+    Object.keys(Attribute).forEach(attribute => {
+      context.commit("updateAttributeCantrip", {name: attribute, value: cantrip});
+    });
   },
 };

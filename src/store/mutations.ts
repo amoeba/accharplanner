@@ -30,18 +30,8 @@ const skills = (state: State) => {
   return Object.keys(Skill).map(skill => state.build.character.skills[skill])
 };
 
-const attributes = (state: State) => {
-  return Object.keys(Attribute).map(a => state.build.character.attributes[a])
-};
-
 const skillInvestedWithTraining = (training: Training, invested: number) => {
   return Math.min(invested, maxSkillInvested(training));
-};
-
-const changeAllAttributeCantrips = (state: State, cantrip: string) => {
-  attributes(state).forEach(attribute => {
-    attribute.cantrip = Number(cantrip);
-  });
 };
 
 const changeAllSkillCantrips = (state: State, cantrip: string) => {
@@ -443,8 +433,6 @@ export default {
         value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0;
     });
   },
-
-  changeAllAttributeCantrips,
 
   changeAllSkillCantrips,
 
