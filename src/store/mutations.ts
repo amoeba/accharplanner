@@ -30,10 +30,6 @@ const skills = (state: State) => {
   return Object.keys(Skill).map(skill => state.build.character.skills[skill])
 };
 
-const vitals = (state: State) => {
-  return Object.keys(Vital).map(v => state.build.character.vitals[v])
-};
-
 const attributes = (state: State) => {
   return Object.keys(Attribute).map(a => state.build.character.attributes[a])
 };
