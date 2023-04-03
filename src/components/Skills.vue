@@ -264,7 +264,7 @@ export default {
       this.$store.dispatch("changeAllSkillBuffs", e.target.value);
     },
     changeCantrips(e) {
-      this.$store.commit("changeAllSkillCantrips", e.target.value);
+      this.$store.dispatch("changeAllSkillCantrips", e.target.value);
     },
     clearFilter() {
       this.filterQuery = "";

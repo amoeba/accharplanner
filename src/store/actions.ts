@@ -170,11 +170,16 @@ export default {
   },
   changeAllCantrips(context: any, cantrip: string) {
     context.dispatch("changeAllAttributeCantrips", cantrip);
-    context.commit("changeAllSkillCantrips", cantrip);
+    context.dispatch("changeAllSkillCantrips", cantrip);
   },
   changeAllAttributeCantrips(context: any, cantrip: string) {
     Object.keys(Attribute).forEach(attribute => {
       context.commit("updateAttributeCantrip", {name: attribute, value: cantrip});
+    });
+  },
+  changeAllSkillCantrips(context: any, cantrip: string) {
+    Object.keys(Skill).forEach(skill => {
+      context.commit("updateSkillCantrip", {name: skill, value: cantrip});
     });
   },
 };

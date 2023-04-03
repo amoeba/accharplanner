@@ -26,18 +26,8 @@ import {
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 
-const skills = (state: State) => {
-  return Object.keys(Skill).map(skill => state.build.character.skills[skill])
-};
-
 const skillInvestedWithTraining = (training: Training, invested: number) => {
   return Math.min(invested, maxSkillInvested(training));
-};
-
-const changeAllSkillCantrips = (state: State, cantrip: string) => {
-  skills(state).forEach(skill => {
-    skill.cantrip = Number(cantrip);
-  });
 };
 
 export default {
@@ -433,8 +423,6 @@ export default {
         value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0;
     });
   },
-
-  changeAllSkillCantrips,
 
   // Notifications
   clearAllNotifications(state: State) {
