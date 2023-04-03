@@ -26,10 +26,6 @@ import {
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 
-const skillInvestedWithTraining = (training: Training, invested: number) => {
-  return Math.min(invested, maxSkillInvested(training));
-};
-
 export default {
   // UI toggles
   toggleDarkMode(state: State, preference: boolean) {
@@ -284,7 +280,8 @@ export default {
 
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
     let skill = state.build.character.skills[payload.name];
-    skill.invested = skillInvestedWithTraining(skill.training, payload.value)
+    const max = maxSkillInvested(skill.training)
+    skill.invested = Math.min(payload.value, max);
   },
 
   updateSkillBuff(state: State, payload: any) {
