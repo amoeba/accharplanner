@@ -38,12 +38,6 @@ const skillInvestedWithTraining = (training: Training, invested: number) => {
   return Math.min(invested, maxSkillInvested(training));
 };
 
-const changeAllSkillBuffs = (state: State, buff: string) => {
-  skills(state).forEach(skill => {
-    skill.buff = Number(buff);
-  });
-};
-
 const changeAllAttributeCantrips = (state: State, cantrip: string) => {
   attributes(state).forEach(attribute => {
     attribute.cantrip = Number(cantrip);
@@ -450,8 +444,6 @@ export default {
     });
   },
 
-  changeAllSkillBuffs,
-  
   changeAllAttributeCantrips,
 
   changeAllSkillCantrips,

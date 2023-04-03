@@ -156,13 +156,18 @@ export default {
   },
   changeAllBuffs(context: any, buff: string) {
     context.dispatch("changeAllAttributeBuffs", buff);
-    context.commit("changeAllSkillBuffs", buff);
+    context.dispatch("changeAllSkillBuffs", buff);
   },
   changeAllAttributeBuffs(context: any, buff: string) {
     Object.keys(Attribute).forEach(attribute => {
       context.commit("updateAttributeBuff", {name: attribute, value: buff});
     });
-  };
+  },
+  changeAllSkillBuffs(context: any, buff: string) {
+    Object.keys(Skill).forEach(skill => {
+      context.commit("updateSkillBuff", {name: skill, value: buff});
+    });
+  },
   changeAllCantrips(context: any, cantrip: string) {
     context.commit("changeAllAttributeCantrips", cantrip);
     context.commit("changeAllSkillCantrips", cantrip);

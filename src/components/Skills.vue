@@ -261,7 +261,7 @@ export default {
       this.$store.dispatch("changeAllSkillInvestment", e.target.value);
     },
     changeBuffed(e) {
-      this.$store.commit("changeAllSkillBuffs", e.target.value);
+      this.$store.dispatch("changeAllSkillBuffs", e.target.value);
     },
     changeCantrips(e) {
       this.$store.commit("changeAllSkillCantrips", e.target.value);
