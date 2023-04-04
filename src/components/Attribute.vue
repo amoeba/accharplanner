@@ -25,7 +25,7 @@
       {{ buffed }}
     </td>
     <td>
-      <input type="range" min="0" max="190" v-model="invested" />
+      <input type="range" min="0" :max="maxAttributeInvested" v-model="invested" />
     </td>
     <td class="invested number">
       <input
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { MAX_ATTRIBUTE_INVESTED } from '../constants';
 import { ATTRIBUTE_NAME, BUFF_NAME, CANTRIP_NAME } from "../mappings";
 
 export default {
@@ -69,6 +70,11 @@ export default {
   props: {
     name: String,
     tabIndex: String,
+  },
+  data() {
+    return {
+      maxAttributeInvested: MAX_ATTRIBUTE_INVESTED
+    };
   },
   computed: {
     displayName() {
@@ -175,8 +181,8 @@ export default {
         value = 0;
       }
 
-      if (value > 190) {
-        value = 190;
+      if (value > MAX_ATTRIBUTE_INVESTED) {
+        value = MAX_ATTRIBUTE_INVESTED;
       } else if (value < 0) {
         value = 0;
       }

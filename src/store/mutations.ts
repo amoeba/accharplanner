@@ -7,6 +7,7 @@ import {
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
   MAX_SKILL_INVESTED_TRAINED,
   MAX_VITAL_INVESTED,
+  MAX_ATTRIBUTE_INVESTED,
 } from "../constants";
 import {
   updateAugmentationInvestedSideEffect,
@@ -258,7 +259,7 @@ export default {
   },
 
   updateAttributeInvested(state: State, payload: any) {
-    state.build.character.attributes[payload.name].invested = Math.min(Number(payload.value), 190);
+    state.build.character.attributes[payload.name].invested = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED);
   },
 
   updateAttributeBuff(state: State, payload: any) {
