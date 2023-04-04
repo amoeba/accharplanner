@@ -6,6 +6,7 @@ import {
   UNTRAINED_STATE,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
   MAX_SKILL_INVESTED_TRAINED,
+  MAX_VITAL_INVESTED,
 } from "../constants";
 import {
   updateAugmentationInvestedSideEffect,
@@ -271,7 +272,7 @@ export default {
   },
 
   updateVitalInvested(state: State, payload: any) {
-    state.build.character.vitals[payload.name].invested = Math.min(Number(payload.value), 196);
+    state.build.character.vitals[payload.name].invested = Math.min(Number(payload.value), MAX_VITAL_INVESTED);
   },
 
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
