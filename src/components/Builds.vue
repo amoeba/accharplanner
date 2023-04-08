@@ -53,7 +53,6 @@ export default {
         import.meta.env.VITE_SUPABASE_KEY
       );
 
-
       const { data, error } = await supabase
         .from("official_builds")
         .select();
@@ -65,8 +64,6 @@ export default {
 
       this.loading = false;
       this.builds = data;
-
-      console.log(data);
     },
   },
 };
