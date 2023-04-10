@@ -8,16 +8,18 @@ import {
   MAX_SKILL_INVESTED_TRAINED,
   MAX_VITAL_INVESTED,
   MAX_ATTRIBUTE_INVESTED,
+  MAX_SKILL_INVESTED_SPECIALIZED,
 } from "../constants";
 import {
   updateAugmentationInvestedSideEffect,
-  maxSkillInvested
+  maxSkillInvested,
 } from "../helpers";
 import {
   State,
   Race,
   Gender,
   Attribute,
+  Vital,
   Skill,
   Training,
   Augmentation,
@@ -259,7 +261,10 @@ export default {
   },
 
   updateAttributeInvested(state: State, payload: any) {
-    state.build.character.attributes[payload.name].invested = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED);
+    state.build.character.attributes[payload.name].invested = Math.min(
+      Number(payload.value),
+      MAX_ATTRIBUTE_INVESTED
+    );
   },
 
   updateAttributeBuff(state: State, payload: any) {
@@ -273,12 +278,15 @@ export default {
   },
 
   updateVitalInvested(state: State, payload: any) {
-    state.build.character.vitals[payload.name].invested = Math.min(Number(payload.value), MAX_VITAL_INVESTED);
+    state.build.character.vitals[payload.name].invested = Math.min(
+      Number(payload.value),
+      MAX_VITAL_INVESTED
+    );
   },
 
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
     let skill = state.build.character.skills[payload.name];
-    const max = maxSkillInvested(skill.training)
+    const max = maxSkillInvested(skill.training);
     skill.invested = Math.min(payload.value, max);
   },
 
@@ -320,8 +328,12 @@ export default {
         newTraining = Training.TRAINED;
 
         // Reduce max skill invested to 208 (max for trained) if over
-        if (state.build.character.skills[skill].invested > MAX_SKILL_INVESTED_TRAINED) {
-          state.build.character.skills[skill].invested = MAX_SKILL_INVESTED_TRAINED;
+        if (
+          state.build.character.skills[skill].invested >
+          MAX_SKILL_INVESTED_TRAINED
+        ) {
+          state.build.character.skills[skill].invested =
+            MAX_SKILL_INVESTED_TRAINED;
         }
 
         break;
@@ -419,6 +431,129 @@ export default {
     });
   },
 
+  changeAllInvestment(state: State, invested: string) {
+    Object.keys(Attribute).forEach((a) => {
+      let newval = Number(invested);
+      newval = newval > 190 ? 190 : newval;
+
+      state.build.character.attributes[a].invested = newval;
+    });
+
+    Object.keys(Vital).forEach((a) => {
+      let newval = Number(invested);
+      newval = newval > 196 ? 196 : newval;
+
+      state.build.character.vitals[a].invested = newval;
+    });
+
+    Object.keys(Skill).forEach((skill) => {
+      let newval = Number(invested);
+
+      if (
+        state.build.character.skills[skill].training == Training.SPECIALIZED
+      ) {
+        state.build.character.skills[skill].invested =
+          newval > MAX_SKILL_INVESTED_SPECIALIZED
+            ? MAX_SKILL_INVESTED_SPECIALIZED
+            : newval;
+      } else if (
+        state.build.character.skills[skill].training == Training.TRAINED
+      ) {
+        state.build.character.skills[skill].invested =
+          newval > MAX_SKILL_INVESTED_TRAINED
+            ? MAX_SKILL_INVESTED_TRAINED
+            : newval;
+      }
+    });
+  },
+
+  changeAllAttributeInvestment(state: State, invested: string) {
+    Object.keys(Attribute).forEach((a) => {
+      let newval = Number(invested);
+
+      state.build.character.attributes[a].invested = newval;
+    });
+  },
+
+  changeAllVitalInvestment(state: State, invested: string) {
+    Object.keys(Vital).forEach((a) => {
+      let newval = Number(invested);
+
+      state.build.character.vitals[a].invested = newval;
+    });
+  },
+
+  changeAllSkillInvestment(state: State, invested: string) {
+    Object.keys(Skill).forEach((skill) => {
+      let newval = Number(invested);
+
+      if (
+        state.build.character.skills[skill].training === Training.SPECIALIZED
+      ) {
+        newval =
+          newval > MAX_SKILL_INVESTED_SPECIALIZED
+            ? MAX_SKILL_INVESTED_SPECIALIZED
+            : newval;
+      } else if (
+        state.build.character.skills[skill].training === Training.TRAINED
+      ) {
+        newval =
+          newval > MAX_SKILL_INVESTED_TRAINED
+            ? MAX_SKILL_INVESTED_TRAINED
+            : newval;
+      } else {
+        newval = 0;
+      }
+
+      state.build.character.skills[skill].invested = newval;
+    });
+  },
+
+  changeAllBuffs(state: State, buff: string) {
+    Object.keys(Attribute).forEach((attribute) => {
+      state.build.character.attributes[attribute].buff = Number(buff);
+    });
+
+    Object.keys(Skill).forEach((skill) => {
+      state.build.character.skills[skill].buff = Number(buff);
+    });
+  },
+
+  changeAllAttributeBuffs(state: State, buff: string) {
+    Object.keys(Attribute).forEach((attribute) => {
+      state.build.character.attributes[attribute].buff = Number(buff);
+    });
+  },
+
+  changeAllSkillBuffs(state: State, buff: string) {
+    Object.keys(Skill).forEach((skill) => {
+      state.build.character.skills[skill].buff = Number(buff);
+    });
+  },
+
+  // Cantrips
+  changeAllCantrips(state: State, cantrip: string) {
+    Object.keys(Attribute).forEach((attribute) => {
+      state.build.character.attributes[attribute].cantrip = Number(cantrip);
+    });
+
+    Object.keys(Skill).forEach((skill) => {
+      state.build.character.skills[skill].cantrip = Number(cantrip);
+    });
+  },
+
+  changeAllAttributeCantrips(state: State, cantrip: string) {
+    Object.keys(Attribute).forEach((attribute) => {
+      state.build.character.attributes[attribute].cantrip = Number(cantrip);
+    });
+  },
+
+  changeAllSkillCantrips(state: State, cantrip: string) {
+    Object.keys(Skill).forEach((skill) => {
+      state.build.character.skills[skill].cantrip = Number(cantrip);
+    });
+  },
+
   // Notifications
   clearAllNotifications(state: State) {
     state.ui.notifications = [];
@@ -452,5 +587,13 @@ export default {
         state.ui.notifications.splice(i, 1);
       }
     }
+  },
+
+  // Auth
+  updateIsLoggedIn(state: State, value: boolean) {
+    state.auth.isLoggedIn = value;
+  },
+  updateIsAdmin(state: State, value: boolean) {
+    state.auth.isAdmin = value;
   },
 };

@@ -27,6 +27,10 @@ let state: State = {
     character: DefaultCharacter(),
     stages: [],
   },
+  auth: {
+    isLoggedIn: false,
+    isAdmin: false,
+  },
 };
 
 export default state;

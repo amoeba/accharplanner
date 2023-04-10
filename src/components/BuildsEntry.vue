@@ -10,7 +10,7 @@
 import { createClient } from "@supabase/supabase-js";
 
 export default {
-  name: "Build",
+  name: "BuildsEntry",
   props: {
     id: String,
   },

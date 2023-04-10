@@ -73,6 +73,9 @@
         </svg>
         Share
       </button>
+      <button v-if="isAdmin" v-on:click="publishBuild">
+        Publish
+      </button>
     </div>
     <Modal v-if="modalVisible" @close="modalVisible = false">
       <template v-slot:header>
@@ -167,6 +170,14 @@ export default {
       this.$store.dispatch("loadRemoteBuild", extraStuff);
     }
   },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
+    isAdmin() {
+      return this.$store.getters.isAdmin;
+    }
+  },
   methods: {
     saveBuild() {
       this.$store.commit("addNotification", {
@@ -183,6 +194,9 @@ export default {
     },
     resetPlanner() {
       this.$store.commit("reset");
+    },
+    publishBuild() {
+      this.$store.dispatch("publishBuild");
     },
   },
 };

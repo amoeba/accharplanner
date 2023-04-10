@@ -68,9 +68,15 @@ export interface Build {
   stages: Character[];
 }
 
+interface AuthState {
+  isLoggedIn: boolean;
+  isAdmin: boolean;
+}
+
 export interface State {
   ui: UIState;
   build: Build;
+  auth: AuthState;
 }
 
 export enum Race {

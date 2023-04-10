@@ -2457,4 +2457,12 @@ export default {
 
     return null;
   },
+
+  // Auth
+  isLoggedIn: (state: State, getters: any) => {
+    return state.auth.isLoggedIn;
+  },
+  isAdmin: (state: State, getters: any) => {
+    return state.auth.isAdmin;
+  },
 };

@@ -42,6 +42,7 @@
 import Notifications from "./Notifications.vue";
 import { THEME } from "../types";
 import { importCharacter } from "../import";
+import { createClient } from "@supabase/supabase-js";
 
 export default {
   name: "App",
@@ -79,6 +80,28 @@ export default {
     },
   },
   created() {
+    // Auth
+    const supabase = createClient(
+      import.meta.env.VITE_SUPABASE_URL,
+      import.meta.env.VITE_SUPABASE_KEY
+    );
+
+    supabase.auth.getSession().then(({ data }) => {
+      if (!data || !data.session) {
+        this.$store.commit("updateIsLoggedIn", false);
+        this.$store.commit("updateIsAdmin", false);
+
+        return;
+      }
+
+      this.$store.commit("updateIsLoggedIn", true);
+
+      // TODO: Figure out how to use roles
+      if (data.session.user.email === "petridish@gmail.com") {
+        this.$store.commit("updateIsAdmin", true);
+      }
+    });
+
     // Clear any notifications stored in localStorage
     this.$store.commit("clearAllNotifications");
 
