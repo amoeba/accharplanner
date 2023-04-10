@@ -69,25 +69,10 @@ export default {
       return;
     }
 
-    if (!response_official_data || response_official_data.length != 1) {
-      context.commit("addNotification", {
-        type: "error",
-        message:
-          "The build with this identifier: '" +
-          options.build_id +
-          "' was not found. This could either be a really bad bug or you just have a typo in your URL.",
-        pinned: true,
-      });
-
-      options.router.push("/");
-
-      return;
-    }
-
     // Second: Try a shared build
-    let response_shared_data;
+    let response_shared_data = null;
 
-    if (!response_official_data) {
+    if (!response_official_data?.length) {
       const response_shared = await supabase
         .from("shared_builds")
         .select()
@@ -129,7 +114,23 @@ export default {
     }
 
     // Take first non-null response and continue on
-    const data = response_official_data || response_shared_data;
+    const data =
+      (response_official_data?.length ? response_official_data : null) ||
+      (response_shared_data?.length ? response_shared_data : null);
+
+    if (!data) {
+      context.commit("addNotification", {
+        type: "error",
+        message:
+          "The build with this identifier: '" +
+          options.build_id +
+          "' was not found. This could either be a really bad bug or you just have a typo in your URL.",
+      });
+
+      options.router.push("/");
+
+      return;
+    }
 
     const build = data[0]["content"];
 
