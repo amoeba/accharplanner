@@ -6,19 +6,20 @@ import {
   UNTRAINED_STATE,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
   MAX_SKILL_INVESTED_TRAINED,
-  MAX_SKILL_INVESTED_SPECIALIZED,
-  ATTRIBUTES,
+  MAX_VITAL_INVESTED,
+  MAX_ATTRIBUTE_INVESTED,
 } from "../constants";
-import { updateAugmentationInvestedSideEffect } from "../helpers";
+import {
+  updateAugmentationInvestedSideEffect,
+  maxSkillInvested
+} from "../helpers";
 import {
   State,
   Race,
   Gender,
   Attribute,
-  Vital,
   Skill,
   Training,
-  LuminanceAura,
   Augmentation,
 } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
@@ -258,9 +259,7 @@ export default {
   },
 
   updateAttributeInvested(state: State, payload: any) {
-    state.build.character.attributes[payload.name].invested = Number(
-      payload.value
-    );
+    state.build.character.attributes[payload.name].invested = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED);
   },
 
   updateAttributeBuff(state: State, payload: any) {
@@ -274,11 +273,13 @@ export default {
   },
 
   updateVitalInvested(state: State, payload: any) {
-    state.build.character.vitals[payload.name].invested = Number(payload.value);
+    state.build.character.vitals[payload.name].invested = Math.min(Number(payload.value), MAX_VITAL_INVESTED);
   },
 
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
-    state.build.character.skills[payload.name].invested = payload.value;
+    let skill = state.build.character.skills[payload.name];
+    const max = maxSkillInvested(skill.training)
+    skill.invested = Math.min(payload.value, max);
   },
 
   updateSkillBuff(state: State, payload: any) {
@@ -415,125 +416,6 @@ export default {
     LUMINANCE_AURAS.forEach((aura_name: string) => {
       state.build.character.luminance_auras[aura_name].invested =
         value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0;
-    });
-  },
-
-  changeAllInvestment(state: State, invested: string) {
-    Object.keys(Attribute).forEach((a) => {
-      let newval = Number(invested);
-      newval = newval > 190 ? 190 : newval;
-
-      state.build.character.attributes[a].invested = newval;
-    });
-
-    Object.keys(Vital).forEach((a) => {
-      let newval = Number(invested);
-      newval = newval > 196 ? 196 : newval;
-
-      state.build.character.vitals[a].invested = newval;
-    });
-
-    Object.keys(Skill).forEach((skill) => {
-      let newval = Number(invested);
-
-      if (
-        state.build.character.skills[skill].training == Training.SPECIALIZED
-      ) {
-        state.build.character.skills[skill].invested =
-          newval > MAX_SKILL_INVESTED_SPECIALIZED ? MAX_SKILL_INVESTED_SPECIALIZED : newval;
-      } else if (
-        state.build.character.skills[skill].training == Training.TRAINED
-      ) {
-        state.build.character.skills[skill].invested =
-          newval > MAX_SKILL_INVESTED_TRAINED ? MAX_SKILL_INVESTED_TRAINED : newval;
-      }
-    });
-  },
-
-  changeAllAttributeInvestment(state: State, invested: string) {
-    Object.keys(Attribute).forEach((a) => {
-      let newval = Number(invested);
-
-      state.build.character.attributes[a].invested = newval;
-    });
-  },
-
-  changeAllVitalInvestment(state: State, invested: string) {
-    Object.keys(Vital).forEach((a) => {
-      let newval = Number(invested);
-
-      state.build.character.vitals[a].invested = newval;
-    });
-  },
-
-  changeAllSkillInvestment(state: State, invested: string) {
-    Object.keys(Skill).forEach((skill) => {
-      let newval = Number(invested);
-
-      if (
-        state.build.character.skills[skill].training === Training.SPECIALIZED
-      ) {
-        newval =
-          newval > MAX_SKILL_INVESTED_SPECIALIZED
-            ? MAX_SKILL_INVESTED_SPECIALIZED
-            : newval;
-      } else if (
-        state.build.character.skills[skill].training === Training.TRAINED
-      ) {
-        newval =
-          newval > MAX_SKILL_INVESTED_TRAINED
-            ? MAX_SKILL_INVESTED_TRAINED
-            : newval;
-      } else {
-        newval = 0;
-      }
-
-      state.build.character.skills[skill].invested = newval;
-    });
-  },
-
-  changeAllBuffs(state: State, buff: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].buff = Number(buff);
-    });
-
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].buff = Number(buff);
-    });
-  },
-
-  changeAllAttributeBuffs(state: State, buff: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].buff = Number(buff);
-    });
-  },
-
-  changeAllSkillBuffs(state: State, buff: string) {
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].buff = Number(buff);
-    });
-  },
-
-  // Cantrips
-  changeAllCantrips(state: State, cantrip: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].cantrip = Number(cantrip);
-    });
-
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].cantrip = Number(cantrip);
-    });
-  },
-
-  changeAllAttributeCantrips(state: State, cantrip: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      state.build.character.attributes[attribute].cantrip = Number(cantrip);
-    });
-  },
-
-  changeAllSkillCantrips(state: State, cantrip: string) {
-    Object.keys(Skill).forEach((skill) => {
-      state.build.character.skills[skill].cantrip = Number(cantrip);
     });
   },
 

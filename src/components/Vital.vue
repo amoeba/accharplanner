@@ -19,7 +19,7 @@
       {{ buffed }}
     </td>
     <td>
-      <input type="range" min="0" max="196" v-model="invested" />
+      <input type="range" min="0" :max="maxVitalInvested" v-model="invested" />
     </td>
     <td class="invested number">
       <input
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { MAX_VITAL_INVESTED } from '../constants';
 import { VITAL_FORMULA } from "../mappings";
 
 export default {
@@ -75,6 +76,11 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      maxVitalInvested: MAX_VITAL_INVESTED
+    }
+  },
   methods: {
     updateInvested(e) {
       let value = Math.round(Number(e.target.value));
@@ -83,8 +89,8 @@ export default {
         value = 0;
       }
 
-      if (value > 196) {
-        value = 196;
+      if (value > MAX_VITAL_INVESTED) {
+        value = MAX_VITAL_INVESTED;
       } else if (value < 0) {
         value = 0;
       }

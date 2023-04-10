@@ -1,5 +1,7 @@
 import {
   MAX_CREATION_ATTRIBUTE_POINTS,
+  MAX_SKILL_INVESTED_SPECIALIZED,
+  MAX_SKILL_INVESTED_TRAINED,
   MIN_CREATION_ATTRIBUTE_POINTS,
 } from "./constants";
 import { Training } from "./types";
@@ -200,4 +202,13 @@ export const updateAugmentationInvestedSideEffect = function (
 
     state.build.character.attributes[attribute].creation = newVal;
   }
+};
+
+export const maxSkillInvested = (training: Training) => {
+  if (training === Training.SPECIALIZED)
+    return MAX_SKILL_INVESTED_SPECIALIZED;
+  else if (training === Training.TRAINED)
+    return MAX_SKILL_INVESTED_TRAINED;
+  else
+    return 0;
 };

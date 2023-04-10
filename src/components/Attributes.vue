@@ -20,7 +20,7 @@
         <input
           type="range"
           min="0"
-          max="190"
+          :max="maxAttributeInvested"
           value="0"
           v-on:change="changeInvested"
         />
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { MAX_ATTRIBUTE_INVESTED } from '../constants';
 import Attribute from "./Attribute.vue";
 
 export default {
@@ -67,15 +68,20 @@ export default {
   components: {
     Attribute,
   },
+  data() {
+    return {
+      maxAttributeInvested: MAX_ATTRIBUTE_INVESTED
+    };
+  },
   methods: {
     changeInvested(e) {
-      this.$store.commit("changeAllAttributeInvestment", e.target.value);
+      this.$store.dispatch("changeAllAttributeInvestment", e.target.value);
     },
     changeBuffed(e) {
-      this.$store.commit("changeAllAttributeBuffs", e.target.value);
+      this.$store.dispatch("changeAllAttributeBuffs", e.target.value);
     },
     changeCantrip(e) {
-      this.$store.commit("changeAllAttributeCantrips", e.target.value);
+      this.$store.dispatch("changeAllAttributeCantrips", e.target.value);
     },
   },
 };

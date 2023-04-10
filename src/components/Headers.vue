@@ -284,13 +284,13 @@ export default {
       this.$store.commit("updateLevel", actual);
     },
     changeAllInvestments(e) {
-      this.$store.commit("changeAllInvestment", e.target.value);
+      this.$store.dispatch("changeAllInvestment", e.target.value);
     },
     changeAllBuffs(e) {
-      this.$store.commit("changeAllBuffs", e.target.value);
+      this.$store.dispatch("changeAllBuffs", e.target.value);
     },
     changeAllCantrips(e) {
-      this.$store.commit("changeAllCantrips", e.target.value);
+      this.$store.dispatch("changeAllCantrips", e.target.value);
     },
   },
 };

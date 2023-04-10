@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { merge } from "lodash";
 import { createId } from "mnemonic-id";
 
-import { Character, Build } from "../types";
+import { Character, Build, Attribute, Vital, Skill } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 
 export default {
@@ -133,5 +133,53 @@ export default {
   },
   reorderStages(context: any, newOrder: any) {
     context.commit("reorderStages", newOrder);
+  },
+  changeAllInvestment(context: any, invested: string) {
+    context.dispatch("changeAllAttributeInvestment", invested);
+    context.dispatch("changeAllVitalInvestment", invested);
+    context.dispatch("changeAllSkillInvestment", invested);
+  },
+  changeAllAttributeInvestment(context: any, invested: string) {
+    Object.keys(Attribute).forEach(a => {
+      context.commit("updateAttributeInvested", {name: a, value: invested});
+    });
+  },
+  changeAllVitalInvestment(context: any, invested: string) {
+    Object.keys(Vital).forEach(vital => {
+      context.commit("updateVitalInvested", {name: vital, value: invested});
+    });
+  },
+  changeAllSkillInvestment(context: any, invested: string) {
+    Object.keys(Skill).forEach(skill => {
+      context.commit("updateSkillInvested", {name: skill, value: invested});
+    });
+  },
+  changeAllBuffs(context: any, buff: string) {
+    context.dispatch("changeAllAttributeBuffs", buff);
+    context.dispatch("changeAllSkillBuffs", buff);
+  },
+  changeAllAttributeBuffs(context: any, buff: string) {
+    Object.keys(Attribute).forEach(attribute => {
+      context.commit("updateAttributeBuff", {name: attribute, value: buff});
+    });
+  },
+  changeAllSkillBuffs(context: any, buff: string) {
+    Object.keys(Skill).forEach(skill => {
+      context.commit("updateSkillBuff", {name: skill, value: buff});
+    });
+  },
+  changeAllCantrips(context: any, cantrip: string) {
+    context.dispatch("changeAllAttributeCantrips", cantrip);
+    context.dispatch("changeAllSkillCantrips", cantrip);
+  },
+  changeAllAttributeCantrips(context: any, cantrip: string) {
+    Object.keys(Attribute).forEach(attribute => {
+      context.commit("updateAttributeCantrip", {name: attribute, value: cantrip});
+    });
+  },
+  changeAllSkillCantrips(context: any, cantrip: string) {
+    Object.keys(Skill).forEach(skill => {
+      context.commit("updateSkillCantrip", {name: skill, value: cantrip});
+    });
   },
 };
