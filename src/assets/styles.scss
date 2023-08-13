@@ -382,6 +382,9 @@ input.number {
   width: 2rem;
 }
 
+.bignumber input {
+  width: 2em;
+}
 .isBuffed {
   color: green;
   font-weight: bold;
@@ -508,6 +511,13 @@ input.number {
   width: 30%;
 }
 
+.w40 {
+  width: 30%;
+}
+
+.w50 {
+  width: 60%;
+}
 .w60 {
   width: 60%;
 }

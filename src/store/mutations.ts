@@ -9,6 +9,7 @@ import {
   MAX_VITAL_INVESTED,
   MAX_ATTRIBUTE_INVESTED,
   MAX_SKILL_INVESTED_SPECIALIZED,
+  MAX_LEVEL,
 } from "../constants";
 import {
   updateAugmentationInvestedSideEffect,
@@ -592,6 +593,12 @@ export default {
   // Settings
   updateSettingsNoLevelCap(state: State, value: boolean) {
     state.settings.noLevelCap = value;
+
+    // Reset level back to within 1-275
+    state.build.character.level = Math.min(
+      state.build.character.level,
+      MAX_LEVEL
+    );
   },
 
   // Auth

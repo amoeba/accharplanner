@@ -28,7 +28,7 @@
             <label for="male">Male</label>
           </div>
           <div>Level</div>
-          <div class="flex-row">
+          <div v-if="!settingsNoLevelCap" class="flex-row">
             <div class="w70">
               <input
                 class="w100"
@@ -41,6 +41,19 @@
             <div class="w30 right">
               <input
                 class="number w100"
+                type="text"
+                v-bind:value="level"
+                v-on:change="updateLevel"
+              />
+            </div>
+          </div>
+          <div v-if="settingsNoLevelCap" class="flex-row">
+            <div class="w50">
+              <span class="isBuffed">(∞-Mode)</span>
+            </div>
+            <div class="w40">
+              <input
+                class="bignumber w100"
                 type="text"
                 v-bind:value="level"
                 v-on:change="updateLevel"
@@ -258,6 +271,9 @@ export default {
     exportedCharacter() {
       return this.$store.getters.exportedCharacter;
     },
+    settingsNoLevelCap() {
+      return this.$store.state.settings.noLevelCap;
+    }
   },
   methods: {
     toggleCharacterPane() {
@@ -277,7 +293,7 @@ export default {
 
       if (isNaN(actual) || actual < MIN_LEVEL) {
         actual = MIN_LEVEL;
-      } else if (actual > MAX_LEVEL) {
+      } else if (!this.settingsNoLevelCap && actual > MAX_LEVEL) {
         actual = MAX_LEVEL;
       }
 

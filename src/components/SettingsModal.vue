@@ -3,7 +3,7 @@
     <h3>Custom Server Rules</h3>
     <label>
       <input type="checkbox" v-model="noLevelCap" />
-      No Level Cap
+      No Level Cap (∞-Mode)
     </label>
   </div>
 </template>

@@ -77,8 +77,15 @@ export default {
   totalXPEarned: (state: State) => {
     let cost: number = 0;
 
-    cost += COST_LEVEL[state.build.character.level];
-    cost += state.build.character.timesEnlightened * COST_LEVEL[MAX_LEVEL];
+    if (state.settings.noLevelCap && state.build.character.level > 275) {
+      cost = Math.round(
+        (1 / 9) *
+          (Math.pow(state.build.character.level + 5, 5) - Math.pow(6, 5))
+      );
+    } else {
+      cost += COST_LEVEL[state.build.character.level];
+      cost += state.build.character.timesEnlightened * COST_LEVEL[MAX_LEVEL];
+    }
 
     return cost;
   },
