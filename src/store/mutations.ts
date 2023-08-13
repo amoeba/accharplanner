@@ -589,6 +589,11 @@ export default {
     }
   },
 
+  // Settings
+  updateSettingsNoLevelCap(state: State, value: boolean) {
+    state.settings.noLevelCap = value;
+  },
+
   // Auth
   updateIsLoggedIn(state: State, value: boolean) {
     state.auth.isLoggedIn = value;

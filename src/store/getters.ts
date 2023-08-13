@@ -2458,6 +2458,11 @@ export default {
     return null;
   },
 
+  // Setttings
+  settingsNoLevelCap: (state: State, getters: any) => {
+    return state.settings.noLevelCap;
+  },
+
   // Auth
   isLoggedIn: (state: State, getters: any) => {
     return state.auth.isLoggedIn;

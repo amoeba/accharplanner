@@ -68,6 +68,10 @@ export interface Build {
   stages: Character[];
 }
 
+interface Settings {
+  noLevelCap: boolean;
+}
+
 interface AuthState {
   isLoggedIn: boolean;
   isAdmin: boolean;
@@ -76,6 +80,7 @@ interface AuthState {
 export interface State {
   ui: UIState;
   build: Build;
+  settings: Settings;
   auth: AuthState;
 }
 

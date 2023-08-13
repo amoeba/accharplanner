@@ -27,6 +27,9 @@ let state: State = {
     character: DefaultCharacter(),
     stages: [],
   },
+  settings: {
+    noLevelCap: false,
+  },
   auth: {
     isLoggedIn: false,
     isAdmin: false,
