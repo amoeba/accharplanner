@@ -284,10 +284,15 @@ export default {
   },
 
   updateVitalInvested(state: State, payload: any) {
-    state.build.character.vitals[payload.name].invested = Math.min(
-      Number(payload.value),
-      MAX_VITAL_INVESTED
-    );
+    let newval;
+
+    if (state.settings.noLevelCap) {
+      newval = Number(payload.value);
+    } else {
+      newval = Math.min(Number(payload.value), MAX_VITAL_INVESTED);
+    }
+
+    state.build.character.vitals[payload.name].invested = newval;
   },
 
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
