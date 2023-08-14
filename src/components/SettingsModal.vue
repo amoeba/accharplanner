@@ -2,8 +2,8 @@
   <div class="settings-modal">
     <h3>Custom Server Rules</h3>
     <label>
-      <input type="checkbox" v-model="noLevelCap" />
-      No Level Cap (∞-Mode)
+      <input type="checkbox" v-model="infiniteMode" />
+      Infinite Mode
     </label>
   </div>
 </template>
@@ -12,12 +12,12 @@
 export default {
   name: "SettingsModal",
   computed: {
-    noLevelCap: {
+    infiniteMode: {
       get() {
-        return this.$store.state.settings.noLevelCap;
+        return this.$store.state.settings.infiniteMode;
       },
       set(value) {
-        this.$store.commit("updateSettingsNoLevelCap", value);
+        this.$store.commit("updateSettingsInfiniteMode", value);
       }
     }
   }

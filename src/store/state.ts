@@ -28,7 +28,7 @@ let state: State = {
     stages: [],
   },
   settings: {
-    noLevelCap: false,
+    infiniteMode: false,
   },
   auth: {
     isLoggedIn: false,

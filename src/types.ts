@@ -69,7 +69,7 @@ export interface Build {
 }
 
 interface Settings {
-  noLevelCap: boolean;
+  infiniteMode: boolean;
 }
 
 interface AuthState {

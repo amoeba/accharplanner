@@ -77,7 +77,7 @@ export default {
   totalXPEarned: (state: State) => {
     let cost: number = 0;
 
-    if (state.settings.noLevelCap && state.build.character.level > 275) {
+    if (state.settings.infiniteMode && state.build.character.level > 275) {
       cost = Math.round(
         (1 / 9) *
           (Math.pow(state.build.character.level + 5, 5) - Math.pow(6, 5))
@@ -2466,8 +2466,8 @@ export default {
   },
 
   // Setttings
-  settingsNoLevelCap: (state: State, getters: any) => {
-    return state.settings.noLevelCap;
+  settingsInfiniteMode: (state: State, getters: any) => {
+    return state.settings.infiniteMode;
   },
 
   // Auth

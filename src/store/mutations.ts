@@ -264,7 +264,7 @@ export default {
   updateAttributeInvested(state: State, payload: any) {
     let newval;
 
-    if (state.settings.noLevelCap) {
+    if (state.settings.infiniteMode) {
       newval = Number(payload.value);
     } else {
       newval = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED);
@@ -286,7 +286,7 @@ export default {
   updateVitalInvested(state: State, payload: any) {
     let newval;
 
-    if (state.settings.noLevelCap) {
+    if (state.settings.infiniteMode) {
       newval = Number(payload.value);
     } else {
       newval = Math.min(Number(payload.value), MAX_VITAL_INVESTED);
@@ -298,7 +298,7 @@ export default {
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
     let skill = state.build.character.skills[payload.name];
 
-    if (state.settings.noLevelCap) {
+    if (state.settings.infiniteMode) {
       skill.invested = payload.value;
     } else {
       const max = maxSkillInvested(skill.training);
@@ -343,8 +343,8 @@ export default {
       case Training.SPECIALIZED:
         newTraining = Training.TRAINED;
 
-        // Stop now if no level cap
-        if (state.settings.noLevelCap) {
+        // Stop now if in infinite mode
+        if (state.settings.infiniteMode) {
           break;
         }
 
@@ -611,8 +611,8 @@ export default {
   },
 
   // Settings
-  updateSettingsNoLevelCap(state: State, value: boolean) {
-    state.settings.noLevelCap = value;
+  updateSettingsInfiniteMode(state: State, value: boolean) {
+    state.settings.infiniteMode = value;
 
     // Reset level back to within 1-275
     state.build.character.level = Math.min(

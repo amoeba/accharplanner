@@ -28,7 +28,7 @@
             <label for="male">Male</label>
           </div>
           <div>Level</div>
-          <div v-if="!settingsNoLevelCap" class="flex-row">
+          <div v-if="!settingsInfiniteMode" class="flex-row">
             <div class="w70">
               <input
                 class="w100"
@@ -47,7 +47,7 @@
               />
             </div>
           </div>
-          <div v-if="settingsNoLevelCap" class="flex-row">
+          <div v-if="settingsInfiniteMode" class="flex-row">
             <div class="w50">
               <span class="isBuffed">(∞-Mode)</span>
             </div>
@@ -271,8 +271,8 @@ export default {
     exportedCharacter() {
       return this.$store.getters.exportedCharacter;
     },
-    settingsNoLevelCap() {
-      return this.$store.state.settings.noLevelCap;
+    settingsInfiniteMode() {
+      return this.$store.state.settings.infiniteMode;
     }
   },
   methods: {
@@ -293,7 +293,7 @@ export default {
 
       if (isNaN(actual) || actual < MIN_LEVEL) {
         actual = MIN_LEVEL;
-      } else if (!this.settingsNoLevelCap && actual > MAX_LEVEL) {
+      } else if (!this.settingsInfiniteMode && actual > MAX_LEVEL) {
         actual = MAX_LEVEL;
       }
 
