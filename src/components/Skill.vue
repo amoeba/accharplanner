@@ -298,7 +298,9 @@ export default {
         value = 0;
       }
 
-      if (this.training === Training.SPECIALIZED && value > MAX_SKILL_INVESTED_SPECIALIZED) {
+      if (this.$store.state.settings.noLevelCap) {
+        // Do nothing
+      } else if (this.training === Training.SPECIALIZED && value > MAX_SKILL_INVESTED_SPECIALIZED) {
         value = MAX_SKILL_INVESTED_SPECIALIZED;
       } else if (this.training === Training.TRAINED && value > MAX_SKILL_INVESTED_TRAINED) {
         value = MAX_SKILL_INVESTED_TRAINED;

@@ -297,8 +297,13 @@ export default {
 
   updateSkillInvested(state: State, payload: { name: string; value: number }) {
     let skill = state.build.character.skills[payload.name];
-    const max = maxSkillInvested(skill.training);
-    skill.invested = Math.min(payload.value, max);
+
+    if (state.settings.noLevelCap) {
+      skill.invested = payload.value;
+    } else {
+      const max = maxSkillInvested(skill.training);
+      skill.invested = Math.min(payload.value, max);
+    }
   },
 
   updateSkillBuff(state: State, payload: any) {
@@ -337,6 +342,11 @@ export default {
     switch (currentTraining) {
       case Training.SPECIALIZED:
         newTraining = Training.TRAINED;
+
+        // Stop now if no level cap
+        if (state.settings.noLevelCap) {
+          break;
+        }
 
         // Reduce max skill invested to 208 (max for trained) if over
         if (
