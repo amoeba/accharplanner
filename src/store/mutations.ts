@@ -262,10 +262,15 @@ export default {
   },
 
   updateAttributeInvested(state: State, payload: any) {
-    state.build.character.attributes[payload.name].invested = Math.min(
-      Number(payload.value),
-      MAX_ATTRIBUTE_INVESTED
-    );
+    let newval;
+
+    if (state.settings.noLevelCap) {
+      newval = Number(payload.value);
+    } else {
+      newval = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED);
+    }
+
+    state.build.character.attributes[payload.name].invested = newval;
   },
 
   updateAttributeBuff(state: State, payload: any) {

@@ -181,7 +181,9 @@ export default {
         value = 0;
       }
 
-      if (value > MAX_ATTRIBUTE_INVESTED) {
+      if (this.$store.state.settings.noLevelCap) {
+        // Do nothing
+      } else if (value > MAX_ATTRIBUTE_INVESTED) {
         value = MAX_ATTRIBUTE_INVESTED;
       } else if (value < 0) {
         value = 0;
