@@ -2465,6 +2465,14 @@ export default {
     return null;
   },
 
+  // Modals
+  shareModalVisible(state: State) {
+    return state.ui.modalVisibility.share;
+  },
+  settingsModalVisible(state: State) {
+    return state.ui.modalVisibility.settings;
+  },
+
   // Setttings
   settingsInfiniteMode: (state: State, getters: any) => {
     return state.settings.infiniteMode;

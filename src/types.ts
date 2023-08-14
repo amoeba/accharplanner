@@ -53,6 +53,11 @@ export interface PaneVisibility {
   extraSkillCredits: boolean;
 }
 
+export interface ModalVisibility {
+  share: boolean;
+  settings: boolean;
+}
+
 export interface UIState {
   notifications: Notification[];
   savedBuilds: SavedBuild[];
@@ -60,6 +65,7 @@ export interface UIState {
   sharedBuild: string | null;
   currentStage: number | null;
   paneVisibility: PaneVisibility;
+  modalVisibility: ModalVisibility;
   darkMode: boolean | null;
 }
 

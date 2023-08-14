@@ -21,6 +21,10 @@ let state: State = {
       knobsAndDials: true,
       extraSkillCredits: true,
     },
+    modalVisibility: {
+      share: false,
+      settings: false,
+    },
     darkMode: null,
   },
   build: {

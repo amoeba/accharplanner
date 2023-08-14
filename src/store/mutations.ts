@@ -610,6 +610,15 @@ export default {
     }
   },
 
+  // Modals
+  setShareModalVisibility(state: State, value: boolean) {
+    state.ui.modalVisibility.share = value;
+  },
+
+  setSettingsModalVisibility(state: State, value: boolean) {
+    state.ui.modalVisibility.settings = value;
+  },
+
   // Settings
   updateSettingsInfiniteMode(state: State, value: boolean) {
     state.settings.infiniteMode = value;

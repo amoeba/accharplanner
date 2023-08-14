@@ -265,4 +265,18 @@ export default {
       });
     }
   },
+
+  // Modals
+  showShareModal(context: any) {
+    context.commit("setShareModalVisibility", true);
+  },
+  hideShareModal(context: any) {
+    context.commit("setShareModalVisibility", false);
+  },
+  showSettingsModal(context: any) {
+    context.commit("setSettingsModalVisibility", true);
+  },
+  hideSettingsModal(context: any) {
+    context.commit("setSettingsModalVisibility", false);
+  },
 };

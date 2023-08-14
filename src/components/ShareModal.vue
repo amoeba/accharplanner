@@ -1,6 +1,5 @@
 <template>
   <div class="share-modal">
-    <div class="share-modal-status">{{ shareStatus }}</div>
     <input
       id="sharedBuildURL"
       type="text"
@@ -23,9 +22,6 @@ export default {
     this.$store.dispatch("shareBuild");
   },
   computed: {
-    shareStatus() {
-      return this.$store.getters.shareStatus;
-    },
     sharedBuildURL() {
       const build = this.$store.getters.sharedBuild;
 
