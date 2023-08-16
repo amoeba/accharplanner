@@ -299,10 +299,10 @@ export default {
     let skill = state.build.character.skills[payload.name];
 
     if (state.settings.infiniteMode) {
-      skill.invested = payload.value;
+      skill.invested = Number(payload.value);
     } else {
       const max = maxSkillInvested(skill.training);
-      skill.invested = Math.min(payload.value, max);
+      skill.invested = Math.min(Number(payload.value), max);
     }
   },
 
