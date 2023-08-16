@@ -86,9 +86,27 @@
         </div>
         <div v-if="xpAndLuminancePaneVisible" class="header-items">
           <div>Unassigned</div>
-          <div class="right">{{ unassignedXP }}</div>
+          <div class="right">
+            <span
+              v-if="unassignedXPError"
+              class="tip"
+              v-tooltip="unassignedXPError"
+              >!</span
+            >
+            <span v-if="!unassignedXPError">{{ unassignedXP }}</span>
+          </div>
           <div>Spent</div>
-          <div class="right">{{ totalXPInvested }}</div>
+          <div class="right">
+            <span
+              v-if="totalXPInvestedError"
+              class="tip"
+              v-tooltip="
+                totalXPInvestedError
+              "
+              >!</span
+            >
+            <span v-if="!totalXPInvestedError">{{ totalXPInvested }}</span>
+          </div>
           <div>Total</div>
           <div class="right">{{ totalXPEarned }}</div>
           <div>Required Level</div>
@@ -204,8 +222,14 @@ export default {
     totalXPInvested() {
       return Number(this.$store.getters.totalXPInvested).toLocaleString();
     },
+    totalXPInvestedError() {
+      return this.$store.getters.totalXPInvestedError;
+    },
     unassignedXP() {
       return Number(this.$store.getters.unassignedXP).toLocaleString();
+    },
+    unassignedXPError() {
+      return this.$store.getters.unassignedXPError;
     },
     isOverspent() {
       return (

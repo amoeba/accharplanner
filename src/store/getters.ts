@@ -167,6 +167,18 @@ export default {
     return cost;
   },
 
+  totalXPInvestedError: (state: State, getters: any) => {
+    if (isNaN(getters.totalXPInvested)) {
+      if (state.settings.infiniteMode) {
+        return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know.";
+      } else {
+        return "Calculating total invested experience failed for an unknown reason. Please file a bug report.";
+      }
+    } else {
+      return false;
+    }
+  },
+
   unassignedXP: (state: State, getters: any) => {
     const diff = getters.totalXPEarned - getters.totalXPInvested;
 
@@ -175,6 +187,18 @@ export default {
     }
 
     return diff;
+  },
+
+  unassignedXPError: (state: State, getters: any) => {
+    if (isNaN(getters.totalXPInvested)) {
+      if (state.settings.infiniteMode) {
+        return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know.";
+      } else {
+        return "Calculating unassigned experience failed for an unknown reason. Please file a bug report.";
+      }
+    } else {
+      return false;
+    }
   },
 
   requiredLevel: (state: State, getters: any) => {
