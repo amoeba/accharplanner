@@ -188,8 +188,8 @@ import {
   MAX_LEVEL,
   MAX_TIMES_ENLIGHTENDED,
   MAX_SKILL_INVESTED_SPECIALIZED,
-} from "../constants";
-import { Race } from "../types";
+} from "../../constants";
+import { Race } from "../../types";
 
 export default {
   name: "Headers",

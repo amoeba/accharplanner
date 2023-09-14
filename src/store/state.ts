@@ -26,6 +26,7 @@ let state: State = {
       settings: false,
     },
     darkMode: null,
+    editMode: true,
   },
   build: {
     character: DefaultCharacter(),

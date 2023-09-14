@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import { MAX_ATTRIBUTE_INVESTED } from '../constants';
-import { ATTRIBUTE_NAME, BUFF_NAME, CANTRIP_NAME } from "../mappings";
+import { MAX_ATTRIBUTE_INVESTED } from '../../constants';
+import { ATTRIBUTE_NAME, BUFF_NAME, CANTRIP_NAME } from "../../mappings";
 
 export default {
   name: "Attribute",

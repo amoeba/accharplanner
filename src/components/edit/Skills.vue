@@ -153,9 +153,9 @@
 
 <script>
 import Skill from "./Skill.vue";
-import { Training } from "../types";
-import { MAX_SKILL_INVESTED_SPECIALIZED, MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
-import { filterText } from "../helpers";
+import { Training } from "../../types";
+import { MAX_SKILL_INVESTED_SPECIALIZED, MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../../constants";
+import { filterText } from "../../helpers";
 
 export default {
   name: "Skills",

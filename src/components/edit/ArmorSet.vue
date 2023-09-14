@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { ARMOR_SET_NAME, ARMOR_SET_NAME_EXTRA_INFO } from "../mappings";
+import { ARMOR_SET_NAME, ARMOR_SET_NAME_EXTRA_INFO } from "../../mappings";
 
 export default {
   name: "ArmorSet",

@@ -28,7 +28,7 @@
 
 <script>
 import Vital from "./Vital.vue";
-import { MAX_VITAL_INVESTED } from '../constants';
+import { MAX_VITAL_INVESTED } from '../../constants';
 
 export default {
   name: "Vitals",

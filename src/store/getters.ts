@@ -63,6 +63,10 @@ export default {
   extraSkillCreditsPaneVisible: (state: State) => {
     return state.ui.paneVisibility.extraSkillCredits;
   },
+  isEditMode: (state: State) => {
+    return state.ui.editMode;
+  },
+
   // General
   shareStatus: (state: State) => {
     return state.ui.shareStatus;

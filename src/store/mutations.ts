@@ -121,6 +121,9 @@ export default {
     state.build.character = DefaultCharacter();
     state.build.stages = [];
   },
+  toggleEditMode(state: State) {
+    state.ui.editMode = !state.ui.editMode;
+  },
   updateName(state: State, value: string) {
     state.build.character.name = value;
   },

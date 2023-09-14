@@ -35,8 +35,8 @@
 </template>
 
 <script>
-import { MAX_VITAL_INVESTED } from '../constants';
-import { VITAL_FORMULA } from "../mappings";
+import { MAX_VITAL_INVESTED } from '../../constants';
+import { VITAL_FORMULA } from "../../mappings";
 
 export default {
   name: "Vital",

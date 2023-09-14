@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { MAX_ATTRIBUTE_INVESTED } from '../constants';
+import { MAX_ATTRIBUTE_INVESTED } from '../../constants';
 import Attribute from "./Attribute.vue";
 
 export default {

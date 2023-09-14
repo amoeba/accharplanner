@@ -75,9 +75,9 @@ import {
   MAX_SPECIALIZED_SKILL_CREDITS_SPENT,
   MAX_SKILL_INVESTED_TRAINED,
   MAX_SKILL_INVESTED_SPECIALIZED
-} from "../constants";
-import { SKILL_NAME, SKILL_FORMULA } from "../mappings";
-import { Training } from "../types";
+} from "../../constants";
+import { SKILL_NAME, SKILL_FORMULA } from "../../mappings";
+import { Training } from "../../types";
 
 export default {
   name: "Skill",

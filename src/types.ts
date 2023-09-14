@@ -67,6 +67,7 @@ export interface UIState {
   paneVisibility: PaneVisibility;
   modalVisibility: ModalVisibility;
   darkMode: boolean | null;
+  editMode: boolean;
 }
 
 export interface Build {
