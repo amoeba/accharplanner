@@ -1,6 +1,6 @@
 import { Store } from "vuex";
 import { State } from "./types";
-import DefaultCharacter from "./store/DefaultCharacter";
+import DefaultCharacter from "../store/DefaultCharacter";
 import { Training, PropertyInt } from "./types";
 import {
   MAX_SKILL_INVESTED_TRAINED,

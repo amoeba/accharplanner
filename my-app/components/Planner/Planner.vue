@@ -117,13 +117,14 @@ export default {
     // Bind Esc key to closing an open modal
     const self = this;
 
-    document.addEventListener("keyup", function (evt) {
-      if (evt.keyCode === 27) {
-        if (self.modalVisible) {
-          self.modalVisible = false;
-        }
-      }
-    });
+    // // FIXME
+    // document.addEventListener("keyup", function (evt) {
+    //   if (evt.keyCode === 27) {
+    //     if (self.modalVisible) {
+    //       self.modalVisible = false;
+    //     }
+    //   }
+    // });
 
     // Load remote built (if URL is right)
     const path = this.$route.path;
