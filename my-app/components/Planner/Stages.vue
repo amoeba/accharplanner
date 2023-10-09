@@ -9,27 +9,13 @@
           <button class="stage-new" v-on:click="save">Save Stage</button>
         </div>
       </div>
-      <div
-        v-if="visible"
-        id="stages"
-        class="header-items"
-        v-bind:droppable="true"
-        v-on:drop="drop"
-        v-on:dragover="dragover"
-      >
+      <div v-if="visible" id="stages" class="header-items" v-bind:droppable="true" v-on:drop="drop"
+        v-on:dragover="dragover">
         <div v-if="stages.length === 0">
           No stages have been set up for this build.
         </div>
-        <Stage
-          v-for="(stage, index) in stages"
-          v-bind:key="index"
-          v-bind:index="index"
-          v-bind:level="stage.level"
-          v-bind:data-index="index"
-          v-bind:stages="stages.length"
-          v-on:dragstart="dragStart"
-          :draggable="true"
-        />
+        <Stage v-for="(stage, index) in stages" v-bind:key="index" v-bind:index="index" v-bind:level="stage.level"
+          v-bind:data-index="index" v-bind:stages="stages.length" v-on:dragstart="dragStart" :draggable="true" />
       </div>
     </div>
   </div>

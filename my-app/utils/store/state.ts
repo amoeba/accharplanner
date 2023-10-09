@@ -1,5 +1,4 @@
 import DefaultCharacter from "./DefaultCharacter";
-import { State } from "../types";
 
 let state: State = {
   ui: {

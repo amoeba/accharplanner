@@ -4,12 +4,8 @@
     <header>
       <div class="logo">
         <router-link to="/">
-          <img
-            src="/img/icons/axe_shield.gif"
-            width="32"
-            height="32"
-            alt="Overly-Detailed Asheron's Call Character Planner (ODAACP)"
-          />
+          <img src="/img/icons/axe_shield.gif" width="32" height="32"
+            alt="Overly-Detailed Asheron's Call Character Planner (ODAACP)" />
         </router-link>
       </div>
       <nav>
@@ -20,11 +16,7 @@
         <router-link to="/changelog">Changelog</router-link>
         <router-link to="/about">About</router-link>
       </nav>
-      <button
-        aria-label="Toggle theme between dark and light"
-        class="theme-toggle"
-        @click="toggleDarkMode"
-      ></button>
+      <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>
     </header>
     <main>
       <router-view></router-view>
@@ -39,9 +31,6 @@
 </template>
 
 <script>
-import Notifications from "./Notifications.vue";
-import { THEME } from "../types";
-import { importCharacter } from "../import";
 import { createClient } from "@supabase/supabase-js";
 
 export default {

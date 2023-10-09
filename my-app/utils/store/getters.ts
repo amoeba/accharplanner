@@ -25,8 +25,6 @@ import {
   wiseSetManaBonus,
   dedicationSetBonus,
 } from "../helpers";
-import { State } from "../types";
-import { Attribute, Skill, Training, Race, Augmentation } from "../types";
 
 export default {
   // UI stuff

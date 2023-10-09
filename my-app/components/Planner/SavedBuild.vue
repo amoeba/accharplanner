@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { exportCharacter } from "../helpers";
+
 
 export default {
   name: "Build",

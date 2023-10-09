@@ -8,12 +8,8 @@
         <div class="right">
           <span v-if="errors" class="error">{{ errors }}</span>
           &nbsp;
-          <span
-            v-tooltip="
-              'Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380.'
-            "
-            >{{ attributePointsSpent }} / {{ attributePointsAvailable }}</span
-          >
+          <span v-tooltip="'Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380.'
+            ">{{ attributePointsSpent }} / {{ attributePointsAvailable }}</span>
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
@@ -27,8 +23,8 @@
 </template>
 
 <script>
-import Attributes from "./Attributes.vue";
-import Vitals from "./Vitals.vue";
+import Attributes from "./Attributes"
+import Vitals from "./Vitals"
 
 export default {
   name: "AttributesAndVitals",

@@ -26,8 +26,6 @@
 <script>
 import { createClient } from "@supabase/supabase-js";
 
-import BuildsEntry from "./BuildsEntry.vue";
-
 export default {
   name: "Builds",
   components: {

@@ -1,12 +1,7 @@
 <template>
   <tr>
     <td>
-      <img
-        :src="'/img/' + name + '.png'"
-        :alt="displayName"
-        width="20"
-        height="20"
-      />
+      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
     </td>
     <td>
       {{ displayName }}
@@ -26,21 +21,11 @@
     </td>
     <td>
       <div v-if="canInvest">
-        <input
-          type="range"
-          min="0"
-          v-bind:max="maxInvestment"
-          v-model="invested"
-        />
+        <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
       </div>
     </td>
     <td class="invested number">
-      <input
-        type="text"
-        v-bind:value="invested"
-        v-on:change="updateInvested"
-        v-bind:tabindex="tabIndex"
-      />
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
@@ -68,16 +53,8 @@
 </template>
 
 <script>
-import {
-  SPEC_COSTS_AUG,
-  UNTRAINABLE,
-  SKILL_COST_AT_TRAINING,
-  MAX_SPECIALIZED_SKILL_CREDITS_SPENT,
-  MAX_SKILL_INVESTED_TRAINED,
-  MAX_SKILL_INVESTED_SPECIALIZED
-} from "../constants";
-import { SKILL_NAME, SKILL_FORMULA } from "../mappings";
-import { Training } from "../types";
+
+
 
 export default {
   name: "Skill",
@@ -158,7 +135,7 @@ export default {
       // Can't if out of credits
       let newTraining =
         this.$store.state.build.character.skills[this.name].training ==
-        Training.TRAINED
+          Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED;
 
@@ -186,7 +163,7 @@ export default {
       if (
         newTraining === Training.SPECIALIZED &&
         this.$store.getters.specializedSkillPointsSpent + newCost >
-          MAX_SPECIALIZED_SKILL_CREDITS_SPENT
+        MAX_SPECIALIZED_SKILL_CREDITS_SPENT
       ) {
         return true;
       }

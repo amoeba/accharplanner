@@ -1,10 +1,10 @@
-import {
-  MAX_CREATION_ATTRIBUTE_POINTS,
-  MAX_SKILL_INVESTED_SPECIALIZED,
-  MAX_SKILL_INVESTED_TRAINED,
-  MIN_CREATION_ATTRIBUTE_POINTS,
-} from "./constants";
-import { Training } from "./types";
+// import {
+//   MAX_CREATION_ATTRIBUTE_POINTS,
+//   MAX_SKILL_INVESTED_SPECIALIZED,
+//   MAX_SKILL_INVESTED_TRAINED,
+//   MIN_CREATION_ATTRIBUTE_POINTS,
+// } from "./constants";
+// import { Training } from "./types";
 
 /**
  * Specialized skills were given a free +10 bonus. Skills trained at creation
@@ -205,10 +205,7 @@ export const updateAugmentationInvestedSideEffect = function (
 };
 
 export const maxSkillInvested = (training: Training) => {
-  if (training === Training.SPECIALIZED)
-    return MAX_SKILL_INVESTED_SPECIALIZED;
-  else if (training === Training.TRAINED)
-    return MAX_SKILL_INVESTED_TRAINED;
-  else
-    return 0;
+  if (training === Training.SPECIALIZED) return MAX_SKILL_INVESTED_SPECIALIZED;
+  else if (training === Training.TRAINED) return MAX_SKILL_INVESTED_TRAINED;
+  else return 0;
 };

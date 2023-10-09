@@ -1,12 +1,7 @@
 <template>
   <tr>
     <td>
-      <img
-        :src="'/img/' + name + '.png'"
-        :alt="displayName"
-        width="20"
-        height="20"
-      />
+      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
     </td>
     <td>
       {{ displayName }}
@@ -22,12 +17,7 @@
       <input type="range" min="0" :max="maxVitalInvested" v-model="invested" />
     </td>
     <td class="invested number">
-      <input
-        type="text"
-        v-bind:value="invested"
-        v-on:change="updateInvested"
-        v-bind:tabindex="tabIndex"
-      />
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -35,9 +25,6 @@
 </template>
 
 <script>
-import { MAX_VITAL_INVESTED } from '../constants';
-import { VITAL_FORMULA } from "../mappings";
-
 export default {
   name: "Vital",
   props: {
@@ -89,7 +76,7 @@ export default {
         value = 0;
       }
 
-      if (this.$store.state.settings.infiniteMode){
+      if (this.$store.state.settings.infiniteMode) {
         // Do nothing
       } else if (value > MAX_VITAL_INVESTED) {
         value = MAX_VITAL_INVESTED;

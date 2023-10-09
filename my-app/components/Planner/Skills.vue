@@ -3,20 +3,14 @@
     <div>
       <div class="pane-header" v-on:click="toggle">
         <div>
-                    <span
-            class="tip"
-            v-tooltip="
-              'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'
-            "
-            >!</span>&nbsp;
+          <span class="tip" v-tooltip="'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'
+            ">!</span>&nbsp;
           <h3>Skills</h3>
 
           <span class="red">{{ skillPointsSpentErrorText }}</span>
         </div>
         <div class="right">
-          <span v-tooltip="'Skill points spent.'"
-            >{{ skillPointsSpent }} / {{ skillPointsAvailable }}</span
-          >
+          <span v-tooltip="'Skill points spent.'">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</span>
         </div>
       </div>
       <div v-if="collapsed" class="table-wrapper">
@@ -25,14 +19,11 @@
             <tr class="table-header">
               <th colspan="4">Name</th>
               <th>
-                <span
-                  v-tooltip="{
-                    content:
-                      '<strong>Trained:</strong> No Bonus<br><strong>Specialized:</strong> +10',
-                    html: true,
-                  }"
-                  >Base</span
-                >
+                <span v-tooltip="{
+                  content:
+                    '<strong>Trained:</strong> No Bonus<br><strong>Specialized:</strong> +10',
+                  html: true,
+                }">Base</span>
               </th>
               <th>Buffed</th>
               <th colspan="2">Invested</th>
@@ -41,19 +32,13 @@
             </tr>
             <tr class="controls">
               <th colspan="4">
-                <input v-model="filterQuery" class="w60" placeholder="Filter"/>
+                <input v-model="filterQuery" class="w60" placeholder="Filter" />
                 <button v-if="filterPresent" @click="clearFilter">x</button>
               </th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="2">
-                <input
-                  type="range"
-                  min="0"
-                  :max="maxSkillInvestedSpecialized"
-                  value="0"
-                  v-on:change="changeInvested"
-                />
+                <input type="range" min="0" :max="maxSkillInvestedSpecialized" value="0" v-on:change="changeInvested" />
               </th>
               <th>
                 <select v-on:change="changeBuffed">
@@ -82,7 +67,8 @@
           <tbody>
             <tr class="specialized">
               <th colspan="7">
-                <span v-tooltip="'You are limited to 70 total credits specialized. Specialized skills get a 10 point bonus.'">
+                <span
+                  v-tooltip="'You are limited to 70 total credits specialized. Specialized skills get a 10 point bonus.'">
                   Specialized ({{ specializedSkillPointsSpent }} /
                   {{ maxSpecializedSkillPointsSpent }})
                   {{ augmentationsRequiredText }}
@@ -95,13 +81,8 @@
             <tr v-if="noSpecializedSkills">
               <td class="center" colspan="12">No specialized skills</td>
             </tr>
-            <Skill
-              v-for="(skill, index) in specializedSkills"
-              :key="skill"
-              :name="skill"
-              training="specialized"
-              :tabIndex="index + 1000"
-            />
+            <Skill v-for="(skill, index) in specializedSkills" :key="skill" :name="skill" training="specialized"
+              :tabIndex="index + 1000" />
             <tr class="trained">
               <th colspan="4">Trained</th>
               <th>&nbsp;</th>
@@ -111,39 +92,24 @@
             <tr v-if="noTrainedSkills">
               <td class="center" colspan="12">No trained skills</td>
             </tr>
-            <Skill
-              v-for="(skill, index) in trainedSkills"
-              :key="skill"
-              :name="skill"
-              training="trained"
-              :tabIndex="index + 1100"
-            />
+            <Skill v-for="(skill, index) in trainedSkills" :key="skill" :name="skill" training="trained"
+              :tabIndex="index + 1100" />
             <tr class="untrained">
               <th colspan="4">Untrained</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="6">&nbsp;</th>
             </tr>
-            <Skill
-              v-for="(skill, index) in untrainedSkills"
-              :key="skill"
-              :name="skill"
-              training="untrained"
-              :tabIndex="index + 1200"
-            />
+            <Skill v-for="(skill, index) in untrainedSkills" :key="skill" :name="skill" training="untrained"
+              :tabIndex="index + 1200" />
             <tr class="unusable">
               <th colspan="4">Unusable</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th colspan="6">&nbsp;</th>
             </tr>
-            <Skill
-              v-for="(skill, index) in unusableSkills"
-              :key="skill"
-              :name="skill"
-              training="unusable"
-              :tabIndex="index + 1300"
-            />
+            <Skill v-for="(skill, index) in unusableSkills" :key="skill" :name="skill" training="unusable"
+              :tabIndex="index + 1300" />
           </tbody>
         </table>
       </div>
@@ -153,9 +119,6 @@
 
 <script>
 import Skill from "./Skill.vue";
-import { Training } from "../types";
-import { MAX_SKILL_INVESTED_SPECIALIZED, MAX_SPECIALIZED_SKILL_CREDITS_SPENT } from "../constants";
-import { filterText } from "../helpers";
 
 export default {
   name: "Skills",
@@ -240,7 +203,7 @@ export default {
         .filter((key) =>
           this.$store.state.build.character.skills[key].training ===
           Training.UNUSABLE
-      );
+        );
       return filterText(this.filterQuery, collection);
     },
     noSpecializedSkills() {
@@ -273,19 +236,19 @@ export default {
 };
 </script>
 <style scoped>
-.specialized > th {
+.specialized>th {
   background-color: rgba(255, 0, 255, 0.2);
 }
 
-.trained > th {
+.trained>th {
   background-color: rgba(0, 255, 255, 0.2);
 }
 
-.untrained > th {
+.untrained>th {
   background-color: rgba(220, 220, 0, 0.5);
 }
 
-.unusable > th {
+.unusable>th {
   background-color: rgba(220, 220, 0, 0.5);
 }
 </style>

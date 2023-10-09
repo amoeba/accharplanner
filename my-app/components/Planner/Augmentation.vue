@@ -5,13 +5,7 @@
       <span class="faded">{{ extraInfo }}</span>
     </td>
     <td>
-      <input
-        type="range"
-        min="0"
-        v-bind:max="max"
-        v-bind:value="invested"
-        v-on:change="updateInvested"
-      />
+      <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />
     </td>
     <td class="number">
       <input type="text" v-bind:value="invested" v-on:change="updateInvested" />
@@ -20,8 +14,8 @@
 </template>
 
 <script>
-import { AUGMENTATION_MAX_USES } from "../constants";
-import { AUGMENTATION_NAME, AUGMENTATION_EXTRA_INFO } from "../mappings";
+
+
 
 export default {
   name: "Augmentation",

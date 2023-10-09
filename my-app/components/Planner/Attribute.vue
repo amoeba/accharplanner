@@ -1,24 +1,14 @@
 <template>
   <tr>
     <td>
-      <img
-        :src="'/img/' + name + '.png'"
-        :alt="displayName"
-        width="20"
-        height="20"
-      />
+      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
     </td>
     <td>{{ displayName }}</td>
     <td>
       <input type="range" min="10" max="100" v-model="creation" />
     </td>
     <td class="number">
-      <input
-        type="text"
-        v-bind:value="creation"
-        v-on:change="updateCreation"
-        v-bind:tabindex="tabIndex"
-      />
+      <input type="text" v-bind:value="creation" v-on:change="updateCreation" v-bind:tabindex="tabIndex" />
     </td>
     <td class="base number">{{ base }}</td>
     <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
@@ -28,12 +18,7 @@
       <input type="range" min="0" :max="maxAttributeInvested" v-model="invested" />
     </td>
     <td class="invested number">
-      <input
-        type="text"
-        v-bind:value="invested"
-        v-on:change="updateInvested"
-        v-bind:tabindex="tabIndex"
-      />
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
@@ -62,9 +47,6 @@
 </template>
 
 <script>
-import { MAX_ATTRIBUTE_INVESTED } from '../constants';
-import { ATTRIBUTE_NAME, BUFF_NAME, CANTRIP_NAME } from "../mappings";
-
 export default {
   name: "Attribute",
   props: {

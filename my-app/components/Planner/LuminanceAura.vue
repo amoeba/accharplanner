@@ -10,13 +10,7 @@
       <span style="margin-left: 0.5em" class="faded">{{ extraInfo }}</span>
     </td>
     <td>
-      <input
-        type="range"
-        min="0"
-        v-bind:max="max"
-        v-bind:value="invested"
-        v-on:change="updateInvested"
-      />
+      <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />
     </td>
     <td class="number">
       <input type="text" v-bind:value="invested" v-on:change="updateInvested" />
@@ -25,12 +19,7 @@
 </template>
 
 <script>
-import { LUMINANCE_AURA_MAX_USES } from "../constants";
-import {
-  LUMINANCE_AURA_NAME,
-  LUMINANCE_AURA_HOVER_INFO,
-  LUMINANCE_AURA_EXTRA_INFO,
-} from "../mappings";
+
 
 export default {
   name: "LuminanceAura",

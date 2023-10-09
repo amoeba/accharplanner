@@ -8,13 +8,7 @@
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>
-        <input
-          type="range"
-          min="0"
-          :max="maxVitalInvested"
-          value="0"
-          v-on:change="changeInvested"
-        />
+        <input type="range" min="0" :max="maxVitalInvested" value="0" v-on:change="changeInvested" />
       </th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
@@ -28,7 +22,6 @@
 
 <script>
 import Vital from "./Vital.vue";
-import { MAX_VITAL_INVESTED } from '../constants';
 
 export default {
   name: "Vitals",

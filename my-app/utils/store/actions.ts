@@ -2,7 +2,6 @@ import { createClient } from "@supabase/supabase-js";
 import { merge } from "lodash";
 import { createId } from "mnemonic-id";
 
-import { Character, Build, Attribute, Vital, Skill } from "../types";
 import DefaultCharacter from "./DefaultCharacter";
 
 export default {

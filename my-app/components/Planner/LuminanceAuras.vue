@@ -1,9 +1,9 @@
 <template>
-  <div id="augmentations" class="pane augmentations">
+  <div id="luminance" class="pane luminance">
     <div>
       <div class="pane-header" v-on:click="toggle">
         <div>
-          <h3>Experience Augmentations</h3>
+          <h3>Luminance Auras</h3>
         </div>
         <div class="right">
           <span v-if="errors" class="error">{{ errors }}</span>
@@ -18,27 +18,17 @@
             </tr>
             <tr class="controls">
               <th>
-                <input v-model="filterQuery" class="w60" placeholder="Filter"/>
+                <input v-model="filterQuery" class="w60" placeholder="Filter" />
                 <button v-if="filterPresent" @click="clearFilter">x</button>
               </th>
               <th>
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  value="0"
-                  v-on:change="changeInvested"
-                />
+                <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
               </th>
               <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
-            <Augmentation
-              v-for="(augmentation) in augmentations"
-              :key="augmentation"
-              :name="augmentation"
-            />
+            <LuminanceAura v-for="(aura) in auras" :key="aura" :name="aura" />
           </tbody>
         </table>
       </div>
@@ -47,14 +37,12 @@
 </template>
 
 <script>
-import Augmentation from "./Augmentation.vue";
-import { filterText } from "../helpers";
-import { AUGMENTATION_NAME } from "../mappings";
+import LuminanceAura from "./LuminanceAura.vue";
 
 export default {
-  name: "Augmentations",
+  name: "LuminanceAuras",
   components: {
-    Augmentation,
+    LuminanceAura,
   },
   data() {
     return {
@@ -63,13 +51,13 @@ export default {
   },
   computed: {
     collapsed() {
-      return this.$store.getters.augmentationsPaneVisible;
+      return this.$store.getters.aurasPaneVisible;
     },
     errors() {
-      return this.$store.getters.augmentationErrors;
+      return this.$store.getters.auraErrors;
     },
-    augmentations() {
-      return filterText(this.filterQuery, Object.keys(AUGMENTATION_NAME));
+    auras() {
+      return filterText(this.filterQuery, Object.keys(LUMINANCE_AURA_NAME));
     },
     filterPresent() {
       return this.filterQuery !== "";
@@ -77,14 +65,14 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.$store.commit("changeAllAugmentationInvestment", e.target.value);
+      this.$store.commit("changeAllLuminanceAuraInvestment", e.target.value);
     },
     toggle() {
-      this.$store.commit("toggleAugmentationsPane");
+      this.$store.commit("toggleAurasPane");
     },
     clearFilter() {
       this.filterQuery = "";
-    }
+    },
   },
 };
 </script>

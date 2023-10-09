@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ITEM_NAME } from "../mappings";
+
 
 export default {
   name: "Item",

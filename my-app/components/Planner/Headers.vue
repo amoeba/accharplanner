@@ -30,26 +30,19 @@
           <div>
             Level
             <button class="button-icononly" @click="showSettingsModal">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M232,120h-8.34a95.07,95.07,0,0,0-8.82-32.9l7.23-4.17a8,8,0,0,0-8-13.86l-7.25,4.19a97,97,0,0,0-24.08-24.08l4.19-7.25a8,8,0,0,0-13.86-8l-4.17,7.23A95.07,95.07,0,0,0,136,32.34V24a8,8,0,0,0-16,0v8.34a95.07,95.07,0,0,0-32.9,8.82l-4.17-7.23a8,8,0,0,0-13.86,8l4.19,7.25A97,97,0,0,0,49.18,73.26l-7.25-4.19a8,8,0,0,0-8,13.86l7.23,4.17A95.07,95.07,0,0,0,32.34,120H24a8,8,0,0,0,0,16h8.34a95.07,95.07,0,0,0,8.82,32.9l-7.23,4.17a8,8,0,0,0,4,14.93,7.92,7.92,0,0,0,4-1.07l7.25-4.19a97,97,0,0,0,24.08,24.08l-4.19,7.25a8,8,0,0,0,13.86,8l4.17-7.23a95.07,95.07,0,0,0,32.9,8.82V232a8,8,0,0,0,16,0v-8.34a95.07,95.07,0,0,0,32.9-8.82l4.17,7.23a8,8,0,0,0,13.86-8l-4.19-7.25a97,97,0,0,0,24.08-24.08l7.25,4.19A8,8,0,0,0,225,184a8,8,0,0,0-2.92-10.93l-7.23-4.17a95.07,95.07,0,0,0,8.82-32.9H232a8,8,0,0,0,0-16ZM72,128A55.91,55.91,0,0,1,93.38,84l25.38,44L93.38,172A55.91,55.91,0,0,1,72,128Zm56,56a55.67,55.67,0,0,1-20.78-4l25.4-44h50.8A56.09,56.09,0,0,1,128,184Zm4.62-64-25.4-44a56,56,0,0,1,76.2,44Z"></path></svg>
-              </button>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M232,120h-8.34a95.07,95.07,0,0,0-8.82-32.9l7.23-4.17a8,8,0,0,0-8-13.86l-7.25,4.19a97,97,0,0,0-24.08-24.08l4.19-7.25a8,8,0,0,0-13.86-8l-4.17,7.23A95.07,95.07,0,0,0,136,32.34V24a8,8,0,0,0-16,0v8.34a95.07,95.07,0,0,0-32.9,8.82l-4.17-7.23a8,8,0,0,0-13.86,8l4.19,7.25A97,97,0,0,0,49.18,73.26l-7.25-4.19a8,8,0,0,0-8,13.86l7.23,4.17A95.07,95.07,0,0,0,32.34,120H24a8,8,0,0,0,0,16h8.34a95.07,95.07,0,0,0,8.82,32.9l-7.23,4.17a8,8,0,0,0,4,14.93,7.92,7.92,0,0,0,4-1.07l7.25-4.19a97,97,0,0,0,24.08,24.08l-4.19,7.25a8,8,0,0,0,13.86,8l4.17-7.23a95.07,95.07,0,0,0,32.9,8.82V232a8,8,0,0,0,16,0v-8.34a95.07,95.07,0,0,0,32.9-8.82l4.17,7.23a8,8,0,0,0,13.86-8l-4.19-7.25a97,97,0,0,0,24.08-24.08l7.25,4.19A8,8,0,0,0,225,184a8,8,0,0,0-2.92-10.93l-7.23-4.17a95.07,95.07,0,0,0,8.82-32.9H232a8,8,0,0,0,0-16ZM72,128A55.91,55.91,0,0,1,93.38,84l25.38,44L93.38,172A55.91,55.91,0,0,1,72,128Zm56,56a55.67,55.67,0,0,1-20.78-4l25.4-44h50.8A56.09,56.09,0,0,1,128,184Zm4.62-64-25.4-44a56,56,0,0,1,76.2,44Z">
+                </path>
+              </svg>
+            </button>
           </div>
           <div v-if="!settingsInfiniteMode" class="flex-row">
             <div class="w70">
-              <input
-                class="w100"
-                type="range"
-                min="1"
-                :max="maxLevel"
-                v-model="level"
-              />
+              <input class="w100" type="range" min="1" :max="maxLevel" v-model="level" />
             </div>
             <div class="w30 right">
-              <input
-                class="number w100"
-                type="text"
-                v-bind:value="level"
-                v-on:change="updateLevel"
-              />
+              <input class="number w100" type="text" v-bind:value="level" v-on:change="updateLevel" />
             </div>
           </div>
           <div v-if="settingsInfiniteMode" class="flex-row">
@@ -57,12 +50,7 @@
               <span class="isBuffed">(∞-Mode)</span>
             </div>
             <div class="w40">
-              <input
-                class="bignumber w100"
-                type="text"
-                v-bind:value="level"
-                v-on:change="updateLevel"
-              />
+              <input class="bignumber w100" type="text" v-bind:value="level" v-on:change="updateLevel" />
             </div>
           </div>
         </div>
@@ -75,36 +63,20 @@
             <h3>XP &amp; Luminance</h3>
           </div>
           <div class="right">
-            <span
-              class="tip"
-              v-tooltip="
-                'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'
-              "
-              >!</span
-            >
+            <span class="tip" v-tooltip="'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'
+              ">!</span>
           </div>
         </div>
         <div v-if="xpAndLuminancePaneVisible" class="header-items">
           <div>Unassigned</div>
           <div class="right">
-            <span
-              v-if="unassignedXPError"
-              class="tip"
-              v-tooltip="unassignedXPError"
-              >!</span
-            >
+            <span v-if="unassignedXPError" class="tip" v-tooltip="unassignedXPError">!</span>
             <span v-if="!unassignedXPError">{{ unassignedXP }}</span>
           </div>
           <div>Spent</div>
           <div class="right">
-            <span
-              v-if="totalXPInvestedError"
-              class="tip"
-              v-tooltip="
-                totalXPInvestedError
-              "
-              >!</span
-            >
+            <span v-if="totalXPInvestedError" class="tip" v-tooltip="totalXPInvestedError
+              ">!</span>
             <span v-if="!totalXPInvestedError">{{ totalXPInvested }}</span>
           </div>
           <div>Total</div>
@@ -128,14 +100,8 @@
         <div v-if="knobsAndDialsPaneVisible" class="header-items">
           <div>Invested</div>
           <div>
-            <input
-              class="w100"
-              type="range"
-              min="0"
-              :max="maxSkillInvestedSpecialized"
-              value="0"
-              v-on:change="changeAllInvestments"
-            />
+            <input class="w100" type="range" min="0" :max="maxSkillInvestedSpecialized" value="0"
+              v-on:change="changeAllInvestments" />
           </div>
           <div>Buffs</div>
           <div>
@@ -167,11 +133,7 @@
               <input type="range" min="0" :max="maxTimesEnlightened" v-model="timesEnlightened" />
             </div>
             <div class="w30 right">
-              <input
-                class="number"
-                type="text"
-                v-model="timesEnlightened"
-              />
+              <input class="number" type="text" v-model="timesEnlightened" />
             </div>
           </div>
         </div>
@@ -183,13 +145,6 @@
 
 <script>
 import ExtraSkillCredits from "./ExtraSkillCredits.vue";
-import {
-  MIN_LEVEL,
-  MAX_LEVEL,
-  MAX_TIMES_ENLIGHTENDED,
-  MAX_SKILL_INVESTED_SPECIALIZED,
-} from "../constants";
-import { Race } from "../types";
 
 export default {
   name: "Headers",
@@ -234,9 +189,9 @@ export default {
     isOverspent() {
       return (
         Number(this.$store.getters.totalXPInvested) >
-          Number(this.$store.getters.totalXPEarned) ||
+        Number(this.$store.getters.totalXPEarned) ||
         this.$store.getters.skillPointsSpent >
-          this.$store.getters.skillPointsAvailable
+        this.$store.getters.skillPointsAvailable
       );
     },
     skillPointsSpent() {

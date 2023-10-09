@@ -1,14 +1,3 @@
-import {
-  Attribute,
-  Vital,
-  Skill,
-  Training,
-  Augmentation,
-  LuminanceAura,
-  StringIndexedDict,
-  NumberIndexedDict,
-} from "./types";
-
 export const MIN_LEVEL: number = 1;
 export const MAX_LEVEL: number = 275;
 export const MAX_TIMES_ENLIGHTENDED: number = 5;

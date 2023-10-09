@@ -1,3 +1,4 @@
 <template>
-  Planner
+  Planner goes here
+  <Planner />
 </template>

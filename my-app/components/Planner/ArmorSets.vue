@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import ArmorSet from "./ArmorSet.vue";
-
 export default {
   name: "ArmorSets",
   components: {
@@ -59,4 +57,5 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+</style>

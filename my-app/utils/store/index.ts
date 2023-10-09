@@ -3,7 +3,7 @@ import VuexPersistence from "vuex-persist";
 import state from "./state";
 import getters from "./getters";
 import mutations from "./mutations";
-import { State } from "../types";
+
 import actions from "./actions";
 
 // Automatically persist state to localStorage
