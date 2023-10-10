@@ -163,6 +163,5 @@ button.theme-toggle {
   margin: 0 0 0 0.5em;
   padding: 0.25rem;
   filter: var(--icon-filter);
-  transform: translateY(1px); /* Optical adjustment */
   transition: filter 500ms ease-in-out;
 }

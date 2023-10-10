@@ -25,9 +25,9 @@ function toggleDarkMode(event: Event) {
       <NuxtLink to="/planner">Planner</NuxtLink>
       <NuxtLink to="/builds">Builds</NuxtLink>
     </div>
-    <div class="justify-self-end items-center p-2">
+    <div class="flex gap-2 justify-self-end items-center p-2">
       <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>
-      <NuxtLink href="https://github.com/amoeba/accharplanner">G</NuxtLink> \
+      <NuxtLink href="https://github.com/amoeba/accharplanner">G</NuxtLink>
       Log In
     </div>
   </header>
