@@ -144,6 +144,7 @@ ul {
 
 .header h3 {
   display: inline;
+  font-weight: bold;
 }
 
 /* Panes */
@@ -175,9 +176,9 @@ ul {
 .pane .pane-header div h3 {
   margin: 0;
   padding: 0;
-  font-size: 120%;
   display: inline;
   margin-right: 1rem;
+  font-weight: bold;
 }
 
 .pane .table-wrapper {
