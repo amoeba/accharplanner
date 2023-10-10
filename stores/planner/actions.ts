@@ -177,60 +177,6 @@ export default {
       message: "Successfully imported build.",
     });
   },
-  reorderStages(newOrder: any) {
-    this.reorderStages(newOrder);
-  },
-  changeAllInvestment(invested: string) {
-    this.changeAllAttributeInvestment(invested);
-    this.changeAllVitalInvestment(invested);
-    this.changeAllSkillInvestment(invested);
-  },
-  changeAllAttributeInvestment(invested: string) {
-    Object.keys(Attribute).forEach((a) => {
-      this.updateAttributeInvested({ name: a, value: invested });
-    });
-  },
-  changeAllVitalInvestment(invested: string) {
-    Object.keys(Vital).forEach((vital) => {
-      this.updateVitalInvested({ name: vital, value: invested });
-    });
-  },
-  changeAllSkillInvestment(invested: string) {
-    Object.keys(Skill).forEach((skill) => {
-      this.updateSkillInvested({ name: skill, value: invested });
-    });
-  },
-  changeAllBuffs(buff: string) {
-    this.changeAllAttributeBuffs(buff);
-    this.changeAllSkillBuffs(buff);
-  },
-  changeAllAttributeBuffs(buff: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      this.updateAttributeBuff({ name: attribute, value: buff });
-    });
-  },
-  changeAllSkillBuffs(buff: string) {
-    Object.keys(Skill).forEach((skill) => {
-      this.updateSkillBuff({ name: skill, value: buff });
-    });
-  },
-  changeAllCantrips(cantrip: string) {
-    this.changeAllAttributeCantrips(cantrip);
-    this.changeAllSkillCantrips(cantrip);
-  },
-  changeAllAttributeCantrips(cantrip: string) {
-    Object.keys(Attribute).forEach((attribute) => {
-      this.updateAttributeCantrip({
-        name: attribute,
-        value: cantrip,
-      });
-    });
-  },
-  changeAllSkillCantrips(cantrip: string) {
-    Object.keys(Skill).forEach((skill) => {
-      this.updateSkillCantrip({ name: skill, value: cantrip });
-    });
-  },
   async publishBuild() {
     const supabase = createClient(
       import.meta.env.VITE_SUPABASE_URL,
