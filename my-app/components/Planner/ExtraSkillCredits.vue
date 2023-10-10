@@ -16,20 +16,28 @@
 
 <script>
 import ExtraSkillCredit from "./ExtraSkillCredit.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "ExtraSkillCredits",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   components: {
     ExtraSkillCredit,
   },
   computed: {
     collapsed() {
-      return this.$store.getters.extraSkillCreditsPaneVisible;
+      return this.store.extraSkillCreditsPaneVisible;
     },
   },
   methods: {
     toggle() {
-      this.$store.commit("toggleExtraSkillCreditsPane");
+      this.store.toggleExtraSkillCreditsPane();
     },
   },
 };

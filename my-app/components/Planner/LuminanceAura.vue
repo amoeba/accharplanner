@@ -19,12 +19,19 @@
 </template>
 
 <script>
-
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "LuminanceAura",
   props: {
     name: String,
+  },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
   },
   computed: {
     displayName() {
@@ -38,11 +45,11 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.build.character.luminance_auras[this.name]
+        return this.store.build.character.luminance_auras[this.name]
           .invested;
       },
       set(value) {
-        this.$store.commit("updateLuminanceAuraInvested", {
+        this.store.updateLuminanceAuraInvested({
           name: this.name,
           value: value,
         });
@@ -66,7 +73,7 @@ export default {
         value = 0;
       }
 
-      this.$store.commit("updateLuminanceAuraInvested", {
+      this.store.updateLuminanceAuraInvested({
         name: this.name,
         value: value,
       });

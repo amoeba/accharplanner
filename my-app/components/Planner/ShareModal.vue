@@ -1,11 +1,6 @@
 <template>
   <div class="share-modal">
-    <input
-      id="sharedBuildURL"
-      type="text"
-      v-model="sharedBuildURL"
-      placeholder="Sharing, hang on tight..."
-    />
+    <input id="sharedBuildURL" type="text" v-model="sharedBuildURL" placeholder="Sharing, hang on tight..." />
     <button v-on:click="copyBuild">{{ copyButtonText }}</button>
   </div>
 </template>
@@ -23,7 +18,7 @@ export default {
   },
   computed: {
     sharedBuildURL() {
-      const build = this.$store.getters.sharedBuild;
+      const build = this.store.sharedBuild;
 
       if (build === null) {
         return "";

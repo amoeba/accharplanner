@@ -1,6 +1,6 @@
-import DefaultCharacter from "./DefaultCharacter";
+import DefaultCharacter from "~/utils/DefaultCharacter";
 
-let state: State = {
+const state: State = {
   ui: {
     notifications: [],
     savedBuilds: [],
@@ -24,7 +24,6 @@ let state: State = {
       share: false,
       settings: false,
     },
-    darkMode: null,
   },
   build: {
     character: DefaultCharacter(),

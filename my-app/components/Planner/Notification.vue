@@ -5,8 +5,17 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "Notification",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   props: {
     id: Number,
     type: String,
@@ -14,7 +23,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$store.commit("removeNotification", this.id);
+      this.store.removeNotification(this.id);
     },
   },
 };

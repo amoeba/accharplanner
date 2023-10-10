@@ -55,9 +55,17 @@
 
 <script>
 import Attribute from "./Attribute.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Attributes",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   components: {
     Attribute,
   },
@@ -68,13 +76,13 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.$store.dispatch("changeAllAttributeInvestment", e.target.value);
+      this.store.changeAllAttributeInvestment(e.target.value);
     },
     changeBuffed(e) {
-      this.$store.dispatch("changeAllAttributeBuffs", e.target.value);
+      this.store.changeAllAttributeBuffs(e.target.value);
     },
     changeCantrip(e) {
-      this.$store.dispatch("changeAllAttributeCantrips", e.target.value);
+      this.store.changeAllAttributeCantrips(e.target.value);
     },
   },
 };

@@ -15,12 +15,19 @@
 
 <script>
 
-
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Augmentation",
   props: {
     name: String,
+  },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
   },
   computed: {
     displayName() {
@@ -31,7 +38,7 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.build.character.augmentations[this.name]
+        return this.store.build.character.augmentations[this.name]
           .invested;
       },
     },
@@ -53,7 +60,7 @@ export default {
         value = 0;
       }
 
-      this.$store.commit("updateAugmentationInvested", {
+      this.store.updateAugmentationInvested({
         name: this.name,
         value: value,
       });

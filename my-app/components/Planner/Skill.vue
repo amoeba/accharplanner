@@ -53,11 +53,17 @@
 </template>
 
 <script>
-
-
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Skill",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   props: {
     name: String,
     training: String,
@@ -72,13 +78,13 @@ export default {
     },
     isBuffed() {
       return (
-        Math.round(this.$store.getters[this.name + "Buffed"]) >
-        Math.round(this.$store.getters[this.name + "Base"])
+        Math.round(this.store[this.name + "Buffed"]) >
+        Math.round(this.store[this.name + "Base"])
       );
     },
     increaseCostText() {
       let currentTraining =
-        this.$store.state.build.character.skills[this.name].training;
+        this.store.build.character.skills[this.name].training;
 
       if (currentTraining === Training.SPECIALIZED) {
         return "";
@@ -96,7 +102,7 @@ export default {
     },
     decreaseCostText() {
       let currentTraining =
-        this.$store.state.build.character.skills[this.name].training;
+        this.store.build.character.skills[this.name].training;
 
       if (
         currentTraining === Training.UNUSABLE ||
@@ -126,7 +132,7 @@ export default {
     cantIncrease() {
       // Can't if already specialized
       if (
-        this.$store.state.build.character.skills[this.name].training ==
+        this.store.build.character.skills[this.name].training ==
         Training.SPECIALIZED
       ) {
         return true;
@@ -134,7 +140,7 @@ export default {
 
       // Can't if out of credits
       let newTraining =
-        this.$store.state.build.character.skills[this.name].training ==
+        this.store.build.character.skills[this.name].training ==
           Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED;
@@ -153,8 +159,8 @@ export default {
       }
 
       if (
-        this.$store.getters.skillPointsSpent + newCost >
-        this.$store.getters.skillPointsAvailable
+        this.store.skillPointsSpent + newCost >
+        this.store.skillPointsAvailable
       ) {
         return true;
       }
@@ -162,7 +168,7 @@ export default {
       // Can't if would push you over 70 max spec'd credits
       if (
         newTraining === Training.SPECIALIZED &&
-        this.$store.getters.specializedSkillPointsSpent + newCost >
+        this.store.specializedSkillPointsSpent + newCost >
         MAX_SPECIALIZED_SKILL_CREDITS_SPENT
       ) {
         return true;
@@ -172,7 +178,7 @@ export default {
     },
     cantDecrease() {
       let training =
-        this.$store.state.build.character.skills[this.name].training;
+        this.store.build.character.skills[this.name].training;
 
       // Can't if not trained or higher
       if (training === Training.UNTRAINED || training === Training.UNTRAINED) {
@@ -193,15 +199,15 @@ export default {
     },
     canInvest() {
       let training =
-        this.$store.state.build.character.skills[this.name].training;
+        this.store.build.character.skills[this.name].training;
       return training == Training.SPECIALIZED || training == Training.TRAINED;
     },
     invested: {
       get() {
-        return this.$store.state.build.character.skills[this.name].invested;
+        return this.store.build.character.skills[this.name].invested;
       },
       set(value) {
-        this.$store.commit("updateSkillInvested", {
+        this.store.updateSkillInvested({
           name: this.name,
           value: Number(value) | 0,
         });
@@ -209,12 +215,12 @@ export default {
     },
     maxInvestment() {
       if (
-        this.$store.state.build.character.skills[this.name].training ===
+        this.store.build.character.skills[this.name].training ===
         Training.SPECIALIZED
       ) {
         return MAX_SKILL_INVESTED_SPECIALIZED;
       } else if (
-        this.$store.state.build.character.skills[this.name].training ===
+        this.store.build.character.skills[this.name].training ===
         Training.TRAINED
       ) {
         return MAX_SKILL_INVESTED_TRAINED;
@@ -223,17 +229,17 @@ export default {
       }
     },
     base() {
-      return Math.round(this.$store.getters[this.name + "Base"]);
+      return Math.round(this.store[this.name + "Base"]);
     },
     buffed() {
-      return Math.round(this.$store.getters[this.name + "Buffed"]);
+      return Math.round(this.store[this.name + "Buffed"]);
     },
     buffLevel: {
       get() {
-        return this.$store.state.build.character.skills[this.name].buff;
+        return this.store.build.character.skills[this.name].buff;
       },
       set(value) {
-        this.$store.commit("updateSkillBuff", {
+        this.store.updateSkillBuff({
           name: this.name,
           value: value,
         });
@@ -241,15 +247,15 @@ export default {
     },
     buffName() {
       return BUFF_NAME[
-        this.$store.state.build.character.skills[this.name].buff
+        this.store.build.character.skills[this.name].buff
       ];
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.skills[this.name].cantrip;
+        return this.store.build.character.skills[this.name].cantrip;
       },
       set(value) {
-        this.$store.commit("updateSkillCantrip", {
+        this.store.updateSkillCantrip({
           name: this.name,
           value: value,
         });
@@ -257,16 +263,16 @@ export default {
     },
     cantripName() {
       return CANTRIP_NAME[
-        this.$store.state.build.character.skills[this.name].cantrip
+        this.store.build.character.skills[this.name].cantrip
       ];
     },
   },
   methods: {
     increaseTraining() {
-      this.$store.commit("increaseTraining", this.name);
+      this.store.increaseTraining(this.name);
     },
     decreaseTraining() {
-      this.$store.commit("decreaseTraining", this.name);
+      this.store.decreaseTraining(this.name);
     },
     updateInvested(e) {
       let value = Math.round(Number(e.target.value));
@@ -275,7 +281,7 @@ export default {
         value = 0;
       }
 
-      if (this.$store.state.settings.infiniteMode) {
+      if (this.store.settings.infiniteMode) {
         // Do nothing
       } else if (this.training === Training.SPECIALIZED && value > MAX_SKILL_INVESTED_SPECIALIZED) {
         value = MAX_SKILL_INVESTED_SPECIALIZED;
@@ -285,7 +291,7 @@ export default {
         value = 0;
       }
 
-      this.$store.commit("updateSkillInvested", {
+      this.store.updateSkillInvested({
         name: this.name,
         value: Number(value) | 0,
       });

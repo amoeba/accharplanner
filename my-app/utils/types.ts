@@ -66,7 +66,6 @@ export interface UIState {
   currentStage: number | null;
   paneVisibility: PaneVisibility;
   modalVisibility: ModalVisibility;
-  darkMode: boolean | null;
 }
 
 export interface Build {

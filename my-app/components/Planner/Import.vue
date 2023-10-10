@@ -17,15 +17,24 @@
 </template>
 
 <script>
+imprort { usePlannerStore } from "~/store/planner";
+
 export default {
   name: "Import",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   computed: {},
   methods: {
     importBuild() {
       const selectedFile = document.getElementById("input").files[0];
 
       if (typeof selectedFile === "undefined") {
-        this.$store.commit("addNotification", {
+        this.store.addNotification({
           type: "error",
           message: "Failed to import build from file: No file was selected.",
         });
@@ -40,7 +49,7 @@ export default {
           var build = JSON.parse(e.target.result);
           this.$store.dispatch("import", build);
         } catch (error) {
-          this.$store.commit("addNotification", {
+          this.store.addNotification({
             type: "error",
             message: "Failed to build from file: " + error + ".",
           });

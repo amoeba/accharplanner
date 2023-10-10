@@ -145,9 +145,17 @@
 
 <script>
 import ExtraSkillCredits from "./ExtraSkillCredits.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Headers",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   components: {
     ExtraSkillCredits,
   },
@@ -160,69 +168,69 @@ export default {
   },
   computed: {
     characterPaneVisible() {
-      return this.$store.getters.characterPaneVisible;
+      return this.store.characterPaneVisible;
     },
     xpAndLuminancePaneVisible() {
-      return this.$store.getters.xpAndLuminancePaneVisible;
+      return this.store.xpAndLuminancePaneVisible;
     },
     knobsAndDialsPaneVisible() {
-      return this.$store.getters.knobsAndDialsPaneVisible;
+      return this.store.knobsAndDialsPaneVisible;
     },
     extraSkillCreditsPaneVisible() {
-      return this.$store.getters.extraSkillCreditsPaneVisible;
+      return this.store.extraSkillCreditsPaneVisible;
     },
     totalXPEarned() {
-      return Number(this.$store.getters.totalXPEarned).toLocaleString();
+      return Number(this.store.totalXPEarned).toLocaleString();
     },
     totalXPInvested() {
-      return Number(this.$store.getters.totalXPInvested).toLocaleString();
+      return Number(this.store.totalXPInvested).toLocaleString();
     },
     totalXPInvestedError() {
-      return this.$store.getters.totalXPInvestedError;
+      return this.store.totalXPInvestedError;
     },
     unassignedXP() {
-      return Number(this.$store.getters.unassignedXP).toLocaleString();
+      return Number(this.store.unassignedXP).toLocaleString();
     },
     unassignedXPError() {
-      return this.$store.getters.unassignedXPError;
+      return this.store.unassignedXPError;
     },
     isOverspent() {
       return (
-        Number(this.$store.getters.totalXPInvested) >
-        Number(this.$store.getters.totalXPEarned) ||
-        this.$store.getters.skillPointsSpent >
-        this.$store.getters.skillPointsAvailable
+        Number(this.store.totalXPInvested) >
+        Number(this.store.totalXPEarned) ||
+        this.store.skillPointsSpent >
+        this.store.skillPointsAvailable
       );
     },
     skillPointsSpent() {
-      return this.$store.getters.skillPointsSpent;
+      return this.store.skillPointsSpent;
     },
     skillPointsAvailable() {
-      return this.$store.getters.skillPointsAvailable;
+      return this.store.skillPointsAvailable;
     },
     augmentationsSpent() {
-      return this.$store.getters.augmentationsSpent;
+      return this.store.augmentationsSpent;
     },
     requiredLevel() {
-      return this.$store.getters.requiredLevel;
+      return this.store.requiredLevel;
     },
     totalLuminanceXPSpent() {
-      return this.$store.getters.totalLuminanceXPSpent.toLocaleString();
+      return this.store.totalLuminanceXPSpent.toLocaleString();
     },
     name: {
       get() {
-        return this.$store.state.build.character.name;
+        return this.store.build.character.name;
       },
       set(value) {
-        this.$store.commit("updateName", value);
+        this.store.updateName(value);
       },
     },
     level: {
       get() {
-        return this.$store.state.build.character.level;
+        return this.store.build.character.level;
       },
       set(value) {
-        this.$store.commit("updateLevel", value);
+        this.store.updateLevel(value);
       },
     },
     races() {
@@ -230,47 +238,47 @@ export default {
     },
     race: {
       get() {
-        return this.$store.state.build.character.race;
+        return this.store.build.character.race;
       },
       set(value) {
-        this.$store.commit("updateRace", value);
+        this.store.updateRace(value);
       },
     },
     gender: {
       get() {
-        return this.$store.state.build.character.gender;
+        return this.store.build.character.gender;
       },
       set(value) {
-        this.$store.commit("updateGender", value);
+        this.store.updateGender(value);
       },
     },
     timesEnlightened: {
       get() {
-        return this.$store.state.build.character.timesEnlightened;
+        return this.store.build.character.timesEnlightened;
       },
       set(value) {
-        this.$store.commit("updateTimesEnlightened", value);
+        this.store.updateTimesEnlightened(value);
       },
     },
     exportedCharacter() {
-      return this.$store.getters.exportedCharacter;
+      return this.store.exportedCharacter;
     },
     settingsInfiniteMode() {
-      return this.$store.state.settings.infiniteMode;
+      return this.store.settings.infiniteMode;
     }
   },
   methods: {
     toggleCharacterPane() {
-      this.$store.commit("toggleCharacterPane");
+      this.store.toggleCharacterPane();
     },
     toggleXPAndLuminancePane() {
-      this.$store.commit("toggleXPAndLuminancePane");
+      this.store.toggleXPAndLuminancePane();
     },
     toggleKnobsAndDialsPane() {
-      this.$store.commit("toggleKnobsAndDialsPane");
+      this.store.toggleKnobsAndDialsPane();
     },
     toggleExtraSkillCreditsPane() {
-      this.$store.commit("toggleExtraSkillCreditsPane");
+      this.store.toggleExtraSkillCreditsPane();
     },
     updateLevel(e) {
       let actual = Math.round(Number(e.target.value));
@@ -281,22 +289,22 @@ export default {
         actual = MAX_LEVEL;
       }
 
-      this.$store.commit("updateLevel", actual);
+      this.store.updateLevel(actual);
     },
     changeAllInvestments(e) {
-      this.$store.dispatch("changeAllInvestment", e.target.value);
+      this.store.changeAllInvestment(e.target.value);
     },
     changeAllBuffs(e) {
-      this.$store.dispatch("changeAllBuffs", e.target.value);
+      this.store.changeAllBuffs(e.target.value);
     },
     changeAllCantrips(e) {
-      this.$store.dispatch("changeAllCantrips", e.target.value);
+      this.store.changeAllCantrips(e.target.value);
     },
     showSettingsModal(e) {
-      this.$store.dispatch("showSettingsModal");
+      this.store.showSettingsModal();
     },
     hideSettingsModal(e) {
-      this.$store.dispatch("hideSettingsModal");
+      this.store.hideSettingsModal();
     },
   },
 };

@@ -14,12 +14,8 @@
             <router-link to="/">Planner</router-link>.
           </p>
         </div>
-        <Build
-          v-for="build in builds"
-          v-bind:key="build.key"
-          v-bind:build-key="build.key"
-          v-bind:build-data="build.build"
-        />
+        <Build v-for="build in builds" v-bind:key="build.key" v-bind:build-key="build.key"
+          v-bind:build-data="build.build" />
       </div>
     </div>
   </div>
@@ -27,23 +23,31 @@
 
 <script>
 import Build from "./SavedBuild.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "SavedBuilds",
   components: {
     Build,
   },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   computed: {
     noBuilds() {
-      return this.$store.state.ui.savedBuilds.length == 0;
+      return this.store.ui.savedBuilds.length == 0;
     },
     builds() {
-      return this.$store.state.ui.savedBuilds;
+      return this.store.ui.savedBuilds;
     },
   },
   methods: {
     deleteAll() {
-      this.$store.commit("deleteAllBuilds");
+      this.store.deleteAllBuilds();
     },
   },
 };

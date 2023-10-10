@@ -14,10 +14,17 @@
 </template>
 
 <script>
-
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Build",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   props: {
     buildKey: String,
     buildData: String,
@@ -33,14 +40,14 @@ export default {
   },
   methods: {
     load() {
-      this.$store.dispatch("import", JSON.parse(this.buildData));
+      this.store.import(JSON.parse(this.buildData));
     },
     exportBuild() {
       const data = JSON.parse(this.buildData);
       exportCharacter(data, data.character.name);
     },
     remove() {
-      this.$store.commit("deleteBuild", this.buildKey);
+      this.store.deleteBuild(this.buildKey);
     },
   },
 };

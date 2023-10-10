@@ -37,10 +37,19 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner"
+
 export default {
   name: "Augmentations",
   components: {
     Augmentation,
+  },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
   },
   data() {
     return {
@@ -49,10 +58,10 @@ export default {
   },
   computed: {
     collapsed() {
-      return this.$store.getters.augmentationsPaneVisible;
+      return this.store.augmentationsPaneVisible;
     },
     errors() {
-      return this.$store.getters.augmentationErrors;
+      return this.store.augmentationErrors;
     },
     augmentations() {
       return filterText(this.filterQuery, Object.keys(AUGMENTATION_NAME));
@@ -63,10 +72,10 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.$store.commit("changeAllAugmentationInvestment", e.target.value);
+      this.store.changeAllAugmentationInvestment(e.target.value);
     },
     toggle() {
-      this.$store.commit("toggleAugmentationsPane");
+      this.store.toggleAugmentationsPane();
     },
     clearFilter() {
       this.filterQuery = "";

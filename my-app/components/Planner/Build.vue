@@ -29,9 +29,17 @@
 <script>
 import { createClient } from "@supabase/supabase-js";
 import MD from "markdown-it";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Build",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   data() {
     return {
       loading: false,
@@ -51,7 +59,7 @@ export default {
       return "/builds/" + this.$route.params.id + "/edit";
     },
     isAdmin() {
-      return this.$store.getters.isAdmin;
+      return this.store.isAdmin;
     }
   },
   methods: {
@@ -89,18 +97,18 @@ export default {
         import.meta.env.VITE_SUPABASE_KEY
       );
 
-      const { error} = await supabase
+      const { error } = await supabase
         .from('official_builds')
         .delete()
         .eq("id", this.$route.params.id);
 
       if (error) {
-        this.$store.commit("addNotification", {
+        this.store.addNotification({
           type: "error",
           message: "Error deleting build: " + JSON.stringify(error),
         });
       } else {
-        this.$store.commit("addNotification", {
+        this.store.addNotification({
           type: "success",
           message: "Build deleted.",
         });

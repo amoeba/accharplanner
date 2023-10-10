@@ -60,7 +60,7 @@ export default {
     return cost;
   },
 
-  totalXPInvested: (state: State, getters: any) => {
+  totalXPInvested: (state: State) => {
     let cost = 0;
 
     ATTRIBUTES.forEach(function (a: string) {
@@ -71,11 +71,11 @@ export default {
       cost += COST_VITAL[state.build.character.vitals[v].invested];
     });
 
-    getters.specializedSkills.forEach(function (s: string) {
+    state.specializedSkills.forEach(function (s: string) {
       cost += COST_SKILL_SPECIALIZED[state.build.character.skills[s].invested];
     });
 
-    getters.trainedSkills.forEach(function (s: string) {
+    state.trainedSkills.forEach(function (s: string) {
       cost += COST_SKILL_TRAINED[state.build.character.skills[s].invested];
     });
 
@@ -137,8 +137,8 @@ export default {
     return cost;
   },
 
-  totalXPInvestedError: (state: State, getters: any) => {
-    if (isNaN(getters.totalXPInvested)) {
+  totalXPInvestedError: (state: State) => {
+    if (isNaN(state.totalXPInvested)) {
       if (state.settings.infiniteMode) {
         return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know.";
       } else {
@@ -149,8 +149,8 @@ export default {
     }
   },
 
-  unassignedXP: (state: State, getters: any) => {
-    const diff = getters.totalXPEarned - getters.totalXPInvested;
+  unassignedXP: (state: State) => {
+    const diff = state.totalXPEarned - state.totalXPInvested;
 
     if (diff < 0) {
       return 0;
@@ -159,8 +159,8 @@ export default {
     return diff;
   },
 
-  unassignedXPError: (state: State, getters: any) => {
-    if (isNaN(getters.totalXPInvested)) {
+  unassignedXPError: (state: State) => {
+    if (isNaN(state.totalXPInvested)) {
       if (state.settings.infiniteMode) {
         return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know.";
       } else {
@@ -171,20 +171,20 @@ export default {
     }
   },
 
-  requiredLevel: (state: State, getters: any) => {
+  requiredLevel: (state: State) => {
     let by_cost = 1;
     let by_skill_points = 1;
 
     for (let i: number = 1; i <= MAX_LEVEL; i++) {
-      if (getters.totalXPInvested <= COST_LEVEL[i]) {
+      if (state.totalXPInvested <= COST_LEVEL[i]) {
         by_cost = i;
         break;
       }
     }
 
-    if (getters.skillPointsSpent > getters.skillPointsAvailable) {
+    if (state.skillPointsSpent > state.skillPointsAvailable) {
       for (let j: number = 1; j <= MAX_LEVEL; j++) {
-        if (SKILL_POINTS_AT_LEVEL[j] >= getters.skillPointsSpent) {
+        if (SKILL_POINTS_AT_LEVEL[j] >= state.skillPointsSpent) {
           by_skill_points = j;
           break;
         }
@@ -267,10 +267,10 @@ export default {
     return cost;
   },
 
-  specializedSkillPointsSpent: (state: State, getters: any) => {
+  specializedSkillPointsSpent: (state: State) => {
     let cost = 0;
 
-    getters.specializedSkills.forEach((skill: string) => {
+    state.specializedSkills.forEach((skill: string) => {
       if (SPEC_COSTS_AUG[skill]) {
         return;
       }
@@ -304,7 +304,7 @@ export default {
       state.build.character.augmentations.steadfast_will.invested * 5
     );
   },
-  attributesAndVitalsErrors: (state: State, getters: any) => {
+  attributesAndVitalsErrors: (state: State) => {
     let totalAttributeBonus =
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
@@ -320,7 +320,7 @@ export default {
     }
 
     // Check we haven't spent too many attribute points
-    if (getters.attributePointsSpent > getters.attributePointsAvailable) {
+    if (state.attributePointsSpent > state.attributePointsAvailable) {
       return "You have overspent on attribute points!";
     }
   },
@@ -333,15 +333,14 @@ export default {
       return value;
     }
   },
-  strengthBase: (state: State, getters: any) => {
+  strengthBase: (state: State) => {
     return (
-      getters.strengthInnate +
-      state.build.character.attributes.strength.invested
+      state.strengthInnate + state.build.character.attributes.strength.invested
     );
   },
-  strengthBuffed: (state: State, getters: any) => {
+  strengthBuffed: (state: State) => {
     return (
-      getters.strengthBase +
+      state.strengthBase +
       buffBonus(state.build.character.attributes.strength.buff) +
       cantripBonus(state.build.character.attributes.strength.cantrip) +
       standardSetBonus(state.build.character.armor_sets.hearty.equipped) +
@@ -358,15 +357,15 @@ export default {
       return value;
     }
   },
-  enduranceBase: (state: State, getters: any) => {
+  enduranceBase: (state: State) => {
     return (
-      getters.enduranceInnate +
+      state.enduranceInnate +
       state.build.character.attributes.endurance.invested
     );
   },
-  enduranceBuffed: (state: State, getters: any) => {
+  enduranceBuffed: (state: State) => {
     return (
-      getters.enduranceBase +
+      state.enduranceBase +
       buffBonus(state.build.character.attributes.endurance.buff) +
       cantripBonus(state.build.character.attributes.endurance.cantrip) +
       standardSetBonus(state.build.character.armor_sets.hearty.equipped) +
@@ -382,15 +381,15 @@ export default {
       return value;
     }
   },
-  coordinationBase: (state: State, getters: any) => {
+  coordinationBase: (state: State) => {
     return (
-      getters.coordinationInnate +
+      state.coordinationInnate +
       state.build.character.attributes.coordination.invested
     );
   },
-  coordinationBuffed: (state: State, getters: any) => {
+  coordinationBuffed: (state: State) => {
     return (
-      getters.coordinationBase +
+      state.coordinationBase +
       buffBonus(state.build.character.attributes.coordination.buff) +
       cantripBonus(state.build.character.attributes.coordination.cantrip) +
       (state.build.character.items.font_of_joji ? 2 : 0) + // Grace of the Unicorn
@@ -410,15 +409,15 @@ export default {
       return value;
     }
   },
-  quicknessBase: (state: State, getters: any) => {
+  quicknessBase: (state: State) => {
     return (
-      getters.quicknessInnate +
+      state.quicknessInnate +
       state.build.character.attributes.quickness.invested
     );
   },
-  quicknessBuffed: (state: State, getters: any) => {
+  quicknessBuffed: (state: State) => {
     return (
-      getters.quicknessBase +
+      state.quicknessBase +
       buffBonus(state.build.character.attributes.quickness.buff) +
       cantripBonus(state.build.character.attributes.quickness.cantrip) +
       standardSetBonus(state.build.character.armor_sets.dextrous.equipped) +
@@ -434,14 +433,12 @@ export default {
       return value;
     }
   },
-  focusBase: (state: State, getters: any) => {
-    return (
-      getters.focusInnate + state.build.character.attributes.focus.invested
-    );
+  focusBase: (state: State) => {
+    return state.focusInnate + state.build.character.attributes.focus.invested;
   },
-  focusBuffed: (state: State, getters: any) => {
+  focusBuffed: (state: State) => {
     return (
-      getters.focusBase +
+      state.focusBase +
       buffBonus(state.build.character.attributes.focus.buff) +
       cantripBonus(state.build.character.attributes.focus.cantrip) +
       standardSetBonus(state.build.character.armor_sets.wise.equipped) +
@@ -459,12 +456,12 @@ export default {
       return value;
     }
   },
-  selfBase: (state: State, getters: any) => {
-    return getters.selfInnate + state.build.character.attributes.self.invested;
+  selfBase: (state: State) => {
+    return state.selfInnate + state.build.character.attributes.self.invested;
   },
-  selfBuffed: (state: State, getters: any) => {
+  selfBuffed: (state: State) => {
     return (
-      getters.selfBase +
+      state.selfBase +
       buffBonus(state.build.character.attributes.self.buff) +
       cantripBonus(state.build.character.attributes.self.cantrip) +
       standardSetBonus(state.build.character.armor_sets.wise.equipped) +
@@ -473,13 +470,13 @@ export default {
   },
 
   // Vitals
-  healthBase: (state: State, getters: any) => {
+  healthBase: (state: State) => {
     return (
-      Math.round(getters.enduranceBase / 2) +
+      Math.round(state.enduranceBase / 2) +
       state.build.character.vitals.health.invested
     );
   },
-  healthBuffed: (state: State, getters: any) => {
+  healthBuffed: (state: State) => {
     const benediction_bonus =
       state.build.character.augmentations.asherons_lesser_benediction
         .invested === 1 ||
@@ -488,7 +485,7 @@ export default {
         : 1;
 
     return (
-      (getters.healthBase +
+      (state.healthBase +
         state.build.character.timesEnlightened * 2 +
         buffBonus(state.build.character.vitals.health.buff) +
         buffBonus(state.build.character.attributes.endurance.buff) / 2 +
@@ -508,14 +505,12 @@ export default {
   staminaCreation: (state: State) => {
     return state.build.character.attributes.endurance.creation;
   },
-  staminaBase: (state: State, getters: any) => {
-    return (
-      getters.enduranceBase + state.build.character.vitals.stamina.invested
-    );
+  staminaBase: (state: State) => {
+    return state.enduranceBase + state.build.character.vitals.stamina.invested;
   },
-  staminaBuffed: (state: State, getters: any) => {
+  staminaBuffed: (state: State) => {
     return (
-      getters.staminaBase +
+      state.staminaBase +
       buffBonus(state.build.character.vitals.stamina.buff) +
       buffBonus(state.build.character.attributes.endurance.buff) +
       cantripBonus(state.build.character.vitals.stamina.cantrip) +
@@ -530,12 +525,12 @@ export default {
   manaCreation: (state: State) => {
     return state.build.character.attributes.self.creation;
   },
-  manaBase: (state: State, getters: any) => {
-    return getters.selfBase + state.build.character.vitals.mana.invested;
+  manaBase: (state: State) => {
+    return state.selfBase + state.build.character.vitals.mana.invested;
   },
-  manaBuffed: (state: State, getters: any) => {
+  manaBuffed: (state: State) => {
     return clamp(
-      getters.manaBase +
+      state.manaBase +
         buffBonus(state.build.character.vitals.mana.buff) +
         buffBonus(state.build.character.attributes.self.buff) +
         cantripBonus(state.build.character.vitals.mana.cantrip) +
@@ -551,23 +546,23 @@ export default {
   },
 
   // Skills
-  alchemyBase: (state: State, getters: any) => {
+  alchemyBase: (state: State) => {
     if (state.build.character.skills.alchemy.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.focusBase) / 3) +
+      Math.round((state.coordinationBase + state.focusBase) / 3) +
       trainingBonus(state.build.character.skills.alchemy.training) +
       state.build.character.skills.alchemy.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  alchemyBuffed: (state: State, getters: any) => {
+  alchemyBuffed: (state: State) => {
     return (
       (state.build.character.skills.alchemy.training !== Training.UNUSABLE
-        ? getters.alchemyBase
+        ? state.alchemyBase
         : 0) +
       buffBonus(state.build.character.skills.alchemy.buff) +
       cantripBonus(state.build.character.skills.alchemy.cantrip) +
@@ -601,7 +596,7 @@ export default {
         : 0)
     );
   },
-  arcane_loreBase: (state: State, getters: any) => {
+  arcane_loreBase: (state: State) => {
     if (
       state.build.character.skills.arcane_lore.training === Training.UNUSABLE
     ) {
@@ -609,17 +604,17 @@ export default {
     }
 
     return (
-      Math.round(getters.focusBase / 3) +
+      Math.round(state.focusBase / 3) +
       trainingBonus(state.build.character.skills.arcane_lore.training) +
       state.build.character.skills.arcane_lore.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  arcane_loreBuffed: (state: State, getters: any) => {
+  arcane_loreBuffed: (state: State) => {
     return (
       (state.build.character.skills.arcane_lore.training !== Training.UNUSABLE
-        ? getters.arcane_loreBase
+        ? state.arcane_loreBase
         : 0) +
       buffBonus(state.build.character.skills.arcane_lore.buff) +
       cantripBonus(state.build.character.skills.arcane_lore.cantrip) +
@@ -643,7 +638,7 @@ export default {
         : 0)
     );
   },
-  armor_tinkeringBase: (state: State, getters: any) => {
+  armor_tinkeringBase: (state: State) => {
     if (
       state.build.character.skills.armor_tinkering.training ===
       Training.UNUSABLE
@@ -652,18 +647,18 @@ export default {
     }
 
     return (
-      Math.round((getters.enduranceBase + getters.focusBase) / 2) +
+      Math.round((state.enduranceBase + state.focusBase) / 2) +
       trainingBonus(state.build.character.skills.armor_tinkering.training) +
       state.build.character.skills.armor_tinkering.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  armor_tinkeringBuffed: (state: State, getters: any) => {
+  armor_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.armor_tinkering.training !==
       Training.UNUSABLE
-        ? getters.armor_tinkeringBase
+        ? state.armor_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.armor_tinkering.buff) +
       cantripBonus(state.build.character.skills.armor_tinkering.cantrip) +
@@ -708,11 +703,11 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  assess_creatureBuffed: (state: State, getters: any) => {
+  assess_creatureBuffed: (state: State) => {
     return (
       (state.build.character.skills.assess_creature.training !==
       Training.UNUSABLE
-        ? getters.assess_creatureBase
+        ? state.assess_creatureBase
         : 0) +
       buffBonus(state.build.character.skills.assess_creature.buff) +
       cantripBonus(state.build.character.skills.assess_creature.cantrip) +
@@ -739,10 +734,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  assess_personBuffed: (state: State, getters: any) => {
+  assess_personBuffed: (state: State) => {
     return (
       (state.build.character.skills.assess_person.training !== Training.UNUSABLE
-        ? getters.assess_personBase
+        ? state.assess_personBase
         : 0) +
       buffBonus(state.build.character.skills.assess_person.buff) +
       cantripBonus(state.build.character.skills.assess_person.cantrip) +
@@ -755,23 +750,23 @@ export default {
         : 0)
     );
   },
-  cookingBase: (state: State, getters: any) => {
+  cookingBase: (state: State) => {
     if (state.build.character.skills.cooking.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.focusBase) / 3) +
+      Math.round((state.coordinationBase + state.focusBase) / 3) +
       trainingBonus(state.build.character.skills.cooking.training) +
       state.build.character.skills.cooking.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  cookingBuffed: (state: State, getters: any) => {
+  cookingBuffed: (state: State) => {
     return (
       (state.build.character.skills.cooking.training !== Training.UNUSABLE
-        ? getters.cookingBase
+        ? state.cookingBase
         : 0) +
       buffBonus(state.build.character.skills.cooking.buff) +
       cantripBonus(state.build.character.skills.cooking.cantrip) +
@@ -805,7 +800,7 @@ export default {
       )
     );
   },
-  creature_enchantmentBase: (state: State, getters: any) => {
+  creature_enchantmentBase: (state: State) => {
     if (
       state.build.character.skills.creature_enchantment.training ===
       Training.UNUSABLE
@@ -814,7 +809,7 @@ export default {
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 4) +
+      Math.round((state.focusBase + state.selfBase) / 4) +
       trainingBonus(
         state.build.character.skills.creature_enchantment.training
       ) +
@@ -827,11 +822,11 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  creature_enchantmentBuffed: (state: State, getters: any) => {
+  creature_enchantmentBuffed: (state: State) => {
     return (
       (state.build.character.skills.creature_enchantment.training !==
       Training.UNUSABLE
-        ? getters.creature_enchantmentBase
+        ? state.creature_enchantmentBase
         : 0) +
       buffBonus(state.build.character.skills.creature_enchantment.buff) +
       cantripBonus(state.build.character.skills.creature_enchantment.cantrip) +
@@ -874,10 +869,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  deceptionBuffed: (state: State, getters: any) => {
+  deceptionBuffed: (state: State) => {
     return (
       (state.build.character.skills.deception.training !== Training.UNUSABLE
-        ? getters.deceptionBase
+        ? state.deceptionBase
         : 0) +
       buffBonus(state.build.character.skills.deception.buff) +
       cantripBonus(state.build.character.skills.deception.cantrip) +
@@ -889,7 +884,7 @@ export default {
         : 0)
     );
   },
-  dirty_fightingBase: (state: State, getters: any) => {
+  dirty_fightingBase: (state: State) => {
     if (
       state.build.character.skills.dirty_fighting.training === Training.UNUSABLE
     ) {
@@ -897,18 +892,18 @@ export default {
     }
 
     return (
-      Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
+      Math.round((state.strengthBase + state.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.dirty_fighting.training) +
       state.build.character.skills.dirty_fighting.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  dirty_fightingBuffed: (state: State, getters: any) => {
+  dirty_fightingBuffed: (state: State) => {
     return (
       (state.build.character.skills.dirty_fighting.training !==
       Training.UNUSABLE
-        ? getters.dirty_fightingBase
+        ? state.dirty_fightingBase
         : 0) +
       buffBonus(state.build.character.skills.dirty_fighting.buff) +
       cantripBonus(state.build.character.skills.dirty_fighting.cantrip) +
@@ -942,7 +937,7 @@ export default {
         : 0)
     );
   },
-  dual_wieldBase: (state: State, getters: any) => {
+  dual_wieldBase: (state: State) => {
     if (
       state.build.character.skills.dual_wield.training === Training.UNUSABLE
     ) {
@@ -950,17 +945,17 @@ export default {
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.coordinationBase) / 3) +
+      Math.round((state.coordinationBase + state.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.dual_wield.training) +
       state.build.character.skills.dual_wield.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  dual_wieldBuffed: (state: State, getters: any) => {
+  dual_wieldBuffed: (state: State) => {
     return (
       (state.build.character.skills.dual_wield.training !== Training.UNUSABLE
-        ? getters.dual_wieldBase
+        ? state.dual_wieldBase
         : 0) +
       buffBonus(state.build.character.skills.dual_wield.buff) +
       cantripBonus(state.build.character.skills.dual_wield.cantrip) +
@@ -994,7 +989,7 @@ export default {
         : 0)
     );
   },
-  finesse_weaponsBase: (state: State, getters: any) => {
+  finesse_weaponsBase: (state: State) => {
     if (
       state.build.character.skills.finesse_weapons.training ===
       Training.UNUSABLE
@@ -1003,7 +998,7 @@ export default {
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
+      Math.round((state.coordinationBase + state.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.finesse_weapons.training) +
       state.build.character.skills.finesse_weapons.invested +
       (state.build.character.augmentations.master_of_the_steel_circle
@@ -1014,11 +1009,11 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  finesse_weaponsBuffed: (state: State, getters: any) => {
+  finesse_weaponsBuffed: (state: State) => {
     return (
       (state.build.character.skills.finesse_weapons.training !==
       Training.UNUSABLE
-        ? getters.finesse_weaponsBase
+        ? state.finesse_weaponsBase
         : 0) +
       buffBonus(state.build.character.skills.finesse_weapons.buff) +
       cantripBonus(state.build.character.skills.finesse_weapons.cantrip) +
@@ -1054,23 +1049,23 @@ export default {
         : 0)
     );
   },
-  fletchingBase: (state: State, getters: any) => {
+  fletchingBase: (state: State) => {
     if (state.build.character.skills.fletching.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.focusBase) / 3) +
+      Math.round((state.coordinationBase + state.focusBase) / 3) +
       trainingBonus(state.build.character.skills.fletching.training) +
       state.build.character.skills.fletching.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  fletchingBuffed: (state: State, getters: any) => {
+  fletchingBuffed: (state: State) => {
     return (
       (state.build.character.skills.fletching.training !== Training.UNUSABLE
-        ? getters.fletchingBase
+        ? state.fletchingBase
         : 0) +
       buffBonus(state.build.character.skills.fletching.buff) +
       cantripBonus(state.build.character.skills.fletching.cantrip) +
@@ -1104,23 +1099,23 @@ export default {
         : 0)
     );
   },
-  healingBase: (state: State, getters: any) => {
+  healingBase: (state: State) => {
     if (state.build.character.skills.healing.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.focusBase) / 3) +
+      Math.round((state.coordinationBase + state.focusBase) / 3) +
       trainingBonus(state.build.character.skills.healing.training) +
       state.build.character.skills.healing.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  healingBuffed: (state: State, getters: any) => {
+  healingBuffed: (state: State) => {
     return (
       (state.build.character.skills.healing.training !== Training.UNUSABLE
-        ? getters.healingBase
+        ? state.healingBase
         : 0) +
       buffBonus(state.build.character.skills.healing.buff) +
       cantripBonus(state.build.character.skills.healing.cantrip) +
@@ -1153,7 +1148,7 @@ export default {
         : 0)
     );
   },
-  heavy_weaponsBase: (state: State, getters: any) => {
+  heavy_weaponsBase: (state: State) => {
     if (
       state.build.character.skills.heavy_weapons.training === Training.UNUSABLE
     ) {
@@ -1161,7 +1156,7 @@ export default {
     }
 
     return (
-      Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
+      Math.round((state.strengthBase + state.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.heavy_weapons.training) +
       state.build.character.skills.heavy_weapons.invested +
       (state.build.character.augmentations.master_of_the_steel_circle
@@ -1172,10 +1167,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  heavy_weaponsBuffed: (state: State, getters: any) => {
+  heavy_weaponsBuffed: (state: State) => {
     return (
       (state.build.character.skills.heavy_weapons.training !== Training.UNUSABLE
-        ? getters.heavy_weaponsBase
+        ? state.heavy_weaponsBase
         : 0) +
       buffBonus(state.build.character.skills.heavy_weapons.buff) +
       cantripBonus(state.build.character.skills.heavy_weapons.cantrip) +
@@ -1209,7 +1204,7 @@ export default {
         : 0)
     );
   },
-  item_enchantmentBase: (state: State, getters: any) => {
+  item_enchantmentBase: (state: State) => {
     if (
       state.build.character.skills.item_enchantment.training ===
       Training.UNUSABLE
@@ -1218,7 +1213,7 @@ export default {
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 4) +
+      Math.round((state.focusBase + state.selfBase) / 4) +
       trainingBonus(state.build.character.skills.item_enchantment.training) +
       state.build.character.skills.item_enchantment.invested +
       (state.build.character.augmentations.master_of_the_five_fold_path
@@ -1229,11 +1224,11 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  item_enchantmentBuffed: (state: State, getters: any) => {
+  item_enchantmentBuffed: (state: State) => {
     return (
       (state.build.character.skills.item_enchantment.training !==
       Training.UNUSABLE
-        ? getters.item_enchantmentBase
+        ? state.item_enchantmentBase
         : 0) +
       buffBonus(state.build.character.skills.item_enchantment.buff) +
       cantripBonus(state.build.character.skills.item_enchantment.cantrip) +
@@ -1264,7 +1259,7 @@ export default {
         : 0)
     );
   },
-  item_tinkeringBase: (state: State, getters: any) => {
+  item_tinkeringBase: (state: State) => {
     if (
       state.build.character.skills.item_tinkering.training === Training.UNUSABLE
     ) {
@@ -1272,18 +1267,18 @@ export default {
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.focusBase) / 2) +
+      Math.round((state.coordinationBase + state.focusBase) / 2) +
       trainingBonus(state.build.character.skills.item_tinkering.training) +
       state.build.character.skills.item_tinkering.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  item_tinkeringBuffed: (state: State, getters: any) => {
+  item_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.item_tinkering.training !==
       Training.UNUSABLE
-        ? getters.item_tinkeringBase
+        ? state.item_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.item_tinkering.buff) +
       cantripBonus(state.build.character.skills.item_tinkering.cantrip) +
@@ -1318,23 +1313,23 @@ export default {
         : 0)
     );
   },
-  jumpBase: (state: State, getters: any) => {
+  jumpBase: (state: State) => {
     if (state.build.character.skills.jump.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
+      Math.round((state.strengthBase + state.coordinationBase) / 2) +
       trainingBonus(state.build.character.skills.jump.training) +
       state.build.character.skills.jump.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  jumpBuffed: (state: State, getters: any) => {
+  jumpBuffed: (state: State) => {
     return (
       (state.build.character.skills.jump.training !== Training.UNUSABLE
-        ? getters.jumpBase
+        ? state.jumpBase
         : 0) +
       buffBonus(state.build.character.skills.jump.buff) +
       cantripBonus(state.build.character.skills.jump.cantrip) +
@@ -1381,10 +1376,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  leadershipBuffed: (state: State, getters: any) => {
+  leadershipBuffed: (state: State) => {
     return (
       (state.build.character.skills.leadership.training !== Training.UNUSABLE
-        ? getters.leadershipBase
+        ? state.leadershipBase
         : 0) +
       buffBonus(state.build.character.skills.leadership.buff) +
       cantripBonus(state.build.character.skills.leadership.cantrip) +
@@ -1396,7 +1391,7 @@ export default {
         : 0)
     );
   },
-  life_magicBase: (state: State, getters: any) => {
+  life_magicBase: (state: State) => {
     if (
       state.build.character.skills.life_magic.training === Training.UNUSABLE
     ) {
@@ -1404,7 +1399,7 @@ export default {
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 4) +
+      Math.round((state.focusBase + state.selfBase) / 4) +
       trainingBonus(state.build.character.skills.life_magic.training) +
       state.build.character.skills.life_magic.invested +
       (state.build.character.augmentations.master_of_the_five_fold_path
@@ -1415,10 +1410,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  life_magicBuffed: (state: State, getters: any) => {
+  life_magicBuffed: (state: State) => {
     return (
       (state.build.character.skills.life_magic.training !== Training.UNUSABLE
-        ? getters.life_magicBase
+        ? state.life_magicBase
         : 0) +
       buffBonus(state.build.character.skills.life_magic.buff) +
       cantripBonus(state.build.character.skills.life_magic.cantrip) +
@@ -1448,7 +1443,7 @@ export default {
         : 0)
     );
   },
-  light_weaponsBase: (state: State, getters: any) => {
+  light_weaponsBase: (state: State) => {
     if (
       state.build.character.skills.light_weapons.training === Training.UNUSABLE
     ) {
@@ -1456,7 +1451,7 @@ export default {
     }
 
     return (
-      Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
+      Math.round((state.strengthBase + state.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.light_weapons.training) +
       state.build.character.skills.light_weapons.invested +
       (state.build.character.augmentations.master_of_the_steel_circle
@@ -1467,10 +1462,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  light_weaponsBuffed: (state: State, getters: any) => {
+  light_weaponsBuffed: (state: State) => {
     return (
       (state.build.character.skills.light_weapons.training !== Training.UNUSABLE
-        ? getters.light_weaponsBase
+        ? state.light_weaponsBase
         : 0) +
       buffBonus(state.build.character.skills.light_weapons.buff) +
       cantripBonus(state.build.character.skills.light_weapons.cantrip) +
@@ -1504,23 +1499,23 @@ export default {
         : 0)
     );
   },
-  lockpickBase: (state: State, getters: any) => {
+  lockpickBase: (state: State) => {
     if (state.build.character.skills.lockpick.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.focusBase) / 3) +
+      Math.round((state.coordinationBase + state.focusBase) / 3) +
       trainingBonus(state.build.character.skills.lockpick.training) +
       state.build.character.skills.lockpick.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  lockpickBuffed: (state: State, getters: any) => {
+  lockpickBuffed: (state: State) => {
     return (
       (state.build.character.skills.lockpick.training !== Training.UNUSABLE
-        ? getters.lockpickBase
+        ? state.lockpickBase
         : 0) +
       buffBonus(state.build.character.skills.lockpick.buff) +
       cantripBonus(state.build.character.skills.lockpick.cantrip) +
@@ -1566,10 +1561,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  loyaltyBuffed: (state: State, getters: any) => {
+  loyaltyBuffed: (state: State) => {
     return (
       (state.build.character.skills.loyalty.training !== Training.UNUSABLE
-        ? getters.loyaltyBase
+        ? state.loyaltyBase
         : 0) +
       buffBonus(state.build.character.skills.loyalty.buff) +
       cantripBonus(state.build.character.skills.loyalty.cantrip) +
@@ -1584,7 +1579,7 @@ export default {
         : 0)
     );
   },
-  magic_defenseBase: (state: State, getters: any) => {
+  magic_defenseBase: (state: State) => {
     if (
       state.build.character.skills.magic_defense.training === Training.UNUSABLE
     ) {
@@ -1592,17 +1587,17 @@ export default {
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 7) +
+      Math.round((state.focusBase + state.selfBase) / 7) +
       trainingBonus(state.build.character.skills.magic_defense.training) +
       state.build.character.skills.magic_defense.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  magic_defenseBuffed: (state: State, getters: any) => {
+  magic_defenseBuffed: (state: State) => {
     return (
       (state.build.character.skills.magic_defense.training !== Training.UNUSABLE
-        ? getters.magic_defenseBase
+        ? state.magic_defenseBase
         : 0) +
       buffBonus(state.build.character.skills.magic_defense.buff) +
       cantripBonus(state.build.character.skills.magic_defense.cantrip) +
@@ -1636,7 +1631,7 @@ export default {
         : 0)
     );
   },
-  magic_item_tinkeringBase: (state: State, getters: any) => {
+  magic_item_tinkeringBase: (state: State) => {
     if (
       state.build.character.skills.magic_item_tinkering.training ===
       Training.UNUSABLE
@@ -1645,7 +1640,7 @@ export default {
     }
 
     return (
-      getters.focusBase +
+      state.focusBase +
       trainingBonus(
         state.build.character.skills.magic_item_tinkering.training
       ) +
@@ -1654,11 +1649,11 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  magic_item_tinkeringBuffed: (state: State, getters: any) => {
+  magic_item_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.magic_item_tinkering.training !==
       Training.UNUSABLE
-        ? getters.magic_item_tinkeringBase
+        ? state.magic_item_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.magic_item_tinkering.buff) +
       cantripBonus(state.build.character.skills.magic_item_tinkering.cantrip) +
@@ -1678,7 +1673,7 @@ export default {
         : 0)
     );
   },
-  mana_conversionBase: (state: State, getters: any) => {
+  mana_conversionBase: (state: State) => {
     if (
       state.build.character.skills.mana_conversion.training ===
       Training.UNUSABLE
@@ -1687,18 +1682,18 @@ export default {
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 6) +
+      Math.round((state.focusBase + state.selfBase) / 6) +
       trainingBonus(state.build.character.skills.mana_conversion.training) +
       state.build.character.skills.mana_conversion.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  mana_conversionBuffed: (state: State, getters: any) => {
+  mana_conversionBuffed: (state: State) => {
     return (
       (state.build.character.skills.mana_conversion.training !==
       Training.UNUSABLE
-        ? getters.mana_conversionBase
+        ? state.mana_conversionBase
         : 0) +
       buffBonus(state.build.character.skills.mana_conversion.buff) +
       cantripBonus(state.build.character.skills.mana_conversion.cantrip) +
@@ -1728,7 +1723,7 @@ export default {
         : 0)
     );
   },
-  melee_defenseBase: (state: State, getters: any) => {
+  melee_defenseBase: (state: State) => {
     if (
       state.build.character.skills.melee_defense.training === Training.UNUSABLE
     ) {
@@ -1736,17 +1731,17 @@ export default {
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
+      Math.round((state.coordinationBase + state.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.melee_defense.training) +
       state.build.character.skills.melee_defense.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  melee_defenseBuffed: (state: State, getters: any) => {
+  melee_defenseBuffed: (state: State) => {
     return (
       (state.build.character.skills.melee_defense.training !== Training.UNUSABLE
-        ? getters.melee_defenseBase
+        ? state.melee_defenseBase
         : 0) +
       buffBonus(state.build.character.skills.melee_defense.buff) +
       cantripBonus(state.build.character.skills.melee_defense.cantrip) +
@@ -1784,7 +1779,7 @@ export default {
         : 0)
     );
   },
-  missile_defenseBase: (state: State, getters: any) => {
+  missile_defenseBase: (state: State) => {
     if (
       state.build.character.skills.missile_defense.training ===
       Training.UNUSABLE
@@ -1793,18 +1788,18 @@ export default {
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.quicknessBase) / 5) +
+      Math.round((state.coordinationBase + state.quicknessBase) / 5) +
       trainingBonus(state.build.character.skills.missile_defense.training) +
       state.build.character.skills.missile_defense.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  missile_defenseBuffed: (state: State, getters: any) => {
+  missile_defenseBuffed: (state: State) => {
     return (
       (state.build.character.skills.missile_defense.training !==
       Training.UNUSABLE
-        ? getters.missile_defenseBase
+        ? state.missile_defenseBase
         : 0) +
       buffBonus(state.build.character.skills.missile_defense.buff) +
       cantripBonus(state.build.character.skills.missile_defense.cantrip) +
@@ -1842,7 +1837,7 @@ export default {
         : 0)
     );
   },
-  missile_weaponsBase: (state: State, getters: any) => {
+  missile_weaponsBase: (state: State) => {
     if (
       state.build.character.skills.missile_weapons.training ===
       Training.UNUSABLE
@@ -1851,7 +1846,7 @@ export default {
     }
 
     return (
-      Math.round(getters.coordinationBase / 2) +
+      Math.round(state.coordinationBase / 2) +
       trainingBonus(state.build.character.skills.missile_weapons.training) +
       state.build.character.skills.missile_weapons.invested +
       (state.build.character.augmentations.master_of_the_focused_eye
@@ -1862,11 +1857,11 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  missile_weaponsBuffed: (state: State, getters: any) => {
+  missile_weaponsBuffed: (state: State) => {
     return (
       (state.build.character.skills.missile_weapons.training !==
       Training.UNUSABLE
-        ? getters.missile_weaponsBase
+        ? state.missile_weaponsBase
         : 0) +
       buffBonus(state.build.character.skills.missile_weapons.buff) +
       cantripBonus(state.build.character.skills.missile_weapons.cantrip) +
@@ -1893,7 +1888,7 @@ export default {
         : 0)
     );
   },
-  recklessnessBase: (state: State, getters: any) => {
+  recklessnessBase: (state: State) => {
     if (
       state.build.character.skills.recklessness.training === Training.UNUSABLE
     ) {
@@ -1901,17 +1896,17 @@ export default {
     }
 
     return (
-      Math.round((getters.strengthBase + getters.quicknessBase) / 3) +
+      Math.round((state.strengthBase + state.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.recklessness.training) +
       state.build.character.skills.recklessness.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  recklessnessBuffed: (state: State, getters: any) => {
+  recklessnessBuffed: (state: State) => {
     return (
       (state.build.character.skills.recklessness.training !== Training.UNUSABLE
-        ? getters.recklessnessBase
+        ? state.recklessnessBase
         : 0) +
       buffBonus(state.build.character.skills.recklessness.buff) +
       cantripBonus(state.build.character.skills.recklessness.cantrip) +
@@ -1940,23 +1935,23 @@ export default {
         : 0)
     );
   },
-  runBase: (state: State, getters: any) => {
+  runBase: (state: State) => {
     if (state.build.character.skills.run.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      getters.quicknessBase +
+      state.quicknessBase +
       trainingBonus(state.build.character.skills.run.training) +
       state.build.character.skills.run.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  runBuffed: (state: State, getters: any) => {
+  runBuffed: (state: State) => {
     return (
       (state.build.character.skills.run.training !== Training.UNUSABLE
-        ? getters.runBase
+        ? state.runBase
         : 0) +
       buffBonus(state.build.character.skills.run.buff) +
       cantripBonus(state.build.character.skills.run.cantrip) +
@@ -1984,10 +1979,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  salvagingBuffed: (state: State, getters: any) => {
+  salvagingBuffed: (state: State) => {
     return (
       (state.build.character.skills.salvaging.training !== Training.UNUSABLE
-        ? getters.salvagingBase
+        ? state.salvagingBase
         : 0) +
       buffBonus(state.build.character.skills.salvaging.buff) +
       cantripBonus(state.build.character.skills.salvaging.cantrip) +
@@ -2002,23 +1997,23 @@ export default {
         : 0)
     );
   },
-  shieldBase: (state: State, getters: any) => {
+  shieldBase: (state: State) => {
     if (state.build.character.skills.shield.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.strengthBase + getters.coordinationBase) / 2) +
+      Math.round((state.strengthBase + state.coordinationBase) / 2) +
       trainingBonus(state.build.character.skills.shield.training) +
       state.build.character.skills.shield.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  shieldBuffed: (state: State, getters: any) => {
+  shieldBuffed: (state: State) => {
     return (
       (state.build.character.skills.shield.training !== Training.UNUSABLE
-        ? getters.shieldBase
+        ? state.shieldBase
         : 0) +
       buffBonus(state.build.character.skills.shield.buff) +
       cantripBonus(state.build.character.skills.shield.cantrip) +
@@ -2050,7 +2045,7 @@ export default {
         : 0)
     );
   },
-  sneak_attackBase: (state: State, getters: any) => {
+  sneak_attackBase: (state: State) => {
     if (
       state.build.character.skills.sneak_attack.training === Training.UNUSABLE
     ) {
@@ -2058,17 +2053,17 @@ export default {
     }
 
     return (
-      Math.round((getters.coordinationBase + getters.quicknessBase) / 3) +
+      Math.round((state.coordinationBase + state.quicknessBase) / 3) +
       trainingBonus(state.build.character.skills.sneak_attack.training) +
       state.build.character.skills.sneak_attack.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  sneak_attackBuffed: (state: State, getters: any) => {
+  sneak_attackBuffed: (state: State) => {
     return (
       (state.build.character.skills.sneak_attack.training !== Training.UNUSABLE
-        ? getters.sneak_attackBase
+        ? state.sneak_attackBase
         : 0) +
       buffBonus(state.build.character.skills.sneak_attack.buff) +
       cantripBonus(state.build.character.skills.sneak_attack.cantrip) +
@@ -2103,23 +2098,23 @@ export default {
         : 0)
     );
   },
-  summoningBase: (state: State, getters: any) => {
+  summoningBase: (state: State) => {
     if (state.build.character.skills.summoning.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.enduranceBase + getters.selfBase) / 3) +
+      Math.round((state.enduranceBase + state.selfBase) / 3) +
       trainingBonus(state.build.character.skills.summoning.training) +
       state.build.character.skills.summoning.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  summoningBuffed: (state: State, getters: any) => {
+  summoningBuffed: (state: State) => {
     return (
       (state.build.character.skills.summoning.training !== Training.UNUSABLE
-        ? getters.summoningBase
+        ? state.summoningBase
         : 0) +
       buffBonus(state.build.character.skills.summoning.buff) +
       cantripBonus(state.build.character.skills.summoning.cantrip) +
@@ -2147,7 +2142,7 @@ export default {
         : 0)
     );
   },
-  two_handed_combatBase: (state: State, getters: any) => {
+  two_handed_combatBase: (state: State) => {
     if (
       state.build.character.skills.two_handed_combat.training ===
       Training.UNUSABLE
@@ -2156,7 +2151,7 @@ export default {
     }
 
     return (
-      Math.round((getters.strengthBase + getters.coordinationBase) / 3) +
+      Math.round((state.strengthBase + state.coordinationBase) / 3) +
       trainingBonus(state.build.character.skills.two_handed_combat.training) +
       state.build.character.skills.two_handed_combat.invested +
       (state.build.character.augmentations.master_of_the_steel_circle
@@ -2167,11 +2162,11 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  two_handed_combatBuffed: (state: State, getters: any) => {
+  two_handed_combatBuffed: (state: State) => {
     return (
       (state.build.character.skills.two_handed_combat.training !==
       Training.UNUSABLE
-        ? getters.two_handed_combatBase
+        ? state.two_handed_combatBase
         : 0) +
       buffBonus(state.build.character.skills.two_handed_combat.buff) +
       cantripBonus(state.build.character.skills.two_handed_combat.cantrip) +
@@ -2205,7 +2200,7 @@ export default {
         : 0)
     );
   },
-  void_magicBase: (state: State, getters: any) => {
+  void_magicBase: (state: State) => {
     if (
       state.build.character.skills.void_magic.training === Training.UNUSABLE
     ) {
@@ -2213,7 +2208,7 @@ export default {
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 4) +
+      Math.round((state.focusBase + state.selfBase) / 4) +
       trainingBonus(state.build.character.skills.void_magic.training) +
       state.build.character.skills.void_magic.invested +
       (state.build.character.augmentations.master_of_the_five_fold_path
@@ -2224,10 +2219,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  void_magicBuffed: (state: State, getters: any) => {
+  void_magicBuffed: (state: State) => {
     return (
       (state.build.character.skills.void_magic.training !== Training.UNUSABLE
-        ? getters.void_magicBase
+        ? state.void_magicBase
         : 0) +
       buffBonus(state.build.character.skills.void_magic.buff) +
       cantripBonus(state.build.character.skills.void_magic.cantrip) +
@@ -2257,13 +2252,13 @@ export default {
         : 0)
     );
   },
-  war_magicBase: (state: State, getters: any) => {
+  war_magicBase: (state: State) => {
     if (state.build.character.skills.war_magic.training === Training.UNUSABLE) {
       return 0;
     }
 
     return (
-      Math.round((getters.focusBase + getters.selfBase) / 4) +
+      Math.round((state.focusBase + state.selfBase) / 4) +
       trainingBonus(state.build.character.skills.war_magic.training) +
       state.build.character.skills.war_magic.invested +
       (state.build.character.augmentations.master_of_the_five_fold_path
@@ -2274,10 +2269,10 @@ export default {
       state.build.character.timesEnlightened
     );
   },
-  war_magicBuffed: (state: State, getters: any) => {
+  war_magicBuffed: (state: State) => {
     return (
       (state.build.character.skills.war_magic.training !== Training.UNUSABLE
-        ? getters.war_magicBase
+        ? state.war_magicBase
         : 0) +
       buffBonus(state.build.character.skills.war_magic.buff) +
       cantripBonus(state.build.character.skills.war_magic.cantrip) +
@@ -2307,7 +2302,7 @@ export default {
         : 0)
     );
   },
-  weapon_tinkeringBase: (state: State, getters: any) => {
+  weapon_tinkeringBase: (state: State) => {
     if (
       state.build.character.skills.weapon_tinkering.training ===
       Training.UNUSABLE
@@ -2316,18 +2311,18 @@ export default {
     }
 
     return (
-      Math.round((getters.strengthBase + getters.focusBase) / 2) +
+      Math.round((state.strengthBase + state.focusBase) / 2) +
       trainingBonus(state.build.character.skills.weapon_tinkering.training) +
       state.build.character.skills.weapon_tinkering.invested +
       state.build.character.luminance_auras.world.invested +
       state.build.character.timesEnlightened
     );
   },
-  weapon_tinkeringBuffed: (state: State, getters: any) => {
+  weapon_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.weapon_tinkering.training !==
       Training.UNUSABLE
-        ? getters.weapon_tinkeringBase
+        ? state.weapon_tinkeringBase
         : 0) +
       buffBonus(state.build.character.skills.weapon_tinkering.buff) +
       cantripBonus(state.build.character.skills.weapon_tinkering.cantrip) +
@@ -2375,7 +2370,7 @@ export default {
       (key) => state.build.character.skills[key].training === Training.UNUSABLE
     );
   },
-  augmentationErrors: (state: State, getters: any) => {
+  augmentationErrors: (state: State) => {
     let totalAttributeBonus =
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
@@ -2390,7 +2385,7 @@ export default {
       return "Cannot augment attributes more than ten times!";
     }
   },
-  auraErrors: (state: State, getters: any) => {
+  auraErrors: (state: State) => {
     const msg = "Using too many Seers. You may only choose one.";
 
     // If you have Specialization, you can't have Retribution, Hardening
@@ -2443,7 +2438,7 @@ export default {
     return null;
   },
 
-  armorSetNumEquippedErrors: (state: State, getters: any) => {
+  armorSetNumEquippedErrors: (state: State) => {
     const numEquipped = Object.keys(state.build.character.armor_sets)
       .map((set) => {
         return state.build.character.armor_sets[set].equipped;
@@ -2468,15 +2463,15 @@ export default {
   },
 
   // Setttings
-  settingsInfiniteMode: (state: State, getters: any) => {
+  settingsInfiniteMode: (state: State) => {
     return state.settings.infiniteMode;
   },
 
   // Auth
-  isLoggedIn: (state: State, getters: any) => {
+  isLoggedIn: (state: State) => {
     return state.auth.isLoggedIn;
   },
-  isAdmin: (state: State, getters: any) => {
+  isAdmin: (state: State) => {
     return state.auth.isAdmin;
   },
 };

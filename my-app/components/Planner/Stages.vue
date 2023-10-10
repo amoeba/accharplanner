@@ -23,11 +23,19 @@
 
 <script>
 import Stage from "./Stage.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Stages",
   components: {
     Stage,
+  },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
   },
   data() {
     return {
@@ -36,19 +44,19 @@ export default {
   },
   computed: {
     stages() {
-      return this.$store.state.build.stages;
+      return this.store.build.stages;
     },
     visible() {
-      return this.$store.getters.buildStagesPaneVisible;
+      return this.store.buildStagesPaneVisible;
     },
   },
   methods: {
     save(event) {
       event.stopPropagation();
-      this.$store.commit("saveStage");
+      this.store.saveStage();
     },
     toggle() {
-      this.$store.commit("toggleBuildStagesPane");
+      this.store.toggleBuildStagesPane();
     },
     dragStart(event) {
       event.dataTransfer.setData("text/plain", event.target.dataset.index);

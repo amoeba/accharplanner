@@ -9,15 +9,24 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "SettingsModal",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   computed: {
     infiniteMode: {
       get() {
-        return this.$store.state.settings.infiniteMode;
+        return this.store.settings.infiniteMode;
       },
       set(value) {
-        this.$store.commit("updateSettingsInfiniteMode", value);
+        this.store.updateSettingsInfiniteMode(value);
       }
     }
   }

@@ -18,20 +18,28 @@
 
 <script>
 import Item from "./Item.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Items",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   components: {
     Item,
   },
   computed: {
     collapsed() {
-      return this.$store.getters.itemsPaneVisible;
+      return this.store.itemsPaneVisible;
     },
   },
   methods: {
     toggle() {
-      this.$store.commit("toggleItemsPane");
+      this.store.toggleItemsPane();
     },
   },
 };

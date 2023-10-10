@@ -24,9 +24,17 @@
 
 <script>
 import { createClient } from "@supabase/supabase-js";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "EditBuild",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   props: {
     id: String,
   },
@@ -90,7 +98,7 @@ export default {
         .eq('id', this.build_id);
 
       if (error) {
-        this.$store.commit("addNotification", {
+        this.store.addNotification({
           type: "error",
           message: "Error updating build: " + JSON.stringify(error),
         });

@@ -119,9 +119,17 @@
 
 <script>
 import Skill from "./Skill.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Skills",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   components: { Skill },
   data() {
     return {
@@ -131,24 +139,24 @@ export default {
   },
   computed: {
     collapsed() {
-      return this.$store.getters.skillsPaneVisible;
+      return this.store.skillsPaneVisible;
     },
     skillPointsSpent() {
-      return this.$store.getters.skillPointsSpent;
+      return this.store.skillPointsSpent;
     },
     skillPointsAvailable() {
-      return this.$store.getters.skillPointsAvailable;
+      return this.store.skillPointsAvailable;
     },
     specializedSkillPointsSpent() {
-      return this.$store.getters.specializedSkillPointsSpent;
+      return this.store.specializedSkillPointsSpent;
     },
     maxSpecializedSkillPointsSpent() {
       return MAX_SPECIALIZED_SKILL_CREDITS_SPENT;
     },
     skillPointsSpentErrorText() {
       let overspent =
-        this.$store.getters.skillPointsSpent -
-        this.$store.getters.skillPointsAvailable;
+        this.store.skillPointsSpent -
+        this.store.skillPointsAvailable;
 
       if (overspent > 0) {
         return (
@@ -162,55 +170,55 @@ export default {
       return "";
     },
     augmentationsRequired() {
-      return this.$store.getters.augmentationsSpent;
+      return this.store.augmentationsSpent;
     },
     augmentationsRequiredText() {
-      if (this.$store.getters.augmentationsSpent == 0) {
+      if (this.store.augmentationsSpent == 0) {
         return "";
-      } else if (this.$store.getters.augmentationsSpent == 1) {
+      } else if (this.store.augmentationsSpent == 1) {
         return "1 aug required";
       } else {
-        return this.$store.getters.augmentationsSpent + " augs required";
+        return this.store.augmentationsSpent + " augs required";
       }
     },
     specializedSkills() {
-      let collection = Object.keys(this.$store.state.build.character.skills)
+      let collection = Object.keys(this.store.build.character.skills)
         .filter((key) =>
-          this.$store.state.build.character.skills[key].training ===
+          this.store.build.character.skills[key].training ===
           Training.SPECIALIZED
         );
       return filterText(this.filterQuery, collection);
 
     },
     trainedSkills() {
-      let collection = Object.keys(this.$store.state.build.character.skills)
+      let collection = Object.keys(this.store.build.character.skills)
         .filter((key) =>
-          this.$store.state.build.character.skills[key].training ===
+          this.store.build.character.skills[key].training ===
           Training.TRAINED
         );
       return filterText(this.filterQuery, collection);
     },
     untrainedSkills() {
-      let collection = Object.keys(this.$store.state.build.character.skills)
+      let collection = Object.keys(this.store.build.character.skills)
         .filter((key) =>
-          this.$store.state.build.character.skills[key].training ===
+          this.store.build.character.skills[key].training ===
           Training.UNTRAINED
         );
       return filterText(this.filterQuery, collection);
     },
     unusableSkills() {
-      let collection = Object.keys(this.$store.state.build.character.skills)
+      let collection = Object.keys(this.store.build.character.skills)
         .filter((key) =>
-          this.$store.state.build.character.skills[key].training ===
+          this.store.build.character.skills[key].training ===
           Training.UNUSABLE
         );
       return filterText(this.filterQuery, collection);
     },
     noSpecializedSkills() {
-      return this.$store.getters.specializedSkills.length == 0;
+      return this.store.specializedSkills.length == 0;
     },
     noTrainedSkills() {
-      return this.$store.getters.trainedSkills.length == 0;
+      return this.store.trainedSkills.length == 0;
     },
     filterPresent() {
       return this.filterQuery !== "";
@@ -218,16 +226,16 @@ export default {
   },
   methods: {
     toggle() {
-      this.$store.commit("toggleSkillsPane");
+      this.store.toggleSkillsPane();
     },
     changeInvested(e) {
-      this.$store.dispatch("changeAllSkillInvestment", e.target.value);
+      this.store.changeAllSkillInvestment(e.target.value);
     },
     changeBuffed(e) {
-      this.$store.dispatch("changeAllSkillBuffs", e.target.value);
+      this.store.changeAllSkillBuffs(e.target.value);
     },
     changeCantrips(e) {
-      this.$store.dispatch("changeAllSkillCantrips", e.target.value);
+      this.store.changeAllSkillCantrips(e.target.value);
     },
     clearFilter() {
       this.filterQuery = "";

@@ -7,6 +7,7 @@
 
 <script>
 
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Item",
@@ -14,17 +15,24 @@ export default {
     id: String,
     name: String,
   },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   computed: {
     displayName() {
       return ITEM_NAME[this.id];
     },
     checked: {
       get() {
-        return this.$store.state.build.character.items[this.id];
+        return this.store.build.character.items[this.id];
       },
 
       set(value) {
-        this.$store.commit("updateItem", {
+        this.store.updateItem({
           id: this.id,
           value: value,
         });

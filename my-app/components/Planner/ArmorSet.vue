@@ -14,11 +14,20 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "ArmorSet",
   props: {
     id: String,
     name: String,
+  },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
   },
   computed: {
     displayName() {
@@ -29,11 +38,11 @@ export default {
     },
     equipped: {
       get() {
-        return this.$store.state.build.character.armor_sets[this.id].equipped;
+        return this.store.build.character.armor_sets[this.id].equipped;
       },
 
       set(value) {
-        this.$store.commit("updateArmorSet", {
+        this.store.updateArmorSet({
           id: this.id,
           value: Number(value),
         });

@@ -38,9 +38,17 @@
 
 <script>
 import LuminanceAura from "./LuminanceAura.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "LuminanceAuras",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   components: {
     LuminanceAura,
   },
@@ -51,10 +59,10 @@ export default {
   },
   computed: {
     collapsed() {
-      return this.$store.getters.aurasPaneVisible;
+      return this.store.aurasPaneVisible;
     },
     errors() {
-      return this.$store.getters.auraErrors;
+      return this.store.auraErrors;
     },
     auras() {
       return filterText(this.filterQuery, Object.keys(LUMINANCE_AURA_NAME));
@@ -65,10 +73,10 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.$store.commit("changeAllLuminanceAuraInvestment", e.target.value);
+      this.store.changeAllLuminanceAuraInvestment(e.target.value);
     },
     toggle() {
-      this.$store.commit("toggleAurasPane");
+      this.store.toggleAurasPane();
     },
     clearFilter() {
       this.filterQuery = "";

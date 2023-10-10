@@ -37,22 +37,31 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "ArmorSets",
   components: {
     ArmorSet,
   },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   computed: {
     collapsed() {
-      return this.$store.getters.armorSetsPaneVisible;
+      return this.store.armorSetsPaneVisible;
     },
     errors() {
-      return this.$store.getters.armorSetNumEquippedErrors;
+      return this.store.armorSetNumEquippedErrors;
     },
   },
   methods: {
     toggle() {
-      this.$store.commit("toggleArmorSetsPane");
+      this.store.toggleArmorSetsPane;
     },
   },
 };

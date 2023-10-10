@@ -25,8 +25,17 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "Vital",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   props: {
     name: String,
     displayName: String,
@@ -38,25 +47,25 @@ export default {
     },
     isBuffed() {
       return (
-        Math.round(this.$store.getters[this.name + "Buffed"]) >
-        Math.round(this.$store.getters[this.name + "Base"])
+        Math.round(this.store[this.name + "Buffed"]) >
+        Math.round(this.store[this.name + "Base"])
       );
     },
     creation() {
-      return this.$store.getters[this.name + "Creation"];
+      return this.store[this.name + "Creation"];
     },
     base() {
-      return Math.round(this.$store.getters[this.name + "Base"]);
+      return Math.round(this.store[this.name + "Base"]);
     },
     buffed() {
-      return Math.round(this.$store.getters[this.name + "Buffed"]);
+      return Math.round(this.store[this.name + "Buffed"]);
     },
     invested: {
       get() {
-        return this.$store.state.build.character.vitals[this.name].invested;
+        return this.store.build.character.vitals[this.name].invested;
       },
       set(value) {
-        this.$store.commit("updateVitalInvested", {
+        this.store.updateVitalInvested({
           name: this.name,
           value: value,
         });
@@ -76,7 +85,7 @@ export default {
         value = 0;
       }
 
-      if (this.$store.state.settings.infiniteMode) {
+      if (this.store.settings.infiniteMode) {
         // Do nothing
       } else if (value > MAX_VITAL_INVESTED) {
         value = MAX_VITAL_INVESTED;
@@ -84,7 +93,7 @@ export default {
         value = 0;
       }
 
-      this.$store.commit("updateVitalInvested", {
+      this.store.updateVitalInvested({
         name: this.name,
         value: value,
       });

@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { useMainStore } from '~/stores/main';
+
+const store = useMainStore()
+
+function toggleDarkMode(event: Event) {
+  const preference = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+
+  store.toggleDarkMode(preference);
+}
+</script>
+
 <template>
   <header class="grid grid-cols-2 items-center p-2">
     <div class="flex gap-4 items-baseline">
@@ -12,7 +26,7 @@
       <NuxtLink to="/builds">Builds</NuxtLink>
     </div>
     <div class="justify-self-end items-center p-2">
-      T \
+      <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>
       <NuxtLink href="https://github.com/amoeba/accharplanner">G</NuxtLink> \
       Log In
     </div>

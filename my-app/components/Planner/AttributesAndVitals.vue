@@ -26,29 +26,36 @@
 import Attributes from "./Attributes"
 import Vitals from "./Vitals"
 
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "AttributesAndVitals",
   components: {
     Attributes,
     Vitals,
   },
+  setup() {
+    const store = usePlannerStore();
+
+    return { store };
+  },
   computed: {
     attributePointsSpent() {
-      return this.$store.getters.attributePointsSpent;
+      return this.store.attributePointsSpent;
     },
     attributePointsAvailable() {
-      return this.$store.getters.attributePointsAvailable;
+      return this.store.attributePointsAvailable;
     },
     collapsed() {
-      return this.$store.getters.attributesPaneVisible;
+      return this.store.attributesPaneVisible;
     },
     errors() {
-      return this.$store.getters.attributesAndVitalsErrors;
+      return this.store.attributesAndVitalsErrors;
     },
   },
   methods: {
     toggle() {
-      this.$store.commit("toggleAttributesPane");
+      this.store.toggleAttributesPane();
     },
   },
 };

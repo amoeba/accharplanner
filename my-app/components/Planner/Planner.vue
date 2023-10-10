@@ -43,7 +43,6 @@
         </svg>
         Settings
       </button>
-      <button v-if="isAdmin" v-on:click="publishBuild">Publish</button>
     </div>
     <Modal v-if="shareModalVisible" @close="hideShareModal">
       <template v-slot:header>
@@ -98,6 +97,8 @@ import LuminanceAuras from "./LuminanceAuras.vue";
 import Items from "./Items.vue";
 import ArmorSets from "./ArmorSets.vue";
 
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "planner",
   components: {
@@ -112,6 +113,11 @@ export default {
     LuminanceAuras,
     Items,
     ArmorSets,
+  },
+  setup() {
+    const store = usePlannerStore();
+
+    return { store };
   },
   created: function () {
     // Bind Esc key to closing an open modal
@@ -133,33 +139,27 @@ export default {
       return;
     }
 
-    const extraStuff = path.replace(/^\//, "");
+    const extraStuff = path.replace(/^\/planner/, "");
 
     if (typeof extraStuff === "string" && extraStuff.length > 0) {
-      this.$store.dispatch("loadRemoteBuild", extraStuff);
+      this.store.loadRemoteBuild(extraStuff);
     }
   },
   computed: {
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
-    },
-    isAdmin() {
-      return this.$store.getters.isAdmin;
-    },
     shareModalVisible() {
-      return this.$store.getters.shareModalVisible;
+      return this.store.shareModalVisible;
     },
     settingsModalVisible() {
-      return this.$store.getters.settingsModalVisible;
+      return this.store.settingsModalVisible;
     },
   },
   methods: {
     saveBuild() {
-      this.$store.commit("addNotification", {
+      this.store.addNotification({
         type: "success",
         message: "Build saved. See the Saved tab.",
       });
-      this.$store.commit("saveBuild");
+      this.store.saveBuild();
     },
     exportCharacter() {
       exportCharacter(
@@ -168,7 +168,7 @@ export default {
       );
     },
     resetPlanner() {
-      this.$store.commit("reset");
+      this.store.reset();
     },
     publishBuild() {
       this.$store.dispatch("publishBuild");

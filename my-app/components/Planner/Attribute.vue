@@ -47,11 +47,20 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "Attribute",
   props: {
     name: String,
     tabIndex: String,
+  },
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
   },
   data() {
     return {
@@ -64,13 +73,13 @@ export default {
     },
     isBuffed() {
       return (
-        Math.round(this.$store.getters[this.name + "Buffed"]) >
-        Math.round(this.$store.getters[this.name + "Base"])
+        Math.round(this.store[this.name + "Buffed"]) >
+        Math.round(this.store[this.name + "Base"])
       );
     },
     creation: {
       get() {
-        return this.$store.state.build.character.attributes[this.name].creation;
+        return this.store.build.character.attributes[this.name].creation;
       },
       set(value) {
         if (value > 100) {
@@ -79,7 +88,7 @@ export default {
           value = 10;
         }
 
-        this.$store.commit("updateAttributeCreation", {
+        this.store.updateAttributeCreation({
           name: this.name,
           value: value,
         });
@@ -87,27 +96,27 @@ export default {
     },
     invested: {
       get() {
-        return this.$store.state.build.character.attributes[this.name].invested;
+        return this.store.build.character.attributes[this.name].invested;
       },
       set(value) {
-        this.$store.commit("updateAttributeInvested", {
+        this.store.updateAttributeInvested({
           name: this.name,
           value: value,
         });
       },
     },
     base() {
-      return Math.round(this.$store.getters[this.name + "Base"]);
+      return Math.round(this.store[this.name + "Base"]);
     },
     buffed() {
-      return Math.round(this.$store.getters[this.name + "Buffed"]);
+      return Math.round(this.store[this.name + "Buffed"]);
     },
     buffLevel: {
       get() {
-        return this.$store.state.build.character.attributes[this.name].buff;
+        return this.store.build.character.attributes[this.name].buff;
       },
       set(value) {
-        this.$store.commit("updateAttributeBuff", {
+        this.store.updateAttributeBuff({
           name: this.name,
           value: value,
         });
@@ -115,15 +124,15 @@ export default {
     },
     buffName() {
       return BUFF_NAME[
-        this.$store.state.build.character.attributes[this.name].buff
+        this.store.build.character.attributes[this.name].buff
       ];
     },
     cantrip: {
       get() {
-        return this.$store.state.build.character.attributes[this.name].cantrip;
+        return this.store.build.character.attributes[this.name].cantrip;
       },
       set(value) {
-        this.$store.commit("updateAttributeCantrip", {
+        this.store.updateAttributeCantrip({
           name: this.name,
           value: value,
         });
@@ -131,7 +140,7 @@ export default {
     },
     cantripName() {
       return CANTRIP_NAME[
-        this.$store.state.build.character.attributes[this.name].cantrip
+        this.store.build.character.attributes[this.name].cantrip
       ];
     },
   },
@@ -149,7 +158,7 @@ export default {
         value = 10;
       }
 
-      this.$store.commit("updateAttributeCreation", {
+      this.store.updateAttributeCreation({
         name: this.name,
         value: value,
       });
@@ -163,7 +172,7 @@ export default {
         value = 0;
       }
 
-      if (this.$store.state.settings.infiniteMode) {
+      if (this.store.settings.infiniteMode) {
         // Do nothing
       } else if (value > MAX_ATTRIBUTE_INVESTED) {
         value = MAX_ATTRIBUTE_INVESTED;
@@ -171,7 +180,7 @@ export default {
         value = 0;
       }
 
-      this.$store.commit("updateAttributeInvested", {
+      this.store.updateAttributeInvested({
         name: this.name,
         value: value,
       });
