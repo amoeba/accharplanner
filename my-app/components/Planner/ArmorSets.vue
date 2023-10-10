@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import ArmorSet from "./ArmorSet";
 import { usePlannerStore } from "~/stores/planner";
 
 export default {
