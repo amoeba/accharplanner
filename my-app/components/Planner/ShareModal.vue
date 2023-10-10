@@ -6,8 +6,17 @@
 </template>
 
 <script>
+import { usePlannerStore } from "~/stores/planner";
+
 export default {
   name: "ShareModal",
+  setup() {
+    const store = usePlannerStore();
+
+    return {
+      store
+    }
+  },
   data() {
     return {
       copyButtonText: "Copy to Clipboard",

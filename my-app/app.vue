@@ -4,6 +4,8 @@ import { useMainStore } from "./stores/main";
 
 const store = useMainStore()
 
+import "~/assets/css/main.css";
+
 const theme = computed(() => {
   if (store.$state.darkMode === null) {
     return "";
