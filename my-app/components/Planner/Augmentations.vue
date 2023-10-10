@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import Augmentation from "./Augmentation.vue";
 import { usePlannerStore } from "~/stores/planner"
 
 export default {

@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 import { usePlannerStore } from "~/stores/planner";
 
 export default {
