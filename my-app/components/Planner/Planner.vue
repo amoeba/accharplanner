@@ -163,27 +163,27 @@ export default {
     },
     exportCharacter() {
       exportCharacter(
-        this.$store.state.build,
-        this.$store.state.build.character.name
+        this.store.build,
+        this.store.build.character.name
       );
     },
     resetPlanner() {
       this.store.reset();
     },
     publishBuild() {
-      this.$store.dispatch("publishBuild");
+      this.store.publishBuild();
     },
     showShareModal() {
-      this.$store.dispatch("showShareModal");
+      this.store.showShareModal();
     },
     hideShareModal() {
-      this.$store.dispatch("hideShareModal");
+      this.store.hideShareModal();
     },
     showSettingsModal() {
-      this.$store.dispatch("showSettingsModal");
+      this.store.showSettingsModal();
     },
     hideSettingsModal() {
-      this.$store.dispatch("hideSettingsModal");
+      this.store.hideSettingsModal();
     }
   },
 };

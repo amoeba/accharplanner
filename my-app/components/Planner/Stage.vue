@@ -33,8 +33,8 @@ export default {
   computed: {
     isSelected() {
       return (
-        this.$store.state.ui.currentStage !== null &&
-        this.$store.state.ui.currentStage === this.index
+        this.store.ui.currentStage !== null &&
+        this.store.ui.currentStage === this.index
       );
     },
     isNotLast() {

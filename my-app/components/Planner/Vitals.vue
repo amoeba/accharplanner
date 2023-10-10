@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.$store.dispatch("changeAllVitalInvestment", e.target.value);
+      this.store.changeAllVitalInvestment(e.target.value);
     },
   },
 };

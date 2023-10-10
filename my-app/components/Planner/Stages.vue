@@ -90,7 +90,7 @@ export default {
         return a.x - b.x;
       });
 
-      this.$store.dispatch("reorderStages", stages);
+      this.store.reorderStages(stages);
     },
     dragover(event) {
       event.preventDefault();

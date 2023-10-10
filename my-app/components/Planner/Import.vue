@@ -47,7 +47,7 @@ export default {
       reader.onload = (e) => {
         try {
           var build = JSON.parse(e.target.result);
-          this.$store.dispatch("import", build);
+          this.store.import(build);
         } catch (error) {
           this.store.addNotification({
             type: "error",

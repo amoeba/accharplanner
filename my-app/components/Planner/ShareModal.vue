@@ -14,7 +14,7 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("shareBuild");
+    this.store.shareBuild();
   },
   computed: {
     sharedBuildURL() {
