@@ -365,30 +365,6 @@ input.number {
   flex-wrap: wrap;
 }
 
-/* Light gold
-rgba(254, 253, 209, 1); */
-/* Navy blue
-rgba(0, 2, 49, 1) */
-/* Darker gold
-rgba(249, 205, 118, 1); */
-/* Real gold
-rgba(197, 153, 51, 1); */
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-}
-
 /* General stuff */
 table {
   width: 100%;
@@ -419,7 +395,7 @@ button {
   background-color: var(--c-button);
   border: 1px solid var(--c-button-border);
   color: var(--c-button-text);
-  padding: 0.25rem 0.5rem;
+  padding: 0.15rem 0.25rem;
 }
 
 button:hover {
@@ -470,6 +446,7 @@ td select {
 
 #planner img {
   clip-path: circle(10px at center);
+  max-width: inherit;
 }
 
 /* Utility classes */

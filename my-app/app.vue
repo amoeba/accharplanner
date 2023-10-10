@@ -18,7 +18,7 @@ const theme = computed(() => {
 <template>
   <div id="app" :class="theme">
     <AppHeader />
-    <main class="max-w-4xl mx-auto p-6">
+    <main class="max-w-4xl mx-auto p-2">
       <NuxtPage />
     </main>
     <AppFooter />

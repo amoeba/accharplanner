@@ -150,6 +150,10 @@
   --c-tip-text: var(--c-dark-tip-text);
 }
 
+body {
+  font-size: 14px;
+}
+
 button.theme-toggle {
   background: var(--c-icon);
   color: var(--c-text);
