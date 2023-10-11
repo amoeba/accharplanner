@@ -5,11 +5,7 @@ export default defineNuxtConfig({
   piniaPersistedstate: {
     storage: "localStorage",
   },
-  runtimeConfig: {
-    public: {
-      supabaseUrl: process.env.SUPABASE_URL || '',
-      supabaseKey: process.env.SUPABASE_KEY || '',
-      supabaseRedirectUrl: process.env.SUPABASE_REDIRECT_URL || ''
-    }
-  }
+  supabase: {
+    redirect: false
+  },
 });
