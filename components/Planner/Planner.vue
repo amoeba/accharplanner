@@ -99,8 +99,6 @@ import ArmorSets from "./ArmorSets.vue";
 
 import { usePlannerStore } from "~/stores/planner";
 
-import "~/assets/css/planner.css";
-
 export default {
   name: "planner",
   components: {
@@ -190,3 +188,5 @@ export default {
   },
 };
 </script>
+
+<style scoped src="@/assets/css/planner.css"></style>
