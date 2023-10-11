@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const user = useSupabaseUser()
+
 import { useMainStore } from '~/stores/main';
 
 const store = useMainStore()
@@ -28,7 +30,9 @@ function toggleDarkMode(event: Event) {
     <div class="flex gap-2 justify-self-end items-center p-2">
       <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>
       <NuxtLink href="https://github.com/amoeba/accharplanner">G</NuxtLink>
-      Log In
+      <!-- Login / Account -->
+      <NuxtLink v-if="!user" to="/login">Log In</NuxtLink>
+      <NuxtLink v-if="user" to="/account">Account</NuxtLink>
     </div>
   </header>
 </template>

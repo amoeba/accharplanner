@@ -62,8 +62,6 @@ export default {
 
         this.store.updateIsLoggedIn(false);
         this.store.updateIsAdmin(false);
-
-        this.$router.push("/");
       }
     }
   }
