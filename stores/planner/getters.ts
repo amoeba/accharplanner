@@ -2466,12 +2466,4 @@ export default {
   settingsInfiniteMode: (state: State) => {
     return state.settings.infiniteMode;
   },
-
-  // Auth
-  isLoggedIn: (state: State) => {
-    return state.auth.isLoggedIn;
-  },
-  isAdmin: (state: State) => {
-    return state.auth.isAdmin;
-  },
 };
