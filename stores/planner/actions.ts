@@ -411,7 +411,7 @@ export default {
     let maxAttributePoints =
       MAX_CREATION_ATTRIBUTE_TOTAL_POINTS +
       this.build.character.augmentations.reinforcement_of_the_lugians.invested *
-        5 +
+      5 +
       this.build.character.augmentations.bleearghs_fortitude.invested * 5 +
       this.build.character.augmentations.oswalds_enhancement.invested * 5 +
       this.build.character.augmentations.siraluuns_blessing.invested * 5 +
