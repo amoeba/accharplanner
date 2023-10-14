@@ -1,22 +1,18 @@
 import { createClient } from "@supabase/supabase-js";
 import { merge } from "lodash";
 import { createId } from "mnemonic-id";
-
 import DefaultCharacter from "~/utils/DefaultCharacter";
 
 export default {
   async shareBuild() {
+    const client = useSupabaseClient();
+
     // Reset state and clean out current shared build first
     this.ui.shareStatus = null;
     this.ui.sharedBuild = null;
 
-    const supabase = createClient(
-      import.meta.env.VITE_SUPABASE_URL,
-      import.meta.env.VITE_SUPABASE_KEY
-    );
-
     // Insert build
-    const { data, error } = await supabase
+    const { data, error } = await client
       .from("shared_builds")
       .insert({ id: createId(10), content: this.build })
       .select();
