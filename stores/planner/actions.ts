@@ -161,6 +161,11 @@ export default {
     options.router.push("/");
   },
 
+  async loadBuildFromJSON(build: Build) {
+    console.log("loadBuildFromJSON", build);
+    this.build = build;
+  },
+
   import(build: Build) {
     this.build = build;
 
