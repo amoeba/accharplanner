@@ -1,4 +1,3 @@
-import { createClient } from "@supabase/supabase-js";
 import { merge } from "lodash";
 import { createId } from "mnemonic-id";
 import DefaultCharacter from "~/utils/DefaultCharacter";
@@ -29,13 +28,10 @@ export default {
     }
   },
   async loadRemoteBuild(options: any) {
-    const supabase = createClient(
-      import.meta.env.VITE_SUPABASE_URL,
-      import.meta.env.VITE_SUPABASE_KEY
-    );
+    const client = useSupabaseClient();
 
     // First try to find a published build, then try to find a shared build
-    const response_official = await supabase
+    const response_official = await client
       .from("official_builds")
       .select()
       .eq("id", options.build_id);
@@ -63,7 +59,7 @@ export default {
     let response_shared_data = null;
 
     if (!response_official_data?.length) {
-      const response_shared = await supabase
+      const response_shared = await client
         .from("shared_builds")
         .select()
         .eq("id", options.build_id);
@@ -174,12 +170,9 @@ export default {
     });
   },
   async publishBuild() {
-    const supabase = createClient(
-      import.meta.env.VITE_SUPABASE_URL,
-      import.meta.env.VITE_SUPABASE_KEY
-    );
+    const client = useSupabaseClient();
 
-    const { data, error } = await supabase
+    const { data, error } = await client
       .from("official_builds")
       .insert({
         id: this.build.character.name.toLowerCase().replace(/[^\w]/, "_"),
