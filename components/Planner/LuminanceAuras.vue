@@ -1,39 +1,32 @@
 <template>
-  <div id="luminance" class="pane luminance">
-    <div>
-      <div class="pane-header" v-on:click="toggle">
-        <div>
-          <h3>Luminance Auras</h3>
-        </div>
-        <div class="right">
-          <span v-if="errors" class="error">{{ errors }}</span>
-        </div>
-      </div>
-      <div v-if="collapsed" class="table-wrapper">
-        <table>
-          <thead>
-            <tr class="table-header">
-              <th>Name</th>
-              <th colspan="2">Invested</th>
-            </tr>
-            <tr class="controls">
-              <th>
-                <input v-model="filterQuery" class="w60" placeholder="Filter" />
-                <button v-if="filterPresent" @click="clearFilter">x</button>
-              </th>
-              <th>
-                <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
-              </th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <LuminanceAura v-for="(aura) in auras" :key="aura" :name="aura" />
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <Pane>
+    <template #title>Luminance Auras</template>
+    <template #right> <span v-if="errors" class="error">{{ errors }}</span>
+    </template>
+    <template #content>
+      <table>
+        <thead>
+          <tr class="table-header">
+            <th>Name</th>
+            <th colspan="2">Invested</th>
+          </tr>
+          <tr class="controls">
+            <th>
+              <input v-model="filterQuery" class="w60" placeholder="Filter" />
+              <button v-if="filterPresent" @click="clearFilter">x</button>
+            </th>
+            <th>
+              <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
+            </th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <LuminanceAura v-for="(aura) in auras" :key="aura" :name="aura" />
+        </tbody>
+      </table>
+    </template>
+  </Pane>
 </template>
 
 <script>

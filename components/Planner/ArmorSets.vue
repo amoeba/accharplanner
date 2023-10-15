@@ -1,39 +1,32 @@
 <template>
-  <div id="armorsets" class="pane items">
-    <div>
-      <div class="pane-header" v-on:click="toggle">
-        <div>
-          <h3>Armor Sets</h3>
-        </div>
-        <div class="right">
-          <span v-if="errors" class="error">{{ errors }}</span>
-        </div>
-      </div>
-      <div v-if="collapsed" class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th colspan="2">Equipped</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ArmorSet id="adepts" />
-            <ArmorSet id="archers" />
-            <ArmorSet id="crafters" />
-            <ArmorSet id="dedication" />
-            <ArmorSet id="defenders" />
-            <ArmorSet id="dextrous" />
-            <ArmorSet id="hearty" />
-            <ArmorSet id="soldiers" />
-            <ArmorSet id="swift" />
-            <ArmorSet id="tinkers" />
-            <ArmorSet id="wise" />
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <Pane>
+    <template #title>Armor Sets</template>
+    <template #right> <span v-if="errors" class="error">{{ errors }}</span>
+    </template>
+    <template #content>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th colspan="2">Equipped</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ArmorSet id="adepts" />
+          <ArmorSet id="archers" />
+          <ArmorSet id="crafters" />
+          <ArmorSet id="dedication" />
+          <ArmorSet id="defenders" />
+          <ArmorSet id="dextrous" />
+          <ArmorSet id="hearty" />
+          <ArmorSet id="soldiers" />
+          <ArmorSet id="swift" />
+          <ArmorSet id="tinkers" />
+          <ArmorSet id="wise" />
+        </tbody>
+      </table>
+    </template>
+  </Pane>
 </template>
 
 <script>
@@ -67,5 +60,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>

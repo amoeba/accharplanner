@@ -1,25 +1,22 @@
 <template>
-  <div id="attributes_and_vitals" class="pane">
-    <div>
-      <div class="pane-header" v-on:click="toggle">
-        <div>
-          <h3>Attributes</h3>
-        </div>
-        <div class="right">
-          <span v-if="errors" class="error">{{ errors }}</span>
-          &nbsp;
-          <span v-tooltip="'Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380.'
-            ">{{ attributePointsSpent }} / {{ attributePointsAvailable }}</span>
-        </div>
+  <Pane>
+    <template #title>Attributes</template>
+    <template #right>
+      <div>
+        <span v-if="errors" class="error">{{ errors }}</span>
       </div>
-      <div v-if="collapsed" class="table-wrapper">
-        <table>
-          <Attributes />
-          <Vitals />
-        </table>
+      <div>
+        <span v-tooltip="'Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380.'
+          ">{{ attributePointsSpent }} / {{ attributePointsAvailable }}</span>
       </div>
-    </div>
-  </div>
+    </template>
+    <template #content>
+      <table>
+        <Attributes />
+        <Vitals />
+      </table>
+    </template>
+  </Pane>
 </template>
 
 <script>

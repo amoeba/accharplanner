@@ -1,120 +1,116 @@
 <template>
-  <div id="skills" class="pane">
-    <div>
-      <div class="pane-header" v-on:click="toggle">
-        <div>
-          <span class="tip" v-tooltip="'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'
-            ">!</span>&nbsp;
-          <h3>Skills</h3>
+  <Pane>
+    <template #title>
+      <span class="tip" v-tooltip="'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'
+        ">!</span>&nbsp;
+      <h3>Skills</h3>
 
-          <span class="red">{{ skillPointsSpentErrorText }}</span>
-        </div>
-        <div class="right">
-          <span v-tooltip="'Skill points spent.'">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</span>
-        </div>
-      </div>
-      <div v-if="collapsed" class="table-wrapper">
-        <table>
-          <thead>
-            <tr class="table-header">
-              <th colspan="4">Name</th>
-              <th>
-                <span v-tooltip="{
-                  content:
-                    '<strong>Trained:</strong> No Bonus<br><strong>Specialized:</strong> +10',
-                  html: true,
-                }">Base</span>
-              </th>
-              <th>Buffed</th>
-              <th colspan="2">Invested</th>
-              <th>Buff</th>
-              <th>Cantrip</th>
-            </tr>
-            <tr class="controls">
-              <th colspan="4">
-                <input v-model="filterQuery" class="w60" placeholder="Filter" />
-                <button v-if="filterPresent" @click="clearFilter">x</button>
-              </th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th colspan="2">
-                <input type="range" min="0" :max="maxSkillInvestedSpecialized" value="0" v-on:change="changeInvested" />
-              </th>
-              <th>
-                <select v-on:change="changeBuffed">
-                  <option value="0"></option>
-                  <option value="1">I</option>
-                  <option value="2">II</option>
-                  <option value="3">III</option>
-                  <option value="4">IV</option>
-                  <option value="5">V</option>
-                  <option value="6">VI</option>
-                  <option value="7">VII</option>
-                  <option value="8">VIII</option>
-                </select>
-              </th>
-              <th>
-                <select v-on:change="changeCantrips">
-                  <option value="0"></option>
-                  <option value="1">Minor</option>
-                  <option value="2">Major</option>
-                  <option value="3">Epic</option>
-                  <option value="4">Legen.</option>
-                </select>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="specialized">
-              <th colspan="7">
-                <span
-                  v-tooltip="'You are limited to 70 total credits specialized. Specialized skills get a 10 point bonus.'">
-                  Specialized ({{ specializedSkillPointsSpent }} /
-                  {{ maxSpecializedSkillPointsSpent }})
-                  {{ augmentationsRequiredText }}
-                </span>
-              </th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th colspan="6">&nbsp;</th>
-            </tr>
-            <tr v-if="noSpecializedSkills">
-              <td class="center" colspan="12">No specialized skills</td>
-            </tr>
-            <Skill v-for="(skill, index) in specializedSkills" :key="skill" :name="skill" training="specialized"
-              :tabIndex="index + 1000" />
-            <tr class="trained">
-              <th colspan="4">Trained</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th colspan="6">&nbsp;</th>
-            </tr>
-            <tr v-if="noTrainedSkills">
-              <td class="center" colspan="12">No trained skills</td>
-            </tr>
-            <Skill v-for="(skill, index) in trainedSkills" :key="skill" :name="skill" training="trained"
-              :tabIndex="index + 1100" />
-            <tr class="untrained">
-              <th colspan="4">Untrained</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th colspan="6">&nbsp;</th>
-            </tr>
-            <Skill v-for="(skill, index) in untrainedSkills" :key="skill" :name="skill" training="untrained"
-              :tabIndex="index + 1200" />
-            <tr class="unusable">
-              <th colspan="4">Unusable</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th colspan="6">&nbsp;</th>
-            </tr>
-            <Skill v-for="(skill, index) in unusableSkills" :key="skill" :name="skill" training="unusable"
-              :tabIndex="index + 1300" />
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+      <span class="red">{{ skillPointsSpentErrorText }}</span>
+
+    </template>
+    <template #right> <span v-tooltip="'Skill points spent.'">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</span>
+    </template>
+    <template #content>
+      <table>
+        <thead>
+          <tr class="table-header">
+            <th colspan="4">Name</th>
+            <th>
+              <span v-tooltip="{
+                content:
+                  '<strong>Trained:</strong> No Bonus<br><strong>Specialized:</strong> +10',
+                html: true,
+              }">Base</span>
+            </th>
+            <th>Buffed</th>
+            <th colspan="2">Invested</th>
+            <th>Buff</th>
+            <th>Cantrip</th>
+          </tr>
+          <tr class="controls">
+            <th colspan="4">
+              <input v-model="filterQuery" class="w60" placeholder="Filter" />
+              <button v-if="filterPresent" @click="clearFilter">x</button>
+            </th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th colspan="2">
+              <input type="range" min="0" :max="maxSkillInvestedSpecialized" value="0" v-on:change="changeInvested" />
+            </th>
+            <th>
+              <select v-on:change="changeBuffed">
+                <option value="0"></option>
+                <option value="1">I</option>
+                <option value="2">II</option>
+                <option value="3">III</option>
+                <option value="4">IV</option>
+                <option value="5">V</option>
+                <option value="6">VI</option>
+                <option value="7">VII</option>
+                <option value="8">VIII</option>
+              </select>
+            </th>
+            <th>
+              <select v-on:change="changeCantrips">
+                <option value="0"></option>
+                <option value="1">Minor</option>
+                <option value="2">Major</option>
+                <option value="3">Epic</option>
+                <option value="4">Legen.</option>
+              </select>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="specialized">
+            <th colspan="7">
+              <span
+                v-tooltip="'You are limited to 70 total credits specialized. Specialized skills get a 10 point bonus.'">
+                Specialized ({{ specializedSkillPointsSpent }} /
+                {{ maxSpecializedSkillPointsSpent }})
+                {{ augmentationsRequiredText }}
+              </span>
+            </th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th colspan="6">&nbsp;</th>
+          </tr>
+          <tr v-if="noSpecializedSkills">
+            <td class="center" colspan="12">No specialized skills</td>
+          </tr>
+          <Skill v-for="(skill, index) in specializedSkills" :key="skill" :name="skill" training="specialized"
+            :tabIndex="index + 1000" />
+          <tr class="trained">
+            <th colspan="4">Trained</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th colspan="6">&nbsp;</th>
+          </tr>
+          <tr v-if="noTrainedSkills">
+            <td class="center" colspan="12">No trained skills</td>
+          </tr>
+          <Skill v-for="(skill, index) in trainedSkills" :key="skill" :name="skill" training="trained"
+            :tabIndex="index + 1100" />
+          <tr class="untrained">
+            <th colspan="4">Untrained</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th colspan="6">&nbsp;</th>
+          </tr>
+          <Skill v-for="(skill, index) in untrainedSkills" :key="skill" :name="skill" training="untrained"
+            :tabIndex="index + 1200" />
+          <tr class="unusable">
+            <th colspan="4">Unusable</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th colspan="6">&nbsp;</th>
+          </tr>
+          <Skill v-for="(skill, index) in unusableSkills" :key="skill" :name="skill" training="unusable"
+            :tabIndex="index + 1300" />
+        </tbody>
+      </table>
+    </template>
+  </Pane>
 </template>
 
 <script>

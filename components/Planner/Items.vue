@@ -1,19 +1,13 @@
 <template>
-  <div id="augmentations" class="pane items">
-    <div>
-      <div class="pane-header" v-on:click="toggle">
-        <div>
-          <h3>Items</h3>
-        </div>
-      </div>
-      <div v-if="collapsed" class="table-wrapper">
-        <ul>
-          <Item id="focusing_stone" />
-          <Item id="font_of_joji" />
-        </ul>
-      </div>
-    </div>
-  </div>
+  <Pane>
+    <template #title>Items</template>
+    <template #content>
+      <ul>
+        <Item id="focusing_stone" />
+        <Item id="font_of_joji" />
+      </ul>
+    </template>
+  </Pane>
 </template>
 
 <script>
