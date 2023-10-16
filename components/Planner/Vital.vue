@@ -5,7 +5,7 @@
     </td>
     <td>
       {{ displayName }}
-      <span class="faded">{{ formula }}</span>
+      <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>&nbsp;</td>
     <td class="creation number">{{ creation }}</td>

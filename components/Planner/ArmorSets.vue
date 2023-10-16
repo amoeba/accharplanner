@@ -1,10 +1,10 @@
 <template>
   <Pane>
     <template #title>Armor Sets</template>
-    <template #right> <span v-if="errors" class="error">{{ errors }}</span>
+    <template #right> <span v-if="errors" class="text-rose-500">{{ errors }}</span>
     </template>
     <template #content>
-      <table>
+      <table class="width-full">
         <thead>
           <tr>
             <th>Name</th>

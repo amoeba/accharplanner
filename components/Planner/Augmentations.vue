@@ -4,7 +4,7 @@
     <template #right> <span v-if="errors" class="error">{{ errors }}</span>
     </template>
     <template #content>
-      <table>
+      <table class="width-full">
         <thead>
           <tr class="table-header">
             <th>Name</th>

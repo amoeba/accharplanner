@@ -1,17 +1,17 @@
 <template>
   <Pane>
     <template #title>
-      <span class="tip" v-tooltip="'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'
-        ">!</span>&nbsp;
+      <Tip
+        v-tooltip="'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'">
+        !
+      </Tip>
       <h3>Skills</h3>
-
-      <span class="red">{{ skillPointsSpentErrorText }}</span>
-
+      <span class="text-rose-500">{{ skillPointsSpentErrorText }}</span>
     </template>
     <template #right> <span v-tooltip="'Skill points spent.'">{{ skillPointsSpent }} / {{ skillPointsAvailable }}</span>
     </template>
     <template #content>
-      <table>
+      <table class="width-full">
         <thead>
           <tr class="table-header">
             <th colspan="4">Name</th>

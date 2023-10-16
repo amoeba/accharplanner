@@ -112,7 +112,7 @@ onMounted(async () => {
       <input class="p-2" type="submit" value="Update" :disabled="formState == FormState.SENDING" />
     </div>
   </form>
-  <button v-if="user" :disabled="isSigningOut" @click="signOut">Log Out</button>
+  <Button v-if="user" :disabled="isSigningOut" @click="signOut">Log Out</Button>
 
   <span v-if="formState == FormState.SENDING">Sending...</span>
   <span v-if="formState == FormState.SUCCESS">{{ message }}</span>

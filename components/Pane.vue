@@ -1,22 +1,20 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const isExpanded = ref(false)
-const collapse = () => {
+const isExpanded = ref(true)
+const toggleExpanded = () => {
   isExpanded.value = !isExpanded.value;
 }
 </script>
 
 <template>
-  <div class="border rounded-md divide-y">
-    <div>
-      <div class="grid grid-cols-2 cursor-pointer" @click="collapse">
-        <div class="font-bold p-2">
-          <slot name="title"></slot>
-        </div>
-        <div class="justify-self-end p-2">
-          <slot name="right"></slot>
-        </div>
+  <div class="border rounded-md border-zinc-200 divide-y">
+    <div class="flex rounded-tl-md rounded-tr-md hover:bg-zinc-50 cursor-pointer" @click="toggleExpanded">
+      <div class="flex grow font-bold gap-2 p-2">
+        <slot name="title"></slot>
+      </div>
+      <div class="justify-self-end text-right p-2">
+        <slot name="right"></slot>
       </div>
     </div>
     <div :class="isExpanded ? 'block' : 'hidden'" :aria-expanded="isExpanded">

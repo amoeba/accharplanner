@@ -2,7 +2,7 @@
   <tr>
     <td>
       {{ displayName }}
-      <span class="faded">{{ extraInfo }}</span>
+      <span class="text-gray-500">{{ extraInfo }}</span>
     </td>
     <td>
       <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />

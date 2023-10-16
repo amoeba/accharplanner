@@ -2,7 +2,7 @@
   <tr>
     <td>
       {{ displayName }}
-      <span class="faded">{{ extraInfo }}</span>
+      <span class="text-gray-500">{{ extraInfo }}</span>
     </td>
     <td>
       <input v-bind:id="id" v-bind:name="id" type="range" min="0" max="9" v-model="equipped" />
@@ -51,5 +51,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>

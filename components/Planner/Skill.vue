@@ -5,7 +5,7 @@
     </td>
     <td>
       {{ displayName }}
-      <span class="faded">{{ formula }}</span>
+      <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>
       <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">

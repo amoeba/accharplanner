@@ -7,7 +7,7 @@
       <span v-else>
         {{ displayName }}
       </span>
-      <span style="margin-left: 0.5em" class="faded">{{ extraInfo }}</span>
+      <span style="margin-left: 0.5em" class="text-gray-500">{{ extraInfo }}</span>
     </td>
     <td>
       <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />

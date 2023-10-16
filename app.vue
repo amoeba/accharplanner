@@ -4,8 +4,6 @@ import { useMainStore } from "./stores/main";
 
 const store = useMainStore()
 
-import "~/assets/css/main.css";
-
 const theme = computed(() => {
   if (store.$state.darkMode === null) {
     return "";
@@ -16,9 +14,9 @@ const theme = computed(() => {
 </script>
 
 <template>
-  <div id="app" :class="theme">
+  <div>
     <AppHeader />
-    <main class="max-w-4xl mx-auto p-2">
+    <main class="max-w-5xl mx-auto p-2">
       <NuxtPage />
     </main>
     <AppFooter />

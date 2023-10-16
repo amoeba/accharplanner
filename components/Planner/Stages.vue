@@ -1,24 +1,19 @@
 <template>
-  <div class="header header-stages">
-    <div>
-      <div class="header-title" v-on:click="toggle">
-        <div>
-          <h3>Build Stages</h3>
-        </div>
-        <div class="right">
-          <button class="stage-new" v-on:click="save">Save Stage</button>
-        </div>
-      </div>
-      <div v-if="visible" id="stages" class="header-items" v-bind:droppable="true" v-on:drop="drop"
-        v-on:dragover="dragover">
+  <Pane>
+    <template #title>Build Stages</template>
+    <template #right>
+      <Button @click="save">Save Stage</Button>
+    </template>
+    <template #content>
+      <div v-bind:droppable="true" v-on:drop="drop" v-on:dragover="dragover">
         <div v-if="stages.length === 0">
           No stages have been set up for this build.
         </div>
         <Stage v-for="(stage, index) in stages" v-bind:key="index" v-bind:index="index" v-bind:level="stage.level"
           v-bind:data-index="index" v-bind:stages="stages.length" v-on:dragstart="dragStart" :draggable="true" />
       </div>
-    </div>
-  </div>
+    </template>
+  </Pane>
 </template>
 
 <script>

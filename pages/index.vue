@@ -53,7 +53,7 @@ const route = useRoute()
   <TableWithName>
     <template #title>Recent Builds</template>
     <template #table>
-      <table>
+      <table class="width-full">
         <thead>
           <tr>
             <th>Name</th>

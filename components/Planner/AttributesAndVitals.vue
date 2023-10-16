@@ -11,7 +11,7 @@
       </div>
     </template>
     <template #content>
-      <table>
+      <table class="width-full">
         <Attributes />
         <Vitals />
       </table>

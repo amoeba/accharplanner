@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <label class="flex gap-2">
     <input v-bind:id="name" v-bind:name="name" type="checkbox" v-model="checked" />
-    <label v-bind:for="name">{{ name }}</label>
-  </div>
+    {{ name }}
+  </label>
 </template>
 
 <script>
