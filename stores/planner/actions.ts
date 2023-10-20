@@ -1,32 +1,7 @@
 import { merge } from "lodash";
-import { createId } from "mnemonic-id";
 import DefaultCharacter from "~/utils/DefaultCharacter";
 
 export default {
-  async shareBuild() {
-    const client = useSupabaseClient();
-
-    // Reset state and clean out current shared build first
-    this.ui.shareStatus = null;
-    this.ui.sharedBuild = null;
-
-    // Insert build
-    const { data, error } = await client
-      .from("shared_builds")
-      .insert({ id: createId(10), content: this.build })
-      .select();
-
-    // Handle any errors
-    if (error) {
-      this.ui.sharedStatus = "Error: " + error;
-    }
-
-    // Update state
-    this.ui.shareStatus = null;
-    if (data) {
-      this.ui.sharedBuild = data[0]["id"];
-    }
-  },
   async loadRemoteBuild(options: any) {
     const client = useSupabaseClient();
 
