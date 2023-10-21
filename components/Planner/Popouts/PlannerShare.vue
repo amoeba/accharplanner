@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, inject, watch } from "vue"
 import { useRuntimeConfig } from "nuxt/app";
 import { createId } from "mnemonic-id";
 import { usePlannerStore } from "~/stores/planner";
@@ -7,9 +7,19 @@ import { usePlannerStore } from "~/stores/planner";
 const store = usePlannerStore();
 const config = useRuntimeConfig();
 
+// Refs + injects
 const shareBuildURL = ref("")
 const errorMessage = ref("")
 
+const isPopoutVisible = inject('isPopoutVisible')
+
+watch([isPopoutVisible], async (newVal, oldVal) => {
+  if (newVal) {
+    await shareBuild();
+  }
+})
+
+// Form state
 enum ShareState {
   UNSENT,
   SHARING,
@@ -19,11 +29,14 @@ enum ShareState {
 
 const shareState = ref(ShareState.UNSENT);
 
+// Methods
 const setSharedBuild = function (id: string) {
   shareBuildURL.value = config.public.baseUrl + "/" + id;
 }
 
 const shareBuild = async function () {
+  shareBuildURL.value = ""
+
   const client = useSupabaseClient();
 
   try {
@@ -46,10 +59,6 @@ const shareBuild = async function () {
     shareState.value = ShareState.ERROR;
   }
 }
-
-onMounted(async () => {
-  await shareBuild();
-});
 </script>
 
 <template>

@@ -10,7 +10,7 @@
       <Button v-on:click="resetPlanner">
         Reset
       </Button>
-      <ButtonWithPopout>
+      <ButtonWithPopout widthClass="w-96">
         <template #title>🌍 Share</template>
         <template #content>
           <PlannerPopoutsPlannerShare />
