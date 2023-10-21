@@ -32,17 +32,17 @@
           <label class="flex gap-2">
             Level
             <div>
-              <div v-if="!settingsInfiniteMode" class="flex">
-                <div class="grow">
+              <div v-if="!settingsInfiniteMode" class="flex gap-2">
+                <div class="flex grow">
                   <input class="" type="range" min="1" :max="maxLevel" v-model="level" />
                 </div>
                 <div class="">
                   <input class="max-w-[3em]" type="text" v-bind:value="level" v-on:change="updateLevel" />
                 </div>
               </div>
-              <div v-if="settingsInfiniteMode" class="flex">
-                <div class="grow">
-                  <span class="text-green-600">(∞-Mode)</span>
+              <div v-if="settingsInfiniteMode" class="flex gap-2">
+                <div class="flex grow">
+                  <span class="text-green-600">∞</span>
                 </div>
                 <div class="">
                   <input class="max-w-[6em]" type="text" v-bind:value="level" v-on:change="updateLevel" />
@@ -119,8 +119,8 @@
           </label>
           <label class="flex gap-2">
             Enlightened
-            <div class="flex">
-              <div>
+            <div class="flex gap-2">
+              <div class="flex grow">
                 <input type="range" min="0" :max="maxTimesEnlightened" v-model="timesEnlightened" />
               </div>
               <div>
