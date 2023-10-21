@@ -2,13 +2,13 @@
   <div class="flex flex-col gap-2">
     <div class="flex justify-end gap-x-1">
       <Button v-on:click="saveBuild">
-        Save
+        💾 Save a Copy
       </Button>
       <Button v-on:click="exportCharacter">
-        Export
+        ⬇️ Download
       </Button>
       <Button v-on:click="resetPlanner">
-        Reset
+        🗑️ Reset
       </Button>
       <ButtonWithPopout widthClass="w-96">
         <template #title>🌍 Share</template>
