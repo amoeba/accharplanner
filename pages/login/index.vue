@@ -1,5 +1,7 @@
 <template>
   <div class="flex justify-center">
-    <Login />
+    <div class="w-96">
+      <Login />
+    </div>
   </div>
 </template>
