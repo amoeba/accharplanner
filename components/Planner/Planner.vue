@@ -1,27 +1,33 @@
 <template>
   <div class="flex flex-col gap-2">
-    <div class="flex justify-end gap-x-1">
-      <Button v-on:click="saveBuild">
-        💾 Save a Copy
-      </Button>
-      <Button v-on:click="exportCharacter">
-        ⬇️ Download
-      </Button>
-      <Button v-on:click="resetPlanner">
-        🗑️ Reset
-      </Button>
-      <ButtonWithPopout widthClass="w-96">
-        <template #title>🌍 Share</template>
-        <template #content>
-          <PlannerPopoutsPlannerShare />
-        </template>
-      </ButtonWithPopout>
-      <ButtonWithPopout>
-        <template #title>🛠️ Settings</template>
-        <template #content>
-          <PlannerPopoutsPlannerSettings />
-        </template>
-      </ButtonWithPopout>
+    <div class="grid grid-flow-col">
+      <div class="flex gap-2">
+        <Button @click="expandAll">Ex</Button>
+        <Button @click="collapseAll">Cl</Button>
+      </div>
+      <div class="flex justify-end gap-x-1">
+        <Button v-on:click="saveBuild">
+          💾 Save a Copy
+        </Button>
+        <Button v-on:click="exportCharacter">
+          ⬇️ Download
+        </Button>
+        <Button v-on:click="resetPlanner">
+          🗑️ Reset
+        </Button>
+        <ButtonWithPopout widthClass="w-96">
+          <template #title>🌍 Share</template>
+          <template #content>
+            <PlannerPopoutsPlannerShare />
+          </template>
+        </ButtonWithPopout>
+        <ButtonWithPopout>
+          <template #title>🛠️ Settings</template>
+          <template #content>
+            <PlannerPopoutsPlannerSettings />
+          </template>
+        </ButtonWithPopout>
+      </div>
     </div>
     <Headers />
     <Stages />
@@ -76,6 +82,12 @@ export default {
     resetPlanner() {
       this.store.reset();
     },
+    expandAll() {
+      this.store.expandAll();
+    },
+    collapseAll() {
+      this.store.collapseAll();
+    }
   },
 };
 </script>

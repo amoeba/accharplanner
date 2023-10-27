@@ -173,6 +173,17 @@ export default {
     }
   },
 
+  // UI
+  expandAll() {
+    Object.keys(this.ui.paneVisibility).forEach(p => {
+      this.ui.paneVisibility[p] = true;
+    });
+  },
+  collapseAll() {
+    Object.keys(this.ui.paneVisibility).forEach(p => {
+      this.ui.paneVisibility[p] = true;
+    });
+  },
   toggleAttributesPane() {
     this.ui.paneVisibility.attributes = !this.ui.paneVisibility.attributes;
   },
