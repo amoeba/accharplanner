@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-4 gap-2">
-    <Pane>
+    <Pane :toggleExpanded="toggleCharacterHeaderExpanded" :isExpanded="isCharacterHeaderExpanded">
       <template #title>Character</template>
       <template #content>
         <div class="flex flex-col gap-2">
@@ -53,7 +53,7 @@
         </div>
       </template>
     </Pane>
-    <Pane>
+    <Pane :toggleExpanded="toggleLuminanceHeaderExpanded" :isExpanded="isLuminanceHeaderExpanded">
       <template #title>XP &amp; Luminance</template>
       <template #right>
         <Tip
@@ -84,7 +84,7 @@
         </div>
       </template>
     </Pane>
-    <Pane>
+    <Pane :toggleExpanded="toggleKnobsAndDialsHeaderExpanded" :isExpanded="isKnobsAndDialsHeaderExpanded">
       <template #title>Knobs &amp; Dials</template>
       <template #content>
         <div class="flex flex-col gap-2">
@@ -159,17 +159,14 @@ export default {
     }
   },
   computed: {
-    characterPaneVisible() {
+    isCharacterHeaderExpanded() {
       return this.store.characterPaneVisible;
     },
-    xpAndLuminancePaneVisible() {
+    isLuminanceHeaderExpanded() {
       return this.store.xpAndLuminancePaneVisible;
     },
-    knobsAndDialsPaneVisible() {
+    isKnobsAndDialsHeaderExpanded() {
       return this.store.knobsAndDialsPaneVisible;
-    },
-    extraSkillCreditsPaneVisible() {
-      return this.store.extraSkillCreditsPaneVisible;
     },
     totalXPEarned() {
       return Number(this.store.totalXPEarned).toLocaleString();
@@ -260,17 +257,14 @@ export default {
     }
   },
   methods: {
-    toggleCharacterPane() {
+    toggleCharacterHeaderExpanded() {
       this.store.toggleCharacterPane();
     },
-    toggleXPAndLuminancePane() {
+    toggleLuminanceHeaderExpanded() {
       this.store.toggleXPAndLuminancePane();
     },
-    toggleKnobsAndDialsPane() {
+    toggleKnobsAndDialsHeaderExpanded() {
       this.store.toggleKnobsAndDialsPane();
-    },
-    toggleExtraSkillCreditsPane() {
-      this.store.toggleExtraSkillCreditsPane();
     },
     updateLevel(e) {
       let actual = Math.round(Number(e.target.value));

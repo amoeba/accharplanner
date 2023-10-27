@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>Extra Skill Credits</template>
     <template #content>
       <ExtraSkillCredit id="railrea" name="Aun Ralirea" />
@@ -27,12 +27,12 @@ export default {
     ExtraSkillCredit,
   },
   computed: {
-    collapsed() {
+    isExpanded() {
       return this.store.extraSkillCreditsPaneVisible;
     },
   },
   methods: {
-    toggle() {
+    toggleExpanded() {
       this.store.toggleExtraSkillCreditsPane();
     },
   },
