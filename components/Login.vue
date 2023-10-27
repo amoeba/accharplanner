@@ -9,7 +9,7 @@
     <div class="flex flex-col gap-4 divide-y">
       <div>
         <NuxtLink class="flex text-center w-full border rounded hover:bg-zinc-100 p-2" to="/login/email">
-          ✨ Magic Link
+          Link
         </NuxtLink>
       </div>
       <div>

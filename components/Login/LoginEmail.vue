@@ -74,7 +74,7 @@ const signInWithEmail = async function (email: string) {
         <input class="w-full p-2" type="text" v-model="email" />
       </label>
       <div class="flex justify-end">
-        <input class="p-2" type="submit" :disabled="formState == FormState.SENDING" value="Send Link" />
+        <input class="p-2" type="submit" :disabled="formState == FormState.SENDING" value="Send 🔮 Link" />
       </div>
     </form>
     <p v-if="formState == FormState.SUCCESS" class="text-green-400">Check your email for a link to log in.</p>
