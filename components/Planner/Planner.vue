@@ -65,10 +65,6 @@ export default {
   },
   methods: {
     saveBuild() {
-      this.store.addNotification({
-        type: "success",
-        message: "Build saved. See the Saved tab.",
-      });
       this.store.saveBuild();
     },
     exportCharacter() {
