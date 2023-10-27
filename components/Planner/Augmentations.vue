@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>Experience Augmentations</template>
     <template #right> <span v-if="errors" class="error">{{ errors }}</span>
     </template>
@@ -51,7 +51,7 @@ export default {
     }
   },
   computed: {
-    collapsed() {
+    isExpanded() {
       return this.store.augmentationsPaneVisible;
     },
     errors() {
@@ -68,7 +68,7 @@ export default {
     changeInvested(e) {
       this.store.changeAllAugmentationInvestment(e.target.value);
     },
-    toggle() {
+    toggleExpanded() {
       this.store.toggleAugmentationsPane();
     },
     clearFilter() {

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
 
-const isExpanded = ref(true)
-const toggleExpanded = () => {
-  isExpanded.value = !isExpanded.value;
-}
+defineProps([
+  "toggleExpanded", "isExpanded"
+])
 </script>
 
 <template>

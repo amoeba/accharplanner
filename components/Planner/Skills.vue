@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>
       <Tip
         v-tooltip="'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'">
@@ -134,7 +134,7 @@ export default {
     }
   },
   computed: {
-    collapsed() {
+    isExpanded() {
       return this.store.skillsPaneVisible;
     },
     skillPointsSpent() {
@@ -221,7 +221,7 @@ export default {
     },
   },
   methods: {
-    toggle() {
+    toggleExpanded() {
       this.store.toggleSkillsPane();
     },
     changeInvested(e) {

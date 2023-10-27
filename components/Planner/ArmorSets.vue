@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>Armor Sets</template>
     <template #right> <span v-if="errors" class="text-rose-500">{{ errors }}</span>
     </template>
@@ -46,7 +46,7 @@ export default {
     }
   },
   computed: {
-    collapsed() {
+    isExpanded() {
       return this.store.armorSetsPaneVisible;
     },
     errors() {
@@ -54,7 +54,7 @@ export default {
     },
   },
   methods: {
-    toggle() {
+    toggleExpanded() {
       this.store.toggleArmorSetsPane;
     },
   },

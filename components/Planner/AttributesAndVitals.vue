@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>Attributes</template>
     <template #right>
       <div>
@@ -43,7 +43,7 @@ export default {
     attributePointsAvailable() {
       return this.store.attributePointsAvailable;
     },
-    collapsed() {
+    isExpanded() {
       return this.store.attributesPaneVisible;
     },
     errors() {
@@ -51,7 +51,7 @@ export default {
     },
   },
   methods: {
-    toggle() {
+    toggleExpanded() {
       this.store.toggleAttributesPane();
     },
   },

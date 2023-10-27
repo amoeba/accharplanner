@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>Items</template>
     <template #content>
       <ul>
@@ -27,12 +27,12 @@ export default {
     Item,
   },
   computed: {
-    collapsed() {
+    isExpanded() {
       return this.store.itemsPaneVisible;
     },
   },
   methods: {
-    toggle() {
+    toggleExpanded() {
       this.store.toggleItemsPane();
     },
   },
