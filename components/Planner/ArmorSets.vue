@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     toggleExpanded() {
-      this.store.toggleArmorSetsPane;
+      this.store.toggleArmorSetsPane();
     },
   },
 };
