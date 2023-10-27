@@ -181,7 +181,7 @@ export default {
   },
   collapseAll() {
     Object.keys(this.ui.paneVisibility).forEach(p => {
-      this.ui.paneVisibility[p] = true;
+      this.ui.paneVisibility[p] = false;
     });
   },
   toggleAttributesPane() {
