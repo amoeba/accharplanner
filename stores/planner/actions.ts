@@ -173,20 +173,6 @@ export default {
     }
   },
 
-  // Modals
-  showShareModal() {
-    this.setShareModalVisibility(true);
-  },
-  hideShareModal() {
-    this.setShareModalVisibility(false);
-  },
-  showSettingsModal() {
-    this.setSettingsModalVisibility(true);
-  },
-  hideSettingsModal() {
-    this.setSettingsModalVisibility(false);
-  },
-
   toggleAttributesPane() {
     this.ui.paneVisibility.attributes = !this.ui.paneVisibility.attributes;
   },
