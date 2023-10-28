@@ -5,19 +5,17 @@
         <h3>Builds</h3>
       </div>
       <div class="main-pane-body">
-        <div v-if="loading">
-          Grabbing the freshest, gimpiest builds. Hang on...
+        <div class="builds" v-for="group in buildsGrouped">
+          <h3>{{ group.name }}</h3>
+          <p v-if="group.builds.length == 0">No builds to show. Yet.</p>
+          <p v-if="group.url">
+            More information at <a :href="group.url">{{ group.url }}</a></p>
+          <ul>
+            <li v-for="build in group.builds">
+              <a :href="'https://planner.treestats.net/' + build.id">{{ build.name }}</a>
+            </li>
+          </ul>
         </div>
-        <div v-if="error">
-          Failed to fetch latest, gimpiest builds. An error report has
-          automatically been sent to the developer.
-        </div>
-        <div v-if="builds.length === 0">
-          No builds to display.
-        </div>
-        <ul v-if="builds">
-          <BuildsEntry v-for="build in builds" :id="build.id" :key="build.id" />
-        </ul>
       </div>
     </div>
   </div>
@@ -38,6 +36,44 @@ export default {
       loading: false,
       builds: [],
       error: null,
+      buildsGrouped: [
+        {
+          name: "Classic Builds",
+          builds: [
+            {
+              id: "og_mage",
+              name: "Og Mage",
+            }
+          ],
+        },
+        {
+          name: "EoR Builds",
+          builds: [
+          ],
+        },
+        {
+          name: "Levistras Auroch League Builds",
+          url: "https://docs.google.com/spreadsheets/d/1pIHnxMNvQBnuDAJV0lvzCvbLqAT8p_HX2PL8TJgRNlU",
+          builds: [
+            {
+              id: "XGqLZ8gCFY",
+              name: "Chevaird",
+            },
+            {
+              id: "gxzFUeHgsg",
+              name: "Gearcrafter"
+            },
+            {
+              id: "7mNURRylS7",
+              name: "Hunter"
+            },
+            {
+              id: "A4aJmNy4ht",
+              name: "Samurai"
+            }
+          ],
+        }
+      ]
     };
   },
   async created() {
@@ -68,3 +104,24 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.main-pane-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+h3 {
+  margin-bottom: 0.5em;
+}
+
+p {
+  word-break: break-all;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 2em;
+}
+</style>
