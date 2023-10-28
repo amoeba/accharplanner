@@ -85,6 +85,10 @@ export default {
             {
               id: "n1dRPCba6m",
               name: "Vagabond"
+            },
+            {
+              id: "qOo2QHQbZ3",
+              name: "War Smith"
             }
           ],
         }
