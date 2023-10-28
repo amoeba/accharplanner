@@ -6,10 +6,16 @@
       </div>
       <div class="main-pane-body">
         <div class="builds" v-for="group in buildsGrouped">
-          <h3>{{ group.name }}</h3>
+          <h3>
+            <img v-if="group.image" :src="'/img/' + group.image" width="16" height="16" />
+            {{ group.name }}
+            <img v-if="group.image" :src="'/img/' + group.image" width="16" height="16" />
+          </h3>
           <p v-if="group.builds.length == 0">No builds to show. Yet.</p>
           <p v-if="group.url">
-            More information at <a :href="group.url">{{ group.url }}</a></p>
+            More information at <a :href="group.url">{{ group.url }}</a>
+          </p>
+
           <ul>
             <li v-for="build in group.builds">
               <a :href="'https://planner.treestats.net/' + build.id">{{ build.name }}</a>
@@ -54,6 +60,7 @@ export default {
         {
           name: "Levistras Auroch League Builds",
           url: "https://docs.google.com/spreadsheets/d/1pIHnxMNvQBnuDAJV0lvzCvbLqAT8p_HX2PL8TJgRNlU",
+          image: "levistras.gif",
           builds: [
             {
               id: "XGqLZ8gCFY",
