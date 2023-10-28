@@ -70,6 +70,10 @@ export default {
             {
               id: "A4aJmNy4ht",
               name: "Samurai"
+            },
+            {
+              id: "40KidImMaq",
+              name: "Shadowbound"
             }
           ],
         }
