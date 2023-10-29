@@ -1,13 +1,27 @@
 <script setup lang="ts">
 const client = useSupabaseClient();
 
-const getLastestBuilds = async function () {
-  let { data, error } = await client.from("builds").select().limit(10).order('created_at')
+const getPublishedBuilds = async function () {
+  let { data, error } = await client
+    .from("builds")
+    .select(`
+      id,
+      content,
+      created_at,
+      profiles (
+        name
+      )
+    `)
+    .order("created_at")
+    .eq("is_published", true)
+    .limit(10)
 
-  return { data, error };
+  return {
+    data, error
+  };
 }
 
-const { data, error } = await getLastestBuilds();
+const { data, error } = await getPublishedBuilds();
 </script>
 
 <template>
@@ -27,11 +41,11 @@ const { data, error } = await getLastestBuilds();
             <td><a :href="'/' + build.id">{{ build.content.character.name }}</a></td>
             <td>999</td>
             <td>
-              <span v-if="build.user_id">{{ build.user_id }}</span>
+              <span v-if="build.profiles">{{ build.profiles.name }}</span>
               <span v-else>Anonymous</span>
             </td>
           </tr>
-          <tr v-if-else="error">
+          <tr v-else-if="error">
             <td colspan="3">{{ error }}</td>
           </tr>
         </tbody>
