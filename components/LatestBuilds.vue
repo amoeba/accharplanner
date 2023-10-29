@@ -31,7 +31,7 @@ const { data, error } = await getLastestBuilds();
               <span v-else>Anonymous</span>
             </td>
           </tr>
-          <tr v-if-else="error">
+          <tr v-else-if="error">
             <td colspan="3">{{ error }}</td>
           </tr>
         </tbody>
