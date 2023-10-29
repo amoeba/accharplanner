@@ -83,6 +83,10 @@ export default {
               name: "Shadowbound"
             },
             {
+              id: "vd9G8RkoBG",
+              name: "Spirit Summoner"
+            },
+            {
               id: "n1dRPCba6m",
               name: "Vagabond"
             },
