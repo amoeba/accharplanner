@@ -35,7 +35,7 @@ export default {
 
     if (!response_official_data?.length) {
       const response_shared = await client
-        .from("shared_builds")
+        .from("builds")
         .select()
         .eq("id", options.build_id);
 

@@ -25,7 +25,7 @@ const loadBuild = async function (id: string) {
 
   try {
     const { data, error } = await client
-      .from("shared_builds")
+      .from("builds")
       .select()
       .eq("id", id);
 
@@ -66,9 +66,9 @@ onMounted(async () => {
   } else if (data) {
     console.log(data);
     await store.loadBuildFromJSON(data[0]["content"]);
+    await navigateTo("/planner");
   }
 
-  await navigateTo("/planner");
 })
 </script>
 

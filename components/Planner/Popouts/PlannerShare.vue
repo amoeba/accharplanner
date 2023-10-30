@@ -43,7 +43,7 @@ const shareBuild = async function () {
     shareState.value = ShareState.SHARING;
 
     const { data, error } = await client
-      .from("shared_builds")
+      .from("builds")
       .insert({ id: createId(10), content: store.build })
       .select();
 
