@@ -31,7 +31,9 @@ function toggleDarkMode(event: Event) {
       <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>
       <NuxtLink href="https://github.com/amoeba/accharplanner">G</NuxtLink>
       <!-- Login / Account -->
-      <NuxtLink v-if="!user" to="/login">Log In</NuxtLink>
+      <NuxtLink v-if="!user" to="/login">
+        <span v-tooltip="'Log In to Publish your builds for others to see and to favorite others\' builds.'">Log In</span>
+      </NuxtLink>
       <NuxtLink v-if="user" to="/account">Account</NuxtLink>
     </div>
   </header>
