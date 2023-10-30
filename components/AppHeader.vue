@@ -24,8 +24,8 @@ function toggleDarkMode(event: Event) {
         Asheron's
         Call Character
         Planner</span>
-      <NuxtLink to="/planner">Planner</NuxtLink>
-      <NuxtLink to="/builds">Builds</NuxtLink>
+      <NuxtLink to="/planner" class="hover:underline">Planner</NuxtLink>
+      <NuxtLink to="/builds" class="hover:underline">Builds</NuxtLink>
     </div>
     <div class="flex gap-2 justify-self-end items-center p-2">
       <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>
@@ -37,7 +37,7 @@ function toggleDarkMode(event: Event) {
         </svg>
       </NuxtLink>
       <!-- Login / Account -->
-      <NuxtLink v-if="!user" to="/login">
+      <NuxtLink v-if="!user" to="/login" class="hover:underline">
         <span v-tooltip="'Log In to Publish your builds for others to see and to favorite others\' builds.'">Log In</span>
       </NuxtLink>
       <NuxtLink v-if="user" to="/account">Account</NuxtLink>
