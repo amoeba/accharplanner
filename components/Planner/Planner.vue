@@ -19,6 +19,7 @@
         </Button>
       </div>
       <div class="flex justify-end gap-x-1">
+        <PlannerLoggedInControls />
         <Button v-on:click="saveBuild">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path
