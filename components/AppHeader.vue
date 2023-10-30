@@ -17,7 +17,7 @@ function toggleDarkMode(event: Event) {
 <template>
   <header class="grid grid-cols-2 items-center p-2">
     <div class="flex gap-4 items-baseline">
-      <NuxtLink to="/" class="my-title font-bold"><span class="text-xl font-bold text-green-400">▲</span> ODACCP
+      <NuxtLink to="/" class="my-title font-bold"><span class="text-3xl font-bold text-green-400">▲</span> ODACCP
       </NuxtLink>
       <span class="my-subtitle absolute top-10 left-10 opacity-0 transition-all duration-300 text-xs">The
         Overly-Detailed
