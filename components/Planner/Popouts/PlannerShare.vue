@@ -64,7 +64,7 @@ const shareBuild = async function () {
 <template>
   <div class="flex">
     <input id="sharedBuildURL" type="text" v-model="shareBuildURL" placeholder="Sharing, hang on tight..." />
-    <Button class="border rounded p-2">📋</Button>
+    <Button class="border rounded px-2 py-1">📋</Button>
   </div>
   <div v-if="errorMessage">{{ errorMessage }}</div>
 </template>

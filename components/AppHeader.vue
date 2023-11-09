@@ -15,7 +15,7 @@ function toggleDarkMode(event: Event) {
 </script>
 
 <template>
-  <header class="grid grid-cols-2 items-center p-2">
+  <header class="grid grid-cols-2 items-center px-2 py-1">
     <div class="flex gap-4 items-baseline">
       <NuxtLink to="/" class="my-title font-bold"><span class="text-3xl font-bold text-green-400">▲</span> ODACCP
       </NuxtLink>
@@ -27,7 +27,7 @@ function toggleDarkMode(event: Event) {
       <NuxtLink to="/planner" class="hover:underline">Planner</NuxtLink>
       <NuxtLink to="/builds" class="hover:underline">Builds</NuxtLink>
     </div>
-    <div class="flex gap-2 justify-self-end items-center p-2">
+    <div class="flex gap-2 justify-self-end items-center px-2 py-1">
       <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>
       <NuxtLink href="https://github.com/amoeba/accharplanner">
         <svg width="24.5" height="24" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">

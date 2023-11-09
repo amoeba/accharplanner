@@ -106,7 +106,7 @@ onMounted(async () => {
   <form @submit.prevent="trySetName">
     <label class="block py-3">
       <div>Name</div>
-      <input class="w-full p-2" type="text" v-model="name" />
+      <input class="w-full px-2 py-1" type="text" v-model="name" />
     </label>
     <div class="flex justify-end">
       <input class="p-2" type="submit" value="Update" :disabled="formState == FormState.SENDING" />

@@ -20,7 +20,7 @@ const togglePopout = async function (e: Event) {
       <slot name="title"></slot>
     </Button>
     <div :class="[widthClass, visibilityClass]"
-      class="absolute top-11 right-0 flex flex-col gap-2 border rounded bg-white p-2">
+      class="absolute top-11 right-0 flex flex-col gap-2 border rounded bg-white px-2 py-1">
       <div class="font-bold">
         <slot name="title"></slot>
       </div>
@@ -28,7 +28,7 @@ const togglePopout = async function (e: Event) {
         <slot name="content" :isVisible="isPopoutVisible"></slot>
       </div>
       <div class="flex justify-end">
-        <button @click="togglePopout" class="border rounded hover:bg-zinc-100 p-2">Close</button>
+        <button @click="togglePopout" class="border rounded hover:bg-zinc-100 px-2 py-1">Close</button>
       </div>
     </div>
   </div>

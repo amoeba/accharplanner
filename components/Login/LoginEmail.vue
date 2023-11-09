@@ -81,11 +81,11 @@ const signInWithEmail = async function (email: string) {
     <form @submit.prevent="handleSubmit">
       <label class="block py-3">
         <div>Email</div>
-        <input class="w-full p-2" type="text" v-model="email" />
+        <input class="w-full px-2 py-1" type="text" v-model="email" />
       </label>
       <div class="flex justify-end">
-        <input class="hover:bg-zinc-100 cursor-pointer p-2 disabled:bg-zinc-200 disabled:text-zinc-500" type="submit"
-          :disabled="formState == FormState.SENDING" :value="submitButtonText" />
+        <input class="hover:bg-zinc-100 cursor-pointer px-2 py-1 disabled:bg-zinc-200 disabled:text-zinc-500"
+          type="submit" :disabled="formState == FormState.SENDING" :value="submitButtonText" />
       </div>
     </form>
     <p v-if="formState == FormState.SUCCESS" class="text-green-600">Check your email for a link to log in.</p>
