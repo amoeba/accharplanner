@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    font-family: "League Spartan"
-  }
-}
-
 @layer components {
 
   input,
