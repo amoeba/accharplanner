@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="planner flex flex-col gap-2">
     <div class="grid grid-flow-col">
       <div class="flex gap-2">
         <Button @click="expandAll">
