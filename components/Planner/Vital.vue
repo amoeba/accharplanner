@@ -17,7 +17,7 @@
       <input type="range" min="0" :max="maxVitalInvested" v-model="invested" />
     </td>
     <td>
-      <input class="w-10" type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input class="w-10" type="text" model="invested" v-bind:tabindex="tabIndex" />
     </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -65,6 +65,13 @@ export default {
         return this.store.build.character.vitals[this.name].invested;
       },
       set(value) {
+        let out = Mathr.round(Number(value) || 0)
+
+        out = Math.max(
+          MIN_VITAL_INVESTED,
+          Math.min(out, MAX_VITAL_INVESTED)
+        );
+
         this.store.updateVitalInvested({
           name: this.name,
           value: value,
@@ -76,30 +83,6 @@ export default {
     return {
       maxVitalInvested: MAX_VITAL_INVESTED
     }
-  },
-  methods: {
-    updateInvested(e) {
-      let value = Math.round(Number(e.target.value));
-
-      if (isNaN(value)) {
-        value = 0;
-      }
-
-      if (this.store.settings.infiniteMode) {
-        // Do nothing
-      } else if (value > MAX_VITAL_INVESTED) {
-        value = MAX_VITAL_INVESTED;
-      } else if (value < 0) {
-        value = 0;
-      }
-
-      this.store.updateVitalInvested({
-        name: this.name,
-        value: value,
-      });
-
-      e.target.value = value;
-    },
   },
 };
 </script>

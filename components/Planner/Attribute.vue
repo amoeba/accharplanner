@@ -8,7 +8,7 @@
       <input type="range" min="10" max="100" v-model="creation" />
     </td>
     <td>
-      <input class="w-10" type="text" v-bind:value="creation" v-on:change="updateCreation" v-bind:tabindex="tabIndex" />
+      <input class="w-10" type="text" v-model="creation" v-bind:tabindex="tabIndex" />
     </td>
     <td>{{ base }}</td>
     <td v-bind:class="isBuffed ? 'text-green-600' : ''">
@@ -18,7 +18,7 @@
       <input type="range" min="0" :max="maxAttributeInvested" v-model="invested" />
     </td>
     <td>
-      <input class="w-10" type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input class="w-10" type="text" v-model="invested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
@@ -82,15 +82,16 @@ export default {
         return this.store.build.character.attributes[this.name].creation;
       },
       set(value) {
-        if (value > 100) {
-          value = 100;
-        } else if (value < 10) {
-          value = 10;
-        }
+        let out = Math.round(Number(value) || 0)
+
+        out = Math.max(
+          MIN_CREATION_ATTRIBUTE_POINTS,
+          Math.min(out, MAX_CREATION_ATTRIBUTE_POINTS)
+        );
 
         this.store.updateAttributeCreation({
           name: this.name,
-          value: value,
+          value: out,
         });
       },
     },
@@ -143,50 +144,7 @@ export default {
         this.store.build.character.attributes[this.name].cantrip
       ];
     },
-  },
-  methods: {
-    updateCreation(e) {
-      let value = Math.round(Number(e.target.value));
 
-      if (isNaN(value)) {
-        value = 10;
-      }
-
-      if (value > 100) {
-        value = 100;
-      } else if (value < 10) {
-        value = 10;
-      }
-
-      this.store.updateAttributeCreation({
-        name: this.name,
-        value: value,
-      });
-
-      e.target.value = value;
-    },
-    updateInvested(e) {
-      let value = Math.round(Number(e.target.value));
-
-      if (isNaN(value)) {
-        value = 0;
-      }
-
-      if (this.store.settings.infiniteMode) {
-        // Do nothing
-      } else if (value > MAX_ATTRIBUTE_INVESTED) {
-        value = MAX_ATTRIBUTE_INVESTED;
-      } else if (value < 0) {
-        value = 0;
-      }
-
-      this.store.updateAttributeInvested({
-        name: this.name,
-        value: value,
-      });
-
-      e.target.value = value;
-    },
   },
 };
 </script>

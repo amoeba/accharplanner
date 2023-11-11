@@ -5,10 +5,10 @@
       <span class="text-gray-500">{{ extraInfo }}</span>
     </td>
     <td>
-      <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />
+      <input type="range" min="0" v-bind:max="max" v-model="invested" />
     </td>
     <td>
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" class="w-8" />
+      <input type="text" v-model="invested" class="w-8" />
     </td>
   </tr>
 </template>
@@ -40,29 +40,22 @@ export default {
         return this.store.build.character.augmentations[this.name]
           .invested;
       },
+      set(value) {
+        let out = Math.round(Number(value) || 0);
+
+        out = Math.max(
+          0,
+          Math.min(out, AUGMENTATION_MAX_USES[this.name])
+        );
+
+        this.store.updateAugmentationInvested({
+          name: this.name,
+          value: out,
+        });
+      }
     },
     max() {
       return AUGMENTATION_MAX_USES[this.name];
-    },
-  },
-  methods: {
-    updateInvested: function (e) {
-      let value = Math.round(Number(e.target.value));
-
-      if (isNaN(value)) {
-        value = 0;
-      }
-
-      if (value > AUGMENTATION_MAX_USES[this.name]) {
-        value = AUGMENTATION_MAX_USES[this.name];
-      } else if (value < 0) {
-        value = 0;
-      }
-
-      this.store.updateAugmentationInvested({
-        name: this.name,
-        value: value,
-      });
     },
   },
 };

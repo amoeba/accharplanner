@@ -30,7 +30,7 @@
       </div>
     </td>
     <td>
-      <input class="w-10" type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input class="w-10" type="text" v-model="invested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
@@ -212,9 +212,21 @@ export default {
         return this.store.build.character.skills[this.name].invested;
       },
       set(value) {
+        let out = Math.round(Number(value) || 0)
+
+        if (this.store.settings.infiniteMode) {
+          // Do nothing
+        } else if (this.training === Training.SPECIALIZED && out > MAX_SKILL_INVESTED_SPECIALIZED) {
+          out = MAX_SKILL_INVESTED_SPECIALIZED;
+        } else if (this.training === Training.TRAINED && out > MAX_SKILL_INVESTED_TRAINED) {
+          out = MAX_SKILL_INVESTED_TRAINED;
+        } else if (out < 0) {
+          out = 0;
+        }
+
         this.store.updateSkillInvested({
           name: this.name,
-          value: Number(value) | 0,
+          value: out
         });
       },
     },
@@ -278,30 +290,6 @@ export default {
     },
     decreaseTraining() {
       this.store.decreaseTraining(this.name);
-    },
-    updateInvested(e) {
-      let value = Math.round(Number(e.target.value));
-
-      if (isNaN(value)) {
-        value = 0;
-      }
-
-      if (this.store.settings.infiniteMode) {
-        // Do nothing
-      } else if (this.training === Training.SPECIALIZED && value > MAX_SKILL_INVESTED_SPECIALIZED) {
-        value = MAX_SKILL_INVESTED_SPECIALIZED;
-      } else if (this.training === Training.TRAINED && value > MAX_SKILL_INVESTED_TRAINED) {
-        value = MAX_SKILL_INVESTED_TRAINED;
-      } else if (value < 0) {
-        value = 0;
-      }
-
-      this.store.updateSkillInvested({
-        name: this.name,
-        value: Number(value) | 0,
-      });
-
-      e.target.value = value;
     },
   },
 };
