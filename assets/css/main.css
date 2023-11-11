@@ -16,6 +16,10 @@
     @apply w-full border border-zinc-200 rounded;
   }
 
+  input[type="text"] {
+    @apply px-1;
+  }
+
   input[type="checkbox"] {
     @apply w-auto;
   }
