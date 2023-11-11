@@ -16,7 +16,7 @@
               </option>
             </select>
           </label>
-          <label class="flex gap-2">
+          <label class="flex items-center gap-2">
             Gender
             <div class="flex gap-2">
               <label class="flex gap-2">
