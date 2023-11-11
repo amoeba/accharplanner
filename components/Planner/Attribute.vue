@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      <img :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img style="clip-path: circle(50%)" :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
     </td>
     <td>{{ displayName }}</td>
     <td>

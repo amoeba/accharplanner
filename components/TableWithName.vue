@@ -8,9 +8,3 @@
     </div>
   </div>
 </template>
-
-<style>
-td {
-  padding: 0.25em 0.5em;
-}
-</style>
