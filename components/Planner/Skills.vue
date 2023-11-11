@@ -63,14 +63,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="specialized">
-            <th colspan="7">
-              <span
+          <tr>
+            <th class="text-left px-1 text-white"
+              style="background: linear-gradient(to right, #392067, #392067, transparent);" colspan="10">
+              <div
                 v-tooltip="'You are limited to 70 total credits specialized. Specialized skills get a 10 point bonus.'">
                 Specialized ({{ specializedSkillPointsSpent }} /
                 {{ maxSpecializedSkillPointsSpent }})
                 {{ augmentationsRequiredText }}
-              </span>
+              </div>
             </th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
@@ -81,8 +82,11 @@
           </tr>
           <Skill v-for="(skill, index) in specializedSkills" :key="skill" :name="skill" training="specialized"
             :tabIndex="index + 1000" />
-          <tr class="trained">
-            <th colspan="4">Trained</th>
+          <tr>
+            <th class="text-left px-1 text-white"
+              style="background: linear-gradient(to right, #0f3c3e, #0f3c3e, transparent);" colspan="10">
+              Trained
+            </th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th colspan="6">&nbsp;</th>
@@ -92,16 +96,22 @@
           </tr>
           <Skill v-for="(skill, index) in trainedSkills" :key="skill" :name="skill" training="trained"
             :tabIndex="index + 1100" />
-          <tr class="untrained">
-            <th colspan="4">Untrained</th>
+          <tr>
+            <th class="text-left px-1 text-white"
+              style="background: linear-gradient(to right, #978b3d, #b4a548, transparent);" colspan="10">
+              Untrained
+            </th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th colspan="6">&nbsp;</th>
           </tr>
           <Skill v-for="(skill, index) in untrainedSkills" :key="skill" :name="skill" training="untrained"
             :tabIndex="index + 1200" />
-          <tr class="unusable">
-            <th colspan="4">Unusable</th>
+          <tr>
+            <th class="text-left px-1 text-white"
+              style="background: linear-gradient(to right, #978b3d, #b4a548, transparent);" colspan="10">
+              Unusable
+            </th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th colspan="6">&nbsp;</th>
