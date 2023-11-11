@@ -11,7 +11,7 @@
       <input type="text" v-bind:value="creation" v-on:change="updateCreation" v-bind:tabindex="tabIndex" class="w-10" />
     </td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
+    <td class="buffed number" v-bind:class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
