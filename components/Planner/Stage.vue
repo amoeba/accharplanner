@@ -1,15 +1,19 @@
 <template>
-  <div class="stage">
-    <button v-bind:class="{ selected: isSelected }" class="stage-level" v-on:click="load">
-      {{ level }}
-    </button>
-    <button class="stage-delete" v-on:click="remove">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-        <path d="M0 0h24v24H0z" fill="none" />
-      </svg>
-    </button>
-    <div v-if="isNotLast" class="stage-line" />
+  <div class="flex">
+    <div class="flex gap-2 px-2 py-1 border rounded-md border-zinc-200 divide-y hover:bg-blue-200">
+      <button v-bind:class="{ selected: isSelected }" class="stage-level" v-on:click="load">
+        {{ level }}
+      </button>
+      <button style="border: none;" @click="remove">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-col justify-center">
+      <div v-if="isNotLast" class="h-1 w-10 bg-zinc-200">&nbsp;</div>
+    </div>
   </div>
 </template>
 

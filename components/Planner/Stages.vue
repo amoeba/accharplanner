@@ -5,7 +5,7 @@
       <Button class="px-1 py-1 text-xs" @click="save">Save Stage</Button>
     </template>
     <template #content>
-      <div v-bind:droppable="true" v-on:drop="drop" v-on:dragover="dragover">
+      <div class="flex" v-bind:droppable="true" v-on:drop="drop" v-on:dragover="dragover">
         <div v-if="stages.length === 0">
           No stages have been set up for this build.
         </div>
