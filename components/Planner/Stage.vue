@@ -1,7 +1,8 @@
 <template>
   <div class="flex">
-    <div class="flex gap-2 px-2 py-1 border rounded-md border-zinc-200 divide-y hover:bg-blue-200">
-      <button v-bind:class="{ selected: isSelected }" class="stage-level" v-on:click="load">
+    <div class="flex px-2 py-1 border rounded-md border-zinc-200 divide-y hover:bg-green-600"
+      :class="isSelected ? 'bg-green-400' : 'bg-transparent'">
+      <button v-bind:class="{ selected: isSelected }" class="px-3" v-on:click="load">
         {{ level }}
       </button>
       <button style="border: none;" @click="remove">
