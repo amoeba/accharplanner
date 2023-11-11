@@ -19,7 +19,7 @@ function toggleDarkMode(event: Event) {
     <div class="flex gap-4 items-baseline">
       <NuxtLink to="/" class="my-title font-bold"><span class="text-3xl font-bold text-green-400">▲</span> ODACCP
       </NuxtLink>
-      <span class="my-subtitle absolute top-10 left-10 opacity-0 transition-all duration-300 text-xs">The
+      <span class="my-subtitle absolute top-10 left-10 opacity-0 transition-all duration-300 text-xs bg-white">The
         Overly-Detailed
         Asheron's
         Call Character
