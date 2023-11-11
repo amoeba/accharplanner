@@ -37,7 +37,7 @@
                   <input class="" type="range" min="1" :max="maxLevel" v-model="level" />
                 </div>
                 <div class="">
-                  <input class="max-w-[3em]" type="text" v-bind:value="level" v-on:change="updateLevel" />
+                  <input class="w-10" type="text" v-bind:value="level" v-on:change="updateLevel" />
                 </div>
               </div>
               <div v-if="settingsInfiniteMode" class="flex gap-2">
@@ -45,7 +45,7 @@
                   <span class="text-green-600">∞</span>
                 </div>
                 <div class="">
-                  <input class="max-w-[6em]" type="text" v-bind:value="level" v-on:change="updateLevel" />
+                  <input class="w-full" type="text" v-bind:value="level" v-on:change="updateLevel" />
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@
                 <input type="range" min="0" :max="maxTimesEnlightened" v-model="timesEnlightened" />
               </div>
               <div>
-                <input class="max-w-[2em]" type="text" v-model="timesEnlightened" />
+                <input class="w-6" type="text" v-model="timesEnlightened" />
               </div>
             </div>
           </label>
