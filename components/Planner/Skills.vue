@@ -29,11 +29,12 @@
           </tr>
           <tr class="controls">
             <th colspan="4">
-              <input v-model="filterQuery" placeholder="Type to filter..." />
-              <button v-if="filterPresent" @click="clearFilter">x</button>
+              <div class="flex">
+                <input class="py-1 font-normal" type="text" v-model="filterQuery" placeholder="Type to filter..." />
+                <button class="px-2 py-1 hover:bg-zinc-200 rounded" v-if="filterPresent"
+                  @click="clearFilter">Reset</button>
+              </div>
             </th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
             <th colspan="2">
               <input type="range" min="0" :max="maxSkillInvestedSpecialized" value="0" v-on:change="changeInvested" />
             </th>

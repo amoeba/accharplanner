@@ -4,7 +4,7 @@
     <template #right> <span v-if="errors" class="error">{{ errors }}</span>
     </template>
     <template #content>
-      <table class="width-full">
+      <table>
         <thead>
           <tr class="table-header">
             <th>Name</th>
@@ -12,8 +12,11 @@
           </tr>
           <tr class="controls">
             <th>
-              <input v-model="filterQuery" placeholder="Type to filter..." />
-              <button v-if="filterPresent" @click="clearFilter">x</button>
+              <div class="flex">
+                <input class="py-1 font-normal" type="text" v-model="filterQuery" placeholder="Type to filter..." />
+                <button class="px-2 py-1 hover:bg-zinc-200 rounded" v-if="filterPresent"
+                  @click="clearFilter">Reset</button>
+              </div>
             </th>
             <th>
               <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
