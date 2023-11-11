@@ -29,7 +29,7 @@
           </tr>
           <tr class="controls">
             <th colspan="4">
-              <input v-model="filterQuery" class="w60" placeholder="Filter" />
+              <input v-model="filterQuery" placeholder="Type to filter..." />
               <button v-if="filterPresent" @click="clearFilter">x</button>
             </th>
             <th>&nbsp;</th>
