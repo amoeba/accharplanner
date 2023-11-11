@@ -9,15 +9,15 @@
     </td>
     <td>&nbsp;</td>
     <td class="creation number">{{ creation }}</td>
-    <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'text-green-600' : ''">
+    <td>{{ base }}</td>
+    <td v-bind:class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
       <input type="range" min="0" :max="maxVitalInvested" v-model="invested" />
     </td>
-    <td class="invested number">
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" class="w-10" />
+    <td>
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

@@ -37,7 +37,7 @@
                   <input class="" type="range" min="1" :max="maxLevel" v-model="level" />
                 </div>
                 <div class="">
-                  <input class="w-10" type="text" v-bind:value="level" v-on:change="updateLevel" />
+                  <input type="text" v-bind:value="level" v-on:change="updateLevel" />
                 </div>
               </div>
               <div v-if="settingsInfiniteMode" class="flex gap-2">

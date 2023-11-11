@@ -18,10 +18,10 @@
       <button :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600'" class="rounded w-10 text-white px-1"
         v-on:click="increaseTraining">{{ increaseCostText }} ↑</button>
     </td>
-    <td class="base number"> {{
+    <td> {{
       base }}
     </td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'text-green-600' : ''">
+    <td v-bind:class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
@@ -29,8 +29,8 @@
         <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
       </div>
     </td>
-    <td class="invested number">
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" class="w-10" />
+    <td>
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
