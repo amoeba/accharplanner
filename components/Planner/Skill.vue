@@ -16,7 +16,7 @@
       <button v-on:click="increaseTraining">↑</button>
     </td>
     <td class="base number">{{ base }}</td>
-    <td class="buffed number" v-bind:class="isBuffed ? 'isBuffed' : ''">
+    <td class="buffed number" v-bind:class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
@@ -25,7 +25,7 @@
       </div>
     </td>
     <td class="invested number">
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" class="w-10" />
     </td>
     <td>
       <select v-model="buffLevel">

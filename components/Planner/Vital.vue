@@ -17,7 +17,7 @@
       <input type="range" min="0" :max="maxVitalInvested" v-model="invested" />
     </td>
     <td class="invested number">
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" class="w-10" />
     </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

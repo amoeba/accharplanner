@@ -8,7 +8,7 @@
       <input v-bind:id="id" v-bind:name="id" type="range" min="0" max="9" v-model="equipped" />
     </td>
     <td class="number">
-      <input v-model="equipped" type="text" />
+      <input v-model="equipped" type="text" class="w-8" />
     </td>
   </tr>
 </template>
@@ -51,4 +51,5 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+</style>

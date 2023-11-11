@@ -1,7 +1,7 @@
 <template>
   <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>Luminance Auras</template>
-    <template #right> <span v-if="errors" class="error">{{ errors }}</span>
+    <template #right> <span v-if="errors" class="text-red-500">{{ errors }}</span>
     </template>
     <template #content>
       <table>
