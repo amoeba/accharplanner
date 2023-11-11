@@ -8,7 +8,7 @@
       <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>&nbsp;</td>
-    <td class="creation number">{{ creation }}</td>
+    <td>{{ creation }}</td>
     <td>{{ base }}</td>
     <td v-bind:class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
@@ -17,7 +17,7 @@
       <input type="range" min="0" :max="maxVitalInvested" v-model="invested" />
     </td>
     <td>
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input class="w-10" type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

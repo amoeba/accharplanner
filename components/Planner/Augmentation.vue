@@ -7,7 +7,7 @@
     <td>
       <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />
     </td>
-    <td class="number">
+    <td>
       <input type="text" v-bind:value="invested" v-on:change="updateInvested" class="w-8" />
     </td>
   </tr>

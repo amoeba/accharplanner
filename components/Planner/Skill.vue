@@ -8,15 +8,15 @@
       <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>
-      <button :class="cantDecrease ? 'bg-gray-200' : 'bg-green-600'" class="rounded w-10 text-white px-1"
-        v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+      <button :class="cantDecrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
+        class="rounded w-10 text-white px-1" v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
         {{ decreaseCostText }}
         ↓
       </button>
     </td>
     <td>
-      <button :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600'" class="rounded w-10 text-white px-1"
-        v-on:click="increaseTraining">{{ increaseCostText }} ↑</button>
+      <button :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
+        class="rounded w-10 text-white px-1" v-on:click="increaseTraining">{{ increaseCostText }} ↑</button>
     </td>
     <td> {{
       base }}
@@ -30,7 +30,7 @@
       </div>
     </td>
     <td>
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input class="w-10" type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">

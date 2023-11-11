@@ -7,8 +7,8 @@
     <td>
       <input type="range" min="10" max="100" v-model="creation" />
     </td>
-    <td class="number">
-      <input type="text" v-bind:value="creation" v-on:change="updateCreation" v-bind:tabindex="tabIndex" />
+    <td>
+      <input class="w-10" type="text" v-bind:value="creation" v-on:change="updateCreation" v-bind:tabindex="tabIndex" />
     </td>
     <td>{{ base }}</td>
     <td v-bind:class="isBuffed ? 'text-green-600' : ''">
@@ -18,7 +18,7 @@
       <input type="range" min="0" :max="maxAttributeInvested" v-model="invested" />
     </td>
     <td>
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
+      <input class="w-10" type="text" v-bind:value="invested" v-on:change="updateInvested" v-bind:tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
