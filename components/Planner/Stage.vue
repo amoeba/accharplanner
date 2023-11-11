@@ -1,11 +1,12 @@
 <template>
   <div class="flex">
-    <div class="flex px-2 py-1 border rounded-md border-zinc-200 divide-y hover:bg-green-600"
-      :class="isSelected ? 'bg-green-400' : 'bg-transparent'">
-      <button v-bind:class="{ selected: isSelected }" class="px-3" v-on:click="load">
+    <div class="flex border border-zinc-200 rounded divide-x p-0"
+      :class="isSelected ? 'bg-blue-600 text-white' : 'bg-transparent'">
+      <button v-bind:class="{ selected: isSelected }" class="rounded-l px-3 hover:bg-black hover:text-white"
+        v-on:click="load">
         {{ level }}
       </button>
-      <button style="border: none;" @click="remove">
+      <button class="rounded-r bg-black text-white hover:bg-red-600" @click="remove">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path
             d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
