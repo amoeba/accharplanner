@@ -21,11 +21,11 @@
             <div class="flex gap-2">
               <label class="flex gap-2">
                 <input type="radio" id="female" value="Female" v-model="gender" />
-                Female
+                <span class="block">Female</span>
               </label>
               <label class="flex gap-2">
                 <input type="radio" id="male" value="Male" v-model="gender" />
-                Male
+                <span class="block">Male</span>
               </label>
             </div>
           </label>

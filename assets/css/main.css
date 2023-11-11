@@ -27,6 +27,12 @@
   input[type="range"] {
     @apply bg-blue-500;
   }
+
+  input[type="radio"] {
+    @apply w-auto;
+    height: 100%;
+    vertical-align: middle;
+  }
 }
 
 @layer tooltips {
