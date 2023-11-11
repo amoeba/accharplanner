@@ -20,8 +20,8 @@ const togglePopout = async function (e: Event) {
       <slot name="title"></slot>
     </Button>
     <div :class="[widthClass, visibilityClass]"
-      class="absolute top-11 right-0 flex flex-col gap-2 border rounded bg-white px-2 py-1">
-      <div class="font-bold">
+      class="absolute top-11 right-0 flex flex-col gap-2 border rounded bg-gray-100 border-gray-400 px-2 py-1">
+      <div class="font-bold flex">
         <slot name="title"></slot>
       </div>
       <div>
