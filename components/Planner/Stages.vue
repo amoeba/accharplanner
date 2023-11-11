@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
     <template #title>Build Stages</template>
     <template #right>
       <Button class="px-1 py-1 text-xs" @click="save">Save Stage</Button>
@@ -41,7 +41,7 @@ export default {
     stages() {
       return this.store.build.stages;
     },
-    visible() {
+    isExpanded() {
       return this.store.buildStagesPaneVisible;
     },
   },
@@ -50,7 +50,7 @@ export default {
       event.stopPropagation();
       this.store.saveStage();
     },
-    toggle() {
+    toggleExpanded() {
       this.store.toggleBuildStagesPane();
     },
     dragStart(event) {
