@@ -8,14 +8,19 @@
       <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>
-      <button v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+      <button :class="cantDecrease ? 'bg-gray-200' : 'bg-green-600'" class="rounded w-10 text-white px-1"
+        v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+        {{ decreaseCostText }}
         ↓
       </button>
     </td>
     <td>
-      <button v-on:click="increaseTraining">↑</button>
+      <button :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600'" class="rounded w-10 text-white px-1"
+        v-on:click="increaseTraining">{{ increaseCostText }} ↑</button>
     </td>
-    <td class="base number">{{ base }}</td>
+    <td class="base number"> {{
+      base }}
+    </td>
     <td class="buffed number" v-bind:class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
@@ -92,7 +97,7 @@ export default {
 
       if (currentTraining === Training.TRAINED) {
         if (SPEC_COSTS_AUG[this.name]) {
-          return "AUG";
+          return "A";
         } else {
           return SKILL_COST_AT_TRAINING[this.name].specialized;
         }
@@ -113,7 +118,7 @@ export default {
 
       if (currentTraining === Training.SPECIALIZED) {
         if (SPEC_COSTS_AUG[this.name]) {
-          return "AUG";
+          return "A";
         } else {
           return SKILL_COST_AT_TRAINING[this.name].specialized;
         }
