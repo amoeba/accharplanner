@@ -2,7 +2,7 @@
   <Pane>
     <template #title>Build Stages</template>
     <template #right>
-      <Button @click="save">Save Stage</Button>
+      <Button class="px-1 py-1 text-xs" @click="save">Save Stage</Button>
     </template>
     <template #content>
       <div v-bind:droppable="true" v-on:drop="drop" v-on:dragover="dragover">
