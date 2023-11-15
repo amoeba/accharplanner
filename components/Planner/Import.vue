@@ -17,7 +17,7 @@
 </template>
 
 <script>
-imprort { usePlannerStore } from "~/store/planner";
+import { usePlannerStore } from "~/store/planner";
 
 export default {
   name: "Import",
