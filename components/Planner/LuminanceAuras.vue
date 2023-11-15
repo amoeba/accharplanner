@@ -6,11 +6,11 @@
     <template #content>
       <table>
         <thead>
-          <tr class="table-header">
+          <tr>
             <th>Name</th>
             <th colspan="2">Invested</th>
           </tr>
-          <tr class="controls">
+          <tr>
             <th>
               <div class="flex">
                 <input class="py-1 font-normal" type="text" v-model="filterQuery" placeholder="Type to filter..." />

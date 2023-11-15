@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="main-pane">
-      <div class="main-pane-header">
+    <div>
+      <div>
         <h3>Builds</h3>
       </div>
-      <div class="main-pane-body">
+      <div>
         <div v-if="loading">
           Grabbing the freshest, gimpiest builds. Hang on...
         </div>

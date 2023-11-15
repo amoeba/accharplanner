@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="main-pane">
-      <div class="main-pane-header">
+    <div>
+      <div>
         <h3>Saved Builds</h3>
       </div>
-      <div class="main-pane-body">
+      <div>
         <p>
           <button v-on:click="deleteAll">Delete All</button>
         </p>

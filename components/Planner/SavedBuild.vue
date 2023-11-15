@@ -1,11 +1,11 @@
 <template>
-  <div class="saved-build">
+  <div>
     <h3>{{ description }}</h3>
-    <div class="savedat">
+    <div>
       <strong>Saved at:</strong>
       {{ buildKey }}
     </div>
-    <div class="buttons">
+    <div>
       <button v-on:click="load">Load</button>
       <button v-on:click="exportBuild">Export</button>
       <button v-on:click="remove">Delete</button>

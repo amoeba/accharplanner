@@ -1,5 +1,5 @@
 <template>
-  <div class="build-loader">
+  <div>
     <span>
       <h2>Loading Build...</h2>
     </span>

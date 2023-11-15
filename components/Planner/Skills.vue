@@ -13,7 +13,7 @@
     <template #content>
       <table class="width-full">
         <thead>
-          <tr class="table-header">
+          <tr>
             <th colspan="4">Name</th>
             <th>
               <span v-tooltip="{
@@ -27,7 +27,7 @@
             <th>Buff</th>
             <th>Cantrip</th>
           </tr>
-          <tr class="controls">
+          <tr>
             <th colspan="2">
               <div class="flex">
                 <input class="py-1 font-normal" type="text" v-model="filterQuery" placeholder="Type to filter..." />

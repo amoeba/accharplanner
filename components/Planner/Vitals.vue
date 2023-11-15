@@ -1,6 +1,6 @@
 <template>
-  <tbody id="vitals">
-    <tr class="controls">
+  <tbody>
+    <tr>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
