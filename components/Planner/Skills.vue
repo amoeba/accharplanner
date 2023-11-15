@@ -254,20 +254,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.specialized>th {
-  background-color: rgba(255, 0, 255, 0.2);
-}
-
-.trained>th {
-  background-color: rgba(0, 255, 255, 0.2);
-}
-
-.untrained>th {
-  background-color: rgba(220, 220, 0, 0.5);
-}
-
-.unusable>th {
-  background-color: rgba(220, 220, 0, 0.5);
-}
-</style>
