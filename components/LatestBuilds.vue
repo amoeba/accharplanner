@@ -12,7 +12,7 @@ const { data, error } = await getLastestBuilds();
 
 <template>
   <TableWithName>
-    <template #title>Popular Builds</template>
+    <template #title>Latest Builds</template>
     <template #table>
       <table>
         <thead>
