@@ -73,17 +73,22 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h2 class="text-lg font-bold">Loading build...</h2>
-  <div v-if="loadState == LoadState.NOT_YET_LOADING">
-    Not yet loading
-  </div>
-  <div v-if="loadState == LoadState.LOADING">
-    Loading
-  </div>
-  <div v-if="loadState == LoadState.LOADED">
-    Loaded
-  </div>
-  <div v-if="loadState == LoadState.ERROR">
-    Errors: {{ errors.join(", ") }}
+  <div class="flex place-content-center h-32 md:h-64">
+    <div
+      class="flex flex-col place-content-center gap-6 bg-zinc-50 border rounded w-64 h-32 md:w-96 md:h-64 p-4 text-center">
+      <h2 class="text-lg font-bold">Loading build...</h2>
+      <div v-if="loadState == LoadState.NOT_YET_LOADING">
+        Warming up...
+      </div>
+      <div v-if="loadState == LoadState.LOADING">
+        Loading...
+      </div>
+      <div v-if="loadState == LoadState.LOADED">
+        Loaded!
+      </div>
+      <div v-if="loadState == LoadState.ERROR">
+        Errors: {{ errors.join(", ") }}
+      </div>
+    </div>
   </div>
 </template>
