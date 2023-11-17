@@ -9,14 +9,14 @@
     </td>
     <td>
       <button :class="cantDecrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
-        class="rounded w-10 text-white px-1" v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+        class="rounded w-12 text-white px-1" v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
         {{ decreaseCostText }}
         ↓
       </button>
     </td>
     <td>
       <button :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
-        class="rounded w-10 text-white px-1" v-on:click="increaseTraining">{{ increaseCostText }} ↑</button>
+        class="rounded w-12 text-white px-1" v-on:click="increaseTraining">{{ increaseCostText }} ↑</button>
     </td>
     <td> {{
       base }}
