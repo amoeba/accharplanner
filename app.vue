@@ -16,7 +16,7 @@ const theme = computed(() => {
 <template>
   <div>
     <AppHeader />
-    <main class="max-w-5xl mx-auto px-2 py-1">
+    <main class="w-full lg:max-w-5xl mx-auto px-2 py-1">
       <NuxtPage />
     </main>
     <AppFooter />

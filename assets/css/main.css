@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer planner {
-  .planner {
-    font-size: 14px;
-  }
-}
-
 @layer components {
 
   input,
