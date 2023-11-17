@@ -6,26 +6,42 @@ const user = useSupabaseUser();
 const client = useSupabaseClient();
 const store = usePlannerStore();
 
+const favoriteBuild = async function () {
+  console.log("favoriteBuild")
+
+  // const { data, error } = await client
+  //   .from("builds")
+  //   .insert({ id: createId(10), content: store.build, is_published: true, user_id: user.value?.id })
+  //   .select();
+
+  // if (data) {
+  //   console.log(data);
+  // }
+
+  // if (error) {
+  //   console.log(error);
+  // }
+}
+
 const publishBuild = async function () {
   console.log("publishBuild")
 
+  // const { data, error } = await client
+  //   .from("builds")
+  //   .insert({ id: createId(10), content: store.build, is_published: true, user_id: user.value?.id })
+  //   .select();
 
-  const { data, error } = await client
-    .from("builds")
-    .insert({ id: createId(10), content: store.build, is_published: true, user_id: user.value?.id })
-    .select();
+  // if (data) {
+  //   console.log(data);
+  // }
 
-  if (data) {
-    console.log(data);
-  }
-
-  if (error) {
-    console.log(error);
-  }
+  // if (error) {
+  //   console.log(error);
+  // }
 }
 </script>
 <template>
   <!-- TODO: Only allow Favorite when we're viewing a build -->
-  <Button v-if="user">⭐️</Button>
+  <Button v-if="user" @click="favoriteBuild">⭐️</Button>
   <Button v-if="user" @click="publishBuild">🌍</Button>
 </template>
