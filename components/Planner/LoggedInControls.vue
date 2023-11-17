@@ -26,6 +26,6 @@ const publishBuild = async function () {
 </script>
 <template>
   <!-- TODO: Only allow Favorite when we're viewing a build -->
-  <Button v-if="user">X Favorite</Button>
-  <Button v-if="user" @click="publishBuild">X Publish</Button>
+  <Button v-if="user">⭐️</Button>
+  <Button v-if="user" @click="publishBuild">🌍</Button>
 </template>
