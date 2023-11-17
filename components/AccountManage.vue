@@ -103,18 +103,21 @@ onMounted(async () => {
 </script>
 
 <template>
-  <form @submit.prevent="trySetName">
-    <label class="block py-3">
-      <div>Name</div>
-      <input class="w-full px-2 py-1" type="text" v-model="name" />
-    </label>
-    <div class="flex justify-end">
-      <input class="p-2" type="submit" value="Update" :disabled="formState == FormState.SENDING" />
-    </div>
-  </form>
+  <div class="flex flex-col gap-2">
+    <form @submit.prevent="trySetName">
+      <label class="block py-3">
+        <div>Name</div>
+        <input class="w-full px-2 py-1" type="text" v-model="name" />
+      </label>
+      <div class="flex justify-end gap-2 content-center">
+        <div class="px-2 py-1" v-if="formState == FormState.SENDING">Sending...</div>
+        <div class="px-2 py-1" v-if="formState == FormState.SUCCESS">{{ message }}</div>
+        <FormErrors v-if="formState == FormState.ERROR" :errors="errors" />
+        <input
+          class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto"
+          type="submit" value="Update" :disabled="formState == FormState.SENDING" />
+      </div>
+    </form>
+  </div>
   <Button v-if="user" :disabled="isSigningOut" @click="signOut">Log Out</Button>
-
-  <span v-if="formState == FormState.SENDING">Sending...</span>
-  <span v-if="formState == FormState.SUCCESS">{{ message }}</span>
-  <FormErrors v-if="formState == FormState.ERROR" :errors="errors" />
 </template>
