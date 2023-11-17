@@ -1,5 +1,5 @@
 <template>
-  <button class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1">
+  <button class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer">
     <slot></slot>
   </button>
 </template>
