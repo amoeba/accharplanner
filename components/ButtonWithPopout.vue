@@ -23,10 +23,6 @@ const togglePopout = async function (e: Event) {
     <div :class="[widthClass, visibilityClass]"
       class="absolute top-8 right-0 flex flex-col gap-2 border rounded bg-gray-50 border-gray-200 px-2 py-1 shadow-md"
       role="dialog">
-      <div class="font-bold flex gap-1 items-center">
-        <slot name="icon"></slot>
-        <slot name="title"></slot>
-      </div>
       <div>
         <slot name="content" :isVisible="isPopoutVisible"></slot>
       </div>
