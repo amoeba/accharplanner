@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, inject, watch } from "vue"
 import { useRuntimeConfig } from "nuxt/app";
+import { useClipboard } from '@vueuse/core'
 import { createId } from "mnemonic-id";
 import { usePlannerStore } from "~/stores/planner";
 
@@ -10,6 +11,7 @@ const config = useRuntimeConfig();
 // Refs + injects
 const shareBuildURL = ref("")
 const errorMessage = ref("")
+const { text, copy, copied, isSupported } = useClipboard({ shareBuildURL })
 
 const isPopoutVisible = inject('isPopoutVisible')
 
@@ -66,7 +68,7 @@ const shareBuild = async function () {
     Use this URL to share your build with others:
     <div class="flex">
       <input id="sharedBuildURL" type="text" v-model="shareBuildURL" placeholder="Sharing, hang on tight..." />
-      <Button class="border rounded px-2 py-1">
+      <Button @click="copy(shareBuildURL)" class="border rounded px-2 py-1">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-copy">
