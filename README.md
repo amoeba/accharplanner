@@ -29,6 +29,11 @@ This isn't the first skill planner for AC:
 
 Check out `package.json` for scripts. You probably want to `yarn install` and `yarn run serve`.
 
+### Design
+
+- Tailwind for CSS
+- Lucide for Icons
+
 ## Contributing
 
 I need feedback on:
