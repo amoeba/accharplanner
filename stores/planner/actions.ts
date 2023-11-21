@@ -1,4 +1,5 @@
-import { merge } from "lodash";
+import pkg from "lodash";
+const { merge } = pkg;
 import DefaultCharacter from "~/utils/DefaultCharacter";
 
 export default {
