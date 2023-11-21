@@ -108,6 +108,26 @@ export default {
   setup() {
     const store = usePlannerStore();
 
+    // WIP: If we have a build currently selected, propagagte all changes
+    // into that build.
+    //
+    // A good improvement here would be to move this out of this component
+    // and into the store or somewhere more global
+    store.$subscribe((e) => {
+      if (store.$state.ui.currentStage === null) {
+        return;
+      }
+
+      if (store.$state.ui.currentStage >= store.$state.build.stages.length) {
+        console.log("Current stage index was beyond the array of stages. Stopping.")
+
+        return;
+      }
+
+      // TODO: This copies as a reference right now but needs to merge instead
+      store.$state.build.stages[store.$state.ui.currentStage] = store.$state.build.character;
+    });
+
     return { store };
   },
   methods: {
