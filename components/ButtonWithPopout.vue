@@ -17,11 +17,14 @@ const togglePopout = async function (e: Event) {
 <template>
   <div class="relative">
     <Button @click="togglePopout">
+      <slot name="icon"></slot>
       <slot name="title"></slot>
     </Button>
     <div :class="[widthClass, visibilityClass]"
-      class="absolute top-11 right-0 flex flex-col gap-2 border rounded bg-gray-100 border-gray-400 px-2 py-1">
+      class="absolute top-8 right-0 flex flex-col gap-2 border rounded bg-gray-100 border-gray-400 px-2 py-1 shadow-md"
+      role="dialog">
       <div class="font-bold flex">
+        <slot name="icon"></slot>
         <slot name="title"></slot>
       </div>
       <div>
