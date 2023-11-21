@@ -68,7 +68,7 @@ const shareBuild = async function () {
     Use this URL to share your build with others:
     <div class="flex">
       <input id="sharedBuildURL" type="text" v-model="shareBuildURL" placeholder="Sharing, hang on tight..." />
-      <Button @click="copy(shareBuildURL)" class="border rounded px-2 py-1">
+      <Button @click="copy(shareBuildURL)" class="border rounded px-2 py-1" tooltip="Copy to clipboard">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-copy">
