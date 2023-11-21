@@ -1,10 +1,10 @@
 <template>
   <div class="flex">
     <div class="flex border border-zinc-200 rounded divide-x p-0"
-      :class="isSelected ? 'bg-blue-600 text-white' : 'bg-transparent'">
+      :class="isSelected ? 'bg-black text-white' : 'bg-transparent'">
       <button v-bind:class="{ selected: isSelected }" class="rounded-l px-3 hover:bg-black hover:text-white cursor-grab"
         v-on:click="load">
-        {{ level }}
+        Level {{ level }}
       </button>
       <button class="rounded-r bg-black text-white hover:bg-red-600" @click="remove">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -19,41 +19,27 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { usePlannerStore } from "~/stores/planner";
+import { useDraggable } from '@vueuse/core'
 
-export default {
-  name: "Stage",
-  setup() {
-    const store = usePlannerStore();
+const store = usePlannerStore();
 
-    return {
-      store
-    }
-  },
-  props: {
-    index: Number,
-    level: Number,
-    stages: Number,
-  },
-  computed: {
-    isSelected() {
-      return (
-        this.store.ui.currentStage !== null &&
-        this.store.ui.currentStage === this.index
-      );
-    },
-    isNotLast() {
-      return this.index !== this.stages - 1;
-    },
-  },
-  methods: {
-    load() {
-      this.store.changeStage(this.index);
-    },
-    remove() {
-      this.store.deleteStage(this.index);
-    },
-  },
-};
+const props = defineProps(['index', 'level', 'stages', 'isDragInProgress'])
+
+const isSelected = computed(() => {
+  return store.ui.currentStage !== null && store.ui.currentStage === props.index;
+});
+
+const isNotLast = computed(() => { return props.index !== props.stages - 1 });
+
+const load = async function () {
+  console.log("Load index " + props.index)
+  store.changeStage(props.index);
+}
+
+const remove = async function () {
+  console.log("remove", props.index); return;
+  store.deleteStage(props.index);
+}
 </script>
