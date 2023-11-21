@@ -10,10 +10,10 @@
       <span style="margin-left: 0.5em" class="text-gray-500">{{ extraInfo }}</span>
     </td>
     <td>
-      <input type="range" min="0" v-bind:max="max" v-bind:value="invested" v-on:change="updateInvested" />
+      <input type="range" min="0" v-bind:max="max" v-model="invested" v-on:change="updateInvested" />
     </td>
     <td>
-      <input type="text" v-bind:value="invested" v-on:change="updateInvested" class="w-8" />
+      <input type="text" v-model="invested" v-on:change="updateInvested" class="w-8" />
     </td>
   </tr>
 </template>
