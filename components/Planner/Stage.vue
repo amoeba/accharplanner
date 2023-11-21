@@ -2,7 +2,7 @@
   <div class="flex">
     <div class="flex border border-zinc-200 rounded divide-x p-0"
       :class="isSelected ? 'bg-blue-600 text-white' : 'bg-transparent'">
-      <button v-bind:class="{ selected: isSelected }" class="rounded-l px-3 hover:bg-black hover:text-white"
+      <button v-bind:class="{ selected: isSelected }" class="rounded-l px-3 hover:bg-black hover:text-white cursor-grab"
         v-on:click="load">
         {{ level }}
       </button>
