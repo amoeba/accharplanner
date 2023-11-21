@@ -32,7 +32,7 @@
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
             <path d="M3 3v5h5" />
           </svg>
-          Restart
+          <span class="hidden md:block">Restart</span>
         </Button>
         <ButtonWithPopout widthClass="w-72">
           <template #icon>
@@ -46,7 +46,9 @@
               <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
             </svg>
           </template>
-          <template #title>Share</template>
+          <template #title>
+            <span class="hidden md:block">Share</span>
+          </template>
           <template #content>
             <PlannerPopoutsPlannerShare />
           </template>
@@ -60,7 +62,7 @@
             </svg>
           </template>
           <template #title>
-            Settings
+            <span class="hidden md:block">Settings</span>
           </template>
           <template #content>
             <PlannerPopoutsPlannerSettings />
