@@ -3,6 +3,7 @@ import { ref, inject, watch } from "vue"
 import { useRuntimeConfig } from "nuxt/app";
 import { useClipboard } from '@vueuse/core'
 import { createId } from "mnemonic-id";
+
 import { usePlannerStore } from "~/stores/planner";
 
 const store = usePlannerStore();
@@ -61,10 +62,21 @@ const shareBuild = async function () {
     shareState.value = ShareState.ERROR;
   }
 }
+
+const saveBuild = async function () {
+  store.saveBuild();
+}
+
+const doExportCharacter = async function () {
+  exportCharacter(
+    store.build,
+    store.build.character.name
+  );
+}
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col gap-2">
     Use this URL to share your build with others:
     <div class="flex">
       <input id="sharedBuildURL" type="text" v-model="shareBuildURL" placeholder="Sharing, hang on tight..." />
@@ -76,6 +88,26 @@ const shareBuild = async function () {
           <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
         </svg>
       </Button>
+    </div>
+    <div class="flex gap-2">
+      <Button @click="doExportCharacter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-arrow-down-to-line">
+          <path d="M12 17V3" />
+          <path d="m6 11 6 6 6-6" />
+          <path d="M19 21H5" />
+        </svg>
+        Download</Button>
+      <Button @click="saveBuild">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-save">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+          <polyline points="17 21 17 13 7 13 7 21" />
+          <polyline points="7 3 7 8 15 8" />
+        </svg>
+        Save to Browser</Button>
     </div>
   </div>
   <div v-if="errorMessage">{{ errorMessage }}</div>
