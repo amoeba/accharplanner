@@ -223,6 +223,12 @@ export default {
       !this.ui.paneVisibility.extraSkillCredits;
   },
   changeStage(index: number) {
+    // Deselect current stage if we click on it
+    if (this.ui.currentStage === index) {
+      this.ui.currentStage = null;
+      return;
+    }
+
     this.ui.currentStage = index;
     this.build.character = JSON.parse(JSON.stringify(this.build.stages[index]));
   },
