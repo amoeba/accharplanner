@@ -8,14 +8,14 @@
     <template #right>
     </template>
     <template #content>
-      <div class="flex gap-2 w-full">
+      <div class="flex w-full">
         <div v-if="store.build.stages.length === 0">
           No stages have been set up for this build.
         </div>
         <Stage class=" stage" v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
           v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length" :draggable="true"
           v-on:dragstart="dragstart" v-on:dragover="dragover" v-on:drop="drop" />
-        <Button class="px-1 py-1 text-xs" @click="save">+ Stage</Button>
+        <Button class="ml-2 px-1 py-1 text-xs" @click="save">+ Stage</Button>
       </div>
     </template>
   </Pane>
