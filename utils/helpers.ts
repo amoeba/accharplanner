@@ -209,3 +209,13 @@ export const maxSkillInvested = (training: Training) => {
   else if (training === Training.TRAINED) return MAX_SKILL_INVESTED_TRAINED;
   else return 0;
 };
+
+export const valuesMatchIndicies = function (values: Number[]): boolean {
+  for (let i = 0; i < values.length; i++) {
+    if (i != values[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
