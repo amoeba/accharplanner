@@ -13,13 +13,11 @@
           No stages have been set up for this build.
           <Button class="px-1 py-1 text-xs" @click="save">Save a stage</Button>
         </div>
-        <div ref="dropZoneRef" v-if="store.build.stages.length > 0" class="flex gap-2"
-          :class="isOverDropZone ? 'border border-red-200' : ''">
+        <div ref="dropZoneRef" v-if="store.build.stages.length > 0" class="flex gap-2">
           <Stage class="stage" v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
             v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length"
-            :draggable="true" v-on:dragstart="dragstart" v-on:dragover="dragover" :isDragInprogress="isDragging" />
-          <Button class="px-1 py-1 text-xs" @click="save">+ Stage</Button>
-          {{ isOverDropZone }}
+            :draggable="true" v-on:dragstart="dragstart" v-on:dragover="dragover" :isDragInprogress="isDragging"
+            v-on:drop="drop" />
         </div>
       </div>
     </template>
@@ -27,12 +25,11 @@
 </template>
 
 <script setup lang="ts">
-import Stage from "./Stage.vue";
-import { usePlannerStore } from "~/stores/planner";
-import { useDropZone } from '@vueuse/core'
 import pkg from "lodash"
 const { isEqual } = pkg;
-import { useSortable } from '@vueuse/integrations/useSortable'
+
+import Stage from "./Stage.vue";
+import { usePlannerStore } from "~/stores/planner";
 
 const store = usePlannerStore();
 
@@ -48,18 +45,6 @@ const toggleExpanded = async function () {
 
 // Drag and Drop
 const isDragging = ref(false)
-
-function onDrop(files: File[] | null) {
-  // called when files are dropped on zone
-  console.log("ondrop")
-}
-
-const dropZoneRef = ref<HTMLDivElement>()
-const { isOverDropZone } = useDropZone(dropZoneRef, {
-  onDrop,
-  // specify the types of data to be received.
-  // dataTypes: ['image/jpeg']
-})
 
 const dragstart = async function (e: DragEvent) {
   console.log("dragstart", e);
@@ -77,11 +62,22 @@ const dragstart = async function (e: DragEvent) {
 }
 
 const dragover = async function (e: DragEvent) {
+  e.preventDefault();
+
   const clientX = e.clientX;
   const index = Number(e.dataTransfer?.getData("text/plain"));
 
-  await update(index, clientX);
+  // await update(index, clientX);
 }
+
+function drop(e: DragEvent) {
+  const clientX = e.clientX;
+  const index = Number(e.dataTransfer?.getData("text/plain"));
+  console.log("drop", e, clientX, index);
+
+  update(index, clientX);
+}
+
 
 const update = async function (index: Number, clientX: Number) {
   console.log("update", index, clientX);
@@ -117,21 +113,8 @@ const update = async function (index: Number, clientX: Number) {
     return;
   }
 
-  console.log("reofrdering...")
+  console.log("reordering...")
 
   store.reorderStages(indices);
-}
-
-const drop = async function (event: DragEvent) {
-  console.log("drop")
-
-  // isDragging.value = false;
-  // const droppedX = event.clientX;
-
-  // if (!event.dataTransfer) {
-  //   return;
-  // }
-
-  // processDrop(droppedX, event.dataTransfer);
 }
 </script>
