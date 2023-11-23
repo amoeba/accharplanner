@@ -38,7 +38,7 @@ const load = async function () {
 }
 
 const remove = async function () {
-  console.log("remove", props.index); return;
+  console.log("remove", props.index);
   store.deleteStage(props.index);
 }
 </script>
