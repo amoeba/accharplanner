@@ -108,27 +108,26 @@ export default {
   setup() {
     const store = usePlannerStore();
 
-    // WIP: If we have a build currently selected, propagagte all changes
-    // into that build.
-    //
-    // A good improvement here would be to move this out of this component
-    // and into the store or somewhere more global
-    store.$subscribe((e) => {
-      if (store.$state.ui.currentStage === null) {
-        return;
-      }
+    // Copy current build into the current stage, if present
+    // TODO: See if this could be moved into the store definition
+    //       or somewhere not tied to any one component
+    watch(
+      () => store.build.character,
+      () => {
+        // Skip if no selected stage
+        if (store.ui.currentStage === null) {
+          return;
+        }
 
-      if (store.$state.ui.currentStage >= store.$state.build.stages.length) {
-        console.log("Current stage index was beyond the array of stages. Stopping.")
+        // Skip if selected stage is invalid for some reason
+        if (store.ui.currentStage > store.build.stages.length) {
+          return;
+        }
 
-        return;
-      }
-
-      // TODO: This copies as a reference right now but needs to merge instead
-      store.$state.build.stages[store.$state.ui.currentStage] = store.$state.build.character;
-    });
-
-    return { store };
+        store.build.stages[store.ui.currentStage] = JSON.parse(JSON.stringify(store.build.character));
+      },
+      { deep: true }
+    )
   },
   methods: {
     resetPlanner() {
