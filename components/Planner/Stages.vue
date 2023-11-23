@@ -2,16 +2,19 @@
   <Pane :toggleExpanded="toggleExpanded" :isExpanded="store.ui.paneVisibility.buildStages">
     <template #title>Build Stages</template>
     <template #right>
-      <Button class="px-1 py-1 text-xs" @click="save">Save Stage</Button>
     </template>
     <template #content>
       <div class="flex" v-bind:droppable="true" v-on:drop="drop" v-on:dragover="dragover">
-        <div v-if="store.build.stages.length === 0">
+        <div v-if="store.build.stages.length === 0" class="flex gap-2">
           No stages have been set up for this build.
+          <Button class="px-1 py-1 text-xs" @click="save">Save a stage</Button>
         </div>
-        <Stage v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
-          v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length"
-          v-on:dragstart="dragStart" :draggable="true" :isDragInprogress="isDragging" />
+        <div v-if="store.build.stages.length > 0" class="flex gap-2">
+          <Stage v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
+            v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length"
+            v-on:dragstart="dragStart" :draggable="true" :isDragInprogress="isDragging" />
+          <Button class="px-1 py-1 text-xs" @click="save">+ Stage</Button>
+        </div>
       </div>
     </template>
   </Pane>
