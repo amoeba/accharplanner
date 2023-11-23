@@ -1,6 +1,10 @@
 <template>
   <Pane :toggleExpanded="toggleExpanded" :isExpanded="store.ui.paneVisibility.buildStages">
-    <template #title>Build Stages</template>
+    <template #title>
+      Build Stages
+      <span class="px-2 text-zinc-400 font-normal"
+        v-tooltip="'Stages are useful if your build has a progression based on level or experience and you want to see what the build loos like at each of those points.'">?</span>
+    </template>
     <template #right>
     </template>
     <template #content>
