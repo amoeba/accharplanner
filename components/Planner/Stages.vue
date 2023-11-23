@@ -8,26 +8,20 @@
     <template #right>
     </template>
     <template #content>
-      <div class="flex">
-        <div v-if="store.build.stages.length === 0" class="flex gap-2">
+      <div class="flex gap-2 w-full">
+        <div v-if="store.build.stages.length === 0">
           No stages have been set up for this build.
-          <Button class="px-1 py-1 text-xs" @click="save">Save a stage</Button>
         </div>
-        <div ref="dropZoneRef" v-if="store.build.stages.length > 0" class="flex gap-2">
-          <Stage class="stage" v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
-            v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length"
-            :draggable="true" v-on:dragstart="dragstart" v-on:dragover="dragover" :isDragInprogress="isDragging"
-            v-on:drop="drop" />
-        </div>
+        <Stage class=" stage" v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
+          v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length" :draggable="true"
+          v-on:dragstart="dragstart" v-on:dragover="dragover" :isDragInprogress="isDragging" v-on:drop="drop" />
+        <Button class="px-1 py-1 text-xs" @click="save">+ Stage</Button>
       </div>
     </template>
   </Pane>
 </template>
 
 <script setup lang="ts">
-import pkg from "lodash"
-const { isEqual } = pkg;
-
 import Stage from "./Stage.vue";
 import { usePlannerStore } from "~/stores/planner";
 
