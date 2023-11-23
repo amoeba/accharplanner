@@ -8,16 +8,18 @@
     <template #right>
     </template>
     <template #content>
-      <div class="flex" v-bind:droppable="true" v-on:drop="drop" v-on:dragover="dragover">
+      <div class="flex">
         <div v-if="store.build.stages.length === 0" class="flex gap-2">
           No stages have been set up for this build.
           <Button class="px-1 py-1 text-xs" @click="save">Save a stage</Button>
         </div>
-        <div v-if="store.build.stages.length > 0" class="flex gap-2">
-          <Stage v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
+        <div ref="dropZoneRef" v-if="store.build.stages.length > 0" class="flex gap-2"
+          :class="isOverDropZone ? 'border border-red-200' : ''">
+          <Stage class="stage" v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
             v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length"
-            v-on:dragstart="dragStart" :draggable="true" :isDragInprogress="isDragging" />
+            :draggable="true" v-on:dragstart="dragstart" v-on:dragover="dragover" :isDragInprogress="isDragging" />
           <Button class="px-1 py-1 text-xs" @click="save">+ Stage</Button>
+          {{ isOverDropZone }}
         </div>
       </div>
     </template>
@@ -27,10 +29,12 @@
 <script setup lang="ts">
 import Stage from "./Stage.vue";
 import { usePlannerStore } from "~/stores/planner";
+import { useDropZone } from '@vueuse/core'
+import pkg from "lodash"
+const { isEqual } = pkg;
+import { useSortable } from '@vueuse/integrations/useSortable'
 
 const store = usePlannerStore();
-const isDragging = ref(false)
-
 
 const save = async function (event: MouseEvent) {
   event.stopPropagation();
@@ -42,35 +46,54 @@ const toggleExpanded = async function () {
   store.toggleBuildStagesPane();
 }
 
-const dragStart = async function (event: DragEvent) {
-  console.log("dragStart")
+// Drag and Drop
+const isDragging = ref(false)
 
-  if (!event || !event.dataTransfer || !event.target) {
+function onDrop(files: File[] | null) {
+  // called when files are dropped on zone
+  console.log("ondrop")
+}
+
+const dropZoneRef = ref<HTMLDivElement>()
+const { isOverDropZone } = useDropZone(dropZoneRef, {
+  onDrop,
+  // specify the types of data to be received.
+  // dataTypes: ['image/jpeg']
+})
+
+const dragstart = async function (e: DragEvent) {
+  console.log("dragstart", e);
+
+  if (!e.dataTransfer) {
     return;
   }
 
-  if (event.target.dataset) {
-    event.dataTransfer.setData("text/plain", event.target.dataset.index);
+  if (!e.target || !e.target.dataset) {
+    return;
   }
 
-  isDragging.value = true;
+  e.dataTransfer.setData("text/plain", e.target.dataset.index);
+  e.dataTransfer.dropEffect = "move";
 }
 
-const processDrop = function (droppedX: Number, data: DataTransfer) {
-  const index = Number(data.getData("text/plain"));
+const dragover = async function (e: DragEvent) {
+  const clientX = e.clientX;
+  const index = Number(e.dataTransfer?.getData("text/plain"));
 
-  console.log("drag", { droppedX: droppedX, index: index })
+  await update(index, clientX);
+}
 
-  // TODO: Finish me
-  return;
+const update = async function (index: Number, clientX: Number) {
+  console.log("update", index, clientX);
 
   let stages = [
     {
       index: index,
-      x: droppedX,
+      x: clientX,
     },
   ];
 
+  // TODO: Convert to a ref instead of document.querySelectorAll
   document.querySelectorAll("div.stage").forEach((el, i) => {
     if (i === index) {
       return;
@@ -86,22 +109,29 @@ const processDrop = function (droppedX: Number, data: DataTransfer) {
     return a.x - b.x;
   });
 
-  store.reorderStages(stages);
-}
-const drop = async function (event: DragEvent) {
-  console.log("drag")
+  const indices = stages.map(s => s.index)
 
-  isDragging.value = false;
-  const droppedX = event.clientX;
-
-  if (!event.dataTransfer) {
+  // Don't re-order if no re-order happened. Do that by making sure
+  // the indices are monotonically increasing
+  if (valuesMatchIndicies(indices)) {
     return;
   }
 
-  processDrop(droppedX, event.dataTransfer);
+  console.log("reofrdering...")
+
+  store.reorderStages(indices);
 }
 
-const dragover = async function (event: DragEvent) {
-  event.preventDefault();
+const drop = async function (event: DragEvent) {
+  console.log("drop")
+
+  // isDragging.value = false;
+  // const droppedX = event.clientX;
+
+  // if (!event.dataTransfer) {
+  //   return;
+  // }
+
+  // processDrop(droppedX, event.dataTransfer);
 }
 </script>
