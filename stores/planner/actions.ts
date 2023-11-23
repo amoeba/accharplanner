@@ -234,6 +234,9 @@ export default {
   },
   saveStage() {
     this.build.stages.push(JSON.parse(JSON.stringify(this.build.character)));
+
+    // Select newly saved stage
+    this.ui.currentStage = this.build.stages.length - 1;
   },
   deleteStage(index: number) {
     // Stop if out of bounds
