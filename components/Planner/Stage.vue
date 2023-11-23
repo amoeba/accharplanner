@@ -1,7 +1,8 @@
 <template>
   <div class="flex">
     <div class="flex border border-zinc-200 rounded divide-x p-0" :class="isSelected ? 'bg-zinc-200' : 'bg-transparent'">
-      <button :class="{ selected: isSelected }" class="rounded-l px-3 hover:bg-zinc-200 cursor-grab" v-on:click="load">
+      <button :data-index="index" :class="{ selected: isSelected }" class="rounded-l px-3 hover:bg-zinc-200 cursor-grab"
+        v-on:click="load">
         Level {{ level }}
       </button>
       <button class="rounded-r hover:text-red-600" @click="remove">
@@ -20,7 +21,6 @@
 
 <script setup lang="ts">
 import { usePlannerStore } from "~/stores/planner";
-import { useDraggable } from '@vueuse/core'
 
 const store = usePlannerStore();
 
@@ -33,12 +33,10 @@ const isSelected = computed(() => {
 const isNotLast = computed(() => { return props.index !== props.stages - 1 });
 
 const load = async function () {
-  console.log("Load index " + props.index)
   store.changeStage(props.index);
 }
 
 const remove = async function () {
-  console.log("remove", props.index);
   store.deleteStage(props.index);
 }
 </script>
