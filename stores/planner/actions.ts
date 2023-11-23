@@ -235,8 +235,10 @@ export default {
   saveStage() {
     this.build.stages.push(JSON.parse(JSON.stringify(this.build.character)));
 
-    // Select newly saved stage
-    this.ui.currentStage = this.build.stages.length - 1;
+    // NOTE: Don't sselect newly saved stage
+    //       Leaving this commented out so I remember. If you auto-select
+    //       stage, you can't just edit->save->edit->save quickly.
+    // this.ui.currentStage = this.build.stages.length - 1;
   },
   deleteStage(index: number) {
     // Stop if out of bounds
@@ -247,11 +249,11 @@ export default {
     this.ui.currentStage = null;
     this.build.stages.splice(index, 1);
   },
-  reorderStages(newOrder: any) {
-    let newStages: any[] = [];
+  reorderStages(indices: Number[]) {
+    let newStages: Character[] = [];
 
-    newOrder.forEach((el: any) => {
-      newStages.push(this.build.stages[el.index]);
+    indices.forEach((i: Number) => {
+      newStages.push(this.build.stages[i]);
     });
 
     this.build.stages = newStages;
