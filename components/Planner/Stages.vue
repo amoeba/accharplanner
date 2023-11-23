@@ -14,7 +14,7 @@
         </div>
         <Stage class=" stage" v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
           v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length" :draggable="true"
-          v-on:dragstart="dragstart" v-on:dragover="dragover" :isDragInprogress="isDragging" v-on:drop="drop" />
+          v-on:dragstart="dragstart" v-on:dragover="dragover" v-on:drop="drop" />
         <Button class="px-1 py-1 text-xs" @click="save">+ Stage</Button>
       </div>
     </template>
@@ -38,8 +38,6 @@ const toggleExpanded = async function () {
 }
 
 // Drag and Drop
-const isDragging = ref(false)
-
 const dragstart = async function (e: DragEvent) {
   console.log("dragstart", e);
 
@@ -51,31 +49,27 @@ const dragstart = async function (e: DragEvent) {
     return;
   }
 
+  console.log("clientX is ", e.target);
   e.dataTransfer.setData("text/plain", e.target.dataset.index);
   e.dataTransfer.dropEffect = "move";
 }
 
 const dragover = async function (e: DragEvent) {
+  // Critical to keep this in
   e.preventDefault();
-
-  const clientX = e.clientX;
-  const index = Number(e.dataTransfer?.getData("text/plain"));
-
-  // await update(index, clientX);
 }
 
 function drop(e: DragEvent) {
-  const clientX = e.clientX;
+  // Adjust client X by half the drag target's width. This makes
+  // drag and drop match the user's expectation more closely
+  const adjustedClientX = e.clientX - e.originalTarget.clientWidth / 2;
   const index = Number(e.dataTransfer?.getData("text/plain"));
-  console.log("drop", e, clientX, index);
 
-  update(index, clientX);
+  update(index, adjustedClientX);
 }
 
 
 const update = async function (index: Number, clientX: Number) {
-  console.log("update", index, clientX);
-
   let stages = [
     {
       index: index,
@@ -106,8 +100,6 @@ const update = async function (index: Number, clientX: Number) {
   if (valuesMatchIndicies(indices)) {
     return;
   }
-
-  console.log("reordering...")
 
   store.reorderStages(indices);
 }
