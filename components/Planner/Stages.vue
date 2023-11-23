@@ -3,7 +3,7 @@
     <template #title>
       Build Stages
       <span class="px-2 text-zinc-400 font-normal"
-        v-tooltip="'Stages are useful if your build has a progression based on level or experience and you want to see what the build loos like at each of those points.'">?</span>
+        v-tooltip="'Stages are useful if your build has a progression based on level or experience and you want to see what the build loos like at each of those points. You can edit an already-saved stage by clicking it to select it and then using the Planner as normal.'">?</span>
     </template>
     <template #right>
     </template>
