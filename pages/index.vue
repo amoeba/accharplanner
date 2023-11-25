@@ -2,7 +2,9 @@
 
 <template>
   <div>
-    <div class="text-xl font-bold py-3">Welcome to ODACCP!</div>
+    <div class="text-xl font-bold py-3">
+      <span>Welcome to ODACCP!</span>
+    </div>
 
     <p>Blurb about the Planner</p>
 
