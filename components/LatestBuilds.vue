@@ -1,21 +1,11 @@
 <script setup lang="ts">
 const client = useSupabaseClient();
 
-const getLastestBuilds = async function () {
-  const { data, error } = await client
-    .from("builds")
-    .select()
-    .limit(10)
-    .order("created_at");
-
-  return { data, error };
-};
-
-const { data, error } = await getLastestBuilds();
+const { data, error } = await getLastestBuilds(client);
 </script>
 
 <template>
-  <TableWithName>
+  <TableWithName v-if="data">
     <template #title> Latest Builds </template>
     <template #table>
       <table v-if="data">
@@ -29,11 +19,8 @@ const { data, error } = await getLastestBuilds();
         <tbody>
           <tr v-for="build in data" :key="build.id">
             <td class="px-2 py-1">
-              <a
-                class="text-blue-500 underline hover:no-underline"
-                :href="'/' + build.id"
-                >{{ build.content.character.name }}</a
-              >
+              <a class="text-blue-500 underline hover:no-underline" :href="'/' + build.id">{{ build.content.character.name
+              }}</a>
             </td>
             <td class="px-2 py-1">⭐️ 999</td>
             <td class="px-2 py-1">

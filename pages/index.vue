@@ -9,15 +9,22 @@
     <p>Blurb about the Planner</p>
 
     <div class="flex justify-center">
-      <NuxtLink
-        class="border rounded border-zinc-200 hover:bg-zinc-50 px-2 py-1"
-        to="/planner"
-      >
+      <NuxtLink class="border rounded border-zinc-200 hover:bg-zinc-50 px-2 py-1" to="/planner">
         Create a New Build
       </NuxtLink>
     </div>
 
-    <PublishedBuilds />
-    <LatestBuilds />
+    <Suspense>
+      <PublishedBuilds />
+      <template #fallback>
+        Loading...
+      </template>
+    </Suspense>
+    <Suspense>
+      <LatestBuilds />
+      <template #fallback>
+        Loading...
+      </template>
+    </Suspense>
   </div>
 </template>
