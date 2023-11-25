@@ -29,6 +29,15 @@ This isn't the first skill planner for AC:
 
 Check out `package.json` for scripts. You probably want to `yarn install` and `yarn run serve`.
 
+### Synchronizing with Supabase
+
+Supabase lets you bring down local TypeScript defs for the database schema.
+After any changes on the Supabase side of things, run,
+
+```sh
+npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > utils/database.types.ts
+```
+
 ### Design
 
 - Tailwind for CSS
