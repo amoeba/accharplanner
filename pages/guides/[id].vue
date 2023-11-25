@@ -5,8 +5,10 @@ const route = useRoute();
 </script>
 
 <template>
-  <div>
-    <NuxtLink href="/guides"> Back to Guides </NuxtLink>
+  <div class="flex flex-col gap-2">
+    <ButtonView>
+      <NuxtLink href="/guides"> Back to Guides </NuxtLink>
+    </ButtonView>
     <Suspense>
       <GuideView :id="route.params.id" />
       <template #fallback> Loading... </template>

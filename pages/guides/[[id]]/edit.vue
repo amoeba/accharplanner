@@ -7,7 +7,9 @@ const route = useRoute();
 
 <template>
   <div>
-    <NuxtLink href="/guides"> Back to Guides </NuxtLink>
+    <ButtonView>
+      <NuxtLink href="/guides"> Back to Guides </NuxtLink>
+    </ButtonView>
     <div v-if="!user">
       You must be logged in to edit a Guide.
       <ButtonView>

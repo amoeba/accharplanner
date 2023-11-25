@@ -4,7 +4,9 @@ const user = useSupabaseUser();
 
 <template>
   <div>
-    <NuxtLink href="/guides"> Back to Guides </NuxtLink>
+    <ButtonView>
+      <NuxtLink href="/guides"> Back to Guides </NuxtLink>
+    </ButtonView>
     <div v-if="!user">
       You must be logged in to create a new Guide.
       <ButtonView>
