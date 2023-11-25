@@ -6,92 +6,37 @@ import { usePlannerStore } from '~/stores/planner';
 const client = useSupabaseClient();
 const route = useRoute();
 const store = usePlannerStore();
-const errors = ref([])
+const errors = ref<string[]>([])
 
-// State machine for loading
-enum LoadState {
-  NOT_YET_LOADING,
-  LOADING,
-  LOADED,
-  ERROR
+const build_id = route.path.substring(1, route.path.length).trim();
+const { data, error } = await loadBuild(client, build_id)
+
+if (error) {
+  errors.value.push(error.message);
+} else if (data.length < 1) {
+  errors.value.push("An unexpected error occurred.")
+} else {
+  console.log(data)
+  await store.loadBuildFromJSON(data[0]["content"]);
+  await navigateTo("/planner");
 }
-
-const loadState = ref(LoadState.NOT_YET_LOADING);
-
-const loadBuild = async function (id: string) {
-  console.log("loadBuild for id ", id);
-
-  loadState.value = LoadState.LOADING;
-
-  try {
-    const { data, error } = await client
-      .from("builds")
-      .select()
-      .eq("id", id);
-
-    if (error) {
-      loadState.value = LoadState.ERROR;
-      errors.value.push(error.message);
-      return { data: undefined, error: error }
-    } else {
-      if (data.length < 1) {
-        loadState.value = LoadState.ERROR;
-        errors.value.push("Build not found.");
-        return { data: undefined, error: error }
-      } else if (data.length > 1) {
-        loadState.value = LoadState.ERROR;
-        errors.value.push("Multiple builds found.")
-        return { data: undefined, error: error }
-      }
-      loadState.value = LoadState.LOADED;
-      return { data: data, error: undefined }
-    }
-  } catch (error) {
-    loadState.value = LoadState.ERROR;
-    errors.value.push(error);
-    return { data: undefined, error: error }
-  }
-
-}
-
-onMounted(async () => {
-  console.log("onMounted");
-  // TODO parse build from route
-  const build_id = route.path.substring(1, route.path.length).trim();
-  console.log(build_id)
-  const { data, error } = await loadBuild(build_id);
-
-  if (error) {
-    console.log(error)
-  } else if (data) {
-    console.log(data);
-    await store.loadBuildFromJSON(data[0]["content"]);
-    await navigateTo("/planner");
-  }
-
-})
 </script>
 
 <template>
   <div class="flex place-content-center h-32 md:h-64">
-    <div
-      class="flex flex-col place-content-center gap-6 bg-zinc-50 border rounded w-64 h-32 md:w-96 md:h-64 p-4 text-center"
-    >
+    <div v-if="errors.length <= 0">
+      class="flex flex-col place-content-center gap-6 bg-zinc-50 border rounded w-64 h-32 md:w-96 md:h-64 p-4
+      text-center">
       <h2 class="text-lg font-bold">
         Loading build...
       </h2>
-      <div v-if="loadState == LoadState.NOT_YET_LOADING">
-        Warming up...
-      </div>
-      <div v-if="loadState == LoadState.LOADING">
-        Loading...
-      </div>
-      <div v-if="loadState == LoadState.LOADED">
-        Loaded!
-      </div>
-      <div v-if="loadState == LoadState.ERROR">
-        Errors: {{ errors.join(", ") }}
-      </div>
+    </div>
+    <div v-if="errors.length > 0">
+      <ul>
+        <li v-for="error in errors">
+          {{ error }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>

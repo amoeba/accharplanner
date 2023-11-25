@@ -1,6 +1,13 @@
 
 import type { SupabaseClient, User } from '@supabase/supabase-js'
 
+export const loadBuild = async function(client: SupabaseClient, id : string) {
+  return await client
+    .from("builds")
+    .select()
+    .eq("id", id);
+}
+
 export const fetchGuide = async function (client: SupabaseClient, id: Number): Guide {
   return await client.from("guides").select().eq("id", id);
 };
