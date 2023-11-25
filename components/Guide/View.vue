@@ -38,6 +38,9 @@ if (error) {
       <p>Created At {{ guide.created_at }}</p>
       <p>Updated At {{ guide.updated_at }}</p>
     </div>
+    <div>
+      <p>Attributed to {{ guide.attribution }}</p>
+    </div>
     <p>Created By {{ guide.created_by }}</p>
     <GuideContentEditor
       v-model="guide.content"

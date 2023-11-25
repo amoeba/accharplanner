@@ -58,6 +58,7 @@ const updateGuide = async function (): Guide {
       created_by: user.value?.id,
       title: store.guide.title,
       content: store.guide.content,
+      attribution: store.guide.attribution
     })
     .eq("id", store.guide.id)
     .select();
@@ -82,6 +83,7 @@ const createGuide = async function (): Guide {
       created_by: user.value?.id,
       title: store.guide.title,
       content: store.guide.content,
+      attribution: store.guide.attribution
     })
     .select();
 
@@ -134,6 +136,12 @@ onMounted(async () => {
         id="title"
         v-model="store.guide.title"
         class="w-64"
+        type="text"
+      >
+      <label for="attribution">Attribution</label>
+      <input
+        id="attribution"
+        v-model="store.guide.attribution"
         type="text"
       >
     </div>

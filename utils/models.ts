@@ -4,7 +4,8 @@ export interface Guide {
   created_by: string,
   created_at: Date,
   updated_at: Date,
-  content: string
+  content: string,
+  attribution: string
 }
 export interface Profile {
   id: Number,
