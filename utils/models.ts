@@ -6,3 +6,8 @@ export interface Guide {
   updated_at: Date,
   content: string
 }
+export interface Profile {
+  id: Number,
+  name: string,
+  is_admin: boolean
+}
