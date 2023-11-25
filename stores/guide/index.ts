@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
+import type { TablesUpdate } from "~/utils/database.types"
 
 interface GuideState {
-  guide: Guide | undefined;
+  guide: TablesInsert<'guides'> | undefined;
 }
 
 const guideState: GuideState = {
@@ -13,8 +14,8 @@ export const useGuideStore = defineStore("guide", {
   actions: {
     reset() {
       this.guide = {
-        title: null,
-        content: null,
+        title: "",
+        content: ""
       };
     },
     validate() {

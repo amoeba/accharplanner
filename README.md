@@ -35,7 +35,7 @@ Supabase lets you bring down local TypeScript defs for the database schema.
 After any changes on the Supabase side of things, run,
 
 ```sh
-npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > utils/database.types.ts
+npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > utils/database-generated.types.ts
 ```
 
 ### Design
