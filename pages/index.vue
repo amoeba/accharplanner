@@ -17,8 +17,6 @@
       </NuxtLink>
     </div>
 
-    <Features class="py-3" />
-
     <PublishedBuilds />
     <LatestBuilds />
   </div>
