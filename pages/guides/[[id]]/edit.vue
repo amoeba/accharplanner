@@ -14,6 +14,6 @@ const route = useRoute();
         <NuxtLink href="/login"> Log In </NuxtLink>
       </ButtonView>
     </div>
-    <GuideEditor v-if="user" :id="route.params.id" />
+    <GuideEdit v-if="user" :id="route.params.id" />
   </div>
 </template>

@@ -11,6 +11,6 @@ const user = useSupabaseUser();
         <NuxtLink href="/login"> Log In </NuxtLink>
       </ButtonView>
     </div>
-    <GuideEditor v-if="user" />
+    <GuideCreate v-if="user" />
   </div>
 </template>
