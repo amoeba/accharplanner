@@ -26,6 +26,7 @@ function toggleDarkMode(event: Event) {
         Planner</span>
       <NuxtLink to="/planner" class="hover:underline">Planner</NuxtLink>
       <NuxtLink to="/builds" class="hover:underline">Builds</NuxtLink>
+      <NuxtLink to="/guides" class="hover:underline">Guides</NuxtLink>
     </div>
     <div class="flex gap-2 justify-self-end items-center px-2 py-1">
       <button aria-label="Toggle theme between dark and light" class="theme-toggle" @click="toggleDarkMode"></button>

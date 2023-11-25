@@ -4,6 +4,14 @@
 
 @layer components {
 
+  main a {
+    @apply underline text-blue-600
+  }
+
+  main a:hover {
+    @apply no-underline
+  }
+
   input,
   range,
   select {

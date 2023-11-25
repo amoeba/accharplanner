@@ -1,5 +1,4 @@
 <template>
   <h2 class="text-lg font-bold">Builds</h2>
-  <IsAdminTestComponent />
-  <Editor />
+  <p>TODO</p>
 </template>
