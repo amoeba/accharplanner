@@ -237,58 +237,47 @@ export const importCharacter = function (store: Store<State>, json: any) {
           json.properties[property];
         break;
       case PropertyInt.LumAugDamageRating:
-        const LumAugDamageRating = json.properties[property];
-
-        if (LumAugDamageRating >= 0 && LumAugDamageRating <= 5) {
+        if (json.properties[property] >= 0 && json.properties[property] <= 5) {
           store.state.build.character.luminance_auras.valor.invested =
-            LumAugDamageRating;
-        } else if (LumAugDamageRating > 5) {
+            json.properties[property];
+        } else if (json.properties[property] > 5) {
           store.state.build.character.luminance_auras.valor.invested = 5;
           store.state.build.character.luminance_auras.destruction.invested =
-            LumAugDamageRating - 5;
+            json.properties[property] - 5;
         }
 
         break;
       case PropertyInt.LumAugDamageReductionRating:
-        const LumAugDamageReductionRating = json.properties[property];
-
-        if (
-          LumAugDamageReductionRating >= 0 &&
-          LumAugDamageReductionRating <= 5
-        ) {
+        if (json.properties[property] >= 0 && json.properties[property] <= 5) {
           store.state.build.character.luminance_auras.protection.invested =
-            LumAugDamageReductionRating;
-        } else if (LumAugDamageReductionRating > 5) {
+            json.properties[property];
+        } else if (json.properties[property] > 5) {
           store.state.build.character.luminance_auras.protection.invested = 5;
           store.state.build.character.luminance_auras.invulnerability.invested =
-            LumAugDamageReductionRating - 5;
+            json.properties[property] - 5;
         }
 
         break;
       case PropertyInt.LumAugCritDamageRating:
-        const LumAugCritDamageRating = json.properties[property];
-
-        if (LumAugCritDamageRating >= 0 && LumAugCritDamageRating <= 5) {
+        if (json.properties[property] >= 0 && json.properties[property] <= 5) {
           store.state.build.character.luminance_auras.glory.invested =
-            LumAugCritDamageRating;
-        } else if (LumAugCritDamageRating > 5) {
+            json.properties[property];
+        } else if (json.properties[property] > 5) {
           store.state.build.character.luminance_auras.glory.invested = 5;
           store.state.build.character.luminance_auras.retribution.invested =
-            LumAugCritDamageRating - 5;
+            json.properties[property] - 5;
         }
 
         break;
       case PropertyInt.LumAugCritReductionRating:
-        const LumAugCritReductionRating = json.properties[property];
-
-        if (LumAugCritReductionRating >= 0 && LumAugCritReductionRating <= 5) {
+        if (json.properties[property] >= 0 && json.properties[property] <= 5) {
           store.state.build.character.luminance_auras.temperance.invested =
-            LumAugCritReductionRating;
-        } else if (LumAugCritReductionRating > 5) {
+            json.properties[property];
+        } else if (json.properties[property] > 5) {
           store.state.build.character.luminance_auras.temperance.invested =
-            LumAugCritReductionRating;
+            json.properties[property];
           store.state.build.character.luminance_auras.hardening.invested =
-            LumAugCritReductionRating - 5;
+            json.properties[property] - 5;
         }
 
         break;

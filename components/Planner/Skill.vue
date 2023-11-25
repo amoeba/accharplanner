@@ -7,7 +7,7 @@
         :alt="displayName"
         width="20"
         height="20"
-      >
+      />
     </td>
     <td>
       {{ displayName }}
@@ -15,7 +15,9 @@
     </td>
     <td>
       <button
-        :class="cantDecrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
+        :class="
+          cantDecrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'
+        "
         class="rounded w-12 text-white px-1"
         :disabled="cantDecrease"
         @click="decreaseTraining"
@@ -26,7 +28,9 @@
     </td>
     <td>
       <button
-        :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
+        :class="
+          cantIncrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'
+        "
         class="rounded w-12 text-white px-1"
         @click="increaseTraining"
       >
@@ -34,74 +38,39 @@
       </button>
     </td>
     <td>
-      {{
-        base }}
+      {{ base }}
     </td>
     <td :class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
       <div v-if="canInvest">
-        <input
-          v-model="invested"
-          type="range"
-          min="0"
-          :max="maxInvestment"
-        >
+        <input v-model="invested" type="range" min="0" :max="maxInvestment" />
       </div>
     </td>
     <td>
-      <input
-        v-model="invested"
-        class="w-10"
-        type="text"
-        :tabindex="tabIndex"
-      >
+      <input v-model="invested" class="w-10" type="text" :tabindex="tabIndex" />
     </td>
     <td>
       <select v-model="buffLevel">
         <option value="0" />
-        <option value="1">
-          I
-        </option>
-        <option value="2">
-          II
-        </option>
-        <option value="3">
-          III
-        </option>
-        <option value="4">
-          IV
-        </option>
-        <option value="5">
-          V
-        </option>
-        <option value="6">
-          VI
-        </option>
-        <option value="7">
-          VII
-        </option>
-        <option value="8">
-          VIII
-        </option>
+        <option value="1">I</option>
+        <option value="2">II</option>
+        <option value="3">III</option>
+        <option value="4">IV</option>
+        <option value="5">V</option>
+        <option value="6">VI</option>
+        <option value="7">VII</option>
+        <option value="8">VIII</option>
       </select>
     </td>
     <td>
       <select v-model="cantrip">
         <option value="0" />
-        <option value="1">
-          Minor
-        </option>
-        <option value="2">
-          Major
-        </option>
-        <option value="3">
-          Epic
-        </option>
-        <option value="4">
-          Legen.
-        </option>
+        <option value="1">Minor</option>
+        <option value="2">Major</option>
+        <option value="3">Epic</option>
+        <option value="4">Legen.</option>
       </select>
     </td>
   </tr>
@@ -121,8 +90,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   computed: {
     displayName() {
@@ -196,7 +165,7 @@ export default {
       // Can't if out of credits
       const newTraining =
         this.store.build.character.skills[this.name].training ==
-          Training.TRAINED
+        Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED;
 
@@ -224,7 +193,7 @@ export default {
       if (
         newTraining === Training.SPECIALIZED &&
         this.store.specializedSkillPointsSpent + newCost >
-        MAX_SPECIALIZED_SKILL_CREDITS_SPENT
+          MAX_SPECIALIZED_SKILL_CREDITS_SPENT
       ) {
         return true;
       }
@@ -232,8 +201,7 @@ export default {
       return false;
     },
     cantDecrease() {
-      const training =
-        this.store.build.character.skills[this.name].training;
+      const training = this.store.build.character.skills[this.name].training;
 
       // Can't if not trained or higher
       if (training === Training.UNTRAINED || training === Training.UNTRAINED) {
@@ -253,8 +221,7 @@ export default {
       return false;
     },
     canInvest() {
-      const training =
-        this.store.build.character.skills[this.name].training;
+      const training = this.store.build.character.skills[this.name].training;
       return training == Training.SPECIALIZED || training == Training.TRAINED;
     },
     invested: {
@@ -262,13 +229,19 @@ export default {
         return this.store.build.character.skills[this.name].invested;
       },
       set(value) {
-        let out = Math.round(Number(value) || 0)
+        let out = Math.round(Number(value) || 0);
 
         if (this.store.settings.infiniteMode) {
           // Do nothing
-        } else if (this.training === Training.SPECIALIZED && out > MAX_SKILL_INVESTED_SPECIALIZED) {
+        } else if (
+          this.training === Training.SPECIALIZED &&
+          out > MAX_SKILL_INVESTED_SPECIALIZED
+        ) {
           out = MAX_SKILL_INVESTED_SPECIALIZED;
-        } else if (this.training === Training.TRAINED && out > MAX_SKILL_INVESTED_TRAINED) {
+        } else if (
+          this.training === Training.TRAINED &&
+          out > MAX_SKILL_INVESTED_TRAINED
+        ) {
           out = MAX_SKILL_INVESTED_TRAINED;
         } else if (out < 0) {
           out = 0;
@@ -276,7 +249,7 @@ export default {
 
         this.store.updateSkillInvested({
           name: this.name,
-          value: out
+          value: out,
         });
       },
     },
@@ -313,9 +286,7 @@ export default {
       },
     },
     buffName() {
-      return BUFF_NAME[
-        this.store.build.character.skills[this.name].buff
-      ];
+      return BUFF_NAME[this.store.build.character.skills[this.name].buff];
     },
     cantrip: {
       get() {
@@ -329,9 +300,7 @@ export default {
       },
     },
     cantripName() {
-      return CANTRIP_NAME[
-        this.store.build.character.skills[this.name].cantrip
-      ];
+      return CANTRIP_NAME[this.store.build.character.skills[this.name].cantrip];
     },
   },
   methods: {

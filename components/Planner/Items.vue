@@ -1,18 +1,13 @@
 <template>
-  <Pane
-    :toggle-expanded="toggleExpanded"
-    :is-expanded="isExpanded"
-  >
-    <template #title>
-      Items
-    </template>
+  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+    <template #title> Items </template>
     <template #content>
       <ul>
         <Item id="focusing_stone" />
         <Item id="font_of_joji" />
       </ul>
     </template>
-  </Pane>
+  </CollapsiblePane>
 </template>
 
 <script>
@@ -28,8 +23,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   computed: {
     isExpanded() {

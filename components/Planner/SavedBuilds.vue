@@ -6,16 +6,12 @@
       </div>
       <div>
         <p>
-          <button @click="deleteAll">
-            Delete All
-          </button>
+          <ButtonView @click="deleteAll"> Delete All </ButtonView>
         </p>
         <div v-if="noBuilds">
           <p>
             No saved builds. Use the Save button in the
-            <router-link to="/">
-              Planner
-            </router-link>.
+            <router-link to="/"> Planner </router-link>.
           </p>
         </div>
         <Build
@@ -42,8 +38,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   computed: {
     noBuilds() {

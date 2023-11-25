@@ -4,10 +4,7 @@
       <!-- Collapse/Expand -->
       <div class="flex">
         <div class="flex gap-2">
-          <Button
-            tooltip="Expand All Panels"
-            @click="expandAll"
-          >
+          <ButtonView tooltip="Expand All Panels" @click="expandAll">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -23,11 +20,8 @@
               <path d="m7 15 5 5 5-5" />
               <path d="m7 9 5-5 5 5" />
             </svg>
-          </Button>
-          <Button
-            tooltip="Collapse All Panels"
-            @click="collapseAll"
-          >
+          </ButtonView>
+          <ButtonView tooltip="Collapse All Panels" @click="collapseAll">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -43,13 +37,13 @@
               <path d="m7 20 5-5 5 5" />
               <path d="m7 4 5 5 5-5" />
             </svg>
-          </Button>
+          </ButtonView>
         </div>
       </div>
       <!-- Desktop Planner Controls -->
       <div class="flex justify-end gap-x-1">
         <PlannerLoggedInControls />
-        <Button @click="resetPlanner">
+        <ButtonView @click="resetPlanner">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -66,7 +60,7 @@
             <path d="M3 3v5h5" />
           </svg>
           <span class="hidden md:block">Restart</span>
-        </Button>
+        </ButtonView>
         <ButtonWithPopout width-class="w-72">
           <template #icon>
             <svg
@@ -81,33 +75,11 @@
               stroke-linejoin="round"
               class="lucide lucide-share-2"
             >
-              <circle
-                cx="18"
-                cy="5"
-                r="3"
-              />
-              <circle
-                cx="6"
-                cy="12"
-                r="3"
-              />
-              <circle
-                cx="18"
-                cy="19"
-                r="3"
-              />
-              <line
-                x1="8.59"
-                x2="15.42"
-                y1="13.51"
-                y2="17.49"
-              />
-              <line
-                x1="15.41"
-                x2="8.59"
-                y1="6.51"
-                y2="10.49"
-              />
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+              <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
             </svg>
           </template>
           <template #title>
@@ -195,10 +167,14 @@ export default {
           return;
         }
 
-        store.build.stages[store.ui.currentStage] = JSON.parse(JSON.stringify(store.build.character));
+        store.build.stages[store.ui.currentStage] = JSON.parse(
+          JSON.stringify(store.build.character)
+        );
       },
       { deep: true }
-    )
+    );
+
+    return { store };
   },
   methods: {
     resetPlanner() {
@@ -209,7 +185,7 @@ export default {
     },
     collapseAll() {
       this.store.collapseAll();
-    }
+    },
   },
 };
 </script>

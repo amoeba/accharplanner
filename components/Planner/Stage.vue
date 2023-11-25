@@ -4,18 +4,15 @@
       class="flex border border-zinc-200 rounded divide-x p-0"
       :class="isSelected ? 'bg-zinc-200' : 'bg-transparent'"
     >
-      <button
+      <ButtonView
         :data-index="index"
         :class="{ selected: isSelected }"
         class="rounded-l px-3 hover:bg-zinc-200 cursor-grab"
         @click="load"
       >
         Level {{ level }}
-      </button>
-      <button
-        class="rounded-r hover:text-red-600"
-        @click="remove"
-      >
+      </ButtonView>
+      <ButtonView class="rounded-r hover:text-red-600" @click="remove">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -31,15 +28,10 @@
           <path d="M18 6 6 18" />
           <path d="m6 6 12 12" />
         </svg>
-      </button>
+      </ButtonView>
     </div>
     <div class="flex flex-col justify-center">
-      <div
-        v-if="isNotLast"
-        class="h-1 w-10 bg-zinc-200"
-      >
-&nbsp;
-      </div>
+      <div v-if="isNotLast" class="h-1 w-10 bg-zinc-200">&nbsp;</div>
     </div>
   </div>
 </template>
@@ -49,19 +41,23 @@ import { usePlannerStore } from "~/stores/planner";
 
 const store = usePlannerStore();
 
-const props = defineProps(['index', 'level', 'stages', 'isDragInProgress'])
+const props = defineProps(["index", "level", "stages", "isDragInProgress"]);
 
 const isSelected = computed(() => {
-  return store.ui.currentStage !== null && store.ui.currentStage === props.index;
+  return (
+    store.ui.currentStage !== null && store.ui.currentStage === props.index
+  );
 });
 
-const isNotLast = computed(() => { return props.index !== props.stages - 1 });
+const isNotLast = computed(() => {
+  return props.index !== props.stages - 1;
+});
 
 const load = async function () {
   store.changeStage(props.index);
-}
+};
 
 const remove = async function () {
   store.deleteStage(props.index);
-}
+};
 </script>

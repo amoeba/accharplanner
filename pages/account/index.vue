@@ -1,5 +1,5 @@
 <template>
   <div class="flex justify-center">
-    <Account />
+    <AccountView />
   </div>
 </template>

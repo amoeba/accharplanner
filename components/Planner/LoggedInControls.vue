@@ -28,7 +28,7 @@ const favoriteBuild = async function () {
   }
 
   if (selectData.length > 0) {
-    console.log("Fav already existed, not faving again")
+    console.log("Fav already existed, not faving again");
 
     return;
   }
@@ -40,16 +40,16 @@ const favoriteBuild = async function () {
     .select();
 
   if (error) {
-    console.log("Failed to update favs count", error)
+    console.log("Failed to update favs count", error);
   } else {
     // TODO: Do something more fun with succcess
     // like a spinning star
-    console.log("Favorited successfully", data)
+    console.log("Favorited successfully", data);
   }
-}
+};
 
 const publishBuild = async function () {
-  console.log("publishBuild")
+  console.log("publishBuild");
 
   // const { data, error } = await client
   //   .from("builds")
@@ -63,20 +63,10 @@ const publishBuild = async function () {
   // if (error) {
   //   console.log(error);
   // }
-}
+};
 </script>
 <template>
   <!-- TODO: Only allow Favorite when we're viewing a build -->
-  <Button
-    v-if="user"
-    @click="favoriteBuild"
-  >
-    ⭐️
-  </Button>
-  <Button
-    v-if="user"
-    @click="publishBuild"
-  >
-    🌍
-  </Button>
+  <ButtonView v-if="user" @click="favoriteBuild"> ⭐️ </ButtonView>
+  <ButtonView v-if="user" @click="publishBuild"> 🌍 </ButtonView>
 </template>

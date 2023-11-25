@@ -6,48 +6,30 @@
       </span>
     </div>
     <div>
-      <div v-if="error">
-        Error: {{ error }}
-      </div>
+      <div v-if="error">Error: {{ error }}</div>
       <div>
-        <h3 v-if="loading">
-          Loading build...
-        </h3>
+        <h3 v-if="loading">Loading build...</h3>
         <h3 v-if="build">
           {{ build.name }}
         </h3>
       </div>
       <div v-if="loading">
-        <p v-if="loading">
-          Loading build...
-        </p>
+        <p v-if="loading">Loading build...</p>
       </div>
       <div v-if="!loading">
         <p>
-          <button>
-            <router-link
-              v-if="build"
-              :to="url"
-            >
-              Load in Planner
-            </router-link>
-          </button>
+          <ButtonView>
+            <router-link v-if="build" :to="url"> Load in Planner </router-link>
+          </ButtonView>
         </p>
-        <p
-          v-if="build"
-          v-html="build.description"
-        />
+        <p v-if="build" v-html="build.description" />
 
         <!-- Editing Controls -->
         <p v-if="isAdmin">
-          <router-link :to="edit_url">
-            Edit Build
-          </router-link>
+          <router-link :to="edit_url"> Edit Build </router-link>
         </p>
         <p v-if="isAdmin">
-          <button @click="deleteBuild">
-            Delete Build
-          </button>
+          <ButtonView @click="deleteBuild"> Delete Build </ButtonView>
         </p>
       </div>
     </div>
@@ -65,8 +47,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   data() {
     return {
@@ -85,7 +67,7 @@ export default {
     },
     isAdmin() {
       return this.store.isAdmin;
-    }
+    },
   },
   created() {
     this.fetchData();
@@ -126,7 +108,7 @@ export default {
       );
 
       const { error } = await supabase
-        .from('official_builds')
+        .from("official_builds")
         .delete()
         .eq("id", this.$route.params.id);
 
@@ -143,7 +125,7 @@ export default {
 
         this.$router.push("/builds");
       }
-    }
+    },
   },
 };
 </script>

@@ -1,25 +1,15 @@
 <template>
-  <Pane
-    :toggle-expanded="toggleExpanded"
-    :is-expanded="isExpanded"
-  >
-    <template #title>
-      Armor Sets
-    </template>
+  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+    <template #title> Armor Sets </template>
     <template #right>
-      <span
-        v-if="errors"
-        class="text-rose-500"
-      >{{ errors }}</span>
+      <span v-if="errors" class="text-rose-500">{{ errors }}</span>
     </template>
     <template #content>
       <table class="width-full">
         <thead>
           <tr>
             <th>Name</th>
-            <th colspan="2">
-              Equipped
-            </th>
+            <th colspan="2">Equipped</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +27,7 @@
         </tbody>
       </table>
     </template>
-  </Pane>
+  </CollapsiblePane>
 </template>
 
 <script>
@@ -53,8 +43,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   computed: {
     isExpanded() {

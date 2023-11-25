@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 
 interface SupabaseError {
-  name: string | undefined,
-  status: number | undefined,
-  message: string
+  name: string | undefined;
+  status: number | undefined;
+  message: string;
 }
 
-const name = ref("")
-const message = ref("")
-const errors = ref<SupabaseError[]>([])
+const name = ref("");
+const message = ref("");
+const errors = ref<SupabaseError[]>([]);
 const isSigningOut = ref(false);
 
 // Form state state machine
@@ -19,27 +19,27 @@ enum FormState {
   UNSENT,
   SENDING,
   SUCCESS,
-  ERROR
+  ERROR,
 }
 
-const formState = ref(FormState.UNSENT)
+const formState = ref(FormState.UNSENT);
 
 const signOut = async function () {
   try {
     errors.value = [];
     isSigningOut.value = true;
 
-    const { error } = await client.auth.signOut()
+    const { error } = await client.auth.signOut();
 
     if (error) {
       errors.value.push(error);
     }
   } catch (error) {
-    errors.value.push({ message: error.message } as SupabaseError)
+    errors.value.push({ message: error.message } as SupabaseError);
   } finally {
     isSigningOut.value = false;
   }
-}
+};
 
 const validateName = function (name: string) {
   const out: string = name.trim();
@@ -55,38 +55,45 @@ const validateName = function (name: string) {
   }
 
   return out;
-}
+};
 
 const trySetName = async function () {
   formState.value = FormState.SENDING;
 
   try {
     message.value = "";
-    errors.value = []
+    errors.value = [];
     const newName = validateName(name.value);
 
-    const { data, error } = await client.from("profiles")
+    const { data, error } = await client
+      .from("profiles")
       .upsert({
         id: user.value?.id,
-        name: newName
-      }).select()
+        name: newName,
+      })
+      .select();
 
     if (error) {
       formState.value = FormState.ERROR;
       errors.value.push(error);
     } else {
       formState.value = FormState.SUCCESS;
-      message.value = "Success!"
-      setTimeout(() => { formState.value = FormState.UNSENT }, 3000);
+      message.value = "Success!";
+      setTimeout(() => {
+        formState.value = FormState.UNSENT;
+      }, 3000);
     }
   } catch (error) {
     formState.value = FormState.ERROR;
-    errors.value.push({ message: error.message } as SupabaseError)
+    errors.value.push({ message: error.message } as SupabaseError);
   }
-}
+};
 
 const fetchProfile = async function () {
-  const { data, error } = await client.from("profiles").select().eq("id", user.value.id)
+  const { data, error } = await client
+    .from("profiles")
+    .select()
+    .eq("id", user.value.id);
 
   if (error) {
     console.log("error", error);
@@ -96,10 +103,10 @@ const fetchProfile = async function () {
     name.value = data[0]["name"];
   }
   return data;
-}
+};
 onMounted(async () => {
   await fetchProfile();
-})
+});
 </script>
 
 <template>
@@ -107,43 +114,26 @@ onMounted(async () => {
     <form @submit.prevent="trySetName">
       <label class="block py-3">
         <div>Name</div>
-        <input
-          v-model="name"
-          class="w-full px-2 py-1"
-          type="text"
-        >
+        <input v-model="name" class="w-full px-2 py-1" type="text" />
       </label>
       <div class="flex justify-end gap-2 content-center">
-        <div
-          v-if="formState == FormState.SENDING"
-          class="px-2 py-1"
-        >
+        <div v-if="formState == FormState.SENDING" class="px-2 py-1">
           Sending...
         </div>
-        <div
-          v-if="formState == FormState.SUCCESS"
-          class="px-2 py-1"
-        >
+        <div v-if="formState == FormState.SUCCESS" class="px-2 py-1">
           {{ message }}
         </div>
-        <FormErrors
-          v-if="formState == FormState.ERROR"
-          :errors="errors"
-        />
+        <FormErrors v-if="formState == FormState.ERROR" :errors="errors" />
         <input
           class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto"
           type="submit"
           value="Update"
           :disabled="formState == FormState.SENDING"
-        >
+        />
       </div>
     </form>
   </div>
-  <Button
-    v-if="user"
-    :disabled="isSigningOut"
-    @click="signOut"
-  >
+  <ButtonView v-if="user" :disabled="isSigningOut" @click="signOut">
     Log Out
-  </Button>
+  </ButtonView>
 </template>

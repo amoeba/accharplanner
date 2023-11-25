@@ -7,17 +7,10 @@
       <div>
         <p>
           Import builds you've saved to your computer from the
-          <router-link to="/saved">
-            Saved Builds
-          </router-link> tab.
+          <router-link to="/saved"> Saved Builds </router-link> tab.
         </p>
-        <input
-          id="input"
-          type="file"
-        >
-        <button @click="importBuild">
-          Import
-        </button>
+        <input id="input" type="file" />
+        <ButtonView @click="importBuild"> Import </ButtonView>
       </div>
     </div>
   </div>
@@ -32,8 +25,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   computed: {},
   methods: {

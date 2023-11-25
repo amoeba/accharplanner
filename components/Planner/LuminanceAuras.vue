@@ -1,25 +1,15 @@
 <template>
-  <Pane
-    :toggle-expanded="toggleExpanded"
-    :is-expanded="isExpanded"
-  >
-    <template #title>
-      Luminance Auras
-    </template>
+  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+    <template #title> Luminance Auras </template>
     <template #right>
-      <span
-        v-if="errors"
-        class="text-red-500"
-      >{{ errors }}</span>
+      <span v-if="errors" class="text-red-500">{{ errors }}</span>
     </template>
     <template #content>
       <table>
         <thead>
           <tr>
             <th>Name</th>
-            <th colspan="2">
-              Invested
-            </th>
+            <th colspan="2">Invested</th>
           </tr>
           <tr>
             <th>
@@ -29,14 +19,14 @@
                   class="py-1 font-normal"
                   type="text"
                   placeholder="Type to filter..."
-                >
-                <button
+                />
+                <ButtonView
                   v-if="filterPresent"
                   class="px-2 py-1 hover:bg-zinc-200 rounded"
                   @click="clearFilter"
                 >
                   Reset
-                </button>
+                </ButtonView>
               </div>
             </th>
             <th>
@@ -46,21 +36,17 @@
                 max="1"
                 value="0"
                 @change="changeInvested"
-              >
+              />
             </th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <LuminanceAura
-            v-for="(aura) in auras"
-            :key="aura"
-            :name="aura"
-          />
+          <LuminanceAura v-for="aura in auras" :key="aura" :name="aura" />
         </tbody>
       </table>
     </template>
-  </Pane>
+  </CollapsiblePane>
 </template>
 
 <script>
@@ -76,13 +62,13 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   data() {
     return {
       filterQuery: "",
-    }
+    };
   },
   computed: {
     isExpanded() {

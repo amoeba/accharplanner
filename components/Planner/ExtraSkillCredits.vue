@@ -1,30 +1,13 @@
 <template>
-  <Pane
-    :toggle-expanded="toggleExpanded"
-    :is-expanded="isExpanded"
-  >
-    <template #title>
-      Extra Skill Credits
-    </template>
+  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+    <template #title> Extra Skill Credits </template>
     <template #content>
-      <ExtraSkillCredit
-        id="railrea"
-        name="Aun Ralirea"
-      />
-      <ExtraSkillCredit
-        id="oswald"
-        name="Chasing Oswald"
-      />
-      <ExtraSkillCredit
-        id="luminance1"
-        name="Luminance 1"
-      />
-      <ExtraSkillCredit
-        id="luminance2"
-        name="Luminance 2"
-      />
+      <ExtraSkillCredit id="railrea" name="Aun Ralirea" />
+      <ExtraSkillCredit id="oswald" name="Chasing Oswald" />
+      <ExtraSkillCredit id="luminance1" name="Luminance 1" />
+      <ExtraSkillCredit id="luminance2" name="Luminance 2" />
     </template>
-  </Pane>
+  </CollapsiblePane>
 </template>
 
 <script>
@@ -40,8 +23,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   computed: {
     isExpanded() {

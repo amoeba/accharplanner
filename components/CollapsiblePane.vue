@@ -1,7 +1,5 @@
 <script setup lang="ts">
-defineProps([
-  "toggleExpanded", "isExpanded"
-])
+defineProps(["toggleExpanded", "isExpanded"]);
 </script>
 
 <template>
@@ -17,10 +15,7 @@ defineProps([
         <slot name="right" />
       </div>
     </div>
-    <div
-      :class="isExpanded ? 'block' : 'hidden'"
-      :aria-expanded="isExpanded"
-    >
+    <div :class="isExpanded ? 'block' : 'hidden'" :aria-expanded="isExpanded">
       <div class="px-2 py-1">
         <slot name="content" />
       </div>

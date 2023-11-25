@@ -1,30 +1,20 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
-    <Pane
+    <CollapsiblePane
       :toggle-expanded="toggleCharacterHeaderExpanded"
       :is-expanded="isCharacterHeaderExpanded"
     >
-      <template #title>
-        Character
-      </template>
+      <template #title> Character </template>
       <template #content>
         <div class="flex flex-col gap-2">
           <label class="flex gap-2">
             Name
-            <input
-              id="charname"
-              v-model="name"
-              class="w100"
-              type="text"
-            >
+            <input id="charname" v-model="name" class="w100" type="text" />
           </label>
           <label class="flex gap-2">
             Race
             <select v-model="race">
-              <option
-                v-for="race in races"
-                :key="race"
-              >
+              <option v-for="race in races" :key="race">
                 {{ race }}
               </option>
             </select>
@@ -38,16 +28,11 @@
                   v-model="gender"
                   type="radio"
                   value="Female"
-                >
+                />
                 <span class="block">Female</span>
               </label>
               <label class="flex gap-2">
-                <input
-                  id="male"
-                  v-model="gender"
-                  type="radio"
-                  value="Male"
-                >
+                <input id="male" v-model="gender" type="radio" value="Male" />
                 <span class="block">Male</span>
               </label>
             </div>
@@ -55,30 +40,15 @@
           <label class="flex gap-2">
             Level
             <div>
-              <div
-                v-if="!settingsInfiniteMode"
-                class="flex gap-2"
-              >
+              <div v-if="!settingsInfiniteMode" class="flex gap-2">
                 <div class="flex grow">
-                  <input
-                    v-model="level"
-                    type="range"
-                    min="1"
-                    :max="maxLevel"
-                  >
+                  <input v-model="level" type="range" min="1" :max="maxLevel" />
                 </div>
                 <div class="w-10">
-                  <input
-                    v-model="level"
-                    type="text"
-                    @change="updateLevel"
-                  >
+                  <input v-model="level" type="text" @change="updateLevel" />
                 </div>
               </div>
-              <div
-                v-if="settingsInfiniteMode"
-                class="flex gap-2"
-              >
+              <div v-if="settingsInfiniteMode" class="flex gap-2">
                 <div class="flex grow">
                   <span class="text-green-600">∞</span>
                 </div>
@@ -88,27 +58,27 @@
                     class="w-full"
                     type="text"
                     @change="updateLevel"
-                  >
+                  />
                 </div>
               </div>
             </div>
           </label>
         </div>
       </template>
-    </Pane>
-    <Pane
+    </CollapsiblePane>
+    <CollapsiblePane
       :toggle-expanded="toggleLuminanceHeaderExpanded"
       :is-expanded="isLuminanceHeaderExpanded"
     >
-      <template #title>
-        XP &amp; Luminance
-      </template>
+      <template #title> XP &amp; Luminance </template>
       <template #right>
-        <Tip
-          v-tooltip="'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'"
+        <ToolTip
+          v-tooltip="
+            'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'
+          "
         >
           !
-        </Tip>
+        </ToolTip>
       </template>
       <template #content>
         <div class="grid grid-cols-[auto_4em] gap-2">
@@ -118,17 +88,18 @@
               v-if="unassignedXPError"
               v-tooltip="unassignedXPError"
               class="tip"
-            >!</span>
+              >!</span
+            >
             <span v-if="!unassignedXPError">{{ unassignedXP }}</span>
           </div>
           <div>Spent</div>
           <div class="justify-self-end">
             <span
               v-if="totalXPInvestedError"
-              v-tooltip="totalXPInvestedError
-              "
+              v-tooltip="totalXPInvestedError"
               class="tip"
-            >!</span>
+              >!</span
+            >
             <span v-if="!totalXPInvestedError">{{ totalXPInvested }}</span>
           </div>
           <div>Total</div>
@@ -136,10 +107,7 @@
             {{ totalXPEarned }}
           </div>
           <div>Required Level</div>
-          <div
-            class="justify-self-end"
-            :class="isOverspent ? 'red' : 'gray'"
-          >
+          <div class="justify-self-end" :class="isOverspent ? 'red' : 'gray'">
             {{ requiredLevel }}
           </div>
           <div>Luminance Spent</div>
@@ -148,14 +116,12 @@
           </div>
         </div>
       </template>
-    </Pane>
-    <Pane
+    </CollapsiblePane>
+    <CollapsiblePane
       :toggle-expanded="toggleKnobsAndDialsHeaderExpanded"
       :is-expanded="isKnobsAndDialsHeaderExpanded"
     >
-      <template #title>
-        Knobs &amp; Dials
-      </template>
+      <template #title> Knobs &amp; Dials </template>
       <template #content>
         <div class="flex flex-col gap-2">
           <label class="flex gap-2">
@@ -167,7 +133,7 @@
               :max="maxSkillInvestedSpecialized"
               value="0"
               @change="changeAllInvestments"
-            >
+            />
           </label>
           <label class="flex gap-2">
             Buffs
@@ -202,20 +168,16 @@
                   type="range"
                   min="0"
                   :max="maxTimesEnlightened"
-                >
+                />
               </div>
               <div>
-                <input
-                  v-model="timesEnlightened"
-                  class="w-6"
-                  type="text"
-                >
+                <input v-model="timesEnlightened" class="w-6" type="text" />
               </div>
             </div>
           </label>
         </div>
       </template>
-    </Pane>
+    </CollapsiblePane>
     <ExtraSkillCredits class="header" />
   </div>
 </template>
@@ -233,15 +195,15 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   data() {
     return {
       maxLevel: MAX_LEVEL,
       maxSkillInvestedSpecialized: MAX_SKILL_INVESTED_SPECIALIZED,
       maxTimesEnlightened: MAX_TIMES_ENLIGHTENDED,
-    }
+    };
   },
   computed: {
     isCharacterHeaderExpanded() {
@@ -270,10 +232,8 @@ export default {
     },
     isOverspent() {
       return (
-        Number(this.store.totalXPInvested) >
-        Number(this.store.totalXPEarned) ||
-        this.store.skillPointsSpent >
-        this.store.skillPointsAvailable
+        Number(this.store.totalXPInvested) > Number(this.store.totalXPEarned) ||
+        this.store.skillPointsSpent > this.store.skillPointsAvailable
       );
     },
     skillPointsSpent() {
@@ -339,7 +299,7 @@ export default {
     },
     settingsInfiniteMode() {
       return this.store.settings.infiniteMode;
-    }
+    },
   },
   methods: {
     toggleCharacterHeaderExpanded() {

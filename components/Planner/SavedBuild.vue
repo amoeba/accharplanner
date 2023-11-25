@@ -6,15 +6,9 @@
       {{ buildKey }}
     </div>
     <div>
-      <button @click="load">
-        Load
-      </button>
-      <button @click="exportBuild">
-        Export
-      </button>
-      <button @click="remove">
-        Delete
-      </button>
+      <ButtonView @click="load"> Load </ButtonView>
+      <ButtonView @click="exportBuild"> Export </ButtonView>
+      <ButtonView @click="remove"> Delete </ButtonView>
     </div>
   </div>
 </template>
@@ -32,8 +26,8 @@ export default {
     const store = usePlannerStore();
 
     return {
-      store
-    }
+      store,
+    };
   },
   computed: {
     description() {
