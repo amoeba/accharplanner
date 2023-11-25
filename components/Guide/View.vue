@@ -37,6 +37,6 @@ if (error) {
     <p>
       Created By {{ guide.created_by }}
     </p>
-    <div v-html="guide.content"></div>
+    <GuideContentEditor class="border rounded border-black" :editable="false" v-model="guide.content" />
   </div>
 </template>

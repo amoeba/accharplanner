@@ -6,6 +6,8 @@
 import StarterKit from '@tiptap/starter-kit'
 import { Editor, EditorContent } from '@tiptap/vue-3'
 
+import VueComponent from '~/components/Editor/Extension'
+
 export default {
   components: {
     EditorContent,
@@ -16,6 +18,10 @@ export default {
       type: String,
       default: '',
     },
+    editable: {
+      type: Boolean,
+      default: true
+    }
   },
 
   emits: ['update:modelValue'],
@@ -42,8 +48,10 @@ export default {
     this.editor = new Editor({
       extensions: [
         StarterKit,
+        VueComponent,
       ],
       content: this.modelValue,
+      editable: this.editable,
       onUpdate: () => {
         this.$emit('update:modelValue', this.editor.getHTML())
       },
