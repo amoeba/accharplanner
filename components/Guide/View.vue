@@ -24,16 +24,16 @@ if (error) {
 
 <template>
   <div v-if="guide">
-    <!-- Edit button -->
-    <div v-if="user && user.id == guide.created_by">
-      <NuxtLink :href="`/guides/${id}/edit`">
-        Edit
-      </NuxtLink>
+    <div class="flex gap-2">
+      <h2 class="text-lg font-bold">
+        {{ guide.title }}
+      </h2>
+      <ButtonView v-if="user && user.id == guide.created_by">
+        <NuxtLink :href="`/guides/${id}/edit`">
+          Edit
+        </NuxtLink>
+      </ButtonView>
     </div>
-
-    <h2 class="text-lg font-bold">
-      {{ guide.title }}
-    </h2>
     <div>
       <p>Created At {{ guide.created_at }}</p>
       <p>Updated At {{ guide.updated_at }}</p>
@@ -42,10 +42,6 @@ if (error) {
       <p>Attributed to {{ guide.attribution }}</p>
     </div>
     <p>Created By {{ guide.created_by }}</p>
-    <GuideContentEditor
-      v-model="guide.content"
-      class="border rounded border-black"
-      :editable="false"
-    />
+    <GuideContentEditor v-model="guide.content" class="border rounded border-black" :editable="false" />
   </div>
 </template>
