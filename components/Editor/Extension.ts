@@ -1,12 +1,12 @@
-import { mergeAttributes, Node } from '@tiptap/core'
-import { VueNodeViewRenderer } from '@tiptap/vue-3'
+import { mergeAttributes, Node } from "@tiptap/core";
+import { VueNodeViewRenderer } from "@tiptap/vue-3";
 
-import Component from './ExtensionTestComponent.vue'
+import Component from "./ExtensionTestComponent.vue";
 
 export default Node.create({
-  name: 'vueComponent',
+  name: "vueComponent",
 
-  group: 'block',
+  group: "block",
 
   atom: true,
 
@@ -15,22 +15,22 @@ export default Node.create({
       count: {
         default: 0,
       },
-    }
+    };
   },
 
   parseHTML() {
     return [
       {
-        tag: 'vue-component',
+        tag: "vue-component",
       },
-    ]
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['vue-component', mergeAttributes(HTMLAttributes)]
+    return ["vue-component", mergeAttributes(HTMLAttributes)];
   },
 
   addNodeView() {
-    return VueNodeViewRenderer(Component)
+    return VueNodeViewRenderer(Component);
   },
-})
+});

@@ -1,56 +1,57 @@
 <script setup lang="ts">
-import { exceptionFromError } from '@sentry/vue';
-import { ref } from 'vue';
+import { exceptionFromError } from "@sentry/vue";
+import { ref } from "vue";
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 
 interface SupabaseError {
-  name: string | undefined,
-  status: number | undefined,
-  message: string
+  name: string | undefined;
+  status: number | undefined;
+  message: string;
 }
 
-const defaultButtonText = "Send 🔮 Link"
-const email = ref("")
-const submitButtonText = ref(defaultButtonText)
-const errorMessage = ref("")
+const defaultButtonText = "Send 🔮 Link";
+const email = ref("");
+const submitButtonText = ref(defaultButtonText);
+const errorMessage = ref("");
 
 // Form state state machine
 enum FormState {
   UNSENT,
   SENDING,
   SUCCESS,
-  ERROR
+  ERROR,
 }
 
-const formState = ref(FormState.UNSENT)
+const formState = ref(FormState.UNSENT);
 
 const handleSubmit = async function () {
-  errorMessage.value = ""
+  errorMessage.value = "";
 
   const finalEmail = email.value.trim();
 
   if (finalEmail.length <= 0) {
     formState.value = FormState.ERROR;
-    errorMessage.value = "Please provide an email address that isn't just an empty string."
+    errorMessage.value =
+      "Please provide an email address that isn't just an empty string.";
 
     return;
   }
 
   await signInWithEmail(finalEmail);
-}
+};
 
 const signInWithEmail = async function (email: string) {
   formState.value = FormState.SENDING;
-  submitButtonText.value = "Sending..."
+  submitButtonText.value = "Sending...";
 
-  const config = useRuntimeConfig()
+  const config = useRuntimeConfig();
 
   try {
     const { data, error } = await client.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo: config.supabaseRedirectUrl as string
+        emailRedirectTo: config.supabaseRedirectUrl as string,
       },
     });
 
@@ -72,7 +73,7 @@ const signInWithEmail = async function (email: string) {
     submitButtonText.value = defaultButtonText;
     errorMessage.value = e;
   }
-}
+};
 </script>
 
 <template>
@@ -84,11 +85,19 @@ const signInWithEmail = async function (email: string) {
         <input class="w-full px-2 py-1" type="text" v-model="email" />
       </label>
       <div class="flex justify-end">
-        <input class="hover:bg-zinc-100 cursor-pointer px-2 py-1 disabled:bg-zinc-200 disabled:text-zinc-500"
-          type="submit" :disabled="formState == FormState.SENDING" :value="submitButtonText" />
+        <input
+          class="hover:bg-zinc-100 cursor-pointer px-2 py-1 disabled:bg-zinc-200 disabled:text-zinc-500"
+          type="submit"
+          :disabled="formState == FormState.SENDING"
+          :value="submitButtonText"
+        />
       </div>
     </form>
-    <p v-if="formState == FormState.SUCCESS" class="text-green-600">Check your email for a link to log in.</p>
-    <p v-if="formState == FormState.ERROR" class="text-red-500">{{ errorMessage }}</p>
+    <p v-if="formState == FormState.SUCCESS" class="text-green-600">
+      Check your email for a link to log in.
+    </p>
+    <p v-if="formState == FormState.ERROR" class="text-red-500">
+      {{ errorMessage }}
+    </p>
   </div>
 </template>
