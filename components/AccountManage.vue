@@ -29,7 +29,7 @@ const signOut = async function () {
     errors.value = [];
     isSigningOut.value = true;
 
-    let { error } = await client.auth.signOut()
+    const { error } = await client.auth.signOut()
 
     if (error) {
       errors.value.push(error);
@@ -42,7 +42,7 @@ const signOut = async function () {
 }
 
 const validateName = function (name: string) {
-  let out: string = name.trim();
+  const out: string = name.trim();
 
   if (out.length <= 0) {
     throw new Error("Name should be at least one character long.");
@@ -107,17 +107,43 @@ onMounted(async () => {
     <form @submit.prevent="trySetName">
       <label class="block py-3">
         <div>Name</div>
-        <input class="w-full px-2 py-1" type="text" v-model="name" />
+        <input
+          v-model="name"
+          class="w-full px-2 py-1"
+          type="text"
+        >
       </label>
       <div class="flex justify-end gap-2 content-center">
-        <div class="px-2 py-1" v-if="formState == FormState.SENDING">Sending...</div>
-        <div class="px-2 py-1" v-if="formState == FormState.SUCCESS">{{ message }}</div>
-        <FormErrors v-if="formState == FormState.ERROR" :errors="errors" />
+        <div
+          v-if="formState == FormState.SENDING"
+          class="px-2 py-1"
+        >
+          Sending...
+        </div>
+        <div
+          v-if="formState == FormState.SUCCESS"
+          class="px-2 py-1"
+        >
+          {{ message }}
+        </div>
+        <FormErrors
+          v-if="formState == FormState.ERROR"
+          :errors="errors"
+        />
         <input
           class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto"
-          type="submit" value="Update" :disabled="formState == FormState.SENDING" />
+          type="submit"
+          value="Update"
+          :disabled="formState == FormState.SENDING"
+        >
       </div>
     </form>
   </div>
-  <Button v-if="user" :disabled="isSigningOut" @click="signOut">Log Out</Button>
+  <Button
+    v-if="user"
+    :disabled="isSigningOut"
+    @click="signOut"
+  >
+    Log Out
+  </Button>
 </template>

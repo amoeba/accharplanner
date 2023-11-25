@@ -1,7 +1,13 @@
 <template>
   <tr>
     <td>
-      <img style="clip-path: circle(50%)" :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img
+        style="clip-path: circle(50%)"
+        :src="'/img/' + name + '.png'"
+        :alt="displayName"
+        width="20"
+        height="20"
+      >
     </td>
     <td>
       {{ displayName }}
@@ -10,14 +16,24 @@
     <td>&nbsp;</td>
     <td>{{ creation }}</td>
     <td>{{ base }}</td>
-    <td v-bind:class="isBuffed ? 'text-green-600' : ''">
+    <td :class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
-      <input type="range" min="0" :max="maxVitalInvested" v-model="invested" />
+      <input
+        v-model="invested"
+        type="range"
+        min="0"
+        :max="maxVitalInvested"
+      >
     </td>
     <td>
-      <input class="w-10" type="text" model="invested" v-bind:tabindex="tabIndex" />
+      <input
+        class="w-10"
+        type="text"
+        model="invested"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -29,6 +45,11 @@ import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Vital",
+  props: {
+    name: String,
+    displayName: String,
+    tabIndex: String,
+  },
   setup() {
     const store = usePlannerStore();
 
@@ -36,10 +57,10 @@ export default {
       store
     }
   },
-  props: {
-    name: String,
-    displayName: String,
-    tabIndex: String,
+  data() {
+    return {
+      maxVitalInvested: MAX_VITAL_INVESTED
+    }
   },
   computed: {
     formula() {
@@ -78,11 +99,6 @@ export default {
         });
       },
     },
-  },
-  data() {
-    return {
-      maxVitalInvested: MAX_VITAL_INVESTED
-    }
   },
 };
 </script>

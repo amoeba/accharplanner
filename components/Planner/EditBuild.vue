@@ -10,11 +10,24 @@
         </div>
         <div v-if="name">
           <form @submit.prevent="updateBuild">
-            <p><label>Name<br><input type="text" v-model="name" /></label></p>
-            <p><label>Description<br><textarea type="text" v-model="description"
-                  style="width: 100%; height: 40em; padding: 0px; font-size: inherit; color: inherit; background-color: inherit;"></textarea></label>
+            <p>
+              <label>Name<br><input
+                v-model="name"
+                type="text"
+              ></label>
             </p>
-            <input type="submit" :value="saving ? 'Saving...' : 'Save'" :disabled="saving" />
+            <p>
+              <label>Description<br><textarea
+                v-model="description"
+                type="text"
+                style="width: 100%; height: 40em; padding: 0px; font-size: inherit; color: inherit; background-color: inherit;"
+              /></label>
+            </p>
+            <input
+              type="submit"
+              :value="saving ? 'Saving...' : 'Save'"
+              :disabled="saving"
+            >
           </form>
         </div>
       </div>
@@ -28,15 +41,15 @@ import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "EditBuild",
+  props: {
+    id: String,
+  },
   setup() {
     const store = usePlannerStore();
 
     return {
       store
     }
-  },
-  props: {
-    id: String,
   },
   data() {
     return {
@@ -48,13 +61,13 @@ export default {
       description: null,
     };
   },
-  created() {
-    this.fetchData();
-  },
   computed: {
     load_url() {
       return "/" + this.build.id;
     },
+  },
+  created() {
+    this.fetchData();
   },
   methods: {
     async fetchData() {

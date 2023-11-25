@@ -107,10 +107,10 @@ export default {
       this.build.character = char;
 
       // Then populate stages
-      let stages = [];
+      const stages = [];
 
       for (let i = 0; i < build.stages.length; i++) {
-        let newStage = DefaultCharacter();
+        const newStage = DefaultCharacter();
         merge(newStage, build.stages[i]);
         stages.push(newStage);
       }
@@ -250,7 +250,7 @@ export default {
     this.build.stages.splice(index, 1);
   },
   reorderStages(indices: Number[]) {
-    let newStages: Character[] = [];
+    const newStages: Character[] = [];
 
     indices.forEach((i: Number) => {
       newStages.push(this.build.stages[i]);
@@ -373,7 +373,7 @@ export default {
 
     // Ensure we haven't spent more than we can and adjust other
     // attributes if needed
-    let newSpent = Object.keys(Attribute)
+    const newSpent = Object.keys(Attribute)
       .map((a) => {
         // Don't count old value for the attribute we're changing, use the new
         // value
@@ -388,9 +388,9 @@ export default {
       });
 
     // Use this to iterate over the other attributes we're lowering by name
-    let names = Object.keys(Attribute).filter((v) => v !== payload.name);
+    const names = Object.keys(Attribute).filter((v) => v !== payload.name);
 
-    let maxAttributePoints =
+    const maxAttributePoints =
       MAX_CREATION_ATTRIBUTE_TOTAL_POINTS +
       this.build.character.augmentations.reinforcement_of_the_lugians.invested *
       5 +
@@ -403,7 +403,7 @@ export default {
     if (newSpent > maxAttributePoints) {
       let extra = newSpent - maxAttributePoints;
 
-      for (var i = 0; i < extra; i++) {
+      for (let i = 0; i < extra; i++) {
         // Don't reduce attributes below 10. Adding 1 to `extra` ensures
         // we iterate long enough to lower everything as much as is needed
         if (this.build.character.attributes[names[i % 4]].creation <= 10) {
@@ -453,7 +453,7 @@ export default {
   },
 
   updateSkillInvested(payload: { name: string; value: number }) {
-    let skill = this.build.character.skills[payload.name];
+    const skill = this.build.character.skills[payload.name];
 
     if (this.settings.infiniteMode) {
       skill.invested = Number(payload.value);
@@ -473,7 +473,7 @@ export default {
 
   increaseTraining(skill: Skill) {
     const currentTraining = this.build.character.skills[skill].training;
-    var newTraining = null;
+    let newTraining = null;
 
     switch (currentTraining) {
       case Training.UNUSABLE:
@@ -494,7 +494,7 @@ export default {
 
   decreaseTraining(skill: Skill) {
     const currentTraining = this.build.character.skills[skill].training;
-    var newTraining = null;
+    let newTraining = null;
 
     switch (currentTraining) {
       case Training.SPECIALIZED:
@@ -625,7 +625,7 @@ export default {
     });
 
     Object.keys(Skill).forEach((skill) => {
-      let newval = Number(invested);
+      const newval = Number(invested);
 
       if (this.build.character.skills[skill].training == Training.SPECIALIZED) {
         this.build.character.skills[skill].invested =
@@ -645,7 +645,7 @@ export default {
 
   changeAllAttributeInvestment(invested: string) {
     Object.keys(Attribute).forEach((a) => {
-      let newval = Number(invested);
+      const newval = Number(invested);
 
       this.build.character.attributes[a].invested = newval;
     });
@@ -653,7 +653,7 @@ export default {
 
   changeAllVitalInvestment(invested: string) {
     Object.keys(Vital).forEach((a) => {
-      let newval = Number(invested);
+      const newval = Number(invested);
 
       this.build.character.vitals[a].invested = newval;
     });
@@ -736,7 +736,7 @@ export default {
   },
 
   addNotification(payload: any) {
-    let notification_id = Date.now();
+    const notification_id = Date.now();
 
     this.ui.notifications.push({
       id: notification_id,

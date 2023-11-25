@@ -2,7 +2,7 @@
 const client = useSupabaseClient();
 
 const getPublishedBuilds = async function () {
-  let { data, error } = await client
+  const { data, error } = await client
     .from("builds")
     .select(`
       id,
@@ -26,7 +26,9 @@ const { data, error } = await getPublishedBuilds();
 
 <template>
   <TableWithName>
-    <template #title>Popular Builds</template>
+    <template #title>
+      Popular Builds
+    </template>
     <template #table>
       <table>
         <thead>
@@ -37,19 +39,32 @@ const { data, error } = await getPublishedBuilds();
           </tr>
         </thead>
         <tbody>
-          <tr v-if="data" v-for="build in data">
+          <tr
+            v-for="build in data"
+            v-if="data"
+          >
             <td class="px-2 py-1">
-              <a class="text-blue-500 underline hover:no-underline" :href="'/' + build.id">{{ build.content.character.name
+              <a
+                class="text-blue-500 underline hover:no-underline"
+                :href="'/' + build.id"
+              >{{ build.content.character.name
               }}</a>
             </td>
-            <td class="px-2 py-1">⭐️ 999</td>
+            <td class="px-2 py-1">
+              ⭐️ 999
+            </td>
             <td class="px-2 py-1">
               <span v-if="build.profiles">{{ build.profiles.name }}</span>
               <span v-else>Anonymous</span>
             </td>
           </tr>
           <tr v-else-if="error">
-            <td class="px-2 py-1" colspan="3">{{ error }}</td>
+            <td
+              class="px-2 py-1"
+              colspan="3"
+            >
+              {{ error }}
+            </td>
           </tr>
         </tbody>
       </table>

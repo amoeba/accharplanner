@@ -1,14 +1,25 @@
 <template>
-  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
-    <template #title>Armor Sets</template>
-    <template #right> <span v-if="errors" class="text-rose-500">{{ errors }}</span>
+  <Pane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
+    <template #title>
+      Armor Sets
+    </template>
+    <template #right>
+      <span
+        v-if="errors"
+        class="text-rose-500"
+      >{{ errors }}</span>
     </template>
     <template #content>
       <table class="width-full">
         <thead>
           <tr>
             <th>Name</th>
-            <th colspan="2">Equipped</th>
+            <th colspan="2">
+              Equipped
+            </th>
           </tr>
         </thead>
         <tbody>

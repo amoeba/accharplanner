@@ -6,9 +6,15 @@
       {{ buildKey }}
     </div>
     <div>
-      <button v-on:click="load">Load</button>
-      <button v-on:click="exportBuild">Export</button>
-      <button v-on:click="remove">Delete</button>
+      <button @click="load">
+        Load
+      </button>
+      <button @click="exportBuild">
+        Export
+      </button>
+      <button @click="remove">
+        Delete
+      </button>
     </div>
   </div>
 </template>
@@ -18,16 +24,16 @@ import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Build",
+  props: {
+    buildKey: String,
+    buildData: String,
+  },
   setup() {
     const store = usePlannerStore();
 
     return {
       store
     }
-  },
-  props: {
-    buildKey: String,
-    buildData: String,
   },
   computed: {
     description() {

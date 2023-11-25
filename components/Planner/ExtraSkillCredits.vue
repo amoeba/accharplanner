@@ -1,11 +1,28 @@
 <template>
-  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
-    <template #title>Extra Skill Credits</template>
+  <Pane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
+    <template #title>
+      Extra Skill Credits
+    </template>
     <template #content>
-      <ExtraSkillCredit id="railrea" name="Aun Ralirea" />
-      <ExtraSkillCredit id="oswald" name="Chasing Oswald" />
-      <ExtraSkillCredit id="luminance1" name="Luminance 1" />
-      <ExtraSkillCredit id="luminance2" name="Luminance 2" />
+      <ExtraSkillCredit
+        id="railrea"
+        name="Aun Ralirea"
+      />
+      <ExtraSkillCredit
+        id="oswald"
+        name="Chasing Oswald"
+      />
+      <ExtraSkillCredit
+        id="luminance1"
+        name="Luminance 1"
+      />
+      <ExtraSkillCredit
+        id="luminance2"
+        name="Luminance 2"
+      />
     </template>
   </Pane>
 </template>
@@ -16,15 +33,15 @@ import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "ExtraSkillCredits",
+  components: {
+    ExtraSkillCredit,
+  },
   setup() {
     const store = usePlannerStore();
 
     return {
       store
     }
-  },
-  components: {
-    ExtraSkillCredit,
   },
   computed: {
     isExpanded() {

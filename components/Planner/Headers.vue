@@ -1,17 +1,30 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
-    <Pane :toggleExpanded="toggleCharacterHeaderExpanded" :isExpanded="isCharacterHeaderExpanded">
-      <template #title>Character</template>
+    <Pane
+      :toggle-expanded="toggleCharacterHeaderExpanded"
+      :is-expanded="isCharacterHeaderExpanded"
+    >
+      <template #title>
+        Character
+      </template>
       <template #content>
         <div class="flex flex-col gap-2">
           <label class="flex gap-2">
             Name
-            <input class="w100" id="charname" type="text" v-model="name" />
+            <input
+              id="charname"
+              v-model="name"
+              class="w100"
+              type="text"
+            >
           </label>
           <label class="flex gap-2">
             Race
             <select v-model="race">
-              <option v-for="race in races" v-bind:key="race">
+              <option
+                v-for="race in races"
+                :key="race"
+              >
                 {{ race }}
               </option>
             </select>
@@ -20,11 +33,21 @@
             Gender
             <div class="flex gap-2">
               <label class="flex gap-2">
-                <input type="radio" id="female" value="Female" v-model="gender" />
+                <input
+                  id="female"
+                  v-model="gender"
+                  type="radio"
+                  value="Female"
+                >
                 <span class="block">Female</span>
               </label>
               <label class="flex gap-2">
-                <input type="radio" id="male" value="Male" v-model="gender" />
+                <input
+                  id="male"
+                  v-model="gender"
+                  type="radio"
+                  value="Male"
+                >
                 <span class="block">Male</span>
               </label>
             </div>
@@ -32,20 +55,40 @@
           <label class="flex gap-2">
             Level
             <div>
-              <div v-if="!settingsInfiniteMode" class="flex gap-2">
+              <div
+                v-if="!settingsInfiniteMode"
+                class="flex gap-2"
+              >
                 <div class="flex grow">
-                  <input type="range" min="1" :max="maxLevel" v-model="level" />
+                  <input
+                    v-model="level"
+                    type="range"
+                    min="1"
+                    :max="maxLevel"
+                  >
                 </div>
                 <div class="w-10">
-                  <input type="text" v-model="level" v-on:change="updateLevel" />
+                  <input
+                    v-model="level"
+                    type="text"
+                    @change="updateLevel"
+                  >
                 </div>
               </div>
-              <div v-if="settingsInfiniteMode" class="flex gap-2">
+              <div
+                v-if="settingsInfiniteMode"
+                class="flex gap-2"
+              >
                 <div class="flex grow">
                   <span class="text-green-600">∞</span>
                 </div>
                 <div class="">
-                  <input class="w-full" type="text" v-model="level" v-on:change="updateLevel" />
+                  <input
+                    v-model="level"
+                    class="w-full"
+                    type="text"
+                    @change="updateLevel"
+                  >
                 </div>
               </div>
             </div>
@@ -53,50 +96,83 @@
         </div>
       </template>
     </Pane>
-    <Pane :toggleExpanded="toggleLuminanceHeaderExpanded" :isExpanded="isLuminanceHeaderExpanded">
-      <template #title>XP &amp; Luminance</template>
+    <Pane
+      :toggle-expanded="toggleLuminanceHeaderExpanded"
+      :is-expanded="isLuminanceHeaderExpanded"
+    >
+      <template #title>
+        XP &amp; Luminance
+      </template>
       <template #right>
         <Tip
-          v-tooltip="'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'">
-          !</Tip>
+          v-tooltip="'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'"
+        >
+          !
+        </Tip>
       </template>
       <template #content>
         <div class="grid grid-cols-[auto_4em] gap-2">
           <div>Unassigned</div>
           <div class="justify-self-end">
-            <span v-if="unassignedXPError" class="tip" v-tooltip="unassignedXPError">!</span>
+            <span
+              v-if="unassignedXPError"
+              v-tooltip="unassignedXPError"
+              class="tip"
+            >!</span>
             <span v-if="!unassignedXPError">{{ unassignedXP }}</span>
           </div>
           <div>Spent</div>
           <div class="justify-self-end">
-            <span v-if="totalXPInvestedError" class="tip" v-tooltip="totalXPInvestedError
-              ">!</span>
+            <span
+              v-if="totalXPInvestedError"
+              v-tooltip="totalXPInvestedError
+              "
+              class="tip"
+            >!</span>
             <span v-if="!totalXPInvestedError">{{ totalXPInvested }}</span>
           </div>
           <div>Total</div>
-          <div class="justify-self-end">{{ totalXPEarned }}</div>
+          <div class="justify-self-end">
+            {{ totalXPEarned }}
+          </div>
           <div>Required Level</div>
-          <div class="justify-self-end" v-bind:class="isOverspent ? 'red' : 'gray'">
+          <div
+            class="justify-self-end"
+            :class="isOverspent ? 'red' : 'gray'"
+          >
             {{ requiredLevel }}
           </div>
           <div>Luminance Spent</div>
-          <div class="justify-self-end">{{ totalLuminanceXPSpent }}</div>
+          <div class="justify-self-end">
+            {{ totalLuminanceXPSpent }}
+          </div>
         </div>
       </template>
     </Pane>
-    <Pane :toggleExpanded="toggleKnobsAndDialsHeaderExpanded" :isExpanded="isKnobsAndDialsHeaderExpanded">
-      <template #title>Knobs &amp; Dials</template>
+    <Pane
+      :toggle-expanded="toggleKnobsAndDialsHeaderExpanded"
+      :is-expanded="isKnobsAndDialsHeaderExpanded"
+    >
+      <template #title>
+        Knobs &amp; Dials
+      </template>
       <template #content>
         <div class="flex flex-col gap-2">
           <label class="flex gap-2">
             Invested
-            <input class="w100" type="range" min="0" :max="maxSkillInvestedSpecialized" value="0"
-              v-on:change="changeAllInvestments" />
+            <input
+              class="w100"
+              type="range"
+              min="0"
+              :max="maxSkillInvestedSpecialized"
+              value="0"
+              @change="changeAllInvestments"
+            >
           </label>
           <label class="flex gap-2">
             Buffs
-            <select v-on:change="changeAllBuffs">
-              <option value="0"></option>
+            <select @change="changeAllBuffs">
+              <option value="0" />
               <option value="1">I</option>
               <option value="2">II</option>
               <option value="3">III</option>
@@ -109,8 +185,8 @@
           </label>
           <label class="flex gap-2">
             Cantrips
-            <select v-on:change="changeAllCantrips">
-              <option value="0"></option>
+            <select @change="changeAllCantrips">
+              <option value="0" />
               <option value="1">Minor</option>
               <option value="2">Major</option>
               <option value="3">Epic</option>
@@ -121,10 +197,19 @@
             Enlightened
             <div class="flex gap-2">
               <div class="flex grow">
-                <input type="range" min="0" :max="maxTimesEnlightened" v-model="timesEnlightened" />
+                <input
+                  v-model="timesEnlightened"
+                  type="range"
+                  min="0"
+                  :max="maxTimesEnlightened"
+                >
               </div>
               <div>
-                <input class="w-6" type="text" v-model="timesEnlightened" />
+                <input
+                  v-model="timesEnlightened"
+                  class="w-6"
+                  type="text"
+                >
               </div>
             </div>
           </label>
@@ -141,15 +226,15 @@ import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Headers",
+  components: {
+    ExtraSkillCredits,
+  },
   setup() {
     const store = usePlannerStore();
 
     return {
       store
     }
-  },
-  components: {
-    ExtraSkillCredits,
   },
   data() {
     return {

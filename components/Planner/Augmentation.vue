@@ -5,10 +5,19 @@
       <span class="text-gray-500">{{ extraInfo }}</span>
     </td>
     <td>
-      <input type="range" min="0" v-bind:max="max" v-model="invested" />
+      <input
+        v-model="invested"
+        type="range"
+        min="0"
+        :max="max"
+      >
     </td>
     <td>
-      <input type="text" v-model="invested" class="w-8" />
+      <input
+        v-model="invested"
+        type="text"
+        class="w-8"
+      >
     </td>
   </tr>
 </template>

@@ -1,6 +1,11 @@
 <template>
   <label class="flex gap-2">
-    <input v-bind:id="name" v-bind:name="name" type="checkbox" v-model="checked" />
+    <input
+      :id="name"
+      v-model="checked"
+      :name="name"
+      type="checkbox"
+    >
     {{ name }}
   </label>
 </template>

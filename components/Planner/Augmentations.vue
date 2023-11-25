@@ -1,31 +1,62 @@
 <template>
-  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
-    <template #title>Experience Augmentations</template>
-    <template #right> <span v-if="errors" class="text-red-500">{{ errors }}</span>
+  <Pane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
+    <template #title>
+      Experience Augmentations
+    </template>
+    <template #right>
+      <span
+        v-if="errors"
+        class="text-red-500"
+      >{{ errors }}</span>
     </template>
     <template #content>
       <table>
         <thead>
           <tr>
             <th>Name</th>
-            <th colspan="2">Invested</th>
+            <th colspan="2">
+              Invested
+            </th>
           </tr>
           <tr>
             <th>
               <div class="flex">
-                <input class="py-1 font-normal" type="text" v-model="filterQuery" placeholder="Type to filter..." />
-                <button class="px-2 py-1 hover:bg-zinc-200 rounded" v-if="filterPresent"
-                  @click="clearFilter">Reset</button>
+                <input
+                  v-model="filterQuery"
+                  class="py-1 font-normal"
+                  type="text"
+                  placeholder="Type to filter..."
+                >
+                <button
+                  v-if="filterPresent"
+                  class="px-2 py-1 hover:bg-zinc-200 rounded"
+                  @click="clearFilter"
+                >
+                  Reset
+                </button>
               </div>
             </th>
             <th>
-              <input type="range" min="0" max="1" value="0" v-on:change="changeInvested" />
+              <input
+                type="range"
+                min="0"
+                max="1"
+                value="0"
+                @change="changeInvested"
+              >
             </th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <Augmentation v-for="(augmentation) in augmentations" :key="augmentation" :name="augmentation" />
+          <Augmentation
+            v-for="(augmentation) in augmentations"
+            :key="augmentation"
+            :name="augmentation"
+          />
         </tbody>
       </table>
     </template>

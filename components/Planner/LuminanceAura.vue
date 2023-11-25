@@ -1,19 +1,36 @@
 <template>
   <tr>
     <td>
-      <abbr v-if="hoverInfo" :title="hoverInfo">
+      <abbr
+        v-if="hoverInfo"
+        :title="hoverInfo"
+      >
         {{ displayName }}
       </abbr>
       <span v-else>
         {{ displayName }}
       </span>
-      <span style="margin-left: 0.5em" class="text-gray-500">{{ extraInfo }}</span>
+      <span
+        style="margin-left: 0.5em"
+        class="text-gray-500"
+      >{{ extraInfo }}</span>
     </td>
     <td>
-      <input type="range" min="0" v-bind:max="max" v-model="invested" v-on:change="updateInvested" />
+      <input
+        v-model="invested"
+        type="range"
+        min="0"
+        :max="max"
+        @change="updateInvested"
+      >
     </td>
     <td>
-      <input type="text" v-model="invested" v-on:change="updateInvested" class="w-8" />
+      <input
+        v-model="invested"
+        type="text"
+        class="w-8"
+        @change="updateInvested"
+      >
     </td>
   </tr>
 </template>

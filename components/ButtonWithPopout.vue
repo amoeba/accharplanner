@@ -17,14 +17,19 @@ const togglePopout = async function (e: Event) {
 <template>
   <div class="relative">
     <Button @click="togglePopout">
-      <slot name="icon"></slot>
-      <slot name="title"></slot>
+      <slot name="icon" />
+      <slot name="title" />
     </Button>
-    <div :class="[widthClass, visibilityClass]"
+    <div
+      :class="[widthClass, visibilityClass]"
       class="absolute top-8 right-0 flex flex-col gap-2 border rounded bg-white border-gray-200 px-2 py-1 shadow-md"
-      role="dialog">
+      role="dialog"
+    >
       <div>
-        <slot name="content" :isVisible="isPopoutVisible"></slot>
+        <slot
+          name="content"
+          :is-visible="isPopoutVisible"
+        />
       </div>
     </div>
   </div>

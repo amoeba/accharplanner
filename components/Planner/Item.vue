@@ -1,7 +1,12 @@
 <template>
   <li class="flex gap-2">
-    <input v-bind:id="id" v-bind:name="id" type="checkbox" v-model="checked" />
-    <label v-bind:for="id">{{ displayName }}</label>
+    <input
+      :id="id"
+      v-model="checked"
+      :name="id"
+      type="checkbox"
+    >
+    <label :for="id">{{ displayName }}</label>
   </li>
 </template>
 

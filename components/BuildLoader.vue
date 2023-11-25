@@ -57,7 +57,7 @@ const loadBuild = async function (id: string) {
 onMounted(async () => {
   console.log("onMounted");
   // TODO parse build from route
-  let build_id = route.path.substring(1, route.path.length).trim();
+  const build_id = route.path.substring(1, route.path.length).trim();
   console.log(build_id)
   const { data, error } = await loadBuild(build_id);
 
@@ -75,8 +75,11 @@ onMounted(async () => {
 <template>
   <div class="flex place-content-center h-32 md:h-64">
     <div
-      class="flex flex-col place-content-center gap-6 bg-zinc-50 border rounded w-64 h-32 md:w-96 md:h-64 p-4 text-center">
-      <h2 class="text-lg font-bold">Loading build...</h2>
+      class="flex flex-col place-content-center gap-6 bg-zinc-50 border rounded w-64 h-32 md:w-96 md:h-64 p-4 text-center"
+    >
+      <h2 class="text-lg font-bold">
+        Loading build...
+      </h2>
       <div v-if="loadState == LoadState.NOT_YET_LOADING">
         Warming up...
       </div>

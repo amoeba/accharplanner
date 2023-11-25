@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="text-xl font-bold py-3">Welcome to ODACCP!</div>
+  <div class="text-xl font-bold py-3">
+    Welcome to ODACCP!
+  </div>
 
   <p>Blurb about the Planner</p>
 
@@ -14,7 +16,7 @@
     </NuxtLink>
   </div>
 
-  <Features class="py-3"></Features>
+  <Features class="py-3" />
 
   <PublishedBuilds />
   <LatestBuilds />

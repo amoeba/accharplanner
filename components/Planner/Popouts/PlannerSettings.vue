@@ -7,7 +7,10 @@ const store = usePlannerStore();
 <template>
   <h3>Custom Server Rules</h3>
   <label>
-    <input type="checkbox" v-model="store.settings.infiniteMode" />
+    <input
+      v-model="store.settings.infiniteMode"
+      type="checkbox"
+    >
     Infinite Mode
   </label>
 </template>

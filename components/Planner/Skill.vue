@@ -1,57 +1,107 @@
 <template>
   <tr>
     <td>
-      <img style="clip-path: circle(50%)" :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img
+        style="clip-path: circle(50%)"
+        :src="'/img/' + name + '.png'"
+        :alt="displayName"
+        width="20"
+        height="20"
+      >
     </td>
     <td>
       {{ displayName }}
       <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>
-      <button :class="cantDecrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
-        class="rounded w-12 text-white px-1" v-on:click="decreaseTraining" v-bind:disabled="cantDecrease">
+      <button
+        :class="cantDecrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
+        class="rounded w-12 text-white px-1"
+        :disabled="cantDecrease"
+        @click="decreaseTraining"
+      >
         {{ decreaseCostText }}
         ↓
       </button>
     </td>
     <td>
-      <button :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
-        class="rounded w-12 text-white px-1" v-on:click="increaseTraining">{{ increaseCostText }} ↑</button>
+      <button
+        :class="cantIncrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'"
+        class="rounded w-12 text-white px-1"
+        @click="increaseTraining"
+      >
+        {{ increaseCostText }} ↑
+      </button>
     </td>
-    <td> {{
-      base }}
+    <td>
+      {{
+        base }}
     </td>
-    <td v-bind:class="isBuffed ? 'text-green-600' : ''">
+    <td :class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
       <div v-if="canInvest">
-        <input type="range" min="0" v-bind:max="maxInvestment" v-model="invested" />
+        <input
+          v-model="invested"
+          type="range"
+          min="0"
+          :max="maxInvestment"
+        >
       </div>
     </td>
     <td>
-      <input class="w-10" type="text" v-model="invested" v-bind:tabindex="tabIndex" />
+      <input
+        v-model="invested"
+        class="w-10"
+        type="text"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>
       <select v-model="buffLevel">
-        <option value="0"></option>
-        <option value="1">I</option>
-        <option value="2">II</option>
-        <option value="3">III</option>
-        <option value="4">IV</option>
-        <option value="5">V</option>
-        <option value="6">VI</option>
-        <option value="7">VII</option>
-        <option value="8">VIII</option>
+        <option value="0" />
+        <option value="1">
+          I
+        </option>
+        <option value="2">
+          II
+        </option>
+        <option value="3">
+          III
+        </option>
+        <option value="4">
+          IV
+        </option>
+        <option value="5">
+          V
+        </option>
+        <option value="6">
+          VI
+        </option>
+        <option value="7">
+          VII
+        </option>
+        <option value="8">
+          VIII
+        </option>
       </select>
     </td>
     <td>
       <select v-model="cantrip">
-        <option value="0"></option>
-        <option value="1">Minor</option>
-        <option value="2">Major</option>
-        <option value="3">Epic</option>
-        <option value="4">Legen.</option>
+        <option value="0" />
+        <option value="1">
+          Minor
+        </option>
+        <option value="2">
+          Major
+        </option>
+        <option value="3">
+          Epic
+        </option>
+        <option value="4">
+          Legen.
+        </option>
       </select>
     </td>
   </tr>
@@ -62,17 +112,17 @@ import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Skill",
+  props: {
+    name: String,
+    training: String,
+    tabIndex: Number, // Number instead of String because we're :binding
+  },
   setup() {
     const store = usePlannerStore();
 
     return {
       store
     }
-  },
-  props: {
-    name: String,
-    training: String,
-    tabIndex: Number, // Number instead of String because we're :binding
   },
   computed: {
     displayName() {
@@ -88,7 +138,7 @@ export default {
       );
     },
     increaseCostText() {
-      let currentTraining =
+      const currentTraining =
         this.store.build.character.skills[this.name].training;
 
       if (currentTraining === Training.SPECIALIZED) {
@@ -106,7 +156,7 @@ export default {
       return SKILL_COST_AT_TRAINING[this.name].trained;
     },
     decreaseCostText() {
-      let currentTraining =
+      const currentTraining =
         this.store.build.character.skills[this.name].training;
 
       if (
@@ -144,7 +194,7 @@ export default {
       }
 
       // Can't if out of credits
-      let newTraining =
+      const newTraining =
         this.store.build.character.skills[this.name].training ==
           Training.TRAINED
           ? Training.SPECIALIZED
@@ -182,7 +232,7 @@ export default {
       return false;
     },
     cantDecrease() {
-      let training =
+      const training =
         this.store.build.character.skills[this.name].training;
 
       // Can't if not trained or higher
@@ -203,7 +253,7 @@ export default {
       return false;
     },
     canInvest() {
-      let training =
+      const training =
         this.store.build.character.skills[this.name].training;
       return training == Training.SPECIALIZED || training == Training.TRAINED;
     },

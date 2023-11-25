@@ -107,24 +107,44 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h2 v-if="isNew" class="text-lg font-bold">New Guide</h2>
-  <h2 v-if="!isNew" class="text-lg font-bold">Edit Guide</h2>
-  <p class="py-2">Blurb about this...</p>
+  <h2
+    v-if="isNew"
+    class="text-lg font-bold"
+  >
+    New Guide
+  </h2>
+  <h2
+    v-if="!isNew"
+    class="text-lg font-bold"
+  >
+    Edit Guide
+  </h2>
+  <p class="py-2">
+    Blurb about this...
+  </p>
 
   <form
     v-if="store.guide"
-    @submit.prevent="createOrUpdateGuide"
     class="flex flex-col gap-2"
+    @submit.prevent="createOrUpdateGuide"
   >
     <div class="flex flex-col">
       <label for="title">Title</label>
-      <input class="w-64" id="title" type="text" v-model="store.guide.title" />
+      <input
+        id="title"
+        v-model="store.guide.title"
+        class="w-64"
+        type="text"
+      >
     </div>
     <div class="flex flex-col">
-      <label for="content" class="font-bold">Content</label>
+      <label
+        for="content"
+        class="font-bold"
+      >Content</label>
       <GuideContentEditor
-        class="border rounded border-black"
         v-model="store.guide.content"
+        class="border rounded border-black"
       />
     </div>
     <input
@@ -132,6 +152,6 @@ onMounted(async () => {
       type="submit"
       value="Update"
       :disabled="formState == FormState.SENDING"
-    />
+    >
   </form>
 </template>

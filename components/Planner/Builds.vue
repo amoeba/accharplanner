@@ -16,7 +16,11 @@
           No builds to display.
         </div>
         <ul v-if="builds">
-          <BuildsEntry v-for="build in builds" :id="build.id" :key="build.id" />
+          <BuildsEntry
+            v-for="build in builds"
+            :id="build.id"
+            :key="build.id"
+          />
         </ul>
       </div>
     </div>

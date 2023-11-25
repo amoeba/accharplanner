@@ -2,7 +2,7 @@
 const client = useSupabaseClient();
 
 const getLastestBuilds = async function () {
-  let { data, error } = await client.from("builds").select().limit(10).order('created_at')
+  const { data, error } = await client.from("builds").select().limit(10).order('created_at')
 
   return { data, error };
 }
@@ -12,7 +12,9 @@ const { data, error } = await getLastestBuilds();
 
 <template>
   <TableWithName>
-    <template #title>Latest Builds</template>
+    <template #title>
+      Latest Builds
+    </template>
     <template #table>
       <table>
         <thead>
@@ -23,19 +25,32 @@ const { data, error } = await getLastestBuilds();
           </tr>
         </thead>
         <tbody>
-          <tr v-if="data" v-for="build in data">
+          <tr
+            v-for="build in data"
+            v-if="data"
+          >
             <td class="px-2 py-1">
-              <a class="text-blue-500 underline hover:no-underline" :href="'/' + build.id">{{
+              <a
+                class="text-blue-500 underline hover:no-underline"
+                :href="'/' + build.id"
+              >{{
                 build.content.character.name }}</a>
             </td>
-            <td class="px-2 py-1">⭐️ 999</td>
+            <td class="px-2 py-1">
+              ⭐️ 999
+            </td>
             <td class="px-2 py-1">
               <span v-if="build.user_id">{{ build.user_id }}</span>
               <span v-else>Anonymous</span>
             </td>
           </tr>
           <tr v-else-if="error">
-            <td class="px-2 py-1" colspan="3">{{ error }}</td>
+            <td
+              class="px-2 py-1"
+              colspan="3"
+            >
+              {{ error }}
+            </td>
           </tr>
         </tbody>
       </table>

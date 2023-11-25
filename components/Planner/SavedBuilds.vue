@@ -6,16 +6,24 @@
       </div>
       <div>
         <p>
-          <button v-on:click="deleteAll">Delete All</button>
+          <button @click="deleteAll">
+            Delete All
+          </button>
         </p>
         <div v-if="noBuilds">
           <p>
             No saved builds. Use the Save button in the
-            <router-link to="/">Planner</router-link>.
+            <router-link to="/">
+              Planner
+            </router-link>.
           </p>
         </div>
-        <Build v-for="build in builds" v-bind:key="build.key" v-bind:build-key="build.key"
-          v-bind:build-data="build.build" />
+        <Build
+          v-for="build in builds"
+          :key="build.key"
+          :build-key="build.key"
+          :build-data="build.build"
+        />
       </div>
     </div>
   </div>

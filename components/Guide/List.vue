@@ -43,11 +43,15 @@ guides.value = await fetchGuides();
 
 <template>
   <div v-if="guides.length <= 0">
-    No guides created yet. <NuxtLink href="/guides/new">Create one</NuxtLink>
+    No guides created yet. <NuxtLink href="/guides/new">
+      Create one
+    </NuxtLink>
   </div>
   <ul>
     <li v-for="guide in guides">
-      <NuxtLink :href="`/guides/${guide.id}`">{{ guide.title }}</NuxtLink>
+      <NuxtLink :href="`/guides/${guide.id}`">
+        {{ guide.title }}
+      </NuxtLink>
     </li>
   </ul>
 </template>

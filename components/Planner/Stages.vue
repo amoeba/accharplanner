@@ -1,21 +1,40 @@
 <template>
-  <Pane :toggleExpanded="toggleExpanded" :isExpanded="store.ui.paneVisibility.buildStages">
+  <Pane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="store.ui.paneVisibility.buildStages"
+  >
     <template #title>
       Build Stages
-      <span class="px-2 text-zinc-400 font-normal"
-        v-tooltip="'Stages are useful if your build has a progression based on level or experience and you want to see what the build loos like at each of those points. You can edit an already-saved stage by clicking it to select it and then using the Planner as normal.'">?</span>
+      <span
+        v-tooltip="'Stages are useful if your build has a progression based on level or experience and you want to see what the build loos like at each of those points. You can edit an already-saved stage by clicking it to select it and then using the Planner as normal.'"
+        class="px-2 text-zinc-400 font-normal"
+      >?</span>
     </template>
-    <template #right>
-    </template>
+    <template #right />
     <template #content>
       <div class="flex w-full">
         <div v-if="store.build.stages.length === 0">
           No stages have been set up for this build.
         </div>
-        <Stage class=" stage" v-for="(stage, index) in store.build.stages" v-bind:key="index" v-bind:index="index"
-          v-bind:level="stage.level" v-bind:data-index="index" v-bind:stages="store.build.stages.length" :draggable="true"
-          v-on:dragstart="dragstart" v-on:dragover="dragover" v-on:drop="drop" />
-        <Button class="ml-2 px-1 py-1 text-xs" @click="save">+ Stage</Button>
+        <Stage
+          v-for="(stage, index) in store.build.stages"
+          :key="index"
+          class=" stage"
+          :index="index"
+          :level="stage.level"
+          :data-index="index"
+          :stages="store.build.stages.length"
+          :draggable="true"
+          @dragstart="dragstart"
+          @dragover="dragover"
+          @drop="drop"
+        />
+        <Button
+          class="ml-2 px-1 py-1 text-xs"
+          @click="save"
+        >
+          + Stage
+        </Button>
       </div>
     </template>
   </Pane>
@@ -70,7 +89,7 @@ function drop(e: DragEvent) {
 
 
 const update = async function (index: Number, clientX: Number) {
-  let stages = [
+  const stages = [
     {
       index: index,
       x: clientX,

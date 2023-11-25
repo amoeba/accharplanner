@@ -140,7 +140,7 @@ export const wiseSetManaBonus = function (pieces: number) {
 };
 
 export const exportJSONData = function (data: object, filename: string) {
-  let json = JSON.stringify(data, null, 2);
+  const json = JSON.stringify(data, null, 2);
 
   const blob = new Blob([json], {
     type: "application/json",

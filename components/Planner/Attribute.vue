@@ -1,46 +1,98 @@
 <template>
   <tr>
     <td>
-      <img style="clip-path: circle(50%)" :src="'/img/' + name + '.png'" :alt="displayName" width="20" height="20" />
+      <img
+        style="clip-path: circle(50%)"
+        :src="'/img/' + name + '.png'"
+        :alt="displayName"
+        width="20"
+        height="20"
+      >
     </td>
     <td>{{ displayName }}</td>
     <td>
-      <input type="range" min="10" max="100" v-model="creation" />
+      <input
+        v-model="creation"
+        type="range"
+        min="10"
+        max="100"
+      >
     </td>
     <td>
-      <input class="w-10" type="text" v-model="creation" v-bind:tabindex="tabIndex" />
+      <input
+        v-model="creation"
+        class="w-10"
+        type="text"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>{{ base }}</td>
-    <td v-bind:class="isBuffed ? 'text-green-600' : ''">
+    <td :class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
-      <input type="range" min="0" :max="maxAttributeInvested" v-model="invested" />
+      <input
+        v-model="invested"
+        type="range"
+        min="0"
+        :max="maxAttributeInvested"
+      >
     </td>
     <td>
-      <input class="w-10" type="text" v-model="invested" v-bind:tabindex="tabIndex" />
+      <input
+        v-model="invested"
+        class="w-10"
+        type="text"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>
       <select v-model="buffLevel">
-        <option value="0"></option>
-        <option value="1">I</option>
-        <option value="2">II</option>
-        <option value="3">III</option>
-        <option value="4">IV</option>
-        <option value="5">V</option>
-        <option value="6">VI</option>
-        <option value="7">VII</option>
-        <option value="8">VIII</option>
-        <option value="9">Beer</option>
+        <option value="0" />
+        <option value="1">
+          I
+        </option>
+        <option value="2">
+          II
+        </option>
+        <option value="3">
+          III
+        </option>
+        <option value="4">
+          IV
+        </option>
+        <option value="5">
+          V
+        </option>
+        <option value="6">
+          VI
+        </option>
+        <option value="7">
+          VII
+        </option>
+        <option value="8">
+          VIII
+        </option>
+        <option value="9">
+          Beer
+        </option>
       </select>
     </td>
     <td>
       <select v-model="cantrip">
-        <option value="0"></option>
-        <option value="1">Minor</option>
-        <option value="2">Major</option>
-        <option value="3">Epic</option>
-        <option value="4">Legen.</option>
+        <option value="0" />
+        <option value="1">
+          Minor
+        </option>
+        <option value="2">
+          Major
+        </option>
+        <option value="3">
+          Epic
+        </option>
+        <option value="4">
+          Legen.
+        </option>
       </select>
     </td>
   </tr>

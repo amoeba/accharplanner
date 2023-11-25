@@ -78,11 +78,17 @@ const signInWithEmail = async function (email: string) {
 
 <template>
   <div>
-    <p class="py-3">Enter your email address and receive a link to log in.</p>
+    <p class="py-3">
+      Enter your email address and receive a link to log in.
+    </p>
     <form @submit.prevent="handleSubmit">
       <label class="block py-3">
         <div>Email</div>
-        <input class="w-full px-2 py-1" type="text" v-model="email" />
+        <input
+          v-model="email"
+          class="w-full px-2 py-1"
+          type="text"
+        >
       </label>
       <div class="flex justify-end">
         <input
@@ -90,13 +96,19 @@ const signInWithEmail = async function (email: string) {
           type="submit"
           :disabled="formState == FormState.SENDING"
           :value="submitButtonText"
-        />
+        >
       </div>
     </form>
-    <p v-if="formState == FormState.SUCCESS" class="text-green-600">
+    <p
+      v-if="formState == FormState.SUCCESS"
+      class="text-green-600"
+    >
       Check your email for a link to log in.
     </p>
-    <p v-if="formState == FormState.ERROR" class="text-red-500">
+    <p
+      v-if="formState == FormState.ERROR"
+      class="text-red-500"
+    >
       {{ errorMessage }}
     </p>
   </div>

@@ -6,21 +6,49 @@
       </span>
     </div>
     <div>
-      <div v-if="error">Error: {{ error }}</div>
+      <div v-if="error">
+        Error: {{ error }}
+      </div>
       <div>
-        <h3 v-if="loading">Loading build...</h3>
-        <h3 v-if="build">{{ build.name }}</h3>
+        <h3 v-if="loading">
+          Loading build...
+        </h3>
+        <h3 v-if="build">
+          {{ build.name }}
+        </h3>
       </div>
       <div v-if="loading">
-        <p v-if="loading">Loading build...</p>
+        <p v-if="loading">
+          Loading build...
+        </p>
       </div>
       <div v-if="!loading">
-        <p><button><router-link v-if="build" :to="url">Load in Planner</router-link></button></p>
-        <p v-if="build" v-html="build.description"></p>
+        <p>
+          <button>
+            <router-link
+              v-if="build"
+              :to="url"
+            >
+              Load in Planner
+            </router-link>
+          </button>
+        </p>
+        <p
+          v-if="build"
+          v-html="build.description"
+        />
 
         <!-- Editing Controls -->
-        <p v-if="isAdmin"><router-link :to="edit_url">Edit Build</router-link></p>
-        <p v-if="isAdmin"><button @click="deleteBuild">Delete Build</button></p>
+        <p v-if="isAdmin">
+          <router-link :to="edit_url">
+            Edit Build
+          </router-link>
+        </p>
+        <p v-if="isAdmin">
+          <button @click="deleteBuild">
+            Delete Build
+          </button>
+        </p>
       </div>
     </div>
   </div>
@@ -48,9 +76,6 @@ export default {
       description: null,
     };
   },
-  created() {
-    this.fetchData();
-  },
   computed: {
     url() {
       return "/" + this.$route.params.id;
@@ -61,6 +86,9 @@ export default {
     isAdmin() {
       return this.store.isAdmin;
     }
+  },
+  created() {
+    this.fetchData();
   },
   methods: {
     async fetchData() {

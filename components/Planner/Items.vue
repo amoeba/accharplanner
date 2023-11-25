@@ -1,6 +1,11 @@
 <template>
-  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
-    <template #title>Items</template>
+  <Pane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
+    <template #title>
+      Items
+    </template>
     <template #content>
       <ul>
         <Item id="focusing_stone" />
@@ -16,15 +21,15 @@ import { usePlannerStore } from "~/stores/planner";
 
 export default {
   name: "Items",
+  components: {
+    Item,
+  },
   setup() {
     const store = usePlannerStore();
 
     return {
       store
     }
-  },
-  components: {
-    Item,
   },
   computed: {
     isExpanded() {

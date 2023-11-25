@@ -1,13 +1,23 @@
 <template>
-  <Pane :toggleExpanded="toggleExpanded" :isExpanded="isExpanded">
-    <template #title>Attributes</template>
+  <Pane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
+    <template #title>
+      Attributes
+    </template>
     <template #right>
       <div>
-        <span v-if="errors" class="text-red-500">{{ errors }}</span>
+        <span
+          v-if="errors"
+          class="text-red-500"
+        >{{ errors }}</span>
       </div>
       <div>
-        <span v-tooltip="'Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380.'
-          ">{{ attributePointsSpent }} / {{ attributePointsAvailable }}</span>
+        <span
+          v-tooltip="'Character creation attribute points spent. Increased from the base of 330 by the +5 attribute points experience augmentations to a maximum of 380.'
+          "
+        >{{ attributePointsSpent }} / {{ attributePointsAvailable }}</span>
       </div>
     </template>
     <template #content>

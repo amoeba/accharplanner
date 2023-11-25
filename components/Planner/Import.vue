@@ -7,10 +7,17 @@
       <div>
         <p>
           Import builds you've saved to your computer from the
-          <router-link to="/saved">Saved Builds</router-link> tab.
+          <router-link to="/saved">
+            Saved Builds
+          </router-link> tab.
         </p>
-        <input id="input" type="file" />
-        <button v-on:click="importBuild">Import</button>
+        <input
+          id="input"
+          type="file"
+        >
+        <button @click="importBuild">
+          Import
+        </button>
       </div>
     </div>
   </div>
@@ -46,7 +53,7 @@ export default {
 
       reader.onload = (e) => {
         try {
-          var build = JSON.parse(e.target.result);
+          const build = JSON.parse(e.target.result);
           this.store.import(build);
         } catch (error) {
           this.store.addNotification({

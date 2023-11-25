@@ -1,25 +1,33 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@pinia/nuxt", '@pinia-plugin-persistedstate/nuxt', '@nuxtjs/supabase', 'floating-vue/nuxt', '@nuxtjs/google-fonts', '@vueuse/nuxt'],
+  modules: [
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "@nuxtjs/supabase",
+    "floating-vue/nuxt",
+    "@nuxtjs/google-fonts",
+    "@vueuse/nuxt",
+    "@nuxtjs/eslint-module",
+  ],
   runtimeConfig: {
     public: {
-      baseUrl: 'https://planner.treestats.net'
-    }
+      baseUrl: "https://planner.treestats.net",
+    },
   },
   googleFonts: {
     families: {
-      'League+Spartan': true,
+      "League+Spartan": true,
       Roboto: true,
-      'Josefin+Sans': true,
+      "Josefin+Sans": true,
       Lato: [100, 300],
       Raleway: {
         wght: [100, 400],
-        ital: [100]
+        ital: [100],
       },
-    }
+    },
   },
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -27,6 +35,6 @@ export default defineNuxtConfig({
     },
   },
   supabase: {
-    redirect: false
+    redirect: false,
   },
 });

@@ -211,7 +211,7 @@ export default {
     let cost: number = 0;
 
     Object.keys(Skill).forEach(function (skillName: string): void {
-      let training: string = state.build.character.skills[skillName].training;
+      const training: string = state.build.character.skills[skillName].training;
 
       if (training === Training.SPECIALIZED || training === Training.TRAINED) {
         cost += SKILL_COST_AT_TRAINING[skillName][training];
@@ -305,7 +305,7 @@ export default {
     );
   },
   attributesAndVitalsErrors: (state: State) => {
-    let totalAttributeBonus =
+    const totalAttributeBonus =
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
       5 +
@@ -2371,7 +2371,7 @@ export default {
     );
   },
   augmentationErrors: (state: State) => {
-    let totalAttributeBonus =
+    const totalAttributeBonus =
       state.build.character.augmentations.reinforcement_of_the_lugians
         .invested *
       5 +
