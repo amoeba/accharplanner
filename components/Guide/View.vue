@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import type { Guide } from '~/utils/models';
+import type { Guide } from "~/utils/models";
 
 const client = useSupabaseClient();
-const user = useSupabaseUser()
+const user = useSupabaseUser();
 
-const props = defineProps(["id"])
+const props = defineProps(["id"]);
 
-const guide = ref<Guide>()
+const guide = ref<Guide>();
 
 const fetchGuide = async function () {
-  return await client.from("guides").select().eq("id", props.id)
-}
+  return await client.from("guides").select().eq("id", props.id);
+};
 
 const { data, error } = await fetchGuide();
 
 if (error) {
   // TODO: Proper error handlings
-  console.log(error)
+  console.log(error);
 } else {
-  guide.value = data[0]
+  guide.value = data[0];
 }
 </script>
 
@@ -34,9 +34,11 @@ if (error) {
       <p>Created At {{ guide.created_at }}</p>
       <p>Updated At {{ guide.updated_at }}</p>
     </div>
-    <p>
-      Created By {{ guide.created_by }}
-    </p>
-    <GuideContentEditor class="border rounded border-black" :editable="false" v-model="guide.content" />
+    <p>Created By {{ guide.created_by }}</p>
+    <GuideContentEditor
+      class="border rounded border-black"
+      :editable="false"
+      v-model="guide.content"
+    />
   </div>
 </template>

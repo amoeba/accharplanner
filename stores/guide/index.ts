@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 interface GuideState {
-  guide: Guide | undefined
+  guide: Guide | undefined;
 }
 
 const guideState: GuideState = {
@@ -14,9 +14,9 @@ export const useGuideStore = defineStore("guide", {
     reset() {
       this.guide = {
         title: "title",
-        content: "content"
+        content: "content",
       };
-    }
+    },
   },
   persist: true,
 });

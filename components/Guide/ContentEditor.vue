@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import StarterKit from '@tiptap/starter-kit'
-import { Editor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from "@tiptap/starter-kit";
+import { Editor, EditorContent } from "@tiptap/vue-3";
 
-import VueComponent from '~/components/Editor/Extension'
+import VueComponent from "~/components/Editor/Extension";
 
 export default {
   components: {
@@ -16,50 +16,47 @@ export default {
   props: {
     modelValue: {
       type: String,
-      default: '',
+      default: "",
     },
     editable: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
 
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
 
   data() {
     return {
       editor: null,
-    }
+    };
   },
 
   watch: {
     modelValue(value) {
-      const isSame = this.editor.getHTML() === value
+      const isSame = this.editor.getHTML() === value;
 
       if (isSame) {
-        return
+        return;
       }
 
-      this.editor.commands.setContent(value, false)
+      this.editor.commands.setContent(value, false);
     },
   },
 
   mounted() {
     this.editor = new Editor({
-      extensions: [
-        StarterKit,
-        VueComponent,
-      ],
+      extensions: [StarterKit, VueComponent],
       content: this.modelValue,
       editable: this.editable,
       onUpdate: () => {
-        this.$emit('update:modelValue', this.editor.getHTML())
+        this.$emit("update:modelValue", this.editor.getHTML());
       },
-    })
+    });
   },
 
   beforeUnmount() {
-    this.editor.destroy()
+    this.editor.destroy();
   },
-}
+};
 </script>

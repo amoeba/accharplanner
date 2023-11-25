@@ -1,44 +1,44 @@
 <script setup lang="ts">
 const client = useSupabaseClient();
 
-const errors = ref<string[]>([])
+const errors = ref<string[]>([]);
 
 interface GuideMeta {
-  id: number,
-  title: string,
+  id: number;
+  title: string;
 }
 
-const guides = ref<GuideMeta[]>([])
+const guides = ref<GuideMeta[]>([]);
 
 enum FetchState {
   UNSENT,
   FETCHING,
   DONE,
-  ERROR
+  ERROR,
 }
 
-const fetchState = ref(FetchState.UNSENT)
+const fetchState = ref(FetchState.UNSENT);
 
 const fetchGuides = async function (): Promise<GuideMeta[]> {
   fetchState.value = FetchState.FETCHING;
-  errors.value = []
+  errors.value = [];
 
-  const { data, error } = await client.from("guides").select()
+  const { data, error } = await client.from("guides").select();
 
   if (error) {
     fetchState.value = FetchState.ERROR;
-    errors.value.push(error)
+    errors.value.push(error);
 
-    console.log(error)
+    console.log(error);
     return;
   }
 
   fetchState.value = FetchState.DONE;
 
   return data;
-}
+};
 
-guides.value = await fetchGuides()
+guides.value = await fetchGuides();
 </script>
 
 <template>

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
+import { nodeViewProps, NodeViewWrapper } from "@tiptap/vue-3";
 
 export default {
   components: {
@@ -24,10 +24,10 @@ export default {
     increase() {
       this.updateAttributes({
         count: this.node.attrs.count + 1,
-      })
+      });
     },
   },
-}
+};
 </script>
 
 <style>
@@ -37,7 +37,7 @@ export default {
 
 .label {
   border: 1px solid blue;
-  background-color: orange
+  background-color: orange;
 }
 
 .content {
