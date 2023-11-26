@@ -3,14 +3,18 @@
     <!-- Toolbar -->
     <div class="flex" v-if="editor && editor.options.editable">
       <button @click="editor.chain().focus().toggleBold().run()"
-        :disabled="!editor.can().chain().focus().toggleBold().run()" class=" hover:bg-zinc-300 px-2 py-1"
-        :class="{ 'is-active': editor.isActive('bold') }">
+        :disabled="!editor.can().chain().focus().toggleBold().run()" class="hover:bg-zinc-300 px-2 py-1"
+        :class="{ 'bg-black text-white': editor.isActive('bold') }">
         <strong>Bold</strong>
       </button>
       <button @click="editor.chain().focus().toggleItalic().run()"
-        :disabled="!editor.can().chain().focus().toggleItalic().run()" class=" hover:bg-zinc-300 px-2 py-1"
-        :class="{ 'is-active': editor.isActive('bold') }">
+        :disabled="!editor.can().chain().focus().toggleItalic().run()" class="hover:bg-zinc-300 px-2 py-1"
+        :class="{ 'bg-black text-white': editor.isActive('italic') }">
         <em>Italic</em>
+      </button>
+      <button @click="editor.chain().focus().toggleBulletList().run()"
+        :class="{ 'bg-black text-white': editor.isActive('bulletList') }" class="hover:bg-zinc-300 px-2 py-1">
+        List
       </button>
     </div>
     <!-- Editor -->
@@ -23,6 +27,8 @@
 <script>
 import StarterKit from "@tiptap/starter-kit";
 import { Editor, EditorContent } from "@tiptap/vue-3";
+import BulletList from '@tiptap/extension-bullet-list'
+import ListItem from '@tiptap/extension-list-item'
 
 import VueComponent from "~/components/Editor/Extension";
 
@@ -64,7 +70,7 @@ export default {
 
   mounted() {
     this.editor = new Editor({
-      extensions: [StarterKit, VueComponent],
+      extensions: [StarterKit, BulletList, ListItem, VueComponent],
       content: this.modelValue,
       editable: this.editable,
       onUpdate: () => {

@@ -37,6 +37,8 @@
     "@sentry/tracing": "^7.73.0",
     "@sentry/vue": "^7.73.0",
     "@supabase/supabase-js": "^2.38.5",
+    "@tiptap/extension-bullet-list": "^2.1.12",
+    "@tiptap/extension-list-item": "^2.1.12",
     "@tiptap/pm": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
     "@tiptap/vue-3": "^2.1.12",
