@@ -104,6 +104,7 @@ export const fetchGuide = async function (client: SupabaseClient, id: Number): G
     id,
     created_at,
     updated_at,
+    created_by,
     content,
     title,
     attribution,
