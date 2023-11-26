@@ -121,7 +121,8 @@ export const updateGuide = async function (client: SupabaseClient, user: User, g
       created_by: user.value?.id,
       title: guide.title,
       content: guide.content,
-      attribution: guide.attribution
+      attribution: guide.attribution,
+      updated_at: (new Date()).toISOString()
     })
     .eq("id", guide.id)
     .select();
