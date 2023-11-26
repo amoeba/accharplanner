@@ -24,8 +24,12 @@ if (error) {
       {{ loadError }}
     </div>
     <div v-if="data && data.length > 0">
-      TODO: Load build button
-      TODO: Favorite button
+      <div class="flex gap-2">
+        <FavoriteButton />
+        <ButtonView>
+          <NuxtLink href="/planner">Load Build</NuxtLink>
+        </ButtonView>
+      </div>
       <BuildView :build="data[0]" />
     </div>
   </div>

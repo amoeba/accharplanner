@@ -17,6 +17,20 @@ export const shareBuild = async function (client: SupabaseClient, user: User, bu
     .select();
 };
 
+export const getNumFavorites = async function(client:SupabaseClient, user: User, id: string) : Promise<number> {
+  const { data, error } = await client
+    .from("builds_favorites")
+    .select()
+    .eq("build_id", id)
+    .eq("created_by", user.value.id);
+
+  if (data && data.length > 0) {
+    return data.length;
+  }
+
+  return 0;
+}
+
 export const hasAlreadyFavorited = async function (client: SupabaseClient, user: User, id: string) {
   return await client
     .from("builds_favorites")
@@ -30,6 +44,14 @@ export const favoriteBuild = async function(client: SupabaseClient, user: User, 
     .from("builds_favorites")
     .insert({ build_id: id, created_by: user.value.id})
     .select();
+}
+
+export const unFavoriteBuild = async function(client: SupabaseClient, user: User, id: string) {
+  return await client
+    .from("builds_favorites")
+    .delete()
+    .eq("build_id", id)
+    .eq("created_by", user.value.id)
 }
 
 export const publishBuild = async function(client: SupabaseClient, user:User, build: Build) {
