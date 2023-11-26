@@ -34,7 +34,7 @@ if (error) {
       <p>Created At {{ guide.created_at }}</p>
       <p>Updated At {{ guide.updated_at }}</p>
     </div>
-    <div>
+    <div v-if="guide.attribution">
       <p>Attributed to {{ guide.attribution }}</p>
     </div>
     <p>Submitted By {{ guide.profiles.name }}</p>
