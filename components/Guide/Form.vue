@@ -18,7 +18,7 @@ const props = defineProps(["submit"])
     </div>
     <div class="flex flex-col">
       <label for="content" class="font-bold">Content</label>
-      <GuideContentEditor v-model="store.guide.content" />
+      <GuideContentEditor class="border rounded border-black" v-model="store.guide.content" />
     </div>
     <input class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto"
       type="submit" value="Save">
