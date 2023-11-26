@@ -23,7 +23,7 @@ const fetchGuides = async function (): Promise<GuideMeta[]> {
   fetchState.value = FetchState.FETCHING;
   errors.value = [];
 
-  const { data, error } = await client.from("guides").select();
+  const { data, error } = fetchGuides(client);
 
   if (error) {
     fetchState.value = FetchState.ERROR;

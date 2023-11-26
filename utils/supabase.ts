@@ -114,6 +114,10 @@ export const fetchGuide = async function (client: SupabaseClient, id: Number): G
   `).eq("id", id);
 };
 
+export const fetchGuides = async function(client:SupabaseClient) {
+  return await client.from("guides").select();
+}
+
 export const updateGuide = async function (client: SupabaseClient, user: User, guide: Guide): Guide {
   return await client
     .from("guides")
