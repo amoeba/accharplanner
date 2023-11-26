@@ -19,7 +19,6 @@ const favoriteClass = computed(() => ({
   'hover:stroke-green-600': isFavoriteInSuccess.value,
   'fill-green-600': isFavoriteInSuccess.value,
   'hover:fill-green-600': isFavoriteInSuccess.value,
-
 }))
 
 const doFavoriteBuild = async function () {
