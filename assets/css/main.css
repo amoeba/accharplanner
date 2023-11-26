@@ -27,6 +27,10 @@
     height: 100%;
     vertical-align: middle;
   }
+
+  ul {
+    @apply list-disc m-0 ml-6;
+  }
 }
 
 @layer tooltips {
