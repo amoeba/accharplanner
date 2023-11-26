@@ -4,6 +4,10 @@
 
 @layer components {
 
+  main a {
+    @apply text-blue-600;
+  }
+
   input,
   range,
   select {
