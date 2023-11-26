@@ -28,10 +28,8 @@
 </template>
 
 <script>
-import StarterKit from "@tiptap/starter-kit";
 import { Editor, EditorContent } from "@tiptap/vue-3";
-import BulletList from '@tiptap/extension-bullet-list'
-import ListItem from '@tiptap/extension-list-item'
+import StarterKit from "@tiptap/starter-kit";
 
 import VueComponent from "~/components/Editor/Extension";
 
@@ -73,7 +71,7 @@ export default {
 
   mounted() {
     this.editor = new Editor({
-      extensions: [StarterKit, BulletList, ListItem, VueComponent],
+      extensions: [StarterKit, VueComponent],
       content: this.modelValue,
       editable: this.editable,
       onUpdate: () => {
