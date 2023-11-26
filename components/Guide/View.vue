@@ -8,11 +8,7 @@ const props = defineProps(["id"]);
 
 const guide = ref<Guide>();
 
-const fetchGuide = async function () {
-  return await client.from("guides").select().eq("id", props.id);
-};
-
-const { data, error } = await fetchGuide();
+const { data, error } = await fetchGuide(client, props.id);
 
 if (error) {
   // TODO: Proper error handlings
@@ -41,7 +37,7 @@ if (error) {
     <div>
       <p>Attributed to {{ guide.attribution }}</p>
     </div>
-    <p>Created By {{ guide.created_by }}</p>
+    <p>Submitted By {{ guide.profiles.name }}</p>
     <GuideContentEditor v-model="guide.content" class="border rounded border-black" :editable="false" />
   </div>
 </template>

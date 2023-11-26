@@ -100,7 +100,17 @@ export const getLastestBuilds = async function (client: SupabaseClient) {
 
 // Guides
 export const fetchGuide = async function (client: SupabaseClient, id: Number): Guide {
-  return await client.from("guides").select().eq("id", id);
+  return await client.from("guides").select(`
+    id,
+    created_at,
+    updated_at,
+    content,
+    title,
+    attribution,
+    profiles (
+      name
+    )
+  `).eq("id", id);
 };
 
 export const updateGuide = async function (client: SupabaseClient, user: User, guide: Guide): Guide {
