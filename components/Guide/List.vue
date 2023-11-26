@@ -1,48 +1,23 @@
 <script setup lang="ts">
 const client = useSupabaseClient();
 
-const errors = ref<string[]>([]);
+const guides = ref<Guide[]>([]);
 
-interface GuideMeta {
-  id: number;
-  title: string;
-}
-
-const guides = ref<GuideMeta[]>([]);
-
-enum FetchState {
-  UNSENT,
-  FETCHING,
-  DONE,
-  ERROR,
-}
-
-const fetchState = ref(FetchState.UNSENT);
-
-const fetchGuides = async function (): Promise<GuideMeta[]> {
-  fetchState.value = FetchState.FETCHING;
-  errors.value = [];
-
-  const { data, error } = fetchGuides(client);
+const doFetchGuides = async function (): Promise<Guide[]> {
+  const { data, error } = await fetchGuides(client);
 
   if (error) {
-    fetchState.value = FetchState.ERROR;
-    errors.value.push(error);
+    return [];
+  };
 
-    console.log(error);
-    return;
-  }
+  return data
+}
 
-  fetchState.value = FetchState.DONE;
-
-  return data;
-};
-
-guides.value = await fetchGuides();
+guides.value = await doFetchGuides()
 </script>
 
 <template>
-  <div v-if="guides.length <= 0">
+  <div v-if="guides && guides.length <= 0">
     No guides created yet. <NuxtLink href="/guides/new"> Create one </NuxtLink>
   </div>
   <ul>
