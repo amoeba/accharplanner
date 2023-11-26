@@ -1,5 +1,8 @@
 <template>
   <div class="flex flex-col">
+    <div v-if="!editor">
+      Inspecting this guide...
+    </div>
     <!-- Toolbar -->
     <div class="flex" v-if="editor && editor.options.editable">
       <button @click="editor.chain().focus().toggleBold().run()"
