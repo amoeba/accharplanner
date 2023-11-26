@@ -38,6 +38,6 @@ if (error) {
       <p>Attributed to {{ guide.attribution }}</p>
     </div>
     <p>Submitted By {{ guide.profiles.name }}</p>
-    <GuideContentEditor v-model="guide.content" class="border rounded border-black" :editable="false" />
+    <GuideContentEditor v-model="guide.content" :editable="false" />
   </div>
 </template>

@@ -1,5 +1,24 @@
 <template>
-  <editor-content :editor="editor" />
+  <div class="flex flex-col divide-y">
+    <div class="flex divide-x">
+      <div v-if="editor && editor.options.editable">
+        <button @click="editor.chain().focus().toggleBold().run()"
+          :disabled="!editor.can().chain().focus().toggleBold().run()"
+          class="border rounded-t border-zinc-200 hover:bg-zinc-200 px-2 py-1"
+          :class="{ 'is-active': editor.isActive('bold') }">
+          <strong>Bold</strong>
+        </button>
+        <button @click="editor.chain().focus().toggleItalic().run()"
+          :disabled="!editor.can().chain().focus().toggleItalic().run()" class="px-2 py-1"
+          :class="{ 'is-active': editor.isActive('bold') }">
+          <em>Italic</em>
+        </button>
+      </div>
+    </div>
+    <div :class="(editor && editor.options.editable) ? 'border rounded-b border-zinc-200' : ''">
+      <editor-content :editor="editor" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -53,6 +72,8 @@ export default {
         this.$emit("update:modelValue", this.editor.getHTML());
       },
     });
+
+    1 + 1;
   },
 
   beforeUnmount() {
