@@ -17,8 +17,8 @@ const { text, copy, copied, isSupported } = useClipboard({ shareBuildURL });
 const isPopoutVisible = inject("isPopoutVisible");
 
 watch([isPopoutVisible], async (newVal, oldVal) => {
-  if (newVal) {
-    await shareBuild();
+  if (newVal[0]) {
+    await doShareBuild();
   }
 });
 
