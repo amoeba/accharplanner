@@ -5,10 +5,12 @@ const { data, error } = await getPublishedBuilds(client);
 </script>
 
 <template>
-  <TableWithName v-if="data">
+  <TableWithName>
     <template #title> Popular Builds </template>
     <template #table>
-      <table v-if="data">
+      <p v-if="data && data.length == 0">No builds found.</p>
+      <p v-if="error">{{ error }}</p>
+      <table v-if="data && data.length > 0">
         <thead>
           <tr>
             <th>Name</th>
