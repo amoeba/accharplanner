@@ -336,7 +336,7 @@ export default {
   updateTimesEnlightened(value: number) {
     let actual = Number(value)
 
-    if (isNaN(actual))
+    if (Number.isNan(actual))
       actual = 0
     else if (actual < 0)
       actual = 0

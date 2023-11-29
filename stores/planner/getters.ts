@@ -143,7 +143,7 @@ export default {
   },
 
   totalXPInvestedError: (state: State) => {
-    if (isNaN(state.totalXPInvested)) {
+    if (Number.isNan(state.totalXPInvested)) {
       if (state.settings.infiniteMode)
         return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know."
       else
@@ -164,7 +164,7 @@ export default {
   },
 
   unassignedXPError: (state: State) => {
-    if (isNaN(state.totalXPInvested)) {
+    if (Number.isNan(state.totalXPInvested)) {
       if (state.settings.infiniteMode)
         return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know."
       else

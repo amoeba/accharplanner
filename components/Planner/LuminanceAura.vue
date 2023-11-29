@@ -43,7 +43,7 @@ export default {
     updateInvested(e) {
       let value = Math.round(Number(e.target.value))
 
-      if (isNaN(value))
+      if (Number.isNan(value))
         value = 0
 
       if (value > LUMINANCE_AURA_MAX_USES[this.name])
