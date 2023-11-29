@@ -10,7 +10,7 @@ const { data, error } = await getPublishedBuilds(client)
       Published Builds
     </template>
     <template #table>
-      <p v-if="data && data.length == 0">
+      <p v-if="data && data.length === 0">
         No builds found.
       </p>
       <p v-if="error">

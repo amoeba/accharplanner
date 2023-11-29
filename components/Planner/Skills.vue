@@ -53,9 +53,9 @@ export default {
       return this.store.augmentationsSpent
     },
     augmentationsRequiredText() {
-      if (this.store.augmentationsSpent == 0)
+      if (this.store.augmentationsSpent === 0)
         return ""
-      else if (this.store.augmentationsSpent == 1)
+      else if (this.store.augmentationsSpent === 1)
         return "1 aug required"
       else
         return `${this.store.augmentationsSpent} augs required`
@@ -90,10 +90,10 @@ export default {
       return filterText(this.filterQuery, collection)
     },
     noSpecializedSkills() {
-      return this.store.specializedSkills.length == 0
+      return this.store.specializedSkills.length === 0
     },
     noTrainedSkills() {
-      return this.store.trainedSkills.length == 0
+      return this.store.trainedSkills.length === 0
     },
     filterPresent() {
       return this.filterQuery !== ""

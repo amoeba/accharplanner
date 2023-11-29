@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     noBuilds() {
-      return this.store.ui.savedBuilds.length == 0
+      return this.store.ui.savedBuilds.length === 0
     },
     builds() {
       return this.store.ui.savedBuilds

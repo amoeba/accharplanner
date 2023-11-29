@@ -74,14 +74,14 @@ export default {
       // Can't if already specialized
       if (
         this.store.build.character.skills[this.name].training
-          == Training.SPECIALIZED
+          === Training.SPECIALIZED
       )
         return true
 
       // Can't if out of credits
       const newTraining
         = this.store.build.character.skills[this.name].training
-        == Training.TRAINED
+        === Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED
 
@@ -134,7 +134,7 @@ export default {
     },
     canInvest() {
       const training = this.store.build.character.skills[this.name].training
-      return training == Training.SPECIALIZED || training == Training.TRAINED
+      return training === Training.SPECIALIZED || training === Training.TRAINED
     },
     invested: {
       get() {

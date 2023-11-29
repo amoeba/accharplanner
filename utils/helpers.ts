@@ -97,7 +97,7 @@ export const dedicationSetBonus = function (pieces: number) {
     return 6
   else if (pieces >= 6 && pieces < 8)
     return 9
-  else if (pieces == 8)
+  else if (pieces === 8)
     return 12
   else if (pieces >= 9)
     return 15
@@ -205,7 +205,7 @@ export function maxSkillInvested(training: Training) {
 
 export const valuesMatchIndicies = function (values: number[]): boolean {
   for (let i = 0; i < values.length; i++) {
-    if (i != values[i])
+    if (i !== values[i])
       return false
   }
 

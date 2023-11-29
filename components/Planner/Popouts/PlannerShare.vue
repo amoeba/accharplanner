@@ -50,7 +50,7 @@ const doShareBuild = async function () {
       shareState.value = ShareState.ERROR
       errorMessage.value = error.message
     }
-    else if (data && data.length == 1) {
+    else if (data && data.length === 1) {
       shareState.value = ShareState.SUCCESS
       setSharedBuild(data[0].id)
     }

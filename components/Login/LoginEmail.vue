@@ -96,19 +96,19 @@ const signInWithEmail = async function (email: string) {
         <input
           class="hover:bg-zinc-100 cursor-pointer px-2 py-1 disabled:bg-zinc-200 disabled:text-zinc-500"
           type="submit"
-          :disabled="formState == FormState.SENDING"
+          :disabled="formState === FormState.SENDING"
           :value="submitButtonText"
         >
       </div>
     </form>
     <p
-      v-if="formState == FormState.SUCCESS"
+      v-if="formState === FormState.SUCCESS"
       class="text-green-600"
     >
       Check your email for a link to log in.
     </p>
     <p
-      v-if="formState == FormState.ERROR"
+      v-if="formState === FormState.ERROR"
       class="text-red-500"
     >
       {{ errorMessage }}

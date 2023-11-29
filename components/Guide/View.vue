@@ -24,7 +24,7 @@ else {
       <h2 class="text-lg font-bold">
         {{ guide.title }}
       </h2>
-      <ButtonView v-if="user && user.id == guide.created_by">
+      <ButtonView v-if="user && user.id === guide.created_by">
         <NuxtLink :href="`/guides/${id}/edit`">
           Edit
         </NuxtLink>

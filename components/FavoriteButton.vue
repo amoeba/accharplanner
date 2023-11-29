@@ -75,7 +75,7 @@ count.value = await getNumFavorites(client, user, buildId)
       <span v-if="count > 0">
         Unstar
       </span>
-      <span v-if="count == 0">Star</span>
+      <span v-if="count === 0">Star</span>
     </button>
     <div class="px-2 py-1">
       {{ count }}

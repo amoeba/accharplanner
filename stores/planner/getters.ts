@@ -93,7 +93,7 @@ export default {
       || state.build.character.race === Race["Gharu'ndim"]
       || state.build.character.race === Race.Sho
       || state.build.character.race === Race.Viamontian)
-      && state.build.character.augmentations.jack_of_all_trades.invested == 1
+      && state.build.character.augmentations.jack_of_all_trades.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.jack_of_all_trades][
@@ -102,7 +102,7 @@ export default {
     }
     else if (
       state.build.character.race === Race.Empyrean
-      && state.build.character.augmentations.infused_life_magic.invested == 1
+      && state.build.character.augmentations.infused_life_magic.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.infused_life_magic][
@@ -112,7 +112,7 @@ export default {
     else if (
       (state.build.character.race === Race.Umbraen
       || state.build.character.race === Race.Penumbraen)
-      && state.build.character.augmentations.eye_of_the_remorseless.invested == 1
+      && state.build.character.augmentations.eye_of_the_remorseless.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.eye_of_the_remorseless][
@@ -122,7 +122,7 @@ export default {
     else if (
       state.build.character.race === Race.Lugian
       && state.build.character.augmentations.might_of_the_seventh_mule.invested
-      == 1
+      === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][
@@ -131,7 +131,7 @@ export default {
     }
     else if (
       state.build.character.race === Race.Tumerok
-      && state.build.character.augmentations.hand_of_the_remorseless.invested == 1
+      && state.build.character.augmentations.hand_of_the_remorseless.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.hand_of_the_remorseless][
@@ -229,7 +229,7 @@ export default {
     Object.keys(SPEC_COSTS_AUG).forEach((skill: string) => {
       if (
         state.build.character.skills[skill]
-        && state.build.character.skills[skill].training == Training.SPECIALIZED
+        && state.build.character.skills[skill].training === Training.SPECIALIZED
         && SPEC_COSTS_AUG[skill]
       )
         cost += 1
@@ -244,7 +244,7 @@ export default {
     Object.keys(SPEC_COSTS_AUG).forEach((skill) => {
       if (
         state.build.character.skills[skill]
-        && state.build.character.skills[skill].training == Training.SPECIALIZED
+        && state.build.character.skills[skill].training === Training.SPECIALIZED
         && SPEC_COSTS_AUG[skill]
       )
         cost += 1000000000
@@ -575,7 +575,7 @@ export default {
           + standardSetBonus(state.build.character.armor_sets.dextrous.equipped)
           + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
           + (state.build.character.items.font_of_joji ? 2 : 0))
-        / 3,
+          / 3,
         )
         + (state.build.character.augmentations.jack_of_all_trades.invested === 1
           ? 5
@@ -776,11 +776,11 @@ export default {
               + dedicationSetBonus(
                 state.build.character.armor_sets.dedication.equipped,
               )
-            + standardSetBonus(state.build.character.armor_sets.wise.equipped)
-            + standardSetBonus(state.build.character.armor_sets.dextrous.equipped)
-            + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
-            + (state.build.character.items.font_of_joji ? 2 : 0))
-            / 3,
+              + standardSetBonus(state.build.character.armor_sets.wise.equipped)
+              + standardSetBonus(state.build.character.armor_sets.dextrous.equipped)
+              + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
+              + (state.build.character.items.font_of_joji ? 2 : 0))
+              / 3,
             )
     )
   },
@@ -1067,7 +1067,7 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-        / 3,
+          / 3,
         )
         + (state.build.character.augmentations.jack_of_all_trades.invested === 1
           ? 5
@@ -1276,7 +1276,7 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-        / 2,
+          / 2,
         )
         + (state.build.character.augmentations.jack_of_all_trades.invested === 1
           ? 5
@@ -1508,7 +1508,7 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-        / 3,
+          / 3,
         )
         + (state.build.character.augmentations.jack_of_all_trades.invested === 1
           ? 5
@@ -1732,7 +1732,7 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-        / 3,
+          / 3,
         )
         + (state.build.character.augmentations.jack_of_all_trades.invested === 1
           ? 5
@@ -1789,7 +1789,7 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-        / 5,
+          / 5,
         )
         + (state.build.character.augmentations.jack_of_all_trades.invested === 1
           ? 5

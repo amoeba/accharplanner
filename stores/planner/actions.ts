@@ -60,7 +60,7 @@ export default {
         return
       }
 
-      if (!response_shared_data || response_shared_data.length != 1) {
+      if (!response_shared_data || response_shared_data.length !== 1) {
         this.addNotification({
           type: "error",
           message:
@@ -598,7 +598,7 @@ export default {
   changeAllAugmentationInvestment(value: number) {
     AUGMENTATIONS.forEach((aug_name: string) => {
       this.build.character.augmentations[aug_name].invested
-        = value == 1 ? AUGMENTATION_MAX_USES[aug_name] : 0
+        = value === 1 ? AUGMENTATION_MAX_USES[aug_name] : 0
     })
   },
 
@@ -612,7 +612,7 @@ export default {
   changeAllLuminanceAuraInvestment(value: any) {
     LUMINANCE_AURAS.forEach((aura_name: string) => {
       this.build.character.luminance_auras[aura_name].invested
-        = value == 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0
+        = value === 1 ? LUMINANCE_AURA_MAX_USES[aura_name] : 0
     })
   },
 
@@ -634,14 +634,14 @@ export default {
     Object.keys(Skill).forEach((skill) => {
       const newval = Number(invested)
 
-      if (this.build.character.skills[skill].training == Training.SPECIALIZED) {
+      if (this.build.character.skills[skill].training === Training.SPECIALIZED) {
         this.build.character.skills[skill].invested
           = newval > MAX_SKILL_INVESTED_SPECIALIZED
             ? MAX_SKILL_INVESTED_SPECIALIZED
             : newval
       }
       else if (
-        this.build.character.skills[skill].training == Training.TRAINED
+        this.build.character.skills[skill].training === Training.TRAINED
       ) {
         this.build.character.skills[skill].invested
           = newval > MAX_SKILL_INVESTED_TRAINED
