@@ -1,6 +1,37 @@
+<script>
+import Item from "./Item.vue"
+import { usePlannerStore } from "~/stores/planner"
+
+export default {
+  name: "Items",
+  components: {
+    Item,
+  },
+  setup() {
+    const store = usePlannerStore()
+
+    return {
+      store,
+    }
+  },
+  computed: {
+    isExpanded() {
+      return this.store.itemsPaneVisible
+    },
+  },
+  methods: {
+    toggleExpanded() {
+      this.store.toggleItemsPane()
+    },
+  },
+}
+</script>
+
 <template>
   <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
-    <template #title> Items </template>
+    <template #title>
+      Items
+    </template>
     <template #content>
       <ul>
         <Item id="focusing_stone" />
@@ -9,32 +40,3 @@
     </template>
   </CollapsiblePane>
 </template>
-
-<script>
-import Item from "./Item.vue";
-import { usePlannerStore } from "~/stores/planner";
-
-export default {
-  name: "Items",
-  components: {
-    Item,
-  },
-  setup() {
-    const store = usePlannerStore();
-
-    return {
-      store,
-    };
-  },
-  computed: {
-    isExpanded() {
-      return this.store.itemsPaneVisible;
-    },
-  },
-  methods: {
-    toggleExpanded() {
-      this.store.toggleItemsPane();
-    },
-  },
-};
-</script>

@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     "floating-vue/nuxt",
     "@nuxtjs/google-fonts",
     "@vueuse/nuxt",
-    "@nuxtjs/eslint-module",
   ],
   runtimeConfig: {
     public: {
@@ -18,10 +17,10 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       "League+Spartan": true,
-      Roboto: true,
+      "Roboto": true,
       "Josefin+Sans": true,
-      Lato: [100, 300],
-      Raleway: {
+      "Lato": [100, 300],
+      "Raleway": {
         wght: [100, 400],
         ital: [100],
       },
@@ -37,4 +36,4 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
-});
+})

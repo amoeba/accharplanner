@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useGuideStore } from '~/stores/guide';
+import { useGuideStore } from "~/stores/guide"
 
-const store = useGuideStore();
 const props = defineProps(["submit"])
+const store = useGuideStore()
 </script>
 
 <template>
@@ -20,11 +20,13 @@ const props = defineProps(["submit"])
     </div>
     <div class="flex flex-col">
       <label for="content">Content</label>
-      <GuideContentEditor class="border rounded border-black" v-model="store.guide.content" />
+      <GuideContentEditor v-model="store.guide.content" class="border rounded border-black" />
     </div>
     <div class="flex">
-      <input class="rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto" type="submit"
-        value="Save" />
+      <input
+        class="rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto" type="submit"
+        value="Save"
+      >
     </div>
   </form>
 </template>

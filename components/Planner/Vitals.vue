@@ -1,3 +1,24 @@
+<script>
+import Vital from "./Vital.vue"
+
+export default {
+  name: "Vitals",
+  components: {
+    Vital,
+  },
+  data() {
+    return {
+      maxVitalInvested: MAX_VITAL_INVESTED,
+    }
+  },
+  methods: {
+    changeInvested(e) {
+      this.store.changeAllVitalInvestment(e.target.value)
+    },
+  },
+}
+</script>
+
 <template>
   <tbody>
     <tr>
@@ -37,24 +58,3 @@
     />
   </tbody>
 </template>
-
-<script>
-import Vital from "./Vital.vue";
-
-export default {
-  name: "Vitals",
-  components: {
-    Vital,
-  },
-  data() {
-    return {
-      maxVitalInvested: MAX_VITAL_INVESTED
-    };
-  },
-  methods: {
-    changeInvested(e) {
-      this.store.changeAllVitalInvestment(e.target.value);
-    },
-  },
-};
-</script>

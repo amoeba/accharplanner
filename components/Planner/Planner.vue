@@ -1,3 +1,67 @@
+<script>
+import Stages from "./Stages.vue"
+import Headers from "./Headers.vue"
+import AttributesAndVitals from "./AttributesAndVitals.vue"
+import Skills from "./Skills.vue"
+import Augmentations from "./Augmentations.vue"
+import LuminanceAuras from "./LuminanceAuras.vue"
+import Items from "./Items.vue"
+import ArmorSets from "./ArmorSets.vue"
+
+import { usePlannerStore } from "~/stores/planner"
+
+export default {
+  name: "Planner",
+  components: {
+    Stages,
+    Headers,
+    AttributesAndVitals,
+    Skills,
+    Augmentations,
+    LuminanceAuras,
+    Items,
+    ArmorSets,
+  },
+  setup() {
+    const store = usePlannerStore()
+
+    // Copy current build into the current stage, if present
+    // TODO: See if this could be moved into the store definition
+    //       or somewhere not tied to any one component
+    watch(
+      () => store.build.character,
+      () => {
+        // Skip if no selected stage
+        if (store.ui.currentStage === null)
+          return
+
+        // Skip if selected stage is invalid for some reason
+        if (store.ui.currentStage > store.build.stages.length)
+          return
+
+        store.build.stages[store.ui.currentStage] = JSON.parse(
+          JSON.stringify(store.build.character),
+        )
+      },
+      { deep: true },
+    )
+
+    return { store }
+  },
+  methods: {
+    resetPlanner() {
+      this.store.reset()
+    },
+    expandAll() {
+      this.store.expandAll()
+    },
+    collapseAll() {
+      this.store.collapseAll()
+    },
+  },
+}
+</script>
+
 <template>
   <div class="flex flex-col gap-2 relative text-sm">
     <div class="grid grid-cols-2">
@@ -123,69 +187,3 @@
     <ArmorSets />
   </div>
 </template>
-
-<script>
-import Stages from "./Stages.vue";
-import Headers from "./Headers.vue";
-import AttributesAndVitals from "./AttributesAndVitals.vue";
-import Skills from "./Skills.vue";
-import Augmentations from "./Augmentations.vue";
-import LuminanceAuras from "./LuminanceAuras.vue";
-import Items from "./Items.vue";
-import ArmorSets from "./ArmorSets.vue";
-
-import { usePlannerStore } from "~/stores/planner";
-
-export default {
-  name: "Planner",
-  components: {
-    Stages,
-    Headers,
-    AttributesAndVitals,
-    Skills,
-    Augmentations,
-    LuminanceAuras,
-    Items,
-    ArmorSets,
-  },
-  setup() {
-    const store = usePlannerStore();
-
-    // Copy current build into the current stage, if present
-    // TODO: See if this could be moved into the store definition
-    //       or somewhere not tied to any one component
-    watch(
-      () => store.build.character,
-      () => {
-        // Skip if no selected stage
-        if (store.ui.currentStage === null) {
-          return;
-        }
-
-        // Skip if selected stage is invalid for some reason
-        if (store.ui.currentStage > store.build.stages.length) {
-          return;
-        }
-
-        store.build.stages[store.ui.currentStage] = JSON.parse(
-          JSON.stringify(store.build.character)
-        );
-      },
-      { deep: true }
-    );
-
-    return { store };
-  },
-  methods: {
-    resetPlanner() {
-      this.store.reset();
-    },
-    expandAll() {
-      this.store.expandAll();
-    },
-    collapseAll() {
-      this.store.collapseAll();
-    },
-  },
-};
-</script>

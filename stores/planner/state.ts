@@ -1,4 +1,4 @@
-import DefaultCharacter from "~/utils/DefaultCharacter";
+import DefaultCharacter from "~/utils/DefaultCharacter"
 
 const state: State = {
   ui: {
@@ -36,6 +36,6 @@ const state: State = {
     isLoggedIn: false,
     isAdmin: false,
   },
-};
+}
 
-export default state;
+export default state

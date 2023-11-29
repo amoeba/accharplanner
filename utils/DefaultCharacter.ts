@@ -519,5 +519,5 @@ export default function (): Character {
         equipped: 0,
       },
     },
-  };
+  }
 }

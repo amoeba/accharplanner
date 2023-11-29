@@ -1,3 +1,38 @@
+<script>
+import Attribute from "./Attribute.vue"
+import { usePlannerStore } from "~/stores/planner"
+
+export default {
+  name: "Attributes",
+  components: {
+    Attribute,
+  },
+  setup() {
+    const store = usePlannerStore()
+
+    return {
+      store,
+    }
+  },
+  data() {
+    return {
+      maxAttributeInvested: MAX_ATTRIBUTE_INVESTED,
+    }
+  },
+  methods: {
+    changeInvested(e) {
+      this.store.changeAllAttributeInvestment(e.target.value)
+    },
+    changeBuffed(e) {
+      this.store.changeAllAttributeBuffs(e.target.value)
+    },
+    changeCantrip(e) {
+      this.store.changeAllAttributeCantrips(e.target.value)
+    },
+  },
+}
+</script>
+
 <template>
   <tbody id="attributes">
     <tr>
@@ -108,38 +143,3 @@
     />
   </tbody>
 </template>
-
-<script>
-import Attribute from "./Attribute.vue";
-import { usePlannerStore } from "~/stores/planner";
-
-export default {
-  name: "Attributes",
-  components: {
-    Attribute,
-  },
-  setup() {
-    const store = usePlannerStore();
-
-    return {
-      store
-    }
-  },
-  data() {
-    return {
-      maxAttributeInvested: MAX_ATTRIBUTE_INVESTED
-    };
-  },
-  methods: {
-    changeInvested(e) {
-      this.store.changeAllAttributeInvestment(e.target.value);
-    },
-    changeBuffed(e) {
-      this.store.changeAllAttributeBuffs(e.target.value);
-    },
-    changeCantrip(e) {
-      this.store.changeAllAttributeCantrips(e.target.value);
-    },
-  },
-};
-</script>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router"
 
 const client = useSupabaseClient()
-const route = useRoute();
+const route = useRoute()
 
 const loadError = ref("")
 
@@ -11,10 +11,10 @@ const { data, error } = await loadBuild(client, route.params.id)
 console.log(data, error)
 if (error) {
   loadError.value = error.message
-} else if (data) {
-  if (data.length < 1) {
+}
+else if (data) {
+  if (data.length < 1)
     loadError.value = `Couldn't find build with ID ${route.params.id}.`
-  }
 }
 </script>
 
@@ -27,7 +27,9 @@ if (error) {
       <div class="flex gap-2">
         <FavoriteButton />
         <ButtonView>
-          <NuxtLink href="/planner">Load Build</NuxtLink>
+          <NuxtLink href="/planner">
+            Load Build
+          </NuxtLink>
         </ButtonView>
       </div>
       <BuildView :build="data[0]" />

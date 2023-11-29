@@ -38,7 +38,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       builds_favorites: {
@@ -74,7 +74,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       guide_favorites: {
@@ -110,7 +110,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "guides"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       guides: {
@@ -148,7 +148,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       profiles: {
@@ -174,7 +174,7 @@ export interface Database {
             isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
     }

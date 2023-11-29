@@ -1,6 +1,37 @@
+<script>
+import ExtraSkillCredit from "./ExtraSkillCredit.vue"
+import { usePlannerStore } from "~/stores/planner"
+
+export default {
+  name: "ExtraSkillCredits",
+  components: {
+    ExtraSkillCredit,
+  },
+  setup() {
+    const store = usePlannerStore()
+
+    return {
+      store,
+    }
+  },
+  computed: {
+    isExpanded() {
+      return this.store.extraSkillCreditsPaneVisible
+    },
+  },
+  methods: {
+    toggleExpanded() {
+      this.store.toggleExtraSkillCreditsPane()
+    },
+  },
+}
+</script>
+
 <template>
   <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
-    <template #title> Extra Skill Credits </template>
+    <template #title>
+      Extra Skill Credits
+    </template>
     <template #content>
       <ExtraSkillCredit id="railrea" name="Aun Ralirea" />
       <ExtraSkillCredit id="oswald" name="Chasing Oswald" />
@@ -9,32 +40,3 @@
     </template>
   </CollapsiblePane>
 </template>
-
-<script>
-import ExtraSkillCredit from "./ExtraSkillCredit.vue";
-import { usePlannerStore } from "~/stores/planner";
-
-export default {
-  name: "ExtraSkillCredits",
-  components: {
-    ExtraSkillCredit,
-  },
-  setup() {
-    const store = usePlannerStore();
-
-    return {
-      store,
-    };
-  },
-  computed: {
-    isExpanded() {
-      return this.store.extraSkillCreditsPaneVisible;
-    },
-  },
-  methods: {
-    toggleExpanded() {
-      this.store.toggleExtraSkillCreditsPane();
-    },
-  },
-};
-</script>

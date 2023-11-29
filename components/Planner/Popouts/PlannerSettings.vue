@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { usePlannerStore } from "~/stores/planner";
+import { usePlannerStore } from "~/stores/planner"
 
-const store = usePlannerStore();
+const store = usePlannerStore()
 </script>
 
 <template>

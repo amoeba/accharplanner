@@ -1,9 +1,112 @@
+<script>
+import { usePlannerStore } from "~/stores/planner"
+
+export default {
+  name: "Attribute",
+  props: {
+    name: String,
+    tabIndex: String,
+  },
+  setup() {
+    const store = usePlannerStore()
+
+    return {
+      store,
+    }
+  },
+  data() {
+    return {
+      maxAttributeInvested: MAX_ATTRIBUTE_INVESTED,
+    }
+  },
+  computed: {
+    displayName() {
+      return ATTRIBUTE_NAME[this.name]
+    },
+    isBuffed() {
+      return (
+        Math.round(this.store[`${this.name}Buffed`])
+        > Math.round(this.store[`${this.name}Base`])
+      )
+    },
+    creation: {
+      get() {
+        return this.store.build.character.attributes[this.name].creation
+      },
+      set(value) {
+        let out = Math.round(Number(value) || 0)
+
+        out = Math.max(
+          MIN_CREATION_ATTRIBUTE_POINTS,
+          Math.min(out, MAX_CREATION_ATTRIBUTE_POINTS),
+        )
+
+        this.store.updateAttributeCreation({
+          name: this.name,
+          value: out,
+        })
+      },
+    },
+    invested: {
+      get() {
+        return this.store.build.character.attributes[this.name].invested
+      },
+      set(value) {
+        this.store.updateAttributeInvested({
+          name: this.name,
+          value,
+        })
+      },
+    },
+    base() {
+      return Math.round(this.store[`${this.name}Base`])
+    },
+    buffed() {
+      return Math.round(this.store[`${this.name}Buffed`])
+    },
+    buffLevel: {
+      get() {
+        return this.store.build.character.attributes[this.name].buff
+      },
+      set(value) {
+        this.store.updateAttributeBuff({
+          name: this.name,
+          value,
+        })
+      },
+    },
+    buffName() {
+      return BUFF_NAME[
+        this.store.build.character.attributes[this.name].buff
+      ]
+    },
+    cantrip: {
+      get() {
+        return this.store.build.character.attributes[this.name].cantrip
+      },
+      set(value) {
+        this.store.updateAttributeCantrip({
+          name: this.name,
+          value,
+        })
+      },
+    },
+    cantripName() {
+      return CANTRIP_NAME[
+        this.store.build.character.attributes[this.name].cantrip
+      ]
+    },
+
+  },
+}
+</script>
+
 <template>
   <tr>
     <td>
       <img
         style="clip-path: circle(50%)"
-        :src="'/img/' + name + '.png'"
+        :src="`/img/${name}.png`"
         :alt="displayName"
         width="20"
         height="20"
@@ -97,106 +200,3 @@
     </td>
   </tr>
 </template>
-
-<script>
-import { usePlannerStore } from "~/stores/planner";
-
-export default {
-  name: "Attribute",
-  props: {
-    name: String,
-    tabIndex: String,
-  },
-  setup() {
-    const store = usePlannerStore();
-
-    return {
-      store
-    }
-  },
-  data() {
-    return {
-      maxAttributeInvested: MAX_ATTRIBUTE_INVESTED
-    };
-  },
-  computed: {
-    displayName() {
-      return ATTRIBUTE_NAME[this.name];
-    },
-    isBuffed() {
-      return (
-        Math.round(this.store[this.name + "Buffed"]) >
-        Math.round(this.store[this.name + "Base"])
-      );
-    },
-    creation: {
-      get() {
-        return this.store.build.character.attributes[this.name].creation;
-      },
-      set(value) {
-        let out = Math.round(Number(value) || 0)
-
-        out = Math.max(
-          MIN_CREATION_ATTRIBUTE_POINTS,
-          Math.min(out, MAX_CREATION_ATTRIBUTE_POINTS)
-        );
-
-        this.store.updateAttributeCreation({
-          name: this.name,
-          value: out,
-        });
-      },
-    },
-    invested: {
-      get() {
-        return this.store.build.character.attributes[this.name].invested;
-      },
-      set(value) {
-        this.store.updateAttributeInvested({
-          name: this.name,
-          value: value,
-        });
-      },
-    },
-    base() {
-      return Math.round(this.store[this.name + "Base"]);
-    },
-    buffed() {
-      return Math.round(this.store[this.name + "Buffed"]);
-    },
-    buffLevel: {
-      get() {
-        return this.store.build.character.attributes[this.name].buff;
-      },
-      set(value) {
-        this.store.updateAttributeBuff({
-          name: this.name,
-          value: value,
-        });
-      },
-    },
-    buffName() {
-      return BUFF_NAME[
-        this.store.build.character.attributes[this.name].buff
-      ];
-    },
-    cantrip: {
-      get() {
-        return this.store.build.character.attributes[this.name].cantrip;
-      },
-      set(value) {
-        this.store.updateAttributeCantrip({
-          name: this.name,
-          value: value,
-        });
-      },
-    },
-    cantripName() {
-      return CANTRIP_NAME[
-        this.store.build.character.attributes[this.name].cantrip
-      ];
-    },
-
-  },
-};
-</script>

@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { exceptionFromError } from "@sentry/vue";
-import { ref } from "vue";
-const client = useSupabaseClient();
-const user = useSupabaseUser();
+import { ref } from "vue"
+
+const client = useSupabaseClient()
+const user = useSupabaseUser()
 
 interface SupabaseError {
-  name: string | undefined;
-  status: number | undefined;
-  message: string;
+  name: string | undefined
+  status: number | undefined
+  message: string
 }
 
-const defaultButtonText = "Send 🔮 Link";
-const email = ref("");
-const submitButtonText = ref(defaultButtonText);
-const errorMessage = ref("");
+const defaultButtonText = "Send 🔮 Link"
+const email = ref("")
+const submitButtonText = ref(defaultButtonText)
+const errorMessage = ref("")
 
 // Form state state machine
 enum FormState {
@@ -23,57 +23,59 @@ enum FormState {
   ERROR,
 }
 
-const formState = ref(FormState.UNSENT);
+const formState = ref(FormState.UNSENT)
 
 const handleSubmit = async function () {
-  errorMessage.value = "";
+  errorMessage.value = ""
 
-  const finalEmail = email.value.trim();
+  const finalEmail = email.value.trim()
 
   if (finalEmail.length <= 0) {
-    formState.value = FormState.ERROR;
-    errorMessage.value =
-      "Please provide an email address that isn't just an empty string.";
+    formState.value = FormState.ERROR
+    errorMessage.value
+      = "Please provide an email address that isn't just an empty string."
 
-    return;
+    return
   }
 
-  await signInWithEmail(finalEmail);
-};
+  await signInWithEmail(finalEmail)
+}
 
 const signInWithEmail = async function (email: string) {
-  formState.value = FormState.SENDING;
-  submitButtonText.value = "Sending...";
+  formState.value = FormState.SENDING
+  submitButtonText.value = "Sending..."
 
-  const config = useRuntimeConfig();
+  const config = useRuntimeConfig()
 
   try {
     const { data, error } = await client.auth.signInWithOtp({
-      email: email,
+      email,
       options: {
         emailRedirectTo: config.supabaseRedirectUrl as string,
       },
-    });
+    })
 
     if (error) {
-      formState.value = FormState.ERROR;
-      submitButtonText.value = defaultButtonText;
-      errorMessage.value = error.message;
-    } else {
-      formState.value = FormState.SUCCESS;
-      submitButtonText.value = "Check your inbox!";
+      formState.value = FormState.ERROR
+      submitButtonText.value = defaultButtonText
+      errorMessage.value = error.message
+    }
+    else {
+      formState.value = FormState.SUCCESS
+      submitButtonText.value = "Check your inbox!"
 
       setTimeout(() => {
-        formState.value = FormState.UNSENT;
-        submitButtonText.value = defaultButtonText;
-      }, 3000);
+        formState.value = FormState.UNSENT
+        submitButtonText.value = defaultButtonText
+      }, 3000)
     }
-  } catch (e: any) {
-    formState.value = FormState.ERROR;
-    submitButtonText.value = defaultButtonText;
-    errorMessage.value = e;
   }
-};
+  catch (e: any) {
+    formState.value = FormState.ERROR
+    submitButtonText.value = defaultButtonText
+    errorMessage.value = e
+  }
+}
 </script>
 
 <template>

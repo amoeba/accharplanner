@@ -1,3 +1,47 @@
+<script>
+import { createClient } from "@supabase/supabase-js"
+
+export default {
+  name: "Builds",
+  components: {
+    BuildsEntry,
+  },
+  data() {
+    return {
+      loading: false,
+      builds: [],
+      error: null,
+    }
+  },
+  async created() {
+    await this.fetchData()
+  },
+  methods: {
+    async fetchData() {
+      this.error = null
+      this.loading = true
+
+      const supabase = createClient(
+        import.meta.env.VITE_SUPABASE_URL,
+        import.meta.env.VITE_SUPABASE_KEY,
+      )
+
+      const { data, error } = await supabase
+        .from("official_builds")
+        .select()
+
+      if (error) {
+        this.error = true
+        this.loading = false
+      }
+
+      this.loading = false
+      this.builds = data
+    },
+  },
+}
+</script>
+
 <template>
   <div>
     <div>
@@ -26,47 +70,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { createClient } from "@supabase/supabase-js";
-
-export default {
-  name: "Builds",
-  components: {
-    BuildsEntry,
-  },
-  data() {
-    return {
-      loading: false,
-      builds: [],
-      error: null,
-    };
-  },
-  async created() {
-    await this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      this.error = null;
-      this.loading = true;
-
-      const supabase = createClient(
-        import.meta.env.VITE_SUPABASE_URL,
-        import.meta.env.VITE_SUPABASE_KEY
-      );
-
-      const { data, error } = await supabase
-        .from("official_builds")
-        .select();
-
-      if (error) {
-        this.error = true;
-        this.loading = false;
-      }
-
-      this.loading = false;
-      this.builds = data;
-    },
-  },
-};
-</script>

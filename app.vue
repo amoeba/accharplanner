@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { useMainStore } from "./stores/main";
+import { computed } from "vue"
+import { useMainStore } from "./stores/main"
 
-const store = useMainStore();
+const store = useMainStore()
 
 const theme = computed(() => {
-  if (store.$state.darkMode === null) {
-    return "";
-  }
+  if (store.$state.darkMode === null)
+    return ""
 
-  return store.$state.darkMode ? THEME.DARK : THEME.LIGHT;
-});
+  return store.$state.darkMode ? THEME.DARK : THEME.LIGHT
+})
 </script>
 
 <template>

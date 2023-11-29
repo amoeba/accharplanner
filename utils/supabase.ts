@@ -1,34 +1,32 @@
-
-import type { SupabaseClient, User } from '@supabase/supabase-js'
-import { createId } from "mnemonic-id";
+import type { SupabaseClient, User } from "@supabase/supabase-js"
+import { createId } from "mnemonic-id"
 
 // Builds
 export const loadBuild = async function (client: SupabaseClient, id: string) {
   return await client
     .from("builds")
     .select()
-    .eq("id", id);
+    .eq("id", id)
 }
 
 export const shareBuild = async function (client: SupabaseClient, user: User, build: Build) {
   return await client
     .from("builds")
     .insert({ id: createId(10), content: build, created_by: user.value.id })
-    .select();
-};
+    .select()
+}
 
-export const getNumFavorites = async function(client:SupabaseClient, user: User, id: string) : Promise<number> {
+export const getNumFavorites = async function (client: SupabaseClient, user: User, id: string): Promise<number> {
   const { data, error } = await client
     .from("builds_favorites")
     .select()
     .eq("build_id", id)
-    .eq("created_by", user.value.id);
+    .eq("created_by", user.value.id)
 
-  if (data && data.length > 0) {
-    return data.length;
-  }
+  if (data && data.length > 0)
+    return data.length
 
-  return 0;
+  return 0
 }
 
 export const hasAlreadyFavorited = async function (client: SupabaseClient, user: User, id: string) {
@@ -36,17 +34,17 @@ export const hasAlreadyFavorited = async function (client: SupabaseClient, user:
     .from("builds_favorites")
     .select()
     .eq("build_id", id)
-    .eq("created_by", user.value.id);
+    .eq("created_by", user.value.id)
 }
 
-export const favoriteBuild = async function(client: SupabaseClient, user: User, id: string) {
+export const favoriteBuild = async function (client: SupabaseClient, user: User, id: string) {
   return await client
     .from("builds_favorites")
-    .insert({ build_id: id, created_by: user.value.id})
-    .select();
+    .insert({ build_id: id, created_by: user.value.id })
+    .select()
 }
 
-export const unFavoriteBuild = async function(client: SupabaseClient, user: User, id: string) {
+export const unFavoriteBuild = async function (client: SupabaseClient, user: User, id: string) {
   return await client
     .from("builds_favorites")
     .delete()
@@ -54,11 +52,11 @@ export const unFavoriteBuild = async function(client: SupabaseClient, user: User
     .eq("created_by", user.value.id)
 }
 
-export const publishBuild = async function(client: SupabaseClient, user:User, build: Build) {
+export const publishBuild = async function (client: SupabaseClient, user: User, build: Build) {
   return await client
     .from("builds")
     .insert({ id: createId(10), content: build, is_published: true, created_by: user.value.id })
-    .select();
+    .select()
 }
 
 export const getPublishedBuilds = async function (client: SupabaseClient) {
@@ -77,8 +75,8 @@ export const getPublishedBuilds = async function (client: SupabaseClient) {
     `)
     .order("created_at")
     .eq("is_published", true)
-    .limit(10);
-};
+    .limit(10)
+}
 
 export const getLastestBuilds = async function (client: SupabaseClient) {
   return await client
@@ -95,11 +93,11 @@ export const getLastestBuilds = async function (client: SupabaseClient) {
       )
     `)
     .order("created_at")
-    .limit(10);
-};
+    .limit(10)
+}
 
 // Guides
-export const fetchGuide = async function (client: SupabaseClient, id: Number): Guide {
+export const fetchGuide = async function (client: SupabaseClient, id: number): Guide {
   return await client.from("guides").select(`
     id,
     created_at,
@@ -111,11 +109,11 @@ export const fetchGuide = async function (client: SupabaseClient, id: Number): G
     profiles (
       name
     )
-  `).eq("id", id);
-};
+  `).eq("id", id)
+}
 
-export const fetchGuides = async function(client:SupabaseClient) {
-  return await client.from("guides").select();
+export const fetchGuides = async function (client: SupabaseClient) {
+  return await client.from("guides").select()
 }
 
 export const updateGuide = async function (client: SupabaseClient, user: User, guide: Guide): Guide {
@@ -126,11 +124,11 @@ export const updateGuide = async function (client: SupabaseClient, user: User, g
       title: guide.title,
       content: guide.content,
       attribution: guide.attribution,
-      updated_at: (new Date()).toISOString()
+      updated_at: (new Date()).toISOString(),
     })
     .eq("id", guide.id)
-    .select();
-};
+    .select()
+}
 
 export const createGuide = async function (client: SupabaseClient, user: User, guide: Guide): Guide {
   return await client
@@ -139,7 +137,7 @@ export const createGuide = async function (client: SupabaseClient, user: User, g
       created_by: user.value?.id,
       title: guide.title,
       content: guide.content,
-      attribution: guide.attribution
+      attribution: guide.attribution,
     })
-    .select();
-};
+    .select()
+}

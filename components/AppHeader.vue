@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const user = useSupabaseUser()
+import { useMainStore } from "~/stores/main"
 
-import { useMainStore } from '~/stores/main';
+const user = useSupabaseUser()
 
 const store = useMainStore()
 
 function toggleDarkMode(event: Event) {
   const preference = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
+    "(prefers-color-scheme: dark)",
+  ).matches
 
-  store.toggleDarkMode(preference);
+  store.toggleDarkMode(preference)
 }
 </script>
 

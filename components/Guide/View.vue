@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { Guide } from "~/utils/models";
+import type { Guide } from "~/utils/models"
 
-const client = useSupabaseClient();
-const user = useSupabaseUser();
+const props = defineProps(["id"])
+const client = useSupabaseClient()
+const user = useSupabaseUser()
 
-const props = defineProps(["id"]);
+const guide = ref<Guide>()
 
-const guide = ref<Guide>();
-
-const { data, error } = await fetchGuide(client, props.id);
+const { data, error } = await fetchGuide(client, props.id)
 
 if (error) {
   // TODO: Proper error handlings
-  console.log(error);
-} else {
-  guide.value = data[0];
+  console.log(error)
+}
+else {
+  guide.value = data[0]
 }
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps(["toggleExpanded", "isExpanded"]);
+defineProps(["toggleExpanded", "isExpanded"])
 </script>
 
 <template>

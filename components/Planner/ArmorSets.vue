@@ -1,6 +1,40 @@
+<script>
+import ArmorSet from "./ArmorSet"
+import { usePlannerStore } from "~/stores/planner"
+
+export default {
+  name: "ArmorSets",
+  components: {
+    ArmorSet,
+  },
+  setup() {
+    const store = usePlannerStore()
+
+    return {
+      store,
+    }
+  },
+  computed: {
+    isExpanded() {
+      return this.store.armorSetsPaneVisible
+    },
+    errors() {
+      return this.store.armorSetNumEquippedErrors
+    },
+  },
+  methods: {
+    toggleExpanded() {
+      this.store.toggleArmorSetsPane()
+    },
+  },
+}
+</script>
+
 <template>
   <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
-    <template #title> Armor Sets </template>
+    <template #title>
+      Armor Sets
+    </template>
     <template #right>
       <span v-if="errors" class="text-rose-500">{{ errors }}</span>
     </template>
@@ -9,7 +43,9 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th colspan="2">Equipped</th>
+            <th colspan="2">
+              Equipped
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -29,35 +65,3 @@
     </template>
   </CollapsiblePane>
 </template>
-
-<script>
-import ArmorSet from "./ArmorSet";
-import { usePlannerStore } from "~/stores/planner";
-
-export default {
-  name: "ArmorSets",
-  components: {
-    ArmorSet,
-  },
-  setup() {
-    const store = usePlannerStore();
-
-    return {
-      store,
-    };
-  },
-  computed: {
-    isExpanded() {
-      return this.store.armorSetsPaneVisible;
-    },
-    errors() {
-      return this.store.armorSetNumEquippedErrors;
-    },
-  },
-  methods: {
-    toggleExpanded() {
-      this.store.toggleArmorSetsPane();
-    },
-  },
-};
-</script>

@@ -1,51 +1,51 @@
 <script setup lang="ts">
-import { useGuideStore } from "~/stores/guide";
+import { useGuideStore } from "~/stores/guide"
 
-const client = useSupabaseClient();
-const user = useSupabaseUser();
+const props = defineProps(["id"])
+const client = useSupabaseClient()
+const user = useSupabaseUser()
 
-const store = useGuideStore();
-const props = defineProps(["id"]);
+const store = useGuideStore()
 const errors = ref<string[]>([])
 
 const onSubmit = async function () {
   const validationErrors = store.validate()
 
   if (validationErrors.length > 0) {
-    errors.value = validationErrors;
+    errors.value = validationErrors
 
-    return;
+    return
   }
 
   errors.value = []
 
-  const { data, error } = await updateGuide(client, user, store.guide);
+  const { data, error } = await updateGuide(client, user, store.guide)
 
   if (error) {
     errors.value.push(error)
 
-    return;
+    return
   }
 
   if (!data || data.length <= 0) {
     errors.value.push("An unexpected error was encountered.")
 
-    return;
+    return
   }
 
   navigateTo(`/guides/${data[0].id}`)
 }
 
-const { data, error } = await fetchGuide(client, props.id);
+const { data, error } = await fetchGuide(client, props.id)
 
 if (error) {
   errors.value.push(error)
-} else {
-  if (data.length < 1) {
+}
+else {
+  if (data.length < 1)
     errors.value.push("An unexpected error occurred.")
-  } else {
+  else
     store.guide = data[0]
-  }
 }
 </script>
 

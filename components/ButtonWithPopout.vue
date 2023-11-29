@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref, provide } from "vue";
+import { provide, ref } from "vue"
 
-const props = defineProps(["widthClass"]);
-const widthClass = ref(props.widthClass || "w-48");
-const visibilityClass = ref("hidden");
-const isPopoutVisible = ref(false);
+const props = defineProps(["widthClass"])
+const widthClass = ref(props.widthClass || "w-48")
+const visibilityClass = ref("hidden")
+const isPopoutVisible = ref(false)
 
-provide("isPopoutVisible", isPopoutVisible);
+provide("isPopoutVisible", isPopoutVisible)
 
 const togglePopout = async function (e: Event) {
-  isPopoutVisible.value = !isPopoutVisible.value;
-  visibilityClass.value = isPopoutVisible.value ? "block" : "hidden";
-};
+  isPopoutVisible.value = !isPopoutVisible.value
+  visibilityClass.value = isPopoutVisible.value ? "block" : "hidden"
+}
 </script>
 
 <template>

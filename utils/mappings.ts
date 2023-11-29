@@ -16,13 +16,13 @@ export const ATTRIBUTE_NAME = {
   [Attribute.quickness]: "Quickness",
   [Attribute.focus]: "Focus",
   [Attribute.self]: "Self",
-};
+}
 
 export const VITAL_FORMULA = {
   [Vital.health]: "E/2",
   [Vital.stamina]: "E",
   [Vital.mana]: "W",
-};
+}
 
 export const SKILL_NAME = {
   [Skill.alchemy]: "Alchemy",
@@ -63,7 +63,7 @@ export const SKILL_NAME = {
   [Skill.void_magic]: "Void Magic",
   [Skill.war_magic]: "War Magic",
   [Skill.weapon_tinkering]: "Weapon Tinkering",
-};
+}
 
 export const SKILL_FORMULA = {
   [Skill.alchemy]: "(C+F)/3",
@@ -104,7 +104,7 @@ export const SKILL_FORMULA = {
   [Skill.void_magic]: "(F+W)/4",
   [Skill.war_magic]: "(F+W)/4",
   [Skill.weapon_tinkering]: "(S+F)/2",
-};
+}
 
 export const BUFF_NAME: NumberIndexedDict<string> = {
   0: "",
@@ -116,7 +116,7 @@ export const BUFF_NAME: NumberIndexedDict<string> = {
   6: "VI",
   7: "VII",
   8: "VIII",
-};
+}
 
 export const CANTRIP_NAME: NumberIndexedDict<string> = {
   0: "None",
@@ -124,7 +124,7 @@ export const CANTRIP_NAME: NumberIndexedDict<string> = {
   2: "Major",
   3: "Epic",
   4: "Legen.",
-};
+}
 
 export const AUGMENTATION_NAME = {
   [Augmentation.might_of_the_seventh_mule]: "Might of the Seventh Mule",
@@ -174,7 +174,7 @@ export const AUGMENTATION_NAME = {
   [Augmentation.master_of_the_focused_eye]: "Master of the Focused Eye",
   [Augmentation.jack_of_all_trades]: "Jack of All Trades",
   [Augmentation.archmages_endurance]: "Archmage's Endurance",
-};
+}
 
 export const AUGMENTATION_EXTRA_INFO = {
   [Augmentation.might_of_the_seventh_mule]: "+20% Burden Capacity",
@@ -221,7 +221,7 @@ export const AUGMENTATION_EXTRA_INFO = {
   [Augmentation.master_of_the_focused_eye]: "+10 Missile Skill",
   [Augmentation.jack_of_all_trades]: "+5 All Skills",
   [Augmentation.archmages_endurance]: "+20% Spell Duration",
-};
+}
 
 export const LUMINANCE_AURA_NAME = {
   [LuminanceAura.aetheric_vision]: "Aetheric Vision",
@@ -240,12 +240,12 @@ export const LUMINANCE_AURA_NAME = {
   [LuminanceAura.destruction]: "Destruction",
   [LuminanceAura.retribution]: "Retribution",
   [LuminanceAura.hardening]: "Hardening",
-};
+}
 
 export const LUMINANCE_AURA_HOVER_INFO = {
   [LuminanceAura.craftsman]:
     "Doesn't change values in your character sheet and is only applied when crafting/tinkering.",
-};
+}
 
 export const LUMINANCE_AURA_EXTRA_INFO = {
   [LuminanceAura.aetheric_vision]: "+ Surge %",
@@ -264,12 +264,12 @@ export const LUMINANCE_AURA_EXTRA_INFO = {
   [LuminanceAura.destruction]: "+1 Dmg",
   [LuminanceAura.retribution]: "+1 Crit Dmg",
   [LuminanceAura.hardening]: "+1 Crit Dmg Red.",
-};
+}
 
 export const ITEM_NAME = {
   [Item.focusing_stone]: "Focusing Stone",
   [Item.font_of_joji]: "Font of Joji",
-};
+}
 
 export const ARMOR_SET_NAME = {
   [ArmorSet.adepts]: "Adept's",
@@ -283,7 +283,7 @@ export const ARMOR_SET_NAME = {
   [ArmorSet.swift]: "Swift",
   [ArmorSet.tinkers]: "Tinkers",
   [ArmorSet.wise]: "Wise",
-};
+}
 
 export const ARMOR_SET_NAME_EXTRA_INFO = {
   [ArmorSet.adepts]: "All Magics, Magic Defense",
@@ -297,4 +297,4 @@ export const ARMOR_SET_NAME_EXTRA_INFO = {
   [ArmorSet.swift]: "Jump, Run, SA, DW, Finesse",
   [ArmorSet.tinkers]: "All Tinkering, Salvaging",
   [ArmorSet.wise]: "Focus, Willpower, Summoning, Mana",
-};
+}

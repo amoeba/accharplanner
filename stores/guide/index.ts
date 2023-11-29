@@ -1,13 +1,12 @@
-import { defineStore } from "pinia";
-import type { TablesUpdate } from "~/utils/database.types"
+import { defineStore } from "pinia"
 
 interface GuideState {
-  guide: TablesInsert<'guides'> | undefined;
+  guide: TablesInsert<"guides"> | undefined
 }
 
 const guideState: GuideState = {
   guide: undefined,
-};
+}
 
 export const useGuideStore = defineStore("guide", {
   state: () => guideState,
@@ -15,22 +14,20 @@ export const useGuideStore = defineStore("guide", {
     reset() {
       this.guide = {
         title: "",
-        content: ""
-      };
+        content: "",
+      }
     },
     validate() {
-        const errors: string[] = []
+      const errors: string[] = []
 
-        if (!this.guide.title || this.guide.title.length <= 0) {
-          errors.push("You must enter a title.")
-        }
+      if (!this.guide.title || this.guide.title.length <= 0)
+        errors.push("You must enter a title.")
 
-        if (!this.guide.content || this.guide.content.length <= 0) {
-          errors.push("You must enter some content.")
-        }
+      if (!this.guide.content || this.guide.content.length <= 0)
+        errors.push("You must enter some content.")
 
-        return errors;
-      }
+      return errors
+    },
   },
   persist: true,
-});
+})

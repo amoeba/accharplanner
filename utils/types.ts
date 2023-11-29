@@ -1,25 +1,25 @@
 export interface StringIndexedDict<V> {
-  [key: string]: V;
+  [key: string]: V
 }
 
 export interface NumberIndexedDict<V> {
-  [key: number]: V;
+  [key: number]: V
 }
 
 export interface Character {
-  name: string;
-  race: string;
-  gender: string;
-  level: number;
-  timesEnlightened: number;
-  extraSkillCredits: any;
-  attributes: any;
-  vitals: any;
-  skills: any;
-  augmentations: any;
-  luminance_auras: any;
-  items: any;
-  armor_sets: any;
+  name: string
+  race: string
+  gender: string
+  level: number
+  timesEnlightened: number
+  extraSkillCredits: any
+  attributes: any
+  vitals: any
+  skills: any
+  augmentations: any
+  luminance_auras: any
+  items: any
+  armor_sets: any
 }
 
 enum NotificationType {
@@ -29,64 +29,64 @@ enum NotificationType {
 }
 
 export interface Notification {
-  id: number;
-  type: NotificationType;
-  message: string;
+  id: number
+  type: NotificationType
+  message: string
 }
 
 export interface SavedBuild {
-  key: string;
-  build: string;
+  key: string
+  build: string
 }
 
 export interface PaneVisibility {
-  attributes: boolean;
-  skills: boolean;
-  augmentations: boolean;
-  auras: boolean;
-  items: boolean;
-  armor_sets: boolean;
-  buildStages: boolean;
-  character: boolean;
-  xpAndLuminance: boolean;
-  knobsAndDials: boolean;
-  extraSkillCredits: boolean;
+  attributes: boolean
+  skills: boolean
+  augmentations: boolean
+  auras: boolean
+  items: boolean
+  armor_sets: boolean
+  buildStages: boolean
+  character: boolean
+  xpAndLuminance: boolean
+  knobsAndDials: boolean
+  extraSkillCredits: boolean
 }
 
 export interface ModalVisibility {
-  share: boolean;
-  settings: boolean;
+  share: boolean
+  settings: boolean
 }
 
 export interface UIState {
-  notifications: Notification[];
-  savedBuilds: SavedBuild[];
-  shareStatus: string | null;
-  sharedBuild: string | null;
-  currentStage: number | null;
-  paneVisibility: PaneVisibility;
-  modalVisibility: ModalVisibility;
+  notifications: Notification[]
+  savedBuilds: SavedBuild[]
+  shareStatus: string | null
+  sharedBuild: string | null
+  currentStage: number | null
+  paneVisibility: PaneVisibility
+  modalVisibility: ModalVisibility
 }
 
 export interface Build {
-  character: Character;
-  stages: Character[];
+  character: Character
+  stages: Character[]
 }
 
 interface Settings {
-  infiniteMode: boolean;
+  infiniteMode: boolean
 }
 
 interface AuthState {
-  isLoggedIn: boolean;
-  isAdmin: boolean;
+  isLoggedIn: boolean
+  isAdmin: boolean
 }
 
 export interface State {
-  ui: UIState;
-  build: Build;
-  settings: Settings;
-  auth: AuthState;
+  ui: UIState
+  build: Build
+  settings: Settings
+  auth: AuthState
 }
 
 export enum Race {

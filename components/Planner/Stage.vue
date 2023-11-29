@@ -1,3 +1,29 @@
+<script setup lang="ts">
+import { usePlannerStore } from "~/stores/planner"
+
+const props = defineProps(["index", "level", "stages", "isDragInProgress"])
+
+const store = usePlannerStore()
+
+const isSelected = computed(() => {
+  return (
+    store.ui.currentStage !== null && store.ui.currentStage === props.index
+  )
+})
+
+const isNotLast = computed(() => {
+  return props.index !== props.stages - 1
+})
+
+const load = async function () {
+  store.changeStage(props.index)
+}
+
+const remove = async function () {
+  store.deleteStage(props.index)
+}
+</script>
+
 <template>
   <div class="flex">
     <div
@@ -31,33 +57,9 @@
       </ButtonView>
     </div>
     <div class="flex flex-col justify-center">
-      <div v-if="isNotLast" class="h-1 w-10 bg-zinc-200">&nbsp;</div>
+      <div v-if="isNotLast" class="h-1 w-10 bg-zinc-200">
+&nbsp;
+      </div>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { usePlannerStore } from "~/stores/planner";
-
-const store = usePlannerStore();
-
-const props = defineProps(["index", "level", "stages", "isDragInProgress"]);
-
-const isSelected = computed(() => {
-  return (
-    store.ui.currentStage !== null && store.ui.currentStage === props.index
-  );
-});
-
-const isNotLast = computed(() => {
-  return props.index !== props.stages - 1;
-});
-
-const load = async function () {
-  store.changeStage(props.index);
-};
-
-const remove = async function () {
-  store.deleteStage(props.index);
-};
-</script>
