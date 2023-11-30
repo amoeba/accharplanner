@@ -130,7 +130,7 @@ export default {
     updateLevel(e) {
       let actual = Math.round(Number(e.target.value))
 
-      if (Number.isNan(actual) || actual < MIN_LEVEL)
+      if (Number.isNaN(actual) || actual < MIN_LEVEL)
         actual = MIN_LEVEL
       else if (!this.settingsInfiniteMode && actual > MAX_LEVEL)
         actual = MAX_LEVEL
