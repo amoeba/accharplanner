@@ -66,26 +66,26 @@ export default {
       <button
         :disabled="!editor.can().chain().focus().toggleBold().run()"
         class="hover:bg-zinc-300 px-2 py-1" :class="{ 'bg-black text-white': editor.isActive('bold') }"
-        @click="editor.chain().focus().toggleBold().run()"
+        @click.prevent="editor.chain().focus().toggleBold().run()"
       >
         <strong>Bold</strong>
       </button>
       <button
         :disabled="!editor.can().chain().focus().toggleItalic().run()"
         class="hover:bg-zinc-300 px-2 py-1" :class="{ 'bg-black text-white': editor.isActive('italic') }"
-        @click="editor.chain().focus().toggleItalic().run()"
+        @click.prevent="editor.chain().focus().toggleItalic().run()"
       >
         <em>Italic</em>
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('bulletList') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click="editor.chain().focus().toggleBulletList().run()"
+        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().toggleBulletList().run()"
       >
         List
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click="editor.chain().focus().insertContent({ type: 'vueComponent' }).run()"
+        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent' }).run()"
       >
         Experiment
       </button>
