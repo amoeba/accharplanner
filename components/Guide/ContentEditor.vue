@@ -48,8 +48,6 @@ export default {
         this.$emit("update:modelValue", this.editor.getHTML())
       },
     })
-
-    1 + 1
   },
 
   beforeUnmount() {
