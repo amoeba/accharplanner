@@ -8,7 +8,7 @@ const isPopoutVisible = ref(false)
 
 provide("isPopoutVisible", isPopoutVisible)
 
-const togglePopout = async function (e: Event) {
+const togglePopout = async function () {
   isPopoutVisible.value = !isPopoutVisible.value
   visibilityClass.value = isPopoutVisible.value ? "block" : "hidden"
 }
