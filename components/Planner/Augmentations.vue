@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.store.changeAllAugmentationInvestment(e.target.value)
+      this.store.changeAllAugmentationInvestment(Number(e.target.value))
     },
     toggleExpanded() {
       this.store.toggleAugmentationsPane()

@@ -598,7 +598,7 @@ export default {
   changeAllAugmentationInvestment(value: number) {
     AUGMENTATIONS.forEach((aug_name: string) => {
       this.build.character.augmentations[aug_name].invested
-        = value === 1 ? AUGMENTATION_MAX_USES[aug_name] : 0
+        = (value === 1 ? AUGMENTATION_MAX_USES[aug_name] : 0)
     })
   },
 
