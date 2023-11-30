@@ -2,7 +2,7 @@
 import { Editor, EditorContent } from "@tiptap/vue-3"
 import StarterKit from "@tiptap/starter-kit"
 
-import VueComponent from "~/components/Editor/Extension"
+import VueComponentExtension from "~/components/Editor/Extension"
 
 export default {
   components: {
@@ -41,7 +41,7 @@ export default {
 
   mounted() {
     this.editor = new Editor({
-      extensions: [StarterKit, VueComponent],
+      extensions: [StarterKit, VueComponentExtension],
       content: this.modelValue,
       editable: this.editable,
       onUpdate: () => {
