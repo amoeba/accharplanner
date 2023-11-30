@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const props = defineProps(["character"])
+// const props = defineProps(["character"])
 </script>
 
 <template>
   <div>
     <div>
-      {{ props.character.name }}
+      An Adventurer
     </div>
     <div class="grid grid-cols-[25px_auto_40px] gap-1 w-72">
       <div>
