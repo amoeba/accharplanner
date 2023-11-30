@@ -44,7 +44,7 @@ export default {
         return this.store.build.character.vitals[this.name].invested
       },
       set(value) {
-        let out = Mathr.round(Number(value) || 0)
+        let out = Math.round(Number(value) || 0)
 
         out = Math.max(
           MIN_VITAL_INVESTED,
