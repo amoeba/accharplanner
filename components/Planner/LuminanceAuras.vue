@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     changeInvested(e) {
-      this.store.changeAllLuminanceAuraInvestment(e.target.value)
+      this.store.changeAllLuminanceAuraInvestment(Number(e.target.value))
     },
     toggleExpanded() {
       this.store.toggleAurasPane()
