@@ -1,10 +1,18 @@
 <script>
 import Vital from "./Vital.vue"
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
   name: "Vitals",
   components: {
     Vital,
+  },
+  setup() {
+    const store = usePlannerStore()
+
+    return {
+      store,
+    }
   },
   data() {
     return {
