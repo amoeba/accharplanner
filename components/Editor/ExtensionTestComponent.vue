@@ -1,9 +1,12 @@
 <script>
 import { NodeViewWrapper, nodeViewProps } from "@tiptap/vue-3"
 
+import ReadOnlyAttributesAndVitals from "~/components/Build/ReadOnlyAttributesAndVitals.vue"
+
 export default {
   components: {
     NodeViewWrapper,
+    ReadOnlyAttributesAndVitals,
   },
 
   props: nodeViewProps,
@@ -23,9 +26,7 @@ export default {
     <span class="label">Component</span>
 
     <div class="content">
-      <button @click.prevent="increase">
-        This button has been clicked {{ node.attrs.count }} times.
-      </button>
+      <ReadOnlyAttributesAndVitals />
     </div>
   </NodeViewWrapper>
 </template>
