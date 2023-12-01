@@ -1,17 +1,18 @@
 import { Node, mergeAttributes } from "@tiptap/core"
 import { VueNodeViewRenderer } from "@tiptap/vue-3"
 
+import { ComponentName } from "./lib"
 import Component from "./ExtensionTestComponent.vue"
 
 export default Node.create({
-  name: "vueComponent",
+  name: "vueComponent", // FIXME
   group: "block",
-  atom: true,
+  atom: true, // FIXME: Research this
 
   addAttributes() {
     return {
-      count: {
-        default: 0,
+      view: {
+        default: ComponentName.Creation,
       },
     }
   },
@@ -19,13 +20,13 @@ export default Node.create({
   parseHTML() {
     return [
       {
-        tag: "vue-component",
+        tag: "vue-component", // FIXME
       },
     ]
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ["vue-component", mergeAttributes(HTMLAttributes)]
+    return ["vue-component", mergeAttributes(HTMLAttributes)] // FIXMEs
   },
 
   addNodeView() {

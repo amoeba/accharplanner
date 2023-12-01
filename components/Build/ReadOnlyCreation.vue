@@ -47,27 +47,6 @@
       <div class="text-right">
         100
       </div>
-      <div>
-        <img src="/img/health.png" width="25" height="25" style="clip-path: circle(50%)">
-      </div>
-      <div>Health</div>
-      <div class="text-right">
-        100
-      </div>
-      <div>
-        <img src="/img/stamina.png" width="25" height="25" style="clip-path: circle(50%)">
-      </div>
-      <div>Stamina</div>
-      <div class="text-right">
-        100
-      </div>
-      <div>
-        <img src="/img/mana.png" width="25" height="25" style="clip-path: circle(50%)">
-      </div>
-      <div>Mana</div>
-      <div class="text-right">
-        100
-      </div>
     </div>
   </div>
 </template>

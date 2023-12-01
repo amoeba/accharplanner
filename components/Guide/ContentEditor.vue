@@ -89,6 +89,12 @@ export default {
       >
         Experiment
       </button>
+      <button
+        :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
+        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { view: 'attributes_and_vitals' } }).run()"
+      >
+        Experiment Two
+      </button>
     </div>
     <!-- Editor -->
     <div :class="(editor && editor.options.editable) ? 'border rounded-b border-zinc-200' : ''">
