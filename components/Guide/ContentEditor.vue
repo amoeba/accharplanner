@@ -85,13 +85,13 @@ export default {
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent' }).run()"
+        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: 'creation' } }).run()"
       >
         Experiment
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { view: 'attributes_and_vitals' } }).run()"
+        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: 'attributes_and_vitals' } }).run()"
       >
         Experiment Two
       </button>
