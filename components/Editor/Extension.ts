@@ -11,7 +11,13 @@ export default Node.create({
 
   addAttributes() {
     return {
-      view: {
+      id: {
+        default: "OtFbpJEFl4",
+      },
+      build: {
+        default: {},
+      },
+      selectedView: {
         default: ComponentName.Creation,
       },
     }
@@ -26,7 +32,7 @@ export default Node.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ["vue-component", mergeAttributes(HTMLAttributes)] // FIXMEs
+    return ["vue-component", mergeAttributes(HTMLAttributes)] // FIXME
   },
 
   addNodeView() {

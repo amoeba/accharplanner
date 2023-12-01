@@ -2,19 +2,22 @@
 import { NodeViewWrapper, nodeViewProps } from "@tiptap/vue-3"
 
 import { ComponentName } from "./lib"
-import ReadOnlyAttributesAndVitals from "~/components/Build/ReadOnlyAttributesAndVitals.vue"
-import ReadOnlyCreation from "~/components/Build/ReadOnlyCreation.vue"
+import GuideBuildView from "~/components/Build/GuideBuildView.vue"
 
 export default {
   components: {
     NodeViewWrapper,
-    ReadOnlyAttributesAndVitals,
-    ReadOnlyCreation,
+    GuideBuildView,
   },
-  props: nodeViewProps,
+  props: {
+    node: {
+      type: Object,
+      required: true,
+    },
+  },
   setup() {
     return {
-      ComponentName,
+      nodeViewProps,
     }
   },
 }
@@ -23,12 +26,11 @@ export default {
 <template>
   <NodeViewWrapper class="vue-component">
     <span class="label">
-      {{ node.attrs.view }}
+      {{ node.attrs.selectedView }}
     </span>
 
     <div class="content">
-      <ReadOnlyAttributesAndVitals v-if="node.attrs.view === ComponentName.Creation" />
-      <ReadOnlyCreation v-if="node.attrs.view === ComponentName.AttributesAndVitals" />
+      <GuideBuildView :node="node" />
     </div>
   </NodeViewWrapper>
 </template>
