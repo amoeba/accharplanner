@@ -10,6 +10,10 @@ export default {
     GuideBuildView,
   },
   props: {
+    editor: {
+      type: Object,
+      required: true,
+    },
     node: {
       type: Object,
       required: true,
@@ -41,7 +45,7 @@ export default {
   <NodeViewWrapper class="vue-component">
     <span class="label">
       {{ node.attrs.selectedView }}
-      <button @click="cycleSubView">CYCLE</button>
+      <button v-if="editor.isEditable" @click="cycleSubView">CYCLE</button>
     </span>
 
     <div class="content">
