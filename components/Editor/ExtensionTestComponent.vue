@@ -14,11 +14,26 @@ export default {
       type: Object,
       required: true,
     },
+    updateAttributes: {
+      type: Function,
+      required: true,
+    },
   },
   setup() {
     return {
       nodeViewProps,
     }
+  },
+  methods: {
+    cycleSubView(e) {
+      e.preventDefault()
+
+      if (this.node.attrs.selectedView === "creation")
+        this.updateAttributes({ selectedView: "attributes_and_vitals" })
+
+      else
+        this.updateAttributes({ selectedView: "creation" })
+    },
   },
 }
 </script>
@@ -27,6 +42,7 @@ export default {
   <NodeViewWrapper class="vue-component">
     <span class="label">
       {{ node.attrs.selectedView }}
+      <button @click="cycleSubView">CYCLE</button>
     </span>
 
     <div class="content">
