@@ -25,14 +25,13 @@ export default {
     }
   },
   methods: {
-    cycleSubView(e) {
+    cycleSubView(e: Event) {
       e.preventDefault()
 
-      if (this.node.attrs.selectedView === "creation")
-        this.updateAttributes({ selectedView: "attributes_and_vitals" })
-
+      if (this.node.attrs.selectedView === ComponentName.Creation)
+        this.updateAttributes({ selectedView: ComponentName.AttributesAndVitals })
       else
-        this.updateAttributes({ selectedView: "creation" })
+        this.updateAttributes({ selectedView: ComponentName.Creation })
     },
   },
 }
