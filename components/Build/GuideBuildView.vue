@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ComponentName } from "../Editor/lib"
 import ReadOnlyAttributesAndVitals from "./ReadOnlyAttributesAndVitals.vue"
 import ReadOnlyCreation from "./ReadOnlyCreation.vue"
 import { loadBuild } from "~/utils/supabase"
@@ -20,10 +21,10 @@ else {
 <template>
   <div>
     <ReadOnlyCreation
-      v-if="node.attrs.selectedView === 'creation'" :build="build"
+      v-if="node.attrs.selectedView === ComponentName.Creation" :build="build"
     />
     <ReadOnlyAttributesAndVitals
-      v-if="node.attrs.selectedView === 'attributes_and_vitals'" :build="build"
+      v-if="node.attrs.selectedView === ComponentName.AttributesAndVitals" :build="build"
     />
   </div>
 </template>

@@ -2,6 +2,7 @@
 import { Editor, EditorContent } from "@tiptap/vue-3"
 import StarterKit from "@tiptap/starter-kit"
 
+import { ComponentName } from "../Editor/lib"
 import VueComponentExtension from "~/components/Editor/Extension"
 
 export default {
@@ -25,6 +26,7 @@ export default {
   data() {
     return {
       editor: null,
+      component_name: ComponentName,
     }
   },
 
@@ -85,13 +87,13 @@ export default {
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: 'creation' } }).run()"
+        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: component_name.Creation } }).run()"
       >
         Experiment
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: 'attributes_and_vitals' } }).run()"
+        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: component_name.AttributesAndVitals } }).run()"
       >
         Experiment Two
       </button>
