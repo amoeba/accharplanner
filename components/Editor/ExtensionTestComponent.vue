@@ -39,6 +39,8 @@ export default {
         this.updateAttributes({ selectedView: ComponentName.AttributesAndVitals })
       else if (newView === ComponentName.Skills)
         this.updateAttributes({ selectedView: ComponentName.Skills })
+      else if (newView === ComponentName.Planner)
+        this.updateAttributes({ selectedView: ComponentName.Planner })
     },
   },
 }

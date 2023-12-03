@@ -3,6 +3,8 @@ import { ComponentName } from "../Editor/lib"
 import ReadOnlyAttributesAndVitals from "./ReadOnlyAttributesAndVitals.vue"
 import ReadOnlyCreation from "./ReadOnlyCreation.vue"
 import ReadOnlySkillsView from "./ReadOnlySkillsView.vue"
+import MinimalPlanner from "~/components/Guide/MinimalPlanner.vue"
+
 import { loadBuild } from "~/utils/supabase"
 
 const props = defineProps(["node"])
@@ -29,6 +31,9 @@ else {
     />
     <ReadOnlySkillsView
       v-if="node.attrs.selectedView === ComponentName.Skills" :build="build"
+    />
+    <MinimalPlanner
+      v-if="node.attrs.selectedView === ComponentName.Planner" :build="build"
     />
   </div>
 </template>
