@@ -16,7 +16,7 @@ const store = useGuideStore()
         Attribution
         <span class="text-zinc-500">Optional</span>
       </label>
-      <input id="attribution" v-model="store.guide.attribution" type="text">
+      <input id="attribution" v-model="store.guide.attribution" class="w-64" type="text">
     </div>
     <div class="flex flex-col">
       <label for="content">Content</label>
