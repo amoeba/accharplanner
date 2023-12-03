@@ -2,6 +2,7 @@
 import { ComponentName } from "../Editor/lib"
 import ReadOnlyAttributesAndVitals from "./ReadOnlyAttributesAndVitals.vue"
 import ReadOnlyCreation from "./ReadOnlyCreation.vue"
+import ReadOnlySkillsView from "./ReadOnlySkillsView.vue"
 import { loadBuild } from "~/utils/supabase"
 
 const props = defineProps(["node"])
@@ -25,6 +26,9 @@ else {
     />
     <ReadOnlyAttributesAndVitals
       v-if="node.attrs.selectedView === ComponentName.AttributesAndVitals" :build="build"
+    />
+    <ReadOnlySkillsView
+      v-if="node.attrs.selectedView === ComponentName.Skills" :build="build"
     />
   </div>
 </template>

@@ -139,8 +139,11 @@ export default {
   },
 
   async loadBuildFromJSON(build: Build) {
-    console.log("loadBuildFromJSON", build)
     this.build = build
+  },
+
+  async loadCharacterIntoCurrentBuild(character: Character) {
+    this.build.character = character
   },
 
   import(build: Build) {
