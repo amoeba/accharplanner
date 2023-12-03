@@ -23,7 +23,7 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
 </script>
 
 <template>
-  <table>
+  <table class="w-72">
     <thead>
       <tr>
         <th
@@ -42,9 +42,13 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
         </td>
       </tr>
       <tr v-for="skill in store.specializedSkills" :key="skill">
-        <td><img :src="`/img/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)"></td>
+        <td class="w-8">
+          <img :src="`/img/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
+        </td>
         <td>{{ SKILL_NAME[skill] }}</td>
-        <td>{{ store[`${skill}Buffed`] }}</td>
+        <td class="text-right">
+          {{ store[`${skill}Buffed`] }}
+        </td>
       </tr>
     </tbody>
     <thead>
@@ -65,9 +69,13 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
         </td>
       </tr>
       <tr v-for="skill in store.trainedSkills" :key="skill">
-        <td><img :src="`/img/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)"></td>
+        <td class="w-8">
+          <img :src="`/img/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
+        </td>
         <td>{{ SKILL_NAME[skill] }}</td>
-        <td>{{ store[`${skill}Buffed`] }}</td>
+        <td class="text-right">
+          {{ store[`${skill}Buffed`] }}
+        </td>
       </tr>
     </tbody>
   </table>
