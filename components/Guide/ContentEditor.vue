@@ -87,15 +87,10 @@ export default {
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: component_name.Creation } }).run()"
+        class="flex gap-1 items-center hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: component_name.Creation } }).run()"
       >
-        Experiment
-      </button>
-      <button
-        :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="hover:bg-zinc-300 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: component_name.AttributesAndVitals } }).run()"
-      >
-        Experiment Two
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing"><circle cx="12" cy="5" r="1" /><path d="m9 20 3-6 3 6" /><path d="m6 8 6 2 6-2" /><path d="M12 10v4" /></svg>
+        Build View
       </button>
     </div>
     <!-- Editor -->
