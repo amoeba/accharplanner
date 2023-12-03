@@ -45,15 +45,18 @@ export default {
 </script>
 
 <template>
-  <NodeViewWrapper class="vue-component">
-    <span class="label">
-      {{ node.attrs.selectedView }}
-      <button v-if="editor.isEditable" @click="cycleSubView">CYCLE</button>
-    </span>
-
-    <div class="content">
-      <GuideBuildView :node="node" />
-    </div>
+  <NodeViewWrapper class="inline-flex">
+    <CollapsiblePane :is-expanded="true" :is-collapsible="false">
+      <template #title>
+        {{ node.attrs.selectedView }}
+        <button v-if="editor.isEditable" @click="cycleSubView">
+          CYCLE
+        </button>
+      </template>
+      <template #content>
+        <GuideBuildView :node="node" />
+      </template>
+    </CollapsiblePane>
   </NodeViewWrapper>
 </template>
 
