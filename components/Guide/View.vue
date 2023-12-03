@@ -6,19 +6,27 @@ const client = useSupabaseClient()
 const user = useSupabaseUser()
 
 const guide = ref<Guide>()
+const errorMessage = ref("")
 
 const { data, error } = await fetchGuide(client, props.id)
 
+const submittedBy = ref("Anonymous")
+
 if (error) {
-  // TODO: Proper error handlings
-  console.log(error)
+  errorMessage.value = error
 }
 else {
   guide.value = data[0]
+
+  if (guide.value.profiles)
+    submittedBy.value = guide.value.profiles.name
 }
 </script>
 
 <template>
+  <div v-if="errorMessage">
+    {{ errorMessage }}
+  </div>
   <div v-if="guide">
     <div class="flex gap-2">
       <h2 class="text-lg font-bold">
@@ -37,7 +45,7 @@ else {
     <div v-if="guide.attribution">
       <p>Attributed to {{ guide.attribution }}</p>
     </div>
-    <p>Submitted By {{ guide.profiles.name }}</p>
+    <p>Submitted By {{ submittedBy }}</p>
     <GuideContentEditor v-model="guide.content" :editable="false" />
   </div>
 </template>
