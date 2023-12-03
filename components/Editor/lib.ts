@@ -3,3 +3,9 @@ export enum ComponentName {
   AttributesAndVitals = "Attributes & Vitals",
   Skills = "Skills",
 }
+
+export const Components = [
+  ComponentName.Creation,
+  ComponentName.AttributesAndVitals,
+  ComponentName.Skills,
+]

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { NodeViewWrapper, nodeViewProps } from "@tiptap/vue-3"
 
-import { ComponentName } from "./lib"
+import { ComponentName, Components } from "./lib"
 import GuideBuildView from "~/components/Build/GuideBuildView.vue"
 
 export default {
@@ -26,18 +26,19 @@ export default {
   setup() {
     return {
       nodeViewProps,
+      Components,
     }
   },
   methods: {
-    cycleSubView(e: Event) {
-      e.preventDefault()
+    onChange(e: Event) {
+      const newView = e.target.value
 
-      if (this.node.attrs.selectedView === ComponentName.Creation)
-        this.updateAttributes({ selectedView: ComponentName.AttributesAndVitals })
-      else if (this.node.attrs.selectedView === ComponentName.AttributesAndVitals)
-        this.updateAttributes({ selectedView: ComponentName.Skills })
-      else if (this.node.attrs.selectedView === ComponentName.Skills)
+      if (newView === ComponentName.Creation)
         this.updateAttributes({ selectedView: ComponentName.Creation })
+      else if (newView === ComponentName.AttributesAndVitals)
+        this.updateAttributes({ selectedView: ComponentName.AttributesAndVitals })
+      else if (newView === ComponentName.Skills)
+        this.updateAttributes({ selectedView: ComponentName.Skills })
     },
   },
 }
@@ -48,9 +49,13 @@ export default {
     <CollapsiblePane :is-expanded="true" :is-collapsible="false">
       <template #title>
         {{ node.attrs.selectedView }}
-        <button v-if="editor.isEditable" @click="cycleSubView">
-          CYCLE
-        </button>
+      </template>
+      <template #right>
+        <select v-if="editor.isEditable" class="px-1" @change="onChange">
+          <option v-for="v in Components" :key="v" :value="v">
+            {{ v }}
+          </option>
+        </select>
       </template>
       <template #content>
         <GuideBuildView :node="node" />
