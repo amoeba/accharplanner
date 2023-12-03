@@ -48,11 +48,11 @@ export default {
   <NodeViewWrapper class="inline-flex">
     <CollapsiblePane :is-expanded="true" :is-collapsible="false">
       <template #title>
-        {{ node.attrs.selectedView }}
-      </template>
-      <template #right>
+        <span v-if="!editor.isEditable">
+          {{ node.attrs.selectedView }}
+        </span>
         <select v-if="editor.isEditable" class="px-1" @change="onChange">
-          <option v-for="v in Components" :key="v" :value="v">
+          <option v-for="v in Components" :key="v" :value="v" :selected="node.attrs.selectedView === v">
             {{ v }}
           </option>
         </select>
