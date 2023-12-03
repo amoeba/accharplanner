@@ -35,9 +35,8 @@ export default {
       if (this.node.attrs.selectedView === ComponentName.Creation)
         this.updateAttributes({ selectedView: ComponentName.AttributesAndVitals })
       else if (this.node.attrs.selectedView === ComponentName.AttributesAndVitals)
-
         this.updateAttributes({ selectedView: ComponentName.Skills })
-      else if (this.node.attrs.selectedView === ComponentName.AttributesAndVitals)
+      else if (this.node.attrs.selectedView === ComponentName.Skills)
         this.updateAttributes({ selectedView: ComponentName.Creation })
     },
   },
