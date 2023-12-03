@@ -95,7 +95,7 @@ export default {
       </button>
     </div>
     <!-- Editor -->
-    <div class="p-1" :class="(editor && editor.options.editable) ? 'border rounded-b border-zinc-200' : ''">
+    <div :class="(editor && editor.options.editable) ? 'border rounded-b border-zinc-200 p-1' : ''">
       <EditorContent :editor="editor" />
     </div>
   </div>
