@@ -37,13 +37,14 @@ else {
       </ButtonLink>
     </div>
     <div>
-      <p>Created At {{ guide.created_at }}</p>
-      <p>Updated At {{ guide.updated_at }}</p>
+      <span>Created {{ new Date(guide.created_at).toLocaleDateString() }} Last Updated {{ new Date(guide.updated_at).toLocaleDateString() }}</span>
     </div>
     <div v-if="guide.attribution">
-      <p>Attributed to {{ guide.attribution }}</p>
+      <span>Attributed to {{ guide.attribution }}, submitted by {{ submittedBy }}</span>
     </div>
-    <p>Submitted By {{ submittedBy }}</p>
-    <GuideContentEditor v-model="guide.content" :editable="false" />
+    <div v-else>
+      <span>Submitted by {{ submittedBy }}</span>
+    </div>
+    <GuideContentEditor v-model="guide.content" :editable="false" class="py-2" />
   </div>
 </template>
