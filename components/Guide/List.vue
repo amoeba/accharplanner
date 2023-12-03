@@ -26,6 +26,7 @@ guides.value = await doFetchGuides()
       <NuxtLink :href="`/guides/${guide.id}`">
         {{ guide.title }}
       </NuxtLink>
+      by {{ guide.attribution || (guide.profiles ? guide.profiles.name : "Anonymous") }}
     </li>
   </ul>
 </template>
