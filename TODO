@@ -1,0 +1,13 @@
+TODO
+
+nuxt_refactor
+
+- Add back in Changelog page
+- Rebuild Builds page so users can see
+  - Local builds
+  - Recently shared builds
+  - Published builds
+  - Load builds saved to disk
+- Add back in About page
+- Create JSONSchema for builds so we can validate/etc
+- Light/Dark and other themes
