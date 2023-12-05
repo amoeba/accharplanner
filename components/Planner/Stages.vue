@@ -16,15 +16,12 @@ const toggleExpanded = async function () {
 
 // Drag and Drop
 const dragstart = async function (e: DragEvent) {
-  console.log("dragstart", e)
-
   if (!e.dataTransfer)
     return
 
   if (!e.target || !e.target.dataset)
     return
 
-  console.log("clientX is ", e.target)
   e.dataTransfer.setData("text/plain", e.target.dataset.index)
   e.dataTransfer.dropEffect = "move"
 }
@@ -32,15 +29,6 @@ const dragstart = async function (e: DragEvent) {
 const dragover = async function (e: DragEvent) {
   // Critical to keep this in
   e.preventDefault()
-}
-
-function drop(e: DragEvent) {
-  // Adjust client X by half the drag target's width. This makes
-  // drag and drop match the user's expectation more closely
-  const adjustedClientX = e.clientX - e.originalTarget.clientWidth / 2
-  const index = Number(e.dataTransfer?.getData("text/plain"))
-
-  update(index, adjustedClientX)
 }
 
 const update = async function (index: number, clientX: number) {
@@ -74,6 +62,18 @@ const update = async function (index: number, clientX: number) {
     return
 
   store.reorderStages(indices)
+}
+
+function drop(e: DragEvent) {
+  if (!e.currentTarget)
+    return
+
+  // Adjust client X by half the drag target's width. This makes
+  // drag and drop match the user's expectation more closely
+  const adjustedClientX = e.clientX - e.currentTarget.clientWidth / 2
+  const index = Number(e.dataTransfer?.getData("text/plain"))
+
+  update(index, adjustedClientX)
 }
 </script>
 
