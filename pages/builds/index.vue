@@ -3,8 +3,14 @@
     <h2 class="text-lg font-bold">
       Builds
     </h2>
-    <p>TODO</p>
+    <ul>
+      <li>Most recently shared builds globally</li>
+      <li>Most popular shared builds globally</li>
+    </ul>
 
+    <h2 class="text-lg font-bold mb-2">
+      Your Builds
+    </h2>
     <TabView initial-tab="local">
       <template #tabs>
         <Tab tab="local">
