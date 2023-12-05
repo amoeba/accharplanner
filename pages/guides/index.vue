@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-lg font-bold">
+    <h2 class="text-xl font-bold">
       Guides
     </h2>
     <p class="py-2">

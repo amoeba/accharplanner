@@ -1,12 +1,27 @@
 <template>
   <div>
-    <h2 class="text-lg font-bold">
+    <h2 class="text-xl font-bold">
       Builds
     </h2>
-    <ul>
-      <li>Most recently shared builds globally</li>
-      <li>Most popular shared builds globally</li>
-    </ul>
+    <p class="py-2">
+      Blurb about builds...
+    </p>
+
+    <h2 class="text-lg font-bold mb-2">
+      Public Builds
+    </h2>
+    <Suspense>
+      <PublishedBuilds />
+      <template #fallback>
+        Loading...
+      </template>
+    </Suspense>
+    <Suspense>
+      <LatestBuilds />
+      <template #fallback>
+        Loading...
+      </template>
+    </Suspense>
 
     <h2 class="text-lg font-bold mb-2">
       Your Builds
@@ -22,10 +37,10 @@
       </template>
       <template #content>
         <TabContent tab="local">
-          Local Content
+          TODO
         </TabContent>
         <TabContent tab="remote">
-          Remote Content
+          TODO
         </TabContent>
       </template>
     </TabView>
