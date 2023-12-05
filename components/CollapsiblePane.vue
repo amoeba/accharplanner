@@ -16,7 +16,7 @@ defineProps(["toggleExpanded", "isExpanded", "isCollapsible"])
         <slot name="right" />
       </div>
     </div>
-    <div :class="isExpanded ? 'block' : 'hidden'" :aria-expanded="isExpanded">
+    <div :class="isExpanded ? 'block' : 'hidden'" :aria-expanded="isExpanded" class="dark:border-stone-600">
       <div class="px-2 py-1">
         <slot name="content" />
       </div>
