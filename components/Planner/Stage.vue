@@ -27,18 +27,18 @@ const remove = async function () {
 <template>
   <div class="flex">
     <div
-      class="flex border border-zinc-200 rounded divide-x p-0"
-      :class="isSelected ? 'bg-zinc-200' : 'bg-transparent'"
+      class="flex border rounded divide-x p-0"
+      :class="isSelected ? 'bg-blue-600 dark:bg-blue-600 border-blue-800 text-white' : 'bg-stone-300 border-zinc-200 text-black'"
     >
-      <ButtonView
+      <button
         :data-index="index"
         :class="{ selected: isSelected }"
-        class="rounded-l px-3 hover:bg-zinc-200 cursor-grab"
+        class="rounded-l px-3 hover:bg-blue-600 hover:text-white cursor-grab"
         @click="load"
       >
         Level {{ level }}
-      </ButtonView>
-      <ButtonView class="rounded-r hover:text-red-600" @click="remove">
+      </button>
+      <button class="rounded-r hover:text-red-600" @click="remove">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -54,7 +54,7 @@ const remove = async function () {
           <path d="M18 6 6 18" />
           <path d="m6 6 12 12" />
         </svg>
-      </ButtonView>
+      </button>
     </div>
     <div class="flex flex-col justify-center">
       <div v-if="isNotLast" class="h-1 w-10 bg-zinc-200">
