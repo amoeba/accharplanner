@@ -2,15 +2,11 @@
 import { useMainStore } from "~/stores/main"
 
 const user = useSupabaseUser()
-
 const store = useMainStore()
 
-function toggleDarkMode(event: Event) {
-  const preference = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches
-
-  store.toggleDarkMode(preference)
+const doToggleDarkMode = async function () {
+  const prefersDark = !!window.matchMedia?.("(prefers-color-scheme: dark)").matches
+  store.toggleDarkMode(prefersDark)
 }
 </script>
 
@@ -23,7 +19,7 @@ function toggleDarkMode(event: Event) {
       >
         <span class="text-3xl font-bold text-green-400">▲</span> ODACCP
       </NuxtLink>
-      <span class="my-subtitle absolute top-10 left-10 opacity-0 transition-all duration-300 text-xs bg-white">The
+      <span class="z-10 my-subtitle absolute top-10 left-10 opacity-0 transition-all duration-300 text-xs dark:bg-inherit">The
         Overly-Detailed
         Asheron's
         Call Character
@@ -48,11 +44,10 @@ function toggleDarkMode(event: Event) {
       </NuxtLink>
     </div>
     <div class="flex gap-2 justify-self-end items-center px-2 py-1">
-      <button
-        aria-label="Toggle theme between dark and light"
-        class="theme-toggle"
-        @click="toggleDarkMode"
-      />
+      <button @click="doToggleDarkMode">
+        <svg v-if="store.darkMode" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+        <svg v-if="!store.darkMode" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+      </button>
       <NuxtLink href="https://github.com/amoeba/accharplanner">
         <svg
           width="24.5"

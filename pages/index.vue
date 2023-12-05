@@ -9,9 +9,9 @@
     <p>Blurb about the Planner</p>
 
     <div class="flex justify-center">
-      <NuxtLink class="border rounded border-zinc-200 hover:bg-zinc-50 px-2 py-1" to="/planner">
+      <ButtonLink class="border rounded border-zinc-200 hover:bg-zinc-50 px-2 py-1" to="/planner">
         Create a New Build
-      </NuxtLink>
+      </ButtonLink>
     </div>
 
     <Suspense>

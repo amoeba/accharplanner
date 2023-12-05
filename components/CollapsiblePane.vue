@@ -3,7 +3,7 @@ defineProps(["toggleExpanded", "isExpanded", "isCollapsible"])
 </script>
 
 <template>
-  <div class="border rounded border-zinc-200 divide-y w-full overflow-scroll">
+  <div class="border rounded dark:bg-stone-900 border-zinc-200 dark:border-stone-600 divide-y w-full overflow-scroll">
     <div
       class="flex rounded-tl rounded-tr"
       :class="isCollapsible ? 'hover:bg-zinc-50 cursor-pointer' : ''"

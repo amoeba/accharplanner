@@ -11,7 +11,7 @@
   input,
   range,
   select {
-    @apply w-full border border-zinc-200 rounded;
+    @apply w-full border bg-white dark:bg-stone-800 border-zinc-200 dark:border-stone-600 rounded;
   }
 
   input[type="text"] {

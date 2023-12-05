@@ -106,7 +106,6 @@ export default {
       </div>
       <!-- Desktop Planner Controls -->
       <div class="flex justify-end gap-x-1">
-        <PlannerLoggedInControls />
         <ButtonView @click="resetPlanner">
           <svg
             xmlns="http://www.w3.org/2000/svg"

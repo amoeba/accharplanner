@@ -246,7 +246,7 @@ export default {
     <td>
       <button
         :class="
-          cantDecrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'
+          cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
         class="rounded w-12 text-white px-1"
         :disabled="cantDecrease"
@@ -259,7 +259,7 @@ export default {
     <td>
       <button
         :class="
-          cantIncrease ? 'bg-gray-200' : 'bg-green-600 hover:bg-green-700'
+          cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
         class="rounded w-12 text-white px-1"
         @click="increaseTraining"
