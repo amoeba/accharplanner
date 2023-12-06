@@ -1,8 +1,9 @@
 import { Node, mergeAttributes } from "@tiptap/core"
 import { VueNodeViewRenderer } from "@tiptap/vue-3"
 
-import { ComponentName } from "./lib"
+import { ComponentName, TabName } from "./lib"
 import ExtensionTestComponent from "./ExtensionTestComponent.vue"
+import Build from "~/utils/Build"
 
 export default Node.create({
   name: "vueComponent", // FIXME
@@ -14,10 +15,10 @@ export default Node.create({
       id: {
         default: "OtFbpJEFl4",
       },
-      build: {
-        default: {},
+      tab: {
+        default: TabName.Start,
       },
-      selectedView: {
+      view: {
         default: ComponentName.Creation,
       },
     }

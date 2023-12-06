@@ -1,7 +1,7 @@
 <script lang="ts">
 import { NodeViewWrapper, nodeViewProps } from "@tiptap/vue-3"
 
-import { ComponentName, Components } from "./lib"
+import { Components, TabName } from "./lib"
 import GuideBuildView from "~/components/Build/GuideBuildView.vue"
 
 export default {
@@ -27,20 +27,24 @@ export default {
     return {
       nodeViewProps,
       Components,
+      TabName,
     }
   },
   methods: {
-    onChange(e: Event) {
-      const newView = e.target.value
+    changeTab(tab: TabName) {
+      this.updateAttributes({ tab })
+    },
+    changeView(e: Event) {
+      if (!e.target)
+        return
 
-      if (newView === ComponentName.Creation)
-        this.updateAttributes({ selectedView: ComponentName.Creation })
-      else if (newView === ComponentName.AttributesAndVitals)
-        this.updateAttributes({ selectedView: ComponentName.AttributesAndVitals })
-      else if (newView === ComponentName.Skills)
-        this.updateAttributes({ selectedView: ComponentName.Skills })
-      else if (newView === ComponentName.Planner)
-        this.updateAttributes({ selectedView: ComponentName.Planner })
+      this.updateAttributes({ view: e.target.value })
+    },
+    updateBuildId(e: Event) {
+      if (!e.target)
+        return
+
+      this.updateAttributes({ id: e.target.value })
     },
   },
 }
@@ -50,17 +54,59 @@ export default {
   <NodeViewWrapper class="inline-flex">
     <CollapsiblePane :is-expanded="true" :is-collapsible="false">
       <template #title>
-        <span v-if="!editor.isEditable">
-          {{ node.attrs.selectedView }}
-        </span>
-        <select v-if="editor.isEditable" class="px-1" @change="onChange">
-          <option v-for="v in Components" :key="v" :value="v" :selected="node.attrs.selectedView === v">
-            {{ v }}
-          </option>
-        </select>
+        <div v-if="!editor.isEditable">
+          {{ node.attrs.view }}
+        </div>
+        <div v-if="editor.isEditable">
+          <div v-if="node.attrs.tab === TabName.Start" class="flex gap-2">
+            Build
+            <ButtonView @click="changeTab(TabName.View)">
+              Next
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg>
+            </ButtonView>
+          </div>
+          <div v-if="node.attrs.tab === TabName.View" class="flex gap-2">
+            <ButtonView @click="changeTab(TabName.Start)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg>
+              Back
+            </ButtonView>
+            <select class="px-1" @change="changeView">
+              <option v-for="view in Components" :key="view" :value="view" :selected="node.attrs.view === view">
+                {{ view }}
+              </option>
+            </select>
+            <ButtonView @click="changeTab(TabName.Edit)">
+              Edit
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg>
+            </ButtonView>
+          </div>
+          <div v-if="node.attrs.tab === TabName.Edit" class="flex gap-2">
+            <ButtonView @click="changeTab(TabName.View)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg>
+              Back
+            </ButtonView>
+            Edit
+          </div>
+        </div>
       </template>
       <template #content>
-        <GuideBuildView :node="node" />
+        <div v-if="node.attrs.tab === TabName.Start">
+          <label>
+            Build ID
+            <input type="text" :value="node.attrs.id" @input="updateBuildId">
+          </label>
+        </div>
+        <div v-if="node.attrs.tab === TabName.View">
+          <Suspense>
+            <GuideBuildView :node="node" />
+            <template #fallback>
+              Loading build...
+            </template>
+          </Suspense>
+        </div>
+        <div v-if="node.attrs.tab === TabName.Edit">
+          <GuideMinimalPlanner />
+        </div>
       </template>
     </CollapsiblePane>
   </NodeViewWrapper>
