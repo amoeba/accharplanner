@@ -1,3 +1,9 @@
+export enum TabName {
+  Start = "Start",
+  View = "View",
+  Edit = "Edit",
+}
+
 export enum ComponentName {
   Creation = "Creation",
   AttributesAndVitals = "Attributes & Vitals",
