@@ -2,7 +2,7 @@ import { Node, mergeAttributes } from "@tiptap/core"
 import { VueNodeViewRenderer } from "@tiptap/vue-3"
 
 import { ComponentName } from "./lib"
-import Component from "./ExtensionTestComponent.vue"
+import ExtensionTestComponent from "./ExtensionTestComponent.vue"
 
 export default Node.create({
   name: "vueComponent", // FIXME
@@ -36,6 +36,6 @@ export default Node.create({
   },
 
   addNodeView() {
-    return VueNodeViewRenderer(Component)
+    return VueNodeViewRenderer(ExtensionTestComponent)
   },
 })
