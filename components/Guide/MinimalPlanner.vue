@@ -17,10 +17,6 @@ export default {
     Headers,
     AttributesAndVitals,
     Skills,
-    Augmentations,
-    LuminanceAuras,
-    Items,
-    ArmorSets,
   },
   setup() {
     const store = usePlannerStore()
