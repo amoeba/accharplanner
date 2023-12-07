@@ -26,11 +26,8 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
   <table class="w-72">
     <thead>
       <tr>
-        <th
-          class="text-left px-1 text-white"
-          style="background: linear-gradient( to right, #392067, #392067, transparent);"
-          colspan="3"
-        >
+        <th class="text-left px-1 text-white"
+          style="background: linear-gradient( to right, #392067, #392067, transparent);" colspan="3">
           Specialized
         </th>
       </tr>
@@ -43,7 +40,7 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
       </tr>
       <tr v-for="skill in store.specializedSkills" :key="skill">
         <td class="w-8">
-          <img :src="`/img/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
+          <img :src="`/icons/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
         </td>
         <td>{{ SKILL_NAME[skill] }}</td>
         <td class="text-right">
@@ -53,11 +50,8 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     </tbody>
     <thead>
       <tr>
-        <th
-          class="text-left px-1 text-white"
-          style="background: linear-gradient( to right, #0f3c3e, #0f3c3e, transparent);"
-          colspan="3"
-        >
+        <th class="text-left px-1 text-white"
+          style="background: linear-gradient( to right, #0f3c3e, #0f3c3e, transparent);" colspan="3">
           Trained
         </th>
       </tr>
@@ -70,7 +64,7 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
       </tr>
       <tr v-for="skill in store.trainedSkills" :key="skill">
         <td class="w-8">
-          <img :src="`/img/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
+          <img :src="`/icons/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
         </td>
         <td>{{ SKILL_NAME[skill] }}</td>
         <td class="text-right">

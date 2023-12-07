@@ -74,14 +74,14 @@ export default {
       // Can't if already specialized
       if (
         this.store.build.character.skills[this.name].training
-          === Training.SPECIALIZED
+        === Training.SPECIALIZED
       )
         return true
 
       // Can't if out of credits
       const newTraining
         = this.store.build.character.skills[this.name].training
-        === Training.TRAINED
+          === Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED
 
@@ -101,7 +101,7 @@ export default {
 
       if (
         this.store.skillPointsSpent + newCost
-          > this.store.skillPointsAvailable
+        > this.store.skillPointsAvailable
       )
         return true
 
@@ -148,13 +148,13 @@ export default {
         }
         else if (
           this.training === Training.SPECIALIZED
-            && out > MAX_SKILL_INVESTED_SPECIALIZED
+          && out > MAX_SKILL_INVESTED_SPECIALIZED
         ) {
           out = MAX_SKILL_INVESTED_SPECIALIZED
         }
         else if (
           this.training === Training.TRAINED
-            && out > MAX_SKILL_INVESTED_TRAINED
+          && out > MAX_SKILL_INVESTED_TRAINED
         ) {
           out = MAX_SKILL_INVESTED_TRAINED
         }
@@ -171,12 +171,12 @@ export default {
     maxInvestment() {
       if (
         this.store.build.character.skills[this.name].training
-          === Training.SPECIALIZED
+        === Training.SPECIALIZED
       )
         return MAX_SKILL_INVESTED_SPECIALIZED
       else if (
         this.store.build.character.skills[this.name].training
-          === Training.TRAINED
+        === Training.TRAINED
       )
         return MAX_SKILL_INVESTED_TRAINED
       else
@@ -231,39 +231,22 @@ export default {
 <template>
   <tr>
     <td>
-      <img
-        style="clip-path: circle(50%)"
-        :src="`/img/${name}.png`"
-        :alt="displayName"
-        width="20"
-        height="20"
-      >
+      <img style="clip-path: circle(50%)" :src="`/icons/${name}.png`" :alt="displayName" width="20" height="20">
     </td>
     <td>
       {{ displayName }}
       <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>
-      <button
-        :class="
-          cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
-        "
-        class="rounded w-12 text-white px-1"
-        :disabled="cantDecrease"
-        @click="decreaseTraining"
-      >
+      <button :class="cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
+        " class="rounded w-12 text-white px-1" :disabled="cantDecrease" @click="decreaseTraining">
         {{ decreaseCostText }}
         ↓
       </button>
     </td>
     <td>
-      <button
-        :class="
-          cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
-        "
-        class="rounded w-12 text-white px-1"
-        @click="increaseTraining"
-      >
+      <button :class="cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
+        " class="rounded w-12 text-white px-1" @click="increaseTraining">
         {{ increaseCostText }} ↑
       </button>
     </td>

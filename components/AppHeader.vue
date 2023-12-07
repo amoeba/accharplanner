@@ -14,7 +14,7 @@ const doToggleDarkMode = async function () {
   <header class="grid grid-cols-[auto_auto] items-center px-2 py-1">
     <div class="flex gap-4 items-baseline">
       <div class="flex items-baseline gap-1">
-        <img class="self-center" src=" /img/icons/axe_shield.gif" width="24" height="24">
+        <img class="self-center" src="/axe_shield.gif" width="24" height="24">
         <NuxtLink to="/" class="flex gap-1 my-title font-bold">
           ODACCP
         </NuxtLink>

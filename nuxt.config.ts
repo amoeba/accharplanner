@@ -14,18 +14,6 @@ export default defineNuxtConfig({
       baseUrl: "https://planner.treestats.net",
     },
   },
-  googleFonts: {
-    families: {
-      "League+Spartan": true,
-      "Roboto": true,
-      "Josefin+Sans": true,
-      "Lato": [100, 300],
-      "Raleway": {
-        wght: [100, 400],
-        ital: [100],
-      },
-    },
-  },
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
