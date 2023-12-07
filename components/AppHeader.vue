@@ -13,15 +13,23 @@ const doToggleDarkMode = async function () {
 <template>
   <header class="grid grid-cols-[auto_auto] items-center px-2 py-1">
     <div class="flex gap-4 items-baseline">
-      <NuxtLink to="/" class="my-title font-bold">
-        <span class="text-3xl font-bold text-green-400">▲</span> ODACCP
-      </NuxtLink>
-      <span
-        class="z-10 my-subtitle absolute top-10 left-10 opacity-0 transition-all duration-300 text-xs dark:bg-inherit">The
-        Overly-Detailed
-        Asheron's
-        Call Character
-        Planner</span>
+      <div class="flex items-baseline gap-1">
+        <svg class="self-center text-green-400 hover:text-green-600 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
+          width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+        </svg>
+        <NuxtLink to="/" class="flex gap-1 my-title font-bold">
+          ODACCP
+        </NuxtLink>
+        <span
+          class="z-10 my-subtitle absolute top-8 left-10 opacity-0 transition-all duration-300 text-black text-xs dark:bg-inherit">The
+          Overly-Detailed
+          Asheron's
+          Call Character
+          Planner</span>
+      </div>
+
       <NuxtLink to="/planner" class="hover:underline">
         Planner
       </NuxtLink>
