@@ -112,8 +112,15 @@ export const fetchGuide = async function (client: SupabaseClient, id: number): G
   `).eq("id", id)
 }
 
-export const fetchGuides = async function (client: SupabaseClient) {
-  return await client.from("guides").select()
+export const fetchGuidesCount = async function (client: SupabaseClient) {
+  return await client.from("guides").select("*", { count: "exact", head: true })
+}
+
+export const fetchGuides = async function (client: SupabaseClient, limit: number, page: number, pageSize: number) {
+  const from = (page - 1) * pageSize
+  const to = page * pageSize
+
+  return await client.from("guides").select().order("created_at", { ascending: false }).range(from, to).limit(limit)
 }
 
 export const updateGuide = async function (client: SupabaseClient, user: User, guide: Guide): Guide {
