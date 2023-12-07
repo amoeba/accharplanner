@@ -14,11 +14,7 @@ const doToggleDarkMode = async function () {
   <header class="grid grid-cols-[auto_auto] items-center px-2 py-1">
     <div class="flex gap-4 items-baseline">
       <div class="flex items-baseline gap-1">
-        <svg class="self-center text-green-400 hover:text-green-600 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-        </svg>
+        <img class="self-center" src=" /img/icons/axe_shield.gif" width="24" height="24">
         <NuxtLink to="/" class="flex gap-1 my-title font-bold">
           ODACCP
         </NuxtLink>
