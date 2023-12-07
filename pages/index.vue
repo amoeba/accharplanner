@@ -10,7 +10,7 @@
 
     <div class="flex justify-center">
       <ButtonLink class="border rounded border-zinc-200 hover:bg-zinc-50 px-2 py-1" to="/planner">
-        Create a New Build
+        Enter the Planner
       </ButtonLink>
     </div>
 

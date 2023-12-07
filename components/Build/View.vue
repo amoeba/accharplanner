@@ -3,7 +3,8 @@ const props = defineProps(["build"])
 </script>
 
 <template>
-  <div>
-    <BuildAttributesAndVitals :character="props.build.content.character" />
+  <div class="flex gap-2">
+    <BuildReadOnlyAttributesAndVitals :build="props.build" />
+    <BuildReadOnlySkillsView :build="props.build" />
   </div>
 </template>
