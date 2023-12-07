@@ -1,18 +1,41 @@
 <script setup lang="ts">
+import type { Database } from '~/utils/database.types';
+
 const client = useSupabaseClient()
 
-const guides = ref<Guide[]>([])
 
-const doFetchGuides = async function (): Promise<Guide[]> {
-  const { data, error } = await fetchGuides(client)
+const guides = ref<Database['public']['Tables']['guides']['Row'][]>()
+const guidesErrorMessage = ref("")
+const count = ref(0)
+const countErrorMessage = ref("")
 
-  if (error)
+const doCountGuides = async function (): Promise<number> {
+  const { count, error } = await fetchGuidesCount(client)
+
+  if (error) {
+    countErrorMessage.value = error.message
+
+    return -1;
+  }
+
+  return count || 0;
+}
+
+const doFetchGuides = async function (page: number): Promise<Database['public']['Tables']['guides']['Row'][]> {
+  const { data, error } = await fetchGuides(client, pageSize, page, pageSize)
+
+  if (error) {
+    guidesErrorMessage.value = error.message
+
     return []
+  }
 
   return data
 }
 
-guides.value = await doFetchGuides()
+count.value = await doCountGuides()
+guides.value = await doFetchGuides(page.value)
+
 </script>
 
 <template>
@@ -20,6 +43,15 @@ guides.value = await doFetchGuides()
     No guides created yet. <NuxtLink href="/guides/new">
       Create one
     </NuxtLink>
+  </div>
+  <div v-if="countErrorMessage">
+    {{ countErrorMessage }}
+  </div>
+  <div v-if="guidesErrorMessage">
+    {{ guidesErrorMessage }}
+  </div>
+  <div v-if="count">
+    Total: {{ count }}
   </div>
   <ul>
     <li v-for="guide in guides" :key="guide.id">
