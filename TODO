@@ -19,3 +19,4 @@ nuxt_refactor
 - Put an image of the planner up on the main page
 - Make selects and inputs the same size, height, padding, etc
 - Can I figure out a way to switch between panes and tabs view?
+- Fix bug in panes where the panes in the header don't collapse correctly
