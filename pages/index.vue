@@ -6,7 +6,7 @@
       <span>Welcome to ODACCP!</span>
     </div>
 
-    <div>
+    <div class="flex flex-col sm:flex-row">
       <Suspense>
         <PublishedBuilds :max="5" />
         <template #fallback>

@@ -17,7 +17,7 @@ const { data, error } = await getLastestBuilds(client, props.max || 10)
       <p v-if="error">
         {{ error }}
       </p>
-      <table v-if="data && data.length > 0">
+      <table v-if="data && data.length > 0" class="w-full">
         <thead>
           <tr>
             <th>Name</th>
