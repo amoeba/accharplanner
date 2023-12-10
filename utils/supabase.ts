@@ -60,7 +60,7 @@ export const publishBuild = async function (client: SupabaseClient, user: User, 
     .select()
 }
 
-export const getPublishedBuilds = async function (client: SupabaseClient) {
+export const getPublishedBuilds = async function (client: SupabaseClient, max: number) {
   return await client
     .from("builds")
     .select(`
@@ -76,10 +76,10 @@ export const getPublishedBuilds = async function (client: SupabaseClient) {
     `)
     .order("created_at")
     .eq("is_published", true)
-    .limit(10)
+    .limit(max)
 }
 
-export const getLastestBuilds = async function (client: SupabaseClient) {
+export const getLastestBuilds = async function (client: SupabaseClient, max: number) {
   return await client
     .from("builds")
     .select(`
@@ -94,7 +94,7 @@ export const getLastestBuilds = async function (client: SupabaseClient) {
       )
     `)
     .order("created_at")
-    .limit(10)
+    .limit(max)
 }
 
 // Guides
