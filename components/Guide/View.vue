@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Guide } from "~/utils/models"
+import { useTimeAgo } from '@vueuse/core'
 
 const props = defineProps(["id"])
 const client = useSupabaseClient()
@@ -12,14 +13,21 @@ const { data, error } = await fetchGuide(client, props.id)
 
 const submittedBy = ref("Anonymous")
 
+let createdAt
+let updatedAt
+
 if (error) {
   errorMessage.value = error
 }
 else {
   guide.value = data[0]
 
-  if (guide.value.profiles)
+  if (guide.value.profiles) {
     submittedBy.value = guide.value.profiles.name
+  }
+
+  createdAt = useTimeAgo(new Date(guide.value.created_at))
+  updatedAt = useTimeAgo(new Date(guide.value.updated_at))
 }
 </script>
 
@@ -37,7 +45,7 @@ else {
       </ButtonLink>
     </div>
     <div>
-      <span>Created {{ new Date(guide.created_at).toLocaleDateString() }} Last Updated {{ new Date(guide.updated_at).toLocaleDateString() }}</span>
+      <span>Created {{ createdAt }} Last Updated {{ updatedAt }}</span>
     </div>
     <div v-if="guide.attribution">
       <span>Attributed to {{ guide.attribution }}, submitted by {{ submittedBy }}</span>
