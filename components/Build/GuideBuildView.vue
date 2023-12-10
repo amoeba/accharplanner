@@ -1,21 +1,26 @@
 <script setup lang="ts">
-import { ComponentName } from '../Editor/lib'
-import ReadOnlyAttributesAndVitals from './ReadOnlyAttributesAndVitals.vue'
-import ReadOnlyCreation from './ReadOnlyCreation.vue'
-import ReadOnlySkillsView from './ReadOnlySkillsView.vue'
+import { ComponentName } from "../Editor/lib"
+import ReadOnlyAttributesAndVitals from "./ReadOnlyAttributesAndVitals.vue"
+import ReadOnlyCreation from "./ReadOnlyCreation.vue"
+import ReadOnlySkillsView from "./ReadOnlySkillsView.vue"
 
-const props = defineProps(['node'])
+const props = defineProps(["node"])
 const client = useSupabaseClient()
 const { data, error } = await loadBuild(client, props.node.attrs.id)
-const errorMessage = ref('')
+const errorMessage = ref("")
 
 let build: Build
 
-if (error) { errorMessage.value = error.message }
-else {
-  if (data.length < 1) { errorMessage.value = `Couldn't find build with ID ${props.node.attrs.id}.` }
-
-  else { build = data[0].content }
+if (error) {
+  errorMessage.value = error.message
+}
+ else {
+  if (data.length < 1) {
+    errorMessage.value = `Couldn't find build with ID ${props.node.attrs.id}.`
+  }
+ else {
+    build = data[0].content
+  }
 }
 </script>
 

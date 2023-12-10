@@ -1,13 +1,13 @@
 <script>
-import Stages from '~/components/Planner/Stages.vue'
-import Headers from '~/components/Planner/Headers.vue'
-import AttributesAndVitals from '~/components/Planner/AttributesAndVitals.vue'
-import Skills from '~/components/Planner/Skills.vue'
+import Stages from "~/components/Planner/Stages.vue"
+import Headers from "~/components/Planner/Headers.vue"
+import AttributesAndVitals from "~/components/Planner/AttributesAndVitals.vue"
+import Skills from "~/components/Planner/Skills.vue"
 
-import { usePlannerStore } from '~/stores/planner'
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Planner',
+  name: "Planner",
   components: {
     Stages,
     Headers,
@@ -24,10 +24,14 @@ export default {
       () => store.build.character,
       () => {
         // Skip if no selected stage
-        if (store.ui.currentStage === null) { return }
+        if (store.ui.currentStage === null) {
+          return
+        }
 
         // Skip if selected stage is invalid for some reason
-        if (store.ui.currentStage > store.build.stages.length) { return }
+        if (store.ui.currentStage > store.build.stages.length) {
+          return
+        }
 
         store.build.stages[store.ui.currentStage] = JSON.parse(
           JSON.stringify(store.build.character),

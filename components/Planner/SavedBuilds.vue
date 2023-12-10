@@ -1,9 +1,9 @@
 <script>
-import Build from './SavedBuild.vue'
-import { usePlannerStore } from '~/stores/planner'
+import Build from "./SavedBuild.vue"
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'SavedBuilds',
+  name: "SavedBuilds",
   components: {
     Build,
   },

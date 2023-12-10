@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Stage from './Stage.vue'
-import { usePlannerStore } from '~/stores/planner'
+import Stage from "./Stage.vue"
+import { usePlannerStore } from "~/stores/planner"
 
 const store = usePlannerStore()
 
@@ -16,12 +16,16 @@ const toggleExpanded = async function () {
 
 // Drag and Drop
 const dragstart = async function (e: DragEvent) {
-  if (!e.dataTransfer) { return }
+  if (!e.dataTransfer) {
+    return
+  }
 
-  if (!e.target || !e.target.dataset) { return }
+  if (!e.target || !e.target.dataset) {
+    return
+  }
 
-  e.dataTransfer.setData('text/plain', e.target.dataset.index)
-  e.dataTransfer.dropEffect = 'move'
+  e.dataTransfer.setData("text/plain", e.target.dataset.index)
+  e.dataTransfer.dropEffect = "move"
 }
 
 const dragover = async function (e: DragEvent) {
@@ -38,8 +42,10 @@ const update = async function (index: number, clientX: number) {
   ]
 
   // TODO: Convert to a ref instead of document.querySelectorAll
-  document.querySelectorAll('div.stage').forEach((el, i) => {
-    if (i === index) { return }
+  document.querySelectorAll("div.stage").forEach((el, i) => {
+    if (i === index) {
+      return
+    }
 
     stages.push({
       index: i,
@@ -55,18 +61,22 @@ const update = async function (index: number, clientX: number) {
 
   // Don't re-order if no re-order happened. Do that by making sure
   // the indices are monotonically increasing
-  if (valuesMatchIndicies(indices)) { return }
+  if (valuesMatchIndicies(indices)) {
+    return
+  }
 
   store.reorderStages(indices)
 }
 
 function drop(e: DragEvent) {
-  if (!e.currentTarget) { return }
+  if (!e.currentTarget) {
+    return
+  }
 
   // Adjust client X by half the drag target's width. This makes
   // drag and drop match the user's expectation more closely
   const adjustedClientX = e.clientX - e.currentTarget.clientWidth / 2
-  const index = Number(e.dataTransfer?.getData('text/plain'))
+  const index = Number(e.dataTransfer?.getData("text/plain"))
 
   update(index, adjustedClientX)
 }

@@ -53,7 +53,7 @@ export default {
         * ((state.build.character.level + 5) ** 5 - 6 ** 5),
       )
     }
-    else {
+ else {
       cost += COST_LEVEL[state.build.character.level]
       cost += state.build.character.timesEnlightened * COST_LEVEL[MAX_LEVEL]
     }
@@ -90,7 +90,7 @@ export default {
     // Adjust for free stuff, like racial experience augmentations
     if (
       (state.build.character.race === Race.Aluvian
-      || state.build.character.race === Race['Gharu\'ndim']
+      || state.build.character.race === Race["Gharu'ndim"]
       || state.build.character.race === Race.Sho
       || state.build.character.race === Race.Viamontian)
       && state.build.character.augmentations.jack_of_all_trades.invested === 1
@@ -100,7 +100,7 @@ export default {
           state.build.character.augmentations.jack_of_all_trades.invested
         ]
     }
-    else if (
+ else if (
       state.build.character.race === Race.Empyrean
       && state.build.character.augmentations.infused_life_magic.invested === 1
     ) {
@@ -109,7 +109,7 @@ export default {
           state.build.character.augmentations.infused_life_magic.invested
         ]
     }
-    else if (
+ else if (
       (state.build.character.race === Race.Umbraen
       || state.build.character.race === Race.Penumbraen)
       && state.build.character.augmentations.eye_of_the_remorseless.invested === 1
@@ -119,7 +119,7 @@ export default {
           state.build.character.augmentations.eye_of_the_remorseless.invested
         ]
     }
-    else if (
+ else if (
       state.build.character.race === Race.Lugian
       && state.build.character.augmentations.might_of_the_seventh_mule.invested
       === 1
@@ -129,7 +129,7 @@ export default {
           state.build.character.augmentations.might_of_the_seventh_mule.invested
         ]
     }
-    else if (
+ else if (
       state.build.character.race === Race.Tumerok
       && state.build.character.augmentations.hand_of_the_remorseless.invested === 1
     ) {
@@ -144,10 +144,14 @@ export default {
 
   totalXPInvestedError: (state: State) => {
     if (Number.isNaN(state.totalXPInvested)) {
-      if (state.settings.infiniteMode) { return 'XP calculations in Infinite Mode may not work because I haven\'t brough in the formulas. If you have good ones, let me know.' }
-      else { return 'Calculating total invested experience failed for an unknown reason. Please file a bug report.' }
+      if (state.settings.infiniteMode) {
+        return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know."
+      }
+ else {
+        return "Calculating total invested experience failed for an unknown reason. Please file a bug report."
+      }
     }
-    else {
+ else {
       return false
     }
   },
@@ -155,17 +159,23 @@ export default {
   unassignedXP: (state: State) => {
     const diff = state.totalXPEarned - state.totalXPInvested
 
-    if (diff < 0) { return 0 }
+    if (diff < 0) {
+      return 0
+    }
 
     return diff
   },
 
   unassignedXPError: (state: State) => {
     if (Number.isNaN(state.totalXPInvested)) {
-      if (state.settings.infiniteMode) { return 'XP calculations in Infinite Mode may not work because I haven\'t brough in the formulas. If you have good ones, let me know.' }
-      else { return 'Calculating unassigned experience failed for an unknown reason. Please file a bug report.' }
+      if (state.settings.infiniteMode) {
+        return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know."
+      }
+ else {
+        return "Calculating unassigned experience failed for an unknown reason. Please file a bug report."
+      }
     }
-    else {
+ else {
       return false
     }
   },
@@ -190,8 +200,12 @@ export default {
       }
     }
 
-    if (by_cost < by_skill_points) { return by_skill_points }
-    else { return by_cost }
+    if (by_cost < by_skill_points) {
+      return by_skill_points
+    }
+ else {
+      return by_cost
+    }
   },
 
   skillPointsAvailable: (state: State) => {
@@ -209,7 +223,9 @@ export default {
     Object.keys(Skill).forEach((skillName: string): void => {
       const training: string = state.build.character.skills[skillName].training
 
-      if (training === Training.SPECIALIZED || training === Training.TRAINED) { cost += SKILL_COST_AT_TRAINING[skillName][training] }
+      if (training === Training.SPECIALIZED || training === Training.TRAINED) {
+        cost += SKILL_COST_AT_TRAINING[skillName][training]
+      }
     })
 
     return cost
@@ -223,7 +239,9 @@ export default {
         state.build.character.skills[skill]
         && state.build.character.skills[skill].training === Training.SPECIALIZED
         && SPEC_COSTS_AUG[skill]
-      ) { cost += 1 }
+      ) {
+        cost += 1
+      }
     })
 
     return cost
@@ -237,7 +255,9 @@ export default {
         state.build.character.skills[skill]
         && state.build.character.skills[skill].training === Training.SPECIALIZED
         && SPEC_COSTS_AUG[skill]
-      ) { cost += 1000000000 }
+      ) {
+        cost += 1000000000
+      }
     })
 
     // Add in cost of the auras that are selected
@@ -250,7 +270,9 @@ export default {
 
     // Enlightenment requires you get all lum auras (20mil xp)
     // TODO: Track auras and this together
-    if (state.build.character.timesEnlightened > 0) { cost += 20000000 * state.build.character.timesEnlightened }
+    if (state.build.character.timesEnlightened > 0) {
+      cost += 20000000 * state.build.character.timesEnlightened
+    }
 
     return cost
   },
@@ -259,7 +281,9 @@ export default {
     let cost = 0
 
     state.specializedSkills.forEach((skill: string) => {
-      if (SPEC_COSTS_AUG[skill]) { return }
+      if (SPEC_COSTS_AUG[skill]) {
+        return
+      }
 
       cost += SKILL_COST_AT_TRAINING[skill][Training.SPECIALIZED]
     })
@@ -301,16 +325,24 @@ export default {
         + state.build.character.augmentations.enduring_calm.invested * 5
         + state.build.character.augmentations.steadfast_will.invested * 5
 
-    if (totalAttributeBonus > 50) { return 'Cannot raise innate attributes above 380 total!' }
+    if (totalAttributeBonus > 50) {
+      return "Cannot raise innate attributes above 380 total!"
+    }
 
     // Check we haven't spent too many attribute points
-    if (state.attributePointsSpent > state.attributePointsAvailable) { return 'You have overspent on attribute points!' }
+    if (state.attributePointsSpent > state.attributePointsAvailable) {
+      return "You have overspent on attribute points!"
+    }
   },
   strengthInnate: (state: State) => {
     const value = state.build.character.attributes.strength.creation
 
-    if (value > 100) { return 100 }
-    else { return value }
+    if (value > 100) {
+      return 100
+    }
+ else {
+      return value
+    }
   },
   strengthBase: (state: State) => {
     return (
@@ -330,8 +362,12 @@ export default {
   enduranceInnate: (state: State) => {
     const value = state.build.character.attributes.endurance.creation
 
-    if (value > 100) { return 100 }
-    else { return value }
+    if (value > 100) {
+      return 100
+    }
+ else {
+      return value
+    }
   },
   enduranceBase: (state: State) => {
     return (
@@ -351,8 +387,12 @@ export default {
   coordinationInnate: (state: State) => {
     const value = state.build.character.attributes.coordination.creation
 
-    if (value > 100) { return 100 }
-    else { return value }
+    if (value > 100) {
+      return 100
+    }
+ else {
+      return value
+    }
   },
   coordinationBase: (state: State) => {
     return (
@@ -376,8 +416,12 @@ export default {
   quicknessInnate: (state: State) => {
     const value = state.build.character.attributes.quickness.creation
 
-    if (value > 100) { return 100 }
-    else { return value }
+    if (value > 100) {
+      return 100
+    }
+ else {
+      return value
+    }
   },
   quicknessBase: (state: State) => {
     return (
@@ -397,8 +441,12 @@ export default {
   focusInnate: (state: State) => {
     const value = state.build.character.attributes.focus.creation
 
-    if (value > 100) { return 100 }
-    else { return value }
+    if (value > 100) {
+      return 100
+    }
+ else {
+      return value
+    }
   },
   focusBase: (state: State) => {
     return state.focusInnate + state.build.character.attributes.focus.invested
@@ -417,8 +465,12 @@ export default {
   selfInnate: (state: State) => {
     const value = state.build.character.attributes.self.creation
 
-    if (value > 100) { return 100 }
-    else { return value }
+    if (value > 100) {
+      return 100
+    }
+ else {
+      return value
+    }
   },
   selfBase: (state: State) => {
     return state.selfInnate + state.build.character.attributes.self.invested
@@ -511,7 +563,9 @@ export default {
 
   // Skills
   alchemyBase: (state: State) => {
-    if (state.build.character.skills.alchemy.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.alchemy.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.focusBase) / 3)
@@ -561,7 +615,9 @@ export default {
   arcane_loreBase: (state: State) => {
     if (
       state.build.character.skills.arcane_lore.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round(state.focusBase / 3)
@@ -602,7 +658,9 @@ export default {
     if (
       state.build.character.skills.armor_tinkering.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.enduranceBase + state.focusBase) / 2)
@@ -651,7 +709,9 @@ export default {
     if (
       state.build.character.skills.assess_creature.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       trainingBonus(state.build.character.skills.assess_creature.training)
@@ -679,7 +739,9 @@ export default {
   assess_personBase: (state: State) => {
     if (
       state.build.character.skills.assess_person.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       trainingBonus(state.build.character.skills.assess_person.training)
@@ -705,7 +767,9 @@ export default {
     )
   },
   cookingBase: (state: State) => {
-    if (state.build.character.skills.cooking.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.cooking.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.focusBase) / 3)
@@ -756,7 +820,9 @@ export default {
     if (
       state.build.character.skills.creature_enchantment.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.focusBase + state.selfBase) / 4)
@@ -808,7 +874,9 @@ export default {
     )
   },
   deceptionBase: (state: State) => {
-    if (state.build.character.skills.deception.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.deception.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       trainingBonus(state.build.character.skills.deception.training)
@@ -835,7 +903,9 @@ export default {
   dirty_fightingBase: (state: State) => {
     if (
       state.build.character.skills.dirty_fighting.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.coordinationBase) / 3)
@@ -886,7 +956,9 @@ export default {
   dual_wieldBase: (state: State) => {
     if (
       state.build.character.skills.dual_wield.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.coordinationBase) / 3)
@@ -937,7 +1009,9 @@ export default {
     if (
       state.build.character.skills.finesse_weapons.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.quicknessBase) / 3)
@@ -992,7 +1066,9 @@ export default {
     )
   },
   fletchingBase: (state: State) => {
-    if (state.build.character.skills.fletching.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.fletching.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.focusBase) / 3)
@@ -1040,7 +1116,9 @@ export default {
     )
   },
   healingBase: (state: State) => {
-    if (state.build.character.skills.healing.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.healing.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.focusBase) / 3)
@@ -1089,7 +1167,9 @@ export default {
   heavy_weaponsBase: (state: State) => {
     if (
       state.build.character.skills.heavy_weapons.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.coordinationBase) / 3)
@@ -1144,7 +1224,9 @@ export default {
     if (
       state.build.character.skills.item_enchantment.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.focusBase + state.selfBase) / 4)
@@ -1196,7 +1278,9 @@ export default {
   item_tinkeringBase: (state: State) => {
     if (
       state.build.character.skills.item_tinkering.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.focusBase) / 2)
@@ -1246,7 +1330,9 @@ export default {
     )
   },
   jumpBase: (state: State) => {
-    if (state.build.character.skills.jump.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.jump.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.coordinationBase) / 2)
@@ -1295,7 +1381,9 @@ export default {
   leadershipBase: (state: State) => {
     if (
       state.build.character.skills.leadership.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       trainingBonus(state.build.character.skills.leadership.training)
@@ -1322,7 +1410,9 @@ export default {
   life_magicBase: (state: State) => {
     if (
       state.build.character.skills.life_magic.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.focusBase + state.selfBase) / 4)
@@ -1372,7 +1462,9 @@ export default {
   light_weaponsBase: (state: State) => {
     if (
       state.build.character.skills.light_weapons.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.coordinationBase) / 3)
@@ -1424,7 +1516,9 @@ export default {
     )
   },
   lockpickBase: (state: State) => {
-    if (state.build.character.skills.lockpick.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.lockpick.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.focusBase) / 3)
@@ -1472,7 +1566,9 @@ export default {
     )
   },
   loyaltyBase: (state: State) => {
-    if (state.build.character.skills.loyalty.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.loyalty.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       trainingBonus(state.build.character.skills.loyalty.training)
@@ -1502,7 +1598,9 @@ export default {
   magic_defenseBase: (state: State) => {
     if (
       state.build.character.skills.magic_defense.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.focusBase + state.selfBase) / 7)
@@ -1553,7 +1651,9 @@ export default {
     if (
       state.build.character.skills.magic_item_tinkering.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       state.focusBase
@@ -1593,7 +1693,9 @@ export default {
     if (
       state.build.character.skills.mana_conversion.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.focusBase + state.selfBase) / 6)
@@ -1640,7 +1742,9 @@ export default {
   melee_defenseBase: (state: State) => {
     if (
       state.build.character.skills.melee_defense.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.quicknessBase) / 3)
@@ -1695,7 +1799,9 @@ export default {
     if (
       state.build.character.skills.missile_defense.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.quicknessBase) / 5)
@@ -1751,7 +1857,9 @@ export default {
     if (
       state.build.character.skills.missile_weapons.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round(state.coordinationBase / 2)
@@ -1799,7 +1907,9 @@ export default {
   recklessnessBase: (state: State) => {
     if (
       state.build.character.skills.recklessness.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.quicknessBase) / 3)
@@ -1842,7 +1952,9 @@ export default {
     )
   },
   runBase: (state: State) => {
-    if (state.build.character.skills.run.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.run.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       state.quicknessBase
@@ -1872,7 +1984,9 @@ export default {
     )
   },
   salvagingBase: (state: State) => {
-    if (state.build.character.skills.salvaging.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.salvaging.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       trainingBonus(state.build.character.skills.salvaging.training)
@@ -1900,7 +2014,9 @@ export default {
     )
   },
   shieldBase: (state: State) => {
-    if (state.build.character.skills.shield.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.shield.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.coordinationBase) / 2)
@@ -1948,7 +2064,9 @@ export default {
   sneak_attackBase: (state: State) => {
     if (
       state.build.character.skills.sneak_attack.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.coordinationBase + state.quicknessBase) / 3)
@@ -1997,7 +2115,9 @@ export default {
     )
   },
   summoningBase: (state: State) => {
-    if (state.build.character.skills.summoning.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.summoning.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.enduranceBase + state.selfBase) / 3)
@@ -2042,7 +2162,9 @@ export default {
     if (
       state.build.character.skills.two_handed_combat.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.coordinationBase) / 3)
@@ -2097,7 +2219,9 @@ export default {
   void_magicBase: (state: State) => {
     if (
       state.build.character.skills.void_magic.training === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.focusBase + state.selfBase) / 4)
@@ -2145,7 +2269,9 @@ export default {
     )
   },
   war_magicBase: (state: State) => {
-    if (state.build.character.skills.war_magic.training === Training.UNUSABLE) { return 0 }
+    if (state.build.character.skills.war_magic.training === Training.UNUSABLE) {
+      return 0
+    }
 
     return (
       Math.round((state.focusBase + state.selfBase) / 4)
@@ -2196,7 +2322,9 @@ export default {
     if (
       state.build.character.skills.weapon_tinkering.training
       === Training.UNUSABLE
-    ) { return 0 }
+    ) {
+      return 0
+    }
 
     return (
       Math.round((state.strengthBase + state.focusBase) / 2)
@@ -2269,31 +2397,39 @@ export default {
         + state.build.character.augmentations.enduring_calm.invested * 5
         + state.build.character.augmentations.steadfast_will.invested * 5
 
-    if (totalAttributeBonus > 50) { return 'Cannot augment attributes more than ten times!' }
+    if (totalAttributeBonus > 50) {
+      return "Cannot augment attributes more than ten times!"
+    }
   },
   auraErrors: (state: State) => {
-    const msg = 'Using too many Seers. You may only choose one.'
+    const msg = "Using too many Seers. You may only choose one."
 
     // If you have Specialization, you can't have Retribution, Hardening
     if (
       state.build.character.luminance_auras.specialization.invested > 0
       && (state.build.character.luminance_auras.hardening.invested > 0
       || state.build.character.luminance_auras.retribution.invested > 0)
-    ) { return msg }
+    ) {
+      return msg
+    }
 
     // If you have Destruction, you can't have Invulnerability, Hardening
     if (
       state.build.character.luminance_auras.destruction.invested > 0
       && (state.build.character.luminance_auras.invulnerability.invested > 0
       || state.build.character.luminance_auras.hardening.invested > 0)
-    ) { return msg }
+    ) {
+      return msg
+    }
 
     // If you have Invulnerability, you can't have Destruction, Retribution
     if (
       state.build.character.luminance_auras.invulnerability.invested > 0
       && (state.build.character.luminance_auras.retribution.invested > 0
       || state.build.character.luminance_auras.destruction.invested > 0)
-    ) { return msg }
+    ) {
+      return msg
+    }
 
     // If you have Retribution, you can't have Specialization, Invulnerability, Hardening
     if (
@@ -2301,7 +2437,9 @@ export default {
       && (state.build.character.luminance_auras.specialization.invested > 0
       || state.build.character.luminance_auras.invulnerability.invested > 0
       || state.build.character.luminance_auras.hardening.invested > 0)
-    ) { return msg }
+    ) {
+      return msg
+    }
 
     // If you have Hardening, you can't have Specialization, Destruction, Retribution
     if (
@@ -2309,7 +2447,9 @@ export default {
       && (state.build.character.luminance_auras.specialization.invested > 0
       || state.build.character.luminance_auras.destruction.invested > 0
       || state.build.character.luminance_auras.retribution.invested > 0)
-    ) { return msg }
+    ) {
+      return msg
+    }
 
     return null
   },
@@ -2323,7 +2463,9 @@ export default {
         return p + c
       }, 0)
 
-    if (numEquipped > 10) { return 'Do you really have more than 10 armor set items equipped?' }
+    if (numEquipped > 10) {
+      return "Do you really have more than 10 armor set items equipped?"
+    }
 
     return null
   },

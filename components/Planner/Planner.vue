@@ -1,17 +1,17 @@
 <script>
-import Stages from './Stages.vue'
-import Headers from './Headers.vue'
-import AttributesAndVitals from './AttributesAndVitals.vue'
-import Skills from './Skills.vue'
-import Augmentations from './Augmentations.vue'
-import LuminanceAuras from './LuminanceAuras.vue'
-import Items from './Items.vue'
-import ArmorSets from './ArmorSets.vue'
+import Stages from "./Stages.vue"
+import Headers from "./Headers.vue"
+import AttributesAndVitals from "./AttributesAndVitals.vue"
+import Skills from "./Skills.vue"
+import Augmentations from "./Augmentations.vue"
+import LuminanceAuras from "./LuminanceAuras.vue"
+import Items from "./Items.vue"
+import ArmorSets from "./ArmorSets.vue"
 
-import { usePlannerStore } from '~/stores/planner'
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Planner',
+  name: "Planner",
   components: {
     Stages,
     Headers,
@@ -32,10 +32,14 @@ export default {
       () => store.build.character,
       () => {
         // Skip if no selected stage
-        if (store.ui.currentStage === null) { return }
+        if (store.ui.currentStage === null) {
+          return
+        }
 
         // Skip if selected stage is invalid for some reason
-        if (store.ui.currentStage > store.build.stages.length) { return }
+        if (store.ui.currentStage > store.build.stages.length) {
+          return
+        }
 
         store.build.stages[store.ui.currentStage] = JSON.parse(
           JSON.stringify(store.build.character),

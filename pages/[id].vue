@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import { useRoute } from "vue-router"
 
 const client = useSupabaseClient()
 const route = useRoute()
 
-const errorMessage = ref('')
+const errorMessage = ref("")
 
 // TODO: Load build
 const { data, error } = await loadBuild(client, route.params.id)
@@ -14,9 +14,13 @@ let build: Build
 if (error) {
   errorMessage.value = error.message
 }
-else if (data) {
-  if (data.length < 1) { errorMessage.value = `Couldn't find build with ID ${route.params.id}.` }
-  else { build = data[0].content }
+ else if (data) {
+  if (data.length < 1) {
+    errorMessage.value = `Couldn't find build with ID ${route.params.id}.`
+  }
+ else {
+    build = data[0].content
+  }
 }
 </script>
 

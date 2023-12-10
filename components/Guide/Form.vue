@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useGuideStore } from '~/stores/guide'
+import { useGuideStore } from "~/stores/guide"
 
-const props = defineProps(['submit'])
+const props = defineProps(["submit"])
 const store = useGuideStore()
 </script>
 

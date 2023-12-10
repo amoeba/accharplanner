@@ -1,8 +1,8 @@
 <script>
-import { usePlannerStore } from '~/stores/planner'
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Skill',
+  name: "Skill",
   props: {
     name: String,
     training: String,
@@ -32,11 +32,17 @@ export default {
       const currentTraining
         = this.store.build.character.skills[this.name].training
 
-      if (currentTraining === Training.SPECIALIZED) { return '' }
+      if (currentTraining === Training.SPECIALIZED) {
+        return ""
+      }
 
       if (currentTraining === Training.TRAINED) {
-        if (SPEC_COSTS_AUG[this.name]) { return 'A' }
-        else { return SKILL_COST_AT_TRAINING[this.name].specialized }
+        if (SPEC_COSTS_AUG[this.name]) {
+          return "A"
+        }
+ else {
+          return SKILL_COST_AT_TRAINING[this.name].specialized
+        }
       }
 
       return SKILL_COST_AT_TRAINING[this.name].trained
@@ -48,26 +54,38 @@ export default {
       if (
         currentTraining === Training.UNUSABLE
         || currentTraining === Training.UNTRAINED
-      ) { return '' }
+      ) {
+        return ""
+      }
 
       if (currentTraining === Training.SPECIALIZED) {
-        if (SPEC_COSTS_AUG[this.name]) { return 'A' }
-        else { return SKILL_COST_AT_TRAINING[this.name].specialized }
+        if (SPEC_COSTS_AUG[this.name]) {
+          return "A"
+        }
+ else {
+          return SKILL_COST_AT_TRAINING[this.name].specialized
+        }
       }
 
       if (currentTraining === Training.TRAINED) {
-        if (!UNTRAINABLE[this.name]) { return }
-        else { return SKILL_COST_AT_TRAINING[this.name].trained }
+        if (!UNTRAINABLE[this.name]) {
+          return
+        }
+ else {
+          return SKILL_COST_AT_TRAINING[this.name].trained
+        }
       }
 
-      return ''
+      return ""
     },
     cantIncrease() {
       // Can't if already specialized
       if (
         this.store.build.character.skills[this.name].training
           === Training.SPECIALIZED
-      ) { return true }
+      ) {
+        return true
+      }
 
       // Can't if out of credits
       const newTraining
@@ -86,21 +104,25 @@ export default {
           = SKILL_COST_AT_TRAINING[this.name][Training.SPECIALIZED]
           - SKILL_COST_AT_TRAINING[this.name][Training.TRAINED]
       }
-      else if (newTraining === Training.TRAINED) {
+ else if (newTraining === Training.TRAINED) {
         newCost = SKILL_COST_AT_TRAINING[this.name][Training.TRAINED]
       }
 
       if (
         this.store.skillPointsSpent + newCost
           > this.store.skillPointsAvailable
-      ) { return true }
+      ) {
+        return true
+      }
 
       // Can't if would push you over 70 max spec'd credits
       if (
         newTraining === Training.SPECIALIZED
         && this.store.specializedSkillPointsSpent + newCost
         > MAX_SPECIALIZED_SKILL_CREDITS_SPENT
-      ) { return true }
+      ) {
+        return true
+      }
 
       return false
     },
@@ -108,13 +130,19 @@ export default {
       const training = this.store.build.character.skills[this.name].training
 
       // Can't if not trained or higher
-      if (training === Training.UNTRAINED || training === Training.UNTRAINED) { return true }
+      if (training === Training.UNTRAINED || training === Training.UNTRAINED) {
+        return true
+      }
 
       // Can't if not untrainable
-      if (training === Training.TRAINED && !UNTRAINABLE[this.name]) { return true }
+      if (training === Training.TRAINED && !UNTRAINABLE[this.name]) {
+        return true
+      }
 
       // Can't if not trained
-      if (training === Training.UNTRAINED || training === Training.UNUSABLE) { return true }
+      if (training === Training.UNTRAINED || training === Training.UNUSABLE) {
+        return true
+      }
 
       return false
     },
@@ -132,19 +160,19 @@ export default {
         if (this.store.settings.infiniteMode) {
           // Do nothing
         }
-        else if (
+ else if (
           this.training === Training.SPECIALIZED
             && out > MAX_SKILL_INVESTED_SPECIALIZED
         ) {
           out = MAX_SKILL_INVESTED_SPECIALIZED
         }
-        else if (
+ else if (
           this.training === Training.TRAINED
             && out > MAX_SKILL_INVESTED_TRAINED
         ) {
           out = MAX_SKILL_INVESTED_TRAINED
         }
-        else if (out < 0) {
+ else if (out < 0) {
           out = 0
         }
 
@@ -158,12 +186,18 @@ export default {
       if (
         this.store.build.character.skills[this.name].training
           === Training.SPECIALIZED
-      ) { return MAX_SKILL_INVESTED_SPECIALIZED }
-      else if (
+      ) {
+        return MAX_SKILL_INVESTED_SPECIALIZED
+      }
+ else if (
         this.store.build.character.skills[this.name].training
           === Training.TRAINED
-      ) { return MAX_SKILL_INVESTED_TRAINED }
-      else { return -1 }
+      ) {
+        return MAX_SKILL_INVESTED_TRAINED
+      }
+ else {
+        return -1
+      }
     },
     base() {
       return Math.round(this.store[`${this.name}Base`])

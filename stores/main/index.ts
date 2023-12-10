@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia"
 
 interface MainState {
   darkMode: boolean | null
@@ -8,7 +8,7 @@ const mainState: MainState = {
   darkMode: null,
 }
 
-export const useMainStore = defineStore('main', {
+export const useMainStore = defineStore("main", {
   state: () => mainState,
   actions: {
     toggleDarkMode(prefersDark: boolean) {

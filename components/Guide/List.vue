@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Database } from '~/utils/database.types'
+import type { Database } from "~/utils/database.types"
 
 const route = useRoute()
 const client = useSupabaseClient()
@@ -7,10 +7,10 @@ const client = useSupabaseClient()
 const page = ref(getPage(route.query.page))
 const pageSize = 20
 
-const guides = ref<Database['public']['Tables']['guides']['Row'][]>()
-const guidesErrorMessage = ref('')
+const guides = ref<Database["public"]["Tables"]["guides"]["Row"][]>()
+const guidesErrorMessage = ref("")
 const count = ref(0)
-const countErrorMessage = ref('')
+const countErrorMessage = ref("")
 
 const doCountGuides = async function (): Promise<number> {
   const { count, error } = await fetchGuidesCount(client)
@@ -24,7 +24,7 @@ const doCountGuides = async function (): Promise<number> {
   return count || 0
 }
 
-const doFetchGuides = async function (page: number): Promise<Database['public']['Tables']['guides']['Row'][]> {
+const doFetchGuides = async function (page: number): Promise<Database["public"]["Tables"]["guides"]["Row"][]> {
   const { data, error } = await fetchGuides(client, pageSize, page, pageSize)
 
   if (error) {

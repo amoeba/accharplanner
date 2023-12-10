@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGuideStore } from '~/stores/guide'
+import { useGuideStore } from "~/stores/guide"
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -29,7 +29,7 @@ const onSubmit = async function () {
   }
 
   if (!data || data.length <= 0) {
-    errors.value.push('An unexpected error was encountered.')
+    errors.value.push("An unexpected error was encountered.")
 
     return
   }

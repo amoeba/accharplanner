@@ -1,10 +1,10 @@
 <script>
-import { createClient } from '@supabase/supabase-js'
-import MD from 'markdown-it'
-import { usePlannerStore } from '~/stores/planner'
+import { createClient } from "@supabase/supabase-js"
+import MD from "markdown-it"
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Build',
+  name: "Build",
   setup() {
     const store = usePlannerStore()
 
@@ -45,9 +45,9 @@ export default {
       )
 
       const { data, error } = await supabase
-        .from('official_builds')
+        .from("official_builds")
         .select()
-        .eq('id', this.$route.params.id)
+        .eq("id", this.$route.params.id)
 
       if (error) {
         this.error = error
@@ -58,7 +58,7 @@ export default {
       this.loading = false
       this.build = data[0]
 
-      this.build.description = MD('default', {
+      this.build.description = MD("default", {
         breaks: true,
         linkify: true,
       }).render(this.build.description)
@@ -70,23 +70,23 @@ export default {
       )
 
       const { error } = await supabase
-        .from('official_builds')
+        .from("official_builds")
         .delete()
-        .eq('id', this.$route.params.id)
+        .eq("id", this.$route.params.id)
 
       if (error) {
         this.store.addNotification({
-          type: 'error',
+          type: "error",
           message: `Error deleting build: ${JSON.stringify(error)}`,
         })
       }
-      else {
+ else {
         this.store.addNotification({
-          type: 'success',
-          message: 'Build deleted.',
+          type: "success",
+          message: "Build deleted.",
         })
 
-        this.$router.push('/builds')
+        this.$router.push("/builds")
       }
     },
   },

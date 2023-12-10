@@ -1,9 +1,9 @@
 <script>
-import Augmentation from './Augmentation.vue'
-import { usePlannerStore } from '~/stores/planner'
+import Augmentation from "./Augmentation.vue"
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Augmentations',
+  name: "Augmentations",
   components: {
     Augmentation,
   },
@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      filterQuery: '',
+      filterQuery: "",
     }
   },
   computed: {
@@ -30,7 +30,7 @@ export default {
       return filterText(this.filterQuery, Object.keys(AUGMENTATION_NAME))
     },
     filterPresent() {
-      return this.filterQuery !== ''
+      return this.filterQuery !== ""
     },
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
       this.store.toggleAugmentationsPane()
     },
     clearFilter() {
-      this.filterQuery = ''
+      this.filterQuery = ""
     },
   },
 }

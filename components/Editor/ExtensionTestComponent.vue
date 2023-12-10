@@ -1,8 +1,8 @@
 <script lang="ts">
-import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
+import { NodeViewWrapper, nodeViewProps } from "@tiptap/vue-3"
 
-import { Components, TabName } from './lib'
-import GuideBuildView from '~/components/Build/GuideBuildView.vue'
+import { Components, TabName } from "./lib"
+import GuideBuildView from "~/components/Build/GuideBuildView.vue"
 
 export default {
   components: {
@@ -35,12 +35,16 @@ export default {
       this.updateAttributes({ tab })
     },
     changeView(e: Event) {
-      if (!e.target) { return }
+      if (!e.target) {
+        return
+      }
 
       this.updateAttributes({ view: e.target.value })
     },
     updateBuildId(e: Event) {
-      if (!e.target) { return }
+      if (!e.target) {
+        return
+      }
 
       this.updateAttributes({ id: e.target.value })
     },

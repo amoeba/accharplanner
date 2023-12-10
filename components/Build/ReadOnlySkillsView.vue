@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia"
 
-import { SKILL_NAME } from '~/utils/mappings'
+import { SKILL_NAME } from "~/utils/mappings"
 
 // Kindy hack implementation for now: Defines a brand new Pinia store just for
 // this component, gives it what it needs to do skill calculations, and then
 // populates the template with the values we need
-import state from '~/stores/planner/state'
-import getters from '~/stores/planner/getters'
-import actions from '~/stores/planner/actions'
+import state from "~/stores/planner/state"
+import getters from "~/stores/planner/getters"
+import actions from "~/stores/planner/actions"
 
-const props = defineProps(['build'])
+const props = defineProps(["build"])
 
-const usePlannerStore = defineStore('planner', {
+const usePlannerStore = defineStore("planner", {
   state: () => state,
   getters,
   actions,

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { inject, ref, watch } from 'vue'
-import { useRuntimeConfig } from 'nuxt/app'
-import { useClipboard } from '@vueuse/core'
+import { inject, ref, watch } from "vue"
+import { useRuntimeConfig } from "nuxt/app"
+import { useClipboard } from "@vueuse/core"
 
-import { usePlannerStore } from '~/stores/planner'
+import { usePlannerStore } from "~/stores/planner"
 
 const store = usePlannerStore()
 const config = useRuntimeConfig()
@@ -11,14 +11,16 @@ const client = useSupabaseClient()
 const user = useSupabaseUser()
 
 // Refs + injects
-const shareBuildURL = ref('')
-const errorMessage = ref('')
+const shareBuildURL = ref("")
+const errorMessage = ref("")
 const { text, copy, copied, isSupported } = useClipboard({ shareBuildURL })
 
-const isPopoutVisible = inject('isPopoutVisible')
+const isPopoutVisible = inject("isPopoutVisible")
 
 watch([isPopoutVisible], async (newVal, oldVal) => {
-  if (newVal[0]) { await doShareBuild() }
+  if (newVal[0]) {
+    await doShareBuild()
+  }
 })
 
 // Form state
@@ -37,8 +39,8 @@ const setSharedBuild = function (id: string) {
 }
 
 const doShareBuild = async function () {
-  console.log('doShareBuild')
-  shareBuildURL.value = ''
+  console.log("doShareBuild")
+  shareBuildURL.value = ""
 
   try {
     shareState.value = ShareState.SHARING
@@ -49,12 +51,12 @@ const doShareBuild = async function () {
       shareState.value = ShareState.ERROR
       errorMessage.value = error.message
     }
-    else if (data && data.length === 1) {
+ else if (data && data.length === 1) {
       shareState.value = ShareState.SUCCESS
       setSharedBuild(data[0].id)
     }
   }
-  catch (error) {
+ catch (error) {
     shareState.value = ShareState.ERROR
   }
 }

@@ -1,9 +1,9 @@
 <script>
-import Vital from './Vital.vue'
-import { usePlannerStore } from '~/stores/planner'
+import Vital from "./Vital.vue"
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Vitals',
+  name: "Vitals",
   components: {
     Vital,
   },

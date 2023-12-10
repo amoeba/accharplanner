@@ -1,9 +1,9 @@
 <script>
-import ExtraSkillCredits from './ExtraSkillCredits.vue'
-import { usePlannerStore } from '~/stores/planner'
+import ExtraSkillCredits from "./ExtraSkillCredits.vue"
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Headers',
+  name: "Headers",
   components: {
     ExtraSkillCredits,
   },
@@ -130,8 +130,12 @@ export default {
     updateLevel(e) {
       let actual = Math.round(Number(e.target.value))
 
-      if (Number.isNaN(actual) || actual < MIN_LEVEL) { actual = MIN_LEVEL }
-      else if (!this.settingsInfiniteMode && actual > MAX_LEVEL) { actual = MAX_LEVEL }
+      if (Number.isNaN(actual) || actual < MIN_LEVEL) {
+        actual = MIN_LEVEL
+      }
+ else if (!this.settingsInfiniteMode && actual > MAX_LEVEL) {
+        actual = MAX_LEVEL
+      }
 
       this.store.updateLevel(actual)
     },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue"
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -10,10 +10,10 @@ interface SupabaseError {
   message: string
 }
 
-const defaultButtonText = 'Send 🔮 Link'
-const email = ref('')
+const defaultButtonText = "Send 🔮 Link"
+const email = ref("")
 const submitButtonText = ref(defaultButtonText)
-const errorMessage = ref('')
+const errorMessage = ref("")
 
 // Form state state machine
 enum FormState {
@@ -26,14 +26,14 @@ enum FormState {
 const formState = ref(FormState.UNSENT)
 
 const handleSubmit = async function () {
-  errorMessage.value = ''
+  errorMessage.value = ""
 
   const finalEmail = email.value.trim()
 
   if (finalEmail.length <= 0) {
     formState.value = FormState.ERROR
     errorMessage.value
-      = 'Please provide an email address that isn\'t just an empty string.'
+      = "Please provide an email address that isn't just an empty string."
 
     return
   }
@@ -43,7 +43,7 @@ const handleSubmit = async function () {
 
 const signInWithEmail = async function (email: string) {
   formState.value = FormState.SENDING
-  submitButtonText.value = 'Sending...'
+  submitButtonText.value = "Sending..."
 
   const config = useRuntimeConfig()
 
@@ -60,9 +60,9 @@ const signInWithEmail = async function (email: string) {
       submitButtonText.value = defaultButtonText
       errorMessage.value = error.message
     }
-    else {
+ else {
       formState.value = FormState.SUCCESS
-      submitButtonText.value = 'Check your inbox!'
+      submitButtonText.value = "Check your inbox!"
 
       setTimeout(() => {
         formState.value = FormState.UNSENT
@@ -70,7 +70,7 @@ const signInWithEmail = async function (email: string) {
       }, 3000)
     }
   }
-  catch (e: any) {
+ catch (e: any) {
     formState.value = FormState.ERROR
     submitButtonText.value = defaultButtonText
     errorMessage.value = e

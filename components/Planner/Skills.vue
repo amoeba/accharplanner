@@ -1,9 +1,9 @@
 <script>
-import Skill from './Skill.vue'
-import { usePlannerStore } from '~/stores/planner'
+import Skill from "./Skill.vue"
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'Skills',
+  name: "Skills",
   components: { Skill },
   setup() {
     const store = usePlannerStore()
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      filterQuery: '',
+      filterQuery: "",
       maxSkillInvestedSpecialized: MAX_SKILL_INVESTED_SPECIALIZED,
     }
   },
@@ -43,19 +43,25 @@ export default {
           `You've overspent by ${
           overspent
           } skill${
-          overspent === 1 ? ' point!' : '  points!'}`
+          overspent === 1 ? " point!" : "  points!"}`
         )
       }
 
-      return ''
+      return ""
     },
     augmentationsRequired() {
       return this.store.augmentationsSpent
     },
     augmentationsRequiredText() {
-      if (this.store.augmentationsSpent === 0) { return '' }
-      else if (this.store.augmentationsSpent === 1) { return '1 aug required' }
-      else { return `${this.store.augmentationsSpent} augs required` }
+      if (this.store.augmentationsSpent === 0) {
+        return ""
+      }
+ else if (this.store.augmentationsSpent === 1) {
+        return "1 aug required"
+      }
+ else {
+        return `${this.store.augmentationsSpent} augs required`
+      }
     },
     specializedSkills() {
       const collection = Object.keys(this.store.build.character.skills).filter(
@@ -93,7 +99,7 @@ export default {
       return this.store.trainedSkills.length === 0
     },
     filterPresent() {
-      return this.filterQuery !== ''
+      return this.filterQuery !== ""
     },
   },
   methods: {
@@ -110,7 +116,7 @@ export default {
       this.store.changeAllSkillCantrips(e.target.value)
     },
     clearFilter() {
-      this.filterQuery = ''
+      this.filterQuery = ""
     },
   },
 }

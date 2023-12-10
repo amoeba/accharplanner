@@ -1,4 +1,4 @@
-import DefaultCharacter from '~/utils/DefaultCharacter'
+import DefaultCharacter from "~/utils/DefaultCharacter"
 
 const state: State = {
   ui: {

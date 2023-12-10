@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps(['href'])
+const props = defineProps(["href"])
 </script>
 
 <template>

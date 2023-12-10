@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useMainStore } from '~/stores/main'
+import { useMainStore } from "~/stores/main"
 
 const user = useSupabaseUser()
 const store = useMainStore()
 
 const doToggleDarkMode = async function () {
-  const prefersDark = !!window.matchMedia?.('(prefers-color-scheme: dark)').matches
+  const prefersDark = !!window.matchMedia?.("(prefers-color-scheme: dark)").matches
   store.toggleDarkMode(prefersDark)
 }
 </script>

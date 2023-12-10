@@ -1,5 +1,5 @@
-import pkg from 'lodash'
-import DefaultCharacter from '~/utils/DefaultCharacter'
+import pkg from "lodash"
+import DefaultCharacter from "~/utils/DefaultCharacter"
 
 const { merge } = pkg
 
@@ -9,16 +9,16 @@ export default {
 
     // First try to find a published build, then try to find a shared build
     const response_official = await client
-      .from('official_builds')
+      .from("official_builds")
       .select()
-      .eq('id', options.build_id)
+      .eq("id", options.build_id)
 
     // Yoink .data out to make TypeScript happy
     const response_official_data = response_official.data
 
     if (response_official.error) {
       this.addNotification({
-        type: 'error',
+        type: "error",
         message:
           `Failed to load build '${
           options.build_id
@@ -27,7 +27,7 @@ export default {
           }'.`,
       })
 
-      options.router.push('/')
+      options.router.push("/")
 
       return
     }
@@ -37,16 +37,16 @@ export default {
 
     if (!response_official_data?.length) {
       const response_shared = await client
-        .from('builds')
+        .from("builds")
         .select()
-        .eq('id', options.build_id)
+        .eq("id", options.build_id)
 
       // Yoink .data out again like above
       response_shared_data = response_shared.data
 
       if (response_shared.error) {
         this.addNotification({
-          type: 'error',
+          type: "error",
           message:
             `Failed to load build '${
             options.build_id
@@ -55,14 +55,14 @@ export default {
             }'.`,
         })
 
-        options.router.push('/')
+        options.router.push("/")
 
         return
       }
 
       if (!response_shared_data || response_shared_data.length !== 1) {
         this.addNotification({
-          type: 'error',
+          type: "error",
           message:
             `The build with this identifier: '${
             options.build_id
@@ -70,7 +70,7 @@ export default {
           pinned: true,
         })
 
-        options.router.push('/')
+        options.router.push("/")
 
         return
       }
@@ -83,14 +83,14 @@ export default {
 
     if (!data) {
       this.addNotification({
-        type: 'error',
+        type: "error",
         message:
           `The build with this identifier: '${
           options.build_id
           }' was not found. This could either be a really bad bug or you just have a typo in your URL.`,
       })
 
-      options.router.push('/')
+      options.router.push("/")
 
       return
     }
@@ -101,7 +101,7 @@ export default {
     // accordingly. The new format has top-level keys of character and
     // stages while the old format has all the keys of the character right
     // at the top level.
-    if ('character' in build) {
+    if ("character" in build) {
       // Load the character portion of the build
       const char = DefaultCharacter()
       merge(char, build.character)
@@ -119,9 +119,11 @@ export default {
       this.build.stages = stages
 
       // Change to first stage if appropriate
-      if (this.build.stages.length > 0) { this.changeStage(0) }
+      if (this.build.stages.length > 0) {
+        this.changeStage(0)
+      }
     }
-    else {
+ else {
       const char = DefaultCharacter()
       merge(char, build.character)
 
@@ -130,11 +132,11 @@ export default {
     }
 
     this.addNotification({
-      type: 'success',
-      message: 'Successfully loaded build!',
+      type: "success",
+      message: "Successfully loaded build!",
     })
 
-    options.router.push('/')
+    options.router.push("/")
   },
 
   async loadBuildFromJSON(build: Build) {
@@ -149,26 +151,26 @@ export default {
     this.build = build
 
     this.addNotification({
-      type: 'success',
-      message: 'Successfully imported build.',
+      type: "success",
+      message: "Successfully imported build.",
     })
   },
   async publishBuild() {
     const client = useSupabaseClient()
 
     const { data, error } = await client
-      .from('official_builds')
+      .from("official_builds")
       .insert({
-        id: this.build.character.name.toLowerCase().replace(/[^\w]/, '_'),
+        id: this.build.character.name.toLowerCase().replace(/[^\w]/, "_"),
         name: this.build.character.name,
-        description: 'To be filled in...',
+        description: "To be filled in...",
         content: this.build,
       })
       .select()
 
     if (error) {
       this.addNotification({
-        type: 'error',
+        type: "error",
         message:
           `Failed to publish build due to error: ${
           JSON.stringify(error)
@@ -245,7 +247,9 @@ export default {
   },
   deleteStage(index: number) {
     // Stop if out of bounds
-    if (index > this.build.stages.length) { return }
+    if (index > this.build.stages.length) {
+      return
+    }
 
     this.ui.currentStage = null
     this.build.stages.splice(index, 1)
@@ -268,7 +272,9 @@ export default {
   },
   deleteBuild(key: string) {
     for (let i = 0; i < this.ui.savedBuilds.length; i++) {
-      if (this.ui.savedBuilds[i].key === key) { this.ui.savedBuilds.splice(i, 1) }
+      if (this.ui.savedBuilds[i].key === key) {
+        this.ui.savedBuilds.splice(i, 1)
+      }
     }
   },
   deleteAllBuilds() {
@@ -290,7 +296,7 @@ export default {
     // Also update experience augmentations to match new race
     if (
       value === Race.Aluvian
-      || value === Race['Gharu\'ndim']
+      || value === Race["Gharu'ndim"]
       || value === Race.Sho
       || value === Race.Viamontian
     ) {
@@ -300,28 +306,28 @@ export default {
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 0
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
-    else if (value === Race.Empyrean) {
+ else if (value === Race.Empyrean) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 1
       this.build.character.augmentations.eye_of_the_remorseless.invested = 0
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 0
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
-    else if (value === Race.Umbraen || value === Race.Penumbraen) {
+ else if (value === Race.Umbraen || value === Race.Penumbraen) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 0
       this.build.character.augmentations.eye_of_the_remorseless.invested = 1
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 0
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
-    else if (value === Race.Lugian) {
+ else if (value === Race.Lugian) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 0
       this.build.character.augmentations.eye_of_the_remorseless.invested = 0
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 1
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
-    else if (value === Race.Tumerok) {
+ else if (value === Race.Tumerok) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 0
       this.build.character.augmentations.eye_of_the_remorseless.invested = 0
@@ -336,9 +342,15 @@ export default {
   updateTimesEnlightened(value: number) {
     let actual = Number(value)
 
-    if (Number.isNan(actual)) { actual = 0 }
-    else if (actual < 0) { actual = 0 }
-    else if (actual > 5) { actual = 5 }
+    if (Number.isNan(actual)) {
+      actual = 0
+    }
+ else if (actual < 0) {
+      actual = 0
+    }
+ else if (actual > 5) {
+      actual = 5
+    }
 
     this.build.character.timesEnlightened = actual
   },
@@ -347,7 +359,7 @@ export default {
     this.build.character.extraSkillCredits[payload.name] = payload.value
 
     // Set luminance aura skill points to match
-    if (payload.name === 'luminance1' || payload.name === 'luminance2') {
+    if (payload.name === "luminance1" || payload.name === "luminance2") {
       this.build.character.luminance_auras.skill.invested
         = this.build.character.extraSkillCredits.luminance1
         + this.build.character.extraSkillCredits.luminance2
@@ -364,8 +376,12 @@ export default {
     let newVal = Number(payload.value)
 
     // Clamp to be from 10-100
-    if (newVal > 100) { newVal = 100 }
-    else if (newVal < 10) { newVal = 10 }
+    if (newVal > 100) {
+      newVal = 100
+    }
+ else if (newVal < 10) {
+      newVal = 10
+    }
 
     // Ensure we haven't spent more than we can and adjust other
     // attributes if needed
@@ -373,8 +389,12 @@ export default {
       .map((a) => {
         // Don't count old value for the attribute we're changing, use the new
         // value
-        if (a === payload.name) { return newVal }
-        else { return this.build.character.attributes[a].creation }
+        if (a === payload.name) {
+          return newVal
+        }
+ else {
+          return this.build.character.attributes[a].creation
+        }
       })
       .reduce((a, v) => {
         return a + v
@@ -414,8 +434,12 @@ export default {
   updateAttributeInvested(payload: any) {
     let newval
 
-    if (this.settings.infiniteMode) { newval = Number(payload.value) }
-    else { newval = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED) }
+    if (this.settings.infiniteMode) {
+      newval = Number(payload.value)
+    }
+ else {
+      newval = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED)
+    }
 
     this.build.character.attributes[payload.name].invested = newval
   },
@@ -433,8 +457,12 @@ export default {
   updateVitalInvested(payload: any) {
     let newval
 
-    if (this.settings.infiniteMode) { newval = Number(payload.value) }
-    else { newval = Math.min(Number(payload.value), MAX_VITAL_INVESTED) }
+    if (this.settings.infiniteMode) {
+      newval = Number(payload.value)
+    }
+ else {
+      newval = Math.min(Number(payload.value), MAX_VITAL_INVESTED)
+    }
 
     this.build.character.vitals[payload.name].invested = newval
   },
@@ -445,7 +473,7 @@ export default {
     if (this.settings.infiniteMode) {
       skill.invested = Number(payload.value)
     }
-    else {
+ else {
       const max = maxSkillInvested(skill.training)
       skill.invested = Math.min(Number(payload.value), max)
     }
@@ -489,7 +517,9 @@ export default {
         newTraining = Training.TRAINED
 
         // Stop now if in infinite mode
-        if (this.settings.infiniteMode) { break }
+        if (this.settings.infiniteMode) {
+          break
+        }
 
         // Reduce max skill invested to 208 (max for trained) if over
         if (
@@ -537,23 +567,23 @@ export default {
     if (payload.name === Augmentation.reinforcement_of_the_lugians) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.strength)
     }
-    else if (payload.name === Augmentation.bleearghs_fortitude) {
+ else if (payload.name === Augmentation.bleearghs_fortitude) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.endurance)
     }
-    else if (payload.name === Augmentation.oswalds_enhancement) {
+ else if (payload.name === Augmentation.oswalds_enhancement) {
       updateAugmentationInvestedSideEffect(
         state,
         payload,
         Attribute.coordination,
       )
     }
-    else if (payload.name === Augmentation.siraluuns_blessing) {
+ else if (payload.name === Augmentation.siraluuns_blessing) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.quickness)
     }
-    else if (payload.name === Augmentation.enduring_calm) {
+ else if (payload.name === Augmentation.enduring_calm) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.focus)
     }
-    else if (payload.name === Augmentation.steadfast_will) {
+ else if (payload.name === Augmentation.steadfast_will) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.self)
     }
 
@@ -566,19 +596,19 @@ export default {
       this.build.character.skills.armor_tinkering.training
         = Training.SPECIALIZED
     }
-    else if (payload.name === Augmentation.yoshis_essence) {
+ else if (payload.name === Augmentation.yoshis_essence) {
       this.build.character.skills.item_tinkering.training
         = Training.SPECIALIZED
     }
-    else if (payload.name === Augmentation.celdiseths_essence) {
+ else if (payload.name === Augmentation.celdiseths_essence) {
       this.build.character.skills.magic_item_tinkering.training
         = Training.SPECIALIZED
     }
-    else if (payload.name === Augmentation.kogas_essence) {
+ else if (payload.name === Augmentation.kogas_essence) {
       this.build.character.skills.weapon_tinkering.training
         = Training.SPECIALIZED
     }
-    else if (payload.name === Augmentation.ciandras_essence) {
+ else if (payload.name === Augmentation.ciandras_essence) {
       this.build.character.skills.salvaging.training = Training.SPECIALIZED
     }
   },
@@ -628,7 +658,7 @@ export default {
             ? MAX_SKILL_INVESTED_SPECIALIZED
             : newval
       }
-      else if (
+ else if (
         this.build.character.skills[skill].training === Training.TRAINED
       ) {
         this.build.character.skills[skill].invested
@@ -667,7 +697,7 @@ export default {
             ? MAX_SKILL_INVESTED_SPECIALIZED
             : newval
       }
-      else if (
+ else if (
         this.build.character.skills[skill].training === Training.TRAINED
       ) {
         newval
@@ -675,7 +705,7 @@ export default {
             ? MAX_SKILL_INVESTED_TRAINED
             : newval
       }
-      else {
+ else {
         newval = 0
       }
 
@@ -742,18 +772,24 @@ export default {
       message: payload.message,
     })
 
-    if (payload.pinned) { return }
+    if (payload.pinned) {
+      return
+    }
 
     setTimeout(() => {
       for (let i = 0; i < this.ui.notifications.length; i++) {
-        if (this.ui.notifications[i].id === notification_id) { this.ui.notifications.splice(i, 1) }
+        if (this.ui.notifications[i].id === notification_id) {
+          this.ui.notifications.splice(i, 1)
+        }
       }
     }, 3000)
   },
 
   removeNotification(id: number) {
     for (let i = 0; i < this.ui.notifications.length; i++) {
-      if (this.ui.notifications[i].id === id) { this.ui.notifications.splice(i, 1) }
+      if (this.ui.notifications[i].id === id) {
+        this.ui.notifications.splice(i, 1)
+      }
     }
   },
 

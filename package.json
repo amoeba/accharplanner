@@ -8,9 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "test": "vitest"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.8.0",
@@ -30,7 +28,6 @@
     "pinia": "^2.1.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.1.1",
     "@nuxt/devtools": "latest",
     "@nuxt/test-utils": "^3.8.1",
     "@nuxtjs/google-fonts": "^3.0.2",
@@ -40,7 +37,6 @@
     "@vueuse/core": "^10.6.1",
     "@vueuse/nuxt": "^10.6.1",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.54.0",
     "nuxt": "^3.7.4",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.3",

@@ -1,18 +1,18 @@
-import { Node, mergeAttributes } from '@tiptap/core'
-import { VueNodeViewRenderer } from '@tiptap/vue-3'
+import { Node, mergeAttributes } from "@tiptap/core"
+import { VueNodeViewRenderer } from "@tiptap/vue-3"
 
-import { ComponentName, TabName } from './lib'
-import ExtensionTestComponent from './ExtensionTestComponent.vue'
+import { ComponentName, TabName } from "./lib"
+import ExtensionTestComponent from "./ExtensionTestComponent.vue"
 
 export default Node.create({
-  name: 'vueComponent', // FIXME
-  group: 'block',
+  name: "vueComponent", // FIXME
+  group: "block",
   atom: true, // FIXME: Research this
 
   addAttributes() {
     return {
       id: {
-        default: 'OtFbpJEFl4',
+        default: "OtFbpJEFl4",
       },
       tab: {
         default: TabName.Start,
@@ -26,13 +26,13 @@ export default Node.create({
   parseHTML() {
     return [
       {
-        tag: 'vue-component', // FIXME
+        tag: "vue-component", // FIXME
       },
     ]
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['vue-component', mergeAttributes(HTMLAttributes)] // FIXME
+    return ["vue-component", mergeAttributes(HTMLAttributes)] // FIXME
   },
 
   addNodeView() {

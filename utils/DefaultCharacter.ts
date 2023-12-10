@@ -1,8 +1,8 @@
 export default function (): Character {
   return {
-    name: 'An Adventurer',
-    race: 'Aluvian',
-    gender: 'Female',
+    name: "An Adventurer",
+    race: "Aluvian",
+    gender: "Female",
     level: 1,
     timesEnlightened: 0,
     extraSkillCredits: {

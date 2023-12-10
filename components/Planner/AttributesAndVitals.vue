@@ -1,11 +1,11 @@
 <script>
-import Attributes from './Attributes'
-import Vitals from './Vitals'
+import Attributes from "./Attributes"
+import Vitals from "./Vitals"
 
-import { usePlannerStore } from '~/stores/planner'
+import { usePlannerStore } from "~/stores/planner"
 
 export default {
-  name: 'AttributesAndVitals',
+  name: "AttributesAndVitals",
   components: {
     Attributes,
     Vitals,
