@@ -20,3 +20,4 @@ nuxt_refactor
 - Make selects and inputs the same size, height, padding, etc
 - Can I figure out a way to switch between panes and tabs view?
 - Fix bug in panes where the panes in the header don't collapse correctly
+- Add consistent styling for links (underline by default, blue, remove underline on hover)
