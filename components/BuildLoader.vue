@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue"
-import { useRoute } from "vue-router"
-import { usePlannerStore } from "~/stores/planner"
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { usePlannerStore } from '~/stores/planner'
 
 const client = useSupabaseClient()
 const route = useRoute()
@@ -15,12 +15,12 @@ if (error) {
   errors.value.push(error.message)
 }
 else if (data.length < 1) {
-  errors.value.push("An unexpected error occurred.")
+  errors.value.push('An unexpected error occurred.')
 }
 else {
   console.log(data)
   await store.loadBuildFromJSON(data[0].content)
-  await navigateTo("/planner")
+  await navigateTo('/planner')
 }
 </script>
 

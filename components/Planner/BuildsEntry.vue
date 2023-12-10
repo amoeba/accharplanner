@@ -1,8 +1,8 @@
 <script>
-import { createClient } from "@supabase/supabase-js"
+import { createClient } from '@supabase/supabase-js'
 
 export default {
-  name: "BuildsEntry",
+  name: 'BuildsEntry',
   props: {
     id: String,
   },
@@ -32,9 +32,9 @@ export default {
       )
 
       const { data, error } = await supabase
-        .from("official_builds")
+        .from('official_builds')
         .select()
-        .eq("id", this.id)
+        .eq('id', this.id)
 
       if (error) {
         this.error = error

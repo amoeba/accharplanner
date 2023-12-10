@@ -1,9 +1,9 @@
 <script>
-import Item from "./Item.vue"
-import { usePlannerStore } from "~/stores/planner"
+import Item from './Item.vue'
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "Items",
+  name: 'Items',
   components: {
     Item,
   },

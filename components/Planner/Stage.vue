@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { usePlannerStore } from "~/stores/planner"
+import { usePlannerStore } from '~/stores/planner'
 
-const props = defineProps(["index", "level", "stages", "isDragInProgress"])
+const props = defineProps(['index', 'level', 'stages', 'isDragInProgress'])
 
 const store = usePlannerStore()
 

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { Database } from "~/utils/database.types"
 import { useTimeAgo } from '@vueuse/core'
+import type { Database } from '~/utils/database.types'
 
-const props = defineProps(["id"])
+const props = defineProps(['id'])
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
 const guide = ref<Database['public']['Tables']['guides']['Row']>()
-const errorMessage = ref("")
+const errorMessage = ref('')
 
 const { data, error } = await fetchGuide(client, props.id)
 
-const submittedBy = ref("Anonymous")
+const submittedBy = ref('Anonymous')
 
 let createdAt: globalThis.ComputedRef<string>
 let updatedAt: globalThis.ComputedRef<string>
@@ -22,9 +22,8 @@ if (error) {
 else if (data && data[0]) {
   guide.value = data[0]
 
-  if (guide.value && guide.value.profiles) {
+  if (guide.value && guide.value.profiles)
     submittedBy.value = guide.value.profiles.name
-  }
 
   if (guide.value) {
     createdAt = useTimeAgo(new Date(guide.value.created_at))

@@ -1,9 +1,9 @@
 <script>
-import LuminanceAura from "./LuminanceAura.vue"
-import { usePlannerStore } from "~/stores/planner"
+import LuminanceAura from './LuminanceAura.vue'
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "LuminanceAuras",
+  name: 'LuminanceAuras',
   components: {
     LuminanceAura,
   },
@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      filterQuery: "",
+      filterQuery: '',
     }
   },
   computed: {
@@ -30,7 +30,7 @@ export default {
       return filterText(this.filterQuery, Object.keys(LUMINANCE_AURA_NAME))
     },
     filterPresent() {
-      return this.filterQuery !== ""
+      return this.filterQuery !== ''
     },
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
       this.store.toggleAurasPane()
     },
     clearFilter() {
-      this.filterQuery = ""
+      this.filterQuery = ''
     },
   },
 }

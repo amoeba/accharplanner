@@ -9,8 +9,8 @@ const buildId = route.params.id
 const count = ref(0)
 
 const favoriteClass = computed(() => ({
-  "fill-yellow-400": count.value > 0,
-  "stroke-yellow-400": count.value > 0,
+  'fill-yellow-400': count.value > 0,
+  'stroke-yellow-400': count.value > 0,
 }))
 
 const doFavoriteBuild = async function () {
@@ -55,8 +55,7 @@ const doUnFavoriteBuild = async function () {
 const handleClick = async function () {
   if (count.value > 0)
     await doUnFavoriteBuild(client, user, buildId)
-  else
-    await doFavoriteBuild(client, user, buildId)
+  else await doFavoriteBuild(client, user, buildId)
 }
 count.value = await getNumFavorites(client, user, buildId)
 </script>

@@ -1,9 +1,9 @@
 <script>
-import ArmorSet from "./ArmorSet"
-import { usePlannerStore } from "~/stores/planner"
+import ArmorSet from './ArmorSet'
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "ArmorSets",
+  name: 'ArmorSets',
   components: {
     ArmorSet,
   },

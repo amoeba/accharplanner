@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Stage from "./Stage.vue"
-import { usePlannerStore } from "~/stores/planner"
+import Stage from './Stage.vue'
+import { usePlannerStore } from '~/stores/planner'
 
 const store = usePlannerStore()
 
@@ -22,8 +22,8 @@ const dragstart = async function (e: DragEvent) {
   if (!e.target || !e.target.dataset)
     return
 
-  e.dataTransfer.setData("text/plain", e.target.dataset.index)
-  e.dataTransfer.dropEffect = "move"
+  e.dataTransfer.setData('text/plain', e.target.dataset.index)
+  e.dataTransfer.dropEffect = 'move'
 }
 
 const dragover = async function (e: DragEvent) {
@@ -40,7 +40,7 @@ const update = async function (index: number, clientX: number) {
   ]
 
   // TODO: Convert to a ref instead of document.querySelectorAll
-  document.querySelectorAll("div.stage").forEach((el, i) => {
+  document.querySelectorAll('div.stage').forEach((el, i) => {
     if (i === index)
       return
 
@@ -71,7 +71,7 @@ function drop(e: DragEvent) {
   // Adjust client X by half the drag target's width. This makes
   // drag and drop match the user's expectation more closely
   const adjustedClientX = e.clientX - e.currentTarget.clientWidth / 2
-  const index = Number(e.dataTransfer?.getData("text/plain"))
+  const index = Number(e.dataTransfer?.getData('text/plain'))
 
   update(index, adjustedClientX)
 }

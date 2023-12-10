@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useGuideStore } from "~/stores/guide"
+import { useGuideStore } from '~/stores/guide'
 
-const props = defineProps(["id"])
+const props = defineProps(['id'])
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
@@ -28,7 +28,7 @@ const onSubmit = async function () {
   }
 
   if (!data || data.length <= 0) {
-    errors.value.push("An unexpected error was encountered.")
+    errors.value.push('An unexpected error was encountered.')
 
     return
   }
@@ -43,9 +43,8 @@ if (error) {
 }
 else {
   if (data.length < 1)
-    errors.value.push("An unexpected error occurred.")
-  else
-    store.guide = data[0]
+    errors.value.push('An unexpected error occurred.')
+  else store.guide = data[0]
 }
 </script>
 

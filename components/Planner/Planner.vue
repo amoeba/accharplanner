@@ -1,17 +1,17 @@
 <script>
-import Stages from "./Stages.vue"
-import Headers from "./Headers.vue"
-import AttributesAndVitals from "./AttributesAndVitals.vue"
-import Skills from "./Skills.vue"
-import Augmentations from "./Augmentations.vue"
-import LuminanceAuras from "./LuminanceAuras.vue"
-import Items from "./Items.vue"
-import ArmorSets from "./ArmorSets.vue"
+import Stages from './Stages.vue'
+import Headers from './Headers.vue'
+import AttributesAndVitals from './AttributesAndVitals.vue'
+import Skills from './Skills.vue'
+import Augmentations from './Augmentations.vue'
+import LuminanceAuras from './LuminanceAuras.vue'
+import Items from './Items.vue'
+import ArmorSets from './ArmorSets.vue'
 
-import { usePlannerStore } from "~/stores/planner"
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "Planner",
+  name: 'Planner',
   components: {
     Stages,
     Headers,

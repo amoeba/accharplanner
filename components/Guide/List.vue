@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { Database } from '~/utils/database.types';
+import type { Database } from '~/utils/database.types'
 
-const route = useRoute();
+const route = useRoute()
 const client = useSupabaseClient()
 
-const page = ref(getPage(route.query['page']))
-const pageSize = 20;
+const page = ref(getPage(route.query.page))
+const pageSize = 20
 
 const guides = ref<Database['public']['Tables']['guides']['Row'][]>()
-const guidesErrorMessage = ref("")
+const guidesErrorMessage = ref('')
 const count = ref(0)
-const countErrorMessage = ref("")
+const countErrorMessage = ref('')
 
 const doCountGuides = async function (): Promise<number> {
   const { count, error } = await fetchGuidesCount(client)
@@ -18,10 +18,10 @@ const doCountGuides = async function (): Promise<number> {
   if (error) {
     countErrorMessage.value = error.message
 
-    return -1;
+    return -1
   }
 
-  return count || 0;
+  return count || 0
 }
 
 const doFetchGuides = async function (page: number): Promise<Database['public']['Tables']['guides']['Row'][]> {
@@ -43,7 +43,7 @@ watch(
   () => page.value,
   async (next, prev) => {
     guides.value = await doFetchGuides(next)
-  }
+  },
 )
 
 const numPages = Math.ceil(count.value / pageSize)
@@ -73,6 +73,6 @@ const numPages = Math.ceil(count.value / pageSize)
     </li>
   </ul>
   <div class="flex gap-2">
-    <PageControls v-model="page" :numPages="numPages" />
+    <PageControls v-model="page" :num-pages="numPages" />
   </div>
 </template>

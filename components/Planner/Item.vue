@@ -1,8 +1,8 @@
 <script>
-import { usePlannerStore } from "~/stores/planner"
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "Item",
+  name: 'Item',
   props: {
     id: String,
     name: String,

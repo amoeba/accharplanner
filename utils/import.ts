@@ -1,11 +1,11 @@
-import type { Store } from "vuex"
-import type { State } from "./types"
-import { PropertyInt, Training } from "./types"
+import type { Store } from 'vuex'
+import type { State } from './types'
+import { PropertyInt, Training } from './types'
 import {
   MAX_SKILL_INVESTED_SPECIALIZED,
   MAX_SKILL_INVESTED_TRAINED,
-} from "./constants"
-import DefaultCharacter from "~/utils/DefaultCharacter"
+} from './constants'
+import DefaultCharacter from '~/utils/DefaultCharacter'
 
 export const importCharacter = function (store: Store<State>, json: any) {
   // Re-set to blank state prior to import
@@ -73,167 +73,167 @@ export const importCharacter = function (store: Store<State>, json: any) {
   // Experience Augmentations and Luminance Auras
   Object.keys(json.properties).forEach((property) => {
     switch (property) {
-      case "218":
+      case '218':
         store.state.build.character.augmentations.reinforcement_of_the_lugians.invested
           = json.properties[property]
         break
-      case "219":
+      case '219':
         store.state.build.character.augmentations.bleearghs_fortitude.invested
           = json.properties[property]
         break
-      case "220":
+      case '220':
         store.state.build.character.augmentations.oswalds_enhancement.invested
           = json.properties[property]
         break
-      case "221":
+      case '221':
         store.state.build.character.augmentations.siraluuns_blessing.invested
           = json.properties[property]
         break
-      case "222":
+      case '222':
         store.state.build.character.augmentations.enduring_enchantment.invested
           = json.properties[property]
         break
-      case "223":
+      case '223':
         store.state.build.character.augmentations.steadfast_will.invested
           = json.properties[property]
         break
-      case "224":
+      case '224':
         store.state.build.character.augmentations.ciandras_essence.invested
           = json.properties[property]
         break
-      case "225":
+      case '225':
         store.state.build.character.augmentations.yoshis_essence.invested
           = json.properties[property]
         break
-      case "226":
+      case '226':
         store.state.build.character.augmentations.jibrils_essence.invested
           = json.properties[property]
         break
-      case "227":
+      case '227':
         store.state.build.character.augmentations.celdiseths_essence.invested
           = json.properties[property]
         break
-      case "228":
+      case '228':
         store.state.build.character.augmentations.kogas_essence.invested
           = json.properties[property]
         break
-      case "229":
+      case '229':
         store.state.build.character.augmentations.shadow_of_the_seventh_mule.invested
           = json.properties[property]
         break
-      case "230":
+      case '230':
         store.state.build.character.augmentations.might_of_the_seventh_mule.invested
           = json.properties[property]
         break
-      case "231":
+      case '231':
         store.state.build.character.augmentations.clutch_of_the_miser.invested
           = json.properties[property]
         break
-      case "232":
+      case '232':
         store.state.build.character.augmentations.enduring_enchantment.invested
           = json.properties[property]
         break
-      case "233":
+      case '233':
         store.state.build.character.augmentations.critical_protection.invested
           = json.properties[property]
         break
-      case "234":
+      case '234':
         store.state.build.character.augmentations.quick_learner.invested
           = json.properties[property]
         break
-      case "235":
+      case '235':
         store.state.build.character.augmentations.ciandras_fortune.invested
           = json.properties[property]
         break
-      case "236":
+      case '236':
         store.state.build.character.augmentations.charmed_smith.invested
           = json.properties[property]
         break
-      case "237":
+      case '237':
         store.state.build.character.augmentations.innate_renewal.invested
           = json.properties[property]
         break
-      case "238":
+      case '238':
         store.state.build.character.augmentations.archmages_endurance.invested
           = json.properties[property]
         break
-      case "240":
+      case '240':
         store.state.build.character.augmentations.enhancement_of_the_blade_turner.invested
           = json.properties[property]
         break
-      case "241":
+      case '241':
         store.state.build.character.augmentations.enhancement_of_the_arrow_turner.invested
           = json.properties[property]
         break
-      case "242":
+      case '242':
         store.state.build.character.augmentations.enhancement_of_the_mace_turner.invested
           = json.properties[property]
         break
-      case "243":
+      case '243':
         store.state.build.character.augmentations.caustic_enhancement.invested
           = json.properties[property]
         break
-      case "244":
+      case '244':
         store.state.build.character.augmentations.fiery_enhancement.invested
           = json.properties[property]
         break
-      case "245":
+      case '245':
         store.state.build.character.augmentations.icy_enhancement.invested
           = json.properties[property]
         break
-      case "246":
+      case '246':
         store.state.build.character.augmentations.storms_enhancement.invested
           = json.properties[property]
         break
-      case "298":
+      case '298':
         store.state.build.character.augmentations.eye_of_the_remorseless.invested
           = json.properties[property]
         break
-      case "299":
+      case '299':
         store.state.build.character.augmentations.hand_of_the_remorseless.invested
           = json.properties[property]
         break
-      case "300":
+      case '300':
         store.state.build.character.augmentations.master_of_the_steel_circle.invested
           = json.properties[property]
         break
-      case "301":
+      case '301':
         store.state.build.character.augmentations.master_of_the_focused_eye.invested
           = json.properties[property]
         break
-      case "302":
+      case '302':
         store.state.build.character.augmentations.master_of_the_five_fold_path.invested
           = json.properties[property]
         break
-      case "309":
+      case '309':
         store.state.build.character.augmentations.frenzy_of_the_slayer.invested
           = json.properties[property]
         break
-      case "310":
+      case '310':
         store.state.build.character.augmentations.iron_skin_of_the_invincible.invested
           = json.properties[property]
         break
-      case "326":
+      case '326':
         store.state.build.character.augmentations.jack_of_all_trades.invested
           = json.properties[property]
         break
-      case "328":
+      case '328':
         store.state.build.character.augmentations.infused_void_magic.invested
           = json.properties[property]
         break
-      case "294":
+      case '294':
         store.state.build.character.augmentations.infused_creature_magic.invested
           = json.properties[property]
         break
-      case "295":
+      case '295':
         store.state.build.character.augmentations.infused_item_magic.invested
           = json.properties[property]
         break
-      case "296":
+      case '296':
         store.state.build.character.augmentations.infused_life_magic.invested
           = json.properties[property]
         break
-      case "297":
+      case '297':
         store.state.build.character.augmentations.infused_war_magic.invested
           = json.properties[property]
         break

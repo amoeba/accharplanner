@@ -18,8 +18,7 @@ export const trainingBonus = function (training: Training) {
     return 10
   else if (training === Training.TRAINED)
     return 0
-  else
-    return 0
+  else return 0
 }
 
 export const buffBonus = function (level: number) {
@@ -74,8 +73,7 @@ export const standardSetBonus = function (pieces: number) {
     return 10
   else if (pieces >= 5)
     return 20
-  else
-    return 0
+  else return 0
 }
 
 // Many sets have the same secondary effect magnitudes (3/5)
@@ -84,8 +82,7 @@ export const standardSecondarySetBonus = function (pieces: number) {
     return 3
   else if (pieces >= 5)
     return 5
-  else
-    return 0
+  else return 0
 }
 
 export const dedicationSetBonus = function (pieces: number) {
@@ -101,8 +98,7 @@ export const dedicationSetBonus = function (pieces: number) {
     return 12
   else if (pieces >= 9)
     return 15
-  else
-    return 0
+  else return 0
 }
 
 export const dextrousSetStaminaBonus = function (pieces: number) {
@@ -110,8 +106,7 @@ export const dextrousSetStaminaBonus = function (pieces: number) {
     return 6
   else if (pieces >= 5)
     return 20
-  else
-    return 0
+  else return 0
 }
 
 export const heartySetHealthBonus = function (pieces: number) {
@@ -119,8 +114,7 @@ export const heartySetHealthBonus = function (pieces: number) {
     return 3
   else if (pieces >= 5)
     return 10
-  else
-    return 0
+  else return 0
 }
 
 export const wiseSetManaBonus = function (pieces: number) {
@@ -128,18 +122,17 @@ export const wiseSetManaBonus = function (pieces: number) {
     return 6
   else if (pieces >= 5)
     return 20
-  else
-    return 0
+  else return 0
 }
 
 export const exportJSONData = function (data: object, filename: string) {
   const json = JSON.stringify(data, null, 2)
 
   const blob = new Blob([json], {
-    type: "application/json",
+    type: 'application/json',
   })
 
-  const a = document.createElement("a")
+  const a = document.createElement('a')
   a.href = URL.createObjectURL(blob)
   a.download = filename
   a.click()
@@ -147,7 +140,7 @@ export const exportJSONData = function (data: object, filename: string) {
 
 export const exportCharacter = function (data: object, name: string | null) {
   const filename
-    = `${(name || "character").replace(/[^a-zA-Z0-9_]+/, "-")}.json`
+    = `${(name || 'character').replace(/[^a-zA-Z0-9_]+/, '-')}.json`
 
   exportJSONData(data, filename)
 }
@@ -166,7 +159,7 @@ export const filterText = function (
   return collection.filter(key =>
     text
       .toLowerCase()
-      .split(" ")
+      .split(' ')
       .every(v => key.toLowerCase().includes(v)),
   )
 }

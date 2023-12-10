@@ -1,8 +1,8 @@
 <script>
-import { usePlannerStore } from "~/store/planner"
+import { usePlannerStore } from '~/store/planner'
 
 export default {
-  name: "Import",
+  name: 'Import',
   setup() {
     const store = usePlannerStore()
 
@@ -13,12 +13,12 @@ export default {
   computed: {},
   methods: {
     importBuild() {
-      const selectedFile = document.getElementById("input").files[0]
+      const selectedFile = document.getElementById('input').files[0]
 
-      if (typeof selectedFile === "undefined") {
+      if (typeof selectedFile === 'undefined') {
         this.store.addNotification({
-          type: "error",
-          message: "Failed to import build from file: No file was selected.",
+          type: 'error',
+          message: 'Failed to import build from file: No file was selected.',
         })
 
         return
@@ -33,7 +33,7 @@ export default {
         }
         catch (error) {
           this.store.addNotification({
-            type: "error",
+            type: 'error',
             message: `Failed to build from file: ${error}.`,
           })
         }

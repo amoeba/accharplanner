@@ -1,8 +1,8 @@
 <script>
-import { createClient } from "@supabase/supabase-js"
+import { createClient } from '@supabase/supabase-js'
 
 export default {
-  name: "Builds",
+  name: 'Builds',
   components: {
     BuildsEntry,
   },
@@ -27,7 +27,7 @@ export default {
       )
 
       const { data, error } = await supabase
-        .from("official_builds")
+        .from('official_builds')
         .select()
 
       if (error) {

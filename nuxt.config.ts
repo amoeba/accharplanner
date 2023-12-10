@@ -2,19 +2,19 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
-    "@pinia/nuxt",
-    "@pinia-plugin-persistedstate/nuxt",
-    "@nuxtjs/supabase",
-    "floating-vue/nuxt",
-    "@nuxtjs/google-fonts",
-    "@vueuse/nuxt",
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/supabase',
+    'floating-vue/nuxt',
+    '@nuxtjs/google-fonts',
+    '@vueuse/nuxt',
   ],
   runtimeConfig: {
     public: {
-      baseUrl: "https://planner.treestats.net",
+      baseUrl: 'https://planner.treestats.net',
     },
   },
-  css: ["~/assets/css/main.css"],
+  css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
       tailwindcss: {},

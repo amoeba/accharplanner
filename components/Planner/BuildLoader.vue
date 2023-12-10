@@ -1,8 +1,8 @@
 <script>
-import { usePlannerStore } from "~/stores/planner"
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "BuildLoader",
+  name: 'BuildLoader',
   setup() {
     const store = usePlannerStore()
 
@@ -12,9 +12,9 @@ export default {
   },
   created() {
     const path = this.$route.path
-    const build_id = path.replace(/^\//, "")
+    const build_id = path.replace(/^\//, '')
 
-    if (typeof build_id === "string" && build_id.length > 0) {
+    if (typeof build_id === 'string' && build_id.length > 0) {
       this.store.loadRemoteBuild({
         build_id,
         router: this.$router,

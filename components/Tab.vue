@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { inject } from "vue"
+import { inject } from 'vue'
 
-const props = defineProps(["tab"])
-const switchTab = inject("switchTab")
-const currentTab = inject("currentTab")
+const props = defineProps(['tab'])
+const switchTab = inject('switchTab')
+const currentTab = inject('currentTab')
 </script>
 
 <template>

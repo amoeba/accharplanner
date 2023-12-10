@@ -1,9 +1,9 @@
 <script>
-import ExtraSkillCredit from "./ExtraSkillCredit.vue"
-import { usePlannerStore } from "~/stores/planner"
+import ExtraSkillCredit from './ExtraSkillCredit.vue'
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "ExtraSkillCredits",
+  name: 'ExtraSkillCredits',
   components: {
     ExtraSkillCredit,
   },

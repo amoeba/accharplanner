@@ -1,8 +1,8 @@
 <script>
-import { usePlannerStore } from "~/stores/planner"
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "Skill",
+  name: 'Skill',
   props: {
     name: String,
     training: String,
@@ -33,13 +33,12 @@ export default {
         = this.store.build.character.skills[this.name].training
 
       if (currentTraining === Training.SPECIALIZED)
-        return ""
+        return ''
 
       if (currentTraining === Training.TRAINED) {
         if (SPEC_COSTS_AUG[this.name])
-          return "A"
-        else
-          return SKILL_COST_AT_TRAINING[this.name].specialized
+          return 'A'
+        else return SKILL_COST_AT_TRAINING[this.name].specialized
       }
 
       return SKILL_COST_AT_TRAINING[this.name].trained
@@ -51,37 +50,33 @@ export default {
       if (
         currentTraining === Training.UNUSABLE
         || currentTraining === Training.UNTRAINED
-      )
-        return ""
+      ) return ''
 
       if (currentTraining === Training.SPECIALIZED) {
         if (SPEC_COSTS_AUG[this.name])
-          return "A"
-        else
-          return SKILL_COST_AT_TRAINING[this.name].specialized
+          return 'A'
+        else return SKILL_COST_AT_TRAINING[this.name].specialized
       }
 
       if (currentTraining === Training.TRAINED) {
         if (!UNTRAINABLE[this.name])
           return
-        else
-          return SKILL_COST_AT_TRAINING[this.name].trained
+        else return SKILL_COST_AT_TRAINING[this.name].trained
       }
 
-      return ""
+      return ''
     },
     cantIncrease() {
       // Can't if already specialized
       if (
         this.store.build.character.skills[this.name].training
-        === Training.SPECIALIZED
-      )
-        return true
+          === Training.SPECIALIZED
+      ) return true
 
       // Can't if out of credits
       const newTraining
         = this.store.build.character.skills[this.name].training
-          === Training.TRAINED
+        === Training.TRAINED
           ? Training.SPECIALIZED
           : Training.TRAINED
 
@@ -101,17 +96,15 @@ export default {
 
       if (
         this.store.skillPointsSpent + newCost
-        > this.store.skillPointsAvailable
-      )
-        return true
+          > this.store.skillPointsAvailable
+      ) return true
 
       // Can't if would push you over 70 max spec'd credits
       if (
         newTraining === Training.SPECIALIZED
         && this.store.specializedSkillPointsSpent + newCost
         > MAX_SPECIALIZED_SKILL_CREDITS_SPENT
-      )
-        return true
+      ) return true
 
       return false
     },
@@ -148,13 +141,13 @@ export default {
         }
         else if (
           this.training === Training.SPECIALIZED
-          && out > MAX_SKILL_INVESTED_SPECIALIZED
+            && out > MAX_SKILL_INVESTED_SPECIALIZED
         ) {
           out = MAX_SKILL_INVESTED_SPECIALIZED
         }
         else if (
           this.training === Training.TRAINED
-          && out > MAX_SKILL_INVESTED_TRAINED
+            && out > MAX_SKILL_INVESTED_TRAINED
         ) {
           out = MAX_SKILL_INVESTED_TRAINED
         }
@@ -171,16 +164,13 @@ export default {
     maxInvestment() {
       if (
         this.store.build.character.skills[this.name].training
-        === Training.SPECIALIZED
-      )
-        return MAX_SKILL_INVESTED_SPECIALIZED
+          === Training.SPECIALIZED
+      ) return MAX_SKILL_INVESTED_SPECIALIZED
       else if (
         this.store.build.character.skills[this.name].training
-        === Training.TRAINED
-      )
-        return MAX_SKILL_INVESTED_TRAINED
-      else
-        return -1
+          === Training.TRAINED
+      ) return MAX_SKILL_INVESTED_TRAINED
+      else return -1
     },
     base() {
       return Math.round(this.store[`${this.name}Base`])
@@ -238,15 +228,19 @@ export default {
       <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>
-      <button :class="cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
-        " class="rounded w-12 text-white px-1" :disabled="cantDecrease" @click="decreaseTraining">
+      <button
+        :class="cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
+        " class="rounded w-12 text-white px-1" :disabled="cantDecrease" @click="decreaseTraining"
+      >
         {{ decreaseCostText }}
         ↓
       </button>
     </td>
     <td>
-      <button :class="cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
-        " class="rounded w-12 text-white px-1" @click="increaseTraining">
+      <button
+        :class="cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
+        " class="rounded w-12 text-white px-1" @click="increaseTraining"
+      >
         {{ increaseCostText }} ↑
       </button>
     </td>

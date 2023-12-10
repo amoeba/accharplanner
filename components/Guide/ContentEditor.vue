@@ -1,9 +1,9 @@
 <script>
-import { Editor, EditorContent } from "@tiptap/vue-3"
-import StarterKit from "@tiptap/starter-kit"
+import { Editor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
 
-import { ComponentName } from "../Editor/lib"
-import VueComponentExtension from "~/components/Editor/Extension"
+import { ComponentName } from '../Editor/lib'
+import VueComponentExtension from '~/components/Editor/Extension'
 
 export default {
   components: {
@@ -13,7 +13,7 @@ export default {
   props: {
     modelValue: {
       type: String,
-      default: "",
+      default: '',
     },
     editable: {
       type: Boolean,
@@ -21,7 +21,7 @@ export default {
     },
   },
 
-  emits: ["update:modelValue"],
+  emits: ['update:modelValue'],
 
   data() {
     return {
@@ -47,7 +47,7 @@ export default {
       content: this.modelValue,
       editable: this.editable,
       onUpdate: () => {
-        this.$emit("update:modelValue", this.editor.getHTML())
+        this.$emit('update:modelValue', this.editor.getHTML())
       },
     })
   },

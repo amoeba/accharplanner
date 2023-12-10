@@ -1,8 +1,8 @@
 <script lang="ts">
-import { NodeViewWrapper, nodeViewProps } from "@tiptap/vue-3"
+import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 
-import { Components, TabName } from "./lib"
-import GuideBuildView from "~/components/Build/GuideBuildView.vue"
+import { Components, TabName } from './lib'
+import GuideBuildView from '~/components/Build/GuideBuildView.vue'
 
 export default {
   components: {

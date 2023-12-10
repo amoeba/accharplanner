@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { defineProps, provide } from "vue"
+import { defineProps, provide } from 'vue'
 
-const props = defineProps(["initialTab"])
-const currentTab = ref(props.initialTab || "")
+const props = defineProps(['initialTab'])
+const currentTab = ref(props.initialTab || '')
 const switchTab = async function (tab: string) {
   currentTab.value = tab
 }
 
-provide("currentTab", currentTab)
-provide("switchTab", switchTab)
+provide('currentTab', currentTab)
+provide('switchTab', switchTab)
 </script>
 
 <template>

@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { defineStore } from "pinia"
+import { defineStore } from 'pinia'
 
-import { SKILL_NAME } from "~/utils/mappings"
+import { SKILL_NAME } from '~/utils/mappings'
 
 // Kindy hack implementation for now: Defines a brand new Pinia store just for
 // this component, gives it what it needs to do skill calculations, and then
 // populates the template with the values we need
-import state from "~/stores/planner/state"
-import getters from "~/stores/planner/getters"
-import actions from "~/stores/planner/actions"
+import state from '~/stores/planner/state'
+import getters from '~/stores/planner/getters'
+import actions from '~/stores/planner/actions'
 
-const props = defineProps(["build"])
+const props = defineProps(['build'])
 
-const usePlannerStore = defineStore("planner", {
+const usePlannerStore = defineStore('planner', {
   state: () => state,
   getters,
   actions,
@@ -26,8 +26,10 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
   <table class="w-72">
     <thead>
       <tr>
-        <th class="text-left px-1 text-white"
-          style="background: linear-gradient( to right, #392067, #392067, transparent);" colspan="3">
+        <th
+          class="text-left px-1 text-white"
+          style="background: linear-gradient( to right, #392067, #392067, transparent);" colspan="3"
+        >
           Specialized
         </th>
       </tr>
@@ -50,8 +52,10 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     </tbody>
     <thead>
       <tr>
-        <th class="text-left px-1 text-white"
-          style="background: linear-gradient( to right, #0f3c3e, #0f3c3e, transparent);" colspan="3">
+        <th
+          class="text-left px-1 text-white"
+          style="background: linear-gradient( to right, #0f3c3e, #0f3c3e, transparent);" colspan="3"
+        >
           Trained
         </th>
       </tr>

@@ -1,8 +1,8 @@
 <script>
-import { usePlannerStore } from "~/stores/planner"
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "LuminanceAura",
+  name: 'LuminanceAura',
   props: {
     name: String,
   },

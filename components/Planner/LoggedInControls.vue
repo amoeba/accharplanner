@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { usePlannerStore } from "~/stores/planner"
+import { usePlannerStore } from '~/stores/planner'
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 const store = usePlannerStore()
 
 const isFavoriteInError = ref(false)
-const defaultFavoriteTooltip = "Favorite this build."
+const defaultFavoriteTooltip = 'Favorite this build.'
 const favoriteTooltip = ref(defaultFavoriteTooltip)
 const isFavoriteInSuccess = ref(false)
 const favoriteClass = computed(() => ({
-  "stroke-red-600": isFavoriteInError.value,
-  "hover:stroke-red-600": isFavoriteInError.value,
-  "fill-red-600": isFavoriteInError.value,
-  "hover:fill-red-600": isFavoriteInError.value,
-  "stroke-black": !isFavoriteInError.value || !isFavoriteInSuccess.value,
-  "stroke-green-600": isFavoriteInSuccess.value,
-  "hover:stroke-green-600": isFavoriteInSuccess.value,
-  "fill-green-600": isFavoriteInSuccess.value,
-  "hover:fill-green-600": isFavoriteInSuccess.value,
+  'stroke-red-600': isFavoriteInError.value,
+  'hover:stroke-red-600': isFavoriteInError.value,
+  'fill-red-600': isFavoriteInError.value,
+  'hover:fill-red-600': isFavoriteInError.value,
+  'stroke-black': !isFavoriteInError.value || !isFavoriteInSuccess.value,
+  'stroke-green-600': isFavoriteInSuccess.value,
+  'hover:stroke-green-600': isFavoriteInSuccess.value,
+  'fill-green-600': isFavoriteInSuccess.value,
+  'hover:fill-green-600': isFavoriteInSuccess.value,
 }))
 
 const doFavoriteBuild = async function () {
@@ -29,14 +29,14 @@ const doFavoriteBuild = async function () {
     return
 
   // TODO: make dynamic (get it from the store)
-  const buildId = "OtFbpJEFl4"
+  const buildId = 'OtFbpJEFl4'
 
   // Check if we've already favorited
   const { data: selectData, error: selectError } = await hasAlreadyFavorited(client, user, buildId)
 
   if (selectError) {
     isFavoriteInError.value = true
-    favoriteTooltip.value = "Encountered an unexpected problem while trying to favorite this build. Please report this if you have a minute."
+    favoriteTooltip.value = 'Encountered an unexpected problem while trying to favorite this build. Please report this if you have a minute.'
 
     return
   }
@@ -56,7 +56,7 @@ const doFavoriteBuild = async function () {
 
   if (error) {
     isFavoriteInError.value = true
-    favoriteTooltip.value = "Encountered an unexpected problem while trying to favorite this build. Please report this if you have a minute."
+    favoriteTooltip.value = 'Encountered an unexpected problem while trying to favorite this build. Please report this if you have a minute.'
   }
   else {
     isFavoriteInSuccess.value = true
@@ -68,7 +68,7 @@ const doFavoriteBuild = async function () {
 }
 
 const doPublishBuild = async function () {
-  console.log("publishBuild")
+  console.log('publishBuild')
 
   const { data, error } = await publishBuild(client, user, store.build)
 }

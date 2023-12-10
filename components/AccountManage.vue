@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref } from 'vue'
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -11,7 +11,7 @@ interface SupabaseError {
 }
 
 const profile = ref<Profile>({})
-const message = ref("")
+const message = ref('')
 const errors = ref<SupabaseError[]>([])
 const isSigningOut = ref(false)
 
@@ -47,7 +47,7 @@ const validateName = function (name: string) {
   const out: string = name.trim()
 
   if (out.length <= 0)
-    throw new Error("Name should be at least one character long.")
+    throw new Error('Name should be at least one character long.')
 
   const pattern = /[a-zA-Z][a-zA-Z0-9 ']+/
 
@@ -61,12 +61,12 @@ const trySetName = async function () {
   formState.value = FormState.SENDING
 
   try {
-    message.value = ""
+    message.value = ''
     errors.value = []
     const newName = validateName(name.value)
 
     const { data, error } = await client
-      .from("profiles")
+      .from('profiles')
       .upsert({
         id: user.value?.id,
         name: newName,
@@ -79,7 +79,7 @@ const trySetName = async function () {
     }
     else {
       formState.value = FormState.SUCCESS
-      message.value = "Success!"
+      message.value = 'Success!'
       setTimeout(() => {
         formState.value = FormState.UNSENT
       }, 3000)
@@ -92,12 +92,12 @@ const trySetName = async function () {
 }
 
 const { data, error } = await client
-  .from("profiles")
+  .from('profiles')
   .select()
-  .eq("id", user.value.id)
+  .eq('id', user.value.id)
 
 if (error)
-  console.log("error", error)
+  console.log('error', error)
 
 if (data)
   profile.value = data[0]

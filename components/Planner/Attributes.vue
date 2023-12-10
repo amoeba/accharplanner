@@ -1,9 +1,9 @@
 <script>
-import Attribute from "./Attribute.vue"
-import { usePlannerStore } from "~/stores/planner"
+import Attribute from './Attribute.vue'
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "Attributes",
+  name: 'Attributes',
   components: {
     Attribute,
   },

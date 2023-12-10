@@ -1,9 +1,9 @@
 <script>
-import { createClient } from "@supabase/supabase-js"
-import { usePlannerStore } from "~/stores/planner"
+import { createClient } from '@supabase/supabase-js'
+import { usePlannerStore } from '~/stores/planner'
 
 export default {
-  name: "EditBuild",
+  name: 'EditBuild',
   props: {
     id: String,
   },
@@ -43,9 +43,9 @@ export default {
       )
 
       const { data, error } = await supabase
-        .from("official_builds")
+        .from('official_builds')
         .select()
-        .eq("id", this.$route.params.id)
+        .eq('id', this.$route.params.id)
 
       if (error) {
         this.error = error
@@ -69,13 +69,13 @@ export default {
       )
 
       const { error } = await supabase
-        .from("official_builds")
+        .from('official_builds')
         .update({ name: this.name, description: this.description })
-        .eq("id", this.build_id)
+        .eq('id', this.build_id)
 
       if (error) {
         this.store.addNotification({
-          type: "error",
+          type: 'error',
           message: `Error updating build: ${JSON.stringify(error)}`,
         })
       }
