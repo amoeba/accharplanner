@@ -61,37 +61,103 @@ export default {
 
 <template>
   <div class="flex flex-col rounded">
-    <div v-if="!editor" class="p-2">
+    <div
+      v-if="!editor"
+      class="p-2"
+    >
       Inspecting this guide...
     </div>
     <!-- Toolbar -->
-    <div v-if="editor && editor.options.editable" class="flex rounded-t bg-black text-white border-black">
+    <div
+      v-if="editor && editor.options.editable"
+      class="flex rounded-t bg-black text-white border-black"
+    >
       <button
         :disabled="!editor.can().chain().focus().toggleBold().run()"
-        class="hover:bg-zinc-700 px-2 py-1" :class="{ 'bg-black text-white': editor.isActive('bold') }"
+        class="hover:bg-zinc-700 px-2 py-1"
+        :class="{ 'bg-black text-white': editor.isActive('bold') }"
         @click.prevent="editor.chain().focus().toggleBold().run()"
       >
         <strong>Bold</strong>
       </button>
       <button
         :disabled="!editor.can().chain().focus().toggleItalic().run()"
-        class="hover:bg-zinc-700 px-2 py-1" :class="{ 'bg-black text-white': editor.isActive('italic') }"
+        class="hover:bg-zinc-700 px-2 py-1"
+        :class="{ 'bg-black text-white': editor.isActive('italic') }"
         @click.prevent="editor.chain().focus().toggleItalic().run()"
       >
         <em>Italic</em>
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('bulletList') }"
-        class="flex gap-1 items-center hover:bg-zinc-700 px-2 py-1" @click.prevent="editor.chain().focus().toggleBulletList().run()"
+        class="flex gap-1 items-center hover:bg-zinc-700 px-2 py-1"
+        @click.prevent="editor.chain().focus().toggleBulletList().run()"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6" /><line x1="8" x2="21" y1="12" y2="12" /><line x1="8" x2="21" y1="18" y2="18" /><line x1="3" x2="3.01" y1="6" y2="6" /><line x1="3" x2="3.01" y1="12" y2="12" /><line x1="3" x2="3.01" y1="18" y2="18" /></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-list"
+        ><line
+          x1="8"
+          x2="21"
+          y1="6"
+          y2="6"
+        /><line
+          x1="8"
+          x2="21"
+          y1="12"
+          y2="12"
+        /><line
+          x1="8"
+          x2="21"
+          y1="18"
+          y2="18"
+        /><line
+          x1="3"
+          x2="3.01"
+          y1="6"
+          y2="6"
+        /><line
+          x1="3"
+          x2="3.01"
+          y1="12"
+          y2="12"
+        /><line
+          x1="3"
+          x2="3.01"
+          y1="18"
+          y2="18"
+        /></svg>
         List
       </button>
       <button
         :class="{ 'bg-black text-white': editor.isActive('vueComponent') }"
-        class="flex gap-1 items-center hover:bg-zinc-700 px-2 py-1" @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: component_name.Creation } }).run()"
+        class="flex gap-1 items-center hover:bg-zinc-700 px-2 py-1"
+        @click.prevent="editor.chain().focus().insertContent({ type: 'vueComponent', attrs: { selectedView: component_name.Creation } }).run()"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing"><circle cx="12" cy="5" r="1" /><path d="m9 20 3-6 3 6" /><path d="m6 8 6 2 6-2" /><path d="M12 10v4" /></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-person-standing"
+        ><circle
+          cx="12"
+          cy="5"
+          r="1"
+        /><path d="m9 20 3-6 3 6" /><path d="m6 8 6 2 6-2" /><path d="M12 10v4" /></svg>
         Build View
       </button>
     </div>

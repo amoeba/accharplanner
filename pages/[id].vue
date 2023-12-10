@@ -29,7 +29,10 @@ if (error) {
     <div v-if="errorMessage">
       {{ errorMessage }}
     </div>
-    <div v-if="data && data.length > 0" class="flex flex-col gap-2">
+    <div
+      v-if="data && data.length > 0"
+      class="flex flex-col gap-2"
+    >
       <div class="flex gap-2">
         <FavoriteButton />
         <ButtonView>

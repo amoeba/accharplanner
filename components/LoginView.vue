@@ -28,11 +28,17 @@
         <form class="flex flex-col gap-2">
           <label>
             Email
-            <input type="text" class="border rounded px-2 py-1">
+            <input
+              type="text"
+              class="border rounded px-2 py-1"
+            >
           </label>
           <label>
             Password
-            <input type="text" class="border rounded px-2 py-1">
+            <input
+              type="text"
+              class="border rounded px-2 py-1"
+            >
           </label>
           <input
             type="submit"

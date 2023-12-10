@@ -70,7 +70,10 @@ export default {
       <!-- Collapse/Expand -->
       <div class="flex">
         <div class="flex gap-2">
-          <ButtonView tooltip="Expand All Panels" @click="expandAll">
+          <ButtonView
+            tooltip="Expand All Panels"
+            @click="expandAll"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -87,7 +90,10 @@ export default {
               <path d="m7 9 5-5 5 5" />
             </svg>
           </ButtonView>
-          <ButtonView tooltip="Collapse All Panels" @click="collapseAll">
+          <ButtonView
+            tooltip="Collapse All Panels"
+            @click="collapseAll"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -140,11 +146,33 @@ export default {
               stroke-linejoin="round"
               class="lucide lucide-share-2"
             >
-              <circle cx="18" cy="5" r="3" />
-              <circle cx="6" cy="12" r="3" />
-              <circle cx="18" cy="19" r="3" />
-              <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
-              <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+              <circle
+                cx="18"
+                cy="5"
+                r="3"
+              />
+              <circle
+                cx="6"
+                cy="12"
+                r="3"
+              />
+              <circle
+                cx="18"
+                cy="19"
+                r="3"
+              />
+              <line
+                x1="8.59"
+                x2="15.42"
+                y1="13.51"
+                y2="17.49"
+              />
+              <line
+                x1="15.41"
+                x2="8.59"
+                y1="6.51"
+                y2="10.49"
+              />
             </svg>
           </template>
           <template #title>

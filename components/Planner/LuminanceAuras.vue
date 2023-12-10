@@ -48,12 +48,18 @@ export default {
 </script>
 
 <template>
-  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+  <CollapsiblePane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
     <template #title>
       Luminance Auras
     </template>
     <template #right>
-      <span v-if="errors" class="text-red-500">{{ errors }}</span>
+      <span
+        v-if="errors"
+        class="text-red-500"
+      >{{ errors }}</span>
     </template>
     <template #content>
       <table>
@@ -95,7 +101,11 @@ export default {
           </tr>
         </thead>
         <tbody>
-          <LuminanceAura v-for="aura in auras" :key="aura" :name="aura" />
+          <LuminanceAura
+            v-for="aura in auras"
+            :key="aura"
+            :name="aura"
+          />
         </tbody>
       </table>
     </template>

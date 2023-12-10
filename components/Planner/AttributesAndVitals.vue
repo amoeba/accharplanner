@@ -38,13 +38,19 @@ export default {
 </script>
 
 <template>
-  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+  <CollapsiblePane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
     <template #title>
       Attributes
     </template>
     <template #right>
       <div>
-        <span v-if="errors" class="text-red-500">{{ errors }}</span>
+        <span
+          v-if="errors"
+          class="text-red-500"
+        >{{ errors }}</span>
       </div>
       <div>
         <span

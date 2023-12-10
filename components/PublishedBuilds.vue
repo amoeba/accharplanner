@@ -25,17 +25,30 @@ const { data, error } = await getPublishedBuilds(client)
           </tr>
         </thead>
         <tbody>
-          <tr v-for="build in data" :key="build.id">
+          <tr
+            v-for="build in data"
+            :key="build.id"
+          >
             <td class="px-2 py-1">
-              <a class="text-blue-500 underline hover:no-underline" :href="`/${build.id}`">{{
+              <a
+                class="text-blue-500 underline hover:no-underline"
+                :href="`/${build.id}`"
+              >{{
                 build.content.character.name
               }}</a>
             </td>
             <td class="px-2 py-1">
               <div class="flex gap-1 items-center">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                   class="lucide lucide-star fill-yellow-400 stroke-yellow-400"
                 >
                   <polygon

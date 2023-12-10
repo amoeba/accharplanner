@@ -65,7 +65,10 @@ const numPages = Math.ceil(count.value / pageSize)
     Total: {{ count }}
   </div>
   <ul>
-    <li v-for="guide in guides" :key="guide.id">
+    <li
+      v-for="guide in guides"
+      :key="guide.id"
+    >
       <NuxtLink :href="`/guides/${guide.id}`">
         {{ guide.title }}
       </NuxtLink>
@@ -73,6 +76,9 @@ const numPages = Math.ceil(count.value / pageSize)
     </li>
   </ul>
   <div class="flex gap-2">
-    <PageControls v-model="page" :num-pages="numPages" />
+    <PageControls
+      v-model="page"
+      :num-pages="numPages"
+    />
   </div>
 </template>

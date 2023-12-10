@@ -31,12 +31,18 @@ export default {
 </script>
 
 <template>
-  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+  <CollapsiblePane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
     <template #title>
       Armor Sets
     </template>
     <template #right>
-      <span v-if="errors" class="text-rose-500">{{ errors }}</span>
+      <span
+        v-if="errors"
+        class="text-rose-500"
+      >{{ errors }}</span>
     </template>
     <template #content>
       <table class="width-full">

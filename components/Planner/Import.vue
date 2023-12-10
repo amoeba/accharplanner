@@ -58,7 +58,10 @@ export default {
             Saved Builds
           </router-link> tab.
         </p>
-        <input id="input" type="file">
+        <input
+          id="input"
+          type="file"
+        >
         <ButtonView @click="importBuild">
           Import
         </ButtonView>

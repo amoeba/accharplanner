@@ -26,7 +26,10 @@ const togglePopout = async function () {
       role="dialog"
     >
       <div>
-        <slot name="content" :is-visible="isPopoutVisible" />
+        <slot
+          name="content"
+          :is-visible="isPopoutVisible"
+        />
       </div>
     </div>
   </div>

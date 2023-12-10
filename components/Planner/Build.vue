@@ -120,12 +120,18 @@ export default {
       <div v-if="!loading">
         <p>
           <ButtonView>
-            <router-link v-if="build" :to="url">
+            <router-link
+              v-if="build"
+              :to="url"
+            >
               Load in Planner
             </router-link>
           </ButtonView>
         </p>
-        <p v-if="build" v-html="build.description" />
+        <p
+          v-if="build"
+          v-html="build.description"
+        />
 
         <!-- Editing Controls -->
         <p v-if="isAdmin">

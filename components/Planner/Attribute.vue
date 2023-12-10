@@ -104,24 +104,50 @@ export default {
 <template>
   <tr>
     <td>
-      <img style="clip-path: circle(50%)" :src="`/icons/${name}.png`" :alt="displayName" width="20" height="20">
+      <img
+        style="clip-path: circle(50%)"
+        :src="`/icons/${name}.png`"
+        :alt="displayName"
+        width="20"
+        height="20"
+      >
     </td>
     <td>{{ displayName }}</td>
     <td>
-      <input v-model="creation" type="range" min="10" max="100">
+      <input
+        v-model="creation"
+        type="range"
+        min="10"
+        max="100"
+      >
     </td>
     <td>
-      <input v-model="creation" class="w-10" type="text" :tabindex="tabIndex">
+      <input
+        v-model="creation"
+        class="w-10"
+        type="text"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>{{ base }}</td>
     <td :class="isBuffed ? 'text-green-600' : ''">
       {{ buffed }}
     </td>
     <td>
-      <input v-model="invested" type="range" min="0" :max="maxAttributeInvested">
+      <input
+        v-model="invested"
+        type="range"
+        min="0"
+        :max="maxAttributeInvested"
+      >
     </td>
     <td>
-      <input v-model="invested" class="w-10" type="text" :tabindex="tabIndex">
+      <input
+        v-model="invested"
+        class="w-10"
+        type="text"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>
       <select v-model="buffLevel">

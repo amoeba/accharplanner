@@ -38,7 +38,10 @@ const remove = async function () {
       >
         Level {{ level }}
       </button>
-      <button class="rounded-r hover:text-red-600" @click="remove">
+      <button
+        class="rounded-r hover:text-red-600"
+        @click="remove"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -57,7 +60,10 @@ const remove = async function () {
       </button>
     </div>
     <div class="flex flex-col justify-center">
-      <div v-if="isNotLast" class="h-1 w-10 bg-zinc-200">
+      <div
+        v-if="isNotLast"
+        class="h-1 w-10 bg-zinc-200"
+      >
 &nbsp;
       </div>
     </div>

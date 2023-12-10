@@ -64,7 +64,13 @@ export default {
 <template>
   <tr>
     <td>
-      <img style="clip-path: circle(50%)" :src="`/icons/${name}.png`" :alt="displayName" width="20" height="20">
+      <img
+        style="clip-path: circle(50%)"
+        :src="`/icons/${name}.png`"
+        :alt="displayName"
+        width="20"
+        height="20"
+      >
     </td>
     <td>
       {{ displayName }}
@@ -77,10 +83,20 @@ export default {
       {{ buffed }}
     </td>
     <td>
-      <input v-model="invested" type="range" min="0" :max="maxVitalInvested">
+      <input
+        v-model="invested"
+        type="range"
+        min="0"
+        :max="maxVitalInvested"
+      >
     </td>
     <td>
-      <input class="w-10" type="text" model="invested" :tabindex="tabIndex">
+      <input
+        class="w-10"
+        type="text"
+        model="invested"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

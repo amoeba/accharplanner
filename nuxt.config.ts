@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "floating-vue/nuxt",
     "@nuxtjs/google-fonts",
     "@vueuse/nuxt",
+    '@nuxtjs/eslint-module',
   ],
   runtimeConfig: {
     public: {

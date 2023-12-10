@@ -115,7 +115,10 @@ function drop(e: DragEvent) {
           @dragover="dragover"
           @drop="drop"
         />
-        <ButtonView class="ml-2 px-1 py-1 text-xs" @click="save">
+        <ButtonView
+          class="ml-2 px-1 py-1 text-xs"
+          @click="save"
+        >
           + Stage
         </ButtonView>
       </div>

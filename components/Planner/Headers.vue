@@ -171,12 +171,20 @@ export default {
         <div class="flex flex-col gap-2">
           <label class="flex gap-2">
             Name
-            <input id="charname" v-model="name" class="w100" type="text">
+            <input
+              id="charname"
+              v-model="name"
+              class="w100"
+              type="text"
+            >
           </label>
           <label class="flex gap-2">
             Race
             <select v-model="race">
-              <option v-for="race in races" :key="race">
+              <option
+                v-for="race in races"
+                :key="race"
+              >
                 {{ race }}
               </option>
             </select>
@@ -194,7 +202,12 @@ export default {
                 <span class="block">Female</span>
               </label>
               <label class="flex gap-2">
-                <input id="male" v-model="gender" type="radio" value="Male">
+                <input
+                  id="male"
+                  v-model="gender"
+                  type="radio"
+                  value="Male"
+                >
                 <span class="block">Male</span>
               </label>
             </div>
@@ -202,15 +215,30 @@ export default {
           <label class="flex gap-2">
             Level
             <div>
-              <div v-if="!settingsInfiniteMode" class="flex gap-2">
+              <div
+                v-if="!settingsInfiniteMode"
+                class="flex gap-2"
+              >
                 <div class="flex grow">
-                  <input v-model="level" type="range" min="1" :max="maxLevel">
+                  <input
+                    v-model="level"
+                    type="range"
+                    min="1"
+                    :max="maxLevel"
+                  >
                 </div>
                 <div class="w-10">
-                  <input v-model="level" type="text" @change="updateLevel">
+                  <input
+                    v-model="level"
+                    type="text"
+                    @change="updateLevel"
+                  >
                 </div>
               </div>
-              <div v-if="settingsInfiniteMode" class="flex gap-2">
+              <div
+                v-if="settingsInfiniteMode"
+                class="flex gap-2"
+              >
                 <div class="flex grow">
                   <span class="text-green-600">∞</span>
                 </div>
@@ -269,7 +297,10 @@ export default {
             {{ totalXPEarned }}
           </div>
           <div>Required Level</div>
-          <div class="justify-self-end" :class="isOverspent ? 'red' : 'gray'">
+          <div
+            class="justify-self-end"
+            :class="isOverspent ? 'red' : 'gray'"
+          >
             {{ requiredLevel }}
           </div>
           <div>Luminance Spent</div>
@@ -335,7 +366,11 @@ export default {
                 >
               </div>
               <div>
-                <input v-model="timesEnlightened" class="w-6" type="text">
+                <input
+                  v-model="timesEnlightened"
+                  class="w-6"
+                  type="text"
+                >
               </div>
             </div>
           </label>

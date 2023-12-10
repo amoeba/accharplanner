@@ -28,7 +28,10 @@ export default {
 </script>
 
 <template>
-  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+  <CollapsiblePane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
     <template #title>
       Items
     </template>

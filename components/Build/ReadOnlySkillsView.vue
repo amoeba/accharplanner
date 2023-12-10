@@ -28,7 +28,8 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
       <tr>
         <th
           class="text-left px-1 text-white"
-          style="background: linear-gradient( to right, #392067, #392067, transparent);" colspan="3"
+          style="background: linear-gradient( to right, #392067, #392067, transparent);"
+          colspan="3"
         >
           Specialized
         </th>
@@ -36,13 +37,24 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     </thead>
     <tbody>
       <tr v-if="store.specializedSkills.length <= 0">
-        <td class="center" colspan="12">
+        <td
+          class="center"
+          colspan="12"
+        >
           No specialized skills
         </td>
       </tr>
-      <tr v-for="skill in store.specializedSkills" :key="skill">
+      <tr
+        v-for="skill in store.specializedSkills"
+        :key="skill"
+      >
         <td class="w-8">
-          <img :src="`/icons/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
+          <img
+            :src="`/icons/${skill}.png`"
+            width="25"
+            height="25"
+            style="clip-path: circle(50%)"
+          >
         </td>
         <td>{{ SKILL_NAME[skill] }}</td>
         <td class="text-right">
@@ -54,7 +66,8 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
       <tr>
         <th
           class="text-left px-1 text-white"
-          style="background: linear-gradient( to right, #0f3c3e, #0f3c3e, transparent);" colspan="3"
+          style="background: linear-gradient( to right, #0f3c3e, #0f3c3e, transparent);"
+          colspan="3"
         >
           Trained
         </th>
@@ -62,13 +75,24 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     </thead>
     <tbody>
       <tr v-if="store.trainedSkills.length <= 0">
-        <td class="center" colspan="12">
+        <td
+          class="center"
+          colspan="12"
+        >
           No trained skills
         </td>
       </tr>
-      <tr v-for="skill in store.trainedSkills" :key="skill">
+      <tr
+        v-for="skill in store.trainedSkills"
+        :key="skill"
+      >
         <td class="w-8">
-          <img :src="`/icons/${skill}.png`" width="25" height="25" style="clip-path: circle(50%)">
+          <img
+            :src="`/icons/${skill}.png`"
+            width="25"
+            height="25"
+            style="clip-path: circle(50%)"
+          >
         </td>
         <td>{{ SKILL_NAME[skill] }}</td>
         <td class="text-right">

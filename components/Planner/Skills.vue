@@ -123,7 +123,10 @@ export default {
 </script>
 
 <template>
-  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
+  <CollapsiblePane
+    :toggle-expanded="toggleExpanded"
+    :is-expanded="isExpanded"
+  >
     <template #title>
       <ToolTip
         v-tooltip="
@@ -271,7 +274,10 @@ export default {
             </th>
           </tr>
           <tr v-if="noSpecializedSkills">
-            <td class="center" colspan="12">
+            <td
+              class="center"
+              colspan="12"
+            >
               No specialized skills
             </td>
           </tr>
@@ -304,7 +310,10 @@ export default {
             </th>
           </tr>
           <tr v-if="noTrainedSkills">
-            <td class="center" colspan="12">
+            <td
+              class="center"
+              colspan="12"
+            >
               No trained skills
             </td>
           </tr>

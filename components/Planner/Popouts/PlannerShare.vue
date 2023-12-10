@@ -74,14 +74,37 @@ const doExportCharacter = async function () {
   <div class="flex flex-col gap-2">
     Use this URL to share your build with others:
     <div class="flex">
-      <input id="sharedBuildURL" v-model="shareBuildURL" type="text" placeholder="Sharing, hang on tight...">
-      <ButtonView class="border rounded px-2 py-1" tooltip="Copy to clipboard" @click="copy(shareBuildURL)">
+      <input
+        id="sharedBuildURL"
+        v-model="shareBuildURL"
+        type="text"
+        placeholder="Sharing, hang on tight..."
+      >
+      <ButtonView
+        class="border rounded px-2 py-1"
+        tooltip="Copy to clipboard"
+        @click="copy(shareBuildURL)"
+      >
         <svg
-          xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
           class="lucide lucide-copy"
         >
-          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+          <rect
+            width="14"
+            height="14"
+            x="8"
+            y="8"
+            rx="2"
+            ry="2"
+          />
           <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
         </svg>
       </ButtonView>
@@ -89,8 +112,15 @@ const doExportCharacter = async function () {
     <div class="flex gap-2">
       <ButtonView @click="doExportCharacter">
         <svg
-          xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
           class="lucide lucide-arrow-down-to-line"
         >
           <path d="M12 17V3" />
@@ -101,8 +131,15 @@ const doExportCharacter = async function () {
       </ButtonView>
       <ButtonView @click="saveBuild">
         <svg
-          xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
           class="lucide lucide-save"
         >
           <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />

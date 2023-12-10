@@ -30,13 +30,16 @@ if (error) {
       {{ errorMessage }}
     </div>
     <ReadOnlyCreation
-      v-if="build && props.node.attrs.view === ComponentName.Creation" :build="build"
+      v-if="build && props.node.attrs.view === ComponentName.Creation"
+      :build="build"
     />
     <ReadOnlyAttributesAndVitals
-      v-if="build && props.node.attrs.view === ComponentName.AttributesAndVitals" :build="build"
+      v-if="build && props.node.attrs.view === ComponentName.AttributesAndVitals"
+      :build="build"
     />
     <ReadOnlySkillsView
-      v-if="build && props.node.attrs.view === ComponentName.Skills" :build="build"
+      v-if="build && props.node.attrs.view === ComponentName.Skills"
+      :build="build"
     />
   </div>
 </template>

@@ -248,7 +248,13 @@ export default {
 <template>
   <tr>
     <td>
-      <img style="clip-path: circle(50%)" :src="`/icons/${name}.png`" :alt="displayName" width="20" height="20">
+      <img
+        style="clip-path: circle(50%)"
+        :src="`/icons/${name}.png`"
+        :alt="displayName"
+        width="20"
+        height="20"
+      >
     </td>
     <td>
       {{ displayName }}
@@ -257,7 +263,10 @@ export default {
     <td>
       <button
         :class="cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
-        " class="rounded w-12 text-white px-1" :disabled="cantDecrease" @click="decreaseTraining"
+        "
+        class="rounded w-12 text-white px-1"
+        :disabled="cantDecrease"
+        @click="decreaseTraining"
       >
         {{ decreaseCostText }}
         ↓
@@ -266,7 +275,9 @@ export default {
     <td>
       <button
         :class="cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
-        " class="rounded w-12 text-white px-1" @click="increaseTraining"
+        "
+        class="rounded w-12 text-white px-1"
+        @click="increaseTraining"
       >
         {{ increaseCostText }} ↑
       </button>
@@ -279,11 +290,21 @@ export default {
     </td>
     <td>
       <div v-if="canInvest">
-        <input v-model="invested" type="range" min="0" :max="maxInvestment">
+        <input
+          v-model="invested"
+          type="range"
+          min="0"
+          :max="maxInvestment"
+        >
       </div>
     </td>
     <td>
-      <input v-model="invested" class="w-10" type="text" :tabindex="tabIndex">
+      <input
+        v-model="invested"
+        class="w-10"
+        type="text"
+        :tabindex="tabIndex"
+      >
     </td>
     <td>
       <select v-model="buffLevel">
