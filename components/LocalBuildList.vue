@@ -1,0 +1,53 @@
+<script setup lang="ts">
+import { usePlannerStore } from "~/stores/planner"
+
+
+const store = usePlannerStore()
+const builds = computed(() => { return store.ui.savedBuilds })
+
+// this.store.ui.savedBuilds
+const clear = async function () {
+  store.deleteAllBuilds()
+}
+</script>
+
+<template>
+  <div class="flex flex-col gap-2">
+    <p v-if="builds.length <= 0">
+      No local builds. Use the <ButtonView class="inline-flex">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-share-2">
+          <circle cx="18" cy="5" r="3" />
+          <circle cx="6" cy="12" r="3" />
+          <circle cx="18" cy="19" r="3" />
+          <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+          <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+        </svg>
+        Share
+      </ButtonView> button in the
+      <router-link to="/planner">
+        Planner
+      </router-link> and click <ButtonView class="inline-flex">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-save">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+          <polyline points="17 21 17 13 7 13 7 21" />
+          <polyline points="7 3 7 8 15 8" />
+        </svg>
+        Save to Browser
+      </ButtonView>.
+    </p>
+    <div v-if="builds && builds.length > 0">
+      <ButtonView @click="clear">
+        Delete All
+      </ButtonView>
+    </div>
+    <ul v-if="builds && builds.length > 0">
+      <li v-for="build in builds" :key="build.key">
+        <LocalBuildListItem :build="build" />
+      </li>
+    </ul>
+  </div>
+</template>

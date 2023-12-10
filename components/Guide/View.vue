@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTimeAgo } from "@vueuse/core"
-import type { Database } from "~/utils/database.types"
+import type { Database } from "~/utils/database.types-generated"
 
 const props = defineProps(["id"])
 const client = useSupabaseClient()
@@ -19,7 +19,7 @@ let updatedAt: globalThis.ComputedRef<string>
 if (error) {
   errorMessage.value = error
 }
- else if (data && data[0]) {
+else if (data && data[0]) {
   guide.value = data[0]
 
   if (guide.value && guide.value.profiles) {
@@ -42,10 +42,7 @@ if (error) {
       <h2 class="text-lg font-bold">
         {{ guide.title }}
       </h2>
-      <ButtonLink
-        v-if="user && user.id === guide.created_by"
-        :href="`/guides/${id}/edit`"
-      >
+      <ButtonLink v-if="user && user.id === guide.created_by" :href="`/guides/${id}/edit`">
         Edit
       </ButtonLink>
     </div>
@@ -58,10 +55,6 @@ if (error) {
     <div v-else>
       <span>Submitted by {{ submittedBy }}</span>
     </div>
-    <GuideContentEditor
-      v-model="guide.content"
-      :editable="false"
-      class="py-2"
-    />
+    <GuideContentEditor v-model="guide.content" :editable="false" class="py-2" />
   </div>
 </template>
