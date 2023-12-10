@@ -11,13 +11,13 @@
       Public Builds
     </h2>
     <Suspense>
-      <PublishedBuilds />
+      <PublishedBuilds :max="10" />
       <template #fallback>
         Loading...
       </template>
     </Suspense>
     <Suspense>
-      <LatestBuilds />
+      <LatestBuilds :max="10" />
       <template #fallback>
         Loading...
       </template>
