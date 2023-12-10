@@ -3,14 +3,16 @@ const client = useSupabaseClient()
 const user = useSupabaseUser()
 
 const errorMessage = ref("")
-const { data, error } = await getMySharedBuilds(client, user, 10)
-
 let builds: BuildRow[]
 
-if (error) {
-  errorMessage.value = error.message
-} else if (data) {
-  builds = data
+if (user.value) {
+  const { data, error } = await getMySharedBuilds(client, user, 10)
+
+  if (error) {
+    errorMessage.value = error.message
+  } else if (data) {
+    builds = data
+  }
 }
 </script>
 
@@ -20,10 +22,11 @@ if (error) {
       {{ errorMessage }}
     </div>
     <div v-if="!user">
-      You must log in first.
+      You must <NuxtLink to="/login">log in</NuxtLink> first.
     </div>
     <div v-if="user">
-      <table v-if="data && data.length > 0" class="w-auto">
+      <p v-if="builds && builds.length == 0">You haven't shared any builds yet.</p>
+      <table v-if="builds && builds.length > 0" class="w-auto">
         <RemoteBuildListItem v-for="build in builds" :key="build.id" :build="build" />
       </table>
     </div>
