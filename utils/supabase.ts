@@ -53,12 +53,34 @@ export const unFavoriteBuild = async function (client: SupabaseClient, user: Use
     .eq("created_by", user.value.id)
 }
 
-export const publishBuild = async function (client: SupabaseClient, user: User, build: Build) {
+export const publishBuild = async function (client: SupabaseClient, user: ref<User>, build: Build) {
   return await client
     .from("builds")
     .insert({ id: createId(10), content: build, is_published: true, created_by: user.value.id })
     .select()
 }
+
+export const getMySharedBuilds = async function (client: SupabaseClient, user: Ref<User>, max: number) {
+  return await client
+    .from("builds")
+    .select(`
+      id,
+      content,
+      created_at,
+      created_by,
+      is_published,
+      profiles (
+        name
+      ),
+      builds_favorites (
+        id
+      )
+    `)
+    .order("created_at")
+    .eq("created_by", user.value.id)
+    .limit(max)
+}
+
 
 export const getPublishedBuilds = async function (client: SupabaseClient, max: number) {
   return await client
