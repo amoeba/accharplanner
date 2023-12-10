@@ -1,4 +1,4 @@
-export interface Build {
+export interface BuildRow {
   content: Json
   created_at: string
   created_by: string | null
@@ -6,7 +6,7 @@ export interface Build {
   is_published: boolean
 }
 
-export interface Guide {
+export interface GuideRow {
   attribution: string | null
   content: string
   created_at: string
@@ -16,20 +16,20 @@ export interface Guide {
   updated_at: string
 }
 
-export interface Profile {
+export interface ProfileRow {
   id: string
   is_admin: boolean | null
   name: string | null
 }
 
-export interface BuildFavorite {
+export interface BuildFavoriteRow {
   build_id: string | null
   created_at: string
   created_by: string | null
   id: number
 }
 
-export interface GuideFavorite {
+export interface GuideFavoriteRow {
   guide_id: string | null
   created_at: string
   created_by: string | null
