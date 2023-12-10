@@ -25,7 +25,7 @@ const deleteBuild = async function () {
 
 <template>
   <tr>
-    <td class="font-bold">{{ build.character.name }}</td>
+    <td>{{ build.character.name }}</td>
     <td class="text-zinc-500">Saved {{ saved }}</td>
     <td class="flex gap-2">
       <ButtonView @click="loadBuild" class="inline-flex">
