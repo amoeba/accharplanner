@@ -3,7 +3,7 @@
     <div class="rounded bg-zinc-50 dark:bg-stone-900 font-bold px-2 py-1 ">
       <slot name="title" />
     </div>
-    <div class="p-2">
+    <div class="px-2 py-1">
       <slot name="table" />
     </div>
   </div>

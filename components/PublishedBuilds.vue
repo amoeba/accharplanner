@@ -27,12 +27,12 @@ const { data, error } = await getPublishedBuilds(client, props.max || 10)
         </thead>
         <tbody>
           <tr v-for="build in data" :key="build.id">
-            <td class="px-2 py-1">
+            <td class="p-0">
               <a class="text-blue-500 underline hover:no-underline" :href="`/${build.id}`">{{
                 build.content.character.name
               }}</a>
             </td>
-            <td class="px-2 py-1">
+            <td class="p-0">
               <div class="flex gap-1 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -43,7 +43,7 @@ const { data, error } = await getPublishedBuilds(client, props.max || 10)
                 {{ build.builds_favorites.length }}
               </div>
             </td>
-            <td class="px-2 py-1">
+            <td class="p-0">
               <span v-if="build.profiles">{{ build.profiles.name }}</span>
               <span v-else>Anonymous</span>
             </td>
