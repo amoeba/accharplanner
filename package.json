@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "supabase": "npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > utils/database.types-generated.ts"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.8.0",
