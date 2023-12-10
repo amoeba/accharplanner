@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
+import type { Profile } from "~/utils/database.types";
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -10,7 +11,7 @@ interface SupabaseError {
   message: string
 }
 
-const profile = ref<Profile>({})
+const profile = ref<Profile>()
 const message = ref("")
 const errors = ref<SupabaseError[]>([])
 const isSigningOut = ref(false)
@@ -36,10 +37,10 @@ const signOut = async function () {
       errors.value.push(error)
     }
   }
- catch (error) {
+  catch (error) {
     errors.value.push({ message: error.message } as SupabaseError)
   }
- finally {
+  finally {
     isSigningOut.value = false
   }
 }
@@ -80,7 +81,7 @@ const trySetName = async function () {
       formState.value = FormState.ERROR
       errors.value.push(error)
     }
- else {
+    else {
       formState.value = FormState.SUCCESS
       message.value = "Success!"
       setTimeout(() => {
@@ -88,7 +89,7 @@ const trySetName = async function () {
       }, 3000)
     }
   }
- catch (error) {
+  catch (error) {
     formState.value = FormState.ERROR
     errors.value.push({ message: error.message } as SupabaseError)
   }
@@ -115,39 +116,22 @@ if (data) {
         <form @submit.prevent="trySetName">
           <label class="block py-3">
             <div>Name</div>
-            <input
-              v-model="profile.name"
-              class="w-full px-2 py-1"
-              type="text"
-            >
+            <input v-model="profile.name" class="w-full px-2 py-1" type="text">
           </label>
           <div class="flex justify-end gap-2 content-center">
-            <div
-              v-if="formState === FormState.SENDING"
-              class="px-2 py-1"
-            >
+            <div v-if="formState === FormState.SENDING" class="px-2 py-1">
               Sending...
             </div>
-            <div
-              v-if="formState === FormState.SUCCESS"
-              class="px-2 py-1"
-            >
+            <div v-if="formState === FormState.SUCCESS" class="px-2 py-1">
               {{ message }}
             </div>
             <input
               class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto"
-              type="submit"
-              value="Update"
-              :disabled="formState === FormState.SENDING"
-            >
+              type="submit" value="Update" :disabled="formState === FormState.SENDING">
           </div>
         </form>
       </div>
-      <ButtonView
-        v-if="user"
-        :disabled="isSigningOut"
-        @click="signOut"
-      >
+      <ButtonView v-if="user" :disabled="isSigningOut" @click="signOut">
         Log Out
       </ButtonView>
     </div>
