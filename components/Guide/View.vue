@@ -1,33 +1,35 @@
 <script setup lang="ts">
-import type { Guide } from "~/utils/models"
+import type { Database } from "~/utils/database.types"
 import { useTimeAgo } from '@vueuse/core'
 
 const props = defineProps(["id"])
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
-const guide = ref<Guide>()
+const guide = ref<Database['public']['Tables']['guides']['Row']>()
 const errorMessage = ref("")
 
 const { data, error } = await fetchGuide(client, props.id)
 
 const submittedBy = ref("Anonymous")
 
-let createdAt
-let updatedAt
+let createdAt: globalThis.ComputedRef<string>
+let updatedAt: globalThis.ComputedRef<string>
 
 if (error) {
   errorMessage.value = error
 }
-else {
+else if (data && data[0]) {
   guide.value = data[0]
 
-  if (guide.value.profiles) {
+  if (guide.value && guide.value.profiles) {
     submittedBy.value = guide.value.profiles.name
   }
 
-  createdAt = useTimeAgo(new Date(guide.value.created_at))
-  updatedAt = useTimeAgo(new Date(guide.value.updated_at))
+  if (guide.value) {
+    createdAt = useTimeAgo(new Date(guide.value.created_at))
+    updatedAt = useTimeAgo(new Date(guide.value.updated_at))
+  }
 }
 </script>
 
