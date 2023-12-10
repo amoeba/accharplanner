@@ -12,3 +12,10 @@ nuxt_refactor
 - Create JSONSchema for builds so we can validate/etc
 - Light/Dark and other themes
 - Fix and check everything works right on mobile
+- Make use of Nuxt server API
+  - Before I dive in too deep, check that the benefits are what I think they are
+- Check out using Zod to validate JSON structures
+- Is now a good time for API versioning?
+- Put an image of the planner up on the main page
+- Make selects and inputs the same size, height, padding, etc
+- Can I figure out a way to switch between panes and tabs view?
