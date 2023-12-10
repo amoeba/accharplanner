@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "@nuxtjs/supabase",
     "floating-vue/nuxt",
-    "@nuxtjs/google-fonts",
     "@vueuse/nuxt",
     '@nuxtjs/eslint-module',
   ],
