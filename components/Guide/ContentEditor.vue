@@ -34,8 +34,7 @@ export default {
     modelValue(value) {
       const isSame = this.editor.getHTML() === value
 
-      if (isSame)
-        return
+      if (isSame) { return }
 
       this.editor.commands.setContent(value, false)
     },

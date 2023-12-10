@@ -14,11 +14,9 @@
  * Notes: https://github.com/amoeba/accharplanner/issues/301
  */
 export const trainingBonus = function (training: Training) {
-  if (training === Training.SPECIALIZED)
-    return 10
-  else if (training === Training.TRAINED)
-    return 0
-  else return 0
+  if (training === Training.SPECIALIZED) { return 10 }
+  else if (training === Training.TRAINED) { return 0 }
+  else { return 0 }
 }
 
 export const buffBonus = function (level: number) {
@@ -63,66 +61,47 @@ export const cantripBonus = function (level: number) {
 
 // Most sets have this schema for bonuses
 export const standardSetBonus = function (pieces: number) {
-  if (pieces < 2)
-    return 0
-  else if (pieces === 2)
-    return 3
-  else if (pieces === 3)
-    return 5
-  else if (pieces === 4)
-    return 10
-  else if (pieces >= 5)
-    return 20
-  else return 0
+  if (pieces < 2) { return 0 }
+  else if (pieces === 2) { return 3 }
+  else if (pieces === 3) { return 5 }
+  else if (pieces === 4) { return 10 }
+  else if (pieces >= 5) { return 20 }
+  else { return 0 }
 }
 
 // Many sets have the same secondary effect magnitudes (3/5)
 export const standardSecondarySetBonus = function (pieces: number) {
-  if (pieces === 4)
-    return 3
-  else if (pieces >= 5)
-    return 5
-  else return 0
+  if (pieces === 4) { return 3 }
+  else if (pieces >= 5) { return 5 }
+  else { return 0 }
 }
 
 export const dedicationSetBonus = function (pieces: number) {
-  if (pieces < 2)
-    return 0
-  else if (pieces >= 2 && pieces < 4)
-    return 3
-  else if (pieces >= 4 && pieces < 6)
-    return 6
-  else if (pieces >= 6 && pieces < 8)
-    return 9
-  else if (pieces === 8)
-    return 12
-  else if (pieces >= 9)
-    return 15
-  else return 0
+  if (pieces < 2) { return 0 }
+  else if (pieces >= 2 && pieces < 4) { return 3 }
+  else if (pieces >= 4 && pieces < 6) { return 6 }
+  else if (pieces >= 6 && pieces < 8) { return 9 }
+  else if (pieces === 8) { return 12 }
+  else if (pieces >= 9) { return 15 }
+  else { return 0 }
 }
 
 export const dextrousSetStaminaBonus = function (pieces: number) {
-  if (pieces === 4)
-    return 6
-  else if (pieces >= 5)
-    return 20
-  else return 0
+  if (pieces === 4) { return 6 }
+  else if (pieces >= 5) { return 20 }
+  else { return 0 }
 }
 
 export const heartySetHealthBonus = function (pieces: number) {
-  if (pieces === 4)
-    return 3
-  else if (pieces >= 5)
-    return 10
-  else return 0
+  if (pieces === 4) { return 3 }
+  else if (pieces >= 5) { return 10 }
+  else { return 0 }
 }
 
 export const wiseSetManaBonus = function (pieces: number) {
-  if (pieces === 4)
-    return 6
-  else if (pieces >= 5)
-    return 20
-  else return 0
+  if (pieces === 4) { return 6 }
+  else if (pieces >= 5) { return 20 }
+  else { return 0 }
 }
 
 export const exportJSONData = function (data: object, filename: string) {
@@ -146,8 +125,7 @@ export const exportCharacter = function (data: object, name: string | null) {
 }
 
 export const clamp = function (value: number, clamp: number): number {
-  if (value < clamp)
-    return clamp
+  if (value < clamp) { return clamp }
 
   return value
 }
@@ -179,27 +157,22 @@ export const updateAugmentationInvestedSideEffect = function (
     let newVal
       = state.build.character.attributes[attribute].creation + diff * 5
 
-    if (newVal > MAX_CREATION_ATTRIBUTE_POINTS)
-      newVal = MAX_CREATION_ATTRIBUTE_POINTS
-    else if (newVal < MIN_CREATION_ATTRIBUTE_POINTS)
-      newVal = MIN_CREATION_ATTRIBUTE_POINTS
+    if (newVal > MAX_CREATION_ATTRIBUTE_POINTS) { newVal = MAX_CREATION_ATTRIBUTE_POINTS }
+    else if (newVal < MIN_CREATION_ATTRIBUTE_POINTS) { newVal = MIN_CREATION_ATTRIBUTE_POINTS }
 
     state.build.character.attributes[attribute].creation = newVal
   }
 }
 
 export function maxSkillInvested(training: Training) {
-  if (training === Training.SPECIALIZED)
-    return MAX_SKILL_INVESTED_SPECIALIZED
-  else if (training === Training.TRAINED)
-    return MAX_SKILL_INVESTED_TRAINED
-  else return 0
+  if (training === Training.SPECIALIZED) { return MAX_SKILL_INVESTED_SPECIALIZED }
+  else if (training === Training.TRAINED) { return MAX_SKILL_INVESTED_TRAINED }
+  else { return 0 }
 }
 
 export const valuesMatchIndicies = function (values: number[]): boolean {
   for (let i = 0; i < values.length; i++) {
-    if (i !== values[i])
-      return false
+    if (i !== values[i]) { return false }
   }
 
   return true

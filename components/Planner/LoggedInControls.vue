@@ -25,8 +25,7 @@ const doFavoriteBuild = async function () {
   isFavoriteInError.value = false
   favoriteTooltip.value = defaultFavoriteTooltip
 
-  if (!user)
-    return
+  if (!user) { return }
 
   // TODO: make dynamic (get it from the store)
   const buildId = 'OtFbpJEFl4'

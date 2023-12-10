@@ -23,8 +23,7 @@ export const getNumFavorites = async function (client: SupabaseClient, user: Use
     .eq('build_id', id)
     .eq('created_by', user.value.id)
 
-  if (data && data.length > 0)
-    return data.length
+  if (data && data.length > 0) { return data.length }
 
   return 0
 }

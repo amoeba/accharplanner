@@ -119,8 +119,7 @@ export default {
       this.build.stages = stages
 
       // Change to first stage if appropriate
-      if (this.build.stages.length > 0)
-        this.changeStage(0)
+      if (this.build.stages.length > 0) { this.changeStage(0) }
     }
     else {
       const char = DefaultCharacter()
@@ -246,8 +245,7 @@ export default {
   },
   deleteStage(index: number) {
     // Stop if out of bounds
-    if (index > this.build.stages.length)
-      return
+    if (index > this.build.stages.length) { return }
 
     this.ui.currentStage = null
     this.build.stages.splice(index, 1)
@@ -270,8 +268,7 @@ export default {
   },
   deleteBuild(key: string) {
     for (let i = 0; i < this.ui.savedBuilds.length; i++) {
-      if (this.ui.savedBuilds[i].key === key)
-        this.ui.savedBuilds.splice(i, 1)
+      if (this.ui.savedBuilds[i].key === key) { this.ui.savedBuilds.splice(i, 1) }
     }
   },
   deleteAllBuilds() {
@@ -339,12 +336,9 @@ export default {
   updateTimesEnlightened(value: number) {
     let actual = Number(value)
 
-    if (Number.isNan(actual))
-      actual = 0
-    else if (actual < 0)
-      actual = 0
-    else if (actual > 5)
-      actual = 5
+    if (Number.isNan(actual)) { actual = 0 }
+    else if (actual < 0) { actual = 0 }
+    else if (actual > 5) { actual = 5 }
 
     this.build.character.timesEnlightened = actual
   },
@@ -370,10 +364,8 @@ export default {
     let newVal = Number(payload.value)
 
     // Clamp to be from 10-100
-    if (newVal > 100)
-      newVal = 100
-    else if (newVal < 10)
-      newVal = 10
+    if (newVal > 100) { newVal = 100 }
+    else if (newVal < 10) { newVal = 10 }
 
     // Ensure we haven't spent more than we can and adjust other
     // attributes if needed
@@ -381,9 +373,8 @@ export default {
       .map((a) => {
         // Don't count old value for the attribute we're changing, use the new
         // value
-        if (a === payload.name)
-          return newVal
-        else return this.build.character.attributes[a].creation
+        if (a === payload.name) { return newVal }
+        else { return this.build.character.attributes[a].creation }
       })
       .reduce((a, v) => {
         return a + v
@@ -423,9 +414,8 @@ export default {
   updateAttributeInvested(payload: any) {
     let newval
 
-    if (this.settings.infiniteMode)
-      newval = Number(payload.value)
-    else newval = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED)
+    if (this.settings.infiniteMode) { newval = Number(payload.value) }
+    else { newval = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED) }
 
     this.build.character.attributes[payload.name].invested = newval
   },
@@ -443,9 +433,8 @@ export default {
   updateVitalInvested(payload: any) {
     let newval
 
-    if (this.settings.infiniteMode)
-      newval = Number(payload.value)
-    else newval = Math.min(Number(payload.value), MAX_VITAL_INVESTED)
+    if (this.settings.infiniteMode) { newval = Number(payload.value) }
+    else { newval = Math.min(Number(payload.value), MAX_VITAL_INVESTED) }
 
     this.build.character.vitals[payload.name].invested = newval
   },
@@ -500,8 +489,7 @@ export default {
         newTraining = Training.TRAINED
 
         // Stop now if in infinite mode
-        if (this.settings.infiniteMode)
-          break
+        if (this.settings.infiniteMode) { break }
 
         // Reduce max skill invested to 208 (max for trained) if over
         if (
@@ -754,21 +742,18 @@ export default {
       message: payload.message,
     })
 
-    if (payload.pinned)
-      return
+    if (payload.pinned) { return }
 
     setTimeout(() => {
       for (let i = 0; i < this.ui.notifications.length; i++) {
-        if (this.ui.notifications[i].id === notification_id)
-          this.ui.notifications.splice(i, 1)
+        if (this.ui.notifications[i].id === notification_id) { this.ui.notifications.splice(i, 1) }
       }
     }, 3000)
   },
 
   removeNotification(id: number) {
     for (let i = 0; i < this.ui.notifications.length; i++) {
-      if (this.ui.notifications[i].id === id)
-        this.ui.notifications.splice(i, 1)
+      if (this.ui.notifications[i].id === id) { this.ui.notifications.splice(i, 1) }
     }
   },
 

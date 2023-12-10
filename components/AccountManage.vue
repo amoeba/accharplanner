@@ -32,8 +32,7 @@ const signOut = async function () {
 
     const { error } = await client.auth.signOut()
 
-    if (error)
-      errors.value.push(error)
+    if (error) { errors.value.push(error) }
   }
   catch (error) {
     errors.value.push({ message: error.message } as SupabaseError)
@@ -46,13 +45,11 @@ const signOut = async function () {
 const validateName = function (name: string) {
   const out: string = name.trim()
 
-  if (out.length <= 0)
-    throw new Error('Name should be at least one character long.')
+  if (out.length <= 0) { throw new Error('Name should be at least one character long.') }
 
   const pattern = /[a-zA-Z][a-zA-Z0-9 ']+/
 
-  if (!out.match(pattern))
-    throw new Error(`Name should match the regex ${pattern}.`)
+  if (!out.match(pattern)) { throw new Error(`Name should match the regex ${pattern}.`) }
 
   return out
 }
@@ -96,11 +93,9 @@ const { data, error } = await client
   .select()
   .eq('id', user.value.id)
 
-if (error)
-  console.log('error', error)
+if (error) { console.log('error', error) }
 
-if (data)
-  profile.value = data[0]
+if (data) { profile.value = data[0] }
 </script>
 
 <template>

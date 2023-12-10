@@ -14,48 +14,38 @@ const favoriteClass = computed(() => ({
 }))
 
 const doFavoriteBuild = async function () {
-  if (count.value > 0)
-    return
+  if (count.value > 0) { return }
 
-  if (!user)
-    return
+  if (!user) { return }
 
-  if (!buildId)
-    return
+  if (!buildId) { return }
 
   // Check if we've already favorited
   const { data: selectData, error: selectError } = await hasAlreadyFavorited(client, user, buildId)
 
-  if (selectError)
-    return
+  if (selectError) { return }
 
-  if (selectData.length > 0)
-    return
+  if (selectData.length > 0) { return }
 
   // Only now do we favorite
   const { data, error } = await favoriteBuild(client, user, buildId)
 
-  if (!error)
-    count.value = await getNumFavorites(client, user, buildId)
+  if (!error) { count.value = await getNumFavorites(client, user, buildId) }
 }
 
 const doUnFavoriteBuild = async function () {
-  if (!user)
-    return
+  if (!user) { return }
 
-  if (!buildId)
-    return
+  if (!buildId) { return }
 
   const { data, error } = await unFavoriteBuild(client, user, buildId)
 
-  if (!error)
-    count.value = await getNumFavorites(client, user, buildId)
+  if (!error) { count.value = await getNumFavorites(client, user, buildId) }
 }
 
 const handleClick = async function () {
-  if (count.value > 0)
-    await doUnFavoriteBuild(client, user, buildId)
-  else await doFavoriteBuild(client, user, buildId)
+  if (count.value > 0) { await doUnFavoriteBuild(client, user, buildId) }
+  else { await doFavoriteBuild(client, user, buildId) }
 }
 count.value = await getNumFavorites(client, user, buildId)
 </script>

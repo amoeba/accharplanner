@@ -15,9 +15,8 @@ if (error) {
   errorMessage.value = error.message
 }
 else if (data) {
-  if (data.length < 1)
-    errorMessage.value = `Couldn't find build with ID ${route.params.id}.`
-  else build = data[0].content
+  if (data.length < 1) { errorMessage.value = `Couldn't find build with ID ${route.params.id}.` }
+  else { build = data[0].content }
 }
 </script>
 

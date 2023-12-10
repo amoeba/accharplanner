@@ -42,9 +42,8 @@ if (error) {
   errors.value.push(error)
 }
 else {
-  if (data.length < 1)
-    errors.value.push('An unexpected error occurred.')
-  else store.guide = data[0]
+  if (data.length < 1) { errors.value.push('An unexpected error occurred.') }
+  else { store.guide = data[0] }
 }
 </script>
 

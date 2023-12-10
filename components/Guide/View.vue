@@ -22,8 +22,7 @@ if (error) {
 else if (data && data[0]) {
   guide.value = data[0]
 
-  if (guide.value && guide.value.profiles)
-    submittedBy.value = guide.value.profiles.name
+  if (guide.value && guide.value.profiles) { submittedBy.value = guide.value.profiles.name }
 
   if (guide.value) {
     createdAt = useTimeAgo(new Date(guide.value.created_at))

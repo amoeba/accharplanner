@@ -53,11 +53,9 @@ export default {
       return this.store.augmentationsSpent
     },
     augmentationsRequiredText() {
-      if (this.store.augmentationsSpent === 0)
-        return ''
-      else if (this.store.augmentationsSpent === 1)
-        return '1 aug required'
-      else return `${this.store.augmentationsSpent} augs required`
+      if (this.store.augmentationsSpent === 0) { return '' }
+      else if (this.store.augmentationsSpent === 1) { return '1 aug required' }
+      else { return `${this.store.augmentationsSpent} augs required` }
     },
     specializedSkills() {
       const collection = Object.keys(this.store.build.character.skills).filter(

@@ -35,14 +35,12 @@ export default {
       this.updateAttributes({ tab })
     },
     changeView(e: Event) {
-      if (!e.target)
-        return
+      if (!e.target) { return }
 
       this.updateAttributes({ view: e.target.value })
     },
     updateBuildId(e: Event) {
-      if (!e.target)
-        return
+      if (!e.target) { return }
 
       this.updateAttributes({ id: e.target.value })
     },

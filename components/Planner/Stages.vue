@@ -16,11 +16,9 @@ const toggleExpanded = async function () {
 
 // Drag and Drop
 const dragstart = async function (e: DragEvent) {
-  if (!e.dataTransfer)
-    return
+  if (!e.dataTransfer) { return }
 
-  if (!e.target || !e.target.dataset)
-    return
+  if (!e.target || !e.target.dataset) { return }
 
   e.dataTransfer.setData('text/plain', e.target.dataset.index)
   e.dataTransfer.dropEffect = 'move'
@@ -41,8 +39,7 @@ const update = async function (index: number, clientX: number) {
 
   // TODO: Convert to a ref instead of document.querySelectorAll
   document.querySelectorAll('div.stage').forEach((el, i) => {
-    if (i === index)
-      return
+    if (i === index) { return }
 
     stages.push({
       index: i,
@@ -58,15 +55,13 @@ const update = async function (index: number, clientX: number) {
 
   // Don't re-order if no re-order happened. Do that by making sure
   // the indices are monotonically increasing
-  if (valuesMatchIndicies(indices))
-    return
+  if (valuesMatchIndicies(indices)) { return }
 
   store.reorderStages(indices)
 }
 
 function drop(e: DragEvent) {
-  if (!e.currentTarget)
-    return
+  if (!e.currentTarget) { return }
 
   // Adjust client X by half the drag target's width. This makes
   // drag and drop match the user's expectation more closely

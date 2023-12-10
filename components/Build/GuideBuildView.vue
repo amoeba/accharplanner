@@ -13,10 +13,9 @@ let build: Build
 
 if (error) { errorMessage.value = error.message }
 else {
-  if (data.length < 1)
-    errorMessage.value = `Couldn't find build with ID ${props.node.attrs.id}.`
+  if (data.length < 1) { errorMessage.value = `Couldn't find build with ID ${props.node.attrs.id}.` }
 
-  else build = data[0].content
+  else { build = data[0].content }
 }
 </script>
 
