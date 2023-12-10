@@ -76,7 +76,7 @@ export const getMySharedBuilds = async function (client: SupabaseClient, user: R
         id
       )
     `)
-    .order("created_at")
+    .order("created_at", { ascending: false })
     .eq("created_by", user.value.id)
     .limit(max)
 }
@@ -96,7 +96,7 @@ export const getPublishedBuilds = async function (client: SupabaseClient, max: n
         id
       )
     `)
-    .order("created_at")
+    .order("created_at", { ascending: false })
     .eq("is_published", true)
     .limit(max)
 }
@@ -115,7 +115,7 @@ export const getLastestBuilds = async function (client: SupabaseClient, max: num
         id
       )
     `)
-    .order("created_at")
+    .order("created_at", { ascending: false })
     .limit(max)
 }
 
