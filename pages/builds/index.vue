@@ -40,7 +40,7 @@
           <LocalBuildList />
         </TabContent>
         <TabContent tab="remote">
-          TODO
+          <RemoteBuildList />
         </TabContent>
       </template>
     </TabView>
