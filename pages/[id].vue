@@ -30,7 +30,8 @@ else if (data) {
     </div>
     <div v-if="data && data.length > 0" class="flex flex-col gap-2">
       <div class="flex gap-2">
-        <!-- <FavoriteButton :id="route.params.id" /> -->
+        {{ route.params.id }}
+        <FavoriteButton :id="route.params.id" />
         <ButtonView>
           <NuxtLink href="/planner">
             Load Build
