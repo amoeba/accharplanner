@@ -26,7 +26,7 @@ if (user.value) {
     </div>
     <div v-if="user">
       <p v-if="builds && builds.length == 0">You haven't shared any builds yet.</p>
-      <table v-if="builds && builds.length > 0" class="w-auto">
+      <table v-if="builds && builds.length > 0" class="w-full">
         <RemoteBuildListItem v-for="build in builds" :key="build.id" :build="build" />
       </table>
     </div>
