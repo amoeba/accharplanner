@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const client = useSupabaseClient()
 const user = useSupabaseUser()
+const router = useRouter()
 
 const props = defineProps<{ build_id: string }>()
 const count = ref(0)
@@ -15,7 +16,9 @@ const doFavoriteBuild = async function () {
     return
   }
 
-  if (!user) {
+  if (!user.value) {
+    router.push("/login")
+
     return
   }
 
