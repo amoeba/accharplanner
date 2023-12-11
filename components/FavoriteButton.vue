@@ -2,7 +2,7 @@
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
-const props = defineProps<{ id: string | undefined }>()
+const props = defineProps<{ id: string }>()
 const count = ref(0)
 
 const favoriteClass = computed(() => ({
