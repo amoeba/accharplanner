@@ -1,9 +1,12 @@
 <script setup lang="ts">
 const props = defineProps(["build_id"])
+
+const count = ref(0)
+count.value = await getNumFavorites(client, user, props.build_id)
 </script>
 
 <template>
   <div>
-    Hello from TestComponent. Build ID is {{ props.build_id }}
+    Hello from TestComponent. Build ID is {{ props.build_id }}. Count is {{ count }}.
   </div>
 </template>
