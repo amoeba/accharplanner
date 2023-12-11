@@ -53,7 +53,7 @@ export default {
         * ((state.build.character.level + 5) ** 5 - 6 ** 5),
       )
     }
- else {
+    else {
       cost += COST_LEVEL[state.build.character.level]
       cost += state.build.character.timesEnlightened * COST_LEVEL[MAX_LEVEL]
     }
@@ -83,59 +83,59 @@ export default {
     AUGMENTATIONS.forEach((aug: string) => {
       cost
         += AUGMENTATION_COST[aug][
-          state.build.character.augmentations[aug].invested
+        state.build.character.augmentations[aug].invested
         ]
     })
 
     // Adjust for free stuff, like racial experience augmentations
     if (
       (state.build.character.race === Race.Aluvian
-      || state.build.character.race === Race["Gharu'ndim"]
-      || state.build.character.race === Race.Sho
-      || state.build.character.race === Race.Viamontian)
+        || state.build.character.race === Race["Gharu'ndim"]
+        || state.build.character.race === Race.Sho
+        || state.build.character.race === Race.Viamontian)
       && state.build.character.augmentations.jack_of_all_trades.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.jack_of_all_trades][
-          state.build.character.augmentations.jack_of_all_trades.invested
+        state.build.character.augmentations.jack_of_all_trades.invested
         ]
     }
- else if (
+    else if (
       state.build.character.race === Race.Empyrean
       && state.build.character.augmentations.infused_life_magic.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.infused_life_magic][
-          state.build.character.augmentations.infused_life_magic.invested
+        state.build.character.augmentations.infused_life_magic.invested
         ]
     }
- else if (
+    else if (
       (state.build.character.race === Race.Umbraen
-      || state.build.character.race === Race.Penumbraen)
+        || state.build.character.race === Race.Penumbraen)
       && state.build.character.augmentations.eye_of_the_remorseless.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.eye_of_the_remorseless][
-          state.build.character.augmentations.eye_of_the_remorseless.invested
+        state.build.character.augmentations.eye_of_the_remorseless.invested
         ]
     }
- else if (
+    else if (
       state.build.character.race === Race.Lugian
       && state.build.character.augmentations.might_of_the_seventh_mule.invested
       === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.might_of_the_seventh_mule][
-          state.build.character.augmentations.might_of_the_seventh_mule.invested
+        state.build.character.augmentations.might_of_the_seventh_mule.invested
         ]
     }
- else if (
+    else if (
       state.build.character.race === Race.Tumerok
       && state.build.character.augmentations.hand_of_the_remorseless.invested === 1
     ) {
       cost
         -= AUGMENTATION_COST[Augmentation.hand_of_the_remorseless][
-          state.build.character.augmentations.hand_of_the_remorseless.invested
+        state.build.character.augmentations.hand_of_the_remorseless.invested
         ]
     }
 
@@ -147,11 +147,11 @@ export default {
       if (state.settings.infiniteMode) {
         return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know."
       }
- else {
+      else {
         return "Calculating total invested experience failed for an unknown reason. Please file a bug report."
       }
     }
- else {
+    else {
       return false
     }
   },
@@ -171,11 +171,11 @@ export default {
       if (state.settings.infiniteMode) {
         return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know."
       }
- else {
+      else {
         return "Calculating unassigned experience failed for an unknown reason. Please file a bug report."
       }
     }
- else {
+    else {
       return false
     }
   },
@@ -203,7 +203,7 @@ export default {
     if (by_cost < by_skill_points) {
       return by_skill_points
     }
- else {
+    else {
       return by_cost
     }
   },
@@ -264,7 +264,7 @@ export default {
     Object.keys(LUMINANCE_AURA_COST).forEach((aura) => {
       cost
         += LUMINANCE_AURA_COST[aura][
-          state.build.character.luminance_auras[aura].invested
+        state.build.character.luminance_auras[aura].invested
         ]
     })
 
@@ -306,24 +306,24 @@ export default {
       MAX_CREATION_ATTRIBUTE_TOTAL_POINTS
       + state.build.character.augmentations.reinforcement_of_the_lugians
         .invested
-        * 5
-        + state.build.character.augmentations.bleearghs_fortitude.invested * 5
-        + state.build.character.augmentations.oswalds_enhancement.invested * 5
-        + state.build.character.augmentations.siraluuns_blessing.invested * 5
-        + state.build.character.augmentations.enduring_calm.invested * 5
-        + state.build.character.augmentations.steadfast_will.invested * 5
+      * 5
+      + state.build.character.augmentations.bleearghs_fortitude.invested * 5
+      + state.build.character.augmentations.oswalds_enhancement.invested * 5
+      + state.build.character.augmentations.siraluuns_blessing.invested * 5
+      + state.build.character.augmentations.enduring_calm.invested * 5
+      + state.build.character.augmentations.steadfast_will.invested * 5
     )
   },
   attributesAndVitalsErrors: (state: State) => {
     const totalAttributeBonus
       = state.build.character.augmentations.reinforcement_of_the_lugians
         .invested
-        * 5
-        + state.build.character.augmentations.bleearghs_fortitude.invested * 5
-        + state.build.character.augmentations.oswalds_enhancement.invested * 5
-        + state.build.character.augmentations.siraluuns_blessing.invested * 5
-        + state.build.character.augmentations.enduring_calm.invested * 5
-        + state.build.character.augmentations.steadfast_will.invested * 5
+      * 5
+      + state.build.character.augmentations.bleearghs_fortitude.invested * 5
+      + state.build.character.augmentations.oswalds_enhancement.invested * 5
+      + state.build.character.augmentations.siraluuns_blessing.invested * 5
+      + state.build.character.augmentations.enduring_calm.invested * 5
+      + state.build.character.augmentations.steadfast_will.invested * 5
 
     if (totalAttributeBonus > 50) {
       return "Cannot raise innate attributes above 380 total!"
@@ -340,7 +340,7 @@ export default {
     if (value > 100) {
       return 100
     }
- else {
+    else {
       return value
     }
   },
@@ -365,7 +365,7 @@ export default {
     if (value > 100) {
       return 100
     }
- else {
+    else {
       return value
     }
   },
@@ -390,7 +390,7 @@ export default {
     if (value > 100) {
       return 100
     }
- else {
+    else {
       return value
     }
   },
@@ -419,7 +419,7 @@ export default {
     if (value > 100) {
       return 100
     }
- else {
+    else {
       return value
     }
   },
@@ -444,7 +444,7 @@ export default {
     if (value > 100) {
       return 100
     }
- else {
+    else {
       return value
     }
   },
@@ -468,7 +468,7 @@ export default {
     if (value > 100) {
       return 100
     }
- else {
+    else {
       return value
     }
   },
@@ -502,19 +502,19 @@ export default {
 
     return (
       (state.healthBase
-      + state.build.character.timesEnlightened * 2
-      + buffBonus(state.build.character.vitals.health.buff)
-      + buffBonus(state.build.character.attributes.endurance.buff) / 2
-      + cantripBonus(state.build.character.vitals.health.cantrip)
-      + cantripBonus(state.build.character.attributes.endurance.cantrip) / 2
-      + standardSetBonus(state.build.character.armor_sets.hearty.equipped) / 2
-      + standardSecondarySetBonus(
-        state.build.character.armor_sets.hearty.equipped,
-      )
-      + dedicationSetBonus(
-        state.build.character.armor_sets.dedication.equipped,
-      )
-      / 2)
+        + state.build.character.timesEnlightened * 2
+        + buffBonus(state.build.character.vitals.health.buff)
+        + buffBonus(state.build.character.attributes.endurance.buff) / 2
+        + cantripBonus(state.build.character.vitals.health.cantrip)
+        + cantripBonus(state.build.character.attributes.endurance.cantrip) / 2
+        + standardSetBonus(state.build.character.armor_sets.hearty.equipped) / 2
+        + standardSecondarySetBonus(
+          state.build.character.armor_sets.hearty.equipped,
+        )
+        + dedicationSetBonus(
+          state.build.character.armor_sets.dedication.equipped,
+        )
+        / 2)
       * benediction_bonus
     )
   },
@@ -580,11 +580,11 @@ export default {
       (state.build.character.skills.alchemy.training !== Training.UNUSABLE
         ? state.alchemyBase
         : 0)
-        + buffBonus(state.build.character.skills.alchemy.buff)
-        + cantripBonus(state.build.character.skills.alchemy.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.alchemy.buff)
+      + cantripBonus(state.build.character.skills.alchemy.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -602,14 +602,14 @@ export default {
           + standardSetBonus(state.build.character.armor_sets.dextrous.equipped)
           + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
           + (state.build.character.items.font_of_joji ? 2 : 0))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.alchemy.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.alchemy.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   arcane_loreBase: (state: State) => {
@@ -632,10 +632,10 @@ export default {
       (state.build.character.skills.arcane_lore.training !== Training.UNUSABLE
         ? state.arcane_loreBase
         : 0)
-        + buffBonus(state.build.character.skills.arcane_lore.buff)
-        + cantripBonus(state.build.character.skills.arcane_lore.cantrip)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.arcane_lore.buff)
+      + cantripBonus(state.build.character.skills.arcane_lore.cantrip)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + standardSetBonus(state.build.character.armor_sets.wise.equipped)
           + dedicationSetBonus(
@@ -643,15 +643,15 @@ export default {
           )
           + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
           + (state.build.character.items.font_of_joji ? 2 : 0))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.arcane_lore.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.arcane_lore.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   armor_tinkeringBase: (state: State) => {
@@ -673,14 +673,14 @@ export default {
   armor_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.armor_tinkering.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.armor_tinkeringBase
         : 0)
-        + buffBonus(state.build.character.skills.armor_tinkering.buff)
-        + cantripBonus(state.build.character.skills.armor_tinkering.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.endurance.buff)
+      + buffBonus(state.build.character.skills.armor_tinkering.buff)
+      + cantripBonus(state.build.character.skills.armor_tinkering.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.endurance.buff)
           + cantripBonus(state.build.character.attributes.endurance.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -694,15 +694,15 @@ export default {
           + standardSetBonus(state.build.character.armor_sets.hearty.equipped)
           + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
           + (state.build.character.items.font_of_joji ? 2 : 0))
-          / 2,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.armor_tinkering.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 2,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.armor_tinkering.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   assess_creatureBase: (state: State) => {
@@ -722,18 +722,18 @@ export default {
   assess_creatureBuffed: (state: State) => {
     return (
       (state.build.character.skills.assess_creature.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.assess_creatureBase
         : 0)
-        + buffBonus(state.build.character.skills.assess_creature.buff)
-        + cantripBonus(state.build.character.skills.assess_creature.cantrip)
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.assess_creature.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.assess_creature.buff)
+      + cantripBonus(state.build.character.skills.assess_creature.cantrip)
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.assess_creature.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   assess_personBase: (state: State) => {
@@ -755,15 +755,15 @@ export default {
       (state.build.character.skills.assess_person.training !== Training.UNUSABLE
         ? state.assess_personBase
         : 0)
-        + buffBonus(state.build.character.skills.assess_person.buff)
-        + cantripBonus(state.build.character.skills.assess_person.cantrip)
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.assess_person.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.assess_person.buff)
+      + cantripBonus(state.build.character.skills.assess_person.cantrip)
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.assess_person.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   cookingBase: (state: State) => {
@@ -784,36 +784,36 @@ export default {
       (state.build.character.skills.cooking.training !== Training.UNUSABLE
         ? state.cookingBase
         : 0)
-        + buffBonus(state.build.character.skills.cooking.buff)
-        + cantripBonus(state.build.character.skills.cooking.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.cooking.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
-            + Math.round(
-              (buffBonus(state.build.character.attributes.coordination.buff)
-              + cantripBonus(state.build.character.attributes.coordination.cantrip)
-              + dedicationSetBonus(
-                state.build.character.armor_sets.dedication.equipped,
-              )
-              + standardSecondarySetBonus(
-                state.build.character.armor_sets.swift.equipped,
-              )
-              + (state.build.character.items.font_of_joji ? 2 : 0)
-              + buffBonus(state.build.character.attributes.focus.buff)
-              + cantripBonus(state.build.character.attributes.focus.cantrip)
-              + dedicationSetBonus(
-                state.build.character.armor_sets.dedication.equipped,
-              )
-              + standardSetBonus(state.build.character.armor_sets.wise.equipped)
-              + standardSetBonus(state.build.character.armor_sets.dextrous.equipped)
-              + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
-              + (state.build.character.items.font_of_joji ? 2 : 0))
-              / 3,
-            )
+      + buffBonus(state.build.character.skills.cooking.buff)
+      + cantripBonus(state.build.character.skills.cooking.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.cooking.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
+          + cantripBonus(state.build.character.attributes.coordination.cantrip)
+          + dedicationSetBonus(
+            state.build.character.armor_sets.dedication.equipped,
+          )
+          + standardSecondarySetBonus(
+            state.build.character.armor_sets.swift.equipped,
+          )
+          + (state.build.character.items.font_of_joji ? 2 : 0)
+          + buffBonus(state.build.character.attributes.focus.buff)
+          + cantripBonus(state.build.character.attributes.focus.cantrip)
+          + dedicationSetBonus(
+            state.build.character.armor_sets.dedication.equipped,
+          )
+          + standardSetBonus(state.build.character.armor_sets.wise.equipped)
+          + standardSetBonus(state.build.character.armor_sets.dextrous.equipped)
+          + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
+          + (state.build.character.items.font_of_joji ? 2 : 0))
+        / 3,
+      )
     )
   },
   creature_enchantmentBase: (state: State) => {
@@ -834,21 +834,21 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   creature_enchantmentBuffed: (state: State) => {
     return (
       (state.build.character.skills.creature_enchantment.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.creature_enchantmentBase
         : 0)
-        + buffBonus(state.build.character.skills.creature_enchantment.buff)
-        + cantripBonus(state.build.character.skills.creature_enchantment.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.creature_enchantment.buff)
+      + cantripBonus(state.build.character.skills.creature_enchantment.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + standardSetBonus(state.build.character.armor_sets.wise.equipped)
           + dedicationSetBonus(
@@ -862,15 +862,15 @@ export default {
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
           ))
-          / 4,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.creature_enchantment.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 4,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.creature_enchantment.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   deceptionBase: (state: State) => {
@@ -890,14 +890,14 @@ export default {
       (state.build.character.skills.deception.training !== Training.UNUSABLE
         ? state.deceptionBase
         : 0)
-        + buffBonus(state.build.character.skills.deception.buff)
-        + cantripBonus(state.build.character.skills.deception.cantrip)
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.deception.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.deception.buff)
+      + cantripBonus(state.build.character.skills.deception.cantrip)
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.deception.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   dirty_fightingBase: (state: State) => {
@@ -918,14 +918,14 @@ export default {
   dirty_fightingBuffed: (state: State) => {
     return (
       (state.build.character.skills.dirty_fighting.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.dirty_fightingBase
         : 0)
-        + buffBonus(state.build.character.skills.dirty_fighting.buff)
-        + cantripBonus(state.build.character.skills.dirty_fighting.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.dirty_fighting.buff)
+      + cantripBonus(state.build.character.skills.dirty_fighting.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -942,15 +942,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.dirty_fighting.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.dirty_fighting.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   dual_wieldBase: (state: State) => {
@@ -973,11 +973,11 @@ export default {
       (state.build.character.skills.dual_wield.training !== Training.UNUSABLE
         ? state.dual_wieldBase
         : 0)
-        + buffBonus(state.build.character.skills.dual_wield.buff)
-        + cantripBonus(state.build.character.skills.dual_wield.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.swift.equipped)
-        + Math.round(
-          (2 * buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.dual_wield.buff)
+      + cantripBonus(state.build.character.skills.dual_wield.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.swift.equipped)
+      + Math.round(
+        (2 * buffBonus(state.build.character.attributes.coordination.buff)
           + 2
           * cantripBonus(
             state.build.character.attributes.coordination.cantrip,
@@ -995,14 +995,14 @@ export default {
           * dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.dual_wield.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.dual_wield.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   finesse_weaponsBase: (state: State) => {
@@ -1021,21 +1021,21 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   finesse_weaponsBuffed: (state: State) => {
     return (
       (state.build.character.skills.finesse_weapons.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.finesse_weaponsBase
         : 0)
-        + buffBonus(state.build.character.skills.finesse_weapons.buff)
-        + cantripBonus(state.build.character.skills.finesse_weapons.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.swift.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.finesse_weapons.buff)
+      + cantripBonus(state.build.character.skills.finesse_weapons.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.swift.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1054,15 +1054,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.finesse_weapons.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.finesse_weapons.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   fletchingBase: (state: State) => {
@@ -1083,11 +1083,11 @@ export default {
       (state.build.character.skills.fletching.training !== Training.UNUSABLE
         ? state.fletchingBase
         : 0)
-        + buffBonus(state.build.character.skills.fletching.buff)
-        + cantripBonus(state.build.character.skills.fletching.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.fletching.buff)
+      + cantripBonus(state.build.character.skills.fletching.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1105,14 +1105,14 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.fletching.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.fletching.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   healingBase: (state: State) => {
@@ -1133,10 +1133,10 @@ export default {
       (state.build.character.skills.healing.training !== Training.UNUSABLE
         ? state.healingBase
         : 0)
-        + buffBonus(state.build.character.skills.healing.buff)
-        + cantripBonus(state.build.character.skills.healing.cantrip)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.healing.buff)
+      + cantripBonus(state.build.character.skills.healing.cantrip)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1154,14 +1154,14 @@ export default {
           )
           + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
           + (state.build.character.items.font_of_joji ? 2 : 0))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.healing.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.healing.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   heavy_weaponsBase: (state: State) => {
@@ -1179,8 +1179,8 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   heavy_weaponsBuffed: (state: State) => {
@@ -1188,11 +1188,11 @@ export default {
       (state.build.character.skills.heavy_weapons.training !== Training.UNUSABLE
         ? state.heavy_weaponsBase
         : 0)
-        + buffBonus(state.build.character.skills.heavy_weapons.buff)
-        + cantripBonus(state.build.character.skills.heavy_weapons.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.heavy_weapons.buff)
+      + cantripBonus(state.build.character.skills.heavy_weapons.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1209,15 +1209,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.heavy_weapons.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.heavy_weapons.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   item_enchantmentBase: (state: State) => {
@@ -1236,21 +1236,21 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   item_enchantmentBuffed: (state: State) => {
     return (
       (state.build.character.skills.item_enchantment.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.item_enchantmentBase
         : 0)
-        + buffBonus(state.build.character.skills.item_enchantment.buff)
-        + cantripBonus(state.build.character.skills.item_enchantment.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.item_enchantment.buff)
+      + cantripBonus(state.build.character.skills.item_enchantment.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1264,15 +1264,15 @@ export default {
             state.build.character.armor_sets.dedication.equipped,
           )
           + standardSetBonus(state.build.character.armor_sets.wise.equipped))
-          / 4,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.item_enchantment.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 4,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.item_enchantment.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   item_tinkeringBase: (state: State) => {
@@ -1293,14 +1293,14 @@ export default {
   item_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.item_tinkering.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.item_tinkeringBase
         : 0)
-        + buffBonus(state.build.character.skills.item_tinkering.buff)
-        + cantripBonus(state.build.character.skills.item_tinkering.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.item_tinkering.buff)
+      + cantripBonus(state.build.character.skills.item_tinkering.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1318,15 +1318,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 2,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.item_tinkering.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 2,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.item_tinkering.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   jumpBase: (state: State) => {
@@ -1347,11 +1347,11 @@ export default {
       (state.build.character.skills.jump.training !== Training.UNUSABLE
         ? state.jumpBase
         : 0)
-        + buffBonus(state.build.character.skills.jump.buff)
-        + cantripBonus(state.build.character.skills.jump.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.swift.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.jump.buff)
+      + cantripBonus(state.build.character.skills.jump.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.swift.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1368,14 +1368,14 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 2,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.jump.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 2,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.jump.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   leadershipBase: (state: State) => {
@@ -1397,14 +1397,14 @@ export default {
       (state.build.character.skills.leadership.training !== Training.UNUSABLE
         ? state.leadershipBase
         : 0)
-        + buffBonus(state.build.character.skills.leadership.buff)
-        + cantripBonus(state.build.character.skills.leadership.cantrip)
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.leadership.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.leadership.buff)
+      + cantripBonus(state.build.character.skills.leadership.cantrip)
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.leadership.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   life_magicBase: (state: State) => {
@@ -1422,8 +1422,8 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   life_magicBuffed: (state: State) => {
@@ -1431,11 +1431,11 @@ export default {
       (state.build.character.skills.life_magic.training !== Training.UNUSABLE
         ? state.life_magicBase
         : 0)
-        + buffBonus(state.build.character.skills.life_magic.buff)
-        + cantripBonus(state.build.character.skills.life_magic.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.life_magic.buff)
+      + cantripBonus(state.build.character.skills.life_magic.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1449,14 +1449,14 @@ export default {
             state.build.character.armor_sets.dedication.equipped,
           )
           + standardSetBonus(state.build.character.armor_sets.wise.equipped))
-          / 4,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.life_magic.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 4,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.life_magic.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   light_weaponsBase: (state: State) => {
@@ -1474,8 +1474,8 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   light_weaponsBuffed: (state: State) => {
@@ -1483,11 +1483,11 @@ export default {
       (state.build.character.skills.light_weapons.training !== Training.UNUSABLE
         ? state.light_weaponsBase
         : 0)
-        + buffBonus(state.build.character.skills.light_weapons.buff)
-        + cantripBonus(state.build.character.skills.light_weapons.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.light_weapons.buff)
+      + cantripBonus(state.build.character.skills.light_weapons.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1504,15 +1504,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.light_weapons.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.light_weapons.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   lockpickBase: (state: State) => {
@@ -1533,11 +1533,11 @@ export default {
       (state.build.character.skills.lockpick.training !== Training.UNUSABLE
         ? state.lockpickBase
         : 0)
-        + buffBonus(state.build.character.skills.lockpick.buff)
-        + cantripBonus(state.build.character.skills.lockpick.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.lockpick.buff)
+      + cantripBonus(state.build.character.skills.lockpick.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.crafters.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1555,14 +1555,14 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.lockpick.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.lockpick.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   loyaltyBase: (state: State) => {
@@ -1582,17 +1582,17 @@ export default {
       (state.build.character.skills.loyalty.training !== Training.UNUSABLE
         ? state.loyaltyBase
         : 0)
-        + buffBonus(state.build.character.skills.loyalty.buff)
-        + cantripBonus(state.build.character.skills.loyalty.cantrip)
-        + standardSecondarySetBonus(
-          state.build.character.armor_sets.crafters.equipped,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.loyalty.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.loyalty.buff)
+      + cantripBonus(state.build.character.skills.loyalty.cantrip)
+      + standardSecondarySetBonus(
+        state.build.character.armor_sets.crafters.equipped,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.loyalty.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   magic_defenseBase: (state: State) => {
@@ -1615,14 +1615,14 @@ export default {
       (state.build.character.skills.magic_defense.training !== Training.UNUSABLE
         ? state.magic_defenseBase
         : 0)
-        + buffBonus(state.build.character.skills.magic_defense.buff)
-        + cantripBonus(state.build.character.skills.magic_defense.cantrip)
-        + standardSecondarySetBonus(
-          state.build.character.armor_sets.adepts.equipped,
-        )
-        + standardSetBonus(state.build.character.armor_sets.defenders.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.magic_defense.buff)
+      + cantripBonus(state.build.character.skills.magic_defense.cantrip)
+      + standardSecondarySetBonus(
+        state.build.character.armor_sets.adepts.equipped,
+      )
+      + standardSetBonus(state.build.character.armor_sets.defenders.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1636,15 +1636,15 @@ export default {
             state.build.character.armor_sets.dedication.equipped,
           )
           + standardSetBonus(state.build.character.armor_sets.wise.equipped))
-          / 7,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.magic_defense.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 7,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.magic_defense.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   magic_item_tinkeringBase: (state: State) => {
@@ -1668,25 +1668,25 @@ export default {
   magic_item_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.magic_item_tinkering.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.magic_item_tinkeringBase
         : 0)
-        + buffBonus(state.build.character.skills.magic_item_tinkering.buff)
-        + cantripBonus(state.build.character.skills.magic_item_tinkering.cantrip)
-        + dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
-        + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
-        + buffBonus(state.build.character.attributes.focus.buff)
-        + cantripBonus(state.build.character.attributes.focus.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.wise.equipped)
-        + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
-        + (state.build.character.items.font_of_joji ? 2 : 0)
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.magic_item_tinkering.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.magic_item_tinkering.buff)
+      + cantripBonus(state.build.character.skills.magic_item_tinkering.cantrip)
+      + dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
+      + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
+      + buffBonus(state.build.character.attributes.focus.buff)
+      + cantripBonus(state.build.character.attributes.focus.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.wise.equipped)
+      + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
+      + (state.build.character.items.font_of_joji ? 2 : 0)
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.magic_item_tinkering.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   mana_conversionBase: (state: State) => {
@@ -1708,13 +1708,13 @@ export default {
   mana_conversionBuffed: (state: State) => {
     return (
       (state.build.character.skills.mana_conversion.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.mana_conversionBase
         : 0)
-        + buffBonus(state.build.character.skills.mana_conversion.buff)
-        + cantripBonus(state.build.character.skills.mana_conversion.cantrip)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.mana_conversion.buff)
+      + cantripBonus(state.build.character.skills.mana_conversion.cantrip)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + standardSetBonus(state.build.character.armor_sets.wise.equipped)
           + dedicationSetBonus(
@@ -1728,15 +1728,15 @@ export default {
             state.build.character.armor_sets.dedication.equipped,
           )
           + standardSetBonus(state.build.character.armor_sets.wise.equipped))
-          / 6,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.mana_conversion.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 6,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.mana_conversion.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   melee_defenseBase: (state: State) => {
@@ -1759,14 +1759,14 @@ export default {
       (state.build.character.skills.melee_defense.training !== Training.UNUSABLE
         ? state.melee_defenseBase
         : 0)
-        + buffBonus(state.build.character.skills.melee_defense.buff)
-        + cantripBonus(state.build.character.skills.melee_defense.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.defenders.equipped)
-        + standardSecondarySetBonus(
-          state.build.character.armor_sets.soldiers.equipped,
-        )
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.melee_defense.buff)
+      + cantripBonus(state.build.character.skills.melee_defense.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.defenders.equipped)
+      + standardSecondarySetBonus(
+        state.build.character.armor_sets.soldiers.equipped,
+      )
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1784,15 +1784,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.melee_defense.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.melee_defense.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   missile_defenseBase: (state: State) => {
@@ -1814,17 +1814,17 @@ export default {
   missile_defenseBuffed: (state: State) => {
     return (
       (state.build.character.skills.missile_defense.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.missile_defenseBase
         : 0)
-        + buffBonus(state.build.character.skills.missile_defense.buff)
-        + cantripBonus(state.build.character.skills.missile_defense.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.defenders.equipped)
-        + standardSecondarySetBonus(
-          state.build.character.armor_sets.archers.equipped,
-        )
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.missile_defense.buff)
+      + cantripBonus(state.build.character.skills.missile_defense.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.defenders.equipped)
+      + standardSecondarySetBonus(
+        state.build.character.armor_sets.archers.equipped,
+      )
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1842,15 +1842,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 5,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.missile_defense.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 5,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.missile_defense.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   missile_weaponsBase: (state: State) => {
@@ -1869,21 +1869,21 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   missile_weaponsBuffed: (state: State) => {
     return (
       (state.build.character.skills.missile_weapons.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.missile_weaponsBase
         : 0)
-        + buffBonus(state.build.character.skills.missile_weapons.buff)
-        + cantripBonus(state.build.character.skills.missile_weapons.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.archers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.missile_weapons.buff)
+      + cantripBonus(state.build.character.skills.missile_weapons.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.archers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1893,15 +1893,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 2,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.missile_weapons.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 2,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.missile_weapons.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   recklessnessBase: (state: State) => {
@@ -1924,11 +1924,11 @@ export default {
       (state.build.character.skills.recklessness.training !== Training.UNUSABLE
         ? state.recklessnessBase
         : 0)
-        + buffBonus(state.build.character.skills.recklessness.buff)
-        + cantripBonus(state.build.character.skills.recklessness.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.recklessness.buff)
+      + cantripBonus(state.build.character.skills.recklessness.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -1940,15 +1940,15 @@ export default {
             state.build.character.armor_sets.dedication.equipped,
           )
           + standardSetBonus(state.build.character.armor_sets.hearty.equipped))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.recklessness.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.recklessness.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   runBase: (state: State) => {
@@ -1969,18 +1969,18 @@ export default {
       (state.build.character.skills.run.training !== Training.UNUSABLE
         ? state.runBase
         : 0)
-        + buffBonus(state.build.character.skills.run.buff)
-        + cantripBonus(state.build.character.skills.run.cantrip)
-        + dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
-        + standardSetBonus(state.build.character.armor_sets.swift.equipped)
-        + buffBonus(state.build.character.attributes.quickness.buff)
-        + cantripBonus(state.build.character.attributes.quickness.cantrip)
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.run.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.run.buff)
+      + cantripBonus(state.build.character.skills.run.cantrip)
+      + dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
+      + standardSetBonus(state.build.character.armor_sets.swift.equipped)
+      + buffBonus(state.build.character.attributes.quickness.buff)
+      + cantripBonus(state.build.character.attributes.quickness.cantrip)
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.run.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   salvagingBase: (state: State) => {
@@ -2000,17 +2000,17 @@ export default {
       (state.build.character.skills.salvaging.training !== Training.UNUSABLE
         ? state.salvagingBase
         : 0)
-        + buffBonus(state.build.character.skills.salvaging.buff)
-        + cantripBonus(state.build.character.skills.salvaging.cantrip)
-        + standardSecondarySetBonus(
-          state.build.character.armor_sets.tinkers.equipped,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.salvaging.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+      + buffBonus(state.build.character.skills.salvaging.buff)
+      + cantripBonus(state.build.character.skills.salvaging.cantrip)
+      + standardSecondarySetBonus(
+        state.build.character.armor_sets.tinkers.equipped,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.salvaging.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   shieldBase: (state: State) => {
@@ -2031,10 +2031,10 @@ export default {
       (state.build.character.skills.shield.training !== Training.UNUSABLE
         ? state.shieldBase
         : 0)
-        + buffBonus(state.build.character.skills.shield.buff)
-        + cantripBonus(state.build.character.skills.shield.cantrip)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.shield.buff)
+      + cantripBonus(state.build.character.skills.shield.cantrip)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -2051,14 +2051,14 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 2,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.shield.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 2,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.shield.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   sneak_attackBase: (state: State) => {
@@ -2081,11 +2081,11 @@ export default {
       (state.build.character.skills.sneak_attack.training !== Training.UNUSABLE
         ? state.sneak_attackBase
         : 0)
-        + buffBonus(state.build.character.skills.sneak_attack.buff)
-        + cantripBonus(state.build.character.skills.sneak_attack.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.swift.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.coordination.buff)
+      + buffBonus(state.build.character.skills.sneak_attack.buff)
+      + cantripBonus(state.build.character.skills.sneak_attack.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.swift.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.coordination.buff)
           + cantripBonus(state.build.character.attributes.coordination.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -2103,15 +2103,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.sneak_attack.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.sneak_attack.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   summoningBase: (state: State) => {
@@ -2132,11 +2132,11 @@ export default {
       (state.build.character.skills.summoning.training !== Training.UNUSABLE
         ? state.summoningBase
         : 0)
-        + buffBonus(state.build.character.skills.summoning.buff)
-        + cantripBonus(state.build.character.skills.summoning.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.wise.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.endurance.buff)
+      + buffBonus(state.build.character.skills.summoning.buff)
+      + cantripBonus(state.build.character.skills.summoning.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.wise.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.endurance.buff)
           + cantripBonus(state.build.character.attributes.endurance.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -2148,14 +2148,14 @@ export default {
           )
           + standardSetBonus(state.build.character.armor_sets.wise.equipped)
           + standardSetBonus(state.build.character.armor_sets.hearty.equipped))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.summoning.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.summoning.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   two_handed_combatBase: (state: State) => {
@@ -2174,21 +2174,21 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   two_handed_combatBuffed: (state: State) => {
     return (
       (state.build.character.skills.two_handed_combat.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.two_handed_combatBase
         : 0)
-        + buffBonus(state.build.character.skills.two_handed_combat.buff)
-        + cantripBonus(state.build.character.skills.two_handed_combat.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.two_handed_combat.buff)
+      + cantripBonus(state.build.character.skills.two_handed_combat.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.soldiers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -2205,15 +2205,15 @@ export default {
           + standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped,
           ))
-          / 3,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.two_handed_combat.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 3,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.two_handed_combat.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   void_magicBase: (state: State) => {
@@ -2231,8 +2231,8 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   void_magicBuffed: (state: State) => {
@@ -2240,11 +2240,11 @@ export default {
       (state.build.character.skills.void_magic.training !== Training.UNUSABLE
         ? state.void_magicBase
         : 0)
-        + buffBonus(state.build.character.skills.void_magic.buff)
-        + cantripBonus(state.build.character.skills.void_magic.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.void_magic.buff)
+      + cantripBonus(state.build.character.skills.void_magic.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -2258,14 +2258,14 @@ export default {
             state.build.character.armor_sets.dedication.equipped,
           )
           + standardSetBonus(state.build.character.armor_sets.wise.equipped))
-          / 4,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.void_magic.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 4,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.void_magic.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   war_magicBase: (state: State) => {
@@ -2281,8 +2281,8 @@ export default {
         .invested === 1
         ? 10
         : 0)
-        + state.build.character.luminance_auras.world.invested
-        + state.build.character.timesEnlightened
+      + state.build.character.luminance_auras.world.invested
+      + state.build.character.timesEnlightened
     )
   },
   war_magicBuffed: (state: State) => {
@@ -2290,11 +2290,11 @@ export default {
       (state.build.character.skills.war_magic.training !== Training.UNUSABLE
         ? state.war_magicBase
         : 0)
-        + buffBonus(state.build.character.skills.war_magic.buff)
-        + cantripBonus(state.build.character.skills.war_magic.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.focus.buff)
+      + buffBonus(state.build.character.skills.war_magic.buff)
+      + cantripBonus(state.build.character.skills.war_magic.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.adepts.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.focus.buff)
           + cantripBonus(state.build.character.attributes.focus.cantrip)
           + dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped,
@@ -2308,14 +2308,14 @@ export default {
             state.build.character.armor_sets.dedication.equipped,
           )
           + standardSetBonus(state.build.character.armor_sets.wise.equipped))
-          / 4,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.war_magic.training === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 4,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.war_magic.training === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
   weapon_tinkeringBase: (state: State) => {
@@ -2337,14 +2337,14 @@ export default {
   weapon_tinkeringBuffed: (state: State) => {
     return (
       (state.build.character.skills.weapon_tinkering.training
-      !== Training.UNUSABLE
+        !== Training.UNUSABLE
         ? state.weapon_tinkeringBase
         : 0)
-        + buffBonus(state.build.character.skills.weapon_tinkering.buff)
-        + cantripBonus(state.build.character.skills.weapon_tinkering.cantrip)
-        + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
-        + Math.round(
-          (buffBonus(state.build.character.attributes.strength.buff)
+      + buffBonus(state.build.character.skills.weapon_tinkering.buff)
+      + cantripBonus(state.build.character.skills.weapon_tinkering.cantrip)
+      + standardSetBonus(state.build.character.armor_sets.tinkers.equipped)
+      + Math.round(
+        (buffBonus(state.build.character.attributes.strength.buff)
           + cantripBonus(state.build.character.attributes.strength.cantrip)
           + (state.build.character.items.font_of_joji ? 2 : 0)
           + buffBonus(state.build.character.attributes.focus.buff)
@@ -2353,15 +2353,15 @@ export default {
           + standardSetBonus(state.build.character.armor_sets.hearty.equipped)
           + (state.build.character.items.focusing_stone ? 50 : 0) // Brilliance
           + (state.build.character.items.font_of_joji ? 2 : 0))
-          / 2,
-        )
-        + (state.build.character.augmentations.jack_of_all_trades.invested === 1
-          ? 5
-          : 0)
-          + (state.build.character.skills.weapon_tinkering.training
-          === Training.SPECIALIZED
-            ? state.build.character.luminance_auras.specialization.invested * 2
-            : 0)
+        / 2,
+      )
+      + (state.build.character.augmentations.jack_of_all_trades.invested === 1
+        ? 5
+        : 0)
+      + (state.build.character.skills.weapon_tinkering.training
+        === Training.SPECIALIZED
+        ? state.build.character.luminance_auras.specialization.invested * 2
+        : 0)
     )
   },
 
@@ -2387,15 +2387,16 @@ export default {
     )
   },
   augmentationErrors: (state: State) => {
+    // You can only augment attributes ten times
     const totalAttributeBonus
       = state.build.character.augmentations.reinforcement_of_the_lugians
         .invested
-        * 5
-        + state.build.character.augmentations.bleearghs_fortitude.invested * 5
-        + state.build.character.augmentations.oswalds_enhancement.invested * 5
-        + state.build.character.augmentations.siraluuns_blessing.invested * 5
-        + state.build.character.augmentations.enduring_calm.invested * 5
-        + state.build.character.augmentations.steadfast_will.invested * 5
+      * 5
+      + state.build.character.augmentations.bleearghs_fortitude.invested * 5
+      + state.build.character.augmentations.oswalds_enhancement.invested * 5
+      + state.build.character.augmentations.siraluuns_blessing.invested * 5
+      + state.build.character.augmentations.enduring_calm.invested * 5
+      + state.build.character.augmentations.steadfast_will.invested * 5
 
     if (totalAttributeBonus > 50) {
       return "Cannot augment attributes more than ten times!"
@@ -2422,7 +2423,7 @@ export default {
     if (
       state.build.character.luminance_auras.specialization.invested > 0
       && (state.build.character.luminance_auras.hardening.invested > 0
-      || state.build.character.luminance_auras.retribution.invested > 0)
+        || state.build.character.luminance_auras.retribution.invested > 0)
     ) {
       return msg
     }
@@ -2431,7 +2432,7 @@ export default {
     if (
       state.build.character.luminance_auras.destruction.invested > 0
       && (state.build.character.luminance_auras.invulnerability.invested > 0
-      || state.build.character.luminance_auras.hardening.invested > 0)
+        || state.build.character.luminance_auras.hardening.invested > 0)
     ) {
       return msg
     }
@@ -2440,7 +2441,7 @@ export default {
     if (
       state.build.character.luminance_auras.invulnerability.invested > 0
       && (state.build.character.luminance_auras.retribution.invested > 0
-      || state.build.character.luminance_auras.destruction.invested > 0)
+        || state.build.character.luminance_auras.destruction.invested > 0)
     ) {
       return msg
     }
@@ -2449,8 +2450,8 @@ export default {
     if (
       state.build.character.luminance_auras.retribution.invested > 0
       && (state.build.character.luminance_auras.specialization.invested > 0
-      || state.build.character.luminance_auras.invulnerability.invested > 0
-      || state.build.character.luminance_auras.hardening.invested > 0)
+        || state.build.character.luminance_auras.invulnerability.invested > 0
+        || state.build.character.luminance_auras.hardening.invested > 0)
     ) {
       return msg
     }
@@ -2459,8 +2460,8 @@ export default {
     if (
       state.build.character.luminance_auras.hardening.invested > 0
       && (state.build.character.luminance_auras.specialization.invested > 0
-      || state.build.character.luminance_auras.destruction.invested > 0
-      || state.build.character.luminance_auras.retribution.invested > 0)
+        || state.build.character.luminance_auras.destruction.invested > 0
+        || state.build.character.luminance_auras.retribution.invested > 0)
     ) {
       return msg
     }

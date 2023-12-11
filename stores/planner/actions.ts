@@ -20,10 +20,8 @@ export default {
       this.addNotification({
         type: "error",
         message:
-          `Failed to load build '${
-          options.build_id
-          }' with error '${
-          response_official.error
+          `Failed to load build '${options.build_id
+          }' with error '${response_official.error
           }'.`,
       })
 
@@ -48,10 +46,8 @@ export default {
         this.addNotification({
           type: "error",
           message:
-            `Failed to load build '${
-            options.build_id
-            }' with error '${
-            response_shared.error
+            `Failed to load build '${options.build_id
+            }' with error '${response_shared.error
             }'.`,
         })
 
@@ -64,8 +60,7 @@ export default {
         this.addNotification({
           type: "error",
           message:
-            `The build with this identifier: '${
-            options.build_id
+            `The build with this identifier: '${options.build_id
             }' was not found. This could either be a really bad bug or you just have a typo in your URL.`,
           pinned: true,
         })
@@ -85,8 +80,7 @@ export default {
       this.addNotification({
         type: "error",
         message:
-          `The build with this identifier: '${
-          options.build_id
+          `The build with this identifier: '${options.build_id
           }' was not found. This could either be a really bad bug or you just have a typo in your URL.`,
       })
 
@@ -123,7 +117,7 @@ export default {
         this.changeStage(0)
       }
     }
- else {
+    else {
       const char = DefaultCharacter()
       merge(char, build.character)
 
@@ -172,8 +166,7 @@ export default {
       this.addNotification({
         type: "error",
         message:
-          `Failed to publish build due to error: ${
-          JSON.stringify(error)
+          `Failed to publish build due to error: ${JSON.stringify(error)
           }.`,
       })
     }
@@ -306,28 +299,28 @@ export default {
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 0
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
- else if (value === Race.Empyrean) {
+    else if (value === Race.Empyrean) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 1
       this.build.character.augmentations.eye_of_the_remorseless.invested = 0
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 0
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
- else if (value === Race.Umbraen || value === Race.Penumbraen) {
+    else if (value === Race.Umbraen || value === Race.Penumbraen) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 0
       this.build.character.augmentations.eye_of_the_remorseless.invested = 1
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 0
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
- else if (value === Race.Lugian) {
+    else if (value === Race.Lugian) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 0
       this.build.character.augmentations.eye_of_the_remorseless.invested = 0
       this.build.character.augmentations.might_of_the_seventh_mule.invested = 1
       this.build.character.augmentations.hand_of_the_remorseless.invested = 0
     }
- else if (value === Race.Tumerok) {
+    else if (value === Race.Tumerok) {
       this.build.character.augmentations.jack_of_all_trades.invested = 0
       this.build.character.augmentations.infused_life_magic.invested = 0
       this.build.character.augmentations.eye_of_the_remorseless.invested = 0
@@ -345,10 +338,10 @@ export default {
     if (Number.isNan(actual)) {
       actual = 0
     }
- else if (actual < 0) {
+    else if (actual < 0) {
       actual = 0
     }
- else if (actual > 5) {
+    else if (actual > 5) {
       actual = 5
     }
 
@@ -379,7 +372,7 @@ export default {
     if (newVal > 100) {
       newVal = 100
     }
- else if (newVal < 10) {
+    else if (newVal < 10) {
       newVal = 10
     }
 
@@ -392,7 +385,7 @@ export default {
         if (a === payload.name) {
           return newVal
         }
- else {
+        else {
           return this.build.character.attributes[a].creation
         }
       })
@@ -437,7 +430,7 @@ export default {
     if (this.settings.infiniteMode) {
       newval = Number(payload.value)
     }
- else {
+    else {
       newval = Math.min(Number(payload.value), MAX_ATTRIBUTE_INVESTED)
     }
 
@@ -460,7 +453,7 @@ export default {
     if (this.settings.infiniteMode) {
       newval = Number(payload.value)
     }
- else {
+    else {
       newval = Math.min(Number(payload.value), MAX_VITAL_INVESTED)
     }
 
@@ -473,7 +466,7 @@ export default {
     if (this.settings.infiniteMode) {
       skill.invested = Number(payload.value)
     }
- else {
+    else {
       const max = maxSkillInvested(skill.training)
       skill.invested = Math.min(Number(payload.value), max)
     }
@@ -524,7 +517,7 @@ export default {
         // Reduce max skill invested to 208 (max for trained) if over
         if (
           this.build.character.skills[skill].invested
-            > MAX_SKILL_INVESTED_TRAINED
+          > MAX_SKILL_INVESTED_TRAINED
         ) {
           this.build.character.skills[skill].invested
             = MAX_SKILL_INVESTED_TRAINED
@@ -567,23 +560,23 @@ export default {
     if (payload.name === Augmentation.reinforcement_of_the_lugians) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.strength)
     }
- else if (payload.name === Augmentation.bleearghs_fortitude) {
+    else if (payload.name === Augmentation.bleearghs_fortitude) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.endurance)
     }
- else if (payload.name === Augmentation.oswalds_enhancement) {
+    else if (payload.name === Augmentation.oswalds_enhancement) {
       updateAugmentationInvestedSideEffect(
         state,
         payload,
         Attribute.coordination,
       )
     }
- else if (payload.name === Augmentation.siraluuns_blessing) {
+    else if (payload.name === Augmentation.siraluuns_blessing) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.quickness)
     }
- else if (payload.name === Augmentation.enduring_calm) {
+    else if (payload.name === Augmentation.enduring_calm) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.focus)
     }
- else if (payload.name === Augmentation.steadfast_will) {
+    else if (payload.name === Augmentation.steadfast_will) {
       updateAugmentationInvestedSideEffect(state, payload, Attribute.self)
     }
 
@@ -596,19 +589,19 @@ export default {
       this.build.character.skills.armor_tinkering.training
         = Training.SPECIALIZED
     }
- else if (payload.name === Augmentation.yoshis_essence) {
+    else if (payload.name === Augmentation.yoshis_essence) {
       this.build.character.skills.item_tinkering.training
         = Training.SPECIALIZED
     }
- else if (payload.name === Augmentation.celdiseths_essence) {
+    else if (payload.name === Augmentation.celdiseths_essence) {
       this.build.character.skills.magic_item_tinkering.training
         = Training.SPECIALIZED
     }
- else if (payload.name === Augmentation.kogas_essence) {
+    else if (payload.name === Augmentation.kogas_essence) {
       this.build.character.skills.weapon_tinkering.training
         = Training.SPECIALIZED
     }
- else if (payload.name === Augmentation.ciandras_essence) {
+    else if (payload.name === Augmentation.ciandras_essence) {
       this.build.character.skills.salvaging.training = Training.SPECIALIZED
     }
   },
@@ -658,7 +651,7 @@ export default {
             ? MAX_SKILL_INVESTED_SPECIALIZED
             : newval
       }
- else if (
+      else if (
         this.build.character.skills[skill].training === Training.TRAINED
       ) {
         this.build.character.skills[skill].invested
@@ -697,7 +690,7 @@ export default {
             ? MAX_SKILL_INVESTED_SPECIALIZED
             : newval
       }
- else if (
+      else if (
         this.build.character.skills[skill].training === Training.TRAINED
       ) {
         newval
@@ -705,7 +698,7 @@ export default {
             ? MAX_SKILL_INVESTED_TRAINED
             : newval
       }
- else {
+      else {
         newval = 0
       }
 
