@@ -12,7 +12,7 @@ export default Node.create({
   addAttributes() {
     return {
       id: {
-        default: "OtFbpJEFl4",
+        default: "",
       },
       tab: {
         default: TabName.Start,

@@ -14,11 +14,15 @@ let build: Build
 if (error) {
   errorMessage.value = error.message
 }
- else {
+else {
   if (data.length < 1) {
-    errorMessage.value = `Couldn't find build with ID ${props.node.attrs.id}.`
+    if (props.node.attrs.id.length == 0) {
+      errorMessage.value = "No Shared Build ID entered."
+    } else {
+      errorMessage.value = `Couldn't find build with ID '${props.node.attrs.id}'.`
+    }
   }
- else {
+  else {
     build = data[0].content
   }
 }
@@ -29,17 +33,9 @@ if (error) {
     <div v-if="errorMessage">
       {{ errorMessage }}
     </div>
-    <ReadOnlyCreation
-      v-if="build && props.node.attrs.view === ComponentName.Creation"
-      :build="build"
-    />
-    <ReadOnlyAttributesAndVitals
-      v-if="build && props.node.attrs.view === ComponentName.AttributesAndVitals"
-      :build="build"
-    />
-    <ReadOnlySkillsView
-      v-if="build && props.node.attrs.view === ComponentName.Skills"
-      :build="build"
-    />
+    <ReadOnlyCreation v-if="build && props.node.attrs.view === ComponentName.Creation" :build="build" />
+    <ReadOnlyAttributesAndVitals v-if="build && props.node.attrs.view === ComponentName.AttributesAndVitals"
+      :build="build" />
+    <ReadOnlySkillsView v-if="build && props.node.attrs.view === ComponentName.Skills" :build="build" />
   </div>
 </template>

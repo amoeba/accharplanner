@@ -40,14 +40,11 @@ const onSubmit = async function () {
 
 <template>
   <h2 class="text-lg font-bold">
-    Create Guide
+    New Guide
   </h2>
   <GuideForm :submit="onSubmit" />
   <ul v-if="errors.length > 0">
-    <li
-      v-for="error in errors"
-      class="text-red-500"
-    >
+    <li v-for="error in errors" class="text-red-500">
       {{ error }}
     </li>
   </ul>
