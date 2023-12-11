@@ -7,7 +7,7 @@ const route = useRoute()
 const errorMessage = ref("")
 
 // TODO: Load build
-console.log(route, route.params, route.id)
+console.log(route, route.params, route.params.id)
 const { data, error } = await loadBuild(client, route.params.id)
 
 let build: Build
