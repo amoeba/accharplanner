@@ -46,14 +46,15 @@ else if (data && data[0]) {
         Edit
       </ButtonLink>
     </div>
-    <div>
-      <span>Created {{ createdAt }} Last Updated {{ updatedAt }}</span>
-    </div>
     <div v-if="guide.attribution">
       <span>Attributed to {{ guide.attribution }}, submitted by {{ submittedBy }}</span>
     </div>
     <div v-else>
       <span>Submitted by {{ submittedBy }}</span>
+    </div>
+    <div>
+      <div>Created {{ createdAt }}</div>
+      <div>Last Updated {{ updatedAt }}</div>
     </div>
     <GuideContentEditor v-model="guide.content" :editable="false" class="py-2" />
   </div>
