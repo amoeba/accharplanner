@@ -48,21 +48,15 @@ export default {
 </script>
 
 <template>
-  <CollapsiblePane
-    :toggle-expanded="toggleExpanded"
-    :is-expanded="isExpanded"
-  >
+  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
     <template #title>
       Luminance Auras
     </template>
     <template #right>
-      <span
-        v-if="errors"
-        class="text-red-500"
-      >{{ errors }}</span>
+      <span v-if="errors" class="text-red-500">{{ errors }}</span>
     </template>
     <template #content>
-      <table>
+      <table class="w-full">
         <thead>
           <tr>
             <th>Name</th>
@@ -73,39 +67,20 @@ export default {
           <tr>
             <th>
               <div class="flex">
-                <input
-                  v-model="filterQuery"
-                  class="py-1 font-normal"
-                  type="text"
-                  placeholder="Type to filter..."
-                >
-                <ButtonView
-                  v-if="filterPresent"
-                  class="px-2 py-1 hover:bg-zinc-200 rounded"
-                  @click="clearFilter"
-                >
+                <input v-model="filterQuery" class="py-1 font-normal" type="text" placeholder="Type to filter...">
+                <ButtonView v-if="filterPresent" class="px-2 py-1 hover:bg-zinc-200 rounded" @click="clearFilter">
                   Reset
                 </ButtonView>
               </div>
             </th>
             <th>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                value="0"
-                @change="changeInvested"
-              >
+              <input type="range" min="0" max="1" value="0" @change="changeInvested">
             </th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <LuminanceAura
-            v-for="aura in auras"
-            :key="aura"
-            :name="aura"
-          />
+          <LuminanceAura v-for="aura in auras" :key="aura" :name="aura" />
         </tbody>
       </table>
     </template>

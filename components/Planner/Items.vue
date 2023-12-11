@@ -28,15 +28,12 @@ export default {
 </script>
 
 <template>
-  <CollapsiblePane
-    :toggle-expanded="toggleExpanded"
-    :is-expanded="isExpanded"
-  >
+  <CollapsiblePane :toggle-expanded="toggleExpanded" :is-expanded="isExpanded">
     <template #title>
       Items
     </template>
     <template #content>
-      <ul>
+      <ul class="m-0">
         <Item id="focusing_stone" />
         <Item id="font_of_joji" />
       </ul>
