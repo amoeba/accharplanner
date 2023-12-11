@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const client = useSupabaseClient()
+const user = useSupabaseUser()
+
 const props = defineProps(["build_id"])
 
 const count = ref(0)
