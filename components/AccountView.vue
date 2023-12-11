@@ -7,9 +7,9 @@ const user = useSupabaseUser()
     <h2 class="text-xl font-bold">
       Account
     </h2>
-    <p>
+    <p v-if="!user">
       You are not logged in.
-      <NuxtLink v-if="!user" to="/login">
+      <NuxtLink to="/login">
         Go to the Login Page
       </NuxtLink>
     </p>
