@@ -15,6 +15,7 @@ nuxt_refactor
 - Fix bug in panes where the panes in the header don't collapse correctly
 - Add consistent styling for links (underline by default, blue, remove underline on hover)
 - Make sure most if not all fetching is done in pages not components
+- Updating your account name isn't working
 
 Final checkout:
 
