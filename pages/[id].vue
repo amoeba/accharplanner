@@ -32,14 +32,14 @@ else if (data) {
     </div>
     <div v-if="data && data.length > 0" class="flex flex-col gap-2">
       <div class="flex gap-2">
-        <FavoriteButton />
-        <ButtonView>
+        <!-- <FavoriteButton /> -->
+        <!-- <ButtonView>
           <NuxtLink href="/planner">
             Load Build
           </NuxtLink>
-        </ButtonView>
+        </ButtonView> -->
       </div>
-      <BuildView :build="build" />
+      <!-- <BuildView :build="build" /> -->
     </div>
   </div>
 </template>
