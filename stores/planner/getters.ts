@@ -2400,6 +2400,20 @@ export default {
     if (totalAttributeBonus > 50) {
       return "Cannot augment attributes more than ten times!"
     }
+
+    // You can only take two Innate Resistance augs
+    const totalInnateResistanceAugs =
+      state.build.character.augmentations.enhancement_of_the_mace_turner.invested +
+      state.build.character.augmentations.enhancement_of_the_blade_turner.invested +
+      state.build.character.augmentations.enhancement_of_the_arrow_turner.invested +
+      state.build.character.augmentations.storms_enhancement.invested +
+      state.build.character.augmentations.fiery_enhancement.invested +
+      state.build.character.augmentations.icy_enhancement.invested +
+      state.build.character.augmentations.caustic_enhancement.invested;
+
+    if (totalInnateResistanceAugs > 2) {
+      return "You can only take two innate resistance augmentations!"
+    }
   },
   auraErrors: (state: State) => {
     const msg = "Using too many Seers. You may only choose one."
