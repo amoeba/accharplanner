@@ -47,7 +47,8 @@ else if (data && data[0]) {
       </NuxtLink>
     </div>
     <div v-if="guide.attribution">
-      <span>Attributed to {{ guide.attribution }}, submitted by {{ submittedBy }}</span>
+      <div>Submitted by {{ submittedBy }}</div>
+      <div>Attributed to {{ guide.attribution }}</div>
     </div>
     <div v-else>
       <span>Submitted by {{ submittedBy }}</span>
