@@ -10,18 +10,20 @@
     <h2 class="text-lg font-bold mb-2">
       Public Builds
     </h2>
-    <Suspense>
-      <PublishedBuilds :max="10" />
-      <template #fallback>
-        Loading...
-      </template>
-    </Suspense>
-    <Suspense>
-      <LatestBuilds :max="10" />
-      <template #fallback>
-        Loading...
-      </template>
-    </Suspense>
+    <div class="flex flex-col sm:flex-row">
+      <Suspense>
+        <PublishedBuilds :max="10" />
+        <template #fallback>
+          Loading...
+        </template>
+      </Suspense>
+      <Suspense>
+        <LatestBuilds :max="10" />
+        <template #fallback>
+          Loading...
+        </template>
+      </Suspense>
+    </div>
 
     <h2 class="text-lg font-bold mb-2">
       Your Builds
