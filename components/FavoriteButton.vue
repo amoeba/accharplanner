@@ -67,6 +67,7 @@ const handleClick = async function () {
   }
 }
 
+console.log(props, props.build_id)
 count.value = await getNumFavorites(client, user, props.build_id)
 </script>
 
