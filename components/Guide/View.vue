@@ -38,13 +38,13 @@ else if (data && data[0]) {
     {{ errorMessage }}
   </div>
   <div v-if="guide">
-    <div class="flex gap-2">
+    <div class="flex items-center gap-2">
       <h2 class="text-lg font-bold">
         {{ guide.title }}
       </h2>
-      <ButtonLink v-if="user && user.id === guide.created_by" :href="`/guides/${id}/edit`">
+      <NuxtLink v-if="user && user.id === guide.created_by" :href="`/guides/${id}/edit`">
         Edit
-      </ButtonLink>
+      </NuxtLink>
     </div>
     <div v-if="guide.attribution">
       <span>Attributed to {{ guide.attribution }}, submitted by {{ submittedBy }}</span>
