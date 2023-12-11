@@ -42,9 +42,12 @@ else if (data && data[0]) {
       <h2 class="text-lg font-bold">
         {{ guide.title }}
       </h2>
-      <NuxtLink v-if="user && user.id === guide.created_by" :href="`/guides/${id}/edit`">
+      <MyLink v-if="user && user.id === guide.created_by" :to="`/guides/${id}/edit`">
         Edit
-      </NuxtLink>
+      </MyLink>
+      <MyLink class="text-red-500" v-if="user && user.id === guide.created_by" :to="`/guides/${id}/delete`">
+        Delete
+      </MyLink>
     </div>
     <div v-if="guide.attribution">
       <div>Submitted by {{ submittedBy }}</div>

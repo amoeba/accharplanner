@@ -171,3 +171,10 @@ export const createGuide = async function (client: SupabaseClient, user: User, g
     })
     .select()
 }
+
+export const deleteGuide = async function (client: SupabaseClient, guide_id: number): Guide {
+  return await client
+    .from("guides")
+    .delete()
+    .eq("id", guide_id)
+}
