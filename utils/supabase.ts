@@ -143,7 +143,17 @@ export const fetchGuides = async function (client: SupabaseClient, limit: number
   const from = (page - 1) * pageSize
   const to = page * pageSize
 
-  return await client.from("guides").select().order("created_at", { ascending: false }).range(from, to).limit(limit)
+  return await client.from("guides").select(`
+    id,
+    title,
+    content,
+    attribution,
+    profiles (
+      name
+    )
+    created_at,
+    updated_at,
+  `).order("created_at", { ascending: false }).range(from, to).limit(limit)
 }
 
 export const updateGuide = async function (client: SupabaseClient, user: User, guide: Guide): Guide {
