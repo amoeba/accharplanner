@@ -3,22 +3,19 @@ TODO
 nuxt_refactor
 
 - Add back in Changelog page
-- Rebuild Builds page so users can see
-  - Local builds
-  - Recently shared builds
-  - Published builds
-  - Load builds saved to disk
 - Add back in About page
 - Create JSONSchema for builds so we can validate/etc
-- Light/Dark and other themes
-- Fix and check everything works right on mobile
 - Make use of Nuxt server API
   - Before I dive in too deep, check that the benefits are what I think they are
 - Check out using Zod to validate JSON structures
 - Is now a good time for API versioning?
-- Put an image of the planner up on the main page
+- Put an image of the planner up on the main page or make the main page more visual
 - Make selects and inputs the same size, height, padding, etc
 - Can I figure out a way to switch between panes and tabs view?
 - Fix bug in panes where the panes in the header don't collapse correctly
 - Add consistent styling for links (underline by default, blue, remove underline on hover)
 - Make sure most if not all fetching is done in pages not components
+
+Final checkout:
+
+- Fix and check everything works right on mobile
