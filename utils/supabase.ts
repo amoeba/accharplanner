@@ -16,18 +16,11 @@ export const shareBuild = async function (client: SupabaseClient, user: User, bu
     .select()
 }
 
-export const getNumFavorites = async function (client: SupabaseClient, user: User, id: string): Promise<number> {
-  const { data, error } = await client
+export const getNumFavorites = async function (client: SupabaseClient, user: User, build_id: string) {
+  return await client
     .from("builds_favorites")
-    .select()
-    .eq("build_id", id)
-    .eq("created_by", user.value.id)
-
-  if (data && data.length > 0) {
-    return data.length
-  }
-
-  return 0
+    .select("*", { count: 'exact', head: true })
+    .eq("build_id", build_id)
 }
 
 export const hasAlreadyFavorited = async function (client: SupabaseClient, user: User, id: string) {

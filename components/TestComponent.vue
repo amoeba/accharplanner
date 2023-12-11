@@ -5,7 +5,8 @@ const user = useSupabaseUser()
 const props = defineProps(["build_id"])
 
 const count = ref(0)
-count.value = await getNumFavorites(client, user, props.build_id)
+const { data, error } = await getNumFavorites(client, user, props.build_id)
+
 </script>
 
 <template>
