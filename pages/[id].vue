@@ -7,6 +7,7 @@ const route = useRoute()
 const errorMessage = ref("")
 
 // TODO: Load build
+console.log(route, route.params, route.id)
 const { data, error } = await loadBuild(client, route.params.id)
 
 let build: Build
@@ -14,11 +15,11 @@ let build: Build
 if (error) {
   errorMessage.value = error.message
 }
- else if (data) {
+else if (data) {
   if (data.length < 1) {
     errorMessage.value = `Couldn't find build with ID ${route.params.id}.`
   }
- else {
+  else {
     build = data[0].content
   }
 }
@@ -29,10 +30,7 @@ if (error) {
     <div v-if="errorMessage">
       {{ errorMessage }}
     </div>
-    <div
-      v-if="data && data.length > 0"
-      class="flex flex-col gap-2"
-    >
+    <div v-if="data && data.length > 0" class="flex flex-col gap-2">
       <div class="flex gap-2">
         <FavoriteButton />
         <ButtonView>
