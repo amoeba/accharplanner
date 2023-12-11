@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import type { Profile } from "~/utils/database.types";
+import { setProfileName } from "~/utils/supabase";
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -13,7 +14,7 @@ interface SupabaseError {
 
 const profile = ref<Profile>()
 const message = ref("")
-const errors = ref<SupabaseError[]>([])
+const errorMessage = ref("")
 const isSigningOut = ref(false)
 
 // Form state state machine
@@ -28,34 +29,50 @@ const formState = ref(FormState.UNSENT)
 
 const signOut = async function () {
   try {
-    errors.value = []
+    errorMessage.value = ""
     isSigningOut.value = true
 
     const { error } = await client.auth.signOut()
 
     if (error) {
-      errors.value.push(error)
+      errorMessage.value = error.message
     }
   }
   catch (error) {
-    errors.value.push({ message: error.message } as SupabaseError)
+    errorMessage.value = error.message
   }
   finally {
     isSigningOut.value = false
   }
 }
 
-const validateName = function (name: string) {
+const validateName = async function (name: string) {
   const out: string = name.trim()
 
+  // Validate length
   if (out.length <= 0) {
     throw new Error("Name should be at least one character long.")
   }
 
-  const pattern = /[a-zA-Z][a-zA-Z0-9 ']+/
+  // Validate against our pattern
+  const pattern = /^[a-zA-Z][a-zA-Z0-9 ']+$/
 
   if (!out.match(pattern)) {
     throw new Error(`Name should match the regex ${pattern}.`)
+  }
+
+  // Make sure the new name doesn't already exist but be cool with it
+  // if it's the current profile name
+  if (profile.value.name !== name) {
+    const { data, error } = await doesProfileNameAlreadyExist(client, name);
+
+    if (error) {
+      throw new Error("Error encountered while checking new profile name:", error.message)
+    }
+
+    if (data.length > 0) {
+      throw new Error("A user already exists with that name.")
+    }
   }
 
   return out
@@ -64,34 +81,42 @@ const validateName = function (name: string) {
 const trySetName = async function () {
   formState.value = FormState.SENDING
 
-  try {
-    message.value = ""
-    errors.value = []
-    const newName = validateName(name.value)
+  message.value = ""
+  errorMessage.value = ""
 
-    const { data, error } = await client
-      .from("profiles")
-      .upsert({
-        id: user.value?.id,
-        name: newName,
-      })
-      .select()
+  let newName: string
+
+  // Validate
+  try {
+    newName = await validateName(profile.value.name)
+  } catch (e: any) {
+    formState.value = FormState.ERROR
+    errorMessage.value = e
+
+    return;
+  }
+
+  // Submit
+  try {
+    const { data, error } = await setProfileName(client, user, newName)
 
     if (error) {
       formState.value = FormState.ERROR
-      errors.value.push(error)
+      errorMessage.value = error.message
     }
-    else {
+    else if (data) {
       formState.value = FormState.SUCCESS
       message.value = "Success!"
+
       setTimeout(() => {
         formState.value = FormState.UNSENT
       }, 3000)
     }
-  }
-  catch (error) {
+  } catch (e: any) {
     formState.value = FormState.ERROR
-    errors.value.push({ message: error.message } as SupabaseError)
+    errorMessage.value = e
+
+    return;
   }
 }
 
@@ -101,10 +126,8 @@ const { data, error } = await client
   .eq("id", user.value.id)
 
 if (error) {
-  console.log("error", error)
-}
-
-if (data) {
+  errorMessage.value = error.message
+} else if (data) {
   profile.value = data[0]
 }
 </script>
@@ -122,12 +145,15 @@ if (data) {
             <div v-if="formState === FormState.SENDING" class="px-2 py-1">
               Sending...
             </div>
-            <div v-if="formState === FormState.SUCCESS" class="px-2 py-1">
+            <div v-if="formState === FormState.ERROR" class="text-red-500 px-2 py-1">
+              {{ errorMessage }}
+            </div>
+            <div v-if="formState === FormState.SUCCESS" class="text-green-500 px-2 py-1">
               {{ message }}
             </div>
             <input
               class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto"
-              type="submit" value="Update" :disabled="formState === FormState.SENDING">
+              type="submit" value="Update">
           </div>
         </form>
       </div>

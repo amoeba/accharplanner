@@ -178,3 +178,25 @@ export const deleteGuide = async function (client: SupabaseClient, guide_id: num
     .delete()
     .eq("id", guide_id)
 }
+
+// Profiles
+export const setProfileName = async function (client: SupabaseClient, user: Ref<User>, name: string) {
+  return await client
+    .from("profiles")
+    .upsert({
+      id: user.value?.id,
+      name: name,
+    })
+    .select()
+}
+
+export const doesProfileNameAlreadyExist = async function (client: SupabaseClient, name: string) {
+  return await client
+    .from("profiles")
+    .select(`
+      name
+    `)
+    .eq("name", name)
+}
+
+doesProfileNameAlreadyExist
