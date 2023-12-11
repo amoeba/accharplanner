@@ -19,6 +19,7 @@ const onSubmit = async function () {
 
   errors.value = []
 
+  store.prepareGuideForSave()
   const { data, error } = await updateGuide(client, user, store.guide)
 
   if (error) {
@@ -41,11 +42,11 @@ const { data, error } = await fetchGuide(client, props.id)
 if (error) {
   errors.value.push(error)
 }
- else {
+else {
   if (data.length < 1) {
     errors.value.push("An unexpected error occurred.")
   }
- else {
+  else {
     store.guide = data[0]
   }
 }
@@ -57,10 +58,7 @@ if (error) {
   </h2>
   <GuideForm :submit="onSubmit" />
   <ul v-if="errors.length > 0">
-    <li
-      v-for="error in errors"
-      class="text-red-500"
-    >
+    <li v-for="error in errors" class="text-red-500">
       {{ error }}
     </li>
   </ul>

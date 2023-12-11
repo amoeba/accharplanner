@@ -20,6 +20,7 @@ const onSubmit = async function () {
 
   errors.value = []
 
+  store.prepareGuideForSave()
   const { data, error } = await createGuide(client, user, store.guide)
 
   if (error) {
