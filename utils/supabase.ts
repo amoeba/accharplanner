@@ -16,7 +16,7 @@ export const shareBuild = async function (client: SupabaseClient, user: User, bu
     .select()
 }
 
-export const getNumFavorites = async function (client: SupabaseClient, user: User, build_id: string) {
+export const getNumFavorites = async function (client: SupabaseClient, build_id: string) {
   return await client
     .from("builds_favorites")
     .select("*", { count: 'exact', head: true })
@@ -26,7 +26,7 @@ export const getNumFavorites = async function (client: SupabaseClient, user: Use
 export const hasAlreadyFavorited = async function (client: SupabaseClient, user: User, id: string) {
   return await client
     .from("builds_favorites")
-    .select()
+    .select("*", { count: 'exact', head: true })
     .eq("build_id", id)
     .eq("created_by", user.value.id)
 }

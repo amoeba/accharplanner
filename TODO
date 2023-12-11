@@ -17,6 +17,7 @@ nuxt_refactor
 - Make sure most if not all fetching is done in pages not components
 - Updating your account name isn't working
 - From Maethor: I think when I coded mine I also had it auto-set the free racial aug when you changed your race, since you can't unlearn augs
+- Fix favoriting: It's still buggy as hell
 
 Final checkout:
 

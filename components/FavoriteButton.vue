@@ -4,18 +4,15 @@ const user = useSupabaseUser()
 const router = useRouter()
 
 const props = defineProps<{ build_id: string }>()
+const userHasAlreadyFavorited = ref(false)
 const count = ref(0)
 
 const favoriteClass = computed(() => ({
-  "fill-yellow-400": count.value > 0,
-  "stroke-yellow-400": count.value > 0,
+  "fill-yellow-400": userHasAlreadyFavorited.value,
+  "stroke-yellow-400": userHasAlreadyFavorited.value,
 }))
 
 const doFavoriteBuild = async function () {
-  if (count.value > 0) {
-    return
-  }
-
   if (!user.value) {
     router.push("/login")
 
@@ -27,13 +24,11 @@ const doFavoriteBuild = async function () {
   }
 
   // Check if we've already favorited
-  const { data: selectData, error: selectError } = await hasAlreadyFavorited(client, user, props.build_id)
+  const { data: hasAlreadyFavoritedData, count: hasAlreadyFavoritedCount } = await hasAlreadyFavorited(client, user, props.build_id)
 
-  if (selectError) {
-    return
-  }
+  if (hasAlreadyFavoritedCount && hasAlreadyFavoritedCount > 0) {
+    userHasAlreadyFavorited.value = true;
 
-  if (selectData.length > 0) {
     return
   }
 
@@ -41,7 +36,8 @@ const doFavoriteBuild = async function () {
   const { data, error } = await favoriteBuild(client, user, props.build_id)
 
   if (!error) {
-    count.value = await getNumFavorites(client, user, props.build_id)
+    const { data: getNumFavoritesCountData, count: getNumFavoritesCount } = await getNumFavorites(client, user, props.build_id)
+    count.value = getNumFavoritesCount || 0
   }
 }
 
@@ -62,15 +58,14 @@ const doUnFavoriteBuild = async function () {
 }
 
 const handleClick = async function () {
-  if (count.value > 0) {
+  if (userHasAlreadyFavorited.value) {
     await doUnFavoriteBuild(client, user, props.build_id)
-  }
-  else {
+  } else {
     await doFavoriteBuild(client, user, props.build_id)
   }
 }
 
-const { data, count: numFavorites } = await getNumFavorites(client, user, props.build_id)
+const { data, count: numFavorites } = await getNumFavorites(client, props.build_id)
 
 if (numFavorites) {
   count.value = numFavorites
@@ -85,10 +80,10 @@ if (numFavorites) {
         <polygon
           points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
       </svg>
-      <span v-if="count > 0">
+      <span v-if="userHasAlreadyFavorited">
         Unstar
       </span>
-      <span v-if="count === 0">Star</span>
+      <span v-else>Star</span>
     </button>
     <div class="px-2 py-1">
       {{ count }}
