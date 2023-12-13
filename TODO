@@ -20,6 +20,7 @@ nuxt_refactor
 - Fix favoriting: It's still buggy as hell
 - Can I hide scrollbars in all panes? I forgot to test with a mouse hooked up in macOS.
 - Guides list is showing anonymous when they aren't
+- Share doesn't work on my preview deployment
 
 Final checkout:
 
