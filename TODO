@@ -18,6 +18,7 @@ nuxt_refactor
 - Updating your account name isn't working
 - From Maethor: I think when I coded mine I also had it auto-set the free racial aug when you changed your race, since you can't unlearn augs
 - Fix favoriting: It's still buggy as hell
+- Can I hide scrollbars in all panes? I forgot to test with a mouse hooked up in macOS.
 
 Final checkout:
 
