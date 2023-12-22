@@ -26,7 +26,7 @@ const deleteBuild = async function () {
 <template>
   <div class="flex flex-wrap gap-2">
     <div class="grow">
-      <button @click="loadBuild" class="underline text-blue-500 hover:no-underline cursor-pointer">{{
+      <button @click="loadBuild">{{
         build.character.name
       }}</button>
       <div class="text-sm text-zinc-500">Saved {{ saved }}</div>

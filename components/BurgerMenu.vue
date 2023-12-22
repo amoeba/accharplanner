@@ -27,16 +27,16 @@ const toggle = async function () {
           <path d="m6 6 12 12" />
         </svg>
       </button>
-      <NuxtLink @click="toggle" to="/planner" class="hover:underline">
+      <NuxtLink @click="toggle" to="/planner">
         Planner
       </NuxtLink>
-      <NuxtLink @click="toggle" to="/builds" class="hover:underline">
+      <NuxtLink @click="toggle" to="/builds">
         Builds
       </NuxtLink>
-      <NuxtLink @click="toggle" to="/guides" class="hover:underline">
+      <NuxtLink @click="toggle" to="/guides">
         Guides
       </NuxtLink>
-      <NuxtLink @click="toggle" v-if="!user" to="/login" class="hidden sm:block hover:underline">
+      <NuxtLink @click="toggle" v-if="!user" to="/login" class="hidden sm:block">
         <span v-tooltip="'Log In to Publish your builds for others to see and to favorite others\' builds.'">Log In</span>
       </NuxtLink>
       <NuxtLink @click="toggle" v-if="user" class="hidden sm:block" to="/account">

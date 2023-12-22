@@ -7,7 +7,7 @@ const createdAt = useTimeAgo(props.build.created_at)
 
 <template>
   <div class="flex flex-col">
-    <NuxtLink :to="`/${props.build.id}`" class="underline text-blue-500 hover:no-underline cursor-pointer">
+    <NuxtLink :to="`/${props.build.id}`">
       {{ props.build.content.character.name }}
     </NuxtLink>
     <span class="text-sm text-zinc-500">Shared {{ createdAt }}</span>

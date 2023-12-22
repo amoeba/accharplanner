@@ -28,7 +28,7 @@ const { data, error } = await getPublishedBuilds(client, props.max || 10)
         <tbody>
           <tr v-for="build in data" :key="build.id">
             <td class="p-0">
-              <a class="text-blue-500 underline hover:no-underline" :href="`/${build.id}`">{{
+              <a :href="`/${build.id}`">{{
                 build.content.character.name
               }}</a>
             </td>

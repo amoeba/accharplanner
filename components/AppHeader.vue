@@ -27,13 +27,13 @@ const doToggleDarkMode = async function () {
           Call Character
           Planner</span>
       </div>
-      <NuxtLink to="/planner" class="hidden sm:block hover:underline">
+      <NuxtLink to="/planner" class="hidden sm:block">
         Planner
       </NuxtLink>
-      <NuxtLink to="/builds" class="hidden sm:block hover:underline">
+      <NuxtLink to="/builds" class="hidden sm:block">
         Builds
       </NuxtLink>
-      <NuxtLink to="/guides" class="hidden sm:block hover:underline">
+      <NuxtLink to="/guides" class="hidden sm:block">
         Guides
       </NuxtLink>
     </div>
@@ -86,7 +86,7 @@ const doToggleDarkMode = async function () {
         </svg>
       </NuxtLink>
       <!-- Login / Account -->
-      <NuxtLink v-if="!user" to="/login" class="hidden sm:block hover:underline">
+      <NuxtLink v-if="!user" to="/login" class="hidden sm:block">
         <span v-tooltip="'Log In to Publish your builds for others to see and to favorite others\' builds.'">Log In</span>
       </NuxtLink>
       <NuxtLink class="hidden sm:block" v-if="user" to="/account">
