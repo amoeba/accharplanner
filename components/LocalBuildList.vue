@@ -12,7 +12,7 @@ const clear = async function () {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 separate-y">
     <p v-if="builds.length <= 0">
       No local builds. Use the <ButtonView class="inline-flex">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -39,7 +39,7 @@ const clear = async function () {
         Save to Browser
       </ButtonView>.
     </p>
-    <div v-if="builds && builds.length > 0">
+    <div v-if="builds && builds.length > 0" class="bg-zinc-200 p-2">
       <ButtonView @click="clear">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -53,7 +53,7 @@ const clear = async function () {
         Delete All
       </ButtonView>
     </div>
-    <div v-if="builds && builds.length > 0" class="flex flex-col gap-2">
+    <div v-if="builds && builds.length > 0" class="flex flex-col gap-2 p-2">
       <LocalBuildListItem v-for="build in builds" :key="build.key" :build="build" />
     </div>
   </div>

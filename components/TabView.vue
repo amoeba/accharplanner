@@ -14,11 +14,9 @@ provide("switchTab", switchTab)
 <template>
   <div class="flex flex-col dark:bg-dark-800 dark:border-stone-600">
     <div class="flex gap-2">
-      <slot
-        name="tabs"
-      />
+      <slot name="tabs" />
     </div>
-    <div class="border rounded-tr rounded-br rounded-bl border-zinc-200 dark:border-stone-600 p-2">
+    <div class="border rounded-tr rounded-br rounded-bl border-zinc-200 dark:border-stone-600">
       <slot name="content" />
     </div>
   </div>
