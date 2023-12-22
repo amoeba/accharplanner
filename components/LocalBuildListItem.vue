@@ -32,7 +32,7 @@ const deleteBuild = async function () {
       <div class="text-sm text-zinc-500">Saved {{ saved }}</div>
     </div>
     <div class="flex flex-wrap justify-end gap-2">
-      <div>
+      <div class="flex flex-wrap items-start gap-2">
         <ButtonView @click="downloadBuild" class="inline-flex">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
