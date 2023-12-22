@@ -53,8 +53,8 @@ const clear = async function () {
         Delete All
       </ButtonView>
     </div>
-    <table v-if="builds && builds.length > 0" class="w-full">
+    <div v-if="builds && builds.length > 0" class="flex flex-col gap-2">
       <LocalBuildListItem v-for="build in builds" :key="build.key" :build="build" />
-    </table>
+    </div>
   </div>
 </template>
