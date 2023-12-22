@@ -13,7 +13,7 @@ const clear = async function () {
 
 <template>
   <div class="flex flex-col gap-2 separate-y">
-    <p v-if="builds.length <= 0">
+    <p v-if="builds.length <= 0" class="p-2">
       No local builds. Use the <ButtonView class="inline-flex">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
