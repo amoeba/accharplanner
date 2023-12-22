@@ -22,12 +22,23 @@ if (user.value) {
       {{ errorMessage }}
     </div>
     <div v-if="!user">
-      You must <NuxtLink to="/login">log in</NuxtLink> first.
+      You must <NuxtLink to="/login">
+        log in
+      </NuxtLink> first.
     </div>
     <div v-if="user">
-      <p v-if="builds && builds.length == 0">You haven't shared any builds yet.</p>
-      <div v-if="builds && builds.length > 0" class="flex flex-col gap-2 p-2">
-        <RemoteBuildListItem v-for="build in builds" :key="build.id" :build="build" />
+      <p v-if="builds && builds.length == 0">
+        You haven't shared any builds yet.
+      </p>
+      <div
+        v-if="builds && builds.length > 0"
+        class="flex flex-col gap-2 p-2"
+      >
+        <RemoteBuildListItem
+          v-for="build in builds"
+          :key="build.id"
+          :build="build"
+        />
       </div>
     </div>
   </div>

@@ -264,7 +264,7 @@ export default {
       <button
         :class="cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
-        class="rounded w-12 text-white px-1"
+        class="w-12 rounded px-1 text-white"
         :disabled="cantDecrease"
         @click="decreaseTraining"
       >
@@ -276,7 +276,7 @@ export default {
       <button
         :class="cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
-        class="rounded w-12 text-white px-1"
+        class="w-12 rounded px-1 text-white"
         @click="increaseTraining"
       >
         {{ increaseCostText }} ↑

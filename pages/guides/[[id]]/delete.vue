@@ -26,8 +26,12 @@ const doDelete = async function (id: number) {
   <div class="flex flex-col gap-2">
     Are you sure?
     <div class="flex gap-2">
-      <ButtonView @click="doDelete(id)">Yes</ButtonView>
-      <ButtonLink :to="`/guides/${id}`">No</ButtonLink>
+      <ButtonView @click="doDelete(id)">
+        Yes
+      </ButtonView>
+      <ButtonLink :to="`/guides/${id}`">
+        No
+      </ButtonLink>
     </div>
 
     <div v-if="errorMessage">

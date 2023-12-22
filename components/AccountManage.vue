@@ -139,25 +139,44 @@ if (error) {
         <form @submit.prevent="trySetName">
           <label class="block py-3">
             <div>Name</div>
-            <input v-model="profile.name" class="w-full px-2 py-1" type="text">
+            <input
+              v-model="profile.name"
+              class="w-full px-2 py-1"
+              type="text"
+            >
           </label>
-          <div class="flex justify-end gap-2 content-center">
-            <div v-if="formState === FormState.SENDING" class="px-2 py-1">
+          <div class="flex content-center justify-end gap-2">
+            <div
+              v-if="formState === FormState.SENDING"
+              class="px-2 py-1"
+            >
               Sending...
             </div>
-            <div v-if="formState === FormState.ERROR" class="text-red-500 px-2 py-1">
+            <div
+              v-if="formState === FormState.ERROR"
+              class="px-2 py-1 text-red-500"
+            >
               {{ errorMessage }}
             </div>
-            <div v-if="formState === FormState.SUCCESS" class="text-green-500 px-2 py-1">
+            <div
+              v-if="formState === FormState.SUCCESS"
+              class="px-2 py-1 text-green-500"
+            >
               {{ message }}
             </div>
             <input
-              class="flex items-center gap-2 rounded border border-zinc-200 hover:bg-zinc-50 px-2 py-1 cursor-pointer w-auto"
-              type="submit" value="Update">
+              class="flex w-auto cursor-pointer items-center gap-2 rounded border border-zinc-200 px-2 py-1 hover:bg-zinc-50"
+              type="submit"
+              value="Update"
+            >
           </div>
         </form>
       </div>
-      <ButtonView v-if="user" :disabled="isSigningOut" @click="signOut">
+      <ButtonView
+        v-if="user"
+        :disabled="isSigningOut"
+        @click="signOut"
+      >
         Log Out
       </ButtonView>
     </div>

@@ -60,7 +60,8 @@ const numPages = Math.ceil(count.value / pageSize)
     <p class="leading-6">
       The basic idea is a Guide is the writeup for one or more Builds, similar to other types of build guides you may
       have seen around the internet. What I think makes this interface interesting is that it let's you customize what
-      parts of your build you show to readers.</p>
+      parts of your build you show to readers.
+    </p>
     <div>
       <div v-if="countErrorMessage">
         {{ countErrorMessage }}
@@ -72,9 +73,15 @@ const numPages = Math.ceil(count.value / pageSize)
         Create a New Guide
       </ButtonLink>
     </div>
-    <GuideList v-if="guides" :guides="guides" />
+    <GuideList
+      v-if="guides"
+      :guides="guides"
+    />
     <div class="flex gap-2">
-      <PageControls v-model="page" :num-pages="numPages" />
+      <PageControls
+        v-model="page"
+        :num-pages="numPages"
+      />
     </div>
   </div>
 </template>

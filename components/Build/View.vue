@@ -3,8 +3,11 @@ const props = defineProps(["build"])
 </script>
 
 <template>
-  <div class="flex flex-col sm:flex-row gap-2">
-    <CollapsiblePane :is-collapsible="false" :is-expanded="true">
+  <div class="flex flex-col gap-2 sm:flex-row">
+    <CollapsiblePane
+      :is-collapsible="false"
+      :is-expanded="true"
+    >
       <template #title>
         Attributes &amp; Vitals
       </template>
@@ -12,7 +15,10 @@ const props = defineProps(["build"])
         <BuildReadOnlyAttributesAndVitals :build="props.build" />
       </template>
     </CollapsiblePane>
-    <CollapsiblePane :is-collapsible="false" :is-expanded="true">
+    <CollapsiblePane
+      :is-collapsible="false"
+      :is-expanded="true"
+    >
       <template #title>
         Skills
       </template>
@@ -20,6 +26,5 @@ const props = defineProps(["build"])
         <BuildReadOnlySkillsView :build="props.build" />
       </template>
     </CollapsiblePane>
-
   </div>
 </template>

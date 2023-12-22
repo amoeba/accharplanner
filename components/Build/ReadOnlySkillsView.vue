@@ -27,7 +27,7 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     <thead>
       <tr>
         <th
-          class="text-left px-1 text-white"
+          class="px-1 text-left text-white"
           style="background: linear-gradient( to right, #392067, #392067, transparent);"
           colspan="3"
         >
@@ -65,7 +65,7 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     <thead>
       <tr>
         <th
-          class="text-left px-1 text-white"
+          class="px-1 text-left text-white"
           style="background: linear-gradient( to right, #0f3c3e, #0f3c3e, transparent);"
           colspan="3"
         >

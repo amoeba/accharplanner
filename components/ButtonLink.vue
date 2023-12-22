@@ -3,8 +3,10 @@ const props = defineProps(["href"])
 </script>
 
 <template>
-  <NuxtLink :href="props.href"
-    class="flex inline-flex items-center gap-2 rounded border bg-gray-100 dark:bg-stone-800 border-gray-300 dark:border-stone-600 hover:bg-gray-200 dark:hover:bg-stone-700 text-inherit px-2 py-1">
+  <NuxtLink
+    :href="props.href"
+    class="flex inline-flex items-center gap-2 rounded border border-gray-300 bg-gray-100 px-2 py-1 text-inherit hover:bg-gray-200 dark:border-stone-600 dark:bg-stone-800 dark:hover:bg-stone-700"
+  >
     <slot />
   </NuxtLink>
 </template>

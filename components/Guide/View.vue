@@ -42,10 +42,17 @@ else if (data && data[0]) {
       <h2 class="text-lg font-bold">
         {{ guide.title }}
       </h2>
-      <MyLink v-if="user && user.id === guide.created_by" :to="`/guides/${id}/edit`">
+      <MyLink
+        v-if="user && user.id === guide.created_by"
+        :to="`/guides/${id}/edit`"
+      >
         Edit
       </MyLink>
-      <MyLink class="text-red-500" v-if="user && user.id === guide.created_by" :to="`/guides/${id}/delete`">
+      <MyLink
+        v-if="user && user.id === guide.created_by"
+        class="text-red-500"
+        :to="`/guides/${id}/delete`"
+      >
         Delete
       </MyLink>
     </div>
@@ -60,6 +67,10 @@ else if (data && data[0]) {
       <div>Created {{ createdAt }}</div>
       <div>Last Updated {{ updatedAt }}</div>
     </div>
-    <GuideContentEditor v-model="guide.content" :editable="false" class="py-2" />
+    <GuideContentEditor
+      v-model="guide.content"
+      :editable="false"
+      class="py-2"
+    />
   </div>
 </template>

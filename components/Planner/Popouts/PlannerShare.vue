@@ -81,7 +81,7 @@ const doExportCharacter = async function () {
         placeholder="Sharing, hang on tight..."
       >
       <ButtonView
-        class="border rounded px-2 py-1"
+        class="rounded border px-2 py-1"
         tooltip="Copy to clipboard"
         @click="copy(shareBuildURL)"
       >

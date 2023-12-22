@@ -9,7 +9,7 @@
         you've shared</a>.
     </p>
 
-    <h2 class="text-lg font-bold mb-2">
+    <h2 class="mb-2 text-lg font-bold">
       Public Builds
     </h2>
     <div class="flex flex-col sm:flex-row">
@@ -27,9 +27,9 @@
       </Suspense>
     </div>
 
-    <a name="local"></a>
-    <a name="shared"></a>
-    <h2 class="text-lg font-bold mb-2">
+    <a name="local" />
+    <a name="shared" />
+    <h2 class="mb-2 text-lg font-bold">
       Your Builds
     </h2>
     <TabView initial-tab="local">

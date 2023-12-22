@@ -50,7 +50,12 @@ export default {
             </router-link>.
           </p>
         </div>
-        <Build v-for="build in builds" :key="build.key" :build-key="build.key" :build-data="build.build" />
+        <Build
+          v-for="build in builds"
+          :key="build.key"
+          :build-key="build.key"
+          :build-data="build.build"
+        />
       </div>
     </div>
   </div>

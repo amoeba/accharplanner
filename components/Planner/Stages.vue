@@ -93,7 +93,7 @@ function drop(e: DragEvent) {
         v-tooltip="
           'Stages are useful if your build has a progression based on level or experience and you want to see what the build loos like at each of those points. You can edit an already-saved stage by clicking it to select it and then using the Planner as normal.'
         "
-        class="px-2 text-zinc-400 font-normal"
+        class="px-2 font-normal text-zinc-400"
       >?</span>
     </template>
     <template #right />
@@ -116,7 +116,7 @@ function drop(e: DragEvent) {
           @drop="drop"
         />
         <ButtonView
-          class="ml-2 px-1 py-1 text-xs"
+          class="ml-2 p-1 text-xs"
           @click="save"
         >
           + Stage

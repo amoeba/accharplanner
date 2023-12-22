@@ -3,7 +3,10 @@ const props = defineProps<{ to: string }>()
 </script>
 
 <template>
-  <NuxtLink class="flex items-center gap-1" :to="props.to">
-    <slot></slot>
+  <NuxtLink
+    class="flex items-center gap-1"
+    :to="props.to"
+  >
+    <slot />
   </NuxtLink>
 </template>

@@ -25,7 +25,7 @@ if (error) {
 </script>
 
 <template>
-  <div class="flex place-content-center h-32 md:h-64">
+  <div class="flex h-32 place-content-center md:h-64">
     <div v-if="errors.length <= 0">
       class="flex flex-col place-content-center gap-6 bg-zinc-50 border rounded w-64 h-32 md:w-96 md:h-64 p-4
       text-center">

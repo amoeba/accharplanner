@@ -11,7 +11,10 @@ const props = defineProps<{ guides: Database["public"]["Tables"]["guides"]["Row"
     </NuxtLink>
   </div>
   <ul v-if="props.guides.length > 0">
-    <li v-for="guide in props.guides" :key="guide.id">
+    <li
+      v-for="guide in props.guides"
+      :key="guide.id"
+    >
       <NuxtLink :href="`/guides/${guide.id}`">
         {{ guide.title }}
       </NuxtLink>

@@ -94,7 +94,7 @@ const signInWithEmail = async function (email: string) {
       </label>
       <div class="flex justify-end">
         <input
-          class="hover:bg-zinc-100 cursor-pointer px-2 py-1 disabled:bg-zinc-200 disabled:text-zinc-500"
+          class="cursor-pointer px-2 py-1 hover:bg-zinc-100 disabled:bg-zinc-200 disabled:text-zinc-500"
           type="submit"
           :disabled="formState === FormState.SENDING"
           :value="submitButtonText"

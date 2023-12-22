@@ -9,7 +9,7 @@
     <div class="flex flex-col gap-4 divide-y">
       <div>
         <NuxtLink
-          class="flex text-center w-full border rounded hover:bg-zinc-100 px-2 py-1"
+          class="flex w-full rounded border px-2 py-1 text-center hover:bg-zinc-100"
           to="/login/email"
         >
           Link
@@ -20,7 +20,7 @@
           or log in with Email and Password
         </p>
         <NuxtLink
-          class="flex text-center w-full border rounded hover:bg-zinc-100 px-2 py-1"
+          class="flex w-full rounded border px-2 py-1 text-center hover:bg-zinc-100"
           to="/login/register"
         >
           Register New Account
@@ -30,19 +30,19 @@
             Email
             <input
               type="text"
-              class="border rounded px-2 py-1"
+              class="rounded border px-2 py-1"
             >
           </label>
           <label>
             Password
             <input
               type="text"
-              class="border rounded px-2 py-1"
+              class="rounded border px-2 py-1"
             >
           </label>
           <input
             type="submit"
-            class="border rounded px-2 py-1 hover:bg-zinc-100"
+            class="rounded border px-2 py-1 hover:bg-zinc-100"
             value="Log In"
           >
         </form>

@@ -27,13 +27,13 @@ const remove = async function () {
 <template>
   <div class="flex">
     <div
-      class="flex border rounded divide-x p-0"
+      class="flex divide-x rounded border p-0"
       :class="isSelected ? 'bg-blue-600 dark:bg-blue-600 border-blue-800 text-white' : 'bg-stone-300 border-zinc-200 text-black'"
     >
       <button
         :data-index="index"
         :class="{ selected: isSelected }"
-        class="rounded-l px-3 hover:bg-blue-600 hover:text-white cursor-grab"
+        class="cursor-grab rounded-l px-3 hover:bg-blue-600 hover:text-white"
         @click="load"
       >
         Level {{ level }}

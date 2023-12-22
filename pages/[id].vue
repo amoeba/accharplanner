@@ -28,9 +28,15 @@ else if (data) {
     <div v-if="errorMessage">
       {{ errorMessage }}
     </div>
-    <div v-if="data && data.length > 0" class="flex flex-col gap-2">
+    <div
+      v-if="data && data.length > 0"
+      class="flex flex-col gap-2"
+    >
       <div class="flex gap-2">
-        <FavoriteButton v-if="route.params" :build_id="route.params.id" />
+        <FavoriteButton
+          v-if="route.params"
+          :build_id="route.params.id"
+        />
         <ButtonView>
           <NuxtLink href="/planner">
             Load Build
