@@ -4,7 +4,9 @@
       Builds
     </h2>
     <p class="py-2">
-      Blurb about builds...
+      View builds other players have made, builds you've <a href="#local">saved locally</a>, and builds
+      <a href="#shared">
+        you've shared</a>.
     </p>
 
     <h2 class="text-lg font-bold mb-2">
@@ -25,6 +27,8 @@
       </Suspense>
     </div>
 
+    <a name="local"></a>
+    <a name="shared"></a>
     <h2 class="text-lg font-bold mb-2">
       Your Builds
     </h2>
