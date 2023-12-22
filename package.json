@@ -10,10 +10,10 @@
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "supabase": "npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > utils/database.types-generated.ts"
   },
   "dependencies": {
-    "pinia": "^2.1.6",
     "@pinia/nuxt": "^0.5.1",
     "@sentry/tracing": "^7.73.0",
     "@sentry/vue": "^7.73.0",
@@ -25,7 +25,8 @@
     "@tiptap/vue-3": "^2.1.12",
     "floating-vue": "^2.0.0-beta.24",
     "lodash": "^4.17.21",
-    "mnemonic-id": "^3.2.7"
+    "mnemonic-id": "^3.2.7",
+    "pinia": "^2.1.6"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -39,9 +40,11 @@
     "@vueuse/core": "^10.6.1",
     "@vueuse/nuxt": "^10.6.1",
     "eslint": "^8.55.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "nuxt": "^3.7.4",
     "vitest": "^0.33.0",
     "vue": "^3.3.4",
+    "vue-eslint-parser": "^9.3.2",
     "vue-router": "^4.2.5"
   }
 }
