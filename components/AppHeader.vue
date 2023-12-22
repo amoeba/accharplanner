@@ -11,7 +11,7 @@ const doToggleDarkMode = async function () {
 </script>
 
 <template>
-  <header class="grid grid-cols-[auto_auto] items-center px-2 py-1">
+  <header class="grid grid-cols-[auto_auto] items-center px-2 py-2">
     <div class="flex gap-4 items-center">
       <div class="flex gap-1">
         <NuxtLink to="/">
@@ -37,7 +37,7 @@ const doToggleDarkMode = async function () {
         Guides
       </NuxtLink>
     </div>
-    <div class="flex gap-2 justify-self-end items-center px-2 py-1">
+    <div class="flex gap-2 justify-self-end items-center">
       <button @click="doToggleDarkMode">
         <svg v-if="store.darkMode" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
