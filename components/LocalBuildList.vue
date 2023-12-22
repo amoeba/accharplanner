@@ -39,7 +39,7 @@ const clear = async function () {
         Save to Browser
       </ButtonView>.
     </p>
-    <div v-if="builds && builds.length > 0" class="bg-zinc-200 p-2">
+    <div v-if="builds && builds.length > 0" class="bg-zinc-200 dark:bg-stone-600 p-2">
       <ButtonView @click="clear">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
