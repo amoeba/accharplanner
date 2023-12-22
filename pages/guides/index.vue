@@ -55,8 +55,12 @@ const numPages = Math.ceil(count.value / pageSize)
       Guides
     </h2>
     <p class="leading-6">
-      Blurb about Guides...
+      <em>Guides are an experimental feature at the moment.</em>
     </p>
+    <p class="leading-6">
+      The basic idea is a Guide is the writeup for one or more Builds, similar to other types of build guides you may
+      have seen around the internet. What I think makes this interface interesting is that it let's you customize what
+      parts of your build you show to readers.</p>
     <div>
       <div v-if="countErrorMessage">
         {{ countErrorMessage }}
