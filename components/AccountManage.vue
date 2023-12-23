@@ -1,18 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import type { Profile } from "~/utils/database.types";
+import type { ProfileRow } from "~/utils/database.types";
 import { setProfileName } from "~/utils/supabase";
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
-interface SupabaseError {
-  name: string | undefined
-  status: number | undefined
-  message: string
-}
-
-const profile = ref<Profile>()
+const profile = ref<ProfileRow>()
 const message = ref("")
 const errorMessage = ref("")
 const isSigningOut = ref(false)
