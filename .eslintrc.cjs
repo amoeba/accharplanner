@@ -7,4 +7,12 @@ module.exports = {
       parser: 'vue-eslint-parser',
     },
   ],
+  settings: {
+    tailwindcss: {
+      // Testing multiple options
+      whitelist: [
+        'my\\-.+',
+      ],
+    },
+  }
 };

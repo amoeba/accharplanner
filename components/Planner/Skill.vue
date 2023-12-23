@@ -4,9 +4,18 @@ import { usePlannerStore } from "~/stores/planner"
 export default {
   name: "Skill",
   props: {
-    name: String,
-    training: String,
-    tabIndex: Number, // Number instead of String because we're :binding
+    name: {
+      type: String,
+      required: true,
+    },
+    training: {
+      type: String,
+      required: true,
+    },
+    tabIndex: {
+      type: Number, // Number instead of String because we're :binding
+      required: true,
+    },
   },
   setup() {
     const store = usePlannerStore()

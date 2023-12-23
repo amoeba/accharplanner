@@ -4,8 +4,14 @@ import { usePlannerStore } from "~/stores/planner"
 export default {
   name: "Attribute",
   props: {
-    name: String,
-    tabIndex: String,
+    name: {
+      type: String,
+      required: true,
+    },
+    tabIndex: {
+      type: String,
+      required: true,
+    },
   },
   setup() {
     const store = usePlannerStore()

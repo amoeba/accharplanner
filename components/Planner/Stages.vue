@@ -105,7 +105,6 @@ function drop(e: DragEvent) {
         <Stage
           v-for="(stage, index) in store.build.stages"
           :key="index"
-          class="stage"
           :index="index"
           :level="stage.level"
           :data-index="index"

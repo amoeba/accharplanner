@@ -13,11 +13,11 @@ const user = useSupabaseUser()
 // Refs + injects
 const shareBuildURL = ref("")
 const errorMessage = ref("")
-const { text, copy, copied, isSupported } = useClipboard({ shareBuildURL })
+const { copy } = useClipboard({ shareBuildURL })
 
 const isPopoutVisible = inject("isPopoutVisible")
 
-watch([isPopoutVisible], async (newVal, oldVal) => {
+watch([isPopoutVisible], async (newVal) => {
   if (newVal[0]) {
     await doShareBuild()
   }

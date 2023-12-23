@@ -4,9 +4,18 @@ import { usePlannerStore } from "~/stores/planner"
 export default {
   name: "Vital",
   props: {
-    name: String,
-    displayName: String,
-    tabIndex: String,
+    name: {
+      type: String,
+      required: true,
+    },
+    displayName: {
+      type: String,
+      required: true,
+    },
+    tabIndex: {
+      type: String,
+      required: true,
+    },
   },
   setup() {
     const store = usePlannerStore()
@@ -53,7 +62,7 @@ export default {
 
         this.store.updateVitalInvested({
           name: this.name,
-          value,
+          out,
         })
       },
     },

@@ -271,7 +271,6 @@ export default {
           </tr>
           <tr v-if="noSpecializedSkills">
             <td
-              class="center"
               colspan="12"
             >
               No specialized skills
@@ -307,7 +306,6 @@ export default {
           </tr>
           <tr v-if="noTrainedSkills">
             <td
-              class="center"
               colspan="12"
             >
               No trained skills

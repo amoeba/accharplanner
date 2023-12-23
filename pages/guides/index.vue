@@ -41,7 +41,7 @@ guides.value = await doFetchGuides(page.value)
 
 watch(
   () => page.value,
-  async (next, prev) => {
+  async (next) => {
     guides.value = await doFetchGuides(next)
   },
 )

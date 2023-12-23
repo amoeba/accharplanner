@@ -23,6 +23,8 @@ nuxt_refactor
 - Share doesn't work on my preview deployment
 - Re-do dark theme to be blue+gold
   - Maybe just add a third theme?
+- Make sure planner tooltips work, I may have broken them
+
 Final checkout:
 
 - Fix and check everything works right on mobile

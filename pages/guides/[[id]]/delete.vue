@@ -10,9 +10,7 @@ const id = Number(route.params.id)
 const errorMessage = ref("")
 
 const doDelete = async function (id: number) {
-  console.log("doDelete", id)
-
-  const { data, error } = await deleteGuide(client, id);
+  const { error } = await deleteGuide(client, id);
 
   if (error) {
     errorMessage.value = error.errorMessage

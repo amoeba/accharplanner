@@ -152,7 +152,7 @@ export default {
   async publishBuild() {
     const client = useSupabaseClient()
 
-    const { data, error } = await client
+    const { error } = await client
       .from("official_builds")
       .insert({
         id: this.build.character.name.toLowerCase().replace(/[^\w]/, "_"),

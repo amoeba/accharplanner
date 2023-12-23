@@ -4,8 +4,14 @@ import { usePlannerStore } from "~/stores/planner"
 export default {
   name: "Build",
   props: {
-    buildKey: String,
-    buildData: String,
+    buildKey: {
+      type: String,
+      required: true,
+    },
+    buildData: {
+      type: String,
+      required: true,
+    },
   },
   setup() {
     const store = usePlannerStore()

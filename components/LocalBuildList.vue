@@ -12,7 +12,7 @@ const clear = async function () {
 </script>
 
 <template>
-  <div class="separate-y flex flex-col gap-2">
+  <div class="flex flex-col gap-2 divide-y">
     <p
       v-if="builds.length <= 0"
       class="p-2"

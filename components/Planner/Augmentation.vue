@@ -4,7 +4,10 @@ import { usePlannerStore } from "~/stores/planner"
 export default {
   name: "Augmentation",
   props: {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    }
   },
   setup() {
     const store = usePlannerStore()

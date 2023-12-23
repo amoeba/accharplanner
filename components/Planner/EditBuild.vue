@@ -5,7 +5,10 @@ import { usePlannerStore } from "~/stores/planner"
 export default {
   name: "EditBuild",
   props: {
-    id: String,
+    id: {
+      type: String,
+      required: true,
+    }
   },
   setup() {
     const store = usePlannerStore()
@@ -60,7 +63,7 @@ export default {
       this.name = data[0].name
       this.description = data[0].description
     },
-    async updateBuild(e) {
+    async updateBuild() {
       this.saving = true
 
       const supabase = createClient(

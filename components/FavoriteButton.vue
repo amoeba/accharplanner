@@ -3,7 +3,7 @@ const client = useSupabaseClient()
 const user = useSupabaseUser()
 const router = useRouter()
 
-const props = defineProps<{ build_id: string }>()
+const props = defineProps<{ buildId: string }>()
 const userHasAlreadyFavorited = ref(false)
 const count = ref(0)
 
@@ -19,12 +19,12 @@ const doFavoriteBuild = async function () {
     return
   }
 
-  if (!props.build_id) {
+  if (!props.buildId) {
     return
   }
 
   // Check if we've already favorited
-  const { data: hasAlreadyFavoritedData, count: hasAlreadyFavoritedCount } = await hasAlreadyFavorited(client, user, props.build_id)
+  const { count: hasAlreadyFavoritedCount } = await hasAlreadyFavorited(client, user, props.buildId)
 
   if (hasAlreadyFavoritedCount && hasAlreadyFavoritedCount > 0) {
     userHasAlreadyFavorited.value = true;
@@ -33,10 +33,10 @@ const doFavoriteBuild = async function () {
   }
 
   // Only now do we favorite
-  const { data, error } = await favoriteBuild(client, user, props.build_id)
+  const { error } = await favoriteBuild(client, user, props.buildId)
 
   if (!error) {
-    const { data: getNumFavoritesCountData, count: getNumFavoritesCount } = await getNumFavorites(client, user, props.build_id)
+    const { count: getNumFavoritesCount } = await getNumFavorites(client, props.buildId)
     count.value = getNumFavoritesCount || 0
   }
 }
@@ -46,26 +46,30 @@ const doUnFavoriteBuild = async function () {
     return
   }
 
-  if (!props.build_id) {
+  if (!props.buildId) {
     return
   }
 
-  const { data, error } = await unFavoriteBuild(client, user, props.build_id)
+  const { error: unfavoriteError } = await unFavoriteBuild(client, user, props.buildId)
 
-  if (!error) {
-    count.value = await getNumFavorites(client, user, props.build_id)
+  if (!unfavoriteError) {
+    const { data, count: favoriteCount } = await getNumFavorites(client, props.buildId)
+
+    if (data) {
+      count.value = favoriteCount || 0
+    }
   }
 }
 
 const handleClick = async function () {
   if (userHasAlreadyFavorited.value) {
-    await doUnFavoriteBuild(client, user, props.build_id)
+    await doUnFavoriteBuild()
   } else {
-    await doFavoriteBuild(client, user, props.build_id)
+    await doFavoriteBuild()
   }
 }
 
-const { data, count: numFavorites } = await getNumFavorites(client, props.build_id)
+const { count: numFavorites } = await getNumFavorites(client, props.buildId)
 
 if (numFavorites) {
   count.value = numFavorites

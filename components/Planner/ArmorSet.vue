@@ -4,8 +4,14 @@ import { usePlannerStore } from "~/stores/planner"
 export default {
   name: "ArmorSet",
   props: {
-    id: String,
-    name: String,
+    id: {
+       type: String,
+       required: true,
+    },
+    name: {
+       type: String,
+       required: true,
+    },
   },
   setup() {
     const store = usePlannerStore()

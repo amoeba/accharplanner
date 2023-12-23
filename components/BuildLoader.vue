@@ -35,8 +35,11 @@ if (error) {
     </div>
     <div v-if="errors.length > 0">
       <ul>
-        <li v-for="error in errors">
-          {{ error }}
+        <li
+          v-for="e in errors"
+          :key="e"
+        >
+          {{ e }}
         </li>
       </ul>
     </div>

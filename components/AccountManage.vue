@@ -22,21 +22,15 @@ enum FormState {
 const formState = ref(FormState.UNSENT)
 
 const signOut = async function () {
-  try {
-    errorMessage.value = ""
-    isSigningOut.value = true
+  errorMessage.value = ""
+  isSigningOut.value = true
 
-    const { error } = await client.auth.signOut()
+  const { error } = await client.auth.signOut()
 
-    if (error) {
-      errorMessage.value = error.message
-    }
-  }
-  catch (error) {
+  isSigningOut.value = false
+
+  if (error) {
     errorMessage.value = error.message
-  }
-  finally {
-    isSigningOut.value = false
   }
 }
 
@@ -57,11 +51,11 @@ const validateName = async function (name: string) {
 
   // Make sure the new name doesn't already exist but be cool with it
   // if it's the current profile name
-  if (profile.value.name !== name) {
+  if (profile.value && profile.value.name !== name) {
     const { data, error } = await doesProfileNameAlreadyExist(client, name);
 
     if (error) {
-      throw new Error("Error encountered while checking new profile name:", error.message)
+      throw new Error("Error encountered while checking new profile name: " + error.message)
     }
 
     if (data.length > 0) {
@@ -73,6 +67,10 @@ const validateName = async function (name: string) {
 }
 
 const trySetName = async function () {
+  if (!profile.value) {
+    return;
+  }
+
   formState.value = FormState.SENDING
 
   message.value = ""
@@ -82,7 +80,7 @@ const trySetName = async function () {
 
   // Validate
   try {
-    newName = await validateName(profile.value.name)
+    newName = await validateName(profile.value.name || "")
   } catch (e: any) {
     formState.value = FormState.ERROR
     errorMessage.value = e
@@ -114,16 +112,19 @@ const trySetName = async function () {
   }
 }
 
-const { data, error } = await client
+if (user.value) {
+  const { data, error } = await client
   .from("profiles")
   .select()
   .eq("id", user.value.id)
 
-if (error) {
-  errorMessage.value = error.message
-} else if (data) {
-  profile.value = data[0]
+  if (error) {
+    errorMessage.value = error.message
+  } else if (data) {
+    profile.value = data[0]
+  }
 }
+
 </script>
 
 <template>
@@ -134,7 +135,7 @@ if (error) {
           <label class="block py-3">
             <div>Name</div>
             <input
-              v-model="profile.name"
+              v-model="profile"
               class="w-full px-2 py-1"
               type="text"
             >
@@ -168,7 +169,6 @@ if (error) {
       </div>
       <ButtonView
         v-if="user"
-        :disabled="isSigningOut"
         @click="signOut"
       >
         Log Out

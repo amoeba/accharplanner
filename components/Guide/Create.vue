@@ -46,10 +46,11 @@ const onSubmit = async function () {
   <GuideForm :submit="onSubmit" />
   <ul v-if="errors.length > 0">
     <li
-      v-for="error in errors"
+      v-for="e in errors"
+      :key="e"
       class="text-red-500"
     >
-      {{ error }}
+      {{ e }}
     </li>
   </ul>
 </template>

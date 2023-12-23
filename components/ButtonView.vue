@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{ tooltip: string }>()
+const props = defineProps<{ tooltip: string | undefined }>()
 </script>
 
 <template>

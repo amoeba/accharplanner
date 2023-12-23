@@ -34,12 +34,12 @@
     </h2>
     <TabView initial-tab="local">
       <template #tabs>
-        <Tab tab="local">
+        <TabTab tab="local">
           Local
-        </Tab>
-        <Tab tab="remote">
+        </TabTab>
+        <TabTab tab="remote">
           Remote
-        </Tab>
+        </TabTab>
       </template>
       <template #content>
         <TabContent tab="local">

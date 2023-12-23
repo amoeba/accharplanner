@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { inject } from "vue"
 
-const props = defineProps(["tab"])
-const switchTab = inject("switchTab")
+const props = defineProps<{tab:string}>()
+const switchTab : Function | undefined = inject("switchTab")
 const currentTab = inject("currentTab")
 </script>
 
@@ -12,7 +12,7 @@ const currentTab = inject("currentTab")
     :class="currentTab === props.tab ? 'bg-zinc-200 dark:bg-stone-600 dark:border-stone-800' : ''"
     aria-role="tab"
     :aria-selected="currentTab === props.tab ? 'true' : 'false'"
-    @click="switchTab(props.tab)"
+    @click="switchTab && switchTab(props.tab)"
   >
     <slot />
   </div>

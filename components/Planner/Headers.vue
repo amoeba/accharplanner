@@ -148,10 +148,10 @@ export default {
     changeAllCantrips(e) {
       this.store.changeAllCantrips(e.target.value)
     },
-    showSettingsModal(e) {
+    showSettingsModal() {
       this.store.showSettingsModal()
     },
-    hideSettingsModal(e) {
+    hideSettingsModal() {
       this.store.hideSettingsModal()
     },
   },
@@ -174,7 +174,6 @@ export default {
             <input
               id="charname"
               v-model="name"
-              class="w100"
               type="text"
             >
           </label>
@@ -182,10 +181,10 @@ export default {
             Race
             <select v-model="race">
               <option
-                v-for="race in races"
-                :key="race"
+                v-for="r in races"
+                :key="r"
               >
-                {{ race }}
+                {{ r }}
               </option>
             </select>
           </label>
@@ -279,7 +278,6 @@ export default {
             <span
               v-if="unassignedXPError"
               v-tooltip="unassignedXPError"
-              class="tip"
             >!</span>
             <span v-if="!unassignedXPError">{{ unassignedXP }}</span>
           </div>
@@ -288,7 +286,6 @@ export default {
             <span
               v-if="totalXPInvestedError"
               v-tooltip="totalXPInvestedError"
-              class="tip"
             >!</span>
             <span v-if="!totalXPInvestedError">{{ totalXPInvested }}</span>
           </div>
@@ -322,7 +319,6 @@ export default {
           <label class="flex gap-2">
             Invested
             <input
-              class="w100"
               type="range"
               min="0"
               :max="maxSkillInvestedSpecialized"
@@ -377,6 +373,6 @@ export default {
         </div>
       </template>
     </CollapsiblePane>
-    <ExtraSkillCredits class="header" />
+    <ExtraSkillCredits />
   </div>
 </template>

@@ -2,13 +2,6 @@
 import { ref } from "vue"
 
 const client = useSupabaseClient()
-const user = useSupabaseUser()
-
-interface SupabaseError {
-  name: string | undefined
-  status: number | undefined
-  message: string
-}
 
 const defaultButtonText = "Send 🔮 Link"
 const email = ref("")
@@ -48,7 +41,7 @@ const signInWithEmail = async function (email: string) {
   const config = useRuntimeConfig()
 
   try {
-    const { data, error } = await client.auth.signInWithOtp({
+    const { error } = await client.auth.signInWithOtp({
       email,
       options: {
         emailRedirectTo: config.supabaseRedirectUrl as string,

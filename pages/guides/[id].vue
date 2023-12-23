@@ -2,6 +2,15 @@
 import { useRoute } from "vue-router"
 
 const route = useRoute()
+
+let guideId: string
+
+// route.params.id is string | string[] so we do this dance I guess?
+if (route.params.id.length) {
+  guideId = route.params.id[0]
+} else {
+  guideId = (route.params.id as string)
+}
 </script>
 
 <template>
@@ -26,7 +35,7 @@ const route = useRoute()
       </MyLink>
     </div>
     <Suspense>
-      <GuideView :id="route.params.id" />
+      <GuideView :id="guideId" />
       <template #fallback>
         Loading...
       </template>

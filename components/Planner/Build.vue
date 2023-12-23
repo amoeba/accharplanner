@@ -63,7 +63,7 @@ export default {
         linkify: true,
       }).render(this.build.description)
     },
-    async deleteBuild(e) {
+    async deleteBuild() {
       const supabase = createClient(
         import.meta.env.VITE_SUPABASE_URL,
         import.meta.env.VITE_SUPABASE_KEY,

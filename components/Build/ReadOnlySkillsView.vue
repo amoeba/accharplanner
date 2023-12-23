@@ -38,7 +38,6 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     <tbody>
       <tr v-if="store.specializedSkills.length <= 0">
         <td
-          class="center"
           colspan="12"
         >
           No specialized skills
@@ -76,7 +75,6 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
     <tbody>
       <tr v-if="store.trainedSkills.length <= 0">
         <td
-          class="center"
           colspan="12"
         >
           No trained skills
