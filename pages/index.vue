@@ -33,7 +33,6 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-swords"
         >
           <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5" />
           <line
