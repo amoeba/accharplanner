@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { usePlannerStore } from "~/stores/planner"
 
-
 const store = usePlannerStore()
 const builds = computed(() => { return store.ui.savedBuilds })
 
