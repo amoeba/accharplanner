@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router"
+import { usePlannerStore } from "~/stores/planner";
 
 const client = useSupabaseClient()
 const route = useRoute()
+const router = useRouter()
+const store = usePlannerStore();
 
 const errorMessage = ref("")
 
@@ -21,6 +24,12 @@ else if (data) {
     build = data[0].content
   }
 }
+
+const loadCurrentBuildInPlanner = async function() {
+  console.log(route.params.id, build);
+  await store.loadBuildFromJSONString(JSON.stringify(build))
+  router.push("/planner")
+}
 </script>
 
 <template>
@@ -37,10 +46,8 @@ else if (data) {
           v-if="route.params"
           :build_id="route.params.id"
         />
-        <ButtonView>
-          <NuxtLink href="/planner">
-            Load Build
-          </NuxtLink>
+        <ButtonView @click="loadCurrentBuildInPlanner">
+          Load Build
         </ButtonView>
       </div>
       <BuildView :build="build" />

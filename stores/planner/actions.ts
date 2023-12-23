@@ -137,6 +137,10 @@ export default {
     this.build = build
   },
 
+  async loadBuildFromJSONString(buildString: string) {
+    this.build = JSON.parse(buildString);
+  },
+
   async loadCharacterIntoCurrentBuild(character: Character) {
     this.build.character = character
   },
