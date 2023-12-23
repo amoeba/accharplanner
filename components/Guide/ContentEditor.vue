@@ -103,7 +103,6 @@ export default {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-list"
         >
           <line
             x1="8"
@@ -159,7 +158,6 @@ export default {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-person-standing"
         >
           <circle
             cx="12"

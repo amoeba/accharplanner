@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePlannerStore } from "~/stores/planner"
 
-const props = defineProps(["index", "level", "stages", "isDragInProgress"])
+const props = defineProps<{ index: number, level: number, stages: number, isDragInProgress: boolean }>()
 
 const store = usePlannerStore()
 
@@ -52,7 +52,6 @@ const remove = async function () {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-x"
         >
           <path d="M18 6 6 18" />
           <path d="m6 6 12 12" />
@@ -64,7 +63,7 @@ const remove = async function () {
         v-if="isNotLast"
         class="h-1 w-10 bg-zinc-200"
       >
-&nbsp;
+        &nbsp;
       </div>
     </div>
   </div>

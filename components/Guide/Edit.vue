@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useGuideStore } from "~/stores/guide"
 
-const props = defineProps(["id"])
+const props = defineProps<{ id: string }>()
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 

@@ -84,7 +84,6 @@ export default {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-chevrons-up-down"
             >
               <path d="m7 15 5 5 5-5" />
               <path d="m7 9 5-5 5 5" />
@@ -104,7 +103,6 @@ export default {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-chevrons-down-up"
             >
               <path d="m7 20 5-5 5 5" />
               <path d="m7 4 5 5 5-5" />
@@ -125,7 +123,6 @@ export default {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-rotate-ccw"
           >
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
             <path d="M3 3v5h5" />
@@ -144,7 +141,6 @@ export default {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-share-2"
             >
               <circle
                 cx="18"

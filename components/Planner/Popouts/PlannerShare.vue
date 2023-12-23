@@ -51,12 +51,12 @@ const doShareBuild = async function () {
       shareState.value = ShareState.ERROR
       errorMessage.value = error.message
     }
- else if (data && data.length === 1) {
+    else if (data && data.length === 1) {
       shareState.value = ShareState.SUCCESS
       setSharedBuild(data[0].id)
     }
   }
- catch (error) {
+  catch (error) {
     shareState.value = ShareState.ERROR
   }
 }
@@ -95,7 +95,6 @@ const doExportCharacter = async function () {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-copy"
         >
           <rect
             width="14"
@@ -121,7 +120,6 @@ const doExportCharacter = async function () {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-arrow-down-to-line"
         >
           <path d="M12 17V3" />
           <path d="m6 11 6 6 6-6" />
@@ -140,7 +138,6 @@ const doExportCharacter = async function () {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-save"
         >
           <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
           <polyline points="17 21 17 13 7 13 7 21" />

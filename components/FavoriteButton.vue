@@ -88,7 +88,6 @@ if (numFavorites) {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="lucide lucide-star"
         :class="favoriteClass"
       >
         <polygon

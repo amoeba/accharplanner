@@ -1,13 +1,13 @@
 <script setup lang="ts">
-defineProps(["toggleExpanded", "isExpanded", "isCollapsible"])
+const props = defineProps<{ toggleExpanded: Function, isExpanded: boolean, isCollapsible: boolean }>()
 </script>
 
 <template>
   <div class="w-full divide-y overflow-scroll rounded border border-zinc-200 dark:border-stone-600 dark:bg-stone-900">
     <div
       class="flex rounded-t"
-      :class="isCollapsible ? 'hover:bg-zinc-50 cursor-pointer' : ''"
-      @click="toggleExpanded"
+      :class="props.isCollapsible ? 'hover:bg-zinc-50 cursor-pointer' : ''"
+      @click="props.toggleExpanded"
     >
       <div class="flex grow items-center gap-2 px-2 py-1 font-bold">
         <slot name="title" />
@@ -17,8 +17,8 @@ defineProps(["toggleExpanded", "isExpanded", "isCollapsible"])
       </div>
     </div>
     <div
-      :class="isExpanded ? 'block' : 'hidden'"
-      :aria-expanded="isExpanded"
+      :class="props.isExpanded ? 'block' : 'hidden'"
+      :aria-expanded="props.isExpanded"
       class="dark:border-stone-600"
     >
       <div class="px-2 py-1">

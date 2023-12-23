@@ -10,7 +10,7 @@ import state from "~/stores/planner/state"
 import getters from "~/stores/planner/getters"
 import actions from "~/stores/planner/actions"
 
-const props = defineProps(["build"])
+const props = defineProps<{ build: Build }>()
 
 const usePlannerStore = defineStore("planner", {
   state: () => state,

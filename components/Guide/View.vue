@@ -2,7 +2,7 @@
 import { useTimeAgo } from "@vueuse/core"
 import type { Database } from "~/utils/database.types-generated"
 
-const props = defineProps(["id"])
+const props = defineProps<{ id: string }>()
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 

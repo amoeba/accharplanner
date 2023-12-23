@@ -59,7 +59,7 @@ const doFavoriteBuild = async function () {
     isFavoriteInError.value = true
     favoriteTooltip.value = "Encountered an unexpected problem while trying to favorite this build. Please report this if you have a minute."
   }
- else {
+  else {
     isFavoriteInSuccess.value = true
 
     setTimeout(() => {
@@ -92,7 +92,7 @@ const doPublishBuild = async function () {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="lucide lucide-star hover:fill-yellow-400 hover:stroke-yellow-400"
+      class="hover:fill-yellow-400 hover:stroke-yellow-400"
       :class="favoriteClass"
     >
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -112,7 +112,6 @@ const doPublishBuild = async function () {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="lucide lucide-megaphone"
     >
       <path d="m3 11 18-5v12L3 14v-3z" />
       <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />

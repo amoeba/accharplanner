@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { provide, ref } from "vue"
 
-const props = defineProps(["widthClass"])
+const props = defineProps<{ widthClass: string }>()
 const widthClass = ref(props.widthClass || "w-48")
 const visibilityClass = ref("hidden")
 const isPopoutVisible = ref(false)

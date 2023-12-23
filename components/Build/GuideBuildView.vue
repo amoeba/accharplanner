@@ -4,7 +4,7 @@ import ReadOnlyAttributesAndVitals from "./ReadOnlyAttributesAndVitals.vue"
 import ReadOnlyCreation from "./ReadOnlyCreation.vue"
 import ReadOnlySkillsView from "./ReadOnlySkillsView.vue"
 
-const props = defineProps(["node"])
+const props = defineProps<{ node: any }>()
 const client = useSupabaseClient()
 const { data, error } = await loadBuild(client, props.node.attrs.id)
 const errorMessage = ref("")

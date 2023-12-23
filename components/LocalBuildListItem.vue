@@ -5,7 +5,8 @@ import { usePlannerStore } from "~/stores/planner";
 const store = usePlannerStore()
 const router = useRouter()
 
-const props = defineProps(["build"])
+const props = defineProps<{ build: SavedBuild }>()
+
 const build = JSON.parse(props.build.build)
 const saved = useTimeAgo(props.build.key)
 
@@ -51,7 +52,6 @@ const deleteBuild = async function () {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-arrow-down-to-line"
           >
             <path d="M12 17V3" />
             <path d="m6 11 6 6 6-6" />
@@ -73,7 +73,6 @@ const deleteBuild = async function () {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-trash-2"
           >
             <path d="M3 6h18" />
             <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />

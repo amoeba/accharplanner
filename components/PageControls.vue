@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const props = defineProps(["modelValue", "numPages"])
+
+const props = defineProps<{ modelValue: any, numPages: number }>()
 const emit = defineEmits(["update:modelValue"])
 
 const page = computed({
