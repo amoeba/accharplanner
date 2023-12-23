@@ -21,7 +21,8 @@ nuxt_refactor
 - Can I hide scrollbars in all panes? I forgot to test with a mouse hooked up in macOS.
 - Guides list is showing anonymous when they aren't
 - Share doesn't work on my preview deployment
-
+- Re-do dark theme to be blue+gold
+  - Maybe just add a third theme?
 Final checkout:
 
 - Fix and check everything works right on mobile
