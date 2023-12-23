@@ -4,7 +4,6 @@ import { usePlannerStore } from "~/stores/planner"
 const store = usePlannerStore()
 const builds = computed(() => { return store.ui.savedBuilds })
 
-// this.store.ui.savedBuilds
 const clear = async function () {
   store.deleteAllBuilds()
 }
