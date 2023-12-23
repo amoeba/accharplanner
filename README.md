@@ -29,6 +29,29 @@ This isn't the first skill planner for AC:
 
 Check out `package.json` for scripts. You probably want to `yarn install` and `yarn run serve`.
 
+### Formatting
+
+This project uses ESLint and not Prettier or Volar/Vetur for formatting.
+Run `npm run lint` to detect errors prior to comitting and `npm run lint:fix` to attempt to automatically fix errors.
+
+#### Editor Setup
+
+I use Visual Studio code and setting things up is more painful than it should be.
+The trick is that with the ESLint approach I've taken, you can't use **Format on Save**.
+So, to set my environmet up, I use this configuration:
+
+```json
+{
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "eslint.validate": [
+    "javascript"
+  ]
+}
+```
+
 ### Synchronizing with Supabase
 
 Supabase lets you bring down local TypeScript defs for the database schema.
