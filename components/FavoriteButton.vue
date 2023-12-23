@@ -77,9 +77,9 @@ if (numFavorites) {
 </script>
 
 <template>
-  <div class="inline-flex items-center gap-2 divide-x rounded border">
+  <div class="inline-flex items-center divide-x rounded border border-gray-300 dark:border-stone-600">
     <button
-      class="flex items-center gap-2 px-2 py-1"
+      class="flex items-center gap-2 px-2 py-1 hover:bg-gray-200 dark:hover:bg-stone-700"
       @click="handleClick"
     >
       <svg
@@ -103,7 +103,7 @@ if (numFavorites) {
       </span>
       <span v-else>Star</span>
     </button>
-    <div class="px-2 py-1">
+    <div class="border-gray-300 px-2 py-1 dark:border-stone-600">
       {{ count }}
     </div>
   </div>
