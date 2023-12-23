@@ -10,7 +10,7 @@ const clear = async function () {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 divide-y">
+  <div class="flex flex-col gap-2">
     <p
       v-if="builds.length <= 0"
       class="p-2"
@@ -80,7 +80,7 @@ const clear = async function () {
     </p>
     <div
       v-if="builds && builds.length > 0"
-      class="bg-zinc-200 p-2 dark:bg-stone-600"
+      class="bg-zinc-200 p-2 dark:bg-stone-800"
     >
       <ButtonView @click="clear">
         <svg

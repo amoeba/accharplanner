@@ -12,7 +12,7 @@ provide("switchTab", switchTab)
 </script>
 
 <template>
-  <div class="flex flex-col dark:border-stone-600 dark:bg-stone-800">
+  <div class="flex flex-col dark:border-stone-600">
     <div class="flex gap-2">
       <slot name="tabs" />
     </div>
