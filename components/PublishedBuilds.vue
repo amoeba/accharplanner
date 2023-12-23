@@ -38,7 +38,7 @@ const { data, error } = await getPublishedBuilds(client, props.max || 10)
                 build.content.character.name
               }}</a>
             </td>
-            <td class="p-0">
+            <td class="px-2">
               <div class="flex items-center gap-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
