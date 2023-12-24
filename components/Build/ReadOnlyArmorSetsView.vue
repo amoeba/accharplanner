@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { defineStore } from "pinia"
 
-import { ARMOR_SET_NAME } from "~/utils/mappings"
-
 // Kindy hack implementation for now: Defines a brand new Pinia store just for
 // this component, gives it what it needs to do skill calculations, and then
 // populates the template with the values we need

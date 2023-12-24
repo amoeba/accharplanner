@@ -233,11 +233,8 @@ export default {
 
   investedAugmentations: (state: State) => {
     return Object.keys(state.build.character.augmentations).map((k) => {
-      console.log({
-        name: AUGMENTATION_NAME[k],
-        invested: state.build.character.augmentations[k].invested
-      })
       return {
+        id: k,
         name: AUGMENTATION_NAME[k],
         invested: state.build.character.augmentations[k].invested
       }
@@ -248,11 +245,8 @@ export default {
 
   investedLuminanceAuras: (state: State) => {
     return Object.keys(state.build.character.luminance_auras).map((k) => {
-      console.log({
-        name: LUMINANCE_AURA_NAME[k],
-        invested: state.build.character.luminance_auras[k].invested
-      })
       return {
+        id: k,
         name: LUMINANCE_AURA_NAME[k],
         invested: state.build.character.luminance_auras[k].invested
       }
@@ -263,11 +257,8 @@ export default {
 
   equippedArmorSets: (state: State) => {
     return Object.keys(state.build.character.armor_sets).map((k) => {
-      console.log({
-        name: ARMOR_SET_NAME[k],
-        equipped: state.build.character.armor_sets[k].equipped
-      })
       return {
+        id: k,
         name: ARMOR_SET_NAME[k],
         equipped: state.build.character.armor_sets[k].equipped
       }

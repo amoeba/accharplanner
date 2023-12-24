@@ -28,7 +28,7 @@ if (error) {
   guideTitle = data[0].title
 
   useHead({
-    title: `${guideTitle} - The Overly-Detailed Asheron\'s Call Character Planner`
+    title: `${guideTitle} - The Overly-Detailed Asheron's Call Character Planner`
   })
 }
 </script>
