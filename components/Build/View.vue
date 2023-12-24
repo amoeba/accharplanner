@@ -3,7 +3,7 @@ const props = defineProps<{ build: Build }>()
 </script>
 
 <template>
-  <div>
+  <div class="flex">
     <TabView initial-tab="attributes">
       <template #tabs>
         <TabTab tab="attributes">

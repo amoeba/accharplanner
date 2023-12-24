@@ -23,13 +23,13 @@ store.loadCharacterIntoCurrentBuild(props.build.character)
 </script>
 
 <template>
-  <div>
+  <div class="p-2">
     <div v-if="store.investedAugmentations.length <= 0">
       This build doesn't have any experience augmentations.
     </div>
     <table
       v-else
-      class="w-72"
+      class="w-full"
     >
       <tbody>
         <tr
