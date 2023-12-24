@@ -135,7 +135,8 @@ if (user.value) {
           <label class="block py-3">
             <div>Name</div>
             <input
-              v-model="profile"
+              v-if="profile"
+              v-model="profile.name"
               class="w-full px-2 py-1"
               type="text"
             >
