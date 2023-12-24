@@ -24,6 +24,10 @@ export const getNumFavorites = async function (client: SupabaseClient, build_id:
 }
 
 export const hasAlreadyFavorited = async function (client: SupabaseClient, user: User, id: string) {
+  if (!user.value) {
+    return { count: 0 }
+  }
+
   return await client
     .from("builds_favorites")
     .select("*", { count: 'exact', head: true })
