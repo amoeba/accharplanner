@@ -86,6 +86,7 @@ function drop(e: DragEvent) {
   <CollapsiblePane
     :toggle-expanded="toggleExpanded"
     :is-expanded="store.ui.paneVisibility.buildStages"
+    :is-collapsible="true"
   >
     <template #title>
       Build Stages

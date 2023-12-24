@@ -51,6 +51,7 @@ export default {
   <CollapsiblePane
     :toggle-expanded="toggleExpanded"
     :is-expanded="isExpanded"
+    :is-collapsible="true"
   >
     <template #title>
       Experience Augmentations

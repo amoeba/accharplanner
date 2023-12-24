@@ -163,6 +163,7 @@ export default {
     <CollapsiblePane
       :toggle-expanded="toggleCharacterHeaderExpanded"
       :is-expanded="isCharacterHeaderExpanded"
+      :is-collapsible="true"
     >
       <template #title>
         Character
@@ -258,6 +259,7 @@ export default {
     <CollapsiblePane
       :toggle-expanded="toggleLuminanceHeaderExpanded"
       :is-expanded="isLuminanceHeaderExpanded"
+      :is-collapsible="true"
     >
       <template #title>
         XP &amp; Luminance
@@ -310,6 +312,7 @@ export default {
     <CollapsiblePane
       :toggle-expanded="toggleKnobsAndDialsHeaderExpanded"
       :is-expanded="isKnobsAndDialsHeaderExpanded"
+      :is-collapsible="true"
     >
       <template #title>
         Knobs &amp; Dials
