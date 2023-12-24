@@ -266,7 +266,7 @@ export default {
         class="max-w-fit"
       >
     </td>
-    <td>
+    <td class="truncate">
       {{ displayName }}
       <span class="text-gray-500">{{ formula }}</span>
     </td>

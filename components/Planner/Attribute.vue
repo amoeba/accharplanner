@@ -119,7 +119,9 @@ export default {
         class="max-w-fit"
       >
     </td>
-    <td>{{ displayName }}</td>
+    <td class="truncate">
+      {{ displayName }}
+    </td>
     <td>
       <input
         v-model="creation"
