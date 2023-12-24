@@ -1,3 +1,9 @@
+<script setup lang="ts">
+useHead({
+  title: 'Builds - The Overly-Detailed Asheron\'s Call Character Planner'
+})
+</script>
+
 <template>
   <div>
     <h2 class="text-xl font-bold">

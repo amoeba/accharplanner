@@ -2,6 +2,15 @@
 import { useMainStore } from "~/stores/main"
 
 const store = useMainStore()
+
+useSeoMeta({
+  title: 'The Overly-Detailed Asheron\'s Call Character Planner',
+  ogTitle: 'The Overly-Detailed Asheron\'s Call Character Planner',
+  description: 'The most advanced character planner for Asheron\'s Call',
+  ogDescription: 'The most advanced character planner for Asheron\'s Call',
+  // ogImage: 'https://example.com/image.png', // TODO
+  // twitterCard: 'summary_large_image',// TODO
+})
 </script>
 
 <template>

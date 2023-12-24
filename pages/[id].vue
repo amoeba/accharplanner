@@ -7,6 +7,10 @@ const route = useRoute()
 const router = useRouter()
 const store = usePlannerStore();
 
+useHead({
+  title: 'Build View - The Overly-Detailed Asheron\'s Call Character Planner'
+})
+
 const errorMessage = ref("")
 
 const { data, error } = await loadBuild(client, route.params.id)

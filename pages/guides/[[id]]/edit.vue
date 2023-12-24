@@ -3,6 +3,10 @@ import { useRoute } from "vue-router"
 
 const user = useSupabaseUser()
 const route = useRoute()
+
+useHead({
+  title: 'Edit Guide - The Overly-Detailed Asheron\'s Call Character Planner'
+})
 </script>
 
 <template>

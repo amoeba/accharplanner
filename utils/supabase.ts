@@ -113,7 +113,7 @@ export const getLastestBuilds = async function (client: SupabaseClient, max: num
 }
 
 // Guides
-export const fetchGuide = async function (client: SupabaseClient, id: number): Guide {
+export const fetchGuide = async function (client: SupabaseClient, id: number | string): Guide {
   return await client.from("guides").select(`
     id,
     created_at,

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
+useHead({
+  title: 'New Guide - The Overly-Detailed Asheron\'s Call Character Planner'
+})
 </script>
 
 <template>
