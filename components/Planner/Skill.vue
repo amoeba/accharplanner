@@ -263,6 +263,7 @@ export default {
         :alt="displayName"
         width="20"
         height="20"
+        class="max-w-fit"
       >
     </td>
     <td>
