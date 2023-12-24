@@ -3,7 +3,13 @@ const props = defineProps<{ build: Build }>()
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex flex-col gap-2">
+    <div>
+      <h2 class="text-lg font-bold">
+        {{ props.build.character.name }}
+      </h2>
+      Level {{ props.build.character.level }} {{ props.build.character.gender }} {{ props.build.character.race }}
+    </div>
     <TabView initial-tab="attributes">
       <template #tabs>
         <TabTab tab="attributes">
