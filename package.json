@@ -26,7 +26,8 @@
     "floating-vue": "^2.0.0-beta.24",
     "lodash": "^4.17.21",
     "mnemonic-id": "^3.2.7",
-    "pinia": "^2.1.6"
+    "pinia": "^2.1.6",
+    "satori": "^0.10.11"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
