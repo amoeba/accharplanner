@@ -231,6 +231,51 @@ export default {
     return cost
   },
 
+  investedAugmentations: (state: State) => {
+    return Object.keys(state.build.character.augmentations).map((k) => {
+      console.log({
+        name: AUGMENTATION_NAME[k],
+        invested: state.build.character.augmentations[k].invested
+      })
+      return {
+        name: AUGMENTATION_NAME[k],
+        invested: state.build.character.augmentations[k].invested
+      }
+    }).filter((x) => {
+      return x.invested > 0
+    })
+  },
+
+  investedLuminanceAuras: (state: State) => {
+    return Object.keys(state.build.character.luminance_auras).map((k) => {
+      console.log({
+        name: LUMINANCE_AURA_NAME[k],
+        invested: state.build.character.luminance_auras[k].invested
+      })
+      return {
+        name: LUMINANCE_AURA_NAME[k],
+        invested: state.build.character.luminance_auras[k].invested
+      }
+    }).filter((x) => {
+      return x.invested > 0
+    })
+  },
+
+  equippedArmorSets: (state: State) => {
+    return Object.keys(state.build.character.armor_sets).map((k) => {
+      console.log({
+        name: ARMOR_SET_NAME[k],
+        equipped: state.build.character.armor_sets[k].equipped
+      })
+      return {
+        name: ARMOR_SET_NAME[k],
+        equipped: state.build.character.armor_sets[k].equipped
+      }
+    }).filter((x) => {
+      return x.equipped > 0
+    })
+  },
+
   augmentationsSpent: (state: State) => {
     let cost = 0
 

@@ -3,28 +3,42 @@ const props = defineProps<{ build: Build }>()
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 sm:flex-row">
-    <CollapsiblePane
-      :is-collapsible="false"
-      :is-expanded="true"
-    >
-      <template #title>
-        Attributes &amp; Vitals
+  <div>
+    <TabView initial-tab="attributes">
+      <template #tabs>
+        <TabTab tab="attributes">
+          Attributes
+        </TabTab>
+        <TabTab tab="skills">
+          Skills
+        </TabTab>
+        <TabTab tab="augmentations">
+          Augmentations
+        </TabTab>
+        <TabTab tab="auras">
+          Auras
+        </TabTab>
+        <TabTab tab="sets">
+          Sets
+        </TabTab>
       </template>
       <template #content>
-        <BuildReadOnlyAttributesAndVitals :build="props.build" />
+        <TabContent tab="attributes">
+          <BuildReadOnlyAttributesAndVitals :build="props.build" />
+        </TabContent>
+        <TabContent tab="skills">
+          <BuildReadOnlySkillsView :build="props.build" />
+        </TabContent>
+        <TabContent tab="augmentations">
+          <BuildReadOnlyAugmentationsView :build="props.build" />
+        </TabContent>
+        <TabContent tab="auras">
+          <BuildReadOnlyLuminanceAurasView :build="props.build" />
+        </TabContent>
+        <TabContent tab="sets">
+          <BuildReadOnlyArmorSetsView :build="props.build" />
+        </TabContent>
       </template>
-    </CollapsiblePane>
-    <CollapsiblePane
-      :is-collapsible="false"
-      :is-expanded="true"
-    >
-      <template #title>
-        Skills
-      </template>
-      <template #content>
-        <BuildReadOnlySkillsView :build="props.build" />
-      </template>
-    </CollapsiblePane>
+    </TabView>
   </div>
 </template>
