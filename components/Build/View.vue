@@ -13,7 +13,8 @@ const props = defineProps<{ build: Build }>()
           Skills
         </TabTab>
         <TabTab tab="augmentations">
-          Augmentations
+          <span class="hidden md:inline-block">Augmentations</span>
+          <span class="md:hidden">Augs</span>
         </TabTab>
         <TabTab tab="auras">
           Auras
