@@ -73,9 +73,11 @@ const numPages = Math.ceil(count.value / pageSize)
       <div v-if="guidesErrorMessage">
         {{ guidesErrorMessage }}
       </div>
-      <ButtonLink href="/guides/new">
-        Create a New Guide
-      </ButtonLink>
+      <div class="flex">
+        <ButtonLink href="/guides/new">
+          Create a New Guide
+        </ButtonLink>
+      </div>
     </div>
     <GuideList
       v-if="guides"
