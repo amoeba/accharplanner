@@ -44,7 +44,7 @@ const loadCurrentBuildInPlanner = async function() {
       <div class="flex justify-end gap-2">
         <FavoriteButton
           v-if="route.params"
-          :build_id="route.params.id"
+          :build-id="route.params.id"
         />
         <ButtonView @click="loadCurrentBuildInPlanner">
           Load Build

@@ -24,9 +24,9 @@ const doFavoriteBuild = async function () {
   }
 
   // Check if we've already favorited
-  const { count: hasAlreadyFavoritedCount } = await hasAlreadyFavorited(client, user, props.buildId)
+  const { count: currentUserFavoriteCount } = await hasAlreadyFavorited(client, user, props.buildId)
 
-  if (hasAlreadyFavoritedCount && hasAlreadyFavoritedCount > 0) {
+  if (currentUserFavoriteCount && currentUserFavoriteCount > 0) {
     userHasAlreadyFavorited.value = true;
 
     return
@@ -36,8 +36,8 @@ const doFavoriteBuild = async function () {
   const { error } = await favoriteBuild(client, user, props.buildId)
 
   if (!error) {
-    const { count: getNumFavoritesCount } = await getNumFavorites(client, props.buildId)
-    count.value = getNumFavoritesCount || 0
+    count.value = count.value + 1;
+    userHasAlreadyFavorited.value = true;
   }
 }
 
@@ -53,11 +53,8 @@ const doUnFavoriteBuild = async function () {
   const { error: unfavoriteError } = await unFavoriteBuild(client, user, props.buildId)
 
   if (!unfavoriteError) {
-    const { data, count: favoriteCount } = await getNumFavorites(client, props.buildId)
-
-    if (data) {
-      count.value = favoriteCount || 0
-    }
+      count.value = count.value - 1;
+      userHasAlreadyFavorited.value = false;
   }
 }
 
@@ -69,10 +66,18 @@ const handleClick = async function () {
   }
 }
 
+// Load the favorites count
 const { count: numFavorites } = await getNumFavorites(client, props.buildId)
 
 if (numFavorites) {
   count.value = numFavorites
+}
+
+// After we do that, check whether the current user has favorited already
+const { count: currentUserFavoriteCount } = await hasAlreadyFavorited(client, user, props.buildId)
+
+if (currentUserFavoriteCount > 0) {
+  userHasAlreadyFavorited.value = true;
 }
 </script>
 
