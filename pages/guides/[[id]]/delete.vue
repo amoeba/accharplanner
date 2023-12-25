@@ -6,10 +6,6 @@ const client = useSupabaseClient()
 const router = useRouter()
 const route = useRoute()
 
-useHead({
-  title: 'Delete Guide - The Overly-Detailed Asheron\'s Call Character Planner'
-})
-
 const id = Number(route.params.id)
 const errorMessage = ref("")
 

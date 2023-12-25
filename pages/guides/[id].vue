@@ -4,10 +4,6 @@ import { useRoute } from "vue-router"
 const route = useRoute()
 const client = useSupabaseClient()
 
-useHead({
-  title: 'Guide - The Overly-Detailed Asheron\'s Call Character Planner'
-})
-
 let guideId: string
 let guideTitle: string
 const errorMessage = ref("")
@@ -26,10 +22,6 @@ if (error) {
   errorMessage.value = error;
 } else if (data) {
   guideTitle = data[0].title
-
-  useHead({
-    title: `${guideTitle} - The Overly-Detailed Asheron's Call Character Planner`
-  })
 }
 </script>
 

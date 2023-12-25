@@ -1,7 +1,4 @@
 <script setup lang="ts">
-useHead({
-  title: 'Log In - The Overly-Detailed Asheron\'s Call Character Planner'
-})
 </script>
 
 <template>

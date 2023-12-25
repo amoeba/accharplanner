@@ -4,10 +4,6 @@ import type { Database } from "~/utils/database.types-generated"
 const route = useRoute()
 const client = useSupabaseClient()
 
-useHead({
-  title: 'Guides - The Overly-Detailed Asheron\'s Call Character Planner'
-})
-
 const page = ref(getPage(route.query.page))
 const pageSize = 20
 

@@ -2,13 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    "@nuxtjs/supabase",
+    '@nuxtjs/eslint-module',
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
-    "@nuxtjs/supabase",
-    "floating-vue/nuxt",
     "@vueuse/nuxt",
-    '@nuxtjs/eslint-module',
-    'nuxt-og-image'
+    "floating-vue/nuxt",
   ],
   runtimeConfig: {
     public: {
