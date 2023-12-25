@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineOgImageComponent('NuxtSeo')
+</script>
 
 <template>
   <div class="flex flex-col gap-2">

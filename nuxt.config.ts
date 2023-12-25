@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   modules: [
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "floating-vue/nuxt",
     "@vueuse/nuxt",
     '@nuxtjs/eslint-module',
+    'nuxt-og-image'
   ],
   runtimeConfig: {
     public: {
