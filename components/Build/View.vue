@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const props = defineProps<{ build: Build }>()
-defineOgImageComponent('Build')
-
 </script>
 
 <template>
