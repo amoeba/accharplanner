@@ -2,26 +2,13 @@
 import { useRoute } from "vue-router"
 
 const route = useRoute()
-const client = useSupabaseClient()
-
 let guideId: string
-let guideTitle: string
-const errorMessage = ref("")
 
 // route.params.id is string | string[] so we do this dance I guess?
 if (typeof route.params.id === 'object') {
   guideId = route.params.id[0]
 } else {
   guideId = (route.params.id as string)
-}
-
-// Fetch guide title
-const { data, error } = await fetchGuide(client, guideId)
-
-if (error) {
-  errorMessage.value = error;
-} else if (data) {
-  guideTitle = data[0].title
 }
 </script>
 
