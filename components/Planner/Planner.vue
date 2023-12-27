@@ -54,6 +54,12 @@ export default {
     resetPlanner() {
       this.store.reset()
     },
+    saveBuild() {
+      this.store.saveBuild()
+    },
+    doExportCharacter() {
+      exportCharacter(this.store.build, this.store.build.character.name)
+    },
     expandAll() {
       this.store.expandAll()
     },
@@ -128,6 +134,45 @@ export default {
             <path d="M3 3v5h5" />
           </svg>
           <span class="hidden sm:block">Reset</span>
+        </ButtonView>
+        <ButtonView @click="saveBuild">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><rect
+            width="14"
+            height="14"
+            x="8"
+            y="8"
+            rx="2"
+            ry="2"
+          /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+          <span class="hidden sm:block">Save a Copy</span>
+        </ButtonView>
+        <ButtonView @click="doExportCharacter">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 17V3" />
+            <path d="m6 11 6 6 6-6" />
+            <path d="M19 21H5" />
+          </svg>
+          <span class="hidden sm:block">Download</span>
         </ButtonView>
         <ButtonWithPopout width-class="w-72">
           <template #icon>
