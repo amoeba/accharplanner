@@ -41,7 +41,7 @@
     "@vueuse/nuxt": "^10.6.1",
     "eslint": "^8.55.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "nuxt": "^3.7.4",
+    "nuxt": "^3.9.0",
     "vitest": "^0.34.0",
     "vue": "^3.3.4",
     "vue-eslint-parser": "^9.3.2",
