@@ -26,7 +26,16 @@ nuxt_refactor
 - Make sure planner tooltips work, I may have broken them
 - SEO and OpenGraph Support
 - Make it possible to download a build from the build view
-
+- Aug sliders aren't working. They stay at zero, or appear to.
+- Guides
+  - Need to add support to for stages in Guides
+  - Add a Guide view for just skills, no values
+  - Add remainder of readonly views into Tiptap editor
+  - Add support for tables and headers
+  - Make sure a player can show how you'd get to like 350/450 wield (i.e., show buffed values)
+- Builds
+  - Local builds are sorted inverse
+  - Can't paginate local or remote builds lists. The tables should paginate too so that means on the front page.
 Final checkout:
 
 - Fix and check everything works right on mobile
