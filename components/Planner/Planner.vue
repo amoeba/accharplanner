@@ -72,7 +72,7 @@ export default {
 
 <template>
   <div class="relative flex flex-col gap-2 text-sm">
-    <div class="grid grid-cols-2">
+    <div class="flex">
       <!-- Collapse/Expand -->
       <div class="flex">
         <div class="flex gap-2">
@@ -117,7 +117,7 @@ export default {
         </div>
       </div>
       <!-- Desktop Planner Controls -->
-      <div class="flex justify-end gap-x-1">
+      <div class="flex grow justify-end gap-x-1">
         <ButtonView @click="resetPlanner">
           <svg
             xmlns="http://www.w3.org/2000/svg"
