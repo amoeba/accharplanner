@@ -39,7 +39,6 @@ const setSharedBuild = function (id: string) {
 }
 
 const doShareBuild = async function () {
-  console.log("doShareBuild")
   shareBuildURL.value = ""
 
   try {
