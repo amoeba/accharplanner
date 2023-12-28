@@ -36,6 +36,13 @@ nuxt_refactor
 - Builds
   - Local builds are sorted inverse
   - Can't paginate local or remote builds lists. The tables should paginate too so that means on the front page.
+- Implement some sort of usage tracking
+  - Page visits
+  - Planner app loaded
+  - Builds shared
+  - Other telemetry?
+- For front page, experiment with explainers like on https://www.val.town/
+
 Final checkout:
 
 - Fix and check everything works right on mobile
