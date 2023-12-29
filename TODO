@@ -42,6 +42,9 @@ nuxt_refactor
   - Builds shared
   - Other telemetry?
 - For front page, experiment with explainers like on https://www.val.town/
+- Think about taking inspiration from https://pcpartpicker.com/list/
+  - How they do saves (save can create a copy or replace an existing)
+  - Build is automatically shared
 
 Final checkout:
 
