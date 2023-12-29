@@ -167,7 +167,7 @@ export default {
               <div class="flex">
                 <input
                   v-model="filterQuery"
-                  class="py-1 font-normal"
+                  class="font-normal"
                   type="text"
                   placeholder="Type to filter..."
                 >
