@@ -88,7 +88,7 @@ export default {
     <td>&nbsp;</td>
     <td>{{ creation }}</td>
     <td>{{ base }}</td>
-    <td :class="isBuffed ? 'text-green-600' : ''">
+    <td :class="isBuffed ? 'text-green-600 font-bold' : ''">
       {{ buffed }}
     </td>
     <td>
