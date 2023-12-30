@@ -5,12 +5,14 @@ const store = usePlannerStore()
 </script>
 
 <template>
-  <h3>Custom Server Rules</h3>
-  <label>
-    <input
-      v-model="store.settings.infiniteMode"
-      type="checkbox"
-    >
-    Infinite Mode
-  </label>
+  <div class="flex flex-col gap-2 p-2">
+    <h3>Custom Server Rules</h3>
+    <label>
+      <input
+        v-model="store.settings.infiniteMode"
+        type="checkbox"
+      >
+      Infinite Mode
+    </label>
+  </div>
 </template>

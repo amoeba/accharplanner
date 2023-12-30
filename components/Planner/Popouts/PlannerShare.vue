@@ -62,7 +62,7 @@ const doShareBuild = async function () {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 p-2">
     Use this URL to share your build with others:
     <div class="flex">
       <input

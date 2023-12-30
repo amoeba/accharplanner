@@ -22,7 +22,7 @@ const togglePopout = async function () {
     </ButtonView>
     <div
       :class="[widthClass, visibilityClass]"
-      class="absolute right-0 top-8 flex flex-col gap-2 rounded border border-gray-200 bg-white px-2 py-1 shadow-md dark:border-stone-600 dark:bg-stone-800"
+      class="absolute right-0 top-8 flex flex-col gap-2 rounded border border-gray-200 bg-white shadow-md dark:border-stone-600 dark:bg-stone-800"
       role="dialog"
     >
       <div>
