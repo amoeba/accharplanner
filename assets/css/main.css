@@ -9,7 +9,6 @@
   }
 
   input,
-  range,
   select {
     @apply w-full border bg-white dark:bg-stone-800 border-zinc-200 dark:border-stone-600 rounded;
   }
@@ -23,7 +22,7 @@
   }
 
   input[type="range"] {
-    @apply bg-blue-500;
+    @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-stone-600;
   }
 
   input[type="radio"] {
