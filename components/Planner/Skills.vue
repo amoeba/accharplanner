@@ -244,7 +244,7 @@ export default {
         <tbody>
           <tr>
             <th
-              class="px-1 text-left text-white"
+              class="p-1 text-left text-white"
               style="
                 background: linear-gradient(
                   to right,
@@ -286,7 +286,7 @@ export default {
           />
           <tr>
             <th
-              class="px-1 text-left text-white"
+              class="p1 text-left text-white"
               style="
                 background: linear-gradient(
                   to right,
@@ -321,7 +321,7 @@ export default {
           />
           <tr>
             <th
-              class="px-1 text-left text-white"
+              class="p1 text-left text-white"
               style="
                 background: linear-gradient(
                   to right,
