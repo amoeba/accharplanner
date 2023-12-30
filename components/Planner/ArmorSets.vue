@@ -49,7 +49,7 @@ export default {
       <table class="w-full">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>&nbsp;</th>
             <th colspan="2">
               Equipped
             </th>

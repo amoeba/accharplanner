@@ -51,11 +51,11 @@ export default {
 
 <template>
   <tr>
-    <td>
+    <td class="pl-1">
       {{ displayName }}
       <span class="text-gray-500">{{ extraInfo }}</span>
     </td>
-    <td>
+    <td class="px-1">
       <input
         v-model="invested"
         type="range"
@@ -63,7 +63,7 @@ export default {
         :max="max"
       >
     </td>
-    <td>
+    <td class="pr-1">
       <input
         v-model="invested"
         type="text"

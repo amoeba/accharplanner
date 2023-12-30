@@ -66,14 +66,17 @@ export default {
       <table class="w-full">
         <thead>
           <tr>
-            <th>Name</th>
-            <th colspan="2">
+            <th>&nbsp;</th>
+            <th
+              class="px-1"
+              colspan="2"
+            >
               Invested
             </th>
           </tr>
           <tr>
             <th>
-              <div class="flex">
+              <div class="flex px-1">
                 <input
                   v-model="filterQuery"
                   class="font-normal"
@@ -89,7 +92,7 @@ export default {
                 </button>
               </div>
             </th>
-            <th>
+            <th class="px-1">
               <input
                 type="range"
                 min="0"

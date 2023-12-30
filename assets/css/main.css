@@ -35,6 +35,10 @@
   ul {
     @apply list-disc m-0 ml-6;
   }
+
+  th, td {
+    @apply border-zinc-100 dark:border-stone-600
+  }
 }
 
 @layer tooltips {

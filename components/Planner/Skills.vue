@@ -143,10 +143,18 @@ export default {
       <table class="w-full">
         <thead>
           <tr>
-            <th colspan="4">
-              Name
+            <th
+              class="border-r bg-zinc-100 dark:bg-stone-600"
+              colspan="2"
+            >
+              &nbsp;
             </th>
-            <th>
+            <th
+              colspan="2"
+            >
+              &nbsp;
+            </th>
+            <th class="border-l pl-2 text-right">
               <span
                 v-tooltip="{
                   content:
@@ -155,15 +163,23 @@ export default {
                 }"
               >Base</span>
             </th>
-            <th>Buffed</th>
-            <th colspan="2">
+            <th class="border-r p-2 text-right">
+              Buffed
+            </th>
+            <th
+              class="border-r"
+              colspan="2"
+            >
               Invested
             </th>
             <th>Buff</th>
             <th>Cantrip</th>
           </tr>
           <tr>
-            <th colspan="2">
+            <th
+              class="border-r bg-zinc-100 dark:bg-stone-600"
+              colspan="2"
+            >
               <div class="flex">
                 <input
                   v-model="filterQuery"
@@ -181,10 +197,17 @@ export default {
               </div>
             </th>
             <th>&nbsp;</th>
+            <th class="border-r">
+&nbsp;
+            </th>
             <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th colspan="2">
+            <th class="border-r">
+&nbsp;
+            </th>
+            <th
+              class="border-r px-1"
+              colspan="2"
+            >
               <input
                 type="range"
                 min="0"
@@ -193,7 +216,7 @@ export default {
                 @change="changeInvested"
               >
             </th>
-            <th>
+            <th class="pl-1">
               <select @change="changeBuffed">
                 <option value="0" />
                 <option value="1">

@@ -44,7 +44,7 @@ export default {
     :is-collapsible="true"
   >
     <template #title>
-      Attributes
+      Attributes &amp; Vitals
     </template>
     <template #right>
       <div>

@@ -256,7 +256,7 @@ export default {
 
 <template>
   <tr>
-    <td>
+    <td class="bg-zinc-100 pl-1 dark:bg-stone-600">
       <img
         style="clip-path: circle(50%)"
         :src="`/icons/${name}.png`"
@@ -266,11 +266,11 @@ export default {
         class="max-w-fit"
       >
     </td>
-    <td class="truncate">
+    <td class="truncate border-r bg-zinc-100 px-1 dark:bg-stone-600">
       {{ displayName }}
       <span class="text-gray-500">{{ formula }}</span>
     </td>
-    <td>
+    <td class="px-1">
       <button
         :class="cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
@@ -282,7 +282,7 @@ export default {
         ↓
       </button>
     </td>
-    <td>
+    <td class="px-1">
       <button
         :class="cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
@@ -292,13 +292,16 @@ export default {
         {{ increaseCostText }} ↑
       </button>
     </td>
-    <td>
+    <td class="border-l px-1 text-right">
       {{ base }}
     </td>
-    <td :class="isBuffed ? 'text-green-600 font-bold' : ''">
+    <td
+      class="border-r px-1 text-right"
+      :class="isBuffed ? 'text-green-600 font-bold' : ''"
+    >
       {{ buffed }}
     </td>
-    <td>
+    <td class="px-1">
       <div v-if="canInvest">
         <input
           v-model="invested"

@@ -41,7 +41,7 @@ export default {
 </script>
 
 <template>
-  <li class="flex gap-2">
+  <li class="flex items-center gap-2 px-2 py-1">
     <input
       :id="id"
       v-model="checked"

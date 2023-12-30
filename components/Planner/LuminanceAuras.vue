@@ -66,14 +66,14 @@ export default {
       <table class="w-full">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>&nbsp;</th>
             <th colspan="2">
               Invested
             </th>
           </tr>
           <tr>
             <th>
-              <div class="flex">
+              <div class="flex px-1">
                 <input
                   v-model="filterQuery"
                   class="font-normal"

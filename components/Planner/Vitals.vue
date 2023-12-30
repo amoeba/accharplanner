@@ -30,12 +30,20 @@ export default {
 <template>
   <tbody>
     <tr>
+      <th
+        class="border-r bg-zinc-100 dark:bg-stone-600"
+        colspan="2"
+      >
+&nbsp;
+      </th>
       <th>&nbsp;</th>
+      <th class="border-r">
+&nbsp;
+      </th>
       <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
+      <th class="border-r">
+&nbsp;
+      </th>
       <th>
         <input
           type="range"
@@ -45,7 +53,9 @@ export default {
           @change="changeInvested"
         >
       </th>
-      <th>&nbsp;</th>
+      <th class="border-r">
+&nbsp;
+      </th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
     </tr>

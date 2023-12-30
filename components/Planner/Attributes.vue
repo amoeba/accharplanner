@@ -36,28 +36,52 @@ export default {
 <template>
   <tbody id="attributes">
     <tr>
-      <th colspan="2">
-        Name
+      <th
+        class="border-r bg-zinc-100 dark:bg-stone-600"
+        colspan="2"
+      >
+        &nbsp;
       </th>
-      <th colspan="2">
+      <th
+        colspan="2"
+        class="border-r"
+      >
         Creation
       </th>
-      <th>Base</th>
-      <th>Buffed</th>
-      <th colspan="2">
+      <th class="pl-2 text-right">
+        Base
+      </th>
+      <th class="border-r p-2 text-right">
+        Buffed
+      </th>
+      <th
+        class="border-r"
+        colspan="2"
+      >
         Invested
       </th>
       <th>Buff</th>
       <th>Cantrip</th>
     </tr>
     <tr>
+      <th
+        class="border-r bg-zinc-100 dark:bg-stone-600"
+        colspan="2"
+      >
+&nbsp;
+      </th>
       <th>&nbsp;</th>
+      <th class="border-r">
+&nbsp;
+      </th>
       <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>
+      <th class="border-r">
+&nbsp;
+      </th>
+      <th
+        class="border-r px-2"
+        colspan="2"
+      >
         <input
           type="range"
           min="0"
@@ -66,8 +90,7 @@ export default {
           @change="changeInvested"
         >
       </th>
-      <th>&nbsp;</th>
-      <th>
+      <th class="pl-2">
         <select @change="changeBuffed">
           <option value="0" />
           <option value="1">
@@ -99,7 +122,7 @@ export default {
           </option>
         </select>
       </th>
-      <th>
+      <th class="pr-1">
         <select @change="changeCantrip">
           <option value="0" />
           <option value="1">

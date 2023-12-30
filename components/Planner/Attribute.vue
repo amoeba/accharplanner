@@ -109,7 +109,7 @@ export default {
 
 <template>
   <tr>
-    <td>
+    <td class="bg-zinc-100 pl-1 dark:bg-stone-600">
       <img
         style="clip-path: circle(50%)"
         :src="`/icons/${name}.png`"
@@ -119,10 +119,10 @@ export default {
         class="max-w-fit"
       >
     </td>
-    <td class="truncate">
+    <td class="truncate border-r bg-zinc-100 pl-1 pr-2 dark:bg-stone-600">
       {{ displayName }}
     </td>
-    <td>
+    <td class="px-2">
       <input
         v-model="creation"
         type="range"
@@ -130,7 +130,7 @@ export default {
         max="100"
       >
     </td>
-    <td>
+    <td class="border-r px-2">
       <input
         v-model="creation"
         class="w-10"
@@ -138,11 +138,16 @@ export default {
         :tabindex="tabIndex"
       >
     </td>
-    <td>{{ base }}</td>
-    <td :class="isBuffed ? 'text-green-600 font-bold' : ''">
+    <td class="px-2 text-right">
+      {{ base }}
+    </td>
+    <td
+      class="border-r px-2 text-right"
+      :class="isBuffed ? 'text-green-600 font-bold' : ''"
+    >
       {{ buffed }}
     </td>
-    <td>
+    <td class="pl-2 pr-1">
       <input
         v-model="invested"
         type="range"
@@ -150,7 +155,7 @@ export default {
         :max="maxAttributeInvested"
       >
     </td>
-    <td>
+    <td class="border-r pr-2">
       <input
         v-model="invested"
         class="w-10"
@@ -158,7 +163,7 @@ export default {
         :tabindex="tabIndex"
       >
     </td>
-    <td>
+    <td class="pl-2">
       <select v-model="buffLevel">
         <option value="0" />
         <option value="1">
@@ -190,7 +195,7 @@ export default {
         </option>
       </select>
     </td>
-    <td>
+    <td class="pr-1">
       <select v-model="cantrip">
         <option value="0" />
         <option value="1">

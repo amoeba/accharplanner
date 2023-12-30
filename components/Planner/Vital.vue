@@ -72,7 +72,7 @@ export default {
 
 <template>
   <tr>
-    <td>
+    <td class="bg-zinc-100 pl-1 dark:bg-stone-600">
       <img
         style="clip-path: circle(50%)"
         :src="`/icons/${name}.png`"
@@ -81,25 +81,33 @@ export default {
         height="20"
       >
     </td>
-    <td>
+    <td class="border-r bg-zinc-100 pl-1 pr-2 dark:bg-stone-600">
       {{ displayName }}
       <span class="text-gray-500">{{ formula }}</span>
     </td>
     <td>&nbsp;</td>
-    <td>{{ creation }}</td>
-    <td>{{ base }}</td>
-    <td :class="isBuffed ? 'text-green-600 font-bold' : ''">
+    <td class="pr-2 text-right">
+      {{ creation }}
+    </td>
+    <td class="border-l px-2 text-right">
+      {{ base }}
+    </td>
+    <td
+      class="px-2 text-right"
+      :class="isBuffed ? 'text-green-600 font-bold' : ''"
+    >
       {{ buffed }}
     </td>
-    <td>
+    <td class="border-l pl-2 pr-1">
       <input
         v-model="invested"
+        class="text-right"
         type="range"
         min="0"
         :max="maxVitalInvested"
       >
     </td>
-    <td>
+    <td class="border-r">
       <input
         class="w-10"
         type="text"

@@ -68,7 +68,7 @@ export default {
 
 <template>
   <tr>
-    <td>
+    <td class="pl-1">
       <abbr
         v-if="hoverInfo"
         :title="hoverInfo"

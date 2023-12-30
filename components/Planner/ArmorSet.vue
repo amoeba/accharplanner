@@ -45,7 +45,7 @@ export default {
 
 <template>
   <tr>
-    <td>
+    <td class="pl-1">
       {{ displayName }}
       <span class="text-gray-500">{{ extraInfo }}</span>
     </td>
