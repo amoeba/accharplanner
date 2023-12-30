@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps, inject } from "vue"
-
 const props = defineProps<{ tab: string }>()
 const currentTab = inject("currentTab")
 </script>

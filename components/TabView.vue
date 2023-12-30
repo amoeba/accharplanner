@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps, provide } from "vue"
-
 const props = defineProps<{ initialTab: string }>()
 const currentTab = ref(props.initialTab || "")
 const switchTab = async function (tab: string) {
