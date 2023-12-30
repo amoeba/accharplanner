@@ -99,7 +99,7 @@ function drop(e: DragEvent) {
     </template>
     <template #right />
     <template #content>
-      <div class="flex w-full">
+      <div class="flex w-full px-2 py-1">
         <div v-if="store.build.stages.length === 0">
           No stages have been set up for this build.
         </div>

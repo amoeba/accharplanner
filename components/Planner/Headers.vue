@@ -169,7 +169,7 @@ export default {
         Character
       </template>
       <template #content>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 px-2 py-1">
           <label class="flex gap-2">
             Name
             <input
@@ -274,7 +274,7 @@ export default {
         </ToolTip>
       </template>
       <template #content>
-        <div class="grid grid-cols-[auto_4em] gap-2">
+        <div class="grid grid-cols-[auto_4em] gap-2 px-2 py-1">
           <div>Unassigned</div>
           <div class="justify-self-end">
             <span
@@ -318,7 +318,7 @@ export default {
         Knobs &amp; Dials
       </template>
       <template #content>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 px-2 py-1">
           <label class="flex gap-2">
             Invested
             <input

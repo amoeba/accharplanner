@@ -37,22 +37,26 @@ export default {
       Extra Skill Credits
     </template>
     <template #content>
-      <ExtraSkillCredit
+      <div
         id="railrea"
-        name="Aun Ralirea"
-      />
-      <ExtraSkillCredit
-        id="oswald"
-        name="Chasing Oswald"
-      />
-      <ExtraSkillCredit
-        id="luminance1"
-        name="Luminance 1"
-      />
-      <ExtraSkillCredit
-        id="luminance2"
-        name="Luminance 2"
-      />
+        class="px-2 py-1"
+      >
+        <ExtraSkillCredit
+          name="Aun Ralirea"
+        />
+        <ExtraSkillCredit
+          id="oswald"
+          name="Chasing Oswald"
+        />
+        <ExtraSkillCredit
+          id="luminance1"
+          name="Luminance 1"
+        />
+        <ExtraSkillCredit
+          id="luminance2"
+          name="Luminance 2"
+        />
+      </div>
     </template>
   </CollapsiblePane>
 </template>

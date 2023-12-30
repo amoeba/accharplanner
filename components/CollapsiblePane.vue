@@ -21,7 +21,7 @@ const props = defineProps<{ toggleExpanded: Function, isExpanded: boolean, isCol
       :aria-expanded="props.isExpanded"
       class="dark:border-stone-600"
     >
-      <div class="px-2 py-1">
+      <div class="">
         <slot name="content" />
       </div>
     </div>
