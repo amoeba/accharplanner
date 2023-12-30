@@ -45,6 +45,8 @@ nuxt_refactor
 - Think about taking inspiration from https://pcpartpicker.com/list/
   - How they do saves (save can create a copy or replace an existing)
   - Build is automatically shared
+- Enlightenment isn't working
+- Typing into filter field in any pane causes jankiness
 
 Final checkout:
 
