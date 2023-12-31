@@ -27,7 +27,10 @@ if (user.value) {
       </NuxtLink> first.
     </div>
     <div v-if="user">
-      <p v-if="builds && builds.length == 0">
+      <p
+        v-if="builds && builds.length == 0"
+        class="p-2"
+      >
         You haven't shared any builds yet.
       </p>
       <div

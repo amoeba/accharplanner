@@ -6,7 +6,7 @@ const createdAt = useTimeAgo(props.build.created_at)
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col p-2">
     <NuxtLink :to="`/${props.build.id}`">
       {{ props.build.content.character.name }}
     </NuxtLink>
