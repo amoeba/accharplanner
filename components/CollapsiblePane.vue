@@ -27,7 +27,7 @@ watch(
 const containerDynamicClasses = computed(() => ({
   'border-red-600 dark:border-red-600': props.isInError,
   'border-zinc-200 dark:border-stone-600': !props.isInError,
-  'animate-jiggle': isJiggling.value
+  'motion-safe:animate-jiggle': isJiggling.value
 }))
 
 // Dynamic classes for the template's title bar slot
