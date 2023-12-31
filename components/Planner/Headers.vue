@@ -219,7 +219,7 @@ export default {
                 v-if="!settingsInfiniteMode"
                 class="flex gap-2"
               >
-                <div class="flex grow">
+                <div class="flex grow items-center">
                   <input
                     v-model="level"
                     type="range"
@@ -319,7 +319,7 @@ export default {
       </template>
       <template #content>
         <div class="flex flex-col gap-2 px-2 py-1">
-          <label class="flex gap-2">
+          <label class="flex items-center gap-2">
             Invested
             <input
               type="range"
@@ -356,7 +356,7 @@ export default {
           <label class="flex gap-2">
             Enlightened
             <div class="flex gap-2">
-              <div class="flex grow">
+              <div class="flex grow items-center">
                 <input
                   v-model="timesEnlightened"
                   type="range"
