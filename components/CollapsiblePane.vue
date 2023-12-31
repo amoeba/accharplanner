@@ -1,17 +1,17 @@
 <script setup lang="ts">
-const props = defineProps<{ toggleExpanded: Function, isExpanded: boolean, isCollapsible: boolean, isInError: boolean }>()
+const props = defineProps<{ toggleExpanded: Function, isExpanded: boolean, isCollapsible: boolean, isInError?: boolean }>()
 
 // Dynamic classes for the template's container div
 const containerDynamicClasses = computed(() => ({
-  'bg-red-200 dark:bg-red-600 border-red-200 dark:border-red-200': props.isInError}
-))
+  'border-red-600 dark:border-red-600': props.isInError
+}))
 
 // Dynamic classes for the template's title bar slot
 const titleBarDynamicClasses = computed(() => ({
   "cursor-pointer": props.isCollapsible,
   "hover:bg-zinc-50 hover:dark:bg-stone-500": props.isCollapsible && !props.isInError,
-  "hover:bg-red-400 hover:dark:bg-red-600": props.isCollapsible && props.isInError,
-  "bg-red-200 dark:bg-red-600": props.isInError
+  "hover:bg-red-600 hover:dark:bg-red-600": props.isCollapsible && props.isInError,
+  "bg-red-600 dark:bg-red-600 text-white": props.isInError
 }))
 
 // Dynamic classes for template's content slot
@@ -27,7 +27,7 @@ const contentDynamicClasses = computed(() => ({
     :class="containerDynamicClasses"
   >
     <div
-      class="flex rounded-t bg-zinc-100 dark:bg-stone-600"
+      class="flex"
       :class="titleBarDynamicClasses"
       @click="props.toggleExpanded"
     >

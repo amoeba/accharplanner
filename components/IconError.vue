@@ -1,5 +1,5 @@
 <template>
-  <div class="text-red-500 dark:text-red-100">
+  <div class="text-red-600 dark:text-red-600">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
