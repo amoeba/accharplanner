@@ -46,28 +46,36 @@ const contentDynamicClasses = computed(() => ({
 </script>
 
 <template>
-  <div
-    class="w-full divide-y overflow-scroll rounded border dark:bg-stone-900"
-    :class="containerDynamicClasses"
-  >
+  <!--
+    NOTE
+
+    The extra wrapper div makes this component work well in a grid layout.
+    Without this, the collapse behavior doesn't work right.
+  -->
+  <div>
     <div
-      class="flex"
-      :class="titleBarDynamicClasses"
-      @click="props.toggleExpanded"
+      class="w-full divide-y overflow-scroll rounded border dark:bg-stone-900"
+      :class="containerDynamicClasses"
     >
-      <div class="flex grow items-center gap-2 px-2 py-1 font-bold">
-        <slot name="title" />
+      <div
+        class="flex"
+        :class="titleBarDynamicClasses"
+        @click="props.toggleExpanded"
+      >
+        <div class="flex grow items-center gap-2 px-2 py-1 font-bold">
+          <slot name="title" />
+        </div>
+        <div class="flex items-center justify-self-end px-2 py-1 text-right">
+          <slot name="right" />
+        </div>
       </div>
-      <div class="flex items-center justify-self-end px-2 py-1 text-right">
-        <slot name="right" />
+      <div
+        :class="contentDynamicClasses"
+        :aria-expanded="props.isExpanded"
+        class="border-zinc-200 dark:border-stone-600"
+      >
+        <slot name="content" />
       </div>
-    </div>
-    <div
-      :class="contentDynamicClasses"
-      :aria-expanded="props.isExpanded"
-      class="border-zinc-200 dark:border-stone-600"
-    >
-      <slot name="content" />
     </div>
   </div>
 </template>
