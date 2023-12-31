@@ -42,6 +42,7 @@ export default {
         class="px-2 py-1"
       >
         <ExtraSkillCredit
+          id="aun_railrea"
           name="Aun Ralirea"
         />
         <ExtraSkillCredit
