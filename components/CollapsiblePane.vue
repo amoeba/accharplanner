@@ -1,9 +1,33 @@
 <script setup lang="ts">
+import { watch } from 'vue'
+
 const props = defineProps<{ toggleExpanded: Function, isExpanded: boolean, isCollapsible: boolean, isInError?: boolean }>()
+
+const isJiggling = ref(false)
+const isError = ref(false)
+
+const jiggleDuration = 1000;
+
+watch(
+  () => props.isInError,
+  () => {
+    if (props.isInError && !isError.value) {
+      isError.value = true;
+      isJiggling.value = true;
+
+      setTimeout(() => {
+        isError.value = false;
+        isJiggling.value = false;
+      }, jiggleDuration)
+    }
+  }
+)
 
 // Dynamic classes for the template's container div
 const containerDynamicClasses = computed(() => ({
-  'border-red-600 dark:border-red-600': props.isInError
+  'border-red-600 dark:border-red-600': props.isInError,
+  'border-zinc-200 dark:border-stone-600': !props.isInError,
+  'animate-jiggle': isJiggling.value
 }))
 
 // Dynamic classes for the template's title bar slot
@@ -23,7 +47,7 @@ const contentDynamicClasses = computed(() => ({
 
 <template>
   <div
-    class="w-full divide-y overflow-scroll rounded border border-zinc-200 dark:border-stone-600 dark:bg-stone-900"
+    class="w-full divide-y overflow-scroll rounded border dark:bg-stone-900"
     :class="containerDynamicClasses"
   >
     <div

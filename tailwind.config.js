@@ -9,7 +9,17 @@ module.exports = {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        jiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        }
+      },
+      animation: {
+        'jiggle': 'jiggle 0.2s linear infinite'
+      }
+    },
   },
   plugins: [],
   darkMode: "class",
