@@ -314,7 +314,7 @@ export default {
     <td>
       <input
         v-model="invested"
-        class="w-10"
+        class="w-10 text-right"
         type="text"
         :tabindex="tabIndex"
       >

@@ -130,10 +130,10 @@ export default {
         max="100"
       >
     </td>
-    <td class="border-r px-2">
+    <td class="border-r px-2 text-right">
       <input
         v-model="creation"
-        class="w-10"
+        class="w-10 text-right"
         type="text"
         :tabindex="tabIndex"
       >
@@ -155,10 +155,10 @@ export default {
         :max="maxAttributeInvested"
       >
     </td>
-    <td class="border-r pr-2">
+    <td class="border-r pr-2 text-right">
       <input
         v-model="invested"
-        class="w-10"
+        class="w-10 text-right"
         type="text"
         :tabindex="tabIndex"
       >

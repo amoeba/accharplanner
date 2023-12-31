@@ -107,9 +107,9 @@ export default {
         :max="maxVitalInvested"
       >
     </td>
-    <td class="border-r">
+    <td class="border-r pr-2 text-right">
       <input
-        class="w-10"
+        class="w-10 text-right"
         type="text"
         model="invested"
         :tabindex="tabIndex"

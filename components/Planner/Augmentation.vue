@@ -63,11 +63,11 @@ export default {
         :max="max"
       >
     </td>
-    <td class="pr-1">
+    <td class="pr-1 text-right">
       <input
         v-model="invested"
         type="text"
-        class="w-8"
+        class="w-8 text-right"
       >
     </td>
   </tr>

@@ -92,11 +92,11 @@ export default {
         @change="updateInvested"
       >
     </td>
-    <td>
+    <td class="text-right">
       <input
         v-model="invested"
         type="text"
-        class="w-8"
+        class="w-8 text-right"
         @change="updateInvested"
       >
     </td>
