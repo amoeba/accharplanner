@@ -58,7 +58,7 @@ const contentDynamicClasses = computed(() => ({
       <div class="flex grow items-center gap-2 px-2 py-1 font-bold">
         <slot name="title" />
       </div>
-      <div class="justify-self-end px-2 py-1 text-right">
+      <div class="items-center justify-self-end px-2 py-1 text-right">
         <slot name="right" />
       </div>
     </div>
