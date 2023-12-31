@@ -44,7 +44,10 @@ export default {
       <th class="border-r">
 &nbsp;
       </th>
-      <th>
+      <th
+        class="border-r px-2"
+        colspan="2"
+      >
         <input
           type="range"
           min="0"
@@ -52,9 +55,6 @@ export default {
           value="0"
           @change="changeInvested"
         >
-      </th>
-      <th class="border-r">
-&nbsp;
       </th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
