@@ -50,6 +50,7 @@ nuxt_refactor
 - Break tooltip functionality out of buttonview and into a wrapper component
 - Figure out why https://treestats.net/Levistras/Al%20Fenix%20the%20Gearcrafter doesn't match
 - API and OpenAPI?
+- Add support for tagging builds/guides?
 
 Final checkout:
 

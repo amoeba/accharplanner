@@ -142,18 +142,28 @@ export default {
     return cost
   },
 
-  totalXPInvestedError: (state: State) => {
+  isOverspent: (state: State) => {
+    if (Number.isNaN(state.totalXPInvested)) {
+      return false;
+    }
+
+    return state.totalXPInvested > state.totalXPEarned;
+  },
+
+  isOverspentMessage: (state: State) => {
     if (Number.isNaN(state.totalXPInvested)) {
       if (state.settings.infiniteMode) {
-        return "XP calculations in Infinite Mode may not work because I haven't brough in the formulas. If you have good ones, let me know."
-      }
-      else {
+        return "XP calculations in Infinite Mode may not work because I haven't brought in the formulas. If you have good ones, let me know."
+      } else {
         return "Calculating total invested experience failed for an unknown reason. Please file a bug report."
       }
     }
-    else {
-      return false
+
+    if (state.totalXPInvested > state.totalXPEarned) {
+      return `You have overspent by ${Number(state.totalXPInvested - state.totalXPEarned).toLocaleString()} points.`
     }
+
+    return "null?";
   },
 
   unassignedXP: (state: State) => {
@@ -174,8 +184,7 @@ export default {
       else {
         return "Calculating unassigned experience failed for an unknown reason. Please file a bug report."
       }
-    }
-    else {
+    } else {
       return false
     }
   },

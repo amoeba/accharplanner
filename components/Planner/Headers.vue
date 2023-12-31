@@ -6,7 +6,7 @@ export default {
   name: "Headers",
   components: {
     ExtraSkillCredits,
-  },
+},
   setup() {
     const store = usePlannerStore()
 
@@ -37,20 +37,17 @@ export default {
     totalXPInvested() {
       return Number(this.store.totalXPInvested).toLocaleString()
     },
-    totalXPInvestedError() {
-      return this.store.totalXPInvestedError
+    isOverspent() {
+      return this.store.isOverspent
+    },
+    isOverspentMessage() {
+      return this.store.isOverspentMessage
     },
     unassignedXP() {
       return Number(this.store.unassignedXP).toLocaleString()
     },
     unassignedXPError() {
       return this.store.unassignedXPError
-    },
-    isOverspent() {
-      return (
-        Number(this.store.totalXPInvested) > Number(this.store.totalXPEarned)
-        || this.store.skillPointsSpent > this.store.skillPointsAvailable
-      )
     },
     skillPointsSpent() {
       return this.store.skillPointsSpent
@@ -260,6 +257,7 @@ export default {
       :toggle-expanded="toggleLuminanceHeaderExpanded"
       :is-expanded="isLuminanceHeaderExpanded"
       :is-collapsible="true"
+      :is-in-error="isOverspent"
     >
       <template #title>
         XP &amp; Luminance
@@ -281,13 +279,15 @@ export default {
             >!</span>
             <span v-if="!unassignedXPError">{{ unassignedXP }}</span>
           </div>
-          <div>Spent</div>
+          <div class="flex items-center gap-1">
+            Spent
+            <IconError
+              v-if="isOverspent"
+              v-tooltip="isOverspentMessage"
+            />
+          </div>
           <div class="justify-self-end">
-            <span
-              v-if="totalXPInvestedError"
-              v-tooltip="totalXPInvestedError"
-            >!</span>
-            <span v-if="!totalXPInvestedError">{{ totalXPInvested }}</span>
+            {{ totalXPInvested }}
           </div>
           <div>Total</div>
           <div class="justify-self-end">
