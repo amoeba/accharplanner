@@ -29,6 +29,16 @@ This isn't the first skill planner for AC:
 
 Check out `package.json` for scripts. You probably want to `yarn install` and `yarn run serve`.
 
+### Notes on the code
+
+I built this over years and things are messy.
+If you see something that's messy, it's probably not meant to be that way and contributions are welcome.
+
+Types of messes you might see:
+
+- You will see a mix of Vue2-style options API components and Vue3-style composition API components. The options API components are older and can eventually be updated to the options API.
+- I never figured out how to do mapGetters/mapSetters from components to my stores.
+
 ### Formatting
 
 This project uses ESLint and not Prettier or Volar/Vetur for formatting.
