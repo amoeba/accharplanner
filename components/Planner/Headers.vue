@@ -265,13 +265,11 @@ export default {
         XP &amp; Luminance
       </template>
       <template #right>
-        <ToolTip
+        <IconInfo
           v-tooltip="
             'These numbers are a bit of a work in progress. Total and Required Level tend to match pretty well but Unassigned and Spent seem to get way off sometimes.'
           "
-        >
-          !
-        </ToolTip>
+        />
       </template>
       <template #content>
         <div class="grid grid-cols-[auto_4em] gap-2 px-2 py-1">

@@ -127,12 +127,12 @@ export default {
     :is-collapsible="true"
   >
     <template #title>
-      <ToolTip
+      <IconInfo
         v-tooltip="'Skill levels may be higher than what you see ingame because some augmentations and auras (i.e., Master of the* and World) don\'t increase the levels shown on your character sheet while still having an effect during skill checks. The levels shown here are the effective level.'
         "
       >
         !
-      </ToolTip>
+      </IconInfo>
       <h3>Skills</h3>
       <span class="text-rose-500">{{ skillPointsSpentErrorText }}</span>
     </template>

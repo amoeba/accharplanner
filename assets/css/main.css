@@ -42,7 +42,6 @@
 
 @layer tooltips {
   .v-popper--theme-tooltip {
-    max-width: 30em;
-    font-size: 90%;
+    @apply text-sm max-w-96
   }
 }
