@@ -77,7 +77,7 @@ export interface Database {
           }
         ]
       }
-      guide_favorites: {
+      guides_favorites: {
         Row: {
           created_at: string
           favorited_by: string
@@ -98,14 +98,14 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "guide_favorites_favorited_by_fkey"
+            foreignKeyName: "guides_favorites_favorited_by_fkey"
             columns: ["favorited_by"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "guide_favorites_guide_id_fkey"
+            foreignKeyName: "guides_favorites_guide_id_fkey"
             columns: ["guide_id"]
             isOneToOne: false
             referencedRelation: "guides"
