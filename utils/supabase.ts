@@ -51,13 +51,6 @@ export const unFavoriteBuild = async function (client: SupabaseClient, user: Ref
     .eq("created_by", user.value?.id)
 }
 
-export const publishBuild = async function (client: SupabaseClient, user: Ref<User>, build: Build) {
-  return await client
-    .from("builds")
-    .insert({ id: createId(10), content: build, is_published: true, created_by: user.value?.id })
-    .select()
-}
-
 export const getMySharedBuilds = async function (client: SupabaseClient, user: Ref<User>, max: number) {
   return await client
     .from("builds")
@@ -66,7 +59,6 @@ export const getMySharedBuilds = async function (client: SupabaseClient, user: R
       content,
       created_at,
       created_by,
-      is_published,
       profiles (
         name
       ),
