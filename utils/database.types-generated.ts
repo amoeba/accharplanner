@@ -77,42 +77,6 @@ export interface Database {
           }
         ]
       }
-      guides_favorites: {
-        Row: {
-          created_at: string
-          favorited_by: string
-          guide_id: number
-          id: number
-        }
-        Insert: {
-          created_at?: string
-          favorited_by?: string
-          guide_id: number
-          id?: number
-        }
-        Update: {
-          created_at?: string
-          favorited_by?: string
-          guide_id?: number
-          id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "guides_favorites_favorited_by_fkey"
-            columns: ["favorited_by"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "guides_favorites_guide_id_fkey"
-            columns: ["guide_id"]
-            isOneToOne: false
-            referencedRelation: "guides"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       guides: {
         Row: {
           attribution: string | null
@@ -147,6 +111,42 @@ export interface Database {
             columns: ["created_by"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      guides_favorites: {
+        Row: {
+          created_at: string
+          favorited_by: string
+          guide_id: number
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          favorited_by?: string
+          guide_id: number
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          favorited_by?: string
+          guide_id?: number
+          id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "guides_favorites_favorited_by_fkey"
+            columns: ["favorited_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "guides_favorites_guide_id_fkey"
+            columns: ["guide_id"]
+            isOneToOne: false
+            referencedRelation: "guides"
             referencedColumns: ["id"]
           }
         ]
