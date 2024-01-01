@@ -54,9 +54,9 @@ const doShareBuild = async function () {
       shareState.value = ShareState.SUCCESS
       setSharedBuild(data[0].id)
     }
-  }
-  catch (error) {
+  } catch (error) {
     shareState.value = ShareState.ERROR
+    errorMessage.value = (error as Error).message
   }
 }
 </script>
@@ -100,7 +100,10 @@ const doShareBuild = async function () {
       </ButtonView>
     </div>
   </div>
-  <div v-if="errorMessage">
-    {{ errorMessage }}
-  </div>
+  <p
+    v-if="errorMessage"
+    class="px-2 pb-1 text-red-600"
+  >
+    Error while sharing: {{ errorMessage }}
+  </p>
 </template>
