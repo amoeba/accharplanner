@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      baseUrl: "https://planner.treestats.net",
+      baseUrl: process.env.NUXT_SITE_ENV ? "https://planner.treestats.net" : "http://localhost:3000"
     },
   },
   css: ["~/assets/css/main.css"],
