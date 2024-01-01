@@ -203,5 +203,3 @@ export const doesProfileNameAlreadyExist = async function (client: SupabaseClien
     `)
     .eq("name", name)
 }
-
-doesProfileNameAlreadyExist
