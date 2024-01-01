@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex justify-center">
-      <ButtonLink to="/planner">
+      <ButtonLink href="/planner">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

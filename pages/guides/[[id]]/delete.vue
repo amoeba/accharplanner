@@ -27,7 +27,7 @@ const doDelete = async function (id: number) {
       <ButtonView @click="doDelete(id)">
         Yes
       </ButtonView>
-      <ButtonLink :to="`/guides/${id}`">
+      <ButtonLink :href="`/guides/${id}`">
         No
       </ButtonLink>
     </div>
