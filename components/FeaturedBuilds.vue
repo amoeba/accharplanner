@@ -2,13 +2,15 @@
 const client = useSupabaseClient()
 const props = defineProps<{ max: number }>()
 
-const { data, error } = await getPublishedBuilds(client, props.max || 10)
+const { data, error } = await getFeaturedBuilds(client, props.max || 10)
+
+console.log(data, error)
 </script>
 
 <template>
   <TableWithName>
     <template #title>
-      Published Builds
+      Featured Builds
     </template>
     <template #table>
       <p v-if="data && data.length === 0">

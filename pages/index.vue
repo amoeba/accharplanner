@@ -9,7 +9,7 @@
 
     <div class="flex flex-col justify-center gap-2 sm:flex-row">
       <Suspense>
-        <PublishedBuilds :max="5" />
+        <FeaturedBuilds :max="5" />
         <template #fallback>
           Loading...
         </template>

@@ -45,7 +45,7 @@
       </h2>
       <div class="flex flex-col gap-2 sm:flex-row">
         <Suspense>
-          <PublishedBuilds :max="10" />
+          <FeaturedBuilds :max="10" />
           <template #fallback>
             Loading...
           </template>
