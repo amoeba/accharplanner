@@ -10,10 +10,10 @@ export const loadBuild = async function (client: SupabaseClient, id: string) {
     .eq("id", id)
 }
 
-export const shareBuild = async function (client: SupabaseClient, build: Build) {
+export const shareBuild = async function (client: SupabaseClient, user: Ref<User | null>, build: Build) {
   return await client
     .from("builds")
-    .insert({ id: createId(10), content: build})
+    .insert({ id: createId(10), content: build, created_by: user?.value?.id })
     .select()
 }
 
