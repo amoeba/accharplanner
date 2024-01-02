@@ -51,7 +51,8 @@ const numPages = Math.ceil(count.value / pageSize)
 
 <template>
   <PageContainer>
-    <h2 class="text-xl font-bold">
+    Content
+    <!-- <h2 class="text-xl font-bold">
       Guides
     </h2>
     <p class="leading-6">
@@ -84,6 +85,6 @@ const numPages = Math.ceil(count.value / pageSize)
         v-model="page"
         :num-pages="numPages"
       />
-    </div>
+    </div> -->
   </PageContainer>
 </template>
