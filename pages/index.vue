@@ -4,9 +4,9 @@
 <template>
   <PageContainer>
     <PageSection>
-      <div class="py-3 text-xl font-bold">
-        <span>Welcome to ODACCP!</span>
-      </div>
+      <span class="py-3 text-xl font-bold">
+        Welcome to ODACCP!
+      </span>
     </PageSection>
     <PageSection>
       <div class="flex justify-center">

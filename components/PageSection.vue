@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="p-2">
+    <div class="flex flex-col p-2 lg:max-w-5xl">
       <slot />
     </div>
   </div>
