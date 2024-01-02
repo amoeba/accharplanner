@@ -50,7 +50,7 @@ const numPages = Math.ceil(count.value / pageSize)
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 p-2">
+  <PageContainer>
     <h2 class="text-xl font-bold">
       Guides
     </h2>
@@ -85,5 +85,5 @@ const numPages = Math.ceil(count.value / pageSize)
         :num-pages="numPages"
       />
     </div>
-  </div>
+  </PageContainer>
 </template>

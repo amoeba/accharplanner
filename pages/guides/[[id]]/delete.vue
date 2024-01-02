@@ -21,7 +21,7 @@ const doDelete = async function (id: number) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 p-2">
+  <PageContainer>
     Are you sure?
     <div class="flex gap-2">
       <ButtonView @click="doDelete(id)">
@@ -35,5 +35,5 @@ const doDelete = async function (id: number) {
     <div v-if="errorMessage">
       {{ errorMessage }}
     </div>
-  </div>
+  </PageContainer>
 </template>

@@ -3,7 +3,7 @@ const user = useSupabaseUser()
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 p-2">
+  <PageContainer>
     <div class="flex">
       <MyLink to="/guides">
         <svg
@@ -32,5 +32,5 @@ const user = useSupabaseUser()
       </ButtonView>
     </div>
     <GuideCreate v-if="user" />
-  </div>
+  </PageContainer>
 </template>

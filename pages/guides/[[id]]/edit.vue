@@ -6,7 +6,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="p-2">
+  <PageContainer>
     <div class="flex">
       <MyLink :href="`/guides/${route.params.id}`">
         <svg
@@ -38,5 +38,5 @@ const route = useRoute()
       v-if="user"
       :id="route.params.id"
     />
-  </div>
+  </PageContainer>
 </template>

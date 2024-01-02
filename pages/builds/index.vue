@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 p-2">
+  <PageContainer>
     <div>
       <h2 class="text-xl font-bold">
         Builds
@@ -58,5 +58,5 @@
         </Suspense>
       </div>
     </div>
-  </div>
+  </PageContainer>
 </template>

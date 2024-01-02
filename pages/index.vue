@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <PageContainer>
     <PageSection>
       <div class="py-3 text-xl font-bold">
         <span>Welcome to ODACCP!</span>
@@ -157,5 +157,5 @@
         </template>
       </FeatureView>
     </PageSection>
-  </div>
+  </PageContainer>
 </template>

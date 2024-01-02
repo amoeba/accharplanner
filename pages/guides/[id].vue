@@ -13,7 +13,7 @@ if (typeof route.params.id === 'object') {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 p-2">
+  <PageContainer>
     <div class="flex">
       <MyLink to="/guides">
         <svg
@@ -39,5 +39,5 @@ if (typeof route.params.id === 'object') {
         Loading...
       </template>
     </Suspense>
-  </div>
+  </PageContainer>
 </template>

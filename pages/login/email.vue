@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center">
-    <div class="w-96">
+  <PageContainer>
+    <div class="w-full max-w-96">
       <NuxtLink
         class="p-2"
         to="/login"
@@ -12,5 +12,5 @@
       </h2>
       <LoginEmail />
     </div>
-  </div>
+  </PageContainer>
 </template>

@@ -33,7 +33,7 @@ const loadCurrentBuildInPlanner = async function() {
 </script>
 
 <template>
-  <div>
+  <PageContainer>
     <div v-if="errorMessage">
       {{ errorMessage }}
     </div>
@@ -52,5 +52,5 @@ const loadCurrentBuildInPlanner = async function() {
       </div>
       <BuildView :build="build" />
     </div>
-  </div>
+  </PageContainer>
 </template>

@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="p-2">
+  <PageContainer>
     <Planner />
-  </div>
+  </PageContainer>
 </template>

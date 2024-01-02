@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mx-auto p-2 lg:max-w-5xl">
+    <div class="p-2">
       <slot />
     </div>
   </div>

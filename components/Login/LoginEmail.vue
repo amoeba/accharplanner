@@ -19,6 +19,10 @@ enum FormState {
 const formState = ref(FormState.UNSENT)
 
 const handleSubmit = async function () {
+  if (formState.value === FormState.SENDING) {
+    return
+  }
+
   errorMessage.value = ""
 
   const finalEmail = email.value.trim()
@@ -72,8 +76,8 @@ const signInWithEmail = async function (email: string) {
 </script>
 
 <template>
-  <div>
-    <p class="py-3">
+  <div class="w-full max-w-96">
+    <p class="py-2">
       Enter your email address and receive a link to log in.
     </p>
     <form @submit.prevent="handleSubmit">
@@ -87,9 +91,8 @@ const signInWithEmail = async function (email: string) {
       </label>
       <div class="flex justify-end">
         <input
-          class="cursor-pointer px-2 py-1 hover:bg-zinc-100 disabled:bg-zinc-200 disabled:text-zinc-500"
+          class="cursor-pointer px-2 py-1 hover:bg-zinc-100 dark:hover:bg-stone-600"
           type="submit"
-          :disabled="formState === FormState.SENDING"
           :value="submitButtonText"
         >
       </div>
@@ -102,7 +105,7 @@ const signInWithEmail = async function (email: string) {
     </p>
     <p
       v-if="formState === FormState.ERROR"
-      class="text-red-500"
+      class="text-red-600"
     >
       {{ errorMessage }}
     </p>

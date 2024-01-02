@@ -86,14 +86,12 @@ const toggle = async function () {
       <NuxtLink
         v-if="!user"
         to="/login"
-        class="hidden sm:block"
         @click="toggle"
       >
         <span v-tooltip="'Log In to Publish your builds for others to see and to favorite others\' builds.'">Log In</span>
       </NuxtLink>
       <NuxtLink
         v-if="user"
-        class="hidden sm:block"
         to="/account"
         @click="toggle"
       >
