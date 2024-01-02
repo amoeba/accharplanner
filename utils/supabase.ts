@@ -177,7 +177,23 @@ export const deleteGuide = async function (client: SupabaseClient, guide_id: num
 }
 
 // Profiles
-export const setProfileName = async function (client: SupabaseClient, user: Ref<User>, name: string) {
+export const getProfile = async function(client: SupabaseClient, user: Ref<User | null>) {
+  return await client
+    .from("profiles")
+    .select(`name`)
+    .eq("id", user?.value?.id)
+    .limit(1)
+}
+export const createProfile = async function (client: SupabaseClient, user: Ref<User | null>) {
+  return await client
+    .from("profiles")
+    .insert({
+      id: user?.value?.id,
+    })
+    .select()
+}
+
+export const setProfileName = async function (client: SupabaseClient, user: Ref<User | null>, name: string) {
   return await client
     .from("profiles")
     .upsert({

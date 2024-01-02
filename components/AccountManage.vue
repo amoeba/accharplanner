@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { formatDate } from "@vueuse/core";
 import { ref } from "vue"
 import type { ProfileRow } from "~/utils/database.types";
 import { setProfileName } from "~/utils/supabase";
@@ -19,6 +20,7 @@ enum FormState {
   ERROR,
 }
 
+// Initial state
 const formState = ref(FormState.UNSENT)
 
 const signOut = async function () {
@@ -43,7 +45,7 @@ const validateName = async function (name: string) {
   }
 
   // Validate against our pattern
-  const pattern = /^[a-zA-Z][a-zA-Z0-9 ']+$/
+  const pattern = /^[a-zA-Z][a-zA-Z0-9 ']{2,}$/
 
   if (!out.match(pattern)) {
     throw new Error(`Name should match the regex ${pattern}.`)
@@ -67,6 +69,10 @@ const validateName = async function (name: string) {
 }
 
 const trySetName = async function () {
+  if (formState.value === FormState.SENDING) {
+    return;
+  }
+
   if (!profile.value) {
     return;
   }
@@ -95,18 +101,18 @@ const trySetName = async function () {
     if (error) {
       formState.value = FormState.ERROR
       errorMessage.value = error.message
-    }
-    else if (data) {
+    } else if (data) {
       formState.value = FormState.SUCCESS
-      message.value = "Success!"
+      message.value = "Account updated!"
 
       setTimeout(() => {
         formState.value = FormState.UNSENT
+        message.value = ""
       }, 3000)
     }
-  } catch (e: any) {
+  } catch (e) {
     formState.value = FormState.ERROR
-    errorMessage.value = e
+    errorMessage.value = (e as Error).message
 
     return;
   }
@@ -114,9 +120,9 @@ const trySetName = async function () {
 
 if (user.value) {
   const { data, error } = await client
-  .from("profiles")
-  .select()
-  .eq("id", user.value.id)
+    .from("profiles")
+    .select()
+    .eq("id", user.value.id)
 
   if (error) {
     errorMessage.value = error.message
@@ -124,7 +130,6 @@ if (user.value) {
     profile.value = data[0]
   }
 }
-
 </script>
 
 <template>
@@ -137,26 +142,26 @@ if (user.value) {
             <input
               v-if="profile"
               v-model="profile.name"
+              placeholder="Choose a name..."
               class="w-full px-2 py-1"
               type="text"
             >
           </label>
-          <div class="flex content-center justify-end gap-2">
+          <div class="flex content-start items-start justify-end gap-2">
             <div
               v-if="formState === FormState.SENDING"
-              class="px-2 py-1"
             >
               Sending...
             </div>
             <div
-              v-if="formState === FormState.ERROR"
-              class="px-2 py-1 text-red-500"
+              v-if="errorMessage"
+              class="text-red-500"
             >
               {{ errorMessage }}
             </div>
             <div
-              v-if="formState === FormState.SUCCESS"
-              class="px-2 py-1 text-green-500"
+              v-if="message"
+              class=" text-green-600"
             >
               {{ message }}
             </div>
@@ -167,15 +172,16 @@ if (user.value) {
             >
           </div>
         </form>
+        <div class="flex">
+          <ButtonView
+            v-if="user"
+            @click="signOut"
+          >
+            Log Out
+          </ButtonView>
+        </div>
       </div>
-      <ButtonView
-        v-if="user"
-        @click="signOut"
-      >
-        Log Out
-      </ButtonView>
     </div>
-
     <template #fallback>
       Loading...
     </template>
