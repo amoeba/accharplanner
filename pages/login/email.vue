@@ -1,5 +1,5 @@
 <template>
-  <PageContainer>
+  <NarrowPageContainer>
     <div class="w-full max-w-96">
       <NuxtLink
         class="p-2"
@@ -12,5 +12,6 @@
       </h2>
       <LoginEmail />
     </div>
-  </PageContainer>
+    <NarrowPageContainer />
+  </narrowpagecontainer>
 </template>

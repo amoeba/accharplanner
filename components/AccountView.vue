@@ -3,7 +3,7 @@ const user = useSupabaseUser()
 </script>
 
 <template>
-  <div class="w-full max-w-96">
+  <NarrowPageContainer>
     <h2 class="text-xl font-bold">
       Account
     </h2>
@@ -14,5 +14,5 @@ const user = useSupabaseUser()
       </NuxtLink>
     </p>
     <AccountManage v-if="user" />
-  </div>
+  </NarrowPageContainer>
 </template>
