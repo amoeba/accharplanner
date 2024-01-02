@@ -6,7 +6,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <div>
+  <div class="p-2">
     <div class="flex">
       <MyLink :href="`/guides/${route.params.id}`">
         <svg

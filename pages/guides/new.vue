@@ -3,7 +3,7 @@ const user = useSupabaseUser()
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 p-2">
     <div class="flex">
       <MyLink to="/guides">
         <svg

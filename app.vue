@@ -11,7 +11,9 @@ const store = useMainStore()
   <div :class="store.darkMode ? 'dark' : ''">
     <div class="min-h-screen bg-white text-black dark:bg-black dark:text-white">
       <AppHeader />
-      <main class="mx-auto w-full px-2 py-1 lg:max-w-5xl">
+      <main
+        class="w-full"
+      >
         <NuxtPage />
       </main>
       <AppFooter />

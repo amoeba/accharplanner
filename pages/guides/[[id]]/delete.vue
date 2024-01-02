@@ -21,7 +21,7 @@ const doDelete = async function (id: number) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 p-2">
     Are you sure?
     <div class="flex gap-2">
       <ButtonView @click="doDelete(id)">
