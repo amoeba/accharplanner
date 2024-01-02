@@ -3,8 +3,6 @@ const client = useSupabaseClient()
 const props = defineProps<{ max: number }>()
 
 const { data, error } = await getFeaturedBuilds(client, props.max || 10)
-
-console.log(data, error)
 </script>
 
 <template>
