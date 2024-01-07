@@ -36,12 +36,6 @@ const doToggleDarkMode = async function () {
           Planner</span>
       </div>
       <NuxtLink
-        to="/planner"
-        class="hidden sm:block"
-      >
-        Planner
-      </NuxtLink>
-      <NuxtLink
         to="/builds"
         class="hidden sm:block"
       >
