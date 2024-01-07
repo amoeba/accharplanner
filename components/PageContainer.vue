@@ -1,7 +1,6 @@
 <template>
-  <!-- <div class="flex flex-col justify-start p-2 lg:max-w-5xl"> -->
-  <div class="grow lg:max-w-5xl">
-    <div class="grow">
+  <div class="flex flex-col justify-center lg:max-w-5xl">
+    <div class="flex flex-col items-start p-2">
       <slot />
     </div>
   </div>
