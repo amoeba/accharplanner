@@ -76,7 +76,7 @@ const signInWithEmail = async function (email: string) {
 </script>
 
 <template>
-  <NarrowPageContainer>
+  <div>
     <p class="py-2">
       Enter your email address and receive a link to log in.
     </p>
@@ -109,5 +109,5 @@ const signInWithEmail = async function (email: string) {
     >
       {{ errorMessage }}
     </p>
-  </NarrowPageContainer>
+  </div>
 </template>

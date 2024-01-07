@@ -2,10 +2,12 @@
 </script>
 
 <template>
-  <PageContainer>
-    <h2 class="text-lg font-bold">
+  <NarrowPageContainer>
+    <h2
+      class="text-lg font-bold"
+    >
       Log In
     </h2>
     <LoginEmail />
-  </PageContainer>
+  </NarrowPageContainer>
 </template>

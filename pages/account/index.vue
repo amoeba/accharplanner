@@ -23,7 +23,7 @@ if (!profileData || profileData.length < 1) {
 </script>
 
 <template>
-  <PageContainer>
+  <NarrowPageContainer>
     <RedirectNotice />
     <p
       v-if="profileGetErrorMessage"
@@ -39,5 +39,5 @@ if (!profileData || profileData.length < 1) {
     </p>
 
     <AccountView />
-  </PageContainer>
+  </NarrowPageContainer>
 </template>
