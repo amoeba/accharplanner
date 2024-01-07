@@ -65,7 +65,7 @@ export default {
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-2 text-sm">
+  <div class="flex w-full flex-col gap-2">
     <div class="flex">
       <!-- Collapse/Expand -->
       <div class="flex">

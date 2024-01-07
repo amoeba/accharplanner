@@ -12,7 +12,7 @@ const store = useMainStore()
     <div class="min-h-screen bg-white text-black dark:bg-black dark:text-white">
       <AppHeader />
       <main
-        class="flex flex-col"
+        class="m-auto flex w-full flex-col"
       >
         <NuxtPage />
       </main>
