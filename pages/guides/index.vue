@@ -51,13 +51,14 @@ const numPages = Math.ceil(count.value / pageSize)
 
 <template>
   <PageContainer>
-    <h2 class="text-xl font-bold">
+    Content
+    <!-- <h2 class="text-xl font-bold">
       Guides
     </h2>
-    <p>
+    <p class="leading-6">
       <em>Guides are an experimental feature at the moment.</em>
     </p>
-    <p>
+    <p class="leading-6">
       The basic idea is a Guide is the writeup for one or more Builds, similar to other types of build guides you may
       have seen around the internet. What I think makes this interface interesting is that it let's you customize what
       parts of your build you show to readers.
@@ -84,6 +85,6 @@ const numPages = Math.ceil(count.value / pageSize)
         v-model="page"
         :num-pages="numPages"
       />
-    </div>
+    </div> -->
   </PageContainer>
 </template>
