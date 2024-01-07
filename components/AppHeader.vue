@@ -23,7 +23,7 @@ const doToggleDarkMode = async function () {
         </NuxtLink>
         <NuxtLink
           to="/"
-          class="my-title font-bold"
+          class="my-title font-bold text-black no-underline dark:text-white"
         >
           ODACCP
         </NuxtLink>
@@ -64,7 +64,10 @@ const doToggleDarkMode = async function () {
       >
         Account
       </NuxtLink>
-      <NuxtLink to="irc://irc.sorcery.net/#treestats">
+      <NuxtLink
+        to="irc://irc.sorcery.net/#treestats"
+        class="text-black dark:text-white"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -102,7 +105,10 @@ const doToggleDarkMode = async function () {
           />
         </svg>
       </NuxtLink>
-      <NuxtLink to="https://discord.gg/r3jt93vYEb">
+      <NuxtLink
+        to="https://discord.gg/r3jt93vYEb"
+        class="text-black"
+      >
         <svg
           width="24"
           height="24"
@@ -121,7 +127,10 @@ const doToggleDarkMode = async function () {
           </g>
         </svg>
       </NuxtLink>
-      <NuxtLink href="https://github.com/amoeba/accharplanner">
+      <NuxtLink
+        href="https://github.com/amoeba/accharplanner"
+        class="text-black dark:text-white"
+      >
         <svg
           width="24.5"
           height="24"
