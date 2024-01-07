@@ -7,7 +7,7 @@
     @apply flex items-center p-0
   }
 
-  main a {
+  body a {
     @apply text-blue-600 underline hover:no-underline;
   }
 
