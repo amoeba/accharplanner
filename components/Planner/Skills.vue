@@ -189,7 +189,6 @@ export default {
                 >
                 <ButtonView
                   v-if="filterPresent"
-                  class="rounded px-2 py-1 hover:bg-zinc-200"
                   @click="clearFilter"
                 >
                   Reset

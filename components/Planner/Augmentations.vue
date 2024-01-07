@@ -83,13 +83,12 @@ export default {
                   type="text"
                   placeholder="Type to filter..."
                 >
-                <button
+                <ButtonView
                   v-if="filterPresent"
-                  class="rounded px-2 py-1 hover:bg-zinc-200"
                   @click="clearFilter"
                 >
                   Reset
-                </button>
+                </ButtonView>
               </div>
             </th>
             <th class="px-1">
