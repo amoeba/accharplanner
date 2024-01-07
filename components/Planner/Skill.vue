@@ -270,7 +270,7 @@ export default {
       {{ displayName }}
       <span class="text-gray-500">{{ formula }}</span>
     </td>
-    <td class="px-1">
+    <td class="pl-1">
       <button
         :class="cantDecrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
@@ -282,7 +282,7 @@ export default {
         ↓
       </button>
     </td>
-    <td class="px-1">
+    <td class="pr-1">
       <button
         :class="cantIncrease ? 'bg-gray-200 dark:bg-stone-800 dark:text-stone-600' : 'bg-green-600 hover:bg-green-700'
         "
