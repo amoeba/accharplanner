@@ -66,7 +66,7 @@ const toggle = async function () {
         </svg>
       </button>
       <NuxtLink
-        to="/planner"
+        to="/"
         @click="toggle"
       >
         Planner

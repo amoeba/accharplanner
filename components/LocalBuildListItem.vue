@@ -12,7 +12,7 @@ const saved = useTimeAgo(props.build.key)
 
 const loadBuild = async function () {
   store.import(build)
-  router.push("/planner")
+  router.push("/")
 }
 
 const downloadBuild = async function () {

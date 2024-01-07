@@ -28,7 +28,7 @@ else if (data) {
 const loadCurrentBuildInPlanner = async function() {
   console.log(route.params.id, build);
   await store.loadBuildFromJSONString(JSON.stringify(build))
-  router.push("/planner")
+  router.push("/")
 }
 </script>
 

@@ -20,7 +20,7 @@ if (error) {
  else {
   console.log(data)
   await store.loadBuildFromJSON(data[0].content)
-  await navigateTo("/planner")
+  await navigateTo("/")
 }
 </script>
 
