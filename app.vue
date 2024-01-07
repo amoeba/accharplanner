@@ -9,10 +9,10 @@ const store = useMainStore()
        there's no way to apply the class further up in the DOM, like on the
       body or html tag. -->
   <div :class="store.darkMode ? 'dark' : ''">
-    <div class="min-h-screen bg-white text-black dark:bg-black dark:text-white">
+    <div class="flex min-h-screen flex-col gap-4 bg-white text-black dark:bg-black dark:text-white">
       <AppHeader />
       <main
-        class="m-auto flex w-full flex-col"
+        class="m-auto flex w-full flex-col p-2"
       >
         <NuxtPage />
       </main>
