@@ -23,21 +23,27 @@ async function handleSubmit() {
 }
 
 async function signUpNewUser() {
+  formState.value = FormState.SENDING
+  submitButtonText.value = "Creating..."
+
   const { data, error } = await supabase.auth.signUp({
     email: email.value.trim(),
     password: password.value.trim(),
-    options: {
-      emailRedirectTo: 'https://example.com/welcome',
-    },
   })
-
-  if (data) {
-    formState.value = FormState.SUCCESS
-  }
 
   if (error) {
     formState.value = FormState.ERROR
     errorMessage.value = error.message
+    submitButtonText.value = originalSubmitButtonText
+
+    return;
+  }
+
+  if (data) {
+    formState.value = FormState.SUCCESS
+    submitButtonText.value = originalSubmitButtonText
+
+    await navigateTo("/")
   }
 }
 </script>

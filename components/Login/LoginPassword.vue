@@ -2,7 +2,6 @@
 import { ref } from "vue"
 
 const client = useSupabaseClient()
-const router = useRouter()
 
 const defaultButtonText = "Log In"
 const email = ref("")
@@ -49,25 +48,25 @@ async function signInWithEmail() {
     password: password.value.trim(),
   })
 
-  if (data) {
-    formState.value = FormState.SUCCESS
-    submitButtonText.value = defaultButtonText
-    await navigateTo("/")
-  }
-
   if (error) {
     formState.value = FormState.ERROR
     errorMessage.value = error.message
     submitButtonText.value = defaultButtonText
+
+    return
+  }
+
+  if (data) {
+    formState.value = FormState.SUCCESS
+    submitButtonText.value = defaultButtonText
+
+    await navigateTo("/")
   }
 }
 </script>
 
 <template>
   <div>
-    <p class="py-2">
-      Log in with email and password:
-    </p>
     <form @submit.prevent="handleSubmit">
       <label class="block py-3">
         <div>Email</div>

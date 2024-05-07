@@ -77,9 +77,6 @@ const signInWithEmail = async function (email: string) {
 
 <template>
   <div>
-    <p class="py-2">
-      Log in with a magic link:
-    </p>
     <form @submit.prevent="handleSubmit">
       <label class="block py-3">
         <div>Email</div>
