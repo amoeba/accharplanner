@@ -50,17 +50,12 @@ const numPages = Math.ceil(count.value / pageSize)
 </script>
 
 <template>
-  <PageContainer>
+  <PageContainer class="flex flex-col gap-2">
     <h2 class="text-xl font-bold">
       Guides
     </h2>
-    <p class="leading-6">
-      <em>Guides are an experimental feature at the moment.</em>
-    </p>
-    <p class="leading-6">
-      The basic idea is a Guide is the writeup for one or more Builds, similar to other types of build guides you may
-      have seen around the internet. What I think makes this interface interesting is that it let's you customize what
-      parts of your build you show to readers.
+    <p class="rounded border border-yellow-300 bg-yellow-200 p-2 leading-6">
+      <em>Guides are an experimental feature at the moment. Please reach out on <NuxtLink to="https://discord.gg/r3jt93vYEb">Discord</NuxtLink> if you have any problems or suggestions.</em>
     </p>
     <div>
       <div v-if="countErrorMessage">
