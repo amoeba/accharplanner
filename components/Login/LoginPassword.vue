@@ -2,9 +2,11 @@
 import { ref } from "vue"
 
 const client = useSupabaseClient()
+const router = useRouter()
 
-const defaultButtonText = "Send 🔮 Link"
+const defaultButtonText = "Log In"
 const email = ref("")
+const password = ref("")
 const submitButtonText = ref(defaultButtonText)
 const errorMessage = ref("")
 
@@ -35,42 +37,28 @@ const handleSubmit = async function () {
     return
   }
 
-  await signInWithEmail(finalEmail)
+  await signInWithEmail()
 }
 
-const signInWithEmail = async function (email: string) {
+async function signInWithEmail() {
   formState.value = FormState.SENDING
-  submitButtonText.value = "Sending..."
+  submitButtonText.value = "Logging in..."
 
-  const config = useRuntimeConfig()
+  const { data, error } = await client.auth.signInWithPassword({
+    email: email.value.trim(),
+    password: password.value.trim(),
+  })
 
-  try {
-    const { error } = await client.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: config.supabaseRedirectUrl as string,
-      },
-    })
-
-    if (error) {
-      formState.value = FormState.ERROR
-      submitButtonText.value = defaultButtonText
-      errorMessage.value = error.message
-    }
- else {
-      formState.value = FormState.SUCCESS
-      submitButtonText.value = "Check your inbox!"
-
-      setTimeout(() => {
-        formState.value = FormState.UNSENT
-        submitButtonText.value = defaultButtonText
-      }, 3000)
-    }
-  }
- catch (e: any) {
-    formState.value = FormState.ERROR
+  if (data) {
+    formState.value = FormState.SUCCESS
     submitButtonText.value = defaultButtonText
-    errorMessage.value = e
+    await navigateTo("/")
+  }
+
+  if (error) {
+    formState.value = FormState.ERROR
+    errorMessage.value = error.message
+    submitButtonText.value = defaultButtonText
   }
 }
 </script>
@@ -78,7 +66,7 @@ const signInWithEmail = async function (email: string) {
 <template>
   <div>
     <p class="py-2">
-      Log in with a magic link:
+      Log in with email and password:
     </p>
     <form @submit.prevent="handleSubmit">
       <label class="block py-3">
@@ -87,6 +75,14 @@ const signInWithEmail = async function (email: string) {
           v-model="email"
           class="w-full px-2 py-1"
           type="text"
+        >
+      </label>
+      <label class="block py-3">
+        <div>Password</div>
+        <input
+          v-model="password"
+          class="w-full px-2 py-1"
+          type="password"
         >
       </label>
       <div class="flex justify-end">
@@ -101,7 +97,7 @@ const signInWithEmail = async function (email: string) {
       v-if="formState === FormState.SUCCESS"
       class="text-green-600"
     >
-      Check your email for a link to log in.
+      You are now logged in.
     </p>
     <p
       v-if="formState === FormState.ERROR"
