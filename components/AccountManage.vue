@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { formatDate } from "@vueuse/core";
 import { ref } from "vue"
 import type { ProfileRow } from "~/utils/database.types";
 import { setProfileName } from "~/utils/supabase";

@@ -5,7 +5,7 @@
 //
 // 1. There is a row in the profiles table for the logged-in-user
 // 2. The profile has a valid name set
-export default defineNuxtRouteMiddleware(async (to, from) => {
+export default defineNuxtRouteMiddleware(async (to) => {
   // Only run if we're not already on /account
   if (to.path === "/account") {
     return;
