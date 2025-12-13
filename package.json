@@ -23,7 +23,7 @@
     "@tiptap/pm": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
     "@tiptap/vue-3": "^2.1.12",
-    "floating-vue": "^2.0.0-beta.24",
+    "floating-vue": "^5.2.2",
     "lodash": "^4.17.21",
     "mnemonic-id": "^3.2.7",
     "pinia": "^3.0.4",
