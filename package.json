@@ -35,14 +35,14 @@
     "@nuxtjs/supabase": "^2.0.3",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/lodash": "^4.14.202",
-    "@vueuse/core": "^10.6.1",
-    "@vueuse/nuxt": "^10.6.1",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
     "eslint": "^9.39.2",
     "eslint-plugin-tailwindcss": "^3.18.2",
-    "nuxt": "^3.9.0",
+    "nuxt": "^4.2.2",
     "supabase": "^2.67.1",
     "vitest": "^3.2.0",
-    "vue": "^3.3.4",
+    "vue": "^3.5.0",
     "vue-eslint-parser": "^10.2.0",
     "vue-router": "^4.2.5"
   }

@@ -3,10 +3,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-12-13',
   devtools: { enabled: false },
   modules: [
+    "@pinia/nuxt",
+    // "pinia-plugin-persistedstate/nuxt", // TODO: Fix double registration
     "@nuxtjs/supabase",
     '@nuxt/eslint',
-    "@pinia/nuxt",
-    "pinia-plugin-persistedstate/nuxt",
     "@vueuse/nuxt",
     "floating-vue/nuxt",
   ],
