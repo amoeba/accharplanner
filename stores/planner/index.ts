@@ -8,7 +8,5 @@ export const usePlannerStore = defineStore("planner", {
   state: () => state,
   getters,
   actions,
-  persist: {
-    storage: persistedState.localStorage,
-  },
+  persist: true,
 })
