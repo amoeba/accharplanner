@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
     "@nuxtjs/supabase",
-    '@nuxtjs/eslint-module',
+    '@nuxt/eslint',
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@vueuse/nuxt",
