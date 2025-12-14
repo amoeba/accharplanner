@@ -31,11 +31,11 @@ const { data, error } = await getFeaturedBuilds(client, props.max || 10)
         <tbody>
           <tr
             v-for="build in data"
-            :key="build.id"
+            :key="build.builds.id"
           >
             <td class="p-0">
-              <a :href="`/${build.id}`">{{
-                build.content.character.name
+              <a :href="`/${build.builds.id}`">{{
+                build.builds.content.character.name
               }}</a>
             </td>
             <td class="px-2">
@@ -56,11 +56,11 @@ const { data, error } = await getFeaturedBuilds(client, props.max || 10)
                     points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
                   />
                 </svg>
-                {{ build.builds_favorites.length }}
+                {{ build.builds.builds_favorites.length }}
               </div>
             </td>
             <td class="p-0">
-              <span v-if="build.profiles">{{ build.profiles.name }}</span>
+              <span v-if="build.builds.profiles">{{ build.builds.profiles.name }}</span>
               <span v-else>Anonymous</span>
             </td>
           </tr>

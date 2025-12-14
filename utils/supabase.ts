@@ -81,7 +81,13 @@ export const getFeaturedBuilds = async function (client: SupabaseClient, max: nu
         id,
         created_at,
         content,
-        created_by
+        created_by,
+        profiles (
+          name
+        ),
+        builds_favorites (
+          id
+        )
       )
     `)
     .order("created_at", { ascending: false })
