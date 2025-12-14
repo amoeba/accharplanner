@@ -27,5 +27,8 @@ export const useMainStore = defineStore("main", {
       this.darkMode = null
     },
   },
-  persist: true,
+  persist: {
+    key: 'accp-main',
+    storage: typeof window !== 'undefined' ? localStorage : undefined,
+  },
 })

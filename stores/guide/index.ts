@@ -37,5 +37,8 @@ export const useGuideStore = defineStore("guide", {
       this.guide.content = this.guide.content.replaceAll('tab="Start"', 'tab="View"')
     }
   },
-  persist: true,
+  persist: {
+    key: 'accp-guide',
+    storage: typeof window !== 'undefined' ? localStorage : undefined,
+  },
 })

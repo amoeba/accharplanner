@@ -8,5 +8,9 @@ export const usePlannerStore = defineStore("planner", {
   state: () => state,
   getters,
   actions,
-  persist: true,
+  persist: {
+    key: 'accp-planner',
+    storage: typeof window !== 'undefined' ? localStorage : undefined,
+    omit: ['ui.notifications'],
+  },
 })
