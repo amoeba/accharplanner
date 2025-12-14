@@ -18,7 +18,6 @@ if (error) {
   errors.value.push("An unexpected error occurred.")
 }
  else {
-  console.log(data)
   await store.loadBuildFromJSON(data[0].content)
   await navigateTo("/")
 }

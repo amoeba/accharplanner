@@ -26,7 +26,6 @@ else if (data) {
 }
 
 const loadCurrentBuildInPlanner = async function() {
-  console.log(route.params.id, build);
   await store.loadBuildFromJSONString(JSON.stringify(build))
   router.push("/")
 }
@@ -43,7 +42,7 @@ const loadCurrentBuildInPlanner = async function() {
     >
       <div class="flex justify-end gap-2">
         <FavoriteButton
-          v-if="route.params"
+          v-if="typeof route.params.id === 'string'"
           :build-id="route.params.id"
         />
         <ButtonView @click="loadCurrentBuildInPlanner">

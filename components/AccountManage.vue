@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import type { ProfileRow } from "~/utils/database.types";
-import { setProfileName } from "~/utils/supabase";
+import { setProfileName, getUserId } from "~/utils/supabase";
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -10,6 +10,9 @@ const profile = ref<ProfileRow>()
 const message = ref("")
 const errorMessage = ref("")
 const isSigningOut = ref(false)
+
+// Get user ID from either 'id' or 'sub' property
+const userId = getUserId(user)
 
 // Form state state machine
 enum FormState {
@@ -117,24 +120,38 @@ const trySetName = async function () {
   }
 }
 
-if (user.value) {
+if (userId) {
   const { data, error } = await client
     .from("profiles")
     .select()
-    .eq("id", user.value.id)
+    .eq("id", userId)
 
   if (error) {
-    errorMessage.value = error.message
-  } else if (data) {
+    errorMessage.value = "Unable to load profile: " + error.message
+  } else if (data && data.length > 0) {
     profile.value = data[0]
+  } else {
+    // Initialize empty profile if none exists
+    profile.value = { id: userId, name: null, is_admin: false }
   }
+} else {
+  errorMessage.value = "Unable to load profile: User authentication is invalid."
 }
 </script>
 
 <template>
   <Suspense>
     <div>
-      <div class="flex flex-col gap-2">
+      <div
+        v-if="errorMessage && !profile"
+        class="text-red-500"
+      >
+        {{ errorMessage }}
+      </div>
+      <div
+        v-else
+        class="flex flex-col gap-2"
+      >
         <form @submit.prevent="trySetName">
           <label class="block py-3">
             <div>Name</div>
@@ -173,7 +190,6 @@ if (user.value) {
         </form>
         <div class="flex">
           <ButtonView
-            v-if="user"
             @click="signOut"
           >
             Log Out
