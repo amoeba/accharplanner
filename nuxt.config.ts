@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
     "@pinia/nuxt",
-    // "pinia-plugin-persistedstate/nuxt", // TODO: Fix double registration
     "@nuxtjs/supabase",
     '@nuxt/eslint',
     "@vueuse/nuxt",

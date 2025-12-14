@@ -26,8 +26,7 @@
     "floating-vue": "^5.2.2",
     "lodash": "^4.17.21",
     "mnemonic-id": "^3.2.7",
-    "pinia": "^3.0.4",
-    "pinia-plugin-persistedstate": "^4.7.1"
+    "pinia": "^3.0.4"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.12.1",
