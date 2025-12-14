@@ -26,4 +26,7 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
 })
