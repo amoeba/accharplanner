@@ -24,6 +24,7 @@
     "@tiptap/starter-kit": "^3.13.0",
     "@tiptap/vue-3": "^3.13.0",
     "floating-vue": "^5.2.2",
+    "leo-profanity": "^1.8.0",
     "lodash": "^4.17.21",
     "mnemonic-id": "^3.2.7",
     "pinia": "^3.0.4",

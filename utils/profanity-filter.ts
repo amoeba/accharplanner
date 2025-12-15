@@ -1,71 +1,70 @@
 /**
  * Profanity filter for username validation
- * Checks for inappropriate words and common variations
+ * Uses leo-profanity package for well-maintained word lists
  */
 
-// List of blocked words and patterns
-// This is a basic list - you may want to expand this based on your needs
-const BLOCKED_WORDS = [
-  // Common profanity
-  'fuck', 'shit', 'bitch', 'damn', 'crap', 'ass', 'asshole',
-  'bastard', 'dick', 'cock', 'pussy', 'cunt', 'whore', 'slut',
+import leoProfanity from 'leo-profanity'
 
-  // Slurs and hate speech (partial list - expand as needed)
-  'nigger', 'nigga', 'faggot', 'fag', 'retard', 'retarded',
-  'tranny', 'chink', 'spic', 'kike', 'dyke',
-
-  // Sexual content
-  'porn', 'xxx', 'sex', 'nude', 'naked', 'penis', 'vagina',
-
-  // Violence/harmful
-  'kill', 'murder', 'rape', 'molest', 'terrorist', 'nazi',
-
-  // Scam/spam indicators
-  'admin', 'support', 'official', 'moderator', 'staff',
-
-  // Add more as needed
+// Initialize the filter with English dictionary
+// Also includes additional words that might be used to impersonate staff
+const additionalBlockedWords = [
+  'admin',
+  'administrator',
+  'support',
+  'official',
+  'moderator',
+  'staff',
+  'mod',
+  'owner',
+  'founder'
 ]
 
-// Common leetspeak substitutions
-const LEETSPEAK_MAP: Record<string, string> = {
-  '0': 'o',
-  '1': 'i',
-  '3': 'e',
-  '4': 'a',
-  '5': 's',
-  '7': 't',
-  '8': 'b',
-  '@': 'a',
-  '$': 's',
-  '!': 'i',
-}
-
-/**
- * Normalize text to catch common obfuscation attempts
- */
-function normalizeText(text: string): string {
-  let normalized = text.toLowerCase()
-
-  // Replace leetspeak characters
-  for (const [leet, normal] of Object.entries(LEETSPEAK_MAP)) {
-    normalized = normalized.replaceAll(leet, normal)
+// Initialization function to add custom words
+let initialized = false
+function ensureInitialized() {
+  if (!initialized) {
+    additionalBlockedWords.forEach(word => {
+      leoProfanity.add(word)
+    })
+    initialized = true
   }
-
-  // Remove common separator characters
-  normalized = normalized.replace(/[-_.\s]/g, '')
-
-  return normalized
 }
 
 /**
  * Check if a username contains profanity or inappropriate content
+ * Uses leo-profanity's built-in detection which handles:
+ * - Profane words (whole words and within strings)
+ * - Custom blocked words for staff impersonation
  */
 export function containsProfanity(username: string): boolean {
-  const normalized = normalizeText(username)
+  ensureInitialized()
 
-  // Check if any blocked word is contained in the username
-  for (const word of BLOCKED_WORDS) {
-    if (normalized.includes(word)) {
+  // Check if the whole username is profane (handles whole words)
+  if (leoProfanity.check(username)) {
+    return true
+  }
+
+  // Split by common separators and check each part
+  const parts = username.split(/[_-]/)
+  for (const part of parts) {
+    if (leoProfanity.check(part)) {
+      return true
+    }
+  }
+
+  // Check if any blocked word is contained as a substring
+  const lowerUsername = username.toLowerCase()
+  for (const word of additionalBlockedWords) {
+    if (lowerUsername.includes(word)) {
+      return true
+    }
+  }
+
+  // Get all profane words from leo-profanity and check as substrings
+  // This catches cases like "ass123" where profanity is embedded without separators
+  const profaneWords = leoProfanity.list()
+  for (const word of profaneWords) {
+    if (lowerUsername.includes(word)) {
       return true
     }
   }
@@ -84,3 +83,4 @@ export function validateNoProfanity(username: string): string | null {
 
   return null
 }
+
