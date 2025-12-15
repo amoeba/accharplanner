@@ -43,7 +43,8 @@ async function signUpNewUser() {
     formState.value = FormState.SUCCESS
     submitButtonText.value = originalSubmitButtonText
 
-    await navigateTo("/")
+    // Redirect to onboarding for new users to set up their profile
+    await navigateTo("/onboarding")
   }
 }
 </script>

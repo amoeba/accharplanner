@@ -6,8 +6,8 @@
 // 1. There is a row in the profiles table for the logged-in-user
 // 2. The profile has a valid name set
 export default defineNuxtRouteMiddleware(async (to) => {
-  // Only run if we're not already on /account
-  if (to.path === "/account") {
+  // Only run if we're not already on /onboarding or /account
+  if (to.path === "/onboarding" || to.path === "/account") {
     return;
   }
 
@@ -15,7 +15,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
   const user = useSupabaseUser()
 
   // Don't redirect if we're not logged in
-  if (!user) {
+  if (!user.value) {
     return;
   }
 
@@ -26,15 +26,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
     return
   }
 
-  // Redirect only if no profile exists or profile name exists but isn't set
-  const message = useCookie('message')
-
+  // Check if profile is incomplete (no profile exists or no name is set)
   if (data.length < 1 || !data[0].name) {
-    message.value = "You were redirected because you are logged in but your profile isn't completely set up. Please finish setting up your profile by choosing name below."
+    // Store the URL they were trying to access
+    const redirectUrl = useCookie<string>('onboarding_redirect')
+    redirectUrl.value = to.fullPath
 
-    return navigateTo("/account")
-  } else {
-    message.value = ""
+    return navigateTo("/onboarding")
   }
 
   return;

@@ -222,3 +222,17 @@ export const doesProfileNameAlreadyExist = async function (client: SupabaseClien
     `)
     .eq("name", name)
 }
+
+// Check if the user's account is fully configured
+// An account is considered configured if:
+// 1. A profile exists for the user
+// 2. The profile has a name set
+export const isAccountConfigured = async function (client: SupabaseClient, user: Ref<User | null>) {
+  const { data } = await getProfile(client, user)
+
+  if (!data || data.length < 1) {
+    return false
+  }
+
+  return !!data[0].name
+}
