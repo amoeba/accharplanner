@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import type { ProfileRow } from "~/utils/database.types";
 import { setProfileName, getUserId } from "~/utils/supabase";
+import { validateNoProfanity } from "~/utils/profanity-filter";
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -42,15 +43,26 @@ const validateName = async function (name: string) {
   const out: string = name.trim()
 
   // Validate length
-  if (out.length <= 0) {
-    throw new Error("Name should be at least one character long.")
+  if (out.length < 3) {
+    throw new Error("Username must be at least 3 characters long.")
+  }
+
+  if (out.length > 20) {
+    throw new Error("Username must be 20 characters or less.")
   }
 
   // Validate against our pattern
-  const pattern = /^[a-zA-Z][a-zA-Z0-9 ']{2,}$/
+  // Pattern: starts with letter or number, contains only letters, numbers, hyphens, and underscores
+  const pattern = /^[a-zA-Z0-9][a-zA-Z0-9_-]{2,19}$/
 
   if (!out.match(pattern)) {
-    throw new Error(`Name should match the regex ${pattern}.`)
+    throw new Error("Username must start with a letter or number and contain only letters, numbers, hyphens, and underscores.")
+  }
+
+  // Check for profanity
+  const profanityError = validateNoProfanity(out)
+  if (profanityError) {
+    throw new Error(profanityError)
   }
 
   // Make sure the new name doesn't already exist but be cool with it

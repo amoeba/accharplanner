@@ -2,6 +2,7 @@
 import { ref, watch } from "vue"
 import type { ProfileRow } from "~/utils/database.types";
 import { setProfileName, getUserId, doesProfileNameAlreadyExist } from "~/utils/supabase";
+import { validateNoProfanity } from "~/utils/profanity-filter";
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -70,13 +71,26 @@ const validateUsernameFormat = (name: string): { valid: boolean; message: string
     return { valid: false, message: "Username must be at least 3 characters long." }
   }
 
-  // Pattern: starts with letter, contains only letters, numbers, spaces, and apostrophes
-  const pattern = /^[a-zA-Z][a-zA-Z0-9 ']{2,}$/
+  if (trimmed.length > 20) {
+    return { valid: false, message: "Username must be 20 characters or less." }
+  }
+
+  // Pattern: starts with letter or number, contains only letters, numbers, hyphens, and underscores
+  const pattern = /^[a-zA-Z0-9][a-zA-Z0-9_-]{2,19}$/
 
   if (!trimmed.match(pattern)) {
     return {
       valid: false,
-      message: "Username must start with a letter and contain only letters, numbers, spaces, and apostrophes."
+      message: "Username must start with a letter or number and contain only letters, numbers, hyphens, and underscores."
+    }
+  }
+
+  // Check for profanity
+  const profanityError = validateNoProfanity(trimmed)
+  if (profanityError) {
+    return {
+      valid: false,
+      message: profanityError
     }
   }
 
@@ -266,10 +280,11 @@ const canSubmit = computed(() => {
         <div class="mt-3 text-xs text-gray-500 dark:text-gray-400">
           <p class="font-medium mb-1">Username requirements:</p>
           <ul class="list-disc list-inside space-y-1">
-            <li>At least 3 characters long</li>
-            <li>Must start with a letter</li>
-            <li>Can contain letters, numbers, spaces, and apostrophes</li>
-            <li>Must be unique</li>
+            <li>3-20 characters long</li>
+            <li>Must start with a letter or number</li>
+            <li>Can contain letters, numbers, hyphens (-), and underscores (_)</li>
+            <li>No spaces or special characters</li>
+            <li>Must be unique and appropriate</li>
           </ul>
         </div>
       </div>
