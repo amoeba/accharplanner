@@ -475,7 +475,7 @@ export default {
       buffBonus(state.build.character.attributes.focus.buff) +
       cantripBonus(state.build.character.attributes.focus.cantrip) +
       standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-      (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+      (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
       (state.build.character.items.font_of_joji ? 2 : 0) + // Splendor of the Firebird
       dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
     );
@@ -619,7 +619,7 @@ export default {
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
           standardSetBonus(state.build.character.armor_sets.dextrous.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
           3
       ) +
@@ -660,7 +660,7 @@ export default {
           dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped
           ) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
           3
       ) +
@@ -711,7 +711,7 @@ export default {
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
           standardSetBonus(state.build.character.armor_sets.hearty.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
           2
       ) +
@@ -829,7 +829,7 @@ export default {
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
           standardSetBonus(state.build.character.armor_sets.dextrous.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
           3
       )
@@ -873,7 +873,7 @@ export default {
           dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped
           ) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip) +
@@ -1118,7 +1118,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           standardSetBonus(state.build.character.armor_sets.dextrous.equipped) +
           standardSecondarySetBonus(
@@ -1171,7 +1171,7 @@ export default {
           standardSecondarySetBonus(
             state.build.character.armor_sets.swift.equipped
           ) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
           3
       ) +
@@ -1275,7 +1275,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip) +
@@ -1331,7 +1331,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           standardSetBonus(state.build.character.armor_sets.dextrous.equipped) +
           standardSecondarySetBonus(
@@ -1460,7 +1460,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip) +
@@ -1568,7 +1568,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           standardSetBonus(state.build.character.armor_sets.dextrous.equipped) +
           standardSecondarySetBonus(
@@ -1647,7 +1647,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip) +
@@ -1697,7 +1697,7 @@ export default {
       buffBonus(state.build.character.attributes.focus.buff) +
       cantripBonus(state.build.character.attributes.focus.cantrip) +
       standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-      (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+      (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
       (state.build.character.items.font_of_joji ? 2 : 0) +
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
@@ -1739,7 +1739,7 @@ export default {
           dedicationSetBonus(
             state.build.character.armor_sets.dedication.equipped
           ) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip) +
@@ -2269,7 +2269,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip) +
@@ -2319,7 +2319,7 @@ export default {
             state.build.character.armor_sets.dedication.equipped
           ) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0) +
           buffBonus(state.build.character.attributes.self.buff) +
           cantripBonus(state.build.character.attributes.self.cantrip) +
@@ -2370,7 +2370,7 @@ export default {
           cantripBonus(state.build.character.attributes.focus.cantrip) +
           standardSetBonus(state.build.character.armor_sets.wise.equipped) +
           standardSetBonus(state.build.character.armor_sets.hearty.equipped) +
-          (state.build.character.items.focusing_stone ? 50 : 0) + // Brilliance
+          (state.build.character.items.focusing_stone ? 25 + 50 : 0) + // Concentration + Brilliance
           (state.build.character.items.font_of_joji ? 2 : 0)) /
           2
       ) +
