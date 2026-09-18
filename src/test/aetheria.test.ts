@@ -2,10 +2,25 @@ import { test, expect, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
 import store from "../store/index";
 import Aetheria from "../components/Aetheria.vue";
+import AetheriaSlot from "../components/AetheriaSlot.vue";
+import { aetheriaSetBonusLevel } from "../helpers";
 
 beforeEach(() => {
   store.commit("reset");
+
+  // reset() doesn't touch pane visibility, so keep the pane open for tests
+  // that assert on its contents.
+  if (!store.getters.aetheriaPaneVisible) {
+    store.commit("toggleAetheriaPane");
+  }
 });
+
+const mountPane = () =>
+  mount(Aetheria, {
+    global: {
+      plugins: [store],
+    },
+  });
 
 const equip = (
   slot: string,
@@ -43,6 +58,17 @@ test("Aetheria set bonus level is capped at 10", () => {
 
   // Combined level 15 -> set bonus level 10
   expect(store.getters.aetheriaSetLevels.vigor).toBe(10);
+});
+
+test("The full combined-level to set-bonus-level table is correct", () => {
+  const expected = [0, 1, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 10];
+
+  expected.forEach((bonus, combined) => {
+    expect(aetheriaSetBonusLevel(combined)).toBe(bonus);
+  });
+
+  // Above the table, it stays capped
+  expect(aetheriaSetBonusLevel(100)).toBe(10);
 });
 
 test("Different Aetheria sets are tracked independently", () => {
@@ -134,6 +160,61 @@ test("Vigor and Fury from different sets stack", () => {
   expect(store.getters.staminaBuffed).toBe(stamina + 25 + 5);
   expect(store.getters.manaBuffed).toBe(mana + 25);
   expect(store.getters.enduranceBuffed).toBe(endurance + 5);
+});
+
+test("aetheriaBonuses computes every set's effect at its bonus level", () => {
+  const check = (
+    set: string,
+    level: number,
+    expected: Record<string, number>
+  ) => {
+    store.commit("reset");
+    equip("blue", set, level);
+
+    const bonuses = store.getters.aetheriaBonuses;
+
+    Object.keys(expected).forEach((key) => {
+      expect((bonuses as any)[key]).toBe(expected[key]);
+    });
+  };
+
+  check("growth", 3, { healingRating: 3, dotReduction: 12 });
+  check("defense", 4, { damageReduction: 4 });
+  check("fury", 2, { critRating: 2, endurance: 2 });
+  check("destruction", 5, { damageRating: 5 });
+  check("vigor", 3, {
+    health: 3,
+    stamina: 15,
+    mana: 15,
+    drainReduction: 12,
+  });
+});
+
+test("Aetheria does not change base vitals", () => {
+  const health = store.getters.healthBase;
+  const stamina = store.getters.staminaBase;
+  const endurance = store.getters.enduranceBase;
+
+  equip("blue", "vigor", 5);
+  equip("yellow", "fury", 5);
+
+  expect(store.getters.healthBase).toBe(health);
+  expect(store.getters.staminaBase).toBe(stamina);
+  expect(store.getters.enduranceBase).toBe(endurance);
+});
+
+test("Sigil of Vigor health is scaled by Asheron's Benediction", () => {
+  store.commit("updateAugmentationInvested", {
+    name: "asherons_benediction",
+    value: 1,
+  });
+
+  const before = store.getters.healthBuffed;
+
+  equip("blue", "vigor", 2);
+
+  // +2 health, multiplied by the 10% Benediction bonus
+  expect(store.getters.healthBuffed).toBeCloseTo(before + 2 * 1.1);
 });
 
 // --- Mutations ---
@@ -250,11 +331,7 @@ test("Surges are display-only and do not change stats", () => {
 // --- Component rendering ---
 
 test("Aetheria pane renders each color and its level requirement", () => {
-  const wrapper = mount(Aetheria, {
-    global: {
-      plugins: [store],
-    },
-  });
+  const wrapper = mountPane();
 
   const text = wrapper.text();
 
@@ -266,16 +343,117 @@ test("Aetheria pane renders each color and its level requirement", () => {
   expect(text).toContain("Lvl 225+");
 });
 
+test("Aetheria pane renders three slot rows", () => {
+  const wrapper = mountPane();
+
+  expect(wrapper.findAllComponents(AetheriaSlot)).toHaveLength(3);
+});
+
+test("Each slot offers every set, surge, and level", () => {
+  const wrapper = mountPane();
+  const selects = wrapper.findAllComponents(AetheriaSlot)[0].findAll("select");
+
+  expect(selects).toHaveLength(3);
+
+  // Set: None + 5 sigils
+  expect(selects[0].findAll("option")).toHaveLength(6);
+  expect(selects[0].text()).toContain("Sigil of Vigor");
+  expect(selects[0].text()).toContain("Sigil of Growth");
+
+  // Surge: None + 5 surges
+  expect(selects[1].findAll("option")).toHaveLength(6);
+  expect(selects[1].text()).toContain("Surge of Destruction");
+  expect(selects[1].text()).toContain("Surge of Festering");
+
+  // Level: 0-5
+  expect(selects[2].findAll("option")).toHaveLength(6);
+});
+
+test("Level and surge selects are disabled until a set is chosen", async () => {
+  const wrapper = mountPane();
+
+  let selects = wrapper.findAllComponents(AetheriaSlot)[0].findAll("select");
+  expect(selects[1].attributes("disabled")).toBeDefined();
+  expect(selects[2].attributes("disabled")).toBeDefined();
+
+  await selects[0].setValue("vigor");
+  await wrapper.vm.$nextTick();
+
+  selects = wrapper.findAllComponents(AetheriaSlot)[0].findAll("select");
+  expect(selects[1].attributes("disabled")).toBeUndefined();
+  expect(selects[2].attributes("disabled")).toBeUndefined();
+});
+
+test("Choosing a set, surge, and level in the pane updates the planner", async () => {
+  const wrapper = mountPane();
+  const base = store.getters.healthBuffed;
+
+  await wrapper
+    .findAllComponents(AetheriaSlot)[0]
+    .findAll("select")[0]
+    .setValue("vigor");
+  await wrapper.vm.$nextTick();
+
+  const selects = wrapper.findAllComponents(AetheriaSlot)[0].findAll("select");
+  await selects[1].setValue("destruction");
+  await selects[2].setValue(2);
+
+  expect(store.state.build.character.aetheria.blue.set).toBe("vigor");
+  expect(store.state.build.character.aetheria.blue.surge).toBe("destruction");
+  expect(store.state.build.character.aetheria.blue.level).toBe(2);
+  expect(store.getters.healthBuffed).toBe(base + 2);
+});
+
+test("Clearing the set through the pane also clears the level", async () => {
+  equip("blue", "vigor", 3);
+
+  const wrapper = mountPane();
+
+  await wrapper
+    .findAllComponents(AetheriaSlot)[0]
+    .findAll("select")[0]
+    .setValue("");
+
+  expect(store.state.build.character.aetheria.blue.set).toBeNull();
+  expect(store.state.build.character.aetheria.blue.level).toBe(0);
+});
+
 test("Aetheria pane surfaces the level requirement error", () => {
   store.commit("updateLevel", 50);
   equip("blue", "vigor", 1);
 
-  const wrapper = mount(Aetheria, {
-    global: {
-      plugins: [store],
-    },
-  });
+  const wrapper = mountPane();
 
   expect(wrapper.text()).toContain("Aetheria requires a higher level");
   expect(wrapper.find(".error").exists()).toBe(true);
+});
+
+test("The row label turns red when the level requirement is not met", () => {
+  store.commit("updateLevel", 50);
+  equip("blue", "vigor", 1);
+
+  const wrapper = mountPane();
+  const firstRow = wrapper.findAllComponents(AetheriaSlot)[0];
+
+  expect(firstRow.find("td").classes()).toContain("red");
+});
+
+test("The row label is not red when the level requirement is met", () => {
+  store.commit("updateLevel", 225);
+  equip("blue", "vigor", 1);
+
+  const wrapper = mountPane();
+  const firstRow = wrapper.findAllComponents(AetheriaSlot)[0];
+
+  expect(firstRow.find("td").classes()).not.toContain("red");
+});
+
+test("Clicking the pane header toggles its visibility", async () => {
+  const wrapper = mountPane();
+
+  expect(store.getters.aetheriaPaneVisible).toBe(true);
+
+  await wrapper.find(".pane-header").trigger("click");
+
+  expect(store.getters.aetheriaPaneVisible).toBe(false);
 });
