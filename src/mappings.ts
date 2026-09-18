@@ -271,6 +271,7 @@ export const ITEM_NAME = {
   [Item.font_of_joji]: "Font of Joji",
   [Item.red_colosseum_ring]: "Red Colosseum Ring",
   [Item.yellow_colosseum_ring]: "Yellow Colosseum Ring",
+  [Item.item_with_hematite_salvage]: "Item with Hematite Salvage",
   [Item.trinket_augmented_stamina_i]: "Augmented Stamina I",
   [Item.trinket_augmented_stamina_ii]: "Augmented Stamina II",
   [Item.trinket_augmented_stamina_iii]: "Augmented Stamina III",

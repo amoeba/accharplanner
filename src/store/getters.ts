@@ -533,6 +533,7 @@ export default {
         ) /
           2 +
         (state.build.character.items.red_colosseum_ring ? 30 : 0) + // Essence Glutton
+        (state.build.character.items.item_with_hematite_salvage ? 10 : 0) + // Warrior's Vitality
         (state.build.character.items.trinket_augmented_health_i ? 5 : 0) + // Augmented Health I
         (state.build.character.items.trinket_augmented_health_ii ? 10 : 0) + // Augmented Health II
         (state.build.character.items.trinket_augmented_health_iii ? 15 : 0)) * // Augmented Health III

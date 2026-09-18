@@ -8,6 +8,7 @@ const ALL_ITEMS = [
   "font_of_joji",
   "red_colosseum_ring",
   "yellow_colosseum_ring",
+  "item_with_hematite_salvage",
   "trinket_augmented_stamina_i",
   "trinket_augmented_stamina_ii",
   "trinket_augmented_stamina_iii",
@@ -56,6 +57,14 @@ test("Yellow Colosseum Ring increases buffed Arcane Lore by 60 (Empyrean Enlight
   store.commit("updateItem", { id: "yellow_colosseum_ring", value: true });
 
   expect(store.getters.arcane_loreBuffed).toBe(base + 60);
+});
+
+test("Item with Hematite Salvage increases buffed health by 10 (Warrior's Vitality)", () => {
+  const base = store.getters.healthBuffed;
+
+  store.commit("updateItem", { id: "item_with_hematite_salvage", value: true });
+
+  expect(store.getters.healthBuffed).toBe(base + 10);
 });
 
 test("Colosseum Ring set bonus does not apply with only one ring equipped", () => {
@@ -216,6 +225,7 @@ test("Items pane renders rings, grouped trinket imbues, and group headers", () =
 
   expect(text).toContain("Red Colosseum Ring");
   expect(text).toContain("Yellow Colosseum Ring");
+  expect(text).toContain("Item with Hematite Salvage");
 
   expect(text).toContain("Trinket — Minor");
   expect(text).toContain("Trinket — Moderate");

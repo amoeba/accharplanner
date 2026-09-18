@@ -488,6 +488,7 @@ export default function (): Character {
       font_of_joji: false,
       red_colosseum_ring: false,
       yellow_colosseum_ring: false,
+      item_with_hematite_salvage: false,
       trinket_augmented_stamina_i: false,
       trinket_augmented_stamina_ii: false,
       trinket_augmented_stamina_iii: false,

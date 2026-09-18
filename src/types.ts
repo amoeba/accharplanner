@@ -259,6 +259,7 @@ export enum Item {
   font_of_joji = "font_of_joji",
   red_colosseum_ring = "red_colosseum_ring",
   yellow_colosseum_ring = "yellow_colosseum_ring",
+  item_with_hematite_salvage = "item_with_hematite_salvage",
   trinket_augmented_stamina_i = "trinket_augmented_stamina_i",
   trinket_augmented_stamina_ii = "trinket_augmented_stamina_ii",
   trinket_augmented_stamina_iii = "trinket_augmented_stamina_iii",

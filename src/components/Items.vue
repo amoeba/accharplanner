@@ -12,6 +12,7 @@
           <Item id="font_of_joji" />
           <Item id="red_colosseum_ring" />
           <Item id="yellow_colosseum_ring" />
+          <Item id="item_with_hematite_salvage" />
 
           <li class="item-group-header">Trinket &mdash; Minor</li>
           <Item id="trinket_augmented_stamina_i" />
