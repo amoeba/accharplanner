@@ -14,6 +14,8 @@ import {
   LUMINANCE_AURA_COST,
   MAX_CREATION_ATTRIBUTE_TOTAL_POINTS,
   MAX_LEVEL,
+  AETHERIA_COLORS,
+  AETHERIA_MIN_LEVEL_BY_COLOR,
 } from "../constants";
 import {
   trainingBonus,
@@ -24,7 +26,10 @@ import {
   standardSecondarySetBonus,
   wiseSetManaBonus,
   dedicationSetBonus,
+  aetheriaSetBonusLevelsBySet,
+  computeAetheriaBonuses,
 } from "../helpers";
+import { AETHERIA_COLOR_NAME } from "../mappings";
 import { State } from "../types";
 import { Attribute, Skill, Training, Race, Augmentation } from "../types";
 
@@ -47,6 +52,9 @@ export default {
   },
   armorSetsPaneVisible: (state: State) => {
     return state.ui.paneVisibility.armor_sets;
+  },
+  aetheriaPaneVisible: (state: State) => {
+    return state.ui.paneVisibility.aetheria;
   },
   buildStagesPaneVisible: (state: State) => {
     return state.ui.paneVisibility.buildStages;
@@ -400,7 +408,8 @@ export default {
       buffBonus(state.build.character.attributes.endurance.buff) +
       cantripBonus(state.build.character.attributes.endurance.cantrip) +
       standardSetBonus(state.build.character.armor_sets.hearty.equipped) +
-      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped) +
+      getters.aetheriaBonuses.endurance // Sigil of Fury
     );
   },
   coordinationInnate: (state: State) => {
@@ -535,7 +544,9 @@ export default {
         (state.build.character.items.red_colosseum_ring ? 30 : 0) + // Essence Glutton
         (state.build.character.items.trinket_augmented_health_i ? 5 : 0) + // Augmented Health I
         (state.build.character.items.trinket_augmented_health_ii ? 10 : 0) + // Augmented Health II
-        (state.build.character.items.trinket_augmented_health_iii ? 15 : 0)) * // Augmented Health III
+        (state.build.character.items.trinket_augmented_health_iii ? 15 : 0) + // Augmented Health III
+        getters.aetheriaBonuses.health + // Sigil of Vigor
+        getters.aetheriaBonuses.endurance / 2) * // Sigil of Fury
       benediction_bonus
     );
   },
@@ -562,7 +573,9 @@ export default {
       (state.build.character.items.yellow_colosseum_ring ? 100 : 0) + // Empyrean Stamina Absorbtion
       (state.build.character.items.trinket_augmented_stamina_i ? 10 : 0) + // Augmented Stamina I
       (state.build.character.items.trinket_augmented_stamina_ii ? 20 : 0) + // Augmented Stamina II
-      (state.build.character.items.trinket_augmented_stamina_iii ? 30 : 0) // Augmented Stamina III
+      (state.build.character.items.trinket_augmented_stamina_iii ? 30 : 0) + // Augmented Stamina III
+      getters.aetheriaBonuses.stamina + // Sigil of Vigor
+      getters.aetheriaBonuses.endurance // Sigil of Fury
     );
   },
   manaCreation: (state: State) => {
@@ -586,7 +599,8 @@ export default {
         (state.build.character.items.focusing_stone ? -50 : 0) + // Malediction
         (state.build.character.items.trinket_augmented_mana_i ? 10 : 0) + // Augmented Mana I
         (state.build.character.items.trinket_augmented_mana_ii ? 20 : 0) + // Augmented Mana II
-        (state.build.character.items.trinket_augmented_mana_iii ? 30 : 0), // Augmented Mana III
+        (state.build.character.items.trinket_augmented_mana_iii ? 30 : 0) + // Augmented Mana III
+        getters.aetheriaBonuses.mana, // Sigil of Vigor
       0
     );
   },
@@ -2511,6 +2525,49 @@ export default {
     }
 
     return null;
+  },
+
+  // Aetheria
+  aetheriaSetLevels: (state: State) => {
+    return aetheriaSetBonusLevelsBySet(state.build.character.aetheria);
+  },
+  aetheriaBonuses: (state: State) => {
+    return computeAetheriaBonuses(state.build.character.aetheria);
+  },
+  aetheriaErrors: (state: State) => {
+    const character = state.build.character;
+
+    const tooLow = AETHERIA_COLORS.filter((color) => {
+      const slot = character.aetheria[color];
+
+      return (
+        slot &&
+        slot.set &&
+        character.level < AETHERIA_MIN_LEVEL_BY_COLOR[color]
+      );
+    });
+
+    if (tooLow.length === 0) {
+      return null;
+    }
+
+    const requirements = tooLow
+      .map(
+        (color) =>
+          AETHERIA_COLOR_NAME[color] +
+          " (" +
+          AETHERIA_MIN_LEVEL_BY_COLOR[color] +
+          "+)"
+      )
+      .join(", ");
+
+    return (
+      "Aetheria requires a higher level: " +
+      requirements +
+      ". You are level " +
+      character.level +
+      "."
+    );
   },
 
   // Modals
