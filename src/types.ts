@@ -20,6 +20,8 @@ export interface Character {
   luminance_auras: any;
   items: any;
   armor_sets: any;
+  cloaks: any;
+  aetheria: any;
 }
 
 enum NotificationType {
@@ -46,6 +48,8 @@ export interface PaneVisibility {
   auras: boolean;
   items: boolean;
   armor_sets: boolean;
+  cloaks: boolean;
+  aetheria: boolean;
   buildStages: boolean;
   character: boolean;
   xpAndLuminance: boolean;
@@ -277,6 +281,18 @@ export enum Item {
   trinket_augmented_mana_i = "trinket_augmented_mana_i",
   trinket_augmented_mana_ii = "trinket_augmented_mana_ii",
   trinket_augmented_mana_iii = "trinket_augmented_mana_iii",
+}
+
+export enum Cloak {
+  cloaked_in_skill = "cloaked_in_skill",
+  damage = "damage",
+  damage_reduction = "damage_reduction",
+}
+
+export enum AetheriaColor {
+  blue = "blue",
+  yellow = "yellow",
+  red = "red",
 }
 
 export enum ArmorSet {

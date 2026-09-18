@@ -542,5 +542,24 @@ export default function (): Character {
         equipped: 0,
       },
     },
+    cloaks: {
+      cloaked_in_skill: false,
+      damage: 0,
+      damage_reduction: 0,
+    },
+    aetheria: {
+      slot_1: {
+        color: null,
+        level: 0,
+      },
+      slot_2: {
+        color: null,
+        level: 0,
+      },
+      slot_3: {
+        color: null,
+        level: 0,
+      },
+    },
   };
 }

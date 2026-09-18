@@ -55,6 +55,12 @@ export default {
   toggleArmorSetsPane(state: State) {
     state.ui.paneVisibility.armor_sets = !state.ui.paneVisibility.armor_sets;
   },
+  toggleCloaksPane(state: State) {
+    state.ui.paneVisibility.cloaks = !state.ui.paneVisibility.cloaks;
+  },
+  toggleAetheriaPane(state: State) {
+    state.ui.paneVisibility.aetheria = !state.ui.paneVisibility.aetheria;
+  },
   toggleBuildStagesPane(state: State) {
     state.ui.paneVisibility.buildStages = !state.ui.paneVisibility.buildStages;
   },
@@ -222,6 +228,30 @@ export default {
   },
   updateArmorSet(state: State, payload: any) {
     state.build.character.armor_sets[payload.id].equipped = payload.value;
+  },
+  updateCloak(state: State, payload: any) {
+    if (payload.id === "cloaked_in_skill") {
+      state.build.character.cloaks.cloaked_in_skill = payload.value;
+    } else {
+      // Damage and damage reduction are mutually exclusive on a single cloak
+      if (payload.id === "damage" && Number(payload.value) > 0) {
+        state.build.character.cloaks.damage_reduction = 0;
+      } else if (payload.id === "damage_reduction" && Number(payload.value) > 0) {
+        state.build.character.cloaks.damage = 0;
+      }
+      state.build.character.cloaks[payload.id] = Number(payload.value);
+    }
+  },
+  updateAetheria(state: State, payload: any) {
+    if (payload.field === "color") {
+      state.build.character.aetheria[payload.slot].color = payload.value || null;
+      // Reset level if color is cleared
+      if (!payload.value) {
+        state.build.character.aetheria[payload.slot].level = 0;
+      }
+    } else if (payload.field === "level") {
+      state.build.character.aetheria[payload.slot].level = Number(payload.value);
+    }
   },
   updateAttributeCreation(state: State, payload: any) {
     let newVal = Number(payload.value);

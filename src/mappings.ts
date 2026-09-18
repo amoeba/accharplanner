@@ -6,6 +6,8 @@ import {
   LuminanceAura,
   Item,
   ArmorSet,
+  Cloak,
+  AetheriaColor,
   NumberIndexedDict,
 } from "./types";
 
@@ -319,4 +321,31 @@ export const ARMOR_SET_NAME_EXTRA_INFO = {
   [ArmorSet.swift]: "Jump, Run, SA, DW, Finesse",
   [ArmorSet.tinkers]: "All Tinkering, Salvaging",
   [ArmorSet.wise]: "Focus, Willpower, Summoning, Mana",
+};
+
+export const CLOAK_NAME = {
+  [Cloak.cloaked_in_skill]: "Cloaked in Skill",
+  [Cloak.damage]: "Damage",
+  [Cloak.damage_reduction]: "Damage Reduction",
+};
+
+export const CLOAK_EXTRA_INFO = {
+  [Cloak.cloaked_in_skill]: "+20 All Skills",
+  [Cloak.damage]: "+0 to +3 Damage Rating",
+  [Cloak.damage_reduction]: "+0 to +3 Damage Reduction Rating",
+};
+
+export const AETHERIA_COLOR_NAME = {
+  [AetheriaColor.blue]: "Blue (Protection)",
+  [AetheriaColor.yellow]: "Yellow (Destruction)",
+  [AetheriaColor.red]: "Red (Regeneration)",
+};
+
+export const AETHERIA_LEVEL_NAME: NumberIndexedDict<string> = {
+  0: "None",
+  1: "Coalesced",
+  2: "Luminance",
+  3: "Fettered",
+  4: "Empowered",
+  5: "Unleashed",
 };
