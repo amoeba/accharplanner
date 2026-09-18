@@ -57,3 +57,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+</style>
