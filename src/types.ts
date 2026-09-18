@@ -257,6 +257,26 @@ export enum LuminanceAura {
 export enum Item {
   focusing_stone = "focusing_stone",
   font_of_joji = "font_of_joji",
+  red_colosseum_ring = "red_colosseum_ring",
+  yellow_colosseum_ring = "yellow_colosseum_ring",
+  trinket_augmented_stamina_i = "trinket_augmented_stamina_i",
+  trinket_augmented_stamina_ii = "trinket_augmented_stamina_ii",
+  trinket_augmented_stamina_iii = "trinket_augmented_stamina_iii",
+  trinket_augmented_damage_i = "trinket_augmented_damage_i",
+  trinket_augmented_damage_ii = "trinket_augmented_damage_ii",
+  trinket_augmented_damage_iii = "trinket_augmented_damage_iii",
+  trinket_augmented_damage_reduction_i = "trinket_augmented_damage_reduction_i",
+  trinket_augmented_damage_reduction_ii = "trinket_augmented_damage_reduction_ii",
+  trinket_augmented_damage_reduction_iii = "trinket_augmented_damage_reduction_iii",
+  trinket_augmented_understanding_i = "trinket_augmented_understanding_i",
+  trinket_augmented_understanding_ii = "trinket_augmented_understanding_ii",
+  trinket_augmented_understanding_iii = "trinket_augmented_understanding_iii",
+  trinket_augmented_health_i = "trinket_augmented_health_i",
+  trinket_augmented_health_ii = "trinket_augmented_health_ii",
+  trinket_augmented_health_iii = "trinket_augmented_health_iii",
+  trinket_augmented_mana_i = "trinket_augmented_mana_i",
+  trinket_augmented_mana_ii = "trinket_augmented_mana_ii",
+  trinket_augmented_mana_iii = "trinket_augmented_mana_iii",
 }
 
 export enum ArmorSet {

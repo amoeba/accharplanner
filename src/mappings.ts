@@ -269,6 +269,28 @@ export const LUMINANCE_AURA_EXTRA_INFO = {
 export const ITEM_NAME = {
   [Item.focusing_stone]: "Focusing Stone",
   [Item.font_of_joji]: "Font of Joji",
+  [Item.red_colosseum_ring]: "Red Colosseum Ring",
+  [Item.yellow_colosseum_ring]: "Yellow Colosseum Ring",
+  [Item.trinket_augmented_stamina_i]: "Augmented Stamina I",
+  [Item.trinket_augmented_stamina_ii]: "Augmented Stamina II",
+  [Item.trinket_augmented_stamina_iii]: "Augmented Stamina III",
+  [Item.trinket_augmented_damage_i]: "Augmented Damage I",
+  [Item.trinket_augmented_damage_ii]: "Augmented Damage II",
+  [Item.trinket_augmented_damage_iii]: "Augmented Damage III",
+  [Item.trinket_augmented_damage_reduction_i]: "Augmented Damage Reduction I",
+  [Item.trinket_augmented_damage_reduction_ii]:
+    "Augmented Damage Reduction II",
+  [Item.trinket_augmented_damage_reduction_iii]:
+    "Augmented Damage Reduction III",
+  [Item.trinket_augmented_understanding_i]: "Augmented Understanding I",
+  [Item.trinket_augmented_understanding_ii]: "Augmented Understanding II",
+  [Item.trinket_augmented_understanding_iii]: "Augmented Understanding III",
+  [Item.trinket_augmented_health_i]: "Augmented Health I",
+  [Item.trinket_augmented_health_ii]: "Augmented Health II",
+  [Item.trinket_augmented_health_iii]: "Augmented Health III",
+  [Item.trinket_augmented_mana_i]: "Augmented Mana I",
+  [Item.trinket_augmented_mana_ii]: "Augmented Mana II",
+  [Item.trinket_augmented_mana_iii]: "Augmented Mana III",
 };
 
 export const ARMOR_SET_NAME = {

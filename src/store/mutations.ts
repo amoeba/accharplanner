@@ -199,6 +199,26 @@ export default {
 
   updateItem(state: State, payload: any) {
     state.build.character.items[payload.id] = payload.value;
+
+    // Trinket imbues are mutually exclusive within each slot tier: a
+    // trinket can have at most one Minor, one Moderate, and one Major
+    // imbue. Checking one unchecks the others in the same tier.
+    if (payload.value === true && payload.id.startsWith("trinket_")) {
+      const tier = payload.id.match(/_(i|ii|iii)$/)?.[1];
+
+      if (tier) {
+        Object.keys(state.build.character.items)
+          .filter(
+            (key) =>
+              key.startsWith("trinket_") &&
+              key.endsWith(`_${tier}`) &&
+              key !== payload.id
+          )
+          .forEach((key) => {
+            state.build.character.items[key] = false;
+          });
+      }
+    }
   },
   updateArmorSet(state: State, payload: any) {
     state.build.character.armor_sets[payload.id].equipped = payload.value;
