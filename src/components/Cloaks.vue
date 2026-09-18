@@ -69,6 +69,10 @@
             </tr>
           </tbody>
         </table>
+        <p class="note">
+          Only one cloak may be equipped. Damage and Damage Reduction ratings
+          are mutually exclusive.
+        </p>
       </div>
     </div>
   </div>
@@ -122,3 +126,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.note {
+  font-size: 0.85em;
+  opacity: 0.7;
+  margin-top: 0.5em;
+}
+</style>

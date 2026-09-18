@@ -233,6 +233,12 @@ export default {
     if (payload.id === "cloaked_in_skill") {
       state.build.character.cloaks.cloaked_in_skill = payload.value;
     } else {
+      // Damage and damage reduction are mutually exclusive on a single cloak
+      if (payload.id === "damage" && Number(payload.value) > 0) {
+        state.build.character.cloaks.damage_reduction = 0;
+      } else if (payload.id === "damage_reduction" && Number(payload.value) > 0) {
+        state.build.character.cloaks.damage = 0;
+      }
       state.build.character.cloaks[payload.id] = Number(payload.value);
     }
   },
