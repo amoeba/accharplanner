@@ -531,7 +531,11 @@ export default {
         dedicationSetBonus(
           state.build.character.armor_sets.dedication.equipped
         ) /
-          2) *
+          2 +
+        (state.build.character.items.red_colosseum_ring ? 30 : 0) + // Essence Glutton
+        (state.build.character.items.trinket_augmented_health_i ? 5 : 0) + // Augmented Health I
+        (state.build.character.items.trinket_augmented_health_ii ? 10 : 0) + // Augmented Health II
+        (state.build.character.items.trinket_augmented_health_iii ? 15 : 0)) * // Augmented Health III
       benediction_bonus
     );
   },
@@ -554,7 +558,11 @@ export default {
       standardSecondarySetBonus(
         state.build.character.armor_sets.dextrous.equipped
       ) +
-      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped)
+      dedicationSetBonus(state.build.character.armor_sets.dedication.equipped) +
+      (state.build.character.items.yellow_colosseum_ring ? 100 : 0) + // Empyrean Stamina Absorbtion
+      (state.build.character.items.trinket_augmented_stamina_i ? 10 : 0) + // Augmented Stamina I
+      (state.build.character.items.trinket_augmented_stamina_ii ? 20 : 0) + // Augmented Stamina II
+      (state.build.character.items.trinket_augmented_stamina_iii ? 30 : 0) // Augmented Stamina III
     );
   },
   manaCreation: (state: State) => {
@@ -575,7 +583,10 @@ export default {
         dedicationSetBonus(
           state.build.character.armor_sets.dedication.equipped
         ) +
-        (state.build.character.items.focusing_stone ? -50 : 0), // Malediction
+        (state.build.character.items.focusing_stone ? -50 : 0) + // Malediction
+        (state.build.character.items.trinket_augmented_mana_i ? 10 : 0) + // Augmented Mana I
+        (state.build.character.items.trinket_augmented_mana_ii ? 20 : 0) + // Augmented Mana II
+        (state.build.character.items.trinket_augmented_mana_iii ? 30 : 0), // Augmented Mana III
       0
     );
   },
@@ -670,7 +681,8 @@ export default {
       (state.build.character.skills.arcane_lore.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
-        : 0)
+        : 0) +
+      (state.build.character.items.yellow_colosseum_ring ? 60 : 0) // Empyrean Enlightenment
     );
   },
   armor_tinkeringBase: (state: State, getters: any) => {
@@ -1663,7 +1675,11 @@ export default {
       (state.build.character.skills.magic_defense.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
-        : 0)
+        : 0) +
+      (state.build.character.items.red_colosseum_ring &&
+      state.build.character.items.yellow_colosseum_ring
+        ? 40
+        : 0) // Web of Resistance (both Colosseum Rings equipped)
     );
   },
   magic_item_tinkeringBase: (state: State, getters: any) => {
@@ -1811,7 +1827,11 @@ export default {
       (state.build.character.skills.melee_defense.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
-        : 0)
+        : 0) +
+      (state.build.character.items.red_colosseum_ring &&
+      state.build.character.items.yellow_colosseum_ring
+        ? 40
+        : 0) // Web of Defense (both Colosseum Rings equipped)
     );
   },
   missile_defenseBase: (state: State, getters: any) => {
@@ -1869,7 +1889,11 @@ export default {
       (state.build.character.skills.missile_defense.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
-        : 0)
+        : 0) +
+      (state.build.character.items.red_colosseum_ring &&
+      state.build.character.items.yellow_colosseum_ring
+        ? 40
+        : 0) // Web of Deflection (both Colosseum Rings equipped)
     );
   },
   missile_weaponsBase: (state: State, getters: any) => {
