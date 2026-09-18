@@ -542,5 +542,22 @@ export default function (): Character {
         equipped: 0,
       },
     },
+    aetheria: {
+      blue: {
+        set: null,
+        surge: null,
+        level: 0,
+      },
+      yellow: {
+        set: null,
+        surge: null,
+        level: 0,
+      },
+      red: {
+        set: null,
+        surge: null,
+        level: 0,
+      },
+    },
   };
 }

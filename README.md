@@ -23,7 +23,7 @@ This isn't the first skill planner for AC:
   - [ ] Temporary bonuses
     - [ ] Rares
     - [ ] Cloaks
-    - [ ] Aetheria
+    - [x] Aetheria
 
 ## Development
 

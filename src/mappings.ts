@@ -6,7 +6,11 @@ import {
   LuminanceAura,
   Item,
   ArmorSet,
+  AetheriaColor,
+  AetheriaSet,
+  AetheriaSurge,
   NumberIndexedDict,
+  StringIndexedDict,
 } from "./types";
 
 export const ATTRIBUTE_NAME = {
@@ -319,4 +323,48 @@ export const ARMOR_SET_NAME_EXTRA_INFO = {
   [ArmorSet.swift]: "Jump, Run, SA, DW, Finesse",
   [ArmorSet.tinkers]: "All Tinkering, Salvaging",
   [ArmorSet.wise]: "Focus, Willpower, Summoning, Mana",
+};
+
+export const AETHERIA_COLOR_NAME: StringIndexedDict<string> = {
+  [AetheriaColor.blue]: "Blue",
+  [AetheriaColor.yellow]: "Yellow",
+  [AetheriaColor.red]: "Red",
+};
+
+export const AETHERIA_COLOR_EXTRA_INFO: StringIndexedDict<string> = {
+  [AetheriaColor.blue]: "Lvl 75+",
+  [AetheriaColor.yellow]: "Lvl 150+",
+  [AetheriaColor.red]: "Lvl 225+",
+};
+
+export const AETHERIA_SET_NAME: StringIndexedDict<string> = {
+  [AetheriaSet.growth]: "Sigil of Growth",
+  [AetheriaSet.defense]: "Sigil of Defense",
+  [AetheriaSet.fury]: "Sigil of Fury",
+  [AetheriaSet.destruction]: "Sigil of Destruction",
+  [AetheriaSet.vigor]: "Sigil of Vigor",
+};
+
+export const AETHERIA_SET_EXTRA_INFO: StringIndexedDict<string> = {
+  [AetheriaSet.growth]: "Healing Rating, DoT Reduction",
+  [AetheriaSet.defense]: "Damage Reduction",
+  [AetheriaSet.fury]: "Crit Rating, Endurance",
+  [AetheriaSet.destruction]: "Damage Rating",
+  [AetheriaSet.vigor]: "Health, Stamina, Mana",
+};
+
+export const AETHERIA_SURGE_NAME: StringIndexedDict<string> = {
+  [AetheriaSurge.destruction]: "Surge of Destruction",
+  [AetheriaSurge.protection]: "Surge of Protection",
+  [AetheriaSurge.regeneration]: "Surge of Regeneration",
+  [AetheriaSurge.affliction]: "Surge of Affliction",
+  [AetheriaSurge.festering]: "Surge of Festering",
+};
+
+export const AETHERIA_SURGE_EXTRA_INFO: StringIndexedDict<string> = {
+  [AetheriaSurge.destruction]: "+20 Dmg Rating, 10s",
+  [AetheriaSurge.protection]: "+20 Dmg Reduction, 10s",
+  [AetheriaSurge.regeneration]: "Heal 150 over 19s",
+  [AetheriaSurge.affliction]: "Target loses 150 over 19s",
+  [AetheriaSurge.festering]: "-20 Healing Reduction, 20s",
 };

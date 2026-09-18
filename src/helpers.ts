@@ -3,8 +3,12 @@ import {
   MAX_SKILL_INVESTED_SPECIALIZED,
   MAX_SKILL_INVESTED_TRAINED,
   MIN_CREATION_ATTRIBUTE_POINTS,
+  AETHERIA_COLORS,
+  AETHERIA_SETS,
+  AETHERIA_SET_BONUS_LEVEL,
+  AETHERIA_SET_EFFECTS,
 } from "./constants";
-import { Training } from "./types";
+import { Training, AetheriaBonuses, StringIndexedDict } from "./types";
 
 /**
  * Specialized skills were given a free +10 bonus. Skills trained at creation
@@ -211,4 +215,85 @@ export const maxSkillInvested = (training: Training) => {
     return MAX_SKILL_INVESTED_TRAINED;
   else
     return 0;
+};
+
+/**
+ * Aetheria set bonuses are driven by the combined level of all equipped
+ * Aetheria in the same set, mapped to a capped "set bonus level" with
+ * diminishing returns.
+ */
+export const aetheriaSetBonusLevel = (combined: number): number => {
+  const max = Object.keys(AETHERIA_SET_BONUS_LEVEL).length - 1;
+  const clamped = Math.max(0, Math.min(combined, max));
+
+  return AETHERIA_SET_BONUS_LEVEL[clamped] || 0;
+};
+
+// Sum the equipped levels of the three slots by set.
+export const aetheriaCombinedLevelsBySet = (
+  aetheria: any
+): StringIndexedDict<number> => {
+  const combined: StringIndexedDict<number> = {};
+
+  AETHERIA_SETS.forEach((set) => {
+    combined[set] = 0;
+  });
+
+  AETHERIA_COLORS.forEach((color) => {
+    const slot = aetheria && aetheria[color];
+
+    if (slot && slot.set && slot.level > 0) {
+      combined[slot.set] = (combined[slot.set] || 0) + slot.level;
+    }
+  });
+
+  return combined;
+};
+
+// Map each set's combined level to its (capped) set bonus level.
+export const aetheriaSetBonusLevelsBySet = (
+  aetheria: any
+): StringIndexedDict<number> => {
+  const combined = aetheriaCombinedLevelsBySet(aetheria);
+  const levels: StringIndexedDict<number> = {};
+
+  AETHERIA_SETS.forEach((set) => {
+    levels[set] = aetheriaSetBonusLevel(combined[set]);
+  });
+
+  return levels;
+};
+
+// Aggregate every set's effect at its current bonus level.
+export const computeAetheriaBonuses = (aetheria: any): AetheriaBonuses => {
+  const levels = aetheriaSetBonusLevelsBySet(aetheria);
+
+  const bonuses: AetheriaBonuses = {
+    health: 0,
+    stamina: 0,
+    mana: 0,
+    endurance: 0,
+    healingRating: 0,
+    damageRating: 0,
+    damageReduction: 0,
+    critRating: 0,
+    dotReduction: 0,
+    drainReduction: 0,
+  };
+
+  AETHERIA_SETS.forEach((set) => {
+    const level = levels[set];
+
+    if (!level) {
+      return;
+    }
+
+    const effects = AETHERIA_SET_EFFECTS[set] || {};
+
+    Object.keys(effects).forEach((effect) => {
+      (bonuses as any)[effect] += effects[effect] * level;
+    });
+  });
+
+  return bonuses;
 };

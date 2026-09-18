@@ -5,6 +5,9 @@ import {
   Training,
   Augmentation,
   LuminanceAura,
+  AetheriaColor,
+  AetheriaSet,
+  AetheriaSurge,
   StringIndexedDict,
   NumberIndexedDict,
 } from "./types";
@@ -1911,4 +1914,67 @@ export const LUMINANCE_AURA_MAX_USES: StringIndexedDict<number> = {
   [LuminanceAura.destruction]: 5,
   [LuminanceAura.retribution]: 5,
   [LuminanceAura.hardening]: 5,
+};
+
+export const AETHERIA_COLORS: AetheriaColor[] = [
+  AetheriaColor.blue,
+  AetheriaColor.yellow,
+  AetheriaColor.red,
+];
+
+export const AETHERIA_SETS: AetheriaSet[] = [
+  AetheriaSet.growth,
+  AetheriaSet.defense,
+  AetheriaSet.fury,
+  AetheriaSet.destruction,
+  AetheriaSet.vigor,
+];
+
+export const AETHERIA_SURGES: AetheriaSurge[] = [
+  AetheriaSurge.destruction,
+  AetheriaSurge.protection,
+  AetheriaSurge.regeneration,
+  AetheriaSurge.affliction,
+  AetheriaSurge.festering,
+];
+
+export const MAX_AETHERIA_LEVEL: number = 5;
+
+// Minimum character level required to wield an Aetheria of each color.
+export const AETHERIA_MIN_LEVEL_BY_COLOR: StringIndexedDict<number> = {
+  [AetheriaColor.blue]: 75,
+  [AetheriaColor.yellow]: 150,
+  [AetheriaColor.red]: 225,
+};
+
+// Maps the combined level of equipped Aetheria in one set to its set bonus
+// level. Combined levels above 15 are treated as 15.
+export const AETHERIA_SET_BONUS_LEVEL: NumberIndexedDict<number> = {
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 6,
+  7: 6,
+  8: 7,
+  9: 7,
+  10: 8,
+  11: 8,
+  12: 9,
+  13: 9,
+  14: 9,
+  15: 10,
+};
+
+// Per-level magnitude of each set's effect. Multiply by the set bonus level.
+export const AETHERIA_SET_EFFECTS: StringIndexedDict<
+  StringIndexedDict<number>
+> = {
+  [AetheriaSet.growth]: { healingRating: 1, dotReduction: 4 },
+  [AetheriaSet.defense]: { damageReduction: 1 },
+  [AetheriaSet.fury]: { critRating: 1, endurance: 1 },
+  [AetheriaSet.destruction]: { damageRating: 1 },
+  [AetheriaSet.vigor]: { health: 1, stamina: 5, mana: 5, drainReduction: 4 },
 };

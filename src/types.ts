@@ -20,6 +20,7 @@ export interface Character {
   luminance_auras: any;
   items: any;
   armor_sets: any;
+  aetheria: Aetheria;
 }
 
 enum NotificationType {
@@ -46,6 +47,7 @@ export interface PaneVisibility {
   auras: boolean;
   items: boolean;
   armor_sets: boolean;
+  aetheria: boolean;
   buildStages: boolean;
   character: boolean;
   xpAndLuminance: boolean;
@@ -277,6 +279,53 @@ export enum Item {
   trinket_augmented_mana_i = "trinket_augmented_mana_i",
   trinket_augmented_mana_ii = "trinket_augmented_mana_ii",
   trinket_augmented_mana_iii = "trinket_augmented_mana_iii",
+}
+
+export enum AetheriaColor {
+  blue = "blue",
+  yellow = "yellow",
+  red = "red",
+}
+
+export enum AetheriaSet {
+  growth = "growth",
+  defense = "defense",
+  fury = "fury",
+  destruction = "destruction",
+  vigor = "vigor",
+}
+
+export enum AetheriaSurge {
+  destruction = "destruction",
+  protection = "protection",
+  regeneration = "regeneration",
+  affliction = "affliction",
+  festering = "festering",
+}
+
+export interface AetheriaSlot {
+  set: AetheriaSet | null;
+  surge: AetheriaSurge | null;
+  level: number;
+}
+
+export interface Aetheria {
+  blue: AetheriaSlot;
+  yellow: AetheriaSlot;
+  red: AetheriaSlot;
+}
+
+export interface AetheriaBonuses {
+  health: number;
+  stamina: number;
+  mana: number;
+  endurance: number;
+  healingRating: number;
+  damageRating: number;
+  damageReduction: number;
+  critRating: number;
+  dotReduction: number;
+  drainReduction: number;
 }
 
 export enum ArmorSet {

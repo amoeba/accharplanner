@@ -10,6 +10,7 @@ import {
   MAX_ATTRIBUTE_INVESTED,
   MAX_SKILL_INVESTED_SPECIALIZED,
   MAX_LEVEL,
+  MAX_AETHERIA_LEVEL,
 } from "../constants";
 import {
   updateAugmentationInvestedSideEffect,
@@ -54,6 +55,9 @@ export default {
   },
   toggleArmorSetsPane(state: State) {
     state.ui.paneVisibility.armor_sets = !state.ui.paneVisibility.armor_sets;
+  },
+  toggleAetheriaPane(state: State) {
+    state.ui.paneVisibility.aetheria = !state.ui.paneVisibility.aetheria;
   },
   toggleBuildStagesPane(state: State) {
     state.ui.paneVisibility.buildStages = !state.ui.paneVisibility.buildStages;
@@ -222,6 +226,33 @@ export default {
   },
   updateArmorSet(state: State, payload: any) {
     state.build.character.armor_sets[payload.id].equipped = payload.value;
+  },
+  updateAetheria(state: State, payload: any) {
+    const slot = (state.build.character.aetheria as any)[payload.slot];
+
+    if (!slot) {
+      return;
+    }
+
+    if (payload.field === "set") {
+      slot.set = payload.value || null;
+
+      // A set is required for an Aetheria to provide any benefit, so clearing
+      // the set also clears its level.
+      if (!slot.set) {
+        slot.level = 0;
+      }
+    } else if (payload.field === "surge") {
+      slot.surge = payload.value || null;
+    } else if (payload.field === "level") {
+      let level = Number(payload.value);
+
+      if (isNaN(level)) {
+        level = 0;
+      }
+
+      slot.level = Math.max(0, Math.min(level, MAX_AETHERIA_LEVEL));
+    }
   },
   updateAttributeCreation(state: State, payload: any) {
     let newVal = Number(payload.value);
