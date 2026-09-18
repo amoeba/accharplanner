@@ -48,12 +48,6 @@ export default {
   armorSetsPaneVisible: (state: State) => {
     return state.ui.paneVisibility.armor_sets;
   },
-  cloaksPaneVisible: (state: State) => {
-    return state.ui.paneVisibility.cloaks;
-  },
-  aetheriaPaneVisible: (state: State) => {
-    return state.ui.paneVisibility.aetheria;
-  },
   buildStagesPaneVisible: (state: State) => {
     return state.ui.paneVisibility.buildStages;
   },
@@ -68,10 +62,6 @@ export default {
   },
   extraSkillCreditsPaneVisible: (state: State) => {
     return state.ui.paneVisibility.extraSkillCredits;
-  },
-  // Cloak bonus helper
-  cloakedInSkillBonus: (state: State) => {
-    return state.build.character.cloaks.cloaked_in_skill ? 20 : 0;
   },
   // General
   shareStatus: (state: State) => {
@@ -647,7 +637,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.alchemy.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -689,7 +678,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.arcane_lore.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -742,7 +730,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.armor_tinkering.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -774,7 +761,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.assess_creature.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -805,7 +791,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.assess_person.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -836,7 +821,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.cooking.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0) +
@@ -914,7 +898,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.creature_enchantment.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -943,7 +926,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.deception.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -996,7 +978,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.dirty_fighting.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1050,7 +1031,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.dual_wield.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1110,7 +1090,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.finesse_weapons.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1162,7 +1141,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.fletching.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1212,7 +1190,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.healing.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1268,7 +1245,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.heavy_weapons.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1324,7 +1300,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.item_enchantment.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1379,7 +1354,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.item_tinkering.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1430,7 +1404,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.jump.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1460,7 +1433,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.leadership.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1513,7 +1485,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.life_magic.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1569,7 +1540,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.light_weapons.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1621,7 +1591,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.lockpick.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1652,7 +1621,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.loyalty.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -1704,7 +1672,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.magic_defense.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1751,7 +1718,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.magic_item_tinkering.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1802,7 +1768,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.mana_conversion.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1859,7 +1824,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.melee_defense.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1922,7 +1886,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.missile_defense.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -1978,7 +1941,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.missile_weapons.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -2026,7 +1988,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.recklessness.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -2060,7 +2021,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.run.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -2091,7 +2051,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.salvaging.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -2140,7 +2099,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.shield.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -2193,7 +2151,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.sneak_attack.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -2239,7 +2196,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.summoning.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -2297,7 +2253,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.two_handed_combat.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -2351,7 +2306,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.void_magic.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -2402,7 +2356,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.war_magic.training === Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
         : 0)
@@ -2448,7 +2401,6 @@ export default {
       (state.build.character.augmentations.jack_of_all_trades.invested === 1
         ? 5
         : 0) +
-      getters.cloakedInSkillBonus +
       (state.build.character.skills.weapon_tinkering.training ===
       Training.SPECIALIZED
         ? state.build.character.luminance_auras.specialization.invested * 2
@@ -2580,22 +2532,5 @@ export default {
   },
   isAdmin: (state: State, getters: any) => {
     return state.auth.isAdmin;
-  },
-
-  // Cloak damage/reduction ratings
-  cloakDamageRating: (state: State) => {
-    return state.build.character.cloaks.damage;
-  },
-  cloakDamageReductionRating: (state: State) => {
-    return state.build.character.cloaks.damage_reduction;
-  },
-
-  // Aetheria summary: count active aetheria by color
-  aetheriaSlots: (state: State) => {
-    return [
-      state.build.character.aetheria.slot_1,
-      state.build.character.aetheria.slot_2,
-      state.build.character.aetheria.slot_3,
-    ];
   },
 };

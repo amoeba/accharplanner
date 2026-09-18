@@ -5,7 +5,6 @@ import {
   Training,
   Augmentation,
   LuminanceAura,
-  Cloak,
   StringIndexedDict,
   NumberIndexedDict,
 } from "./types";
@@ -1913,18 +1912,3 @@ export const LUMINANCE_AURA_MAX_USES: StringIndexedDict<number> = {
   [LuminanceAura.retribution]: 5,
   [LuminanceAura.hardening]: 5,
 };
-
-export const CLOAKS: string[] = [
-  Cloak.cloaked_in_skill,
-  Cloak.damage,
-  Cloak.damage_reduction,
-];
-
-export const CLOAK_MAX_INVESTED: StringIndexedDict<number> = {
-  [Cloak.cloaked_in_skill]: 1,
-  [Cloak.damage]: 3,
-  [Cloak.damage_reduction]: 3,
-};
-
-export const MAX_AETHERIA_LEVEL: number = 5;
-export const MAX_AETHERIA_SLOTS: number = 3;

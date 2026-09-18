@@ -120,8 +120,6 @@
       <LuminanceAuras />
       <Items />
       <ArmorSets />
-      <Cloaks />
-      <Aetheria />
     </div>
   </div>
 </template>
@@ -138,8 +136,6 @@ import Augmentations from "./Augmentations.vue";
 import LuminanceAuras from "./LuminanceAuras.vue";
 import Items from "./Items.vue";
 import ArmorSets from "./ArmorSets.vue";
-import Cloaks from "./Cloaks.vue";
-import Aetheria from "./Aetheria.vue";
 import { exportCharacter } from "../helpers";
 
 export default {
@@ -156,8 +152,6 @@ export default {
     LuminanceAuras,
     Items,
     ArmorSets,
-    Cloaks,
-    Aetheria,
   },
   created: function () {
     // Bind Esc key to closing an open modal
